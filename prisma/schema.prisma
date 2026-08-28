@@ -1,0 +1,129 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum ProgressStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  passwordHash String
+  name         String
+  role         Role           @default(STUDENT)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  progress     UserProgress[]
+  bookmarks    Bookmark[]
+  certificates Certificate[]
+
+  @@map("users")
+}
+
+model Stage {
+  id          String   @id @default(cuid())
+  orderIndex  Int      @unique
+  titleId     String
+  titleEn     String
+  description String
+  lessons     Lesson[]
+
+  @@map("stages")
+}
+
+model Lesson {
+  id               String         @id @default(cuid())
+  stageId          String
+  stage            Stage          @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  slug             String         @unique
+  title            String
+  contentMd        String
+  level            Level          @default(BEGINNER)
+  prerequisiteIds  String[]       @default([])
+  estimatedMinutes Int            @default(15)
+  quizzes          Quiz[]
+  exercises        Exercise[]
+  userProgress     UserProgress[]
+  bookmarks        Bookmark[]
+
+  @@map("lessons")
+}
+
+model Quiz {
+  id           String   @id @default(cuid())
+  lessonId     String
+  lesson       Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  question     String
+  options      String[]
+  correctIndex Int
+  explanation  String?
+
+  @@map("quizzes")
+}
+
+model Exercise {
+  id             String  @id @default(cuid())
+  lessonId       String
+  lesson         Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  prompt         String
+  starterCode    String
+  solutionCode   String?
+  expectedOutput String?
+
+  @@map("exercises")
+}
+
+model UserProgress {
+  id          String         @id @default(cuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      Lesson         @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  status      ProgressStatus @default(IN_PROGRESS)
+  quizScore   Int?
+  completedAt DateTime?
+
+  @@unique([userId, lessonId])
+  @@map("user_progress")
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, lessonId])
+  @@map("bookmarks")
+}
+
+model Certificate {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pathId          String
+  certificateCode String   @unique
+  issuedAt        DateTime @default(now())
+
+  @@map("certificates")
+}
