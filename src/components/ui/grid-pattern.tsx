@@ -27,7 +27,7 @@ export function GridPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-white/[0.02] stroke-white/[0.04]",
+        "pointer-events-none absolute inset-0 h-full w-full fill-black/[0.03] stroke-black/[0.08] dark:fill-white/[0.02] dark:stroke-white/[0.04]",
         className
       )}
       {...props}
@@ -59,7 +59,7 @@ export function GridPattern({
               height={height - 1}
               x={sqX * width + 1}
               y={sqY * height + 1}
-              fill="rgba(99, 102, 241, 0.05)"
+              className="fill-[#FFD84D]/40 dark:fill-[rgba(99,102,241,0.05)]"
             />
           ))}
         </svg>

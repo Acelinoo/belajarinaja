@@ -56,13 +56,13 @@ export default function CertificatePage() {
       <main className="flex-1 py-10">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b-2 border-black dark:border-border">
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-wider mb-1">
-                <Award className="h-4 w-4" />
+              <div className="flex items-center gap-2 text-xs font-mono font-black text-[#121212] bg-[#FFD84D] px-2.5 py-1 rounded border border-black shadow-[2px_2px_0px_#121212] uppercase tracking-wider mb-2 w-fit dark:border-0 dark:bg-transparent dark:text-primary dark:shadow-none dark:p-0">
+                <Award className="h-4 w-4 text-[#121212] dark:text-primary" />
                 <span>Verifikasi Sertifikat Digital</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground">
                 Sertifikat Kelulusan Kurikulum
               </h1>
             </div>
@@ -73,11 +73,11 @@ export default function CertificatePage() {
                   variant="outline"
                   size="sm"
                   onClick={handleCopyLink}
-                  className="text-xs gap-1.5"
+                  className="text-xs font-bold gap-1.5 shadow-[2px_2px_0px_#121212]"
                 >
                   {copied ? (
                     <>
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <Check className="h-3.5 w-3.5 text-emerald-800 dark:text-emerald-400" />
                       Tautan Tersalin
                     </>
                   ) : (
@@ -91,7 +91,7 @@ export default function CertificatePage() {
                 <Button
                   size="sm"
                   onClick={handlePrint}
-                  className="text-xs gap-1.5 font-medium"
+                  className="text-xs font-black gap-1.5 shadow-[3px_3px_0px_#121212]"
                 >
                   <Download className="h-3.5 w-3.5" />
                   Cetak / Unduh PDF
@@ -99,7 +99,7 @@ export default function CertificatePage() {
               </div>
             ) : (
               <Link href="/roadmap">
-                <Button size="sm" className="text-xs gap-1.5">
+                <Button size="sm" className="text-xs font-bold gap-1.5 shadow-[2px_2px_0px_#121212]">
                   <Compass className="h-3.5 w-3.5" />
                   Lanjutkan Belajar di Roadmap
                 </Button>
@@ -109,32 +109,32 @@ export default function CertificatePage() {
 
           {!isEligible ? (
             /* Locked Certificate State */
-            <div className="p-8 sm:p-12 rounded-2xl border border-border bg-card text-center space-y-6">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 mx-auto border border-amber-500/20">
+            <div className="p-8 sm:p-12 rounded-2xl border-2 border-black bg-white text-center space-y-6 shadow-[6px_6px_0px_#121212] dark:border-border dark:bg-card dark:shadow-none">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-black bg-[#FFD84D] text-[#121212] mx-auto shadow-[3px_3px_0px_#121212] dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-400 dark:shadow-none">
                 <Lock className="h-8 w-8" />
               </div>
 
               <div className="space-y-2 max-w-md mx-auto">
-                <h2 className="text-xl font-bold text-foreground">
+                <h2 className="text-xl font-black text-foreground">
                   Sertifikat Masih Terkunci
                 </h2>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Untuk mengklaim dan menerbitkan Sertifikat Resmi Fullstack Web Developer, Anda wajib menyelesaikan seluruh <strong className="text-foreground">{totalLessons} materi</strong> dan lulus seluruh quiz evaluasi (skor minimal 80%).
+                <p className="text-xs font-medium text-[#555555] dark:font-normal dark:text-muted-foreground leading-relaxed">
+                  Untuk mengklaim dan menerbitkan Sertifikat Resmi Fullstack Web Developer, Anda wajib menyelesaikan seluruh <strong className="text-foreground font-black">{totalLessons} materi</strong> dan lulus seluruh quiz evaluasi (skor minimal 80%).
                 </p>
               </div>
 
-              <div className="max-w-md mx-auto p-4 rounded-xl bg-background/60 border border-border space-y-2 text-left">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">Progres Kelulusan Materi & Quiz:</span>
-                  <span className="font-mono font-semibold text-primary">
+              <div className="max-w-md mx-auto p-4 rounded-xl bg-[#F7F4EA] border-2 border-black space-y-2 text-left shadow-[3px_3px_0px_#121212] dark:bg-background/60 dark:border-border dark:shadow-none">
+                <div className="flex items-center justify-between text-xs font-bold dark:font-normal">
+                  <span className="text-neutral-700 dark:text-muted-foreground">Progres Kelulusan Materi & Quiz:</span>
+                  <span className="font-mono font-black text-black dark:text-primary">
                     {completedCount} / {totalLessons} ({progressPercentage}%)
                   </span>
                 </div>
-                <Progress value={progressPercentage} className="h-2" />
+                <Progress value={progressPercentage} className="h-2.5" />
               </div>
 
               <Link href="/roadmap">
-                <Button size="sm" className="gap-2 text-xs font-medium">
+                <Button size="sm" className="gap-2 text-xs font-black shadow-[3px_3px_0px_#121212]">
                   Buka Roadmap 20 Tahap
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
@@ -142,71 +142,71 @@ export default function CertificatePage() {
             </div>
           ) : (
             /* Certificate Frame Preview */
-            <div className="relative rounded-2xl border-2 border-primary/40 bg-gradient-to-b from-[#121318] to-[#0E0F12] p-8 sm:p-12 shadow-2xl overflow-hidden print:border-black print:bg-white print:text-black">
+            <div className="relative rounded-2xl border-4 border-black bg-white p-8 sm:p-12 shadow-[12px_12px_0px_#121212] overflow-hidden dark:border-2 dark:border-primary/40 dark:bg-gradient-to-b dark:from-[#121318] dark:to-[#0E0F12] dark:shadow-2xl print:border-black print:bg-white print:text-black">
               {/* Background watermarks */}
               <div className="absolute right-6 top-6 opacity-5 pointer-events-none">
-                <Award className="h-64 w-64 text-primary" />
+                <Award className="h-64 w-64 text-black dark:text-primary" />
               </div>
 
               <div className="relative z-10 text-center space-y-6">
                 {/* Brand Emblem */}
                 <div className="flex items-center justify-center gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-mono font-bold text-base">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] font-mono font-black text-base shadow-[2px_2px_0px_#121212] dark:border-0 dark:bg-primary dark:text-primary-foreground dark:shadow-none">
                     BA
                   </div>
-                  <span className="font-bold tracking-tight text-lg text-foreground">
-                    Belajarin<span className="text-primary">Aja</span>
+                  <span className="font-black tracking-tight text-lg text-foreground">
+                    Belajarin<span className="text-[#121212] dark:text-primary bg-[#FFD84D] dark:bg-transparent px-1 rounded-sm border border-black dark:border-0 ml-0.5">Aja</span>
                   </span>
                 </div>
 
                 <div>
-                  <div className="text-xs uppercase font-mono tracking-widest text-primary font-semibold">
+                  <div className="text-xs uppercase font-mono tracking-widest text-[#121212] bg-[#70B7FF] px-3 py-0.5 rounded border border-black inline-block font-black shadow-[1.5px_1.5px_0px_#121212] dark:border-0 dark:bg-transparent dark:text-primary dark:shadow-none">
                     Sertifikat Kelulusan Resmi
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-serif tracking-tight mt-2 text-foreground">
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-2 text-foreground">
                     Certificate of Fullstack Web Development
                   </h2>
                 </div>
 
                 <div className="py-2">
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground">
                     Sertifikat ini dengan bangga dianugerahkan kepada:
                   </p>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground underline decoration-primary/40 underline-offset-8 mt-2">
+                  <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground underline decoration-[#FFD84D] decoration-4 underline-offset-8 mt-2">
                     {user?.name || "Marchelino Kurniawan"}
                   </h3>
                 </div>
 
-                <p className="max-w-xl mx-auto text-xs text-muted-foreground leading-relaxed">
+                <p className="max-w-xl mx-auto text-xs font-medium text-[#404040] dark:font-normal dark:text-muted-foreground leading-relaxed">
                   Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development terstruktur, mencakup Web Fundamentals, HTML5 Semantic, Modern CSS, JavaScript, TypeScript, React, Next.js 16, PostgreSQL & Prisma ORM, Keamanan Web, dan Final Portfolio Capstone.
                 </p>
 
                 {/* Certificate Metadata Grid */}
-                <div className="pt-6 border-t border-border/60 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-                  <div className="p-3 rounded-lg bg-card/60 border border-border/60">
-                    <span className="text-[10px] text-muted-foreground uppercase font-mono block">
+                <div className="pt-6 border-t-2 border-black dark:border-border/60 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+                  <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-card/60 dark:border-border/60 dark:shadow-none">
+                    <span className="text-[10px] text-[#555555] dark:text-muted-foreground uppercase font-mono block font-bold">
                       ID Sertifikat
                     </span>
-                    <span className="text-xs font-mono font-bold text-primary">
+                    <span className="text-xs font-mono font-black text-black dark:text-primary">
                       {certificateCode}
                     </span>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-card/60 border border-border/60">
-                    <span className="text-[10px] text-muted-foreground uppercase font-mono block">
+                  <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-card/60 dark:border-border/60 dark:shadow-none">
+                    <span className="text-[10px] text-[#555555] dark:text-muted-foreground uppercase font-mono block font-bold">
                       Tanggal Penerbitan
                     </span>
-                    <span className="text-xs font-medium text-foreground">
+                    <span className="text-xs font-bold text-foreground">
                       {issueDate}
                     </span>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-card/60 border border-border/60 flex items-center justify-between">
+                  <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-card/60 dark:border-border/60 dark:shadow-none flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] text-muted-foreground uppercase font-mono block">
+                      <span className="text-[10px] text-[#555555] dark:text-muted-foreground uppercase font-mono block font-bold">
                         Status Verifikasi
                       </span>
-                      <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">
+                      <span className="text-xs font-black text-emerald-800 dark:text-emerald-400 flex items-center gap-1">
                         <CheckCircle2 className="h-3.5 w-3.5" />
                         Terverifikasi Asli
                       </span>

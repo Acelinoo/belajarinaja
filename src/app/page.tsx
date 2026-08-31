@@ -66,7 +66,7 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* Hero Section with React Bits Background Grid */}
-        <section className="relative overflow-hidden border-b border-border/70 py-20 sm:py-28 bg-[#090A0C]">
+        <section className="relative overflow-hidden border-b-2 border-black py-20 sm:py-28 bg-[#F7F4EA] dark:border-border/70 dark:bg-[#090A0C]">
           <GridPattern
             width={40}
             height={40}
@@ -81,30 +81,30 @@ export default function HomePage() {
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs text-muted-foreground mb-6">
-                <Terminal className="h-3.5 w-3.5 text-primary" />
+              <div className="inline-flex items-center gap-2 rounded-md border-2 border-black bg-[#FFD84D] px-4 py-1.5 text-xs font-black text-[#121212] shadow-[3px_3px_0px_#121212] mb-6 dark:rounded-full dark:border-border dark:bg-card dark:text-muted-foreground dark:font-normal dark:shadow-none">
+                <Terminal className="h-3.5 w-3.5 text-[#121212] dark:text-primary" />
                 <span>Roadmap Web Developer Dari Nol — 20 Tahap & {totalLessonsCount} Modul Pembelajaran</span>
               </div>
 
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-balance">
+              <h1 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl text-balance text-foreground">
                 Kuasai Web Development Dari Dasar Hingga Siap Kerja
               </h1>
 
-              <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground text-pretty">
+              <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg font-medium text-[#404040] dark:font-normal dark:text-muted-foreground text-pretty">
                 Alur belajar terstruktur dari konsep dasar komputer hingga pembuatan aplikasi fullstack modern.
-                Mulai belajar langsung sebagai <strong className="text-foreground">Guest tanpa wajib login</strong>.
+                Mulai belajar langsung sebagai <strong className="font-extrabold text-foreground underline decoration-[#FFD84D] decoration-4">Guest tanpa rintangan login</strong>.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <Link href="/roadmap">
-                  <MagnetButton size="lg" className="gap-2 font-medium px-6 shadow-lg shadow-primary/20">
+                  <MagnetButton size="lg" className="gap-2 font-black px-6 border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[4px_4px_0px_#121212] hover:bg-[#F5CB32] dark:border-transparent dark:bg-primary dark:text-primary-foreground dark:shadow-lg dark:shadow-primary/20 dark:font-medium">
                     <Compass className="h-4 w-4" />
                     Mulai Belajar Tanpa Login
                     <ArrowRight className="h-4 w-4" />
                   </MagnetButton>
                 </Link>
                 <Link href="#roadmap">
-                  <Button size="lg" variant="outline" className="gap-2">
+                  <Button size="lg" variant="outline" className="gap-2 font-black border-2 border-black bg-white text-black shadow-[4px_4px_0px_#121212] hover:bg-[#EAE4D5] dark:border-border dark:bg-transparent dark:text-foreground dark:shadow-sm dark:font-medium">
                     <Layers className="h-4 w-4" />
                     Jelajahi 20 Tahap ({totalLessonsCount} Modul)
                   </Button>
@@ -112,34 +112,34 @@ export default function HomePage() {
               </div>
 
               {/* Quick Metrics */}
-              <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4 max-w-4xl mx-auto pt-10 border-t border-border/40">
-                <div className="p-4 rounded-lg bg-card/60 border border-border/60">
-                  <div className="text-2xl font-bold font-mono text-foreground">20</div>
-                  <div className="text-xs text-muted-foreground mt-1">Tahap Kurikulum</div>
+              <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4 max-w-4xl mx-auto pt-10 border-t-2 border-black dark:border-border/40">
+                <div className="p-4 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_#121212] dark:border-border/60 dark:bg-card/60 dark:shadow-none dark:rounded-lg">
+                  <div className="text-3xl font-black font-mono text-foreground">20</div>
+                  <div className="text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground mt-1">Tahap Kurikulum</div>
                 </div>
-                <div className="p-4 rounded-lg bg-card/60 border border-border/60">
-                  <div className="text-2xl font-bold font-mono text-emerald-400">{totalLessonsCount}</div>
-                  <div className="text-xs text-muted-foreground mt-1">Modul Pembelajaran</div>
+                <div className="p-4 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_#121212] dark:border-border/60 dark:bg-card/60 dark:shadow-none dark:rounded-lg">
+                  <div className="text-3xl font-black font-mono text-emerald-800 dark:text-emerald-400">{totalLessonsCount}</div>
+                  <div className="text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground mt-1">Modul Pembelajaran</div>
                 </div>
-                <div className="p-4 rounded-lg bg-card/60 border border-border/60">
-                  <div className="text-2xl font-bold font-mono text-primary">6</div>
-                  <div className="text-xs text-muted-foreground mt-1">Milestone Proyek</div>
+                <div className="p-4 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_#121212] dark:border-border/60 dark:bg-card/60 dark:shadow-none dark:rounded-lg">
+                  <div className="text-3xl font-black font-mono text-blue-800 dark:text-primary">6</div>
+                  <div className="text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground mt-1">Milestone Proyek</div>
                 </div>
-                <div className="p-4 rounded-lg bg-card/60 border border-border/60">
-                  <div className="text-2xl font-bold font-mono text-foreground">Dual</div>
-                  <div className="text-xs text-muted-foreground mt-1">Bahasa (ID / EN)</div>
+                <div className="p-4 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_#121212] dark:border-border/60 dark:bg-card/60 dark:shadow-none dark:rounded-lg">
+                  <div className="text-3xl font-black font-mono text-foreground">Dual</div>
+                  <div className="text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground mt-1">Bahasa (ID / EN)</div>
                 </div>
               </div>
             </div>
 
             {/* Interactive Live Code Sandbox Preview on Hero */}
-            <div className="mt-14 max-w-4xl mx-auto rounded-xl border border-border bg-[#121318] shadow-2xl overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-[#0E0F12]">
+            <div className="mt-14 max-w-4xl mx-auto rounded-xl border-2 border-black bg-white shadow-[8px_8px_0px_#121212] overflow-hidden dark:border-border dark:bg-[#121318] dark:shadow-2xl">
+              <div className="flex items-center justify-between px-4 py-3 border-b-2 border-black bg-[#EAE4D5] dark:border-border dark:bg-[#0E0F12]">
                 <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-rose-500/80" />
-                  <div className="h-3 w-3 rounded-full bg-amber-500/80" />
-                  <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
-                  <span className="text-xs font-mono text-muted-foreground ml-2">
+                  <div className="h-3.5 w-3.5 rounded-full border border-black bg-[#FF6B6B]" />
+                  <div className="h-3.5 w-3.5 rounded-full border border-black bg-[#FFD84D]" />
+                  <div className="h-3.5 w-3.5 rounded-full border border-black bg-[#7BE495]" />
+                  <span className="text-xs font-mono font-bold text-[#121212] dark:text-muted-foreground ml-2">
                     interactive-demo.js
                   </span>
                 </div>
@@ -150,10 +150,10 @@ export default function HomePage() {
                       key={snip.tab}
                       type="button"
                       onClick={() => setActiveSnippetIndex(idx)}
-                      className={`px-2.5 py-1 text-xs rounded transition-colors font-mono ${
+                      className={`px-2.5 py-1 text-xs rounded transition-all font-mono font-bold ${
                         activeSnippetIndex === idx
-                          ? "bg-secondary text-primary font-semibold"
-                          : "text-muted-foreground hover:text-foreground"
+                          ? "bg-[#FFD84D] text-[#121212] border-2 border-black shadow-[1.5px_1.5px_0px_#121212] dark:bg-secondary dark:text-primary dark:border-0 dark:shadow-none"
+                          : "text-[#555555] hover:text-black dark:text-muted-foreground dark:hover:text-foreground"
                       }`}
                     >
                       {snip.tab}
@@ -162,9 +162,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
+              <div className="grid grid-cols-1 md:grid-cols-2 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black dark:divide-border">
                 {/* Code View */}
-                <div className="p-4 bg-[#060708] relative">
+                <div className="p-4 bg-[#121212] relative dark:bg-[#060708]">
                   <pre className="font-mono text-xs text-emerald-400 overflow-x-auto leading-relaxed">
                     <code>{snippets[activeSnippetIndex].code}</code>
                   </pre>
@@ -172,11 +172,11 @@ export default function HomePage() {
                     size="sm"
                     variant="ghost"
                     onClick={() => handleCopy(snippets[activeSnippetIndex].code)}
-                    className="absolute top-3 right-3 h-7 px-2 text-[11px] gap-1 text-muted-foreground hover:text-foreground"
+                    className="absolute top-3 right-3 h-7 px-2.5 text-[11px] font-bold border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#000000] hover:bg-[#F5CB32] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none dark:border-transparent dark:bg-transparent dark:text-muted-foreground dark:hover:text-foreground dark:shadow-none"
                   >
                     {copied ? (
                       <>
-                        <Check className="h-3 w-3 text-emerald-400" />
+                        <Check className="h-3 w-3 text-emerald-800 dark:text-emerald-400" />
                         Tersalin
                       </>
                     ) : (
@@ -189,20 +189,20 @@ export default function HomePage() {
                 </div>
 
                 {/* Simulated Output */}
-                <div className="p-4 bg-[#121318] flex flex-col justify-between">
+                <div className="p-4 bg-white flex flex-col justify-between dark:bg-[#121318]">
                   <div>
-                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono mb-2">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#121212] font-mono mb-2 dark:text-muted-foreground dark:font-normal">
                       <Play className="h-3.5 w-3.5 text-primary" />
                       <span>Simulasi Eksekusi di Browser</span>
                     </div>
-                    <div className="p-3 rounded bg-card border border-border font-mono text-xs whitespace-pre-line text-foreground">
+                    <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black font-mono text-xs whitespace-pre-line text-[#121212] font-medium shadow-[2px_2px_0px_#121212] dark:bg-card dark:border-border dark:text-foreground dark:shadow-none dark:font-normal">
                       {snippets[activeSnippetIndex].output}
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="mt-4 pt-3 border-t-2 border-black dark:border-border flex items-center justify-between text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground">
                     <span>Evaluasi Otomatis Sandbox</span>
-                    <span className="text-emerald-400 font-mono">Status: Ready</span>
+                    <span className="text-emerald-800 dark:text-emerald-400 font-mono">Status: Ready</span>
                   </div>
                 </div>
               </div>
@@ -211,23 +211,23 @@ export default function HomePage() {
         </section>
 
         {/* Roadmap Preview Section with Spotlight Cards */}
-        <section id="roadmap" className="py-20 bg-background/50">
+        <section id="roadmap" className="py-20 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
               <div>
-                <span className="text-xs font-mono font-medium text-primary uppercase tracking-wider">
+                <span className="text-xs font-mono font-black text-[#121212] bg-[#FFD84D] px-2 py-0.5 rounded border border-black dark:border-0 dark:bg-transparent dark:text-primary uppercase tracking-wider">
                   Alur Pembelajaran
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mt-1">
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-2 text-foreground">
                   20 Tahapan Roadmap Terarah
                 </h2>
-                <p className="text-muted-foreground text-sm mt-2 max-w-xl">
+                <p className="text-[#555555] dark:text-muted-foreground text-sm mt-2 max-w-xl font-medium dark:font-normal">
                   Setiap materi memiliki prasyarat yang jelas, materi berbentuk teks ringkas 5–15 menit, dan latihan kode interaktif.
                 </p>
               </div>
 
               <Link href="/roadmap">
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button variant="outline" size="sm" className="gap-2 font-bold shadow-[2px_2px_0px_#121212]">
                   Buka Roadmap Lengkap ({totalLessonsCount} Modul)
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
@@ -238,30 +238,30 @@ export default function HomePage() {
               {CURRICULUM_STAGES.slice(0, 12).map((stage) => {
                 const firstLesson = stage.lessons[0];
                 return (
-                  <SpotlightCard key={stage.id} className="border-border group">
+                  <SpotlightCard key={stage.id} className="group">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-xs font-semibold text-primary">
+                      <span className="font-mono text-xs font-black text-[#121212] bg-[#FFD84D] px-2 py-0.5 rounded border border-black dark:border-0 dark:bg-transparent dark:text-primary">
                         Tahap {String(stage.orderIndex).padStart(2, "0")}
                       </span>
                       <Badge variant="outline" className="text-[10px]">
                         {stage.category}
                       </Badge>
                     </div>
-                    <h3 className="text-base font-semibold group-hover:text-primary transition-colors">
+                    <h3 className="text-base font-black group-hover:text-primary transition-colors text-foreground">
                       {stage.titleId}
                     </h3>
-                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-[#555555] dark:text-muted-foreground mt-1.5 leading-relaxed line-clamp-2 font-medium dark:font-normal">
                       {stage.description}
                     </p>
 
-                    <div className="mt-4 pt-3 border-t border-border/80 flex items-center justify-between">
-                      <span className="text-[11px] text-muted-foreground font-mono">
+                    <div className="mt-4 pt-3 border-t-2 border-black dark:border-border/80 flex items-center justify-between">
+                      <span className="text-[11px] text-[#555555] dark:text-muted-foreground font-mono font-bold dark:font-normal">
                         {stage.lessons.length} Modul Pembelajaran
                       </span>
                       {firstLesson && (
                         <Link
                           href={`/lessons/${firstLesson.slug}`}
-                          className="inline-flex items-center text-xs font-medium text-primary gap-1 hover:underline"
+                          className="inline-flex items-center text-xs font-black text-black underline decoration-[#FFD84D] decoration-2 hover:text-primary gap-1 dark:text-primary dark:no-underline dark:hover:underline"
                         >
                           Mulai Tahap Ini
                           <ArrowRight className="h-3 w-3" />
@@ -276,47 +276,47 @@ export default function HomePage() {
         </section>
 
         {/* Feature Grid */}
-        <section id="fitur" className="py-20 border-t border-border/60">
+        <section id="fitur" className="py-20 border-t-2 border-black dark:border-border/60">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-xs font-mono font-medium text-primary uppercase tracking-wider">
+              <span className="text-xs font-mono font-black text-[#121212] bg-[#70B7FF] px-2 py-0.5 rounded border border-black dark:border-0 dark:bg-transparent dark:text-primary uppercase tracking-wider">
                 Pengalaman Belajar
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mt-1">
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-2 text-foreground">
                 Fokus Belajar Tanpa Hambatan
               </h2>
-              <p className="text-muted-foreground text-sm mt-2">
+              <p className="text-[#555555] dark:text-muted-foreground text-sm mt-2 font-medium dark:font-normal">
                 Didesain khusus untuk pemula yang ingin memahami konsep web development secara praktis.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <SpotlightCard className="p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
-                  <Code2 className="h-5 w-5" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#121212] mb-4 dark:border-0 dark:bg-primary/10 dark:text-primary dark:shadow-none">
+                  <Code2 className="h-6 w-6" />
                 </div>
-                <h3 className="text-base font-semibold mb-2">Interactive Code Viewer</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <h3 className="text-base font-black mb-2 text-foreground">Interactive Code Viewer</h3>
+                <p className="text-xs text-[#555555] dark:text-muted-foreground leading-relaxed font-medium dark:font-normal">
                   Penyorotan sintaks kode modern dengan fitur instant copy dan contoh kode yang dapat langsung dipraktikkan.
                 </p>
               </SpotlightCard>
 
               <SpotlightCard className="p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
-                  <Zap className="h-5 w-5" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#70B7FF] text-[#121212] shadow-[2px_2px_0px_#121212] mb-4 dark:border-0 dark:bg-primary/10 dark:text-primary dark:shadow-none">
+                  <Zap className="h-6 w-6" />
                 </div>
-                <h3 className="text-base font-semibold mb-2">Zero-Barrier Guest Learning</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <h3 className="text-base font-black mb-2 text-foreground">Zero-Barrier Guest Learning</h3>
+                <p className="text-xs text-[#555555] dark:text-muted-foreground leading-relaxed font-medium dark:font-normal">
                   Mulai membaca materi dan mencoba latihan seketika. Progress tersimpan di browser dan dapat dimigrasikan saat membuat akun.
                 </p>
               </SpotlightCard>
 
               <SpotlightCard className="p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
-                  <ShieldCheck className="h-5 w-5" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#7BE495] text-[#121212] shadow-[2px_2px_0px_#121212] mb-4 dark:border-0 dark:bg-primary/10 dark:text-primary dark:shadow-none">
+                  <ShieldCheck className="h-6 w-6" />
                 </div>
-                <h3 className="text-base font-semibold mb-2">Sertifikat Kelulusan Resmi</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <h3 className="text-base font-black mb-2 text-foreground">Sertifikat Kelulusan Resmi</h3>
+                <p className="text-xs text-[#555555] dark:text-muted-foreground leading-relaxed font-medium dark:font-normal">
                   Dapatkan sertifikat digital dengan kode verifikasi unik setelah menyelesaikan alur modul dan portfolio project.
                 </p>
               </SpotlightCard>

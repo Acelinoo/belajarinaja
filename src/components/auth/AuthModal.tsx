@@ -51,22 +51,22 @@ export function AuthModal() {
 
   return (
     <Dialog open={isLoginModalOpen} onOpenChange={closeLoginModal}>
-      <DialogContent className="max-w-md bg-[#181A22] border-border p-6 rounded-xl">
+      <DialogContent className="max-w-md bg-white border-2 border-black p-6 rounded-xl shadow-[8px_8px_0px_#121212] dark:border-border dark:bg-[#181A22] dark:shadow-2xl">
         <DialogHeader className="space-y-1 text-left">
           <div className="flex items-center gap-2 mb-1">
-            <div className="flex h-7 w-7 items-center justify-center rounded bg-primary text-primary-foreground font-mono font-bold text-xs">
+            <div className="flex h-7 w-7 items-center justify-center rounded border-2 border-black bg-[#FFD84D] text-[#121212] font-mono font-black text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border-0 dark:bg-primary dark:text-primary-foreground dark:shadow-none">
               BA
             </div>
-            <span className="font-semibold tracking-tight text-sm text-foreground">
-              BelajarinAja
+            <span className="font-black tracking-tight text-sm text-foreground">
+              Belajarin<span className="text-[#121212] dark:text-primary bg-[#FFD84D] dark:bg-transparent px-1 rounded-sm border border-black dark:border-0 ml-0.5">Aja</span>
             </span>
           </div>
 
-          <DialogTitle className="text-xl font-bold tracking-tight text-foreground">
+          <DialogTitle className="text-xl font-black tracking-tight text-foreground">
             {isRegister ? "Buat Akun Siswa" : "Masuk ke Akun"}
           </DialogTitle>
 
-          <DialogDescription className="text-xs text-muted-foreground">
+          <DialogDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-muted-foreground">
             {isRegister
               ? "Simpan progress belajar Anda ke cloud secara permanen dan klaim sertifikat."
               : "Lanjutkan pembelajaran dan akses dashboard statistik Anda."}
@@ -75,13 +75,13 @@ export function AuthModal() {
 
         {/* Guest Progress Notice */}
         {guestCount > 0 && (
-          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3 text-xs text-foreground flex items-center gap-2.5">
-            <ShieldCheck className="h-4 w-4 text-primary shrink-0" />
+          <div className="rounded-lg border-2 border-black bg-[#FFD84D]/30 p-3 text-xs text-[#121212] shadow-[3px_3px_0px_#121212] flex items-center gap-2.5 dark:border-primary/30 dark:bg-primary/10 dark:text-foreground dark:shadow-none">
+            <ShieldCheck className="h-4 w-4 text-black dark:text-primary shrink-0" />
             <div>
-              <span className="font-semibold text-primary">
+              <span className="font-black text-black dark:text-primary">
                 {guestCount} Materi Selesai Terdeteksi!
               </span>
-              <p className="text-muted-foreground text-[11px] mt-0.5">
+              <p className="text-neutral-800 dark:text-muted-foreground text-[11px] mt-0.5 font-medium dark:font-normal">
                 Progress browser Anda akan otomatis dipindahkan ke akun baru.
               </p>
             </div>
@@ -91,17 +91,17 @@ export function AuthModal() {
         <form onSubmit={handleSubmit} className="space-y-4 pt-1">
           {isRegister && (
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-foreground">
+              <label className="text-xs font-bold text-foreground">
                 Nama Lengkap
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                <User className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-muted-foreground" />
                 <Input
                   type="text"
                   placeholder="Nama lengkap Anda"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-9 text-xs bg-background/50 border-border"
+                  className="pl-9 text-xs bg-white dark:bg-background/50"
                   required
                 />
               </div>
@@ -109,40 +109,40 @@ export function AuthModal() {
           )}
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">
+            <label className="text-xs font-bold text-foreground">
               Alamat Email
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-muted-foreground" />
               <Input
                 type="email"
                 placeholder="nama@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-9 text-xs bg-background/50 border-border"
+                className="pl-9 text-xs bg-white dark:bg-background/50"
                 required
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">
+            <label className="text-xs font-bold text-foreground">
               Kata Sandi
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Lock className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-muted-foreground" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-9 pr-9 text-xs bg-background/50 border-border"
+                className="pl-9 pr-9 text-xs bg-white dark:bg-background/50"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2.5 text-muted-foreground hover:text-foreground"
+                className="absolute right-3 top-2.5 text-[#121212] hover:text-black dark:text-muted-foreground dark:hover:text-foreground"
               >
                 {showPassword ? (
                   <EyeOff className="h-4 w-4" />
@@ -156,7 +156,7 @@ export function AuthModal() {
           <div className="pt-2 space-y-3">
             <Button
               type="submit"
-              className="w-full text-xs font-medium gap-2 h-9"
+              className="w-full text-xs font-bold gap-2 h-9 shadow-[3px_3px_0px_#121212]"
               disabled={loading}
             >
               {loading
@@ -170,7 +170,7 @@ export function AuthModal() {
             <button
               type="button"
               onClick={() => setIsRegister(!isRegister)}
-              className="w-full text-center text-xs text-muted-foreground hover:text-foreground transition-colors"
+              className="w-full text-center text-xs font-bold text-black underline hover:text-primary dark:text-muted-foreground dark:no-underline dark:hover:text-foreground transition-colors"
             >
               {isRegister
                 ? "Sudah memiliki akun? Masuk di sini"

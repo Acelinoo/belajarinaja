@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  /* Dark mode is product default */
+  /* Dark mode is product default baseline (PRESERVED 100%) */
   :root {
     --background: 220 14% 4%; /* #090A0C */
     --foreground: 220 13% 96%; /* #F3F4F6 */
@@ -49,48 +49,49 @@
     --color-text-tertiary: #6b7280;
   }
 
+  /* Neo-Brutalism Light Mode System */
   .light,
   [data-theme="light"] {
-    --background: 60 8% 98%; /* #FBFBFA */
-    --foreground: 220 14% 4%; /* #090A0C */
+    --background: 48 38% 95%; /* #F7F4EA - Warm Editorial Paper Canvas */
+    --foreground: 0 0% 7%; /* #121212 - Deep Sharp Ink */
 
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 220 14% 4%;
+    --card: 0 0% 100%; /* #FFFFFF - Pure Paper Surface */
+    --card-foreground: 0 0% 7%; /* #121212 */
 
-    --popover: 240 5% 96%; /* #F4F4F5 */
-    --popover-foreground: 220 14% 4%;
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 244 75% 59%; /* #4F46E5 */
-    --primary-foreground: 0 0% 100%;
+    --primary: 47 100% 65%; /* #FFD84D - Neo-Brutalist Sunshine Yellow */
+    --primary-foreground: 0 0% 7%; /* #121212 - High Contrast Black Text */
 
-    --secondary: 240 5% 92%;
-    --secondary-foreground: 240 6% 10%;
+    --secondary: 211 100% 72%; /* #70B7FF - Sky Blue */
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 240 5% 94%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 44 24% 88%; /* #EAE4D5 - Warm Muted Paper */
+    --muted-foreground: 0 0% 33%; /* #555555 */
 
-    --accent: 240 5% 92%;
-    --accent-foreground: 240 6% 10%;
+    --accent: 334 100% 72%; /* #FF6FAE - Bubblegum Pink */
+    --accent-foreground: 0 0% 7%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 100% 71%; /* #FF6B6B - Coral Red */
+    --destructive-foreground: 0 0% 7%;
 
-    --border: 240 6% 90%; /* #E4E4E7 */
-    --input: 240 6% 90%;
-    --ring: 244 75% 59%;
+    --border: 0 0% 7%; /* #121212 - Solid 2px-3px Dark Ink Border */
+    --input: 0 0% 7%; /* #121212 */
+    --ring: 47 100% 65%; /* #FFD84D */
 
-    /* Light Theme Custom Properties */
-    --color-bg-base: #fbfbfa;
+    /* Light Theme Neo-Brutalist Custom Properties */
+    --color-bg-base: #f7f4ea;
     --color-bg-surface: #ffffff;
-    --color-bg-elevated: #f4f4f5;
-    --color-bg-sidebar: #f5f5f4;
-    --color-bg-sunken: #efefef;
-    --color-border-subtle: #e4e4e7;
-    --color-border-strong: #d4d4d8;
-    --color-accent-primary: #4f46e5;
-    --color-text-primary: #090a0c;
-    --color-text-secondary: #4b5563;
-    --color-text-tertiary: #9ca3af;
+    --color-bg-elevated: #ffffff;
+    --color-bg-sidebar: #efe9db;
+    --color-bg-sunken: #efe9db;
+    --color-border-subtle: #121212;
+    --color-border-strong: #121212;
+    --color-accent-primary: #ffd84d;
+    --color-text-primary: #121212;
+    --color-text-secondary: #404040;
+    --color-text-tertiary: #737373;
   }
 }
 
@@ -102,6 +103,13 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     min-height: 100dvh;
+  }
+
+  /* Neo-Brutalism selection in light mode */
+  .light ::selection,
+  [data-theme="light"] ::selection {
+    background-color: #ffd84d;
+    color: #121212;
   }
 }
 
@@ -117,6 +125,15 @@
   background: #222634;
   border-radius: 9999px;
 }
+.light ::-webkit-scrollbar-thumb,
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #121212;
+  border-radius: 0px;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #32384e;
+}
+.light ::-webkit-scrollbar-thumb:hover,
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #262626;
 }

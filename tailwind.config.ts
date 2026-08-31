@@ -44,6 +44,23 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        // Neo-Brutalism Light Mode Tokens
+        neo: {
+          bg: "#F7F4EA",
+          surface: "#FFFFFF",
+          ink: "#121212",
+          yellow: "#FFD84D",
+          "yellow-hover": "#F5CB32",
+          blue: "#70B7FF",
+          pink: "#FF6FAE",
+          green: "#7BE495",
+          orange: "#FF9B54",
+          red: "#FF6B6B",
+          purple: "#C4B5FD",
+          muted: "#EAE4D5",
+          border: "#121212",
+        },
+        // Obsidian Dark Mode Tokens (Preserved)
         obsidian: {
           base: "#090A0C",
           surface: "#121318",
@@ -53,6 +70,21 @@ const config: Config = {
           border: "#222634",
           borderStrong: "#32384E",
         },
+      },
+      boxShadow: {
+        neo: "4px 4px 0px 0px #121212",
+        "neo-sm": "2px 2px 0px 0px #121212",
+        "neo-md": "5px 5px 0px 0px #121212",
+        "neo-lg": "7px 7px 0px 0px #121212",
+        "neo-xl": "10px 10px 0px 0px #121212",
+        "neo-yellow": "4px 4px 0px 0px #FFD84D",
+        "neo-blue": "4px 4px 0px 0px #70B7FF",
+        "neo-pink": "4px 4px 0px 0px #FF6FAE",
+        "neo-green": "4px 4px 0px 0px #7BE495",
+      },
+      borderWidth: {
+        "2.5": "2.5px",
+        "3": "3px",
       },
       borderRadius: {
         lg: "var(--radius)",

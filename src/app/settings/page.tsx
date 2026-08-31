@@ -74,53 +74,53 @@ export default function SettingsPage() {
           </div>
 
           {/* Profile Form */}
-          <Card className="border-border">
+          <Card className="border-2 border-black bg-white shadow-[6px_6px_0px_#121212] dark:border-border dark:bg-card dark:shadow-none">
             <form onSubmit={handleSaveProfile}>
               <CardHeader>
-                <CardTitle className="text-base font-semibold">
+                <CardTitle className="text-base font-black">
                   Informasi Akun
                 </CardTitle>
-                <CardDescription className="text-xs">
+                <CardDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-muted-foreground">
                   Nama lengkap yang tertera pada sertifikat kelulusan.
                 </CardDescription>
               </CardHeader>
 
               <CardContent className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-foreground">
+                  <label className="text-xs font-bold text-foreground">
                     Nama Lengkap
                   </label>
                   <div className="relative">
-                    <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <User className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-muted-foreground" />
                     <Input
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="pl-9 text-xs"
+                      className="pl-9 text-xs bg-white dark:bg-card"
                       required
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-foreground">
+                  <label className="text-xs font-bold text-foreground">
                     Alamat Email
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-muted-foreground" />
                     <Input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-9 text-xs"
+                      className="pl-9 text-xs bg-white dark:bg-card"
                       required
                     />
                   </div>
                 </div>
               </CardContent>
 
-              <CardFooter className="flex items-center justify-between border-t border-border pt-4">
+              <CardFooter className="flex items-center justify-between border-t-2 border-black dark:border-border pt-4">
                 {savedNotice ? (
-                  <span className="text-xs text-emerald-400 font-medium flex items-center gap-1">
+                  <span className="text-xs text-emerald-800 dark:text-emerald-400 font-bold flex items-center gap-1">
                     <Check className="h-4 w-4" />
                     Perubahan berhasil disimpan!
                   </span>
@@ -128,7 +128,7 @@ export default function SettingsPage() {
                   <div />
                 )}
 
-                <Button type="submit" size="sm" className="gap-2 text-xs">
+                <Button type="submit" size="sm" className="gap-2 text-xs font-black shadow-[3px_3px_0px_#121212]">
                   <Save className="h-3.5 w-3.5" />
                   Simpan Profil
                 </Button>
@@ -137,24 +137,24 @@ export default function SettingsPage() {
           </Card>
 
           {/* Theme & Language Preferences */}
-          <Card className="border-border">
+          <Card className="border-2 border-black bg-white shadow-[6px_6px_0px_#121212] dark:border-border dark:bg-card dark:shadow-none">
             <CardHeader>
-              <CardTitle className="text-base font-semibold">
+              <CardTitle className="text-base font-black">
                 Tampilan & Bahasa
               </CardTitle>
-              <CardDescription className="text-xs">
+              <CardDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-muted-foreground">
                 Sesuaikan preferensi antarmuka untuk kenyamanan belajar Anda.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between py-2 border-b border-border/60">
+              <div className="flex items-center justify-between py-2 border-b-2 border-black dark:border-border/60">
                 <div>
-                  <span className="text-xs font-medium text-foreground block">
+                  <span className="text-xs font-bold text-foreground block">
                     Mode Tema
                   </span>
-                  <span className="text-[11px] text-muted-foreground">
-                    Obsidian Dark (Default) atau Light Mode
+                  <span className="text-[11px] font-medium text-[#555555] dark:font-normal dark:text-muted-foreground">
+                    Neo-Brutalism Light atau Obsidian Dark Mode
                   </span>
                 </div>
 
@@ -163,7 +163,7 @@ export default function SettingsPage() {
                     size="sm"
                     variant={theme === "dark" ? "default" : "outline"}
                     onClick={() => setTheme("dark")}
-                    className="text-xs h-8 gap-1.5"
+                    className="text-xs h-8 gap-1.5 font-bold shadow-[2px_2px_0px_#121212]"
                   >
                     <Moon className="h-3.5 w-3.5" />
                     Dark
@@ -172,7 +172,7 @@ export default function SettingsPage() {
                     size="sm"
                     variant={theme === "light" ? "default" : "outline"}
                     onClick={() => setTheme("light")}
-                    className="text-xs h-8 gap-1.5"
+                    className="text-xs h-8 gap-1.5 font-bold shadow-[2px_2px_0px_#121212]"
                   >
                     <Sun className="h-3.5 w-3.5" />
                     Light
@@ -182,10 +182,10 @@ export default function SettingsPage() {
 
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <span className="text-xs font-medium text-foreground block">
+                  <span className="text-xs font-bold text-foreground block">
                     Bahasa Materi
                   </span>
-                  <span className="text-[11px] text-muted-foreground">
+                  <span className="text-[11px] font-medium text-[#555555] dark:font-normal dark:text-muted-foreground">
                     Bahasa Indonesia atau English
                   </span>
                 </div>
@@ -195,7 +195,7 @@ export default function SettingsPage() {
                     size="sm"
                     variant={language === "id" ? "default" : "outline"}
                     onClick={() => setLanguage("id")}
-                    className="text-xs h-8"
+                    className="text-xs h-8 font-bold shadow-[2px_2px_0px_#121212]"
                   >
                     Indonesia (ID)
                   </Button>
@@ -203,7 +203,7 @@ export default function SettingsPage() {
                     size="sm"
                     variant={language === "en" ? "default" : "outline"}
                     onClick={() => setLanguage("en")}
-                    className="text-xs h-8"
+                    className="text-xs h-8 font-bold shadow-[2px_2px_0px_#121212]"
                   >
                     English (EN)
                   </Button>
@@ -213,19 +213,19 @@ export default function SettingsPage() {
           </Card>
 
           {/* Danger Zone: Reset Progress */}
-          <Card className="border-rose-500/30 bg-rose-500/5">
+          <Card className="border-2 border-black bg-[#FF6B6B]/20 shadow-[6px_6px_0px_#121212] dark:border-rose-500/30 dark:bg-rose-500/5 dark:shadow-none">
             <CardHeader>
-              <CardTitle className="text-base font-semibold text-rose-400 flex items-center gap-2">
-                <ShieldAlert className="h-4 w-4" />
+              <CardTitle className="text-base font-black text-rose-950 dark:text-rose-400 flex items-center gap-2">
+                <ShieldAlert className="h-4 w-4 text-rose-900 dark:text-rose-400" />
                 Zona Berbahaya
               </CardTitle>
-              <CardDescription className="text-xs">
+              <CardDescription className="text-xs font-medium text-neutral-800 dark:font-normal dark:text-muted-foreground">
                 Tindakan di bawah ini akan menghapus seluruh data progress belajar di browser ini.
               </CardDescription>
             </CardHeader>
 
             <CardFooter className="flex items-center justify-between pt-2">
-              <span className="text-xs text-muted-foreground">
+              <span className="text-xs font-bold text-neutral-800 dark:font-normal dark:text-muted-foreground">
                 Total {Object.keys(completedLessons).length} materi terselesaikan
               </span>
 
@@ -233,7 +233,7 @@ export default function SettingsPage() {
                 variant="destructive"
                 size="sm"
                 onClick={handleClearData}
-                className="gap-2 text-xs"
+                className="gap-2 text-xs font-black shadow-[3px_3px_0px_#121212]"
               >
                 <Trash2 className="h-3.5 w-3.5" />
                 Reset Semua Progress
