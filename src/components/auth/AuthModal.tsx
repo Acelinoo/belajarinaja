@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, Mail, User, ArrowRight, CheckCircle2, ShieldCheck, Eye, EyeOff } from "lucide-react";
+import { Lock, Mail, User, ArrowRight, CheckCircle2, ShieldCheck, Eye, EyeOff, Sparkles } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -16,12 +16,16 @@ import { Badge } from "@/components/ui/badge";
 import { useModalStore } from "@/store/useModalStore";
 import { useUserAuthStore } from "@/store/useUserAuthStore";
 import { useGuestProgressStore } from "@/store/useGuestProgressStore";
+import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+import { getTranslations } from "@/lib/translations";
 
 export function AuthModal() {
   const router = useRouter();
   const { isLoginModalOpen, closeLoginModal } = useModalStore();
   const { setUser } = useUserAuthStore();
   const { completedLessons } = useGuestProgressStore();
+  const { language } = useThemeLanguageStore();
+  const t = getTranslations(language);
 
   const [isRegister, setIsRegister] = useState(true);
   const [name, setName] = useState("");
@@ -39,7 +43,7 @@ export function AuthModal() {
     setTimeout(() => {
       setUser({
         id: "usr_mock_live_01",
-        name: name || (isRegister ? "Pelajar Web Dev" : "Student BelajarinAja"),
+        name: name || (isRegister ? "Web Developer" : "Student BelajarinAja"),
         email: email || "student@belajarinaja.com",
         role: "STUDENT",
       });
@@ -51,38 +55,36 @@ export function AuthModal() {
 
   return (
     <Dialog open={isLoginModalOpen} onOpenChange={closeLoginModal}>
-      <DialogContent className="max-w-md bg-white border-2 border-black p-6 rounded-xl shadow-[8px_8px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
+      <DialogContent className="max-w-md bg-white border-2 border-black p-6 rounded-xl shadow-[8px_8px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)] fun:border-2 fun:border-[#FED7AA] fun:rounded-3xl fun:shadow-[0_20px_60px_rgba(255,155,84,0.15)]">
         <DialogHeader className="space-y-1 text-left">
           <div className="flex items-center gap-2 mb-1">
-            <div className="flex h-7 w-7 items-center justify-center rounded border-2 border-black bg-[#FFD84D] text-[#121212] font-mono font-black text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none">
-              BA
+            <div className="flex h-7 w-7 items-center justify-center rounded border-2 border-black bg-[#FFD84D] text-[#121212] font-mono font-black text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none fun:rounded-full fun:border-[#FED7AA]">
+              🚀
             </div>
             <span className="font-black tracking-tight text-sm text-foreground">
-              Belajarin<span className="text-[#121212] dark:text-cyan-400 bg-[#FFD84D] dark:bg-transparent px-1 rounded-sm border border-black dark:border-0 ml-0.5">Aja</span>
+              Belajarin<span className="text-[#121212] dark:text-cyan-400 fun:text-[#FF6B6B] bg-[#FFD84D] dark:bg-transparent fun:bg-[#FFF8E7] px-1 rounded-sm border border-black dark:border-0 fun:border-[#FED7AA] ml-0.5">Aja</span>
             </span>
           </div>
 
           <DialogTitle className="text-xl font-black tracking-tight text-foreground">
-            {isRegister ? "Buat Akun Siswa" : "Masuk ke Akun"}
+            {isRegister ? t.auth.registerTitle : t.auth.loginTitle}
           </DialogTitle>
 
           <DialogDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6]">
-            {isRegister
-              ? "Simpan progress belajar Anda ke cloud secara permanen dan klaim sertifikat."
-              : "Lanjutkan pembelajaran dan akses dashboard statistik Anda."}
+            {isRegister ? t.auth.registerSubtitle : t.auth.loginSubtitle}
           </DialogDescription>
         </DialogHeader>
 
         {/* Guest Progress Notice */}
         {guestCount > 0 && (
-          <div className="rounded-lg border-2 border-black bg-[#FFD84D]/30 p-3 text-xs text-[#121212] shadow-[3px_3px_0px_#121212] flex items-center gap-2.5 dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-[#F1F5F9] dark:shadow-none">
-            <ShieldCheck className="h-4 w-4 text-black dark:text-cyan-400 shrink-0" />
+          <div className="rounded-lg border-2 border-black bg-[#FFD84D]/30 p-3 text-xs text-[#121212] shadow-[3px_3px_0px_#121212] flex items-center gap-2.5 dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-[#F1F5F9] dark:shadow-none fun:rounded-2xl fun:border-[#FED7AA] fun:bg-[#FFF8E7]">
+            <ShieldCheck className="h-4 w-4 text-black dark:text-cyan-400 fun:text-[#FF9F43] shrink-0" />
             <div>
-              <span className="font-black text-black dark:text-cyan-300">
-                {guestCount} Materi Selesai Terdeteksi!
+              <span className="font-black text-black dark:text-cyan-300 fun:text-[#243447]">
+                {guestCount} {t.auth.guestFound}
               </span>
-              <p className="text-neutral-800 dark:text-[#8292A6] text-[11px] mt-0.5 font-medium dark:font-normal">
-                Progress browser Anda akan otomatis dipindahkan ke akun baru.
+              <p className="text-neutral-800 dark:text-[#8292A6] fun:text-[#64748B] text-[11px] mt-0.5 font-medium dark:font-normal">
+                {guestCount} {t.auth.guestSyncDesc}
               </p>
             </div>
           </div>
@@ -92,16 +94,16 @@ export function AuthModal() {
           {isRegister && (
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-foreground">
-                Nama Lengkap
+                {t.auth.fullNameLabel}
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400" />
+                <User className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400 fun:text-[#5CC8FF]" />
                 <Input
                   type="text"
-                  placeholder="Nama lengkap Anda"
+                  placeholder={t.auth.fullNameLabel}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-9 text-xs bg-white dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9]"
+                  className="pl-9 text-xs bg-white dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9] fun:rounded-xl fun:border-[#E2E8F0]"
                   required
                 />
               </div>
@@ -110,16 +112,16 @@ export function AuthModal() {
 
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-foreground">
-              Alamat Email
+              {t.auth.emailLabel}
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400" />
+              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400 fun:text-[#5CC8FF]" />
               <Input
                 type="email"
                 placeholder="nama@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-9 text-xs bg-white dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9]"
+                className="pl-9 text-xs bg-white dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9] fun:rounded-xl fun:border-[#E2E8F0]"
                 required
               />
             </div>
@@ -127,16 +129,16 @@ export function AuthModal() {
 
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-foreground">
-              Kata Sandi
+              {t.auth.passwordLabel}
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400" />
+              <Lock className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400 fun:text-[#5CC8FF]" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-9 pr-9 text-xs bg-white dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9]"
+                className="pl-9 pr-9 text-xs bg-white dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9] fun:rounded-xl fun:border-[#E2E8F0]"
                 required
               />
               <button
@@ -156,25 +158,23 @@ export function AuthModal() {
           <div className="pt-2 space-y-3">
             <Button
               type="submit"
-              className="w-full text-xs font-bold gap-2 h-9 shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none dark:font-semibold"
+              className="w-full text-xs font-bold gap-2 h-9 shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none dark:font-semibold fun:rounded-full fun:bg-[#5CC8FF] fun:text-[#243447] fun:border-0 fun:shadow-[0_4px_12px_rgba(92,200,255,0.4)]"
               disabled={loading}
             >
               {loading
-                ? "Menghubungkan..."
+                ? t.auth.processing
                 : isRegister
-                ? "Daftar & Migrasikan Progress"
-                : "Masuk Sekarang"}
+                ? t.auth.submitRegister
+                : t.auth.submitLogin}
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
 
             <button
               type="button"
               onClick={() => setIsRegister(!isRegister)}
-              className="w-full text-center text-xs font-bold text-black underline hover:text-primary dark:text-[#8292A6] dark:no-underline dark:hover:text-cyan-300 transition-colors"
+              className="w-full text-center text-xs font-bold text-black underline hover:text-primary dark:text-[#8292A6] dark:no-underline dark:hover:text-cyan-300 fun:text-[#FF6B6B] transition-colors"
             >
-              {isRegister
-                ? "Sudah memiliki akun? Masuk di sini"
-                : "Belum punya akun? Buat akun gratis"}
+              {isRegister ? t.auth.hasAccountToggle : t.auth.noAccountToggle}
             </button>
           </div>
         </form>
@@ -182,3 +182,4 @@ export function AuthModal() {
     </Dialog>
   );
 }
+

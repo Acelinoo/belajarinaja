@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type ThemeMode = "dark" | "light" | "system";
-type Language = "id" | "en";
+export type ThemeMode = "light" | "dark" | "fun";
+export type Language = "id" | "en";
 
 interface ThemeLanguageState {
   theme: ThemeMode;
@@ -21,20 +21,9 @@ export const useThemeLanguageStore = create<ThemeLanguageState>()(
         set({ theme });
         if (typeof document !== "undefined") {
           const root = document.documentElement;
-          if (theme === "dark") {
-            root.classList.add("dark");
-            root.classList.remove("light");
-            root.setAttribute("data-theme", "dark");
-          } else if (theme === "light") {
-            root.classList.add("light");
-            root.classList.remove("dark");
-            root.setAttribute("data-theme", "light");
-          } else {
-            const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            root.classList.toggle("dark", systemDark);
-            root.classList.toggle("light", !systemDark);
-            root.setAttribute("data-theme", systemDark ? "dark" : "light");
-          }
+          root.classList.remove("light", "dark", "fun");
+          root.classList.add(theme);
+          root.setAttribute("data-theme", theme);
         }
       },
 
@@ -42,6 +31,14 @@ export const useThemeLanguageStore = create<ThemeLanguageState>()(
     }),
     {
       name: "belajarinaja_preferences",
+      onRehydrateStorage: () => (state) => {
+        if (state && typeof document !== "undefined") {
+          const root = document.documentElement;
+          root.classList.remove("light", "dark", "fun");
+          root.classList.add(state.theme);
+          root.setAttribute("data-theme", state.theme);
+        }
+      },
     }
   )
 );

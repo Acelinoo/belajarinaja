@@ -76,6 +76,20 @@ const config: Config = {
           amber: "#F59E0B",
           red: "#EF4444",
         },
+        // Playful Learning World Fun Mode Tokens (No Purple)
+        fun: {
+          bg: "#FFF8E7",
+          surface: "#FFFFFF",
+          ink: "#243447",
+          sky: "#5CC8FF",
+          mint: "#45E0C0",
+          sun: "#FFD84D",
+          orange: "#FF9F43",
+          coral: "#FF6B6B",
+          green: "#5EDC81",
+          border: "#E2E8F0",
+          borderWarm: "#FED7AA",
+        },
       },
       boxShadow: {
         neo: "4px 4px 0px 0px #121212",

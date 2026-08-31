@@ -9,8 +9,8 @@ import {
   Check,
   Copy,
   BookOpen,
-  HelpCircle,
-  Code,
+  CircleHelp,
+  Code2,
   CheckCircle2,
   Bookmark,
   ChevronRight,
@@ -22,6 +22,9 @@ import {
   Info,
   Lock,
   Compass,
+  Sparkles,
+  Star,
+  Flame,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -42,6 +45,8 @@ import { MarkdownRenderer, InlineFormattedText } from "@/components/ui/markdown-
 import { CURRICULUM_STAGES, LessonItem, StageItem } from "@/data/curriculum";
 import { useGuestProgressStore } from "@/store/useGuestProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+import { getTranslations } from "@/lib/translations";
+import { QuizLightbulbIllustration } from "@/components/fun/illustrations/QuizLightbulbIllustration";
 
 interface LessonPageProps {
   params: Promise<{
@@ -51,7 +56,8 @@ interface LessonPageProps {
 
 export default function LessonDetailPage({ params }: LessonPageProps) {
   const { slug } = use(params);
-  const { language } = useThemeLanguageStore();
+  const { theme, language } = useThemeLanguageStore();
+  const t = getTranslations(language);
 
   // Flatten all lessons to calculate previous and next lessons
   const allLessonsWithStage: Array<{
@@ -95,13 +101,11 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
   );
   const isBookmarked = bookmarkedLessons.includes(activeLesson.id);
 
-  // Helper to check if this lesson's prerequisites are met (Route Guard)
+  // Route guard
   const isLessonAccessible = () => {
-    // Lesson 1 is always accessible
     if (currentIndex === 0 || activeLesson.prerequisites.length === 0) {
       return true;
     }
-    // Check prerequisites
     return activeLesson.prerequisites.every((prereqSlug) => {
       const found = allLessonsWithStage.find((item) => item.lesson.slug === prereqSlug);
       if (found) {
@@ -134,9 +138,14 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  // Direct URL Access Guard: If current lesson is locked, show barrier screen
+  const lessonTitle = language === "en" && activeLesson.titleEn ? activeLesson.titleEn : activeLesson.title;
+  const lessonDesc = language === "en" && activeLesson.descriptionEn ? activeLesson.descriptionEn : activeLesson.description;
+  const stageTitle = language === "en" ? activeStage.titleEn : activeStage.titleId;
+
+  // Direct URL Access Guard
   if (!isLessonAccessible()) {
     const unmetPrereq = getFirstUnmetPrereq();
+    const unmetTitle = unmetPrereq ? (language === "en" && unmetPrereq.titleEn ? unmetPrereq.titleEn : unmetPrereq.title) : "";
 
     return (
       <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -151,26 +160,26 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
             <div className="space-y-2">
               <Badge variant="outline" className="text-xs font-mono">
-                Akses Terkunci • Mandatory Quiz Gate
+                {t.common.locked} • Mandatory Quiz Gate
               </Badge>
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
-                Materi Belum Tersedia
+                {t.roadmap.prereqRequired}
               </h1>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Anda belum dapat membuka materi <strong className="text-foreground">&quot;{activeLesson.title}&quot;</strong> karena belum menyelesaikan quiz evaluasi pada materi prasyarat.
+                {t.roadmap.prereqDesc}
               </p>
             </div>
 
             {unmetPrereq && (
               <div className="p-4 rounded-xl bg-card border border-border text-left space-y-1.5">
                 <span className="text-[11px] font-mono text-muted-foreground uppercase">
-                  Prasyarat yang Belum Selesai:
+                  {t.roadmap.prereqRequired}:
                 </span>
                 <div className="text-sm font-semibold text-primary">
-                  {unmetPrereq.title}
+                  {unmetTitle}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  {unmetPrereq.description}
+                  {language === "en" && unmetPrereq.descriptionEn ? unmetPrereq.descriptionEn : unmetPrereq.description}
                 </p>
               </div>
             )}
@@ -179,7 +188,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               {unmetPrereq ? (
                 <Link href={`/lessons/${unmetPrereq.slug}`} className="w-full sm:w-auto">
                   <Button size="sm" className="w-full sm:w-auto gap-2 text-xs font-medium">
-                    Kerjakan Quiz: {unmetPrereq.title}
+                    {t.lesson.startQuizAction}: {unmetTitle}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
@@ -187,14 +196,14 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 <Link href="/roadmap" className="w-full sm:w-auto">
                   <Button size="sm" className="w-full sm:w-auto gap-2 text-xs font-medium">
                     <Compass className="h-3.5 w-3.5" />
-                    Buka Roadmap
+                    {t.nav.roadmap}
                   </Button>
                 </Link>
               )}
 
               <Link href="/roadmap" className="w-full sm:w-auto">
                 <Button size="sm" variant="outline" className="w-full sm:w-auto text-xs">
-                  Kembali ke Roadmap
+                  {t.common.back}
                 </Button>
               </Link>
             </div>
@@ -207,30 +216,27 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className={`min-h-screen flex flex-col ${theme === "fun" ? "bg-[#FFF8E7] text-[#243447]" : "bg-background text-foreground"}`}>
       <Navbar />
       <SearchCommandModal />
 
       {/* Breadcrumb Sub-Header */}
-      <div className="border-b-2 border-black bg-white py-2.5 dark:border-b dark:border-[#1C242D] dark:bg-[#05070A]">
+      <div className={`border-b-2 py-2.5 ${theme === "fun" ? "bg-white border-[#E2E8F0]" : "border-black bg-white dark:border-b dark:border-[#1C242D] dark:bg-[#05070A]"}`}>
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-1.5 text-xs text-neutral-700 dark:text-[#94A3B8] overflow-x-auto font-bold dark:font-normal">
+          <nav className="flex items-center gap-1.5 text-xs text-neutral-700 dark:text-[#94A3B8] fun:text-[#64748B] overflow-x-auto font-bold dark:font-normal">
             <Link
               href="/roadmap"
-              className="hover:text-foreground transition-colors shrink-0 underline decoration-[#FFD84D] decoration-2 dark:no-underline dark:hover:text-cyan-300"
+              className="hover:text-foreground transition-colors shrink-0 underline decoration-[#FFD84D] decoration-2 dark:no-underline dark:hover:text-cyan-300 fun:text-[#5CC8FF]"
             >
-              Roadmap
+              {t.nav.roadmap}
             </Link>
-            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-[#64748B]" />
+            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-[#64748B] fun:text-[#94A3B8]" />
             <span className="truncate max-w-[150px] sm:max-w-none">
-              Tahap {String(activeStage.orderIndex).padStart(2, "0")}:{" "}
-              {language === "en" ? activeStage.titleEn : activeStage.titleId}
+              {t.common.stage} {String(activeStage.orderIndex).padStart(2, "0")}: {stageTitle}
             </span>
-            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-[#64748B]" />
-            <span className="text-foreground font-black dark:font-medium dark:text-cyan-300 truncate max-w-[180px] sm:max-w-none">
-              {language === "en" && activeLesson.titleEn
-                ? activeLesson.titleEn
-                : activeLesson.title}
+            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-[#64748B] fun:text-[#94A3B8]" />
+            <span className="text-foreground font-black dark:font-medium dark:text-cyan-300 fun:text-[#243447] truncate max-w-[180px] sm:max-w-none">
+              {lessonTitle}
             </span>
           </nav>
 
@@ -239,27 +245,27 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               size="sm"
               variant="ghost"
               onClick={() => toggleBookmark(activeLesson.id)}
-              className="h-7 text-xs font-bold gap-1.5 border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD84D] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#94A3B8] dark:hover:text-cyan-300 dark:shadow-none"
+              className={`h-7 text-xs font-bold gap-1.5 border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD84D] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#94A3B8] dark:hover:text-cyan-300 dark:shadow-none ${theme === "fun" ? "fun:border-2 fun:border-[#FED7AA] fun:rounded-full fun:bg-[#FFF8E7] fun:shadow-none" : ""}`}
             >
               <Bookmark
                 className={`h-3.5 w-3.5 ${
-                  isBookmarked ? "fill-black text-black dark:fill-cyan-400 dark:text-cyan-400" : ""
+                  isBookmarked ? "fill-black text-black dark:fill-cyan-400 dark:text-cyan-400 fun:fill-[#FF9F43] fun:text-[#FF9F43]" : ""
                 }`}
               />
               <span className="hidden sm:inline">
-                {isBookmarked ? "Tersimpan" : "Simpan"}
+                {isBookmarked ? t.lesson.savedLesson : t.lesson.saveLesson}
               </span>
             </Button>
 
             {isCompleted ? (
-              <Badge variant="success" className="gap-1 text-[11px] h-6">
+              <Badge variant="success" className="gap-1 text-[11px] h-6 fun:rounded-full fun:bg-[#DCFCE7] fun:text-[#166534]">
                 <CheckCircle2 className="h-3 w-3" />
-                Lulus & Selesai
+                {t.common.completed}
               </Badge>
             ) : (
-              <Badge variant="warning" className="gap-1 text-[11px] h-6">
+              <Badge variant="warning" className="gap-1 text-[11px] h-6 fun:rounded-full fun:bg-[#FEF3C7] fun:text-[#D97706]">
                 <Lock className="h-2.5 w-2.5" />
-                Quiz Wajib
+                {t.lesson.tabQuiz}
               </Badge>
             )}
           </div>
@@ -270,30 +276,26 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
       <main className="flex-1 py-8">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
           {/* Header */}
-          <div className="pb-6 border-b-2 border-black dark:border-b dark:border-[#1C242D] space-y-2">
+          <div className={`pb-6 border-b-2 space-y-2 ${theme === "fun" ? "border-[#E2E8F0]" : "border-black dark:border-b dark:border-[#1C242D]"}`}>
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-[10px] dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-cyan-300">
+              <Badge variant="outline" className="text-[10px] dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-cyan-300 fun:rounded-full fun:bg-[#FFF8E7] fun:border-[#FED7AA]">
                 {activeLesson.level}
               </Badge>
-              <span className="text-xs font-bold text-[#555555] dark:font-mono dark:text-[#8292A6]">
-                Estimasi {activeLesson.estimatedMinutes} menit belajar
+              <span className="text-xs font-bold text-[#555555] dark:font-mono dark:text-[#8292A6] fun:text-[#64748B]">
+                {t.lesson.estTime}: {activeLesson.estimatedMinutes} {t.common.minutes}
               </span>
               <span className="text-xs text-black dark:text-[#64748B]">•</span>
-              <span className="text-xs font-black text-[#121212] bg-[#FFD84D] px-2 py-0.5 rounded border border-black dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:font-medium">
-                Tahap {activeStage.orderIndex} ({activeStage.category})
+              <span className="text-xs font-black text-[#121212] bg-[#FFD84D] px-2 py-0.5 rounded border border-black dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:font-medium fun:rounded-full fun:bg-[#EBF8FF] fun:border-[#5CC8FF]/40 fun:text-[#0284C7]">
+                {t.common.stage} {activeStage.orderIndex} ({activeStage.category})
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground">
-              {language === "en" && activeLesson.titleEn
-                ? activeLesson.titleEn
-                : activeLesson.title}
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground fun:text-[#243447]">
+              {lessonTitle}
             </h1>
 
-            <p className="text-sm font-medium text-[#555555] dark:font-normal dark:text-[#8292A6]">
-              {language === "en" && activeLesson.descriptionEn
-                ? activeLesson.descriptionEn
-                : activeLesson.description}
+            <p className="text-sm font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] fun:text-[#64748B]">
+              {lessonDesc}
             </p>
           </div>
 
@@ -301,15 +303,15 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {activeLesson.learningObjectives &&
               activeLesson.learningObjectives.length > 0 && (
-                <div className="p-4 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_#121212] space-y-2 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
-                  <div className="flex items-center gap-2 text-xs font-black text-foreground">
-                    <Target className="h-4 w-4 text-black dark:text-cyan-400" />
-                    <span>Target Pembelajaran:</span>
+                <div className={`p-4 rounded-xl border-2 space-y-2 ${theme === "fun" ? "border-[#FED7AA] bg-white rounded-3xl shadow-[0_4px_15px_rgba(255,155,84,0.08)]" : "border-black bg-white shadow-[4px_4px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none"}`}>
+                  <div className="flex items-center gap-2 text-xs font-black text-foreground fun:text-[#243447]">
+                    <Target className="h-4 w-4 text-black dark:text-cyan-400 fun:text-[#FF9F43]" />
+                    <span>{t.lesson.targetObjectives}</span>
                   </div>
-                  <ul className="space-y-1 text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6]">
+                  <ul className="space-y-1 text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6] fun:text-[#64748B]">
                     {activeLesson.learningObjectives.map((obj, i) => (
                       <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-black dark:text-cyan-400 font-black">•</span>
+                        <span className="text-black dark:text-cyan-400 fun:text-[#5CC8FF] font-black">•</span>
                         <span>{obj}</span>
                       </li>
                     ))}
@@ -318,12 +320,12 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               )}
 
             {activeLesson.whyMatters && (
-              <div className="p-4 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_#121212] space-y-2 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
-                <div className="flex items-center gap-2 text-xs font-black text-foreground">
-                  <Info className="h-4 w-4 text-amber-800 dark:text-amber-400" />
-                  <span>Mengapa Materi Ini Penting?</span>
+              <div className={`p-4 rounded-xl border-2 space-y-2 ${theme === "fun" ? "border-[#5CC8FF]/40 bg-white rounded-3xl shadow-[0_4px_15px_rgba(92,200,255,0.08)]" : "border-black bg-white shadow-[4px_4px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none"}`}>
+                <div className="flex items-center gap-2 text-xs font-black text-foreground fun:text-[#243447]">
+                  <Info className="h-4 w-4 text-amber-800 dark:text-amber-400 fun:text-[#5CC8FF]" />
+                  <span>{t.lesson.whyItMatters}</span>
                 </div>
-                <p className="text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6] leading-relaxed">
+                <p className="text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6] fun:text-[#64748B] leading-relaxed">
                   {activeLesson.whyMatters}
                 </p>
               </div>
@@ -332,14 +334,14 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
           {/* Interactive Learning Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 max-w-md mb-6">
-              <TabsTrigger value="lesson" className="gap-1.5 text-xs font-bold">
+            <TabsList className={`grid w-full grid-cols-3 max-w-md mb-6 ${theme === "fun" ? "rounded-full bg-white border border-[#E2E8F0] p-1" : ""}`}>
+              <TabsTrigger value="lesson" className={`gap-1.5 text-xs font-bold ${theme === "fun" ? "rounded-full" : ""}`}>
                 <BookOpen className="h-3.5 w-3.5" />
-                Materi Teks
+                {t.lesson.tabLesson}
               </TabsTrigger>
-              <TabsTrigger value="quiz" className="gap-1.5 text-xs font-bold relative">
-                <HelpCircle className="h-3.5 w-3.5" />
-                Quiz ({activeLesson.quizzes.length})
+              <TabsTrigger value="quiz" className={`gap-1.5 text-xs font-bold relative ${theme === "fun" ? "rounded-full" : ""}`}>
+                <CircleHelp className="h-3.5 w-3.5" />
+                {t.lesson.tabQuiz} ({activeLesson.quizzes.length})
                 {!isCompleted && (
                   <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6B6B] dark:bg-cyan-400 opacity-75"></span>
@@ -347,15 +349,15 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                   </span>
                 )}
               </TabsTrigger>
-              <TabsTrigger value="exercise" className="gap-1.5 text-xs font-bold">
-                <Code className="h-3.5 w-3.5" />
-                Latihan Kode
+              <TabsTrigger value="exercise" className={`gap-1.5 text-xs font-bold ${theme === "fun" ? "rounded-full" : ""}`}>
+                <Code2 className="h-3.5 w-3.5" />
+                {t.lesson.tabExercise}
               </TabsTrigger>
             </TabsList>
 
             {/* Tab 1: Lesson Content */}
             <TabsContent value="lesson" className="space-y-6">
-              <div className="p-6 sm:p-8 rounded-xl border-2 border-black bg-white shadow-[6px_6px_0px_#121212] space-y-6 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
+              <div className={`p-6 sm:p-8 rounded-xl border-2 space-y-6 ${theme === "fun" ? "border-[#E2E8F0] bg-white rounded-3xl shadow-[0_10px_35px_rgba(0,0,0,0.03)]" : "border-black bg-white shadow-[6px_6px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none"}`}>
                 <div className="max-w-[75ch]">
                   <MarkdownRenderer
                     content={
@@ -369,12 +371,12 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 {/* Common Mistakes Section */}
                 {activeLesson.commonMistakes &&
                   activeLesson.commonMistakes.length > 0 && (
-                    <div className="p-4 rounded-lg bg-[#FF6B6B]/20 border-2 border-black shadow-[3px_3px_0px_#121212] space-y-2 dark:bg-red-500/10 dark:border dark:border-red-500/30 dark:shadow-none">
+                    <div className={`p-4 rounded-lg border-2 space-y-2 ${theme === "fun" ? "rounded-2xl border-[#FECDD3] bg-[#FFF1F2]" : "border-black bg-[#FF6B6B]/20 shadow-[3px_3px_0px_#121212] dark:bg-red-500/10 dark:border dark:border-red-500/30 dark:shadow-none"}`}>
                       <div className="flex items-center gap-2 text-xs font-black text-rose-900 dark:text-red-400">
                         <AlertTriangle className="h-4 w-4" />
-                        <span>Kesalahan yang Sering Dilakukan Pemula:</span>
+                        <span>{t.lesson.commonMistakes}:</span>
                       </div>
-                      <ul className="space-y-1 text-xs font-medium text-neutral-900 dark:font-normal dark:text-[#8292A6]">
+                      <ul className="space-y-1 text-xs font-medium text-neutral-900 dark:font-normal dark:text-[#8292A6] fun:text-[#BE123C]">
                         {activeLesson.commonMistakes.map((mistake, i) => (
                           <li key={i} className="flex items-start gap-1.5">
                             <span className="text-rose-900 dark:text-red-400 font-bold">•</span>
@@ -388,21 +390,21 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 {/* Key Terms Section */}
                 {activeLesson.keyTerms &&
                   activeLesson.keyTerms.length > 0 && (
-                    <div className="p-4 rounded-lg bg-white border-2 border-black shadow-[3px_3px_0px_#121212] space-y-2 dark:bg-[#090D12] dark:border dark:border-[#1C242D] dark:shadow-none">
-                      <div className="flex items-center gap-2 text-xs font-black text-foreground">
-                        <BookMarked className="h-4 w-4 text-black dark:text-cyan-400" />
-                        <span>Istilah Kunci (Key Terms):</span>
+                    <div className={`p-4 rounded-lg border-2 space-y-2 ${theme === "fun" ? "rounded-2xl border-[#FED7AA] bg-[#FFF8E7]" : "border-black bg-white shadow-[3px_3px_0px_#121212] dark:bg-[#090D12] dark:border dark:border-[#1C242D] dark:shadow-none"}`}>
+                      <div className="flex items-center gap-2 text-xs font-black text-foreground fun:text-[#243447]">
+                        <BookMarked className="h-4 w-4 text-black dark:text-cyan-400 fun:text-[#FF9F43]" />
+                        <span>{t.lesson.keyTerms}:</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                         {activeLesson.keyTerms.map((term, i) => (
                           <div
                             key={i}
-                            className="p-2.5 rounded border-2 border-black bg-[#F7F4EA] text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#05070A] dark:shadow-none"
+                            className={`p-2.5 rounded border-2 text-xs ${theme === "fun" ? "rounded-xl border-[#FED7AA] bg-white" : "border-black bg-[#F7F4EA] shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#05070A] dark:shadow-none"}`}
                           >
-                            <span className="font-black text-black dark:text-cyan-300 block">
+                            <span className="font-black text-black dark:text-cyan-300 fun:text-[#243447] block">
                               <InlineFormattedText text={term.term} />
                             </span>
-                            <span className="text-[#555555] dark:text-[#8292A6] text-[11px] mt-0.5 block font-medium dark:font-normal">
+                            <span className="text-[#555555] dark:text-[#8292A6] fun:text-[#64748B] text-[11px] mt-0.5 block font-medium dark:font-normal">
                               <InlineFormattedText text={term.definition} />
                             </span>
                           </div>
@@ -413,12 +415,12 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
                 {/* Career Context Section */}
                 {activeLesson.careerContext && (
-                  <div className="p-4 rounded-lg bg-[#70B7FF]/20 border-2 border-black shadow-[3px_3px_0px_#121212] space-y-1.5 dark:bg-cyan-500/10 dark:border dark:border-cyan-500/30 dark:shadow-none">
-                    <div className="flex items-center gap-2 text-xs font-black text-blue-950 dark:text-cyan-300">
+                  <div className={`p-4 rounded-lg border-2 space-y-1.5 ${theme === "fun" ? "rounded-2xl border-[#5CC8FF]/40 bg-[#EBF8FF]" : "border-black bg-[#70B7FF]/20 shadow-[3px_3px_0px_#121212] dark:bg-cyan-500/10 dark:border dark:border-cyan-500/30 dark:shadow-none"}`}>
+                    <div className="flex items-center gap-2 text-xs font-black text-blue-950 dark:text-cyan-300 fun:text-[#0284C7]">
                       <Briefcase className="h-4 w-4" />
-                      <span>Digunakan di Dunia Kerja:</span>
+                      <span>{t.lesson.careerContext}:</span>
                     </div>
-                    <p className="text-xs font-medium text-blue-950 dark:font-normal dark:text-[#8292A6] leading-relaxed">
+                    <p className="text-xs font-medium text-blue-950 dark:font-normal dark:text-[#8292A6] fun:text-[#0369A1] leading-relaxed">
                       <InlineFormattedText text={activeLesson.careerContext} />
                     </p>
                   </div>
@@ -426,22 +428,22 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
                 {/* Mini Project Callout */}
                 {activeLesson.miniProject && (
-                  <div className="p-5 rounded-xl bg-[#FFD84D]/30 border-2 border-black shadow-[4px_4px_0px_#121212] space-y-2 dark:bg-cyan-500/10 dark:border dark:border-cyan-500/40 dark:shadow-none">
-                    <div className="flex items-center gap-2 text-xs font-black text-black dark:text-cyan-300">
-                      <FolderGit2 className="h-4 w-4" />
+                  <div className={`p-5 rounded-xl border-2 space-y-2 ${theme === "fun" ? "rounded-3xl border-[#FED7AA] bg-[#FFF8E7]" : "border-black bg-[#FFD84D]/30 shadow-[4px_4px_0px_#121212] dark:bg-cyan-500/10 dark:border dark:border-cyan-500/40 dark:shadow-none"}`}>
+                    <div className="flex items-center gap-2 text-xs font-black text-black dark:text-cyan-300 fun:text-[#243447]">
+                      <FolderGit2 className="h-4 w-4 fun:text-[#FF9F43]" />
                       <span><InlineFormattedText text={activeLesson.miniProject.title} /></span>
                     </div>
-                    <p className="text-xs font-medium text-[#121212] dark:font-normal dark:text-[#CBD5E1]">
+                    <p className="text-xs font-medium text-[#121212] dark:font-normal dark:text-[#CBD5E1] fun:text-[#64748B]">
                       <InlineFormattedText text={activeLesson.miniProject.description} />
                     </p>
                     <div className="pt-2">
-                      <span className="text-[11px] font-black text-black dark:text-cyan-300 block mb-1">
-                        Target Hasil (Deliverables):
+                      <span className="text-[11px] font-black text-black dark:text-cyan-300 fun:text-[#243447] block mb-1">
+                        {t.lesson.miniProjectDeliverables}
                       </span>
-                      <ul className="space-y-1 text-xs font-medium text-neutral-800 dark:font-normal dark:text-[#8292A6]">
+                      <ul className="space-y-1 text-xs font-medium text-neutral-800 dark:font-normal dark:text-[#8292A6] fun:text-[#64748B]">
                         {activeLesson.miniProject.deliverables.map((del, i) => (
                           <li key={i} className="flex items-center gap-1.5">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-800 dark:text-emerald-400" />
+                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-800 dark:text-emerald-400 fun:text-[#16A34A]" />
                             <InlineFormattedText text={del} />
                           </li>
                         ))}
@@ -451,40 +453,40 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 )}
 
                 {/* Bottom Actions inside Tab 1 */}
-                <div className="mt-8 pt-6 border-t-2 border-black dark:border-t dark:border-[#1C242D] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className={`mt-8 pt-6 border-t-2 flex flex-col sm:flex-row items-center justify-between gap-4 ${theme === "fun" ? "border-[#E2E8F0]" : "border-black dark:border-t dark:border-[#1C242D]"}`}>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleCopy(activeLesson.contentMd)}
-                    className="gap-2 text-xs font-bold w-full sm:w-auto shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"
+                    className={`gap-2 text-xs font-bold w-full sm:w-auto ${theme === "fun" ? "rounded-full border-[#E2E8F0]" : "shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"}`}
                   >
                     {copied ? (
                       <>
                         <Check className="h-3.5 w-3.5 text-emerald-800 dark:text-emerald-400" />
-                        Tersalin!
+                        {t.common.copied}
                       </>
                     ) : (
                       <>
                         <Copy className="h-3.5 w-3.5" />
-                        Salin Seluruh Materi
+                        {t.lesson.copyAllContent}
                       </>
                     )}
                   </Button>
 
-                  {/* Mandatory Quiz Action (Replaces manual completion button) */}
+                  {/* Mandatory Quiz Action */}
                   {isCompleted ? (
-                    <div className="flex items-center gap-2 text-xs text-emerald-950 dark:text-emerald-300 font-black bg-[#7BE495]/30 dark:bg-emerald-500/10 border-2 border-black dark:border-emerald-500/30 px-3.5 py-1.5 rounded-lg w-full sm:w-auto justify-center shadow-[2px_2px_0px_#121212] dark:shadow-none">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-800 dark:text-emerald-400" />
-                      <span>Materi Selesai (Quiz Lulus)</span>
+                    <div className={`flex items-center gap-2 text-xs font-black px-3.5 py-1.5 rounded-lg w-full sm:w-auto justify-center ${theme === "fun" ? "rounded-full bg-[#DCFCE7] text-[#166534] border border-[#86EFAC]" : "text-emerald-950 dark:text-emerald-300 bg-[#7BE495]/30 dark:bg-emerald-500/10 border-2 border-black dark:border-emerald-500/30 shadow-[2px_2px_0px_#121212] dark:shadow-none"}`}>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-800 dark:text-emerald-400 fun:text-[#16A34A]" />
+                      <span>{t.lesson.completedNotice}</span>
                     </div>
                   ) : (
                     <Button
                       size="sm"
                       onClick={() => setActiveTab("quiz")}
-                      className="gap-2 text-xs font-black w-full sm:w-auto shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
+                      className={`gap-2 text-xs font-black w-full sm:w-auto ${theme === "fun" ? "rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] shadow-[0_4px_12px_rgba(255,216,77,0.4)]" : "shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"}`}
                     >
-                      <HelpCircle className="h-3.5 w-3.5" />
-                      Kerjakan Quiz Evaluasi
+                      <CircleHelp className="h-3.5 w-3.5" />
+                      {t.lesson.startQuizAction}
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Button>
                   )}
@@ -509,21 +511,21 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                   exercise={activeLesson.exercise}
                 />
               ) : (
-                <div className="p-8 text-center rounded-xl border-2 border-black bg-white shadow-[5px_5px_0px_#121212] space-y-2 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
-                  <BookOpen className="h-6 w-6 text-black dark:text-cyan-400 mx-auto" />
-                  <h4 className="text-sm font-black text-foreground">
-                    Modul Teori & Pemahaman Arsitektur
+                <div className={`p-8 text-center rounded-xl border-2 space-y-2 ${theme === "fun" ? "rounded-3xl border-[#FED7AA] bg-white shadow-[0_8px_25px_rgba(255,155,84,0.08)]" : "border-black bg-white shadow-[5px_5px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none"}`}>
+                  <BookOpen className="h-6 w-6 text-black dark:text-cyan-400 fun:text-[#5CC8FF] mx-auto" />
+                  <h4 className="text-sm font-black text-foreground fun:text-[#243447]">
+                    {t.lesson.theoryOnlyTitle}
                   </h4>
-                  <p className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] max-w-md mx-auto">
-                    Materi ini berfokus pada pemahaman konseptual dan arsitektur sistem. Selesaikan quiz evaluasi di tab Quiz untuk menyelesaikan materi.
+                  <p className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] fun:text-[#64748B] max-w-md mx-auto">
+                    {t.lesson.theoryOnlyDesc}
                   </p>
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => setActiveTab("quiz")}
-                    className="gap-2 text-xs font-bold mt-2 shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"
+                    className={`gap-2 text-xs font-bold mt-2 ${theme === "fun" ? "rounded-full border-[#FED7AA] text-[#243447]" : "shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"}`}
                   >
-                    Buka Quiz Evaluasi
+                    {t.lesson.openQuizTab}
                   </Button>
                 </div>
               )}
@@ -531,7 +533,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
           </Tabs>
 
           {/* Previous / Next Lesson Navigation Footer */}
-          <div className="mt-12 pt-6 border-t-2 border-black dark:border-t dark:border-[#1C242D] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className={`mt-12 pt-6 border-t-2 flex flex-col sm:flex-row items-center justify-between gap-4 ${theme === "fun" ? "border-[#E2E8F0]" : "border-black dark:border-t dark:border-[#1C242D]"}`}>
             {prevLessonItem ? (
               <Link
                 href={`/lessons/${prevLessonItem.lesson.slug}`}
@@ -540,15 +542,15 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full sm:w-auto gap-2 text-xs font-bold justify-start shadow-[3px_3px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"
+                  className={`w-full sm:w-auto gap-2 text-xs font-bold justify-start ${theme === "fun" ? "rounded-full border-[#E2E8F0] bg-white text-[#243447]" : "shadow-[3px_3px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"}`}
                 >
                   <ArrowLeft className="h-3.5 w-3.5" />
                   <div className="text-left">
                     <div className="text-[10px] text-[#555555] dark:text-[#8292A6] uppercase font-mono">
-                      Materi Sebelumnya
+                      {t.lesson.prevLesson}
                     </div>
                     <div className="font-bold text-xs truncate max-w-[200px]">
-                      {prevLessonItem.lesson.title}
+                      {language === "en" && prevLessonItem.lesson.titleEn ? prevLessonItem.lesson.titleEn : prevLessonItem.lesson.title}
                     </div>
                   </div>
                 </Button>
@@ -559,41 +561,39 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
             {nextLessonItem ? (
               isCompleted ? (
-                /* Unlocked Next Lesson Button */
                 <Link
                   href={`/lessons/${nextLessonItem.lesson.slug}`}
                   className="w-full sm:w-auto"
                 >
                   <Button
                     size="sm"
-                    className="w-full sm:w-auto gap-2 text-xs justify-end font-black shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
+                    className={`w-full sm:w-auto gap-2 text-xs justify-end font-black ${theme === "fun" ? "rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] shadow-[0_4px_12px_rgba(255,216,77,0.4)]" : "shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"}`}
                   >
                     <div className="text-right">
-                      <div className="text-[10px] text-[#121212] dark:text-cyan-300 uppercase font-mono font-bold">
-                        Materi Selanjutnya
+                      <div className="text-[10px] uppercase font-mono font-bold">
+                        {t.lesson.nextLesson}
                       </div>
                       <div className="font-black text-xs truncate max-w-[200px]">
-                        {nextLessonItem.lesson.title}
+                        {language === "en" && nextLessonItem.lesson.titleEn ? nextLessonItem.lesson.titleEn : nextLessonItem.lesson.title}
                       </div>
                     </div>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
               ) : (
-                /* Locked Next Lesson Button */
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => setShowLockedDialog(true)}
-                  className="w-full sm:w-auto gap-2 text-xs justify-end border-2 border-neutral-400 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 shadow-[3px_3px_0px_#888888] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:hover:bg-[#0F141A] dark:text-[#8292A6] dark:shadow-none"
+                  className={`w-full sm:w-auto gap-2 text-xs justify-end border-2 ${theme === "fun" ? "rounded-full border-[#FED7AA] bg-[#FFF8E7] text-[#D97706]" : "border-neutral-400 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 shadow-[3px_3px_0px_#888888] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:hover:bg-[#0F141A] dark:text-[#8292A6] dark:shadow-none"}`}
                 >
                   <div className="text-right">
-                    <div className="text-[10px] text-amber-900 dark:text-amber-400 uppercase font-mono flex items-center justify-end gap-1 font-bold">
+                    <div className="text-[10px] uppercase font-mono flex items-center justify-end gap-1 font-bold">
                       <Lock className="h-2.5 w-2.5" />
-                      Materi Terkunci
+                      {t.common.locked}
                     </div>
                     <div className="font-bold text-xs truncate max-w-[200px] opacity-75">
-                      {nextLessonItem.lesson.title}
+                      {language === "en" && nextLessonItem.lesson.titleEn ? nextLessonItem.lesson.titleEn : nextLessonItem.lesson.title}
                     </div>
                   </div>
                   <Lock className="h-3.5 w-3.5 text-amber-900 dark:text-amber-400" />
@@ -601,8 +601,8 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               )
             ) : (
               <Link href="/dashboard">
-                <Button size="sm" variant="outline" className="text-xs font-bold gap-1.5 shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300">
-                  Kembali ke Dashboard
+                <Button size="sm" variant="outline" className={`text-xs font-bold gap-1.5 ${theme === "fun" ? "rounded-full border-[#FED7AA]" : "shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"}`}>
+                  {t.hero.ctaDashboard}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
               </Link>
@@ -613,16 +613,16 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
       {/* Locked Next Lesson Modal Prompt */}
       <Dialog open={showLockedDialog} onOpenChange={setShowLockedDialog}>
-        <DialogContent className="max-w-md p-6 bg-white border-2 border-black text-foreground rounded-2xl shadow-[8px_8px_0px_#121212] dark:bg-[#090D12] dark:border dark:border-[#1C242D] dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
+        <DialogContent className={`max-w-md p-6 bg-white border-2 text-foreground ${theme === "fun" ? "border-[#FED7AA] rounded-3xl shadow-[0_20px_50px_rgba(255,155,84,0.15)]" : "border-black rounded-2xl shadow-[8px_8px_0px_#121212] dark:bg-[#090D12] dark:border dark:border-[#1C242D] dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)]"}`}>
           <DialogHeader className="space-y-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#121212] mb-2 dark:border dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-400 dark:shadow-none">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#121212] mb-2 dark:border dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-400 dark:shadow-none fun:rounded-2xl fun:border-[#FED7AA]">
               <Lock className="h-6 w-6" />
             </div>
-            <DialogTitle className="text-lg font-black text-foreground">
-              Quiz Belum Selesai
+            <DialogTitle className="text-lg font-black text-foreground fun:text-[#243447]">
+              {t.lesson.quizGateTitle}
             </DialogTitle>
-            <DialogDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] leading-relaxed">
-              Anda wajib menyelesaikan quiz pada materi <strong className="text-foreground font-black">&quot;{activeLesson.title}&quot;</strong> dengan nilai minimal <strong className="text-foreground font-black">80%</strong> terlebih dahulu untuk membuka materi berikutnya.
+            <DialogDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] fun:text-[#64748B] leading-relaxed">
+              {t.lesson.quizGateDesc}
             </DialogDescription>
           </DialogHeader>
 
@@ -631,9 +631,9 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               variant="outline"
               size="sm"
               onClick={() => setShowLockedDialog(false)}
-              className="text-xs font-bold dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1]"
+              className={`text-xs font-bold ${theme === "fun" ? "rounded-full border-[#E2E8F0]" : "dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1]"}`}
             >
-              Tutup
+              {t.common.close}
             </Button>
             <Button
               size="sm"
@@ -641,10 +641,10 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 setShowLockedDialog(false);
                 setActiveTab("quiz");
               }}
-              className="gap-1.5 text-xs font-black shadow-[2px_2px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
+              className={`gap-1.5 text-xs font-black ${theme === "fun" ? "rounded-full bg-[#FFD84D] text-[#243447]" : "shadow-[2px_2px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"}`}
             >
-              <HelpCircle className="h-3.5 w-3.5" />
-              Kerjakan Quiz Sekarang
+              <CircleHelp className="h-3.5 w-3.5" />
+              {t.lesson.takeQuizNow}
             </Button>
           </div>
         </DialogContent>
@@ -654,3 +654,4 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
     </div>
   );
 }
+

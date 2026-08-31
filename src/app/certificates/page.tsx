@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Award, Download, Check, Copy, CheckCircle2, Lock, Compass, ArrowRight } from "lucide-react";
+import { Award, Download, Check, Copy, CheckCircle2, Lock, Compass, ArrowRight, Trophy, Sparkles, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -12,11 +12,16 @@ import { SearchCommandModal } from "@/components/common/SearchCommandModal";
 import { CURRICULUM_STAGES } from "@/data/curriculum";
 import { useUserAuthStore } from "@/store/useUserAuthStore";
 import { useGuestProgressStore } from "@/store/useGuestProgressStore";
+import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+import { getTranslations } from "@/lib/translations";
+import { GoldenTrophyIllustration } from "@/components/fun/illustrations/GoldenTrophyIllustration";
 
 export default function CertificatePage() {
   const [copied, setCopied] = useState(false);
   const { user } = useUserAuthStore();
   const { completedLessons } = useGuestProgressStore();
+  const { theme, language } = useThemeLanguageStore();
+  const t = getTranslations(language);
 
   const totalLessons = CURRICULUM_STAGES.reduce(
     (acc, stage) => acc + stage.lessons.length,
@@ -30,7 +35,7 @@ export default function CertificatePage() {
   const progressPercentage = Math.round((completedCount / (totalLessons || 1)) * 100);
 
   const certificateCode = "CERT-BA-2026-W892K";
-  const issueDate = new Date().toLocaleDateString("id-ID", {
+  const issueDate = new Date().toLocaleDateString(language === "en" ? "en-US" : "id-ID", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -48,6 +53,129 @@ export default function CertificatePage() {
     window.print();
   };
 
+  // FUN MODE: Golden Trophy Celebration
+  if (theme === "fun") {
+    return (
+      <div className="min-h-screen bg-[#FFF8E7] text-[#243447] flex flex-col">
+        <Navbar />
+        <SearchCommandModal />
+
+        <main className="flex-1 py-10 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b-2 border-[#E2E8F0]">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#FED7AA] text-xs font-black text-[#D97706]">
+                  <Trophy className="h-3.5 w-3.5" />
+                  <span>{t.certificates.badge}</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-black text-[#243447]">
+                  {t.certificates.title}
+                </h1>
+              </div>
+
+              {isEligible && (
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCopyLink}
+                    className="text-xs font-bold rounded-full border-[#FED7AA] bg-white"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 mr-1 text-[#16A34A]" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
+                    {copied ? t.common.copied : t.certificates.copyLink}
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={handlePrint}
+                    className="text-xs font-black rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] shadow-[0_4px_12px_rgba(255,216,77,0.4)]"
+                  >
+                    <Download className="h-3.5 w-3.5 mr-1" />
+                    {t.certificates.downloadPdf}
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            {!isEligible ? (
+              <div className="p-8 sm:p-12 rounded-3xl border-2 border-[#FED7AA] bg-white text-center space-y-6 shadow-[0_15px_40px_rgba(255,155,84,0.1)]">
+                <GoldenTrophyIllustration className="w-28 h-28 mx-auto" />
+                <div className="space-y-2 max-w-md mx-auto">
+                  <h2 className="text-xl font-black text-[#243447]">
+                    {t.certificates.lockedTitle}
+                  </h2>
+                  <p className="text-xs text-[#64748B] leading-relaxed">
+                    {t.certificates.lockedDesc}
+                  </p>
+                </div>
+
+                <div className="max-w-md mx-auto p-4 rounded-2xl bg-[#FFF8E7] border border-[#FED7AA] space-y-2 text-left">
+                  <div className="flex items-center justify-between text-xs font-black text-[#243447]">
+                    <span>{t.certificates.progressStatus}</span>
+                    <span>{completedCount} / {totalLessons} ({progressPercentage}%)</span>
+                  </div>
+                  <Progress value={progressPercentage} className="h-2.5" />
+                </div>
+
+                <Link href="/roadmap">
+                  <Button size="lg" className="rounded-full text-xs font-black px-8 bg-[#5CC8FF] hover:bg-[#4D96FF] text-[#243447]">
+                    <Compass className="h-4 w-4 mr-1.5" />
+                    {t.hero.ctaRoadmap}
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="rounded-3xl border-4 border-[#FED7AA] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(255,155,84,0.15)] text-center space-y-6">
+                <GoldenTrophyIllustration className="w-24 h-24 mx-auto" />
+                <div className="space-y-1">
+                  <span className="text-xs font-black text-[#D97706] bg-[#FFF8E7] px-3 py-1 rounded-full border border-[#FED7AA]">
+                    ⭐⭐⭐ RESMI DITERBITKAN
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-black text-[#243447] pt-2">
+                    {t.certificates.officialCertTag}
+                  </h2>
+                </div>
+
+                <div className="py-2">
+                  <p className="text-xs text-[#64748B] font-bold">
+                    {t.certificates.certAwardedTo}
+                  </p>
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#243447] underline decoration-[#FFD84D] decoration-4 underline-offset-8 mt-2">
+                    {user?.name || "Marchelino Kurniawan"}
+                  </h3>
+                </div>
+
+                <p className="max-w-xl mx-auto text-xs text-[#64748B] leading-relaxed">
+                  {t.certificates.certDescription}
+                </p>
+
+                <div className="pt-6 border-t border-[#E2E8F0] grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+                  <div className="p-3 rounded-2xl bg-[#FFF8E7] border border-[#FED7AA]">
+                    <span className="text-[10px] text-[#64748B] font-bold block">{t.certificates.certId}</span>
+                    <span className="text-xs font-black text-[#243447]">{certificateCode}</span>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-[#FFF8E7] border border-[#FED7AA]">
+                    <span className="text-[10px] text-[#64748B] font-bold block">{t.certificates.issueDate}</span>
+                    <span className="text-xs font-bold text-[#243447]">{issueDate}</span>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-[#F0FDF4] border border-[#86EFAC]">
+                    <span className="text-[10px] text-[#15803D] font-bold block">{t.certificates.verificationStatus}</span>
+                    <span className="text-xs font-black text-[#16A34A] flex items-center gap-1">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                      {t.certificates.verifiedGenuine}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
+
+  // STANDARD LIGHT & DARK CERTIFICATE PAGE
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
@@ -60,10 +188,10 @@ export default function CertificatePage() {
             <div>
               <div className="flex items-center gap-2 text-xs font-mono font-black text-[#121212] bg-[#FFD84D] px-2.5 py-1 rounded border border-black shadow-[2px_2px_0px_#121212] uppercase tracking-wider mb-2 w-fit dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none">
                 <Award className="h-4 w-4 text-[#121212] dark:text-cyan-400" />
-                <span>Verifikasi Sertifikat Digital</span>
+                <span>{theme === "dark" ? "TELEMETRY VERIFICATION" : t.certificates.badge}</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground">
-                Sertifikat Kelulusan Kurikulum
+                {t.certificates.title}
               </h1>
             </div>
 
@@ -78,12 +206,12 @@ export default function CertificatePage() {
                   {copied ? (
                     <>
                       <Check className="h-3.5 w-3.5 text-emerald-800 dark:text-emerald-400" />
-                      Tautan Tersalin
+                      {t.common.copied}
                     </>
                   ) : (
                     <>
                       <Copy className="h-3.5 w-3.5" />
-                      Salin URL Verifikasi
+                      {t.certificates.copyLink}
                     </>
                   )}
                 </Button>
@@ -94,14 +222,14 @@ export default function CertificatePage() {
                   className="text-xs font-black gap-1.5 shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  Cetak / Unduh PDF
+                  {t.certificates.downloadPdf}
                 </Button>
               </div>
             ) : (
               <Link href="/roadmap">
                 <Button size="sm" className="text-xs font-bold gap-1.5 shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300">
                   <Compass className="h-3.5 w-3.5" />
-                  Lanjutkan Belajar di Roadmap
+                  {t.hero.ctaRoadmap}
                 </Button>
               </Link>
             )}
@@ -116,16 +244,16 @@ export default function CertificatePage() {
 
               <div className="space-y-2 max-w-md mx-auto">
                 <h2 className="text-xl font-black text-foreground">
-                  Sertifikat Masih Terkunci
+                  {t.certificates.lockedTitle}
                 </h2>
                 <p className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] leading-relaxed">
-                  Untuk mengklaim dan menerbitkan Sertifikat Resmi Fullstack Web Developer, Anda wajib menyelesaikan seluruh <strong className="text-foreground font-black">{totalLessons} materi</strong> dan lulus seluruh quiz evaluasi (skor minimal 80%).
+                  {t.certificates.lockedDesc}
                 </p>
               </div>
 
               <div className="max-w-md mx-auto p-4 rounded-xl bg-[#F7F4EA] border-2 border-black space-y-2 text-left shadow-[3px_3px_0px_#121212] dark:bg-[#05070A] dark:border dark:border-[#1C242D] dark:shadow-none">
                 <div className="flex items-center justify-between text-xs font-bold dark:font-normal">
-                  <span className="text-neutral-700 dark:text-[#8292A6]">Progres Kelulusan Materi & Quiz:</span>
+                  <span className="text-neutral-700 dark:text-[#8292A6]">{t.certificates.progressStatus}</span>
                   <span className="font-mono font-black text-black dark:text-cyan-300">
                     {completedCount} / {totalLessons} ({progressPercentage}%)
                   </span>
@@ -135,7 +263,7 @@ export default function CertificatePage() {
 
               <Link href="/roadmap">
                 <Button size="sm" className="gap-2 text-xs font-black shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none">
-                  Buka Roadmap 20 Tahap
+                  {t.hero.ctaRoadmap}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
               </Link>
@@ -161,16 +289,16 @@ export default function CertificatePage() {
 
                 <div>
                   <div className="text-xs uppercase font-mono tracking-widest text-[#121212] bg-[#70B7FF] px-3 py-0.5 rounded border border-black inline-block font-black shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none">
-                    Sertifikat Kelulusan Resmi
+                    {t.certificates.badge}
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-2 text-foreground">
-                    Certificate of Fullstack Web Development
+                    {t.certificates.officialCertTag}
                   </h2>
                 </div>
 
                 <div className="py-2">
                   <p className="text-xs font-bold text-[#555555] dark:font-normal dark:text-[#8292A6]">
-                    Sertifikat ini dengan bangga dianugerahkan kepada:
+                    {t.certificates.certAwardedTo}
                   </p>
                   <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground underline decoration-[#FFD84D] dark:decoration-cyan-400 decoration-4 underline-offset-8 mt-2">
                     {user?.name || "Marchelino Kurniawan"}
@@ -178,14 +306,14 @@ export default function CertificatePage() {
                 </div>
 
                 <p className="max-w-xl mx-auto text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6] leading-relaxed">
-                  Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development terstruktur, mencakup Web Fundamentals, HTML5 Semantic, Modern CSS, JavaScript, TypeScript, React, Next.js 16, PostgreSQL & Prisma ORM, Keamanan Web, dan Final Portfolio Capstone.
+                  {t.certificates.certDescription}
                 </p>
 
                 {/* Certificate Metadata Grid */}
                 <div className="pt-6 border-t-2 border-black dark:border-t dark:border-[#1C242D] grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                   <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-[#05070A] dark:border dark:border-[#1C242D] dark:shadow-none">
                     <span className="text-[10px] text-[#555555] dark:text-[#8292A6] uppercase font-mono block font-bold">
-                      ID Sertifikat
+                      {t.certificates.certId}
                     </span>
                     <span className="text-xs font-mono font-black text-black dark:text-cyan-300">
                       {certificateCode}
@@ -194,7 +322,7 @@ export default function CertificatePage() {
 
                   <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-[#05070A] dark:border dark:border-[#1C242D] dark:shadow-none">
                     <span className="text-[10px] text-[#555555] dark:text-[#8292A6] uppercase font-mono block font-bold">
-                      Tanggal Penerbitan
+                      {t.certificates.issueDate}
                     </span>
                     <span className="text-xs font-bold text-foreground">
                       {issueDate}
@@ -204,11 +332,11 @@ export default function CertificatePage() {
                   <div className="p-3 rounded-lg bg-[#F7F4EA] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-[#05070A] dark:border dark:border-[#1C242D] dark:shadow-none flex items-center justify-between">
                     <div>
                       <span className="text-[10px] text-[#555555] dark:text-[#8292A6] uppercase font-mono block font-bold">
-                        Status Verifikasi
+                        {t.certificates.verificationStatus}
                       </span>
                       <span className="text-xs font-black text-emerald-800 dark:text-emerald-400 flex items-center gap-1">
                         <CheckCircle2 className="h-3.5 w-3.5" />
-                        Terverifikasi Asli
+                        {t.certificates.verifiedGenuine}
                       </span>
                     </div>
                   </div>
@@ -223,3 +351,4 @@ export default function CertificatePage() {
     </div>
   );
 }
+
