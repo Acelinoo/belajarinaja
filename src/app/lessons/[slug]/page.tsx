@@ -212,22 +212,22 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
       <SearchCommandModal />
 
       {/* Breadcrumb Sub-Header */}
-      <div className="border-b-2 border-black bg-white py-2.5 dark:border-border/80 dark:bg-card/40">
+      <div className="border-b-2 border-black bg-white py-2.5 dark:border-b dark:border-[#1C242D] dark:bg-[#05070A]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-1.5 text-xs text-neutral-700 dark:text-muted-foreground overflow-x-auto font-bold dark:font-normal">
+          <nav className="flex items-center gap-1.5 text-xs text-neutral-700 dark:text-[#94A3B8] overflow-x-auto font-bold dark:font-normal">
             <Link
               href="/roadmap"
-              className="hover:text-foreground transition-colors shrink-0 underline decoration-[#FFD84D] decoration-2 dark:no-underline"
+              className="hover:text-foreground transition-colors shrink-0 underline decoration-[#FFD84D] decoration-2 dark:no-underline dark:hover:text-cyan-300"
             >
               Roadmap
             </Link>
-            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-muted-foreground" />
+            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-[#64748B]" />
             <span className="truncate max-w-[150px] sm:max-w-none">
               Tahap {String(activeStage.orderIndex).padStart(2, "0")}:{" "}
               {language === "en" ? activeStage.titleEn : activeStage.titleId}
             </span>
-            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-muted-foreground" />
-            <span className="text-foreground font-black dark:font-medium truncate max-w-[180px] sm:max-w-none">
+            <ChevronRight className="h-3 w-3 shrink-0 text-black dark:text-[#64748B]" />
+            <span className="text-foreground font-black dark:font-medium dark:text-cyan-300 truncate max-w-[180px] sm:max-w-none">
               {language === "en" && activeLesson.titleEn
                 ? activeLesson.titleEn
                 : activeLesson.title}
@@ -239,11 +239,11 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               size="sm"
               variant="ghost"
               onClick={() => toggleBookmark(activeLesson.id)}
-              className="h-7 text-xs font-bold gap-1.5 border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD84D] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none dark:border-transparent dark:bg-transparent dark:text-muted-foreground dark:hover:text-foreground dark:shadow-none"
+              className="h-7 text-xs font-bold gap-1.5 border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD84D] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#94A3B8] dark:hover:text-cyan-300 dark:shadow-none"
             >
               <Bookmark
                 className={`h-3.5 w-3.5 ${
-                  isBookmarked ? "fill-black text-black dark:fill-primary dark:text-primary" : ""
+                  isBookmarked ? "fill-black text-black dark:fill-cyan-400 dark:text-cyan-400" : ""
                 }`}
               />
               <span className="hidden sm:inline">
@@ -270,16 +270,16 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
       <main className="flex-1 py-8">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
           {/* Header */}
-          <div className="pb-6 border-b-2 border-black dark:border-border space-y-2">
+          <div className="pb-6 border-b-2 border-black dark:border-b dark:border-[#1C242D] space-y-2">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-[10px]">
+              <Badge variant="outline" className="text-[10px] dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-cyan-300">
                 {activeLesson.level}
               </Badge>
-              <span className="text-xs font-bold text-[#555555] dark:font-normal dark:text-muted-foreground">
+              <span className="text-xs font-bold text-[#555555] dark:font-mono dark:text-[#8292A6]">
                 Estimasi {activeLesson.estimatedMinutes} menit belajar
               </span>
-              <span className="text-xs text-black dark:text-muted-foreground">•</span>
-              <span className="text-xs font-black text-[#121212] bg-[#FFD84D] px-2 py-0.5 rounded border border-black dark:border-0 dark:bg-transparent dark:text-primary dark:font-medium dark:p-0">
+              <span className="text-xs text-black dark:text-[#64748B]">•</span>
+              <span className="text-xs font-black text-[#121212] bg-[#FFD84D] px-2 py-0.5 rounded border border-black dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:font-medium">
                 Tahap {activeStage.orderIndex} ({activeStage.category})
               </span>
             </div>
@@ -290,7 +290,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 : activeLesson.title}
             </h1>
 
-            <p className="text-sm font-medium text-[#555555] dark:font-normal dark:text-muted-foreground">
+            <p className="text-sm font-medium text-[#555555] dark:font-normal dark:text-[#8292A6]">
               {language === "en" && activeLesson.descriptionEn
                 ? activeLesson.descriptionEn
                 : activeLesson.description}
@@ -301,15 +301,15 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {activeLesson.learningObjectives &&
               activeLesson.learningObjectives.length > 0 && (
-                <div className="p-4 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_#121212] space-y-2 dark:border-border dark:bg-card/60 dark:shadow-none">
+                <div className="p-4 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_#121212] space-y-2 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
                   <div className="flex items-center gap-2 text-xs font-black text-foreground">
-                    <Target className="h-4 w-4 text-black dark:text-primary" />
+                    <Target className="h-4 w-4 text-black dark:text-cyan-400" />
                     <span>Target Pembelajaran:</span>
                   </div>
-                  <ul className="space-y-1 text-xs font-medium text-[#404040] dark:font-normal dark:text-muted-foreground">
+                  <ul className="space-y-1 text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6]">
                     {activeLesson.learningObjectives.map((obj, i) => (
                       <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-black dark:text-primary font-black">•</span>
+                        <span className="text-black dark:text-cyan-400 font-black">•</span>
                         <span>{obj}</span>
                       </li>
                     ))}
@@ -318,12 +318,12 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               )}
 
             {activeLesson.whyMatters && (
-              <div className="p-4 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_#121212] space-y-2 dark:border-border dark:bg-card/60 dark:shadow-none">
+              <div className="p-4 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_#121212] space-y-2 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
                 <div className="flex items-center gap-2 text-xs font-black text-foreground">
                   <Info className="h-4 w-4 text-amber-800 dark:text-amber-400" />
                   <span>Mengapa Materi Ini Penting?</span>
                 </div>
-                <p className="text-xs font-medium text-[#404040] dark:font-normal dark:text-muted-foreground leading-relaxed">
+                <p className="text-xs font-medium text-[#404040] dark:font-normal dark:text-[#8292A6] leading-relaxed">
                   {activeLesson.whyMatters}
                 </p>
               </div>
@@ -342,8 +342,8 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 Quiz ({activeLesson.quizzes.length})
                 {!isCompleted && (
                   <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6B6B] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF6B6B] border border-black"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6B6B] dark:bg-cyan-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF6B6B] dark:bg-cyan-400 border border-black dark:border-0"></span>
                   </span>
                 )}
               </TabsTrigger>
@@ -355,7 +355,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
             {/* Tab 1: Lesson Content */}
             <TabsContent value="lesson" className="space-y-6">
-              <div className="p-6 sm:p-8 rounded-xl border-2 border-black bg-white shadow-[6px_6px_0px_#121212] space-y-6 dark:border-border dark:bg-card dark:shadow-none">
+              <div className="p-6 sm:p-8 rounded-xl border-2 border-black bg-white shadow-[6px_6px_0px_#121212] space-y-6 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
                 <div className="max-w-[75ch]">
                   <MarkdownRenderer
                     content={
@@ -369,15 +369,15 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 {/* Common Mistakes Section */}
                 {activeLesson.commonMistakes &&
                   activeLesson.commonMistakes.length > 0 && (
-                    <div className="p-4 rounded-lg bg-[#FF6B6B]/20 border-2 border-black shadow-[3px_3px_0px_#121212] space-y-2 dark:bg-rose-500/10 dark:border-rose-500/30 dark:shadow-none">
-                      <div className="flex items-center gap-2 text-xs font-black text-rose-900 dark:text-rose-400">
+                    <div className="p-4 rounded-lg bg-[#FF6B6B]/20 border-2 border-black shadow-[3px_3px_0px_#121212] space-y-2 dark:bg-red-500/10 dark:border dark:border-red-500/30 dark:shadow-none">
+                      <div className="flex items-center gap-2 text-xs font-black text-rose-900 dark:text-red-400">
                         <AlertTriangle className="h-4 w-4" />
                         <span>Kesalahan yang Sering Dilakukan Pemula:</span>
                       </div>
-                      <ul className="space-y-1 text-xs font-medium text-neutral-900 dark:font-normal dark:text-muted-foreground">
+                      <ul className="space-y-1 text-xs font-medium text-neutral-900 dark:font-normal dark:text-[#8292A6]">
                         {activeLesson.commonMistakes.map((mistake, i) => (
                           <li key={i} className="flex items-start gap-1.5">
-                            <span className="text-rose-900 dark:text-rose-400 font-bold">•</span>
+                            <span className="text-rose-900 dark:text-red-400 font-bold">•</span>
                             <InlineFormattedText text={mistake} />
                           </li>
                         ))}
@@ -388,21 +388,21 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 {/* Key Terms Section */}
                 {activeLesson.keyTerms &&
                   activeLesson.keyTerms.length > 0 && (
-                    <div className="p-4 rounded-lg bg-white border-2 border-black shadow-[3px_3px_0px_#121212] space-y-2 dark:bg-card dark:border-border dark:shadow-none">
+                    <div className="p-4 rounded-lg bg-white border-2 border-black shadow-[3px_3px_0px_#121212] space-y-2 dark:bg-[#090D12] dark:border dark:border-[#1C242D] dark:shadow-none">
                       <div className="flex items-center gap-2 text-xs font-black text-foreground">
-                        <BookMarked className="h-4 w-4 text-black dark:text-primary" />
+                        <BookMarked className="h-4 w-4 text-black dark:text-cyan-400" />
                         <span>Istilah Kunci (Key Terms):</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                         {activeLesson.keyTerms.map((term, i) => (
                           <div
                             key={i}
-                            className="p-2.5 rounded border-2 border-black bg-[#F7F4EA] text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border-border/60 dark:bg-background/50 dark:shadow-none"
+                            className="p-2.5 rounded border-2 border-black bg-[#F7F4EA] text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#05070A] dark:shadow-none"
                           >
-                            <span className="font-black text-black dark:text-primary block">
+                            <span className="font-black text-black dark:text-cyan-300 block">
                               <InlineFormattedText text={term.term} />
                             </span>
-                            <span className="text-[#555555] dark:text-muted-foreground text-[11px] mt-0.5 block font-medium dark:font-normal">
+                            <span className="text-[#555555] dark:text-[#8292A6] text-[11px] mt-0.5 block font-medium dark:font-normal">
                               <InlineFormattedText text={term.definition} />
                             </span>
                           </div>
@@ -413,12 +413,12 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
                 {/* Career Context Section */}
                 {activeLesson.careerContext && (
-                  <div className="p-4 rounded-lg bg-[#70B7FF]/20 border-2 border-black shadow-[3px_3px_0px_#121212] space-y-1.5 dark:bg-[#121318] dark:border-primary/30 dark:shadow-none">
-                    <div className="flex items-center gap-2 text-xs font-black text-blue-950 dark:text-primary">
+                  <div className="p-4 rounded-lg bg-[#70B7FF]/20 border-2 border-black shadow-[3px_3px_0px_#121212] space-y-1.5 dark:bg-cyan-500/10 dark:border dark:border-cyan-500/30 dark:shadow-none">
+                    <div className="flex items-center gap-2 text-xs font-black text-blue-950 dark:text-cyan-300">
                       <Briefcase className="h-4 w-4" />
                       <span>Digunakan di Dunia Kerja:</span>
                     </div>
-                    <p className="text-xs font-medium text-blue-950 dark:font-normal dark:text-muted-foreground leading-relaxed">
+                    <p className="text-xs font-medium text-blue-950 dark:font-normal dark:text-[#8292A6] leading-relaxed">
                       <InlineFormattedText text={activeLesson.careerContext} />
                     </p>
                   </div>
@@ -426,19 +426,19 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
                 {/* Mini Project Callout */}
                 {activeLesson.miniProject && (
-                  <div className="p-5 rounded-xl bg-[#FFD84D]/30 border-2 border-black shadow-[4px_4px_0px_#121212] space-y-2 dark:bg-gradient-to-r dark:from-primary/10 dark:to-indigo-500/10 dark:border-primary/40 dark:shadow-none">
-                    <div className="flex items-center gap-2 text-xs font-black text-black dark:text-primary">
+                  <div className="p-5 rounded-xl bg-[#FFD84D]/30 border-2 border-black shadow-[4px_4px_0px_#121212] space-y-2 dark:bg-cyan-500/10 dark:border dark:border-cyan-500/40 dark:shadow-none">
+                    <div className="flex items-center gap-2 text-xs font-black text-black dark:text-cyan-300">
                       <FolderGit2 className="h-4 w-4" />
                       <span><InlineFormattedText text={activeLesson.miniProject.title} /></span>
                     </div>
-                    <p className="text-xs font-medium text-[#121212] dark:font-normal dark:text-foreground">
+                    <p className="text-xs font-medium text-[#121212] dark:font-normal dark:text-[#CBD5E1]">
                       <InlineFormattedText text={activeLesson.miniProject.description} />
                     </p>
                     <div className="pt-2">
-                      <span className="text-[11px] font-black text-black dark:text-muted-foreground block mb-1">
+                      <span className="text-[11px] font-black text-black dark:text-cyan-300 block mb-1">
                         Target Hasil (Deliverables):
                       </span>
-                      <ul className="space-y-1 text-xs font-medium text-neutral-800 dark:font-normal dark:text-muted-foreground">
+                      <ul className="space-y-1 text-xs font-medium text-neutral-800 dark:font-normal dark:text-[#8292A6]">
                         {activeLesson.miniProject.deliverables.map((del, i) => (
                           <li key={i} className="flex items-center gap-1.5">
                             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-800 dark:text-emerald-400" />
@@ -451,12 +451,12 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 )}
 
                 {/* Bottom Actions inside Tab 1 */}
-                <div className="mt-8 pt-6 border-t-2 border-black dark:border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="mt-8 pt-6 border-t-2 border-black dark:border-t dark:border-[#1C242D] flex flex-col sm:flex-row items-center justify-between gap-4">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleCopy(activeLesson.contentMd)}
-                    className="gap-2 text-xs font-bold w-full sm:w-auto shadow-[2px_2px_0px_#121212]"
+                    className="gap-2 text-xs font-bold w-full sm:w-auto shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"
                   >
                     {copied ? (
                       <>
@@ -473,7 +473,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
                   {/* Mandatory Quiz Action (Replaces manual completion button) */}
                   {isCompleted ? (
-                    <div className="flex items-center gap-2 text-xs text-emerald-950 dark:text-emerald-400 font-black bg-[#7BE495]/30 dark:bg-emerald-500/10 border-2 border-black dark:border-emerald-500/30 px-3.5 py-1.5 rounded-lg w-full sm:w-auto justify-center shadow-[2px_2px_0px_#121212] dark:shadow-none">
+                    <div className="flex items-center gap-2 text-xs text-emerald-950 dark:text-emerald-300 font-black bg-[#7BE495]/30 dark:bg-emerald-500/10 border-2 border-black dark:border-emerald-500/30 px-3.5 py-1.5 rounded-lg w-full sm:w-auto justify-center shadow-[2px_2px_0px_#121212] dark:shadow-none">
                       <CheckCircle2 className="h-4 w-4 text-emerald-800 dark:text-emerald-400" />
                       <span>Materi Selesai (Quiz Lulus)</span>
                     </div>
@@ -481,7 +481,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                     <Button
                       size="sm"
                       onClick={() => setActiveTab("quiz")}
-                      className="gap-2 text-xs font-black w-full sm:w-auto shadow-[3px_3px_0px_#121212]"
+                      className="gap-2 text-xs font-black w-full sm:w-auto shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
                     >
                       <HelpCircle className="h-3.5 w-3.5" />
                       Kerjakan Quiz Evaluasi
@@ -509,19 +509,19 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                   exercise={activeLesson.exercise}
                 />
               ) : (
-                <div className="p-8 text-center rounded-xl border-2 border-black bg-white shadow-[5px_5px_0px_#121212] space-y-2 dark:border-border dark:bg-card dark:shadow-none">
-                  <BookOpen className="h-6 w-6 text-black dark:text-muted-foreground/50 mx-auto" />
+                <div className="p-8 text-center rounded-xl border-2 border-black bg-white shadow-[5px_5px_0px_#121212] space-y-2 dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-none">
+                  <BookOpen className="h-6 w-6 text-black dark:text-cyan-400 mx-auto" />
                   <h4 className="text-sm font-black text-foreground">
                     Modul Teori & Pemahaman Arsitektur
                   </h4>
-                  <p className="text-xs font-medium text-[#555555] dark:font-normal dark:text-muted-foreground max-w-md mx-auto">
+                  <p className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] max-w-md mx-auto">
                     Materi ini berfokus pada pemahaman konseptual dan arsitektur sistem. Selesaikan quiz evaluasi di tab Quiz untuk menyelesaikan materi.
                   </p>
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => setActiveTab("quiz")}
-                    className="gap-2 text-xs font-bold mt-2 shadow-[2px_2px_0px_#121212]"
+                    className="gap-2 text-xs font-bold mt-2 shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"
                   >
                     Buka Quiz Evaluasi
                   </Button>
@@ -531,7 +531,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
           </Tabs>
 
           {/* Previous / Next Lesson Navigation Footer */}
-          <div className="mt-12 pt-6 border-t-2 border-black dark:border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-12 pt-6 border-t-2 border-black dark:border-t dark:border-[#1C242D] flex flex-col sm:flex-row items-center justify-between gap-4">
             {prevLessonItem ? (
               <Link
                 href={`/lessons/${prevLessonItem.lesson.slug}`}
@@ -540,11 +540,11 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full sm:w-auto gap-2 text-xs font-bold justify-start shadow-[3px_3px_0px_#121212]"
+                  className="w-full sm:w-auto gap-2 text-xs font-bold justify-start shadow-[3px_3px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300"
                 >
                   <ArrowLeft className="h-3.5 w-3.5" />
                   <div className="text-left">
-                    <div className="text-[10px] text-[#555555] dark:text-muted-foreground uppercase font-mono">
+                    <div className="text-[10px] text-[#555555] dark:text-[#8292A6] uppercase font-mono">
                       Materi Sebelumnya
                     </div>
                     <div className="font-bold text-xs truncate max-w-[200px]">
@@ -566,10 +566,10 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 >
                   <Button
                     size="sm"
-                    className="w-full sm:w-auto gap-2 text-xs justify-end font-black shadow-[3px_3px_0px_#121212]"
+                    className="w-full sm:w-auto gap-2 text-xs justify-end font-black shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
                   >
                     <div className="text-right">
-                      <div className="text-[10px] text-[#121212] dark:text-primary-foreground/80 uppercase font-mono font-bold">
+                      <div className="text-[10px] text-[#121212] dark:text-cyan-300 uppercase font-mono font-bold">
                         Materi Selanjutnya
                       </div>
                       <div className="font-black text-xs truncate max-w-[200px]">
@@ -585,7 +585,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                   size="sm"
                   variant="outline"
                   onClick={() => setShowLockedDialog(true)}
-                  className="w-full sm:w-auto gap-2 text-xs justify-end border-2 border-neutral-400 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 shadow-[3px_3px_0px_#888888] dark:border-border/80 dark:bg-card/60 dark:hover:bg-card dark:text-muted-foreground dark:shadow-none"
+                  className="w-full sm:w-auto gap-2 text-xs justify-end border-2 border-neutral-400 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 shadow-[3px_3px_0px_#888888] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:hover:bg-[#0F141A] dark:text-[#8292A6] dark:shadow-none"
                 >
                   <div className="text-right">
                     <div className="text-[10px] text-amber-900 dark:text-amber-400 uppercase font-mono flex items-center justify-end gap-1 font-bold">
@@ -601,7 +601,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               )
             ) : (
               <Link href="/dashboard">
-                <Button size="sm" variant="outline" className="text-xs font-bold gap-1.5 shadow-[2px_2px_0px_#121212]">
+                <Button size="sm" variant="outline" className="text-xs font-bold gap-1.5 shadow-[2px_2px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1] dark:hover:text-cyan-300">
                   Kembali ke Dashboard
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
@@ -613,15 +613,15 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
 
       {/* Locked Next Lesson Modal Prompt */}
       <Dialog open={showLockedDialog} onOpenChange={setShowLockedDialog}>
-        <DialogContent className="max-w-md p-6 bg-white border-2 border-black text-foreground rounded-2xl shadow-[8px_8px_0px_#121212] dark:bg-[#181A22] dark:border-border dark:shadow-2xl">
+        <DialogContent className="max-w-md p-6 bg-white border-2 border-black text-foreground rounded-2xl shadow-[8px_8px_0px_#121212] dark:bg-[#090D12] dark:border dark:border-[#1C242D] dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
           <DialogHeader className="space-y-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#121212] mb-2 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-400 dark:shadow-none">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#121212] mb-2 dark:border dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-400 dark:shadow-none">
               <Lock className="h-6 w-6" />
             </div>
             <DialogTitle className="text-lg font-black text-foreground">
               Quiz Belum Selesai
             </DialogTitle>
-            <DialogDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-muted-foreground leading-relaxed">
+            <DialogDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] leading-relaxed">
               Anda wajib menyelesaikan quiz pada materi <strong className="text-foreground font-black">&quot;{activeLesson.title}&quot;</strong> dengan nilai minimal <strong className="text-foreground font-black">80%</strong> terlebih dahulu untuk membuka materi berikutnya.
             </DialogDescription>
           </DialogHeader>
@@ -631,7 +631,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
               variant="outline"
               size="sm"
               onClick={() => setShowLockedDialog(false)}
-              className="text-xs font-bold"
+              className="text-xs font-bold dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#CBD5E1]"
             >
               Tutup
             </Button>
@@ -641,7 +641,7 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
                 setShowLockedDialog(false);
                 setActiveTab("quiz");
               }}
-              className="gap-1.5 text-xs font-black shadow-[2px_2px_0px_#121212]"
+              className="gap-1.5 text-xs font-black shadow-[2px_2px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"
             >
               <HelpCircle className="h-3.5 w-3.5" />
               Kerjakan Quiz Sekarang

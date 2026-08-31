@@ -22,17 +22,17 @@ export function GuestSyncPromptBanner() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 max-w-md p-4 rounded-xl border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[6px_6px_0px_#121212] animate-in slide-in-from-bottom-5 dark:border-primary/40 dark:bg-[#121318]/95 dark:backdrop-blur-md dark:shadow-2xl dark:text-foreground">
+    <div className="fixed bottom-4 right-4 z-40 max-w-md p-4 rounded-xl border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[6px_6px_0px_#121212] animate-in slide-in-from-bottom-5 dark:border dark:border-cyan-500/30 dark:bg-[#090D12]/95 dark:backdrop-blur-md dark:shadow-[0_10px_35px_rgba(0,0,0,0.8)] dark:text-[#F1F5F9]">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md border-2 border-black bg-white text-[#121212] shadow-[1.5px_1.5px_0px_#121212] shrink-0 mt-0.5 dark:border-0 dark:bg-primary/20 dark:text-primary dark:shadow-none">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md border-2 border-black bg-white text-[#121212] shadow-[1.5px_1.5px_0px_#121212] shrink-0 mt-0.5 dark:border dark:border-cyan-500/40 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none">
             <ShieldCheck className="h-4 w-4" />
           </div>
           <div>
-            <h4 className="text-xs font-black text-[#121212] dark:text-foreground">
+            <h4 className="text-xs font-black text-[#121212] dark:text-[#F1F5F9]">
               Simpan {completedCount} Progress Belajar Anda?
             </h4>
-            <p className="text-[11px] text-neutral-800 dark:text-muted-foreground mt-0.5 leading-relaxed font-medium dark:font-normal">
+            <p className="text-[11px] text-neutral-800 dark:text-[#8292A6] mt-0.5 leading-relaxed font-medium dark:font-normal">
               Progress Anda saat ini hanya tersimpan di browser. Buat akun gratis agar progress tidak hilang.
             </p>
           </div>
@@ -41,7 +41,7 @@ export function GuestSyncPromptBanner() {
         <button
           type="button"
           onClick={() => setDismissed(true)}
-          className="text-[#121212] hover:text-black p-1 dark:text-muted-foreground dark:hover:text-foreground"
+          className="text-[#121212] hover:text-black p-1 dark:text-[#94A3B8] dark:hover:text-cyan-300"
           aria-label="Tutup Banner"
         >
           <X className="h-3.5 w-3.5" />
@@ -53,14 +53,14 @@ export function GuestSyncPromptBanner() {
           size="sm"
           variant="outline"
           onClick={() => setDismissed(true)}
-          className="h-7 text-[11px] px-2.5 font-bold border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#EAE4D5] dark:border-border dark:bg-transparent dark:text-foreground dark:shadow-none dark:font-normal"
+          className="h-7 text-[11px] px-2.5 font-bold border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#EAE4D5] dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-[#94A3B8] dark:hover:text-cyan-300 dark:hover:bg-[#151B22] dark:shadow-none dark:font-medium"
         >
           Nanti Saja
         </Button>
         <Button
           size="sm"
           onClick={openLoginModal}
-          className="h-7 text-[11px] gap-1.5 px-3 font-black border-2 border-black bg-[#121212] text-white shadow-[2px_2px_0px_#000000] hover:bg-neutral-800 dark:border-transparent dark:bg-primary dark:text-primary-foreground dark:shadow-none dark:font-medium"
+          className="h-7 text-[11px] gap-1.5 px-3 font-black border-2 border-black bg-[#121212] text-white shadow-[2px_2px_0px_#000000] hover:bg-neutral-800 dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none dark:font-semibold"
         >
           Simpan Progress
           <ArrowRight className="h-3 w-3" />

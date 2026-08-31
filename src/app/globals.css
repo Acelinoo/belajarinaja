@@ -3,50 +3,56 @@
 @tailwind utilities;
 
 @layer base {
-  /* Dark mode is product default baseline (PRESERVED 100%) */
-  :root {
-    --background: 220 14% 4%; /* #090A0C */
-    --foreground: 220 13% 96%; /* #F3F4F6 */
+  /* Dark mode is Obsidian Command Center (Default Baseline) */
+  :root,
+  .dark,
+  [data-theme="dark"] {
+    --background: 216 33% 3%; /* #05070A - Deep Technical Canvas */
+    --foreground: 210 40% 96%; /* #F1F5F9 - Crisp Telemetry Text */
 
-    --card: 228 14% 8%; /* #121318 */
-    --card-foreground: 220 13% 96%;
+    --card: 214 32% 5%; /* #090D12 - Primary Surface */
+    --card-foreground: 210 40% 96%;
 
-    --popover: 227 17% 11%; /* #181A22 */
-    --popover-foreground: 220 13% 96%;
+    --popover: 213 27% 8%; /* #0F141A - Elevated Overlay */
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 239 84% 67%; /* #6366F1 */
-    --primary-foreground: 0 0% 100%;
+    --primary: 187 92% 53%; /* #22D3EE - Electric Cyan */
+    --primary-foreground: 216 33% 3%; /* #05070A */
 
-    --secondary: 226 21% 17%; /* #222634 */
-    --secondary-foreground: 220 13% 96%;
+    --secondary: 213 24% 11%; /* #151B22 - Control Background */
+    --secondary-foreground: 214 32% 85%; /* #CBD5E1 */
 
-    --muted: 226 15% 15%;
-    --muted-foreground: 218 11% 65%; /* #9CA3AF */
+    --muted: 213 27% 8%; /* #0F141A */
+    --muted-foreground: 215 16% 55%; /* #8292A6 */
 
-    --accent: 226 21% 17%;
-    --accent-foreground: 220 13% 96%;
+    --accent: 213 24% 11%; /* #151B22 */
+    --accent-foreground: 187 92% 53%; /* #22D3EE */
 
     --destructive: 0 84% 60%; /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 226 21% 17%; /* #222634 */
-    --input: 226 21% 17%;
-    --ring: 239 84% 67%;
+    --border: 214 23% 14%; /* #1C242D - Thin 1px Technical Border */
+    --input: 214 23% 14%; /* #1C242D */
+    --ring: 187 92% 53%; /* #22D3EE - Cyan Focus Ring */
 
     --radius: 0.5rem;
 
-    /* Semantic Obsidian Tokens */
-    --color-bg-base: #090a0c;
-    --color-bg-surface: #121318;
-    --color-bg-elevated: #181a22;
-    --color-bg-sidebar: #0e0f12;
-    --color-bg-sunken: #060708;
-    --color-border-subtle: #222634;
-    --color-border-strong: #32384e;
-    --color-accent-primary: #6366f1;
-    --color-text-primary: #f3f4f6;
-    --color-text-secondary: #9ca3af;
-    --color-text-tertiary: #6b7280;
+    /* Semantic Obsidian Command Center Tokens */
+    --color-bg-base: #05070a;
+    --color-bg-surface: #090d12;
+    --color-bg-elevated: #0f141a;
+    --color-bg-sidebar: #090d12;
+    --color-bg-sunken: #05070a;
+    --color-border-subtle: #1c242d;
+    --color-border-strong: #26313c;
+    --color-accent-primary: #22d3ee;
+    --color-accent-secondary: #38bdf8;
+    --color-accent-emerald: #10b981;
+    --color-accent-amber: #f59e0b;
+    --color-accent-red: #ef4444;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-text-tertiary: #64748b;
   }
 
   /* Neo-Brutalism Light Mode System */
@@ -122,7 +128,7 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #222634;
+  background: #1C242D;
   border-radius: 9999px;
 }
 .light ::-webkit-scrollbar-thumb,
@@ -131,7 +137,7 @@
   border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #32384e;
+  background: #26313C;
 }
 .light ::-webkit-scrollbar-thumb:hover,
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {

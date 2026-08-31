@@ -41,7 +41,7 @@ export function InlineFormattedText({ text, className = "" }: InlineProps) {
       return (
         <code
           key={index}
-          className="px-1.5 py-0.5 mx-0.5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] font-mono text-[12.5px] font-bold shadow-[2px_2px_0px_#121212] select-all dark:border-border/60 dark:bg-muted/90 dark:text-primary dark:shadow-none dark:font-normal"
+          className="px-1.5 py-0.5 mx-0.5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] font-mono text-[12.5px] font-bold shadow-[2px_2px_0px_#121212] select-all dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-cyan-300 dark:shadow-none dark:font-mono"
         >
           {codeContent}
         </code>
@@ -78,7 +78,7 @@ export function InlineFormattedText({ text, className = "" }: InlineProps) {
             href={linkMatch[2]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium"
+            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium dark:text-cyan-400 dark:hover:text-cyan-300"
           >
             {linkMatch[1]}
           </a>
@@ -299,7 +299,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             return (
               <h2
                 key={index}
-                className="text-xl sm:text-2xl font-black tracking-tight text-foreground mt-8 mb-4 pb-2 border-b-2 border-black dark:border-border/60 first:mt-0"
+                className="text-xl sm:text-2xl font-black tracking-tight text-foreground mt-8 mb-4 pb-2 border-b-2 border-black dark:border-b dark:border-[#1C242D] first:mt-0"
               >
                 <InlineFormattedText text={block.text} />
               </h2>
@@ -309,7 +309,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             return (
               <div key={index} className="pt-4 pb-1 mt-6 first:mt-0">
                 <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground flex items-center gap-2.5">
-                  <span className="w-2.5 h-5 rounded-none border-2 border-black bg-[#FFD84D] dark:border-0 dark:rounded-full dark:bg-primary inline-block shrink-0" />
+                  <span className="w-2.5 h-5 rounded-none border-2 border-black bg-[#FFD84D] dark:border-0 dark:rounded-none dark:w-1.5 dark:h-4 dark:bg-cyan-400 inline-block shrink-0" />
                   <InlineFormattedText text={block.text} />
                 </h3>
               </div>
@@ -336,19 +336,19 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             );
 
           case "hr":
-            return <hr key={index} className="my-6 border-2 border-black dark:border-border/60" />;
+            return <hr key={index} className="my-6 border-2 border-black dark:border-[#1C242D]" />;
 
           case "callout": {
             const isSec = block.variant === "security";
             const isWarn = block.variant === "warning";
             const isTip = block.variant === "tip";
             const bgBorder = isSec
-              ? "bg-[#FF6B6B]/15 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-rose-500/10 dark:border-rose-500/30 dark:text-rose-200 dark:shadow-none"
+              ? "bg-[#FF6B6B]/15 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-red-500/10 dark:border dark:border-red-500/30 dark:text-red-200 dark:shadow-none"
               : isWarn
-              ? "bg-[#FF9B54]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-amber-500/10 dark:border-amber-500/30 dark:text-amber-200 dark:shadow-none"
+              ? "bg-[#FF9B54]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-amber-500/10 dark:border dark:border-amber-500/30 dark:text-amber-200 dark:shadow-none"
               : isTip
-              ? "bg-[#FFD84D]/25 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-primary/10 dark:border-primary/30 dark:text-foreground/90 dark:shadow-none"
-              : "bg-[#70B7FF]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-primary/10 dark:border-primary/30 dark:text-foreground/90 dark:shadow-none";
+              ? "bg-[#FFD84D]/25 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-emerald-500/10 dark:border dark:border-emerald-500/30 dark:text-emerald-200 dark:shadow-none"
+              : "bg-[#70B7FF]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-cyan-500/10 dark:border dark:border-cyan-500/30 dark:text-cyan-200 dark:shadow-none";
             const IconComp = isSec
               ? ShieldAlert
               : isWarn
@@ -357,12 +357,12 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
               ? Lightbulb
               : Info;
             const iconColor = isSec
-              ? "text-rose-700 dark:text-rose-400"
+              ? "text-rose-700 dark:text-red-400"
               : isWarn
               ? "text-amber-800 dark:text-amber-400"
               : isTip
-              ? "text-amber-900 dark:text-primary"
-              : "text-blue-800 dark:text-primary";
+              ? "text-amber-900 dark:text-emerald-400"
+              : "text-blue-800 dark:text-cyan-400";
 
             return (
               <div
@@ -372,7 +372,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
                 <IconComp className={`h-5 w-5 shrink-0 mt-0.5 ${iconColor}`} />
                 <div className="space-y-1 text-xs sm:text-sm leading-relaxed">
                   {block.title && (
-                    <div className={`font-black uppercase tracking-wide text-xs ${iconColor}`}>
+                    <div className={`font-black uppercase tracking-wide text-xs font-mono ${iconColor}`}>
                       {block.title}
                     </div>
                   )}
@@ -388,9 +388,9 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             return (
               <blockquote
                 key={index}
-                className="p-4 my-4 rounded-lg border-2 border-black bg-[#EAE4D5] shadow-[4px_4px_0px_#121212] text-[#121212] flex gap-3 italic text-xs sm:text-sm leading-relaxed dark:border-primary/20 dark:bg-primary/5 dark:text-foreground/90 dark:shadow-none"
+                className="p-4 my-4 rounded-lg border-2 border-black bg-[#EAE4D5] shadow-[4px_4px_0px_#121212] text-[#121212] flex gap-3 italic text-xs sm:text-sm leading-relaxed dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:text-[#CBD5E1] dark:shadow-none"
               >
-                <Info className="h-5 w-5 text-black dark:text-primary shrink-0 mt-0.5 not-italic" />
+                <Info className="h-5 w-5 text-black dark:text-cyan-400 shrink-0 mt-0.5 not-italic" />
                 <div className="not-italic font-medium">
                   <InlineFormattedText text={block.text} />
                 </div>
@@ -405,7 +405,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
                     key={itemIdx}
                     className="flex items-start gap-2.5 text-xs sm:text-sm leading-relaxed text-foreground/90 font-medium dark:font-normal"
                   >
-                    <span className="h-2 w-2 rounded-none bg-[#FFD84D] border border-black shrink-0 mt-1.5 dark:rounded-full dark:border-0 dark:h-1.5 dark:w-1.5 dark:bg-primary" />
+                    <span className="h-2 w-2 rounded-none bg-[#FFD84D] border border-black shrink-0 mt-1.5 dark:rounded-none dark:border-0 dark:h-1.5 dark:w-1.5 dark:bg-cyan-400" />
                     <div className="flex-1">
                       <InlineFormattedText text={item} />
                     </div>
@@ -422,7 +422,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
                     key={itemIdx}
                     className="flex items-start gap-3 text-xs sm:text-sm leading-relaxed text-foreground/90 font-medium dark:font-normal"
                   >
-                    <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] text-[11px] font-black font-mono shadow-[1.5px_1.5px_0px_#121212] mt-0.5 dark:border-primary/20 dark:bg-primary/10 dark:text-primary dark:shadow-none dark:font-bold">
+                    <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] text-[11px] font-black font-mono shadow-[1.5px_1.5px_0px_#121212] mt-0.5 dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none dark:font-mono">
                       {item.num}
                     </span>
                     <div className="flex-1 pt-0.5">
