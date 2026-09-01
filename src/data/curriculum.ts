@@ -108,51 +108,61 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-1-1-1",
             "question": "Berdasarkan prinsip pemisahan tanggung jawab (Separation of Concerns), teknologi manakah yang bertugas menentukan warna latar belakang, jenis font, dan jarak elemen?",
             "options": [
-              "CSS (Cascading Style Sheets)",
               "HTML (HyperText Markup Language)",
+              "CSS (Cascading Style Sheets)",
               "JavaScript",
               "DNS (Domain Name System)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "CSS bertugas mengatur estetika visual, tata letak, warna, tipografi, dan tampilan seluruh elemen halaman web."
           },
           {
             "id": "q-1-1-2",
             "question": "Dalam analogi pembangunan rumah yang dijelaskan pada materi, teknologi apakah yang bertindak sebagai pondasi beton, batu bata, dan pintu bangunan?",
             "options": [
-              "HTML",
               "JavaScript",
+              "HTML",
               "CSS",
               "HTTP"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "HTML adalah kerangka fisik yang menentukan di mana elemen seperti teks, judul, gambar, dan tombol ditempatkan."
           },
           {
             "id": "q-1-1-3",
             "question": "Apa yang terjadi jika sebuah halaman web hanya dibuat menggunakan HTML dan CSS tanpa menyertakan kode JavaScript sama sekali?",
             "options": [
-              "Halaman web tetap dapat tampil rapi dan kontennya terbaca, namun tidak memiliki interaktivitas dinamis seperti penghitung klik otomatis.",
+              "Tampilan warna CSS tidak akan dapat dirender oleh browser.",
               "Halaman web akan langsung rusak dan browser menolak menampilkan teks.",
               "Browser akan memunculkan pesan error fatal bahwa file JavaScript hilang.",
-              "Tampilan warna CSS tidak akan dapat dirender oleh browser."
+              "Halaman web tetap dapat tampil rapi dan kontennya terbaca, namun tidak memiliki interaktivitas dinamis seperti penghitung klik otomatis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "HTML dan CSS cukup untuk menyajikan konten statis yang rapi. JavaScript hanya dibutuhkan jika ada interaktivitas logika dinamis."
           },
           {
             "id": "q-1-1-4",
             "question": "Manakah peran utama dari JavaScript pada contoh komponen tombol suka di dalam materi?",
             "options": [
-              "Menangkap event klik pengguna dan memperbarui teks jumlah angka suka secara realtime.",
-              "Memberikan warna biru dan border membulat pada tombol.",
               "Menyediakan elemen tombol dasar pada dokumen.",
+              "Memberikan warna biru dan border membulat pada tombol.",
+              "Menangkap event klik pengguna dan memperbarui teks jumlah angka suka secara realtime.",
               "Menghubungkan komputer pengguna ke server database cloud."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "JavaScript menangani logika interaktif: mendengarkan event klik dan mengubah konten teks tombol secara dinamis."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Pengenalan Web & Tiga Pilar Utama",
+          "description": "Implementasikan konsep Pengenalan Web & Tiga Pilar Utama secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Pengenalan Web & Tiga Pilar Utama.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Introduction to the Web & Three Core Pillars\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Introduction to the Web & Three Core Pillars**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengenal World Wide Web dan peran masing-masing teknologi: HTML (struktur), CSS (tampilan), dan JavaScript (interaksi).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-1-2",
@@ -201,12 +211,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-1-2-1",
             "question": "Apa fungsi utama dari Alamat IP (Internet Protocol Address) dalam komunikasi internet?",
             "options": [
-              "Sebagai pengidentifikasi unik numerik untuk setiap perangkat agar data dapat dirutekan ke tujuan yang tepat.",
-              "Untuk mengenkripsi kode sumber HTML agar tidak bisa diintip pengguna.",
               "Sebagai bahasa pemrograman untuk mendesain antarmuka visual website.",
+              "Untuk mengenkripsi kode sumber HTML agar tidak bisa diintip pengguna.",
+              "Sebagai pengidentifikasi unik numerik untuk setiap perangkat agar data dapat dirutekan ke tujuan yang tepat.",
               "Untuk mempercepat koneksi Wi-Fi secara otomatis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Alamat IP bertindak sebagai identitas lokasi logis bagi setiap perangkat di jaringan internet agar paket data tidak salah alamat."
           },
           {
@@ -233,7 +243,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Keterbatasan kuota IPv4 (4,3 miliar alamat) diatasi oleh IPv6 yang menyediakan kuadriliun kombinasi alamat baru."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Cara Kerja Internet & Alamat IP",
+          "description": "Implementasikan konsep Cara Kerja Internet & Alamat IP secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Cara Kerja Internet & Alamat IP.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# How the Internet Works & IP Addresses\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **How the Internet Works & IP Addresses**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami bagaimana data dikirim melalui jaringan global dan peran Alamat IP (IPv4 vs IPv6) sebagai identitas perangkat.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-1-3",
@@ -282,39 +302,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-1-3-1",
             "question": "Mengapa sistem DNS dianalogikan sebagai 'buku telepon' internet?",
             "options": [
-              "Karena DNS menerjemahkan nama domain yang mudah dibaca manusia (seperti belajarinaja.com) menjadi alamat IP server komputer.",
               "Karena DNS menyimpan kontak nomor WhatsApp tim pengembang website.",
+              "Karena DNS menerjemahkan nama domain yang mudah dibaca manusia (seperti belajarinaja.com) menjadi alamat IP server komputer.",
               "Karena DNS mempercepat kecepatan download file video di browser.",
               "Karena DNS berfungsi memblokir malware di komputer pengguna."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "DNS memetakan nama domain teks ke alamat IP angka server tujuan, persis seperti buku telepon memetakan nama orang ke nomor telepon."
           },
           {
             "id": "q-1-3-2",
             "question": "Komponen apakah yang pertama kali diperiksa oleh komputer untuk mencari alamat IP sebelum mengirim permintaan ke server DNS Resolver luar?",
             "options": [
-              "DNS Cache lokal pada browser dan Sistem Operasi komputer Anda.",
-              "Root Server DNS di benua Amerika.",
               "Kabel bawah laut penyedia internet.",
+              "Root Server DNS di benua Amerika.",
+              "DNS Cache lokal pada browser dan Sistem Operasi komputer Anda.",
               "Database server aplikasi tujuan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Komputer selalu memeriksa DNS Cache lokal terlebih dahulu guna mempercepat respon tanpa perlu mengirim query jaringan jarak jauh jika sudah ada riwayat sebelumnya."
           },
           {
             "id": "q-1-3-3",
             "question": "Apa dampak jika terjadi kesalahan penulisan alamat IP pada konfigurasi DNS Record sebuah domain?",
             "options": [
-              "Browser pengguna tidak dapat menemukan server tujuan dan memunculkan pesan error gagal menyelesaikan domain (DNS resolve error).",
+              "Sertifikat keamanan komputer klien akan hangus.",
               "File kode sumber JavaScript di server akan otomatis terhapus.",
               "Komputer pengguna akan mengalami restart mendadak.",
-              "Sertifikat keamanan komputer klien akan hangus."
+              "Browser pengguna tidak dapat menemukan server tujuan dan memunculkan pesan error gagal menyelesaikan domain (DNS resolve error)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Kesalahan pemetaan DNS record membuat jaringan gagal merutekan koneksi ke server hosting yang tepat."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Peran DNS: Buku Telepon Internet",
+          "description": "Implementasikan konsep Peran DNS: Buku Telepon Internet secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Peran DNS: Buku Telepon Internet.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# The Role of DNS: The Phonebook of the Internet\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **The Role of DNS: The Phonebook of the Internet**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami bagaimana Domain Name System (DNS) menerjemahkan nama domain yang mudah diingat manusia menjadi alamat IP server.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-1-4",
@@ -367,12 +397,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-1-4-1",
             "question": "Apa perbedaan paling mendasar antara protokol HTTP biasa dan HTTPS?",
             "options": [
-              "HTTPS menambahkan lapisan enkripsi SSL/TLS sehingga data request dan response aman dari penyadapan pihak ketiga.",
               "HTTP hanya dapat menampilkan teks hitam putih, sedangkan HTTPS menampilkan warna.",
+              "HTTPS menambahkan lapisan enkripsi SSL/TLS sehingga data request dan response aman dari penyadapan pihak ketiga.",
               "HTTP berjalan di komputer server cloud sedangkan HTTPS berjalan di database.",
               "HTTPS membatasi ukuran request maksimal hanya 1 Kilobyte."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "HTTPS (Hypertext Transfer Protocol Secure) mengenkripsi seluruh payload komunikasi jaringan menggunakan protokol SSL/TLS."
           },
           {
@@ -391,27 +421,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-1-4-3",
             "question": "Ketika browser menerima HTTP Status Code '200 OK', apa artinya bagi permintaan yang dikirimkan?",
             "options": [
-              "Permintaan berhasil diproses oleh server dan konten dokumen yang diminta berhasil dikirimkan.",
+              "Pengguna ditolak aksesnya karena belum melakukan login.",
               "Halaman yang diminta tidak ditemukan pada direktori server.",
               "Server mengalami kesalahan komputasi internal.",
-              "Pengguna ditolak aksesnya karena belum melakukan login."
+              "Permintaan berhasil diproses oleh server dan konten dokumen yang diminta berhasil dikirimkan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Status code 200 adalah standar HTTP yang menandakan keberhasilan penuh dari pemrosesan permintaan klien."
           },
           {
             "id": "q-1-4-4",
             "question": "Kelompok status code HTTP berawalan angka 4xx (seperti 404 Not Found) menunjukkan jenis kendala apa?",
             "options": [
-              "Kesalahan yang bersumber dari sisi Client (seperti salah mengetik URL atau tidak memiliki izin akses).",
+              "Koneksi internet pengguna terputus.",
               "Permintaan berhasil disimpan ke database.",
               "Kegagalan fisik pada pusat data server.",
-              "Koneksi internet pengguna terputus."
+              "Kesalahan yang bersumber dari sisi Client (seperti salah mengetik URL atau tidak memiliki izin akses)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Status code 4xx mewakili Client Error, seperti halaman yang tidak ada (404) atau request yang tidak sah (401/403)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Protokol HTTP/HTTPS & Request-Response",
+          "description": "Implementasikan konsep Protokol HTTP/HTTPS & Request-Response secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Protokol HTTP/HTTPS & Request-Response.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# HTTP/HTTPS Protocols & Request-Response\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **HTTP/HTTPS Protocols & Request-Response**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami bagaimana browser dan server berkomunikasi menggunakan protokol HTTP/HTTPS dan siklus Request-Response.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-1-5",
@@ -472,27 +512,61 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-1-5-2",
             "question": "Mengapa logika sensitif seperti validasi transaksi pembayaran dan pencocokan password WAJIB dijalankan di Server-Side?",
             "options": [
-              "Karena kode Client-Side dapat diinspeksi, diubah, dan dimanipulasi secara bebas oleh pengguna melalui browser DevTools.",
+              "Karena server cloud lebih murah daripada browser klien.",
               "Karena browser komputer tidak memiliki memori untuk menjalankan perhitungan matematika.",
               "Karena bahasa CSS tidak dapat membaca teks formulir password.",
-              "Karena server cloud lebih murah daripada browser klien."
+              "Karena kode Client-Side dapat diinspeksi, diubah, dan dimanipulasi secara bebas oleh pengguna melalui browser DevTools."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Prinsip Zero Trust Client Input: kode di browser dapat diubah oleh pengguna, sehingga otorisasi dan transaksi wajib divalidasi di server yang aman."
           },
           {
             "id": "q-1-5-3",
             "question": "Dalam arsitektur web modern, apa fungsi utama dari API (Application Programming Interface)?",
             "options": [
-              "Sebagai jembatan protokol pertukaran data terstruktur (misal: format JSON) antara antarmuka Frontend dan logika bisnis Backend.",
+              "Sebagai pengganti kabel fisik koneksi internet.",
               "Untuk menggantikan fungsi CSS dalam mengatur warna tombol.",
               "Untuk mengunci jendela browser agar pengguna tidak bisa membuka aplikasi lain.",
-              "Sebagai pengganti kabel fisik koneksi internet."
+              "Sebagai jembatan protokol pertukaran data terstruktur (misal: format JSON) antara antarmuka Frontend dan logika bisnis Backend."
+            ],
+            "correctIndex": 3,
+            "explanation": "API memungkinkan Frontend mengirim permintaan data dan menerima respon dari Backend secara terstandarisasi."
+          },
+          {
+            "id": "extra-1-code-reading",
+            "question": "Perhatikan cuplikan arsitektur berikut:\n```text\nBrowser -> (1) DNS Lookup -> (2) TCP/TLS Handshake -> (3) HTTP GET Request -> (4) Response 200 OK (HTML)\n```\nApa yang terjadi pada langkah (1) jika domain name belum pernah dikunjungi sebelumnya?",
+            "options": [
+              "Browser langsung mengunduh file HTML dari server lokal.",
+              "Browser meminta IP address server target ke DNS resolver.",
+              "Browser menghentikan koneksi karena sertifikat SSL belum ada.",
+              "Browser merender halaman statis tanpa menghubungi jaringan."
+            ],
+            "correctIndex": 1,
+            "explanation": "Pada langkah DNS Lookup, browser menerjemahkan domain (seperti belajarinaja.com) menjadi alamat IP publik server tujuan melalui DNS resolver."
+          },
+          {
+            "id": "extra-1-debug",
+            "question": "Seorang developer mengeluh website-nya dapat dibuka di browser tetapi CSS dan JavaScript tidak tampil sama sekali (hanya HTML mentah). Apa kemungkinan terbesar penyebabnya?",
+            "options": [
+              "Path referensi ke file CSS/JS di tag <link> dan <script> salah atau server mengembalikan error 404.",
+              "Browser tidak mendukung teknologi CSS dan JavaScript secara bawaan.",
+              "Tag <body> diletakkan sebelum tag <head> di dalam dokumen.",
+              "Format gambar di dalam website tidak berformat WebP."
             ],
             "correctIndex": 0,
-            "explanation": "API memungkinkan Frontend mengirim permintaan data dan menerima respon dari Backend secara terstandarisasi."
+            "explanation": "Jika HTML termuat namun CSS/JS tidak aktif, kemungkinan besar jalur file (relative path) pada atribut href/src salah sehingga aset eksternal gagal diunduh (404 Not Found)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Client-Side (Frontend) vs Server-Side (Backend)",
+          "description": "Implementasikan konsep Client-Side (Frontend) vs Server-Side (Backend) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Client-Side (Frontend) vs Server-Side (Backend).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Client-Side vs Server-Side\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Client-Side vs Server-Side**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedakan mana kode yang berjalan di browser pengguna dan mana yang dieksekusi secara aman di server.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -565,39 +639,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-2-1-2",
             "question": "Di bagian manakah atribut HTML (seperti class, id, atau src) WAJIB diletakkan?",
             "options": [
-              "Di dalam Tag Pembuka elemen (contoh: <p class=\"info\">).",
-              "Di dalam Tag Penutup elemen (contoh: </p class=\"info\">).",
               "Di antara teks konten paragraf.",
+              "Di dalam Tag Penutup elemen (contoh: </p class=\"info\">).",
+              "Di dalam Tag Pembuka elemen (contoh: <p class=\"info\">).",
               "Di baris paling bawah dokumen HTML."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Atribut selalu disematkan di dalam tag pembuka dengan format nama=\"nilai\" sebelum kurung siku penutup >."
           },
           {
             "id": "q-2-1-3",
             "question": "Perhatikan potongan kode HTML berikut:\n<p>Belajar <strong>HTML <em>sangat</em> mudah</strong> bersama kami.</p>\nManakah urutan penutupan tag yang benar sesuai prinsip nesting?",
             "options": [
-              "Tag <em> ditutup terlebih dahulu (</em>), diikuti penutupan <strong> (</strong>), lalu diakhiri penutupan <p> (</p>).",
-              "Tag <p> harus ditutup paling pertama sebelum <em>.",
               "Semua tag penutup dapat ditulis dalam urutan acak bebas.",
+              "Tag <p> harus ditutup paling pertama sebelum <em>.",
+              "Tag <em> ditutup terlebih dahulu (</em>), diikuti penutupan <strong> (</strong>), lalu diakhiri penutupan <p> (</p>).",
               "Tag <strong> tidak perlu ditutup jika sudah ada <em>."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Prinsip Last-In First-Out: elemen terdalam (<em>) harus ditutup terlebih dahulu sebelum elemen induknya (<strong> dan <p>)."
           },
           {
             "id": "q-2-1-4",
             "question": "Manakah di antara tag HTML berikut yang merupakan contoh 'Void Element' (elemen tanpa tag penutup)?",
             "options": [
-              "<img src=\"gambar.jpg\" alt=\"Deskripsi\">",
               "<p>Ini adalah paragraf</p>",
+              "<img src=\"gambar.jpg\" alt=\"Deskripsi\">",
               "<button>Klik Saya</button>",
               "<h1>Judul Utama</h1>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Tag <img> adalah void element karena tidak membungkus konten teks dan tidak membutuhkan tag penutup </img> terpisah."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Anatomi Tag & Elemen HTML",
+          "description": "Implementasikan konsep Anatomi Tag & Elemen HTML secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Anatomi Tag & Elemen HTML.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Anatomy of HTML Tags & Elements\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Anatomy of HTML Tags & Elements**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengenal tag pembuka, tag penutup, konten, atribut, nesting, dan void elements pada dokumen HTML.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-2-2",
@@ -663,39 +747,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-2-2-2",
             "question": "Di dalam elemen manakah tag <meta charset=\"UTF-8\">, <meta name=\"viewport\">, dan <title> harus diletakkan?",
             "options": [
-              "<head>",
               "<body>",
+              "<head>",
               "<footer>",
               "<main>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Elemen <head> khusus menyimpan metadata dokumen, konfigurasi encoding karakter, konfigurasi viewport, dan judul tab browser."
           },
           {
             "id": "q-2-2-3",
             "question": "Mengapa tag <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> sangat krusial bagi website modern?",
             "options": [
-              "Agar browser mobile merender lebar halaman sesuai lebar layar perangkat smartphone dan tidak mengecilkan teks secara otomatis (zoom out desktop).",
               "Untuk mengubah tema halaman menjadi Dark Mode secara otomatis.",
+              "Agar browser mobile merender lebar halaman sesuai lebar layar perangkat smartphone dan tidak mengecilkan teks secara otomatis (zoom out desktop).",
               "Untuk mengaktifkan fitur animasi 3D di CSS.",
               "Agar halaman web dapat dibuka tanpa koneksi internet."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Tag viewport adalah pondasi dasar responsive web design agar konten disesuaikan dengan skala lebar layar smartphone dan tablet."
           },
           {
             "id": "q-2-2-4",
             "question": "Elemen manakah yang bertugas menampung seluruh konten visual (seperti teks paragraf, tombol, dan gambar) yang dilihat langsung oleh pengguna?",
             "options": [
-              "<body>",
+              "<!DOCTYPE>",
               "<head>",
               "<title>",
-              "<!DOCTYPE>"
+              "<body>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Semua elemen visual yang tampil di antarmuka browser wajib diletakkan di dalam kontainer <body>."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Kerangka Standar Dokumen HTML5",
+          "description": "Implementasikan konsep Kerangka Standar Dokumen HTML5 secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Kerangka Standar Dokumen HTML5.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Standard HTML5 Document Structure\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Standard HTML5 Document Structure**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenyusun struktur dokumen HTML5 yang valid menggunakan <!DOCTYPE html>, <html>, <head>, <meta charset>, <meta viewport>, dan <body>.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-2-3",
@@ -752,51 +846,61 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-2-3-1",
             "question": "Manakah tag semantik HTML5 yang paling tepat digunakan untuk membungkus daftar tautan navigasi utama website?",
             "options": [
-              "<nav>",
-              "<div>",
               "<menu-links>",
+              "<div>",
+              "<nav>",
               "<navigation-bar>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Tag <nav> dirancang khusus secara semantik untuk menandai zona kumpulan tautan navigasi utama pada halaman web."
           },
           {
             "id": "q-2-3-2",
             "question": "Apa keuntungan utama menggunakan elemen semantik (<header>, <main>, <article>, <footer>) dibandingkan menggunakan <div> untuk semua bagian?",
             "options": [
-              "Meningkatkan skor SEO Google dan mempermudah Screen Reader bagi pengguna disabilitas memahami konteks struktur halaman.",
+              "Meningkatkan kecepatan koneksi internet pengguna secara otomatis.",
               "Membuat ukuran file HTML menjadi 10 kali lebih kecil secara otomatis.",
               "Menghilangkan kebutuhan menulis kode CSS sama sekali.",
-              "Meningkatkan kecepatan koneksi internet pengguna secara otomatis."
+              "Meningkatkan skor SEO Google dan mempermudah Screen Reader bagi pengguna disabilitas memahami konteks struktur halaman."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Elemen semantik memberikan makna struktural bagi mesin pencari, web scraper, dan teknologi asistif pembaca layar (screen reader)."
           },
           {
             "id": "q-2-3-3",
             "question": "Berapa jumlah elemen <main> yang diperbolehkan untuk konten utama unik dalam satu dokumen halaman HTML?",
             "options": [
-              "Tepat 1 elemen <main> per dokumen halaman.",
-              "Bebas sebanyak apapun tanpa batasan jumlah.",
               "Minimal harus ada 5 elemen <main>.",
+              "Bebas sebanyak apapun tanpa batasan jumlah.",
+              "Tepat 1 elemen <main> per dokumen halaman.",
               "Hanya boleh diletakkan di dalam elemen <footer>."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Elemen <main> merepresentasikan konten unik primer dari sebuah halaman web dan hanya boleh ada satu per dokumen."
           },
           {
             "id": "q-2-3-4",
             "question": "Tag semantik manakah yang paling tepat digunakan untuk membungkus satu postingan artikel blog mandiri yang utuh?",
             "options": [
-              "<article>",
-              "<aside>",
               "<span>",
+              "<aside>",
+              "<article>",
               "<head>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "<article> digunakan untuk membungkus komposisi konten mandiri yang dapat didistribusikan secara terpisah (seperti postingan artikel atau berita)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Elemen Semantik Modern (header, nav, main, article, footer)",
+          "description": "Implementasikan konsep Elemen Semantik Modern (header, nav, main, article, footer) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Elemen Semantik Modern (header, nav, main, article, footer).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Modern Semantic Elements\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Modern Semantic Elements**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengganti <div> generik dengan tag semantik HTML5 (<header>, <nav>, <main>, <section>, <article>, <aside>, <footer>) untuk struktur SEO dan aksesibilitas.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-2-4",
@@ -845,39 +949,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-2-4-1",
             "question": "Berdasarkan standar SEO dan aksesibilitas dokumen, berapa banyak tag <h1> yang idealnya digunakan dalam satu halaman web?",
             "options": [
-              "Tepat 1 tag <h1> sebagai topik/judul utama halaman.",
-              "Minimal 10 tag <h1> agar nilai SEO maksimal.",
               "Tidak boleh menggunakan <h1> sama sekali.",
+              "Minimal 10 tag <h1> agar nilai SEO maksimal.",
+              "Tepat 1 tag <h1> sebagai topik/judul utama halaman.",
               "Bebas digunakan di setiap baris paragraf teks."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Satu halaman idealnya hanya memiliki satu <h1> sebagai representasi topik utama dokumen, diikuti <h2> dan <h3> sebagai sub-topik terstruktur."
           },
           {
             "id": "q-2-4-2",
             "question": "Manakah contoh hierarki heading yang SALAH dan melanggar prinsip struktur konten?",
             "options": [
-              "Melompat langsung dari level <h1> ke level <h4> tanpa ada <h2> atau <h3> di antaranya.",
               "Menggunakan <h1> untuk judul artikel dan <h2> untuk sub-bab pembahasan.",
+              "Melompat langsung dari level <h1> ke level <h4> tanpa ada <h2> atau <h3> di antaranya.",
               "Menggunakan <h3> di dalam bagian yang berada di bawah <h2>.",
               "Menempatkan paragraf <p> di bawah elemen <h2>."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Melompat tingkat heading (misal dari h1 langsung ke h4) merusak pohon hierarki dokumen dan membingungkan pengguna teknologi screen reader."
           },
           {
             "id": "q-2-4-3",
             "question": "Jika Anda ingin membuat teks judul terlihat berukuran lebih kecil, cara manakah yang paling tepat menurut best practice?",
             "options": [
-              "Tetap gunakan tingkat tag heading yang benar secara logis (misal <h2>) lalu atur ukuran visualnya menggunakan properti CSS font-size.",
+              "Mengubah file HTML menjadi gambar JPG.",
               "Mengganti tag <h2> menjadi <h6> secara sembarangan hanya agar teksnya mengecil.",
               "Menghapus tag heading dan menggantinya dengan tag <b>.",
-              "Mengubah file HTML menjadi gambar JPG."
+              "Tetap gunakan tingkat tag heading yang benar secara logis (misal <h2>) lalu atur ukuran visualnya menggunakan properti CSS font-size."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Tag heading digunakan untuk struktur logis dokumen, sedangkan estetika ukuran font selalu dikendalikan melalui stylesheet CSS."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Teks, Judul & Hierarki Konten (h1-h6, p, blockquote)",
+          "description": "Implementasikan konsep Teks, Judul & Hierarki Konten (h1-h6, p, blockquote) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Teks, Judul & Hierarki Konten (h1-h6, p, blockquote).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Text, Headings & Content Hierarchy\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Text, Headings & Content Hierarchy**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengatur hierarki judul bertingkat dari h1 hingga h6, paragraf teks <p>, pemformatan teks, dan kutipan <blockquote>.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-2-5",
@@ -926,39 +1040,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-2-5-1",
             "question": "Mengapa atribut alt pada tag <img> merupakan atribut wajib yang sangat krusial?",
             "options": [
-              "Menyediakan teks alternatif deskriptif bagi pengguna tunanetra melalui screen reader dan tampil saat gambar gagal dimuat.",
               "Untuk menentukan warna garis border gambar secara otomatis.",
+              "Menyediakan teks alternatif deskriptif bagi pengguna tunanetra melalui screen reader dan tampil saat gambar gagal dimuat.",
               "Untuk mempercepat loading file video di browser.",
               "Sebagai password enkripsi file gambar di server."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Atribut alt krusial untuk aksesibilitas (a11y) dan SEO, memberikan deskripsi kontekstual ketika gambar tidak dapat dilihat."
           },
           {
             "id": "q-2-5-2",
             "question": "Kombinasi atribut manakah yang WAJIB digunakan untuk membuka tautan <a> di tab baru secara aman?",
             "options": [
-              "target=\"_blank\" rel=\"noopener noreferrer\"",
               "target=\"_newtab\" secure=\"true\"",
+              "target=\"_blank\" rel=\"noopener noreferrer\"",
               "window=\"open-tab\" safe=\"1\"",
               "href=\"new-tab://belajarinaja.com\""
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Menggunakan target=\"_blank\" wajib dipadukan dengan rel=\"noopener noreferrer\" untuk mencegah celah keamanan reverse tabnabbing."
           },
           {
             "id": "q-2-5-3",
             "question": "Bagaimana cara membuat tautan internal yang ketika diklik akan langsung menggulirkan layar ke elemen dengan id=\"kontak\" pada halaman yang sama?",
             "options": [
-              "<a href=\"#kontak\">Hubungi Kami</a>",
+              "<a href=\"@kontak\">Hubungi Kami</a>",
               "<a target=\"kontak\">Hubungi Kami</a>",
               "<a link=\"jump-kontak\">Hubungi Kami</a>",
-              "<a href=\"@kontak\">Hubungi Kami</a>"
+              "<a href=\"#kontak\">Hubungi Kami</a>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Anchor link internal memanfaatkan simbol pagar #nama-id untuk mengarahkan viewport browser langsung ke elemen yang memiliki atribut id tersebut."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Tautan (a) & Media Gambar (img, alt)",
+          "description": "Implementasikan konsep Tautan (a) & Media Gambar (img, alt) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Tautan (a) & Media Gambar (img, alt).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Hyperlinks & Image Media\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Hyperlinks & Image Media**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembuat tautan internal dan eksternal dengan <a>, atribut target dan rel, serta menampilkan gambar responsif dan aksesibel dengan <img> dan atribut alt.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-2-6",
@@ -1007,24 +1131,24 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-2-6-1",
             "question": "Bagaimana cara menghubungkan elemen <label> dengan elemen <input> secara semantik dan aksesibel?",
             "options": [
-              "Menyamakan nilai atribut for pada label dengan atribut id pada input (contoh: <label for=\"email\"> dan <input id=\"email\">).",
+              "Menggunakan nama file CSS yang sama untuk label dan input.",
               "Menyamakan atribut class pada label dan input.",
               "Meletakkan label dan input di dalam tag <div> yang sama tanpa atribut apapun.",
-              "Menggunakan nama file CSS yang sama untuk label dan input."
+              "Menyamakan nilai atribut for pada label dengan atribut id pada input (contoh: <label for=\"email\"> dan <input id=\"email\">)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Atribut for pada label yang bernilai sama dengan id pada input memungkinkan pengguna mengklik teks label untuk langsung memfokuskan kursor ke input terkait."
           },
           {
             "id": "q-2-6-2",
             "question": "Manakah tipe input yang paling tepat digunakan untuk mengumpulkan alamat surat elektronik pengguna dengan validasi format bawaan browser?",
             "options": [
-              "type=\"email\"",
+              "type=\"address\"",
               "type=\"text\"",
               "type=\"mail\"",
-              "type=\"address\""
+              "type=\"email\""
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "type=\"email\" memicu keyboard khusus email pada perangkat mobile dan memvalidasi keberadaan simbol @ serta domain sebelum submit."
           },
           {
@@ -1038,8 +1162,42 @@ export const CURRICULUM_STAGES: StageItem[] = [
             ],
             "correctIndex": 0,
             "explanation": "Atribut required memberikan validasi Client-Side bawaan dari browser sebelum form diizinkan memicu aksi pengiriman data."
+          },
+          {
+            "id": "extra-2-code-reading",
+            "question": "Analisis kode dokumen HTML5 berikut:\n```html\n<!DOCTYPE html>\n<html lang=\"id\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Toko Online</title>\n</head>\n<body>\n  <header><nav></nav></header>\n  <main><article></article></main>\n</body>\n</html>\n```\nApa peran spesifik dari `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">`?",
+            "options": [
+              "Mengubah skema warna browser menjadi mode gelap secara otomatis.",
+              "Memberitahu browser seluler untuk menyesuaikan lebar viewport dengan lebar fisik layar perangkat agar tata letak responsif.",
+              "Mengompresi ukuran gambar di dalam dokumen secara real-time.",
+              "Mengunci orientasi layar agar pengguna tidak dapat memutar perangkat."
+            ],
+            "correctIndex": 1,
+            "explanation": "Meta viewport memastikan browser seluler merender halaman sesuai ukuran lebar layar fisik perangkat dengan rasio skala 1:1, menjadi syarat mutlak web responsif."
+          },
+          {
+            "id": "extra-2-best-practice",
+            "question": "Manakah struktur heading hierarchy yang memenuhi standar aksesibilitas (a11y) dan SEO yang benar?",
+            "options": [
+              "Melompat langsung dari <h1> ke <h5> karena ukuran font <h5> terlihat pas di desain tanpa CSS.",
+              "Menggunakan <h1> sebanyak 5 kali di setiap paragraf penting agar teks terlihat besar dan tebal.",
+              "Satu <h1> untuk judul utama halaman, diikuti <h2> untuk sub-bagian, dan <h3> untuk poin di dalam sub-bagian tanpa melompati level.",
+              "Menghindari tag heading dan mengganti semuanya dengan tag <span> yang diberi font-size inline."
+            ],
+            "correctIndex": 2,
+            "explanation": "Struktur heading yang benar memiliki satu <h1> sebagai judul halaman, diikuti level heading secara berurutan (h2 -> h3) tanpa melompati level agar screen reader dapat menavigasi dokumen dengan logis."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Formulir, Input & Validasi Bawaan HTML5",
+          "description": "Implementasikan konsep Formulir, Input & Validasi Bawaan HTML5 secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Formulir, Input & Validasi Bawaan HTML5.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Forms, Inputs & Native Validation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Forms, Inputs & Native Validation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembangun formulir interaktif dengan <form>, menghubungkan <label> dan <input> (for/id), tipe input HTML5, dan atribut validasi (required, pattern, minlength).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -1136,15 +1294,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-1-4",
             "question": "Mengapa penggunaan deklarasi !important secara berlebihan dianggap sebagai bad practice dalam pengembangan web?",
             "options": [
-              "Karena merusak alur alami cascading spesifisitas sehingga kode CSS menjadi sangat sulit di-override atau dirawat saat proyek membesar.",
-              "Karena membuat ukuran file CSS membengkak 100 kali lipat.",
               "Karena deklarasi !important tidak didukung oleh browser Google Chrome.",
+              "Karena membuat ukuran file CSS membengkak 100 kali lipat.",
+              "Karena merusak alur alami cascading spesifisitas sehingga kode CSS menjadi sangat sulit di-override atau dirawat saat proyek membesar.",
               "Karena browser akan mematikan rendering animasi."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "!important memaksa override absolut yang menyulitkan developer lain menyesuaikan styling komponen di kemudian hari."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Sintaks CSS, Selektor & Spesifisitas",
+          "description": "Implementasikan konsep Sintaks CSS, Selektor & Spesifisitas secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Sintaks CSS, Selektor & Spesifisitas.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Syntax, Selectors & Specificity\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Syntax, Selectors & Specificity**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenulis aturan CSS (selector, property, value), hirarki spesifisitas (ID vs Class vs Tag), dan aturan cascading.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-3-2",
@@ -1202,12 +1370,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-2-1",
             "question": "Secara berurutan dari lapisan paling dalam ke lapisan paling luar, manakah struktur CSS Box Model yang benar?",
             "options": [
-              "Content -> Padding -> Border -> Margin",
+              "Border -> Content -> Padding -> Margin",
               "Content -> Margin -> Border -> Padding",
               "Margin -> Border -> Padding -> Content",
-              "Border -> Content -> Padding -> Margin"
+              "Content -> Padding -> Border -> Margin"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Struktur lapisan Box Model dimulai dari Content (inti), dibungkus oleh Padding (ruang dalam), Border (garis tepi), dan Margin (jarak luar)."
           },
           {
@@ -1234,7 +1402,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Margin collapse adalah perilaku bawaan CSS di mana margin vertikal antara elemen blok saling bergabung menjadi satu nilai terbesar."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Box Model: Margin, Border, Padding & Content",
+          "description": "Implementasikan konsep CSS Box Model: Margin, Border, Padding & Content secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Box Model: Margin, Border, Padding & Content.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Box Model: Margin, Border, Padding & Content\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Box Model: Margin, Border, Padding & Content**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami 4 lapisan Box Model (Content, Padding, Border, Margin) dan pentingnya box-sizing: border-box.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-3-3",
@@ -1284,24 +1462,24 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-3-1",
             "question": "Apa perbedaan paling mendasar antara satuan ukuran rem dan em dalam tipografi CSS?",
             "options": [
-              "rem relatif terhadap ukuran font elemen root (<html>), sedangkan em relatif terhadap ukuran font elemen induk langsungnya (parent).",
               "rem hanya untuk margin sedangkan em hanya untuk padding.",
+              "rem relatif terhadap ukuran font elemen root (<html>), sedangkan em relatif terhadap ukuran font elemen induk langsungnya (parent).",
               "rem bernilai tetap dalam milimeter sedangkan em dalam pixel.",
               "rem tidak mendukung desain responsif."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "rem (Root EM) selalu konsisten mengacu pada font-size elemen root <html> (default 16px = 1rem), menjadikannya standar ideal untuk tipografi scalable."
           },
           {
             "id": "q-3-3-2",
             "question": "Jika ukuran font dasar pada elemen <html> adalah 16px, berapa nilai piksel yang setara dengan 1.5rem?",
             "options": [
-              "24px",
+              "32px",
               "20px",
               "16.5px",
-              "32px"
+              "24px"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Perhitungan matematis: 1.5 * 16px = 24px."
           },
           {
@@ -1316,7 +1494,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Satuan rem menghormati preferensi zoom dan font accessibility pengguna browser, mencegah teks terkunci kaku."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Tipografi, Warna & Satuan Ukuran (px, rem, em, %)",
+          "description": "Implementasikan konsep Tipografi, Warna & Satuan Ukuran (px, rem, em, %) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Tipografi, Warna & Satuan Ukuran (px, rem, em, %).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Typography, Colors & CSS Units\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Typography, Colors & CSS Units**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengatur font, hirarki tipografi, format warna modern (HEX, RGB, HSL), dan satuan ukuran relatif (rem vs em vs px).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-3-4",
@@ -1365,12 +1553,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-4-1",
             "question": "Bagaimana perilaku default dari elemen dengan properti display: block (seperti <div> atau <p>)?",
             "options": [
-              "Selalu memulai baris baru dan mengambil lebar penuh (100%) dari kontainer induknya.",
+              "Otomatis berubah menjadi tabel data.",
               "Mengalir berdampingan di samping teks dan tidak dapat diatur nilai width-nya.",
               "Menghilang dari layar dan tidak memakan ruang layout.",
-              "Otomatis berubah menjadi tabel data."
+              "Selalu memulai baris baru dan mengambil lebar penuh (100%) dari kontainer induknya."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Elemen blok selalu menempati satu baris penuh secara vertikal dan memungkinkan pengaturan width, height, margin, dan padding secara bebas."
           },
           {
@@ -1397,7 +1585,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "display: none meruntuhkan ruang yang ditempati elemen seolah tidak ada, sedangkan visibility: hidden membuat elemen tak terlihat seperti kotak kosong transparan."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Display: Block, Inline, Inline-Block & None",
+          "description": "Implementasikan konsep CSS Display: Block, Inline, Inline-Block & None secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Display: Block, Inline, Inline-Block & None.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Display Properties\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Display Properties**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami perilaku aliran layout elemen: block (lebar penuh), inline (mengalir di baris), inline-block, dan perbedaan display: none vs visibility: hidden.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-3-5",
@@ -1455,12 +1653,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-5-1",
             "question": "Sebuah elemen anak memiliki properti position: absolute; top: 0; right: 0;. Terhadap elemen manakah posisi koordinat anak tersebut akan bersandar?",
             "options": [
-              "Elemen leluhur (ancestor/parent) terdekat yang memiliki properti position selain static (seperti relative), atau jendela dokumen jika tidak ditemukan.",
+              "Tidak bersandar pada apapun dan menghilang dari layar.",
               "Selalu bersandar pada tag <body> terlepas dari properti pembungkusnya.",
               "Selalu bersandar pada elemen saudaranya (sibling).",
-              "Tidak bersandar pada apapun dan menghilang dari layar."
+              "Elemen leluhur (ancestor/parent) terdekat yang memiliki properti position selain static (seperti relative), atau jendela dokumen jika tidak ditemukan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Elemen absolute mencari kontainer leluhur terdekat yang berposisi non-static (biasanya relative) sebagai acuan koordinat top/right/bottom/left."
           },
           {
@@ -1479,15 +1677,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-5-3",
             "question": "Apa fungsi dari properti z-index dalam tata letak CSS?",
             "options": [
-              "Mengontrol urutan tumpukan lapisan elemen pada sumbu kedalaman 3D (Z-axis), menentukan elemen mana yang tampil di depan elemen lain.",
               "Mengatur ketebalan garis border elemen.",
+              "Mengontrol urutan tumpukan lapisan elemen pada sumbu kedalaman 3D (Z-axis), menentukan elemen mana yang tampil di depan elemen lain.",
               "Mengatur efek perbesaran teks judul.",
               "Mengubah warna elemen menjadi transparan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "z-index mengontrol tumpukan visual lapisan pada elemen berposisi (non-static) untuk menentukan elemen mana yang berada di lapisan terdepan."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Positioning: Relative, Absolute, Fixed & Sticky",
+          "description": "Implementasikan konsep CSS Positioning: Relative, Absolute, Fixed & Sticky secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Positioning: Relative, Absolute, Fixed & Sticky.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Positioning Systems\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Positioning Systems**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengontrol posisi elemen dengan static, relative, absolute (terhadap parent non-static), fixed (viewport), sticky, dan stacking context dengan z-index.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-3-6",
@@ -1537,39 +1745,73 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-3-6-1",
             "question": "Properti CSS manakah yang digunakan untuk membuat perubahan nilai gaya (seperti warna tombol saat hover) berubah secara halus, bukan mendadak kaku?",
             "options": [
-              "transition: background-color 0.3s ease;",
               "transform: smooth;",
+              "transition: background-color 0.3s ease;",
               "animation-static: true;",
               "hover-speed: 300ms;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "transition menginterpolasikan perubahan nilai properti CSS dalam durasi waktu tertentu dengan kurva kehalusan timing."
           },
           {
             "id": "q-3-6-2",
             "question": "Mengapa menganimasikan properti transform (translate, scale) dan opacity jauh lebih direkomendasikan daripada menganimasikan width, height, atau top?",
             "options": [
-              "Karena transform dan opacity diproses langsung oleh GPU (Hardware Accelerated) pada tahap Composite tanpa memicu kalkulasi ulang Layout/Reflow yang berat.",
-              "Karena properti transform tidak membutuhkan kode CSS tambahan.",
               "Karena width dan height dilarang oleh browser mobile.",
+              "Karena properti transform tidak membutuhkan kode CSS tambahan.",
+              "Karena transform dan opacity diproses langsung oleh GPU (Hardware Accelerated) pada tahap Composite tanpa memicu kalkulasi ulang Layout/Reflow yang berat.",
               "Karena opacity secara otomatis mengubah format warna."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Transform dan opacity menghindari bottleneck kalkulasi layout/reflow pada CPU dan dieksekusi secara mulus pada GPU di kecepatan 60 FPS."
           },
           {
             "id": "q-3-6-3",
             "question": "Apa fungsi dari sintaks @keyframes dalam CSS?",
             "options": [
-              "Mendefinisikan langkah-langkah perubahan visual frame demi frame (0% hingga 100%) dari sebuah rangkaian animasi berulang.",
               "Menyimpan password pengguna di stylesheet.",
+              "Mendefinisikan langkah-langkah perubahan visual frame demi frame (0% hingga 100%) dari sebuah rangkaian animasi berulang.",
               "Mengunci keyboard pengguna saat animasi berjalan.",
               "Mengunduh font eksternal dari server."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "@keyframes mendefinisikan tahapan keyframe animasi dari titik awal hingga akhir yang dapat dipanggil dengan properti animation."
+          },
+          {
+            "id": "extra-3-code-reading",
+            "question": "Perhatikan cuplikan formulir HTML berikut:\n```html\n<label for=\"user-email\">Alamat Email:</label>\n<input type=\"email\" id=\"user-email\" name=\"email\" required placeholder=\"nama@domain.com\">\n```\nMengapa atribut `for=\"user-email\"` pada `<label>` sangat penting untuk aksesibilitas?",
+            "options": [
+              "Mengubah warna teks input menjadi biru secara otomatis saat difokus.",
+              "Menghubungkan label secara programatis dengan input sehingga saat label diklik, input langsung aktif (fokus) dan dapat dibaca oleh screen reader.",
+              "Mengirim data email langsung ke database tanpa melalui server backend.",
+              "Memvalidasi format password pengguna secara enkripsi."
+            ],
+            "correctIndex": 1,
+            "explanation": "Atribut `for` pada label yang cocok dengan `id` input menciptakan hubungan aksesibilitas yang memungkinkan screen reader mengumumkan nama kolom input dan memperluas area klik pada layar sentuh."
+          },
+          {
+            "id": "extra-3-output-pred",
+            "question": "Jika form di atas di-submit oleh pengguna tanpa mengisi kolom input sama sekali, apa yang akan terjadi di browser modern?",
+            "options": [
+              "Browser memuat ulang halaman dan menghapus seluruh cache website.",
+              "Browser langsung mengarahkan pengguna ke halaman 404 Not Found.",
+              "Data formulir tetap terkirim ke server dengan nilai null.",
+              "Browser menampilkan pesan validasi bawaan 'Harap isi bidang ini' dan mencegah pengiriman formulir."
+            ],
+            "correctIndex": 3,
+            "explanation": "Atribut `required` memicu validasi HTML5 bawaan di sisi browser (client-side) sehingga pengiriman formulir ditahan sampai kolom terisi."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Transisi & Animasi CSS Dasar (transition, @keyframes)",
+          "description": "Implementasikan konsep Transisi & Animasi CSS Dasar (transition, @keyframes) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Transisi & Animasi CSS Dasar (transition, @keyframes).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Transitions & Basic Animations\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Transitions & Basic Animations**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembuat interaksi halus dengan transition (duration, timing-function, delay), transform (translate, scale, rotate), dan @keyframes.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -1634,39 +1876,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-1-1",
             "question": "Ketika Anda memberikan deklarasi display: flex; pada sebuah kontainer div, apa arah sumbu utama (Main Axis) bawaannya (default)?",
             "options": [
-              "flex-direction: row (horizontal dari kiri ke kanan).",
               "flex-direction: column (vertikal dari atas ke bawah).",
+              "flex-direction: row (horizontal dari kiri ke kanan).",
               "flex-direction: diagonal (dari sudut ke sudut).",
               "flex-direction: wrap-reverse."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Arah bawaan (default) Flexbox adalah row, yang menata item anak berjajar secara horizontal sepanjang Main Axis dari kiri ke kanan."
           },
           {
             "id": "q-4-1-2",
             "question": "Properti manakah yang digunakan agar item-item flex otomatis berpindah ke baris baru ketika ruang lebar kontainer sudah penuh?",
             "options": [
-              "flex-wrap: wrap;",
-              "flex-direction: newline;",
               "display: multi-row;",
+              "flex-direction: newline;",
+              "flex-wrap: wrap;",
               "flex-overflow: auto;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Secara default Flexbox bernilai nowrap (menciutkan item). flex-wrap: wrap mengizinkan item melompat ke baris berikutnya jika ruang tidak mencukupi."
           },
           {
             "id": "q-4-1-3",
             "question": "Apa fungsi dari properti gap: 1rem; pada sebuah Flex Container?",
             "options": [
-              "Memberikan jarak renggang seragam antar item anak tanpa perlu menambahkan margin manual pada masing-masing item.",
-              "Membuat garis border kontainer menjadi transparan.",
               "Mengatur jarak antara halaman web dengan tepi browser.",
+              "Membuat garis border kontainer menjadi transparan.",
+              "Memberikan jarak renggang seragam antar item anak tanpa perlu menambahkan margin manual pada masing-masing item.",
               "Menghapus ruang kosong di dalam teks paragraf."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "gap adalah properti modern untuk mengatur jarak renggang antar item Flexbox/Grid secara seragam dan rapi."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Flexbox: Kontainer & Arah Sumbu (Row vs Column)",
+          "description": "Implementasikan konsep Flexbox: Kontainer & Arah Sumbu (Row vs Column) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Flexbox: Kontainer & Arah Sumbu (Row vs Column).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Flexbox: Container & Axis Direction\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Flexbox: Container & Axis Direction**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami konsep Main Axis vs Cross Axis, flex-direction (row, column), flex-wrap, dan properti gap.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-4-2",
@@ -1716,39 +1968,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-2-1",
             "question": "Pada kontainer dengan flex-direction: row, properti manakah yang digunakan untuk meratakan dan mendistribusikan item pada sumbu utama (horizontal)?",
             "options": [
-              "justify-content",
               "align-items",
+              "justify-content",
               "align-content",
               "text-align"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "justify-content mengontrol perataan dan pembagian sisa ruang di sepanjang Main Axis (horizontal pada flex-direction: row)."
           },
           {
             "id": "q-4-2-2",
             "question": "Kombinasi properti Flexbox manakah yang paling ringkas dan efektif untuk meletakkan sebuah elemen tepat di tengah-tengah layar secara horizontal dan vertikal (Perfect Centering)?",
             "options": [
-              "display: flex; justify-content: center; align-items: center;",
+              "position: absolute; center: 50%;",
               "display: flex; margin: auto-center;",
               "display: block; center-all: true;",
-              "position: absolute; center: 50%;"
+              "display: flex; justify-content: center; align-items: center;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Kombinasi display: flex; justify-content: center; align-items: center; adalah standar modern untuk perataan tengah sempurna."
           },
           {
             "id": "q-4-2-3",
             "question": "Apa fungsi dari properti align-self pada sebuah elemen anak di dalam Flexbox?",
             "options": [
-              "Meng-override aturan perataan Cross Axis (align-items) kontainer induk khusus untuk item individual tersebut.",
               "Mengubah warna teks pada item anak tersebut.",
+              "Meng-override aturan perataan Cross Axis (align-items) kontainer induk khusus untuk item individual tersebut.",
               "Mengeluarkan elemen dari alur Flexbox menjadi elemen absolute.",
               "Menggandakan ukuran lebar elemen anak menjadi dua kali lipat."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "align-self memungkinkan satu elemen anak memiliki perataan Cross Axis yang berbeda dari saudara-saudaranya di dalam kontainer."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Flexbox: Justify-Content, Align-Items & Align-Self",
+          "description": "Implementasikan konsep Flexbox: Justify-Content, Align-Items & Align-Self secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Flexbox: Justify-Content, Align-Items & Align-Self.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Flexbox: Justify-Content, Align-Items & Align-Self\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Flexbox: Justify-Content, Align-Items & Align-Self**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengontrol perataan sepanjang Main Axis dengan justify-content dan Cross Axis dengan align-items serta override individu dengan align-self.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-4-3",
@@ -1798,39 +2060,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-3-1",
             "question": "Apa arti dari nilai flex-grow: 1; pada sebuah elemen anak Flexbox?",
             "options": [
-              "Elemen tersebut akan mengembang membesar untuk menyerap seluruh sisa ruang kosong yang tersedia pada kontainer secara proporsional.",
               "Elemen tersebut akan otomatis memperbesar ukuran font teks sebesar 100%.",
+              "Elemen tersebut akan mengembang membesar untuk menyerap seluruh sisa ruang kosong yang tersedia pada kontainer secara proporsional.",
               "Elemen tersebut akan menjadi satu kali lebih tinggi daripada elemen saudaranya.",
               "Elemen tersebut akan keluar dari kontainer induk."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "flex-grow menentukan kemampuan item anak untuk mengembang menyerap sisa ruang ekstra pada kontainer."
           },
           {
             "id": "q-4-3-2",
             "question": "Jika Anda ingin memastikan foto avatar atau ikon TIDAK PERNAH menciut/penyok saat ruang layar mengecil, properti apa yang wajib disetel?",
             "options": [
-              "flex-shrink: 0;",
-              "flex-grow: 0;",
               "flex-wrap: none;",
+              "flex-grow: 0;",
+              "flex-shrink: 0;",
               "box-sizing: static;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "flex-shrink: 0 mengunci elemen agar menolak dikompresi lebih kecil dari ukuran basis/width aslinya."
           },
           {
             "id": "q-4-3-3",
             "question": "Shorthand deklarasi flex: 1; yang sering digunakan pada komponen UI modern merupakan representasi ringkas dari nilai apa?",
             "options": [
-              "flex-grow: 1; flex-shrink: 1; flex-basis: 0%;",
-              "flex-direction: 1; flex-wrap: 1; gap: 0%;",
               "flex-order: 1; flex-align: 1; flex-justify: 0%;",
+              "flex-direction: 1; flex-wrap: 1; gap: 0%;",
+              "flex-grow: 1; flex-shrink: 1; flex-basis: 0%;",
               "margin: 1; padding: 1; border: 0%;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Shorthand flex: 1 setara dengan flex: 1 1 0%, membagi seluruh ruang kontainer secara proporsional dari basis nol."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Flexbox: Flex-Grow, Flex-Shrink & Flex-Basis",
+          "description": "Implementasikan konsep Flexbox: Flex-Grow, Flex-Shrink & Flex-Basis secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Flexbox: Flex-Grow, Flex-Shrink & Flex-Basis.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Flexbox Sizing: Grow, Shrink & Basis\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Flexbox Sizing: Grow, Shrink & Basis**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenguasai ukuran dinamis item dengan flex-grow (menyerap ruang kosong), flex-shrink (mencegah penciutan), flex-basis, dan shorthand flex.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-4-4",
@@ -1884,39 +2156,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-4-1",
             "question": "Apa perbedaan paling mendasar antara CSS Flexbox dan CSS Grid?",
             "options": [
-              "Flexbox dirancang untuk tata letak 1 Dimensi (baris ATAU kolom), sedangkan CSS Grid dirancang untuk tata letak 2 Dimensi (baris DAN kolom sekaligus).",
-              "Flexbox hanya untuk teks sedangkan CSS Grid hanya untuk gambar.",
               "CSS Grid tidak didukung oleh browser modern.",
+              "Flexbox hanya untuk teks sedangkan CSS Grid hanya untuk gambar.",
+              "Flexbox dirancang untuk tata letak 1 Dimensi (baris ATAU kolom), sedangkan CSS Grid dirancang untuk tata letak 2 Dimensi (baris DAN kolom sekaligus).",
               "Flexbox membutuhkan kode JavaScript sedangkan CSS Grid murni CSS."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "CSS Grid mengelola koordinat dua dimensi (baris dan kolom secara bersamaan), ideal untuk tata letak halaman makro menyeluruh."
           },
           {
             "id": "q-4-4-2",
             "question": "Apa arti dari deklarasi grid-template-columns: repeat(3, 1fr);?",
             "options": [
-              "Membagi kontainer grid menjadi 3 kolom dengan lebar fraksional yang sama rata persis.",
-              "Mengulang 3 baris vertikal.",
               "Membuat 3 kontainer grid terpisah.",
+              "Mengulang 3 baris vertikal.",
+              "Membagi kontainer grid menjadi 3 kolom dengan lebar fraksional yang sama rata persis.",
               "Membuat kolom selebar 3 pixel."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Fungsi repeat(3, 1fr) adalah singkatan efisien dari 1fr 1fr 1fr, membagi ruang kontainer menjadi 3 kolom yang sama rata."
           },
           {
             "id": "q-4-4-3",
             "question": "Pola CSS Grid manakah yang paling populer untuk membuat galeri kartu produk yang otomatis responsif di berbagai ukuran layar tanpa butuh media query?",
             "options": [
-              "grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));",
+              "grid-columns: fluid;",
               "grid-template-columns: auto-responsive(250px);",
               "display: flex; wrap-cards: true;",
-              "grid-columns: fluid;"
+              "grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Kombinasi repeat(auto-fit, minmax(250px, 1fr)) otomatis memuat kolom sebanyak mungkin sesuai lebar layar dengan batas lebar minimal 250px."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Grid: Grid Container & Tracks (fr, repeat, minmax)",
+          "description": "Implementasikan konsep CSS Grid: Grid Container & Tracks (fr, repeat, minmax) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Grid: Grid Container & Tracks (fr, repeat, minmax).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Grid: Container & Tracks\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Grid: Container & Tracks**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenguasai tata letak 2 Dimensi (baris dan kolom simultan) dengan CSS Grid, grid-template-columns, fr unit, repeat(), dan minmax() responsif.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-4-5",
@@ -1966,12 +2248,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-5-1",
             "question": "Fitur CSS Grid manakah yang memungkinkan perancangan tata letak menggunakan diagram teks visual bernama area (seperti 'header header' / 'sidebar konten')?",
             "options": [
-              "grid-template-areas",
+              "ascii-grid",
               "grid-visual-map",
               "layout-names",
-              "ascii-grid"
+              "grid-template-areas"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "grid-template-areas memungkinkan pemetaan layout dengan memberi nama string pada zona grid dan menempatkan elemen anak dengan properti grid-area."
           },
           {
@@ -1998,7 +2280,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Dalam sintaks grid-template-areas, karakter titik (.) digunakan sebagai slot placeholder kosong pada cell tertentu."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Grid: Grid Template Areas & Penataan Spasial",
+          "description": "Implementasikan konsep CSS Grid: Grid Template Areas & Penataan Spasial secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Grid: Grid Template Areas & Penataan Spasial.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Grid: Template Areas & Spatial Alignment\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Grid: Template Areas & Spatial Alignment**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenata layout halaman menyeluruh secara visual dengan grid-template-areas, grid-area, grid-column (span), dan garis grid line numbers.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-4-6",
@@ -2043,12 +2335,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-6-1",
             "question": "Dalam arsitektur web modern, bagaimana best practice mengkombinasikan CSS Grid dan Flexbox secara harmonis?",
             "options": [
-              "Gunakan CSS Grid untuk kerangka makro tata letak halaman (Page Layout / Card Grid), dan gunakan Flexbox untuk penataan mikro di dalam komponen (Navbar, Card Header, Button Icon).",
               "Pilih salah satu saja secara mutlak dan jangan pernah menggunakan keduanya dalam satu proyek.",
+              "Gunakan CSS Grid untuk kerangka makro tata letak halaman (Page Layout / Card Grid), dan gunakan Flexbox untuk penataan mikro di dalam komponen (Navbar, Card Header, Button Icon).",
               "Gunakan Flexbox hanya untuk footer dan Grid hanya untuk header.",
               "Gunakan Grid untuk animasi dan Flexbox untuk teks paragraf."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Grid sangat unggul pada arsitektur struktur makro (2D), sementara Flexbox sangat lincah pada perataan komponen mikro (1D)."
           },
           {
@@ -2067,15 +2359,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-4-6-3",
             "question": "Apa keuntungan membuat Card di dalam Grid memiliki display: flex; flex-direction: column; justify-content: space-between;?",
             "options": [
-              "Membuat tombol footer pada semua kartu selalu sejajar rapi di bagian paling bawah meskipun panjang teks deskripsi kartu berbeda-beda.",
-              "Membuat tinggi kartu berbeda-beda secara acak.",
               "Menghilangkan padding pada kartu.",
+              "Membuat tinggi kartu berbeda-beda secara acak.",
+              "Membuat tombol footer pada semua kartu selalu sejajar rapi di bagian paling bawah meskipun panjang teks deskripsi kartu berbeda-beda.",
               "Membuat kartu tidak bisa diklik oleh pengguna."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Dengan flex-direction: column; justify-content: space-between, tombol footer akan selalu tertahan di dasar kartu terlepas dari panjang teks deskripsi di atasnya."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Kombinasi Grid & Flexbox dalam Arsitektur Komponen",
+          "description": "Implementasikan konsep Kombinasi Grid & Flexbox dalam Arsitektur Komponen secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Kombinasi Grid & Flexbox dalam Arsitektur Komponen.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Combining Grid & Flexbox in Component Architecture\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Combining Grid & Flexbox in Component Architecture**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nBest practice arsitektur layout: menggunakan CSS Grid untuk kerangka makro halaman dan Flexbox untuk mikro komponen.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -2131,39 +2433,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-5-1-1",
             "question": "Apa filosofi utama dari pendekatan 'Mobile-First Design' dalam pembuatan website modern?",
             "options": [
-              "Menulis CSS dasar yang dioptimalkan untuk layar ponsel terkecil terlebih dahulu, kemudian menambahkan tata letak kompleks untuk layar lebar menggunakan media query min-width.",
+              "Mendesain tampilan desktop 4K terlebih dahulu kemudian mengecilkannya secara paksa dengan max-width.",
               "Membuat website yang hanya bisa dibuka di smartphone dan menolak komputer desktop.",
               "Menghapus semua file gambar dan hanya menampilkan teks di website.",
-              "Mendesain tampilan desktop 4K terlebih dahulu kemudian mengecilkannya secara paksa dengan max-width."
+              "Menulis CSS dasar yang dioptimalkan untuk layar ponsel terkecil terlebih dahulu, kemudian menambahkan tata letak kompleks untuk layar lebar menggunakan media query min-width."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Mobile-First memprioritaskan performa dan konten esensial pada layar terkecil sebelum memperluas tata letak ke layar yang lebih besar via min-width."
           },
           {
             "id": "q-5-1-2",
             "question": "Mengapa pendekatan Mobile-First menghasilkan kode CSS yang lebih bersih dan efisien?",
             "options": [
-              "Karena gaya dasar mobile bersifat linear sederhana, sehingga media query min-width hanya menambahkan gaya progresif tanpa perlu banyak mereset CSS yang berat.",
-              "Karena perangkat smartphone tidak mendukung bahasa CSS.",
               "Karena browser mobile mengabaikan aturan warna stylesheet.",
+              "Karena perangkat smartphone tidak mendukung bahasa CSS.",
+              "Karena gaya dasar mobile bersifat linear sederhana, sehingga media query min-width hanya menambahkan gaya progresif tanpa perlu banyak mereset CSS yang berat.",
               "Karena file CSS otomatis dikompresi oleh mesin pencari Google."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Penambahan gaya secara progresif via min-width menghindari kebiasaan buruk membatalkan deklarasi desktop yang rumit menggunakan max-width berulang kali."
           },
           {
             "id": "q-5-1-3",
             "question": "Berdasarkan data lalu lintas internet global, mengapa mengabaikan optimasi tampilan mobile dapat merugikan website secara fatal?",
             "options": [
-              "Mayoritas lalu lintas web global (55-60%+) berasal dari perangkat seluler, dan Google memprioritaskan Mobile-First Indexing dalam peringkat pencarian.",
               "Karena pengguna smartphone tidak pernah membeli produk online.",
+              "Mayoritas lalu lintas web global (55-60%+) berasal dari perangkat seluler, dan Google memprioritaskan Mobile-First Indexing dalam peringkat pencarian.",
               "Karena perangkat mobile akan memblokir website desktop secara otomatis.",
               "Karena browser desktop sudah tidak diperbarui lagi."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Trafik mobile mendominasi penggunaan web global dan sistem Google Mobile-First Indexing menilai kualitas SEO website berdasarkan versi selulernya."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Filosofi Mobile-First vs Desktop-First",
+          "description": "Implementasikan konsep Filosofi Mobile-First vs Desktop-First secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Filosofi Mobile-First vs Desktop-First.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Mobile-First vs Desktop-First Philosophy\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Mobile-First vs Desktop-First Philosophy**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami mengapa mendesain untuk layar smartphone terkecil terlebih dahulu (Mobile-First) menghasilkan kode CSS yang lebih bersih dan performant.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-5-2",
@@ -2208,39 +2520,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-5-2-1",
             "question": "Sintaks media query manakah yang merepresentasikan pendekatan Mobile-First yang benar?",
             "options": [
-              "@media (min-width: 768px) { ... }",
-              "@media (max-width: 768px) { ... }",
               "@media (device: desktop) { ... }",
+              "@media (max-width: 768px) { ... }",
+              "@media (min-width: 768px) { ... }",
               "@media (screen-only: large) { ... }"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "min-width menargetkan kondisi layar 'mulai dari lebar sekian piksel ke atas', yang merupakan inti dari pendekatan Mobile-First progresif."
           },
           {
             "id": "q-5-2-2",
             "question": "Berdasarkan standar industri modern (seperti Tailwind CSS), nilai breakpoint 'md' standar umumnya berada pada ukuran berapa?",
             "options": [
-              "768px (ukuran umum tablet portrait)",
+              "4800px",
               "320px",
               "1920px",
-              "4800px"
+              "768px (ukuran umum tablet portrait)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Breakpoint md (Medium) standar industri dipatok pada 768px yang mencakup perangkat tablet portrait dan layar lipat."
           },
           {
             "id": "q-5-2-3",
             "question": "Mengapa penentuan breakpoint sebaiknya didasarkan pada titik saat konten mulai terlihat sesak ('content-driven'), bukan semata-mata pada merek model gadget tertentu?",
             "options": [
-              "Karena dimensi layar gadget terus berkembang dan bervariasi, sehingga breakpoint berbasis konten memastikan tata letak tetap stabil di perangkat apapun.",
+              "Agar browser tidak perlu membaca media query.",
               "Karena produsen smartphone melarang merek mereka dicantumkan di CSS.",
               "Karena bahasa CSS tidak dapat mendeteksi resolusi Apple iPhone.",
-              "Agar browser tidak perlu membaca media query."
+              "Karena dimensi layar gadget terus berkembang dan bervariasi, sehingga breakpoint berbasis konten memastikan tata letak tetap stabil di perangkat apapun."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Desain yang tangguh menyesuaikan breakpoint ketika teks atau grid mulai terasa sempit, bukan terikat pada ukuran spesifik satu merek HP."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Media Queries & Breakpoints Standar",
+          "description": "Implementasikan konsep CSS Media Queries & Breakpoints Standar secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Media Queries & Breakpoints Standar.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Media Queries & Standard Breakpoints\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Media Queries & Standard Breakpoints**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenulis aturan @media (min-width), memahami titik henti (breakpoints standar: sm 640px, md 768px, lg 1024px, xl 1280px), dan content-driven breakpoints.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-5-3",
@@ -2290,39 +2612,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-5-3-1",
             "question": "Apa fungsi utama dari atribut srcset dan sizes pada tag <img> HTML5?",
             "options": [
-              "Memberikan daftar variasi resolusi gambar agar browser dapat mengunduh hanya ukuran gambar terkecil yang paling pas sesuai resolusi layar perangkat.",
               "Mengubah format gambar JPG menjadi animasi GIF secara otomatis.",
+              "Memberikan daftar variasi resolusi gambar agar browser dapat mengunduh hanya ukuran gambar terkecil yang paling pas sesuai resolusi layar perangkat.",
               "Mengatur filter warna hitam putih pada foto.",
               "Mencegah pengguna menyimpan foto dengan klik kanan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "srcset menyajikan variasi resolusi gambar, menghemat kuota dan mempercepat loading pada ponsel dengan menghindari download file gambar besar yang tidak perlu."
           },
           {
             "id": "q-5-3-2",
             "question": "Kapan Anda sebaiknya menggunakan elemen <picture> dibandingkan tag <img> biasa?",
             "options": [
-              "Ketika membutuhkan 'Art Direction' (misal cropping foto berbeda antara mobile dan desktop) atau menyajikan format generasi baru seperti AVIF/WebP dengan fallback aman.",
+              "Ketika gambar tidak memiliki atribut alt.",
               "Hanya saat gambar gagal dimuat oleh browser.",
               "Hanya untuk menampilkan video YouTube.",
-              "Ketika gambar tidak memiliki atribut alt."
+              "Ketika membutuhkan 'Art Direction' (misal cropping foto berbeda antara mobile dan desktop) atau menyajikan format generasi baru seperti AVIF/WebP dengan fallback aman."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Elemen <picture> memberi kendali penuh untuk menyajikan format modern (AVIF/WebP) dan cropping foto berbeda berdasarkan media query."
           },
           {
             "id": "q-5-3-3",
             "question": "Aturan CSS apakah yang WAJIB diberikan pada seluruh elemen media gambar agar gambar tidak meluap (overflow) merusak layout layar smartphone?",
             "options": [
-              "max-width: 100%; height: auto; display: block;",
+              "overflow-image: hidden;",
               "width: 100vw; height: 100vh;",
               "resize: force-fit;",
-              "overflow-image: hidden;"
+              "max-width: 100%; height: auto; display: block;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "max-width: 100%; height: auto; adalah aturan CSS reset wajib agar gambar tetap elastis mengikuti lebar kontainer tanpa merusak rasio aspek."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Gambar & Media Responsif (srcset, picture element)",
+          "description": "Implementasikan konsep Gambar & Media Responsif (srcset, picture element) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Gambar & Media Responsif (srcset, picture element).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Responsive Images & Media\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Responsive Images & Media**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengoptimalkan gambar responsive dengan max-width 100%, atribut srcset dan sizes, elemen <picture> untuk art direction, dan format modern (WebP/AVIF).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-5-4",
@@ -2379,27 +2711,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-5-4-2",
             "question": "Apa keuntungan utama menggunakan fluid typography dengan clamp() dibandingkan menulis puluhan media query manual?",
             "options": [
-              "Ukuran teks membesar dan mengecil secara sangat mulus (fluid) di setiap piksel perubahan layar tanpa lonjakan ukuran yang kasar (jumpy).",
-              "Menghilangkan kebutuhan memilih jenis font keluarga.",
               "Mengurangi penggunaan memori server backend.",
+              "Menghilangkan kebutuhan memilih jenis font keluarga.",
+              "Ukuran teks membesar dan mengecil secara sangat mulus (fluid) di setiap piksel perubahan layar tanpa lonjakan ukuran yang kasar (jumpy).",
               "Membuat teks dapat diterjemahkan ke bahasa asing secara otomatis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Fluid typography menghasilkan skalabilitas tipografi yang halus dan elastis tanpa perlu mendefinisikan tumpukan media query berulang kali."
           },
           {
             "id": "q-5-4-3",
             "question": "Selain pada properti font-size, pada properti CSS apakah fungsi clamp() sangat efektif diterapkan?",
             "options": [
-              "padding, margin, gap, dan max-width kontainer layout.",
-              "Hanya pada z-index dan opacity.",
               "Hanya pada nama font-family.",
+              "Hanya pada z-index dan opacity.",
+              "padding, margin, gap, dan max-width kontainer layout.",
               "clamp() dilarang digunakan selain pada font-size."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "clamp() dapat diterapkan pada properti dimensi spasial apapun untuk menghasilkan jarak padding kontainer atau margin hero section yang fluid."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Fluid Typography & CSS clamp()",
+          "description": "Implementasikan konsep Fluid Typography & CSS clamp() secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Fluid Typography & CSS clamp().",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Fluid Typography & CSS clamp()\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Fluid Typography & CSS clamp()**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenciptakan tipografi dan jarak spasial yang membesar/mengecil secara mulus (fluid) menggunakan fungsi matematika CSS clamp(min, val, max).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-5-5",
@@ -2456,27 +2798,61 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-5-5-2",
             "question": "Ketika menguji website di perangkat smartphone, masalah interaksi apakah yang sering timbul jika target tombol (touch target) terlalu kecil?",
             "options": [
-              "Masalah 'Fat Finger': Pengguna kesulitan menekan tombol dengan tepat atau tidak sengaja menekan tautan lain di sebelahnya.",
-              "Baterai smartphone akan cepat habis dalam beberapa detik.",
               "Layar sentuh smartphone akan rusak secara fisik.",
+              "Baterai smartphone akan cepat habis dalam beberapa detik.",
+              "Masalah 'Fat Finger': Pengguna kesulitan menekan tombol dengan tepat atau tidak sengaja menekan tautan lain di sebelahnya.",
               "Browser mobile akan mematikan koneksi internet."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Pedoman Human Interface Guidelines & WCAG merekomendasikan target sentuh tombol minimal 44x44 atau 48x48 pixel agar nyaman ditekan jari."
           },
           {
             "id": "q-5-5-3",
             "question": "Apa tanda visual paling umum bahwa sebuah website mengalami bug horizontal overflow pada tampilan mobile?",
             "options": [
-              "Muncul scrollbar horizontal di bagian bawah layar smartphone dan halaman bisa digeser ke samping kanan menyisakan ruang kosong yang merusak layout.",
-              "Warna teks berubah menjadi hitam putih.",
               "Gambar berubah menjadi link tautan teks.",
+              "Warna teks berubah menjadi hitam putih.",
+              "Muncul scrollbar horizontal di bagian bawah layar smartphone dan halaman bisa digeser ke samping kanan menyisakan ruang kosong yang merusak layout.",
               "Kecepatan animasi bertambah dua kali lipat."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Horizontal overflow terjadi saat ada elemen dengan lebar kaku yang melebihi lebar layar smartphone sehingga memicu scrollbar horizontal yang mengganggu."
+          },
+          {
+            "id": "extra-5-debugging",
+            "question": "Perhatikan CSS Box Model berikut:\n```css\n.card {\n  width: 300px;\n  padding: 20px;\n  border: 5px solid #000;\n  box-sizing: border-box;\n}\n```\nBerapakah total lebar fisik (`rendered width`) dari elemen `.card` di layar browser?",
+            "options": [
+              "320px (300px + 20px padding).",
+              "350px (300px + 20px padding kiri + 20px padding kanan + 5px border kiri + 5px border kanan).",
+              "300px (karena box-sizing: border-box menyerap padding dan border ke dalam nilai width).",
+              "250px (300px - 50px offset)."
+            ],
+            "correctIndex": 2,
+            "explanation": "Dengan `box-sizing: border-box`, padding (40px) dan border (10px) dihitung di dalam nilai `width: 300px`, sehingga total lebar elemen di layar tetap persis 300px."
+          },
+          {
+            "id": "extra-5-specificity",
+            "question": "Diberikan aturan CSS berikut untuk elemen `<button id=\"submit-btn\" class=\"btn btn-primary\">`:\n```css\n/* Rule 1 */ button { color: red; }\n/* Rule 2 */ .btn.btn-primary { color: blue; }\n/* Rule 3 */ #submit-btn { color: green; }\n```\nWarna apakah yang akan ditampilkan pada tombol tersebut?",
+            "options": [
+              "Red (karena tag button adalah elemen target langsung).",
+              "Blue (karena memiliki 2 class selector yang digabungkan).",
+              "Green (karena ID selector memiliki specificity (0,1,0,0) yang lebih tinggi daripada class selector (0,0,2,0) dan element selector (0,0,0,1)).",
+              "Warna default browser hitam."
+            ],
+            "correctIndex": 2,
+            "explanation": "Specificity ID selector (`#submit-btn`) bernilai 100 poin, mengalahkan class selector (`.btn.btn-primary` = 20 poin) dan element selector (`button` = 1 poin)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Pengujian Responsivitas di Berbagai Viewport",
+          "description": "Implementasikan konsep Pengujian Responsivitas di Berbagai Viewport secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Pengujian Responsivitas di Berbagai Viewport.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Responsive Viewport Testing & Debugging\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Responsive Viewport Testing & Debugging**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMelakukan audit dan pengujian layout responsif menggunakan Browser DevTools Device Toolbar, touch targets (a11y), dan mendeteksi bug horizontal scroll.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -2541,39 +2917,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-6-1-1",
             "question": "Perintah Git manakah yang digunakan untuk menginisialisasi folder proyek lokal menjadi repository Git baru?",
             "options": [
-              "git init",
               "git start",
+              "git init",
               "git create-repo",
               "git new"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "git init membuat direktori tersembunyi .git untuk mulai melacak riwayat versi perubahan file di dalam proyek."
           },
           {
             "id": "q-6-1-2",
             "question": "Apa fungsi dari 'Staging Area' (git add) dalam siklus hidup perubahan file di Git?",
             "options": [
-              "Sebagai area persiapan untuk memilih secara selektif perubahan file mana saja yang ingin dibungkus ke dalam snapshot commit berikutnya.",
+              "Untuk menginstal paket dependensi npm.",
               "Untuk mengunggah kode langsung ke server publik GitHub.",
               "Untuk menghapus riwayat bug secara permanen.",
-              "Untuk menginstal paket dependensi npm."
+              "Sebagai area persiapan untuk memilih secara selektif perubahan file mana saja yang ingin dibungkus ke dalam snapshot commit berikutnya."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Staging area memberi fleksibilitas bagi developer untuk meninjau dan mengelompokkan perubahan file sebelum disimpan permanen sebagai commit."
           },
           {
             "id": "q-6-1-3",
             "question": "Apa risiko fatal jika file sensitif seperti .env yang berisi password database tidak didaftarkan di dalam file .gitignore?",
             "options": [
-              "File .env akan ikut ter-commit dan dapat terunggah ke repository publik GitHub sehingga kredensial server Anda terekspos ke publik.",
-              "Git akan menolak menjalankan perintah commit sama sekali.",
               "Database PostgreSQL akan terhapus otomatis.",
+              "Git akan menolak menjalankan perintah commit sama sekali.",
+              "File .env akan ikut ter-commit dan dapat terunggah ke repository publik GitHub sehingga kredensial server Anda terekspos ke publik.",
               "Browser pengguna tidak akan bisa membuka website."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "File .gitignore bertugas mencegah file kredensial rahasia, cache build, dan folder node_modules agar tidak masuk ke version control."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Dasar Git: init, add, commit, status & log",
+          "description": "Implementasikan konsep Dasar Git: init, add, commit, status & log secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Dasar Git: init, add, commit, status & log.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Git Basics: init, add, commit, status & log\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Git Basics: init, add, commit, status & log**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenginisialisasi repository lokal, memahami siklus hidup file (Working Directory, Staging Area, Repository), git commit, dan .gitignore.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-6-2",
@@ -2619,12 +3005,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-6-2-1",
             "question": "Mengapa para developer profesional selalu membuat branch baru (misal: feature/login) saat mengembangkan fitur baru, bukan langsung menulis di branch main?",
             "options": [
-              "Untuk mengisolasi pengembangan fitur agar kode yang belum selesai atau sedang diuji tidak merusak branch main yang siap rilis ke production.",
               "Karena branch main tidak bisa menyimpan lebih dari 10 file kode.",
+              "Untuk mengisolasi pengembangan fitur agar kode yang belum selesai atau sedang diuji tidak merusak branch main yang siap rilis ke production.",
               "Agar file kode otomatis terenkripsi oleh server Git.",
               "Karena branch main membatasi jumlah baris kode yang boleh ditulis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Branching memungkinkan isolasi fitur, eksperimentasi aman, dan kolaborasi paralel antar banyak developer tanpa saling mengganggu stabilitas branch utama."
           },
           {
@@ -2643,15 +3029,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-6-2-3",
             "question": "Bagaimana cara melihat daftar seluruh branch lokal yang ada di repository Anda beserta penanda branch yang sedang aktif saat ini?",
             "options": [
-              "git branch",
-              "git status --all-branches",
               "git list-tree",
+              "git status --all-branches",
+              "git branch",
               "git show-repo"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "git branch menampilkan daftar seluruh branch lokal dengan tanda bintang (*) berwarna hijau pada branch yang sedang aktif di-checkout."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Branching Strategy & Isolasi Fitur",
+          "description": "Implementasikan konsep Branching Strategy & Isolasi Fitur secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Branching Strategy & Isolasi Fitur.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Branching Strategy & Feature Isolation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Branching Strategy & Feature Isolation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembuat branch baru (git branch, git switch), konvensi penamaan (feature/, bugfix/), dan mengisolasi pekerjaan agar branch main tetap stabil.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-6-3",
@@ -2713,27 +3109,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-6-3-2",
             "question": "Apa perbedaan alur riwayat commit antara git merge dan git rebase?",
             "options": [
-              "git merge membuat commit penggabungan (merge commit) baru dan mempertahankan jejak cabang historis, sedangkan git rebase memindahkan basis branch menghasilkan riwayat commit yang lurus linear.",
               "git rebase menghapus seluruh kode lama secara permanen.",
+              "git merge membuat commit penggabungan (merge commit) baru dan mempertahankan jejak cabang historis, sedangkan git rebase memindahkan basis branch menghasilkan riwayat commit yang lurus linear.",
               "git merge hanya bisa digunakan untuk file CSS.",
               "Keduanya identik dan tidak memiliki perbedaan pada riwayat commit."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "rebase menulis ulang riwayat commit agar sejajar linear, sementara merge mempertahankan jejak historis percabangan dengan merge commit."
           },
           {
             "id": "q-6-3-3",
             "question": "Setelah Anda selesai mengedit dan memilih kode yang benar saat terjadi merge conflict, langkah apakah yang harus dilakukan untuk menyelesaikan proses merge?",
             "options": [
-              "Jalankan git add <file> untuk menandai konflik telah diselesaikan, lalu lakukan git commit.",
-              "Hapus folder tersembunyi .git dari komputer.",
               "Jalankan perintah git delete-conflict.",
+              "Hapus folder tersembunyi .git dari komputer.",
+              "Jalankan git add <file> untuk menandai konflik telah diselesaikan, lalu lakukan git commit.",
               "Tutup aplikasi VS Code tanpa menyimpan perubahan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Setelah menghapus marker konflik, lakukan git add pada file yang telah diperbaiki lalu buat commit untuk merampungkan proses merge."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Merge, Rebase & Resolusi Merge Conflicts",
+          "description": "Implementasikan konsep Merge, Rebase & Resolusi Merge Conflicts secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Merge, Rebase & Resolusi Merge Conflicts.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Merge, Rebase & Merge Conflict Resolution\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Merge, Rebase & Merge Conflict Resolution**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenggabungkan branch dengan git merge, memahami perbedaan git rebase, dan menyelesaikan bentrokan kode (Merge Conflicts) secara percaya diri.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-6-4",
@@ -2787,39 +3193,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-6-4-1",
             "question": "Apa perbedaan antara repository Git lokal pada komputer Anda dan repository remote di GitHub?",
             "options": [
-              "Repository lokal berada di harddisk komputer Anda, sedangkan repository remote tersimpan di cloud server (GitHub) untuk backup, kolaborasi tim, dan CI/CD.",
-              "Repository GitHub hanya bisa dibuka oleh robot AI.",
               "Repository lokal tidak bisa menjalankan perintah commit.",
+              "Repository GitHub hanya bisa dibuka oleh robot AI.",
+              "Repository lokal berada di harddisk komputer Anda, sedangkan repository remote tersimpan di cloud server (GitHub) untuk backup, kolaborasi tim, dan CI/CD.",
               "GitHub hanya mendukung bahasa pemrograman Python."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Git adalah sistem kontrol versi lokal, sedangkan GitHub adalah platform hosting cloud untuk repository Git yang memfasilitasi kerja tim global."
           },
           {
             "id": "q-6-4-2",
             "question": "Perintah manakah yang digunakan untuk mengunduh repository yang sudah ada di GitHub ke komputer lokal Anda untuk pertama kalinya?",
             "options": [
-              "git clone <url-repo>",
               "git download <url-repo>",
+              "git clone <url-repo>",
               "git import <url-repo>",
               "git copy-cloud <url-repo>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "git clone menyalin seluruh riwayat, branch, dan file dari remote repository ke direktori lokal baru di komputer Anda."
           },
           {
             "id": "q-6-4-3",
             "question": "Jika rekan kerja Anda telah melakukan push fitur baru ke repository GitHub, perintah apa yang harus Anda jalankan di komputer Anda untuk mengambil perubahan terbaru tersebut?",
             "options": [
-              "git pull origin main",
               "git push origin main",
+              "git pull origin main",
               "git upload-sync",
               "git refresh-all"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "git pull mengambil commit terbaru dari remote repository di GitHub dan menggabungkannya ke branch lokal Anda."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: GitHub Remote, Push, Pull & Clone",
+          "description": "Implementasikan konsep GitHub Remote, Push, Pull & Clone secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi GitHub Remote, Push, Pull & Clone.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# GitHub Remote: Push, Pull & Clone\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **GitHub Remote: Push, Pull & Clone**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenghubungkan repository lokal ke GitHub remote (git remote add origin), mengunggah kode (git push), mengambil pembaruan (git pull), dan mengunduh repo (git clone).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-6-5",
@@ -2888,15 +3304,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-6-5-3",
             "question": "Manakah prefix commit type yang tepat digunakan jika Anda memperbaiki bug kerusakan tampilan layout pada formulir pendaftaran?",
             "options": [
-              "fix(signup): fix responsive layout overflow on mobile",
-              "feat(signup): layout",
               "style(all): do nothing",
+              "feat(signup): layout",
+              "fix(signup): fix responsive layout overflow on mobile",
               "chore: css done"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Tipe fix: digunakan secara eksplisit untuk perbaikan bug dan penanganan error pada sistem yang sudah ada."
+          },
+          {
+            "id": "extra-6-flexbox",
+            "question": "Perhatikan kode Flexbox berikut:\n```css\n.container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n```\nJika terdapat 3 child element di dalam `.container`, bagaimana posisi ketiga elemen tersebut?",
+            "options": [
+              "Semua elemen menempel di tengah kontainer secara horizontal.",
+              "Elemen pertama menempel di ujung kiri, elemen ketiga di ujung kanan, dan elemen kedua berada tepat di tengah, dengan semua elemen sejajar secara vertikal di tengah kontainer.",
+              "Semua elemen berbaris vertikal dari atas ke bawah.",
+              "Elemen pertama dan kedua menumpuk di atas elemen ketiga."
+            ],
+            "correctIndex": 1,
+            "explanation": "`justify-content: space-between` menyebarkan item di sepanjang main axis (horizontal) dengan item pertama di awal dan item terakhir di akhir, sementara `align-items: center` memposisikan item di tengah cross axis (vertikal)."
+          },
+          {
+            "id": "extra-6-grid",
+            "question": "Apa arti dari properti CSS Grid: `grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));`?",
+            "options": [
+              "Membuat tepat 4 kolom dengan lebar tetap 250px di semua ukuran layar.",
+              "Membuat grid responsif yang otomatis menambah atau mengurangi kolom berdasarkan lebar layar, di mana setiap kolom memiliki lebar minimal 250px dan membagi sisa ruang secara proporsional (1fr).",
+              "Menyembunyikan item grid jika lebar layar di bawah 250px.",
+              "Mengunci tinggi baris menjadi 250px."
+            ],
+            "correctIndex": 1,
+            "explanation": "Pola `auto-fit` + `minmax(250px, 1fr)` adalah teknik tata letak modern paling populer untuk membuat card grid responsif tanpa memerlukan media queries."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Pull Request & Standar Conventional Commits",
+          "description": "Implementasikan konsep Pull Request & Standar Conventional Commits secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Pull Request & Standar Conventional Commits.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Pull Requests & Conventional Commits\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Pull Requests & Conventional Commits**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMelakukan kolaborasi tim dengan Pull Request (PR), proses Code Review, dan standarisasi pesan commit profesional (Conventional Commits).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -2957,39 +3407,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-1-1",
             "question": "Apa perbedaan paling mendasar antara deklarasi variabel menggunakan const dan let?",
             "options": [
-              "Variabel yang dideklarasikan dengan const tidak dapat di-reassign (diberi nilai baru), sedangkan variabel let dapat diubah nilainya.",
+              "const bersifat global sedangkan let tidak bisa digunakan di dalam fungsi.",
               "const hanya untuk angka sedangkan let hanya untuk string teks.",
               "let dieksekusi lebih lambat daripada const.",
-              "const bersifat global sedangkan let tidak bisa digunakan di dalam fungsi."
+              "Variabel yang dideklarasikan dengan const tidak dapat di-reassign (diberi nilai baru), sedangkan variabel let dapat diubah nilainya."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "const menciptakan immutable binding pada identifier variabel (tidak bisa di-reassign), sedangkan let mengizinkan reassignment nilai baru."
           },
           {
             "id": "q-7-1-2",
             "question": "Apa yang dimaksud dengan fenomena Temporal Dead Zone (TDZ) pada variabel let dan const di JavaScript?",
             "options": [
-              "Periode waktu di mana variabel sudah berada di dalam scope tetapi belum mencapai baris inisialisasinya, sehingga mengaksesnya sebelum baris deklarasi akan melempar ReferenceError.",
               "Waktu jeda saat koneksi internet lambat.",
+              "Periode waktu di mana variabel sudah berada di dalam scope tetapi belum mencapai baris inisialisasinya, sehingga mengaksesnya sebelum baris deklarasi akan melempar ReferenceError.",
               "Zona memori yang otomatis dihapus setiap 5 detik.",
               "Kondisi saat browser mengalami freeze."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "TDZ mencegah akses variabel let/const sebelum baris deklarasi dieksekusi, melindungi kode dari penggunaan nilai yang belum terdefinisi."
           },
           {
             "id": "q-7-1-3",
             "question": "Perhatikan kode berikut:\nconst user = { name: 'Acelino' };\nuser.name = 'Marchelino';\nApa yang terjadi saat kode tersebut dijalankan?",
             "options": [
-              "Properti user.name berhasil diubah menjadi 'Marchelino' tanpa melempar error.",
+              "Nilai user.name tetap 'Acelino' tanpa ada pesan error.",
               "JavaScript melempar error TypeError: Assignment to constant variable.",
               "Objek user otomatis terhapus dari memori komputer.",
-              "Nilai user.name tetap 'Acelino' tanpa ada pesan error."
+              "Properti user.name berhasil diubah menjadi 'Marchelino' tanpa melempar error."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "const mengunci referensi pengikatan variabel, bukan isi mutasi internal properti objek tersebut."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Variabel: var vs let vs const & Temporal Dead Zone",
+          "description": "Implementasikan konsep Variabel: var vs let vs const & Temporal Dead Zone secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Variabel: var vs let vs const & Temporal Dead Zone.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Variables: var vs let vs const & TDZ\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Variables: var vs let vs const & TDZ**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami scope variabel (function scope vs block scope), mengapa var ditinggalkan, let vs const, dan Temporal Dead Zone (TDZ).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-7-2",
@@ -3039,12 +3499,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-2-1",
             "question": "Manakah di antara pilihan berikut yang SEMUANYA merupakan tipe data primitif di JavaScript?",
             "options": [
-              "string, number, boolean, null, undefined, symbol, bigint",
               "array, object, function, class",
+              "string, number, boolean, null, undefined, symbol, bigint",
               "integer, float, double, char",
               "json, xml, dom, event"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "JavaScript memiliki 7 tipe data primitif standar: string, number, boolean, null, undefined, symbol, dan bigint."
           },
           {
@@ -3063,15 +3523,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-2-3",
             "question": "Apa hasil dari evaluasi typeof null di JavaScript?",
             "options": [
-              "'object' (anomali sejarah awal JavaScript)",
-              "'null'",
               "'undefined'",
+              "'null'",
+              "'object' (anomali sejarah awal JavaScript)",
               "'boolean'"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "typeof null menghasilkan string 'object' akibat keputusan representasi biner pada engine JS awal 1995 yang dipertahankan untuk backward compatibility."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Tipe Data Primitif vs Tipe Data Referensi",
+          "description": "Implementasikan konsep Tipe Data Primitif vs Tipe Data Referensi secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Tipe Data Primitif vs Tipe Data Referensi.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Primitive vs Reference Data Types\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Primitive vs Reference Data Types**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengenal 7 tipe data primitif (string, number, boolean, null, undefined, symbol, bigint) vs tipe data referensi (Object, Array, Function) dan alokasi memori (Stack vs Heap).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-7-3",
@@ -3128,27 +3598,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-3-2",
             "question": "Berapa hasil evaluasi dari ekspresi: 5 + '5' dan 5 - '2' di JavaScript?",
             "options": [
-              "'55' (string) dan 3 (number)",
               "10 (number) dan 3 (number)",
+              "'55' (string) dan 3 (number)",
               "'55' (string) dan '3' (string)",
               "NaN dan NaN"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Operator + melakukan penggabungan (concatenation) jika ada operand string, sedangkan operator - selalu memicu konversi numerik."
           },
           {
             "id": "q-7-3-3",
             "question": "Apa keunggulan operator Nullish Coalescing (??) dibandingkan Logical OR (||) saat menangani variabel bernilai angka 0?",
             "options": [
-              "?? mempertahankan angka 0 karena hanya mengembalikan fallback jika nilai bernilai null atau undefined, sedangkan || menimpa angka 0.",
+              "Keduanya menghasilkan output yang sama persis.",
               "?? mengubah angka 0 menjadi 100.",
               "?? hanya bisa digunakan pada array.",
-              "Keduanya menghasilkan output yang sama persis."
+              "?? mempertahankan angka 0 karena hanya mengembalikan fallback jika nilai bernilai null atau undefined, sedangkan || menimpa angka 0."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Nullish Coalescing ?? menganggap 0 sebagai nilai valid yang bukan nullish (bukan null/undefined), sehingga fallback tidak akan dipicu."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Operator Aritmatika, Perbandingan & Logika (===, ??, ?.)",
+          "description": "Implementasikan konsep Operator Aritmatika, Perbandingan & Logika (===, ??, ?.) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Operator Aritmatika, Perbandingan & Logika (===, ??, ?.).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Arithmetic, Comparison & Logical Operators\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Arithmetic, Comparison & Logical Operators**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami operator aritmatika, perbandingan ketat (=== vs ==), operator logika (&&, ||), short-circuit evaluation, dan Nullish Coalescing (??).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-7-4",
@@ -3194,39 +3674,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-4-1",
             "question": "Manakah cara konversi eksplisit yang paling bersih dan disarankan untuk mengubah string '42' menjadi tipe angka (number)?",
             "options": [
-              "Number('42')",
               "String('42')",
+              "Number('42')",
               "Boolean('42')",
               "'42'.toNumber()"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Fungsi bawaan Number('42') adalah metode eksplisit standar ECMAScript untuk konversi ke tipe number."
           },
           {
             "id": "q-7-4-2",
             "question": "Apa hasil konversi nilai-nilai berikut ke tipe Boolean: Boolean(0), Boolean(''), Boolean([]), Boolean({})?",
             "options": [
-              "false, false, true, true",
               "false, false, false, false",
+              "false, false, true, true",
               "true, true, true, true",
               "false, true, false, true"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "0 dan '' adalah Falsy, sedangkan array kosong [] dan objek kosong {} adalah Truthy karena merupakan objek referensi yang eksis di memori."
           },
           {
             "id": "q-7-4-3",
             "question": "Bagaimana cara yang benar untuk memeriksa apakah sebuah variabel bernilai NaN di JavaScript?",
             "options": [
-              "Number.isNaN(variabel)",
-              "variabel === NaN",
               "typeof variabel === 'nan'",
+              "variabel === NaN",
+              "Number.isNaN(variabel)",
               "variabel.isNan()"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Karena sifat unik di mana NaN !== NaN, standar JavaScript mewajibkan penggunaan fungsi Number.isNaN(val)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Type Coercion vs Explicit Conversion (Truthy & Falsy)",
+          "description": "Implementasikan konsep Type Coercion vs Explicit Conversion (Truthy & Falsy) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Type Coercion vs Explicit Conversion (Truthy & Falsy).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Type Coercion vs Explicit Conversion\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Type Coercion vs Explicit Conversion**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami 8 nilai Falsy di JavaScript, konversi tipe eksplisit (Number, String, Boolean), dan bahaya konversi implisit (Type Coercion).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-7-5",
@@ -3271,39 +3761,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-5-1",
             "question": "Apa keunggulan utama sintaks Template Literals (menggunakan tanda backtick ``) dibandingkan penggabungan string tradisional dengan tanda tambah?",
             "options": [
-              "Mendukung interpolasi variabel langsung dengan ${...}, mendukung string multi-baris tanpa \\n, dan lebih mudah dibaca.",
               "Mengubah seluruh teks otomatis menjadi huruf kapital.",
+              "Mendukung interpolasi variabel langsung dengan ${...}, mendukung string multi-baris tanpa \\n, dan lebih mudah dibaca.",
               "Mengurangi penggunaan kuota internet.",
               "Mencegah teks dibaca oleh browser."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Template literals menyederhanakan penyisipan variabel dan ekspresi logika langsung di dalam string secara deklaratif."
           },
           {
             "id": "q-7-5-2",
             "question": "Method string manakah yang digunakan untuk memeriksa apakah sebuah kalimat mengandung kata tertentu (menghasilkan boolean true/false)?",
             "options": [
-              "string.includes('kata')",
-              "string.has('kata')",
               "string.contains('kata')",
+              "string.has('kata')",
+              "string.includes('kata')",
               "string.searchWord('kata')"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "string.includes(subString) adalah method standar ECMAScript modern untuk memeriksa keberadaan substring secara boolean."
           },
           {
             "id": "q-7-5-3",
             "question": "Perhatikan kode berikut:\nconst email = '  User@Domain.Com  ';\nconst hasil = email.trim().toLowerCase();\nApa isi nilai dari variabel hasil?",
             "options": [
-              "'user@domain.com'",
               "'  user@domain.com  '",
+              "'user@domain.com'",
               "'USER@DOMAIN.COM'",
               "undefined"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "trim() membuang spasi kosong di awal dan akhir, lalu toLowerCase() mengubah seluruh karakter menjadi huruf kecil murni."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: String Manipulation & Template Literals",
+          "description": "Implementasikan konsep String Manipulation & Template Literals secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi String Manipulation & Template Literals.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# String Manipulation & Template Literals\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **String Manipulation & Template Literals**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemanipulasi teks dengan method modern (includes, startsWith, slice, trim, replace, toLowerCase) dan interpolasi template literals backtick.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-7-6",
@@ -3352,12 +3852,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-6-1",
             "question": "Manakah kelompok method array berikut yang SEMUANYA bersifat memutasi (mengubah langsung) array aslinya?",
             "options": [
-              "push(), pop(), shift(), splice()",
-              "map(), filter(), slice(), concat()",
               "find(), some(), every()",
+              "map(), filter(), slice(), concat()",
+              "push(), pop(), shift(), splice()",
               "reduce(), toSorted()"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "push, pop, shift, dan splice memodifikasi data array di tempat (mutating), sedangkan slice, map, dan filter menghasilkan array baru."
           },
           {
@@ -3384,7 +3884,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "slice bersifat non-mutating (aman untuk immutability), sedangkan splice bersifat mutating (mengubah array asli di tempat)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Array Fundamentals & Operasi Mutasi (push, pop, splice vs slice)",
+          "description": "Implementasikan konsep Array Fundamentals & Operasi Mutasi (push, pop, splice vs slice) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Array Fundamentals & Operasi Mutasi (push, pop, splice vs slice).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Array Fundamentals & Mutating Operations\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Array Fundamentals & Mutating Operations**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami struktur array berbasis indeks 0, method mutasi (push, pop, shift, unshift, splice), method non-mutasi (slice, concat), dan Spread Operator [...arr].\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-7-7",
@@ -3429,39 +3939,73 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-7-7-1",
             "question": "Perhatikan kode berikut:\nconst user = { name: 'Acelino', role: 'Developer' };\nconst { name, role } = user;\nSintaks apakah yang digunakan pada baris kedua?",
             "options": [
-              "Object Destructuring Assignment",
               "Object Constructor Function",
+              "Object Destructuring Assignment",
               "Class Instantiation",
               "JSON Parsing"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Object Destructuring mengekstrak properti objek ke dalam variabel individual terpisah dengan nama yang sesuai secara deklaratif."
           },
           {
             "id": "q-7-7-2",
             "question": "Bagaimana cara mengakses properti objek yang nama kuncinya tersimpan di dalam variabel dinamis (contoh: const key = 'email')?",
             "options": [
-              "user[key]",
+              "user:key",
               "user.key",
               "user->key",
-              "user:key"
+              "user[key]"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Bracket notation user[key] mengevaluasi nilai string di dalam variabel key, sedangkan user.key secara harfiah mencari properti bernama 'key'."
           },
           {
             "id": "q-7-7-3",
             "question": "Apa fungsi dari operator Optional Chaining (?.) pada kode user?.profile?.avatar?",
             "options": [
-              "Mencegah error runtime TypeError jika user atau profile bernilai null/undefined, dengan aman mengembalikan undefined tanpa crash.",
               "Memaksa objek untuk selalu memiliki properti avatar.",
+              "Mencegah error runtime TypeError jika user atau profile bernilai null/undefined, dengan aman mengembalikan undefined tanpa crash.",
               "Menghapus properti avatar dari database.",
               "Mengubah format avatar menjadi WebP."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Optional chaining ?. memeriksa apakah objek sebelum tanda tanya ada; jika null/undefined, evaluasi langsung berhenti dengan aman."
+          },
+          {
+            "id": "extra-7-js-data",
+            "question": "Perhatikan kode JavaScript berikut:\n```javascript\nconst a = [1, 2, 3];\nconst b = a;\nb.push(4);\nconsole.log(a);\n```\nBerapakah output dari `console.log(a)`?",
+            "options": [
+              "undefined",
+              "[1, 2, 3] (karena array `b` adalah salinan independen dari `a`).",
+              "[1, 2, 3, 4] (karena array adalah tipe data referensi di mana variabel `b` dan `a` menunjuk ke alamat memori yang sama).",
+              "TypeError: Assignment to constant variable"
+            ],
+            "correctIndex": 2,
+            "explanation": "Array dan Object di JavaScript disimpan berdasarkan referensi memori (by reference). Mengubah `b` akan memodifikasi objek array yang sama yang juga dirujuk oleh `a`."
+          },
+          {
+            "id": "extra-7-js-equality",
+            "question": "Berapakah hasil evaluasi dari perbandingan `0 == false` dan `0 === false` di JavaScript?",
+            "options": [
+              "false dan true",
+              "true dan true",
+              "false dan false",
+              "true dan false (karena operator `==` melakukan type coercion mengubah boolean menjadi angka 0, sedangkan `===` memeriksa tipe data yang berbeda yaitu Number vs Boolean)."
+            ],
+            "correctIndex": 3,
+            "explanation": "Operator `==` melakukan konversi tipe implisit (coercion), sehingga `0 == false` bernilai true. Sebaliknya, strict equality `===` tidak melakukan konversi dan mengembalikan false karena Number tidak sama dengan Boolean."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Object Fundamentals & Destructuring Assignment",
+          "description": "Implementasikan konsep Object Fundamentals & Destructuring Assignment secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Object Fundamentals & Destructuring Assignment.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Object Fundamentals & Destructuring\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Object Fundamentals & Destructuring**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenyimpan data berpasangan key-value pada Objek, dot notation vs bracket notation, Object Destructuring, dan Optional Chaining (?.).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -3529,27 +4073,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-1-2",
             "question": "Kapan Anda sebaiknya menggunakan struktur switch-case dibandingkan rantai if-else if yang panjang?",
             "options": [
-              "Ketika mencocokkan satu variabel diskrit terhadap banyak kemungkinan nilai pasti yang spesifik (seperti status aksi).",
+              "Ketika tidak memiliki kondisi default.",
               "Hanya saat membandingkan rentang angka lebih besar atau lebih kecil.",
               "Saat membutuhkan looping perulangan array.",
-              "Ketika tidak memiliki kondisi default."
+              "Ketika mencocokkan satu variabel diskrit terhadap banyak kemungkinan nilai pasti yang spesifik (seperti status aksi)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "switch-case lebih bersih dan terorganisir secara visual saat mengevaluasi nilai diskrit diskrit atau enum action."
           },
           {
             "id": "q-8-1-3",
             "question": "Apa yang terjadi jika Anda lupa menuliskan kata kunci break; di akhir sebuah blok case dalam switch statement?",
             "options": [
-              "Terjadi fenomena Fall-Through: eksekusi akan terus merembes menjalankan blok case berikutnya di bawahnya meskipun kondisinya tidak cocok.",
-              "JavaScript akan melempar SyntaxError langsung.",
               "Browser akan menutup tab secara otomatis.",
+              "JavaScript akan melempar SyntaxError langsung.",
+              "Terjadi fenomena Fall-Through: eksekusi akan terus merembes menjalankan blok case berikutnya di bawahnya meskipun kondisinya tidak cocok.",
               "Nilai variabel akan menjadi null."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Tanpa break;, alur eksekusi akan merembes ke case berikutnya (fall-through) hingga menemukan break atau akhir blok switch."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Percabangan: if-else, switch & Ternary Operator",
+          "description": "Implementasikan konsep Percabangan: if-else, switch & Ternary Operator secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Percabangan: if-else, switch & Ternary Operator.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Control Flow: if-else, switch & Ternary\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Control Flow: if-else, switch & Ternary**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengontrol alur logika program dengan if-else berjenjang, switch-case (fall-through prevention dengan break), dan ternary operator untuk conditional rendering.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-8-2",
@@ -3598,24 +4152,24 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-2-1",
             "question": "Manakah jenis perulangan modern yang paling tepat digunakan untuk mengiterasi nilai-nilai elemen di dalam sebuah Array?",
             "options": [
-              "for (const item of array) { ... }",
-              "for (const key in array) { ... }",
               "loop (array) { ... }",
+              "for (const key in array) { ... }",
+              "for (const item of array) { ... }",
               "repeat (item in array) { ... }"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "for...of mengiterasi nilai (value) dari objek iterable seperti Array secara bersih dan modern."
           },
           {
             "id": "q-8-2-2",
             "question": "Apa perbedaan fungsi antara statement break dan continue di dalam sebuah perulangan?",
             "options": [
-              "break menghentikan dan keluar dari seluruh perulangan seketika, sedangkan continue melompati sisa baris pada putaran saat ini dan langsung maju ke putaran berikutnya.",
-              "continue keluar dari loop dan break mengulang dari awal.",
               "break hanya untuk fungsi rekursif.",
+              "continue keluar dari loop dan break mengulang dari awal.",
+              "break menghentikan dan keluar dari seluruh perulangan seketika, sedangkan continue melompati sisa baris pada putaran saat ini dan langsung maju ke putaran berikutnya.",
               "Keduanya memiliki fungsi yang persis sama."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "break memutus paksa loop secara permanen, sementara continue hanya melewati sisa instruksi pada satu putaran iterasi saat ini."
           },
           {
@@ -3630,7 +4184,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "JavaScript berjalan pada single thread. Infinite loop akan menyandera CPU 100% dan membekukan seluruh rendering antarmuka pengguna."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Perulangan: for, while, for...of & for...in",
+          "description": "Implementasikan konsep Perulangan: for, while, for...of & for...in secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Perulangan: for, while, for...of & for...in.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Loops: for, while, for...of & for...in\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Loops: for, while, for...of & for...in**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengulang instruksi dengan for loop, while, iterasi array modern dengan for...of, iterasi kunci objek dengan for...in, break, dan continue.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-8-3",
@@ -3676,12 +4240,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-3-1",
             "question": "Apa perbedaan perilaku hoisting antara Function Declaration dan Arrow Function (yang disimpan di dalam variabel const/let)?",
             "options": [
-              "Function Declaration di-hoist sepenuhnya (dapat dipanggil sebelum baris deklarasinya), sedangkan Arrow Function terikat TDZ dan tidak bisa dipanggil sebelum dideklarasikan.",
+              "Function Declaration tidak bisa menerima parameter argumen.",
               "Arrow Function di-hoist sedangkan Function Declaration tidak.",
               "Keduanya tidak di-hoist sama sekali.",
-              "Function Declaration tidak bisa menerima parameter argumen."
+              "Function Declaration di-hoist sepenuhnya (dapat dipanggil sebelum baris deklarasinya), sedangkan Arrow Function terikat TDZ dan tidak bisa dipanggil sebelum dideklarasikan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Function Declaration diangkat sepenuhnya ke puncak scope oleh JavaScript engine, sedangkan arrow function bertindak sebagai ekspresi variabel const/let."
           },
           {
@@ -3708,7 +4272,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Pada arrow function satu ekspresi tanpa kurung kurawal, nilai ekspresi tersebut otomatis di-return tanpa perlu menulis return secara eksplisit."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Function Declaration vs Expression vs Arrow Function",
+          "description": "Implementasikan konsep Function Declaration vs Expression vs Arrow Function secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Function Declaration vs Expression vs Arrow Function.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Function Types: Declaration vs Expression vs Arrow\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Function Types: Declaration vs Expression vs Arrow**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami 3 cara mendeklarasikan fungsi, perbedaan hoisting, implicit return pada arrow functions, dan lexical scoping binding `this`.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-8-4",
@@ -3753,12 +4327,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-4-1",
             "question": "Apa yang dimaksud dengan 'Block Scope' pada variabel yang dideklarasikan dengan let dan const?",
             "options": [
-              "Variabel hanya dapat diakses di dalam blok kurung kurawal { ... } tempat ia didefinisikan dan tidak bocor keluar.",
+              "Variabel otomatis disimpan di media localStorage browser.",
               "Variabel dapat diakses dari seluruh file proyek secara bebas.",
               "Variabel tidak bisa diubah nilainya.",
-              "Variabel otomatis disimpan di media localStorage browser."
+              "Variabel hanya dapat diakses di dalam blok kurung kurawal { ... } tempat ia didefinisikan dan tidak bocor keluar."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Block scoping membatasi masa hidup dan aksesibilitas variabel hanya di dalam pasangan kurung kurawal pembungkusnya terdekat."
           },
           {
@@ -3777,15 +4351,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-4-3",
             "question": "Apa bahaya dari membuat variabel tanpa kata kunci const/let/var (contoh: x = 10;)?",
             "options": [
-              "Variabel tersebut bocor menempel ke global window object, rawan tertimpa oleh skrip lain, dan menciptakan potensi bug memori yang sulit dilacak.",
               "Browser akan mematikan komputer pengguna.",
+              "Variabel tersebut bocor menempel ke global window object, rawan tertimpa oleh skrip lain, dan menciptakan potensi bug memori yang sulit dilacak.",
               "Database akan terkunci permanen.",
               "Tidak ada bahaya apapun."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Global namespace pollution merusak modularitas kode dan menciptakan efek samping tak terduga saat banyak modul skrip berinteraksi."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Scope, Lexical Environment & Scope Chain",
+          "description": "Implementasikan konsep Scope, Lexical Environment & Scope Chain secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Scope, Lexical Environment & Scope Chain.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Scope & Lexical Environment\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Scope & Lexical Environment**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami Global Scope, Function Scope, Block Scope, bagaimana JavaScript menyelesaikan pencarian identifier variabel melalui Scope Chain dari dalam ke luar.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-8-5",
@@ -3830,24 +4414,24 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-5-1",
             "question": "Apa definisi dari konsep 'Closure' dalam bahasa pemrograman JavaScript?",
             "options": [
-              "Kombinasi antara sebuah fungsi dan lingkungan leksikal tempat fungsi tersebut diciptakan, memungkinkan fungsi dalam mengingat dan mengakses variabel dari scope luar meskipun fungsi luar telah selesai dieksekusi.",
               "Menutup jendela browser setelah selesai menulis kode program.",
+              "Kombinasi antara sebuah fungsi dan lingkungan leksikal tempat fungsi tersebut diciptakan, memungkinkan fungsi dalam mengingat dan mengakses variabel dari scope luar meskipun fungsi luar telah selesai dieksekusi.",
               "Mengakhiri statement baris dengan tanda titik koma (;).",
               "Menghapus seluruh fungsi dari memori komputer."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Closure mempertahankan referensi ke variabel induk di memori heap bahkan setelah eksekusi fungsi induk selesai."
           },
           {
             "id": "q-8-5-2",
             "question": "Perhatikan kode Closure counter berikut:\nfunction createCounter() {\n  let count = 0;\n  return () => ++count;\n}\nconst counter = createCounter();\nconsole.log(counter());\nconsole.log(counter());\nBerapa output dari dua baris console.log tersebut?",
             "options": [
-              "1 lalu 2",
+              "undefined lalu undefined",
               "1 lalu 1",
               "0 lalu 1",
-              "undefined lalu undefined"
+              "1 lalu 2"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Fungsi anak mempertahankan variabel count secara persisten tertutup (private state) di dalam closure-nya sehingga nilai terus bertambah."
           },
           {
@@ -3862,7 +4446,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Closure adalah fondasi enkapsulasi, factory functions, module pattern, dan implementasi Hooks seperti useState pada React."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Closures & Private State",
+          "description": "Implementasikan konsep Closures & Private State secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Closures & Private State.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Closures & Private State Encapsulation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Closures & Private State Encapsulation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami konsep Closure di JavaScript, bagaimana fungsi dalam mengingat variabel dari lingkungan leksikal luarnya, dan implementasi Private State encapsulation.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-8-6",
@@ -3912,12 +4506,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-6-1",
             "question": "Apa definisi dari 'Higher-Order Function' di JavaScript?",
             "options": [
-              "Fungsi yang menerima fungsi lain sebagai argumen (callback) dan/atau mengembalikan fungsi lain sebagai nilai output-nya.",
+              "Fungsi yang tidak memiliki nama penunjuk identifier.",
               "Fungsi yang memiliki lebih dari 100 baris kode program.",
               "Fungsi yang hanya berjalan di server superkomputer cloud.",
-              "Fungsi yang tidak memiliki nama penunjuk identifier."
+              "Fungsi yang menerima fungsi lain sebagai argumen (callback) dan/atau mengembalikan fungsi lain sebagai nilai output-nya."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Karena fungsi adalah First-Class Citizens di JavaScript, mereka dapat dioperasikan layaknya nilai data biasa (diterima sebagai argumen atau di-return)."
           },
           {
@@ -3936,15 +4530,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-8-6-3",
             "question": "Method array manakah yang paling tepat digunakan untuk mengakumulasi seluruh total harga belanjaan dalam array objek keranjang menjadi satu nilai angka tunggal?",
             "options": [
-              "reduce()",
               "forEach()",
+              "reduce()",
               "find()",
               "every()"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "reduce((accumulator, item) => accumulator + item.price, 0) mengakumulasikan seluruh elemen koleksi menjadi satu nilai skalar tunggal."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Higher-Order Functions: map, filter, reduce",
+          "description": "Implementasikan konsep Higher-Order Functions: map, filter, reduce secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Higher-Order Functions: map, filter, reduce.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Higher-Order Functions: map, filter, reduce\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Higher-Order Functions: map, filter, reduce**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengolah koleksi data secara fungsional dan deklaratif menggunakan Higher-Order Functions: map (transformasi), filter (penyaringan), dan reduce (akumulasi skalar).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -4012,27 +4616,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-9-1-2",
             "question": "Sintaks manakah yang benar untuk memilih elemen pertama yang memiliki class 'btn-submit' menggunakan querySelector?",
             "options": [
-              "document.querySelector('.btn-submit')",
-              "document.querySelector('btn-submit')",
               "document.querySelector('#btn-submit')",
+              "document.querySelector('btn-submit')",
+              "document.querySelector('.btn-submit')",
               "document.selectClass('btn-submit')"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "querySelector menggunakan sintaks selektor CSS standar, sehingga class selector wajib diawali dengan tanda titik (.)."
           },
           {
             "id": "q-9-1-3",
             "question": "Apa keunggulan NodeList yang dihasilkan oleh document.querySelectorAll dibandingkan HTMLCollection kuno?",
             "options": [
-              "NodeList memiliki method bawaan .forEach() untuk iterasi langsung dan bersifat static snapshot yang lebih aman dari efek mutasi live tak terduga.",
-              "NodeList otomatis mengubah HTML menjadi file PDF.",
               "NodeList hanya bisa menyimpan teks angka.",
+              "NodeList otomatis mengubah HTML menjadi file PDF.",
+              "NodeList memiliki method bawaan .forEach() untuk iterasi langsung dan bersifat static snapshot yang lebih aman dari efek mutasi live tak terduga.",
               "HTMLCollection dieksekusi oleh GPU sedangkan NodeList oleh CPU."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "NodeList modern mendukung perulangan fungsional .forEach() secara langsung dan tidak rentan terhadap bug live-mutation saat elemen diubah."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: DOM Tree & Seleksi Elemen (querySelector vs getElementById)",
+          "description": "Implementasikan konsep DOM Tree & Seleksi Elemen (querySelector vs getElementById) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi DOM Tree & Seleksi Elemen (querySelector vs getElementById).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# DOM Tree & Element Selection\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **DOM Tree & Element Selection**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami struktur Document Object Model (DOM Tree), document.querySelector, querySelectorAll, NodeList vs HTMLCollection, dan getElementById.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-9-2",
@@ -4093,12 +4707,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-9-2-2",
             "question": "Method classList manakah yang paling ideal digunakan untuk membuat tombol saklar Dark Mode (memasang class jika belum ada, atau mencopot class jika sudah ada)?",
             "options": [
-              "element.classList.toggle('dark')",
+              "element.classList.switch('dark')",
               "element.classList.add('dark')",
               "element.classList.remove('dark')",
-              "element.classList.switch('dark')"
+              "element.classList.toggle('dark')"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "classList.toggle('dark') secara otomatis menambahkan kelas jika belum ada, dan menghapusnya jika sudah ada dalam satu perintah."
           },
           {
@@ -4113,7 +4727,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Atribut HTML5 data-user-id secara otomatis dikonversi menjadi properti camelCase dataset.userId di JavaScript."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Manipulasi Konten, Atribut & classList",
+          "description": "Implementasikan konsep Manipulasi Konten, Atribut & classList secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Manipulasi Konten, Atribut & classList.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# DOM Content, Attributes & classList\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **DOM Content, Attributes & classList**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengubah teks dengan textContent (aman XSS) vs innerHTML, memanipulasi class dengan classList (add, remove, toggle), dan mengatur atribut (setAttribute, getAttribute).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-9-3",
@@ -4159,39 +4783,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-9-3-1",
             "question": "Mengapa pemanggilan e.preventDefault() sangat krusial di dalam event listener pengiriman formulir (submit)?",
             "options": [
-              "Untuk mencegah perilaku bawaan browser yang me-reload seluruh halaman, memungkinkan pengiriman data formulir diproses secara mulus di balik layar via JavaScript.",
               "Untuk mengunci komputer pengguna.",
+              "Untuk mencegah perilaku bawaan browser yang me-reload seluruh halaman, memungkinkan pengiriman data formulir diproses secara mulus di balik layar via JavaScript.",
               "Untuk menghapus seluruh isi database server.",
               "Agar browser menutup tab secara otomatis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "e.preventDefault() menghentikan aksi bawaan browser (seperti reload halaman pada submit form atau navigasi URL pada tag link)."
           },
           {
             "id": "q-9-3-2",
             "question": "Properti apakah pada Event Object (e) yang merujuk secara langsung ke elemen HTML yang memicu terjadinya event tersebut?",
             "options": [
-              "e.target",
               "e.element",
+              "e.target",
               "e.source",
               "e.origin"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "e.target merujuk langsung ke elemen DOM spesifik tempat terjadinya interaksi awal (misal elemen input yang sedang diketik)."
           },
           {
             "id": "q-9-3-3",
             "question": "Bagaimana cara penulisan pendaftaran event click yang benar pada sebuah tombol di JavaScript?",
             "options": [
-              "tombol.addEventListener('click', handleKlik)",
               "tombol.addEventListener('onclick', handleKlik)",
+              "tombol.addEventListener('click', handleKlik)",
               "tombol.addEvent('click' -> handleKlik())",
               "tombol.listen('on-click', handleKlik)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Sintaks resmi DOM Level 2 adalah element.addEventListener('nama_event', callback) tanpa prefix 'on'."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Event Listeners & Event Object (e.target, e.preventDefault)",
+          "description": "Implementasikan konsep Event Listeners & Event Object (e.target, e.preventDefault) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Event Listeners & Event Object (e.target, e.preventDefault).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Event Listeners & Event Object\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Event Listeners & Event Object**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenangani interaksi user dengan addEventListener (click, input, submit, keydown), parameter Event Object (e), e.target, dan e.preventDefault().\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-9-4",
@@ -4236,12 +4870,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-9-4-1",
             "question": "Apa yang dimaksud dengan 'Event Bubbling' dalam arsitektur DOM browser?",
             "options": [
-              "Fase di mana sebuah event merambat naik ke atas dari elemen target anak menuju ke seluruh elemen leluhur induknya di pohon DOM.",
-              "Proses menghapus cache browser secara berkala.",
               "Animasi gelembung sabun pada elemen latar belakang.",
+              "Proses menghapus cache browser secara berkala.",
+              "Fase di mana sebuah event merambat naik ke atas dari elemen target anak menuju ke seluruh elemen leluhur induknya di pohon DOM.",
               "Error saat file JavaScript gagal diunduh."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Event bubbling adalah perilaku bawaan di mana event memicu handler pada elemen target lalu merambat naik ke setiap ancestor parent-nya."
           },
           {
@@ -4268,7 +4902,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "e.stopPropagation() menghentikan perambatan propagasi (bubbling/capturing) event pada rantai DOM."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Event Bubbling, Capturing & Event Delegation",
+          "description": "Implementasikan konsep Event Bubbling, Capturing & Event Delegation secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Event Bubbling, Capturing & Event Delegation.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Event Bubbling & Event Delegation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Event Bubbling & Event Delegation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami fase propagasi event (Capturing -> Target -> Bubbling), e.stopPropagation(), dan pola efisiensi Event Delegation.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-9-5",
@@ -4326,27 +4970,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-9-5-2",
             "question": "Atribut HTML apakah yang WAJIB ada pada setiap elemen <input> agar nilainya dapat dibaca secara otomatis oleh FormData API?",
             "options": [
-              "atribut name (contoh: name=\"email\")",
-              "atribut class",
               "atribut style",
+              "atribut class",
+              "atribut name (contoh: name=\"email\")",
               "atribut placeholder"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "FormData menggunakan nilai atribut name dari setiap input sebagai kunci (key) dalam pasangan key-value data yang diekstrak."
           },
           {
             "id": "q-9-5-3",
             "question": "Mengapa validasi di sisi server (server-side validation) tetap WAJIB diterapkan meskipun formulir sudah memiliki validasi frontend yang sangat ketat?",
             "options": [
-              "Karena validasi client-side di frontend dapat dengan mudah dimatikan atau dilewati oleh peretas (misal via cURL/Postman), sehingga server-side validation adalah dinding pertahanan keamanan mutlak.",
+              "Karena validasi server memperlambat koneksi pengguna.",
               "Karena browser mobile tidak mendukung validasi JavaScript.",
               "Agar ukuran file database menjadi lebih kecil.",
-              "Karena validasi server memperlambat koneksi pengguna."
+              "Karena validasi client-side di frontend dapat dengan mudah dimatikan atau dilewati oleh peretas (misal via cURL/Postman), sehingga server-side validation adalah dinding pertahanan keamanan mutlak."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Validasi frontend hanya bertujuan untuk User Experience (UX), sedangkan validasi backend adalah proteksi integritas data dan keamanan sistem yang tidak boleh dilewati."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Form Handling & Client-Side Validation",
+          "description": "Implementasikan konsep Form Handling & Client-Side Validation secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Form Handling & Client-Side Validation.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Form Handling & Client-Side Validation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Form Handling & Client-Side Validation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembaca data form dengan FormData API, validasi input real-time (regex email, panjang password), menampilkan pesan error dinamis, dan Constraint Validation API.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-9-6",
@@ -4395,39 +5049,61 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-9-6-1",
             "question": "Apa perbedaan masa hidup data yang tersimpan di localStorage dibandingkan dengan sessionStorage?",
             "options": [
-              "Data di localStorage bertahan permanen sampai dihapus manual oleh user/kode, sedangkan data di sessionStorage otomatis terhapus saat tab/jendela browser ditutup.",
               "localStorage hilang setiap 1 jam sedangkan sessionStorage permanen.",
+              "Data di localStorage bertahan permanen sampai dihapus manual oleh user/kode, sedangkan data di sessionStorage otomatis terhapus saat tab/jendela browser ditutup.",
               "sessionStorage hanya untuk server sedangkan localStorage untuk database.",
               "Keduanya otomatis terhapus setiap 5 menit."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "localStorage memiliki persistensi permanen lintas sesi browser, sedangkan sessionStorage terikat pada masa hidup satu tab browser individual."
           },
           {
             "id": "q-9-6-2",
             "question": "Mengapa kita wajib menggunakan JSON.stringify() saat menyimpan array atau objek ke dalam localStorage?",
             "options": [
-              "Karena localStorage hanya dapat menyimpan data dalam format teks string, jika tidak di-stringify objek akan rusak tersimpan sebagai string '[object Object]'.",
-              "Untuk mengompresi data menjadi file ZIP.",
               "Karena localStorage menolak huruf alfabet.",
+              "Untuk mengompresi data menjadi file ZIP.",
+              "Karena localStorage hanya dapat menyimpan data dalam format teks string, jika tidak di-stringify objek akan rusak tersimpan sebagai string '[object Object]'.",
               "Untuk mengenkripsi data dengan standar militer."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Penyimpanan browser storage berbasis string kunci-nilai murni sehingga objek/array harus diserialisasi menjadi string JSON sebelum disimpan."
           },
           {
             "id": "q-9-6-3",
             "question": "Manakah karakteristik utama dari Cookies dibandingkan dengan localStorage?",
             "options": [
-              "Cookies berukuran kecil (~4KB) dan otomatis disertakan oleh browser pada setiap HTTP request header ke server, ideal untuk sesi otentikasi (terutama dengan flag HttpOnly).",
               "Cookies memiliki kapasitas raksasa hingga 1 GB.",
+              "Cookies berukuran kecil (~4KB) dan otomatis disertakan oleh browser pada setiap HTTP request header ke server, ideal untuk sesi otentikasi (terutama dengan flag HttpOnly).",
               "Cookies tidak bisa dibaca oleh server backend.",
               "Cookies hanya berlaku pada hari Minggu."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Cookies dirancang untuk komunikasi sesi client-server dan secara otomatis dilampirkan browser pada setiap HTTP request header."
+          },
+          {
+            "id": "extra-9-dom-delegation",
+            "question": "Perhatikan teknik Event Delegation berikut:\n```javascript\ndocument.getElementById('todo-list').addEventListener('click', (e) => {\n  if (e.target.matches('.btn-delete')) {\n    e.target.closest('li').remove();\n  }\n});\n```\nMengapa teknik ini jauh lebih efisien daripada memasang event listener pada setiap tombol delete secara individual?",
+            "options": [
+              "Mencegah browser melakukan reload halaman.",
+              "Membuat tombol delete berwarna merah secara otomatis.",
+              "Mengurangi penggunaan memori karena hanya membutuhkan 1 listener pada elemen induk, dan otomatis bekerja untuk item baru yang ditambahkan secara dinamis ke dalam list.",
+              "Menonaktifkan event bubbling di seluruh halaman web."
+            ],
+            "correctIndex": 2,
+            "explanation": "Event Delegation memanfaatkan sifat event bubbling. Menaruh satu listener di parent (`#todo-list`) menghemat memori dan memastikan elemen child baru yang dibuat di masa mendatang langsung memiliki handler tanpa perlu di-binding ulang."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Browser Storage: localStorage, sessionStorage & Cookies",
+          "description": "Implementasikan konsep Browser Storage: localStorage, sessionStorage & Cookies secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Browser Storage: localStorage, sessionStorage & Cookies.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Browser Storage Systems\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Browser Storage Systems**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenyimpan data di browser client: localStorage (persisten), sessionStorage (per tab), Cookies (otentikasi HTTP), dan serialisasi JSON.stringify / JSON.parse.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -4500,27 +5176,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-1-2",
             "question": "Apa tugas utama dari mekanisme Event Loop pada JavaScript runtime?",
             "options": [
-              "Memantau Call Stack secara terus-menerus; jika Call Stack kosong, Event Loop akan mengambil callback dari antrean (Queue) dan mendorongnya ke Call Stack untuk dieksekusi.",
               "Menerjemahkan kode JavaScript menjadi file binary .exe.",
+              "Memantau Call Stack secara terus-menerus; jika Call Stack kosong, Event Loop akan mengambil callback dari antrean (Queue) dan mendorongnya ke Call Stack untuk dieksekusi.",
               "Mengompresi gambar dan media video di halaman web.",
               "Mengatur koneksi database SQL."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Event Loop bertindak sebagai pengatur lalu lintas yang memindahkan tugas asinkron dari Task Queue ke Call Stack saat Stack sudah bersih kosong."
           },
           {
             "id": "q-10-1-3",
             "question": "Mengapa callback dari Promise.then() dieksekusi lebih dulu daripada callback setTimeout(..., 0)?",
             "options": [
-              "Karena Promise callbacks ditempatkan di Microtask Queue yang memiliki prioritas lebih tinggi dan harus dikosongkan sebelum Event Loop memproses Macrotask Queue (setTimeout).",
-              "Karena Promise ditulis dalam bahasa C++.",
               "Karena setTimeout sengaja ditunda oleh browser selama 1 menit.",
+              "Karena Promise ditulis dalam bahasa C++.",
+              "Karena Promise callbacks ditempatkan di Microtask Queue yang memiliki prioritas lebih tinggi dan harus dikosongkan sebelum Event Loop memproses Macrotask Queue (setTimeout).",
               "Karena Promise tidak menggunakan memori komputer."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Microtask Queue (Promise) selalu dieksekusi dan dikosongkan tuntas pada setiap pergantian frame sebelum Macrotask (setTimeout) diambil."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Asynchronous Model & Event Loop (Call Stack, Task Queue, Microtasks)",
+          "description": "Implementasikan konsep Asynchronous Model & Event Loop (Call Stack, Task Queue, Microtasks) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Asynchronous Model & Event Loop (Call Stack, Task Queue, Microtasks).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Asynchronous JS & Event Loop Internals\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Asynchronous JS & Event Loop Internals**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedah arsitektur runtime JavaScript: Single-Threaded Non-Blocking I/O, Call Stack, Web APIs, Macrotask Queue vs Microtask Queue (Promise priority).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-10-2",
@@ -4570,39 +5256,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-2-1",
             "question": "Manakah 3 status resmi (States) dari sebuah objek Promise di JavaScript?",
             "options": [
-              "Pending, Fulfilled, Rejected",
               "Starting, Processing, Finished",
+              "Pending, Fulfilled, Rejected",
               "Waiting, Success, Crash",
               "Open, Resolved, Closed"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "ECMAScript mendefinisikan 3 status siklus hidup Promise: Pending (sedang berjalan), Fulfilled (berhasil/resolved), dan Rejected (gagal)."
           },
           {
             "id": "q-10-2-2",
             "question": "Kapan blok .finally() pada sebuah Promise akan dieksekusi oleh JavaScript engine?",
             "options": [
-              "Selalu dieksekusi di akhir setelah Promise selesai, terlepas dari apakah hasilnya sukses (Fulfilled) ataupun gagal (Rejected).",
               "Hanya saat Promise mengalami kegagalan/error.",
+              "Selalu dieksekusi di akhir setelah Promise selesai, terlepas dari apakah hasilnya sukses (Fulfilled) ataupun gagal (Rejected).",
               "Hanya saat Promise berhasil diselesaikan.",
               "Hanya jika koneksi internet terputus."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": ".finally() dijamin selalu berjalan di akhir siklus untuk keperluan cleanup seperti mematikan indikator loading spinner."
           },
           {
             "id": "q-10-2-3",
             "question": "Masalah arsitektur apakah pada JavaScript lawas yang berhasil diatasi dengan kehadiran sintaks Promise Chaining?",
             "options": [
-              "Callback Hell (Pyramid of Doom): tumpukan callback bersarang yang bergeser ke kanan dan sangat sulit dibaca serta dirawat.",
+              "Keharusan menginstal file compiler eksternal.",
               "Kekurangan memori RAM pada kartu grafis.",
               "Larangan penggunaan bahasa CSS.",
-              "Keharusan menginstal file compiler eksternal."
+              "Callback Hell (Pyramid of Doom): tumpukan callback bersarang yang bergeser ke kanan dan sangat sulit dibaca serta dirawat."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Promises menggantikan callback bertingkat yang rawan bug dengan rantai linear .then() yang mudah dibaca dan memiliki penanganan error terpusat."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Promises: States, Chaining (.then, .catch, .finally)",
+          "description": "Implementasikan konsep Promises: States, Chaining (.then, .catch, .finally) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Promises: States, Chaining (.then, .catch, .finally).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# JavaScript Promises: States & Chaining\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **JavaScript Promises: States & Chaining**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami 3 status Promise (Pending, Fulfilled, Rejected), membuat Promise baru (new Promise), chaining .then(), penanganan error dengan .catch(), dan cleanup dengan .finally().\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-10-3",
@@ -4648,12 +5344,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-3-1",
             "question": "Apa yang selalu dikembalikan oleh sebuah fungsi yang dideklarasikan dengan kata kunci async?",
             "options": [
-              "Fungsi async SELALU mengembalikan sebuah objek Promise (yang membungkus nilai return-nya).",
-              "Mengembalikan string teks biasa.",
               "Mengembalikan nilai undefined tanpa terkecuali.",
+              "Mengembalikan string teks biasa.",
+              "Fungsi async SELALU mengembalikan sebuah objek Promise (yang membungkus nilai return-nya).",
               "Mengembalikan array kosong."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Setiap fungsi async di JavaScript secara otomatis membungkus nilai kembaliannya ke dalam objek Promise."
           },
           {
@@ -4672,15 +5368,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-3-3",
             "question": "Di manakah kata kunci await diizinkan untuk digunakan di dalam kode JavaScript?",
             "options": [
-              "Hanya di dalam fungsi yang dideklarasikan dengan kata kunci async (atau di level teratas ES Modules / Top-Level Await).",
+              "Hanya di dalam tag <head> HTML.",
               "Di dalam semua fungsi biasa tanpa syarat.",
               "Hanya di dalam file CSS stylesheet.",
-              "Hanya di dalam tag <head> HTML."
+              "Hanya di dalam fungsi yang dideklarasikan dengan kata kunci async (atau di level teratas ES Modules / Top-Level Await)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "await hanya sah digunakan di dalam async functions atau pada tingkat teratas modul ES (Top-Level Await)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Async / Await & Robust Error Handling (try-catch)",
+          "description": "Implementasikan konsep Async / Await & Robust Error Handling (try-catch) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Async / Await & Robust Error Handling (try-catch).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Async / Await & Error Handling\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Async / Await & Error Handling**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenulis kode asinkron dengan gaya sinkron yang bersih menggunakan async/await, penanganan error dengan blok try-catch-finally, dan pembongkaran error objek.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-10-4",
@@ -4742,27 +5448,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-4-2",
             "question": "Ketika mengirimkan data objek JavaScript ke server backend menggunakan HTTP POST request, langkah apa yang wajib dilakukan pada opsi fetch?",
             "options": [
-              "Menyetel method: 'POST', menambahkan header 'Content-Type': 'application/json', dan mengubah body dengan JSON.stringify(data).",
               "Menghapus seluruh header request.",
+              "Menyetel method: 'POST', menambahkan header 'Content-Type': 'application/json', dan mengubah body dengan JSON.stringify(data).",
               "Mengirimkan file CSS.",
               "Menyetel method: 'GET_POST'."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Server backend membutuhkan header Content-Type: application/json untuk mem-parsing payload JSON string yang dikirim di dalam request body."
           },
           {
             "id": "q-10-4-3",
             "question": "Berdasarkan standar protokol HTTP, kode status manakah yang menandakan bahwa pengguna belum terotentikasi (belum login / token tidak valid)?",
             "options": [
-              "401 Unauthorized",
               "200 OK",
+              "401 Unauthorized",
               "404 Not Found",
               "500 Internal Server Error"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "HTTP 401 Unauthorized secara eksplisit menandakan permintaan ditolak karena klien belum memiliki kredensial otentikasi yang sah."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Fetch API, HTTP Methods & Status Codes",
+          "description": "Implementasikan konsep Fetch API, HTTP Methods & Status Codes secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Fetch API, HTTP Methods & Status Codes.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Fetch API & HTTP Communication\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Fetch API & HTTP Communication**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengambil data dari REST API dengan window.fetch(), HTTP Methods (GET, POST, PUT, DELETE), headers (Content-Type: application/json), response.json(), dan HTTP status codes (200, 201, 400, 401, 404, 500).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-10-5",
@@ -4812,12 +5528,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-5-1",
             "question": "Apa keuntungan performa utama dari mengeksekusi 3 panggilan API independen menggunakan Promise.all() dibandingkan melakukan await satu per satu secara sekuensial?",
             "options": [
-              "Ketiga panggilan API berjalan secara paralel simultan di jaringan, sehingga total waktu tunggu hanya sepanjang request yang paling lama, bukan akumulasi penjumlahan ketiganya.",
-              "Promise.all membuat server backend memprioritaskan akun kita.",
               "Promise.all menghapus batasan kuota API.",
+              "Promise.all membuat server backend memprioritaskan akun kita.",
+              "Ketiga panggilan API berjalan secara paralel simultan di jaringan, sehingga total waktu tunggu hanya sepanjang request yang paling lama, bukan akumulasi penjumlahan ketiganya.",
               "Promise.all mengubah format data otomatis menjadi CSV."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Eksekusi paralel menembakkan seluruh request bersamaan ke network pool sehingga durasi total sama dengan durasi request terpanjang (misal 1s vs 3s)."
           },
           {
@@ -4836,15 +5552,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-10-5-3",
             "question": "Pola implementasi praktis apakah yang paling umum memanfaatkan metode Promise.race()?",
             "options": [
-              "Membuat batas waktu maksimal (Request Timeout): membalapkan request jaringan dengan timer Promise yang me-reject jika batas waktu terlewati.",
+              "Mengubah warna tema aplikasi secara acak.",
               "Menyimpan password ke dalam localStorage.",
               "Mengurutkan array angka dari terkecil ke terbesar.",
-              "Mengubah warna tema aplikasi secara acak."
+              "Membuat batas waktu maksimal (Request Timeout): membalapkan request jaringan dengan timer Promise yang me-reject jika batas waktu terlewati."
+            ],
+            "correctIndex": 3,
+            "explanation": "Promise.race mengembalikan Promise pertama yang settled, menjadikannya pola standar untuk membatalkan request jaringan yang lambat via timeout."
+          },
+          {
+            "id": "extra-10-async",
+            "question": "Perhatikan urutan eksekusi JavaScript Event Loop berikut:\n```javascript\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');\n```\nUrutan log angka manakah yang akan tercetak di konsol?",
+            "options": [
+              "'1', '4', '3', '2' (Synchronous code dieksekusi pertama, diikuti Microtask Queue (Promise), lalu Macrotask/Task Queue (setTimeout)).",
+              "'1', '2', '3', '4'",
+              "'1', '3', '4', '2'",
+              "'4', '3', '2', '1'"
             ],
             "correctIndex": 0,
-            "explanation": "Promise.race mengembalikan Promise pertama yang settled, menjadikannya pola standar untuk membatalkan request jaringan yang lambat via timeout."
+            "explanation": "Call stack mengeksekusi sinkronus '1' dan '4' terlebih dahulu. Kemudian event loop mengosongkan microtask queue (Promise '3') sebelum berpindah ke macrotask queue (setTimeout '2')."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Promise Concurrency: all, allSettled, race & any",
+          "description": "Implementasikan konsep Promise Concurrency: all, allSettled, race & any secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Promise Concurrency: all, allSettled, race & any.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Promise Concurrency Methods\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Promise Concurrency Methods**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenjalankan banyak request asinkron secara paralel dengan Promise.all (fail-fast), Promise.allSettled (tahan kegagalan), Promise.race (kecepatan), dan Promise.any.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -4912,12 +5650,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-11-1-2",
             "question": "Apa yang terjadi pada seluruh anotasi tipe TypeScript saat kode dikompilasi menjadi berkas produksi untuk browser?",
             "options": [
-              "Seluruh anotasi tipe dihapus (stripped away) menghasilkan berkas JavaScript murni standar yang dapat dieksekusi oleh browser.",
               "Tipe dienkripsi menjadi password di dalam browser.",
+              "Seluruh anotasi tipe dihapus (stripped away) menghasilkan berkas JavaScript murni standar yang dapat dieksekusi oleh browser.",
               "Anotasi tipe diubah menjadi baris komentar HTML.",
               "Browser mengeksekusi file .ts secara langsung tanpa kompilasi."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "TypeScript adalah alat development time; compiler mentranspilasikan TypeScript menjadi JavaScript murni yang kompatibel dengan seluruh browser."
           },
           {
@@ -4932,7 +5670,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "strict: true mengaktifkan seluruh rangkaian pemeriksaan tipe kuat (termasuk noImplicitAny, strictNullChecks) demi keamanan kode tingkat produksi."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Mengapa TypeScript? Static Typing vs Dynamic Typing",
+          "description": "Implementasikan konsep Mengapa TypeScript? Static Typing vs Dynamic Typing secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Mengapa TypeScript? Static Typing vs Dynamic Typing.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Why TypeScript? Static vs Dynamic Typing\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Why TypeScript? Static vs Dynamic Typing**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami mengapa industri bermigrasi ke TypeScript: menangkap bug pada saat kompilasi (Compile-Time), dokumentasi swadaya (IntelliSense), dan konfigurasi tsconfig.json.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-11-2",
@@ -4982,12 +5730,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-11-2-1",
             "question": "Apa yang dimaksud dengan kemampuan 'Type Inference' pada compiler TypeScript?",
             "options": [
-              "Kemampuan compiler TypeScript untuk secara otomatis menyimpulkan dan menetapkan tipe data suatu variabel berdasarkan nilai awal yang diisikan tanpa perlu anotasi manual.",
-              "Kemampuan mengunduh file library otomatis.",
               "Kemampuan menerjemahkan bahasa Inggris ke Indonesia.",
+              "Kemampuan mengunduh file library otomatis.",
+              "Kemampuan compiler TypeScript untuk secara otomatis menyimpulkan dan menetapkan tipe data suatu variabel berdasarkan nilai awal yang diisikan tanpa perlu anotasi manual.",
               "Kemampuan menghapus variabel yang tidak terpakai."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Type inference menganalisis inisialisasi nilai awal (misal let x = 'halo') dan menetapkan x sebagai string secara otomatis."
           },
           {
@@ -5014,7 +5762,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Tuple adalah struktur array berukuran tetap di mana setiap posisi indeks memiliki tipe data yang telah ditentukan secara terurut."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Tipe Primitif & Type Inference",
+          "description": "Implementasikan konsep Tipe Primitif & Type Inference secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Tipe Primitif & Type Inference.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Primitive Types & Type Inference\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Primitive Types & Type Inference**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenulis type annotations eksplisit (string, number, boolean, array, tuple), memahami inferensi otomatis compiler, dan bahaya tipe any vs unknown.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-11-3",
@@ -5064,39 +5822,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-11-3-1",
             "question": "Manakah sintaks yang benar untuk membuat Union Type yang membatasi nilai variabel hanya boleh berupa salah satu dari 3 string status ('LOADING' | 'SUCCESS' | 'ERROR')?",
             "options": [
-              "type Status = 'LOADING' | 'SUCCESS' | 'ERROR';",
               "interface Status = 'LOADING' | 'SUCCESS' | 'ERROR';",
+              "type Status = 'LOADING' | 'SUCCESS' | 'ERROR';",
               "enum Status { 'LOADING' | 'SUCCESS' | 'ERROR' }",
               "const Status = union('LOADING', 'SUCCESS', 'ERROR');"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Union types dibuat menggunakan deklarasi Type Alias (type) dengan operator garis tegak (|)."
           },
           {
             "id": "q-11-3-2",
             "question": "Bagaimana cara sebuah interface mewarisi seluruh properti dari interface induk di TypeScript?",
             "options": [
-              "Menggunakan kata kunci extends (contoh: interface AdminUser extends BaseUser { ... })",
-              "Menggunakan kata kunci implements",
               "Menggunakan kata kunci inherits",
+              "Menggunakan kata kunci implements",
+              "Menggunakan kata kunci extends (contoh: interface AdminUser extends BaseUser { ... })",
               "Menggunakan tanda tambah (+)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Kata kunci extends memungkinkan interface anak menyalin dan memperluas kontrak properti dari satu atau lebih interface induk."
           },
           {
             "id": "q-11-3-3",
             "question": "Apa arti dari tanda tanya (?) pada deklarasi properti interface berikut: avatarUrl?: string;?",
             "options": [
-              "Properti tersebut bersifat opsional (optional property), nilainya boleh berisi string atau undefined/tidak diisi.",
               "Properti tersebut bertipe rahasia dan tidak boleh dibaca.",
+              "Properti tersebut bersifat opsional (optional property), nilainya boleh berisi string atau undefined/tidak diisi.",
               "Properti tersebut akan meminta input prompt dari pengguna.",
               "Properti tersebut otomatis dienkripsi."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Tanda tanya ? menandai properti opsional yang boleh tidak disertakan saat instansiasi objek."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Type Aliases vs Interfaces (extends, union, intersection)",
+          "description": "Implementasikan konsep Type Aliases vs Interfaces (extends, union, intersection) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Type Aliases vs Interfaces (extends, union, intersection).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Type Aliases vs Interfaces\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Type Aliases vs Interfaces**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMendefinisikan kontrak bentuk objek dengan Interface (extends, declaration merging) vs Type Alias (union |, intersection &, primitive alias).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-11-4",
@@ -5142,39 +5910,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-11-4-1",
             "question": "Apa fungsi utama dari fitur Generics (<T>) dalam bahasa pemrograman TypeScript?",
             "options": [
-              "Membuat fungsi, interface, atau kelas yang fleksibel dan reusable untuk berbagai tipe data sambil tetap mempertahankan type safety dan informasi tipe asli tanpa menggunakan any.",
-              "Mengubah warna tema IDE secara otomatis.",
               "Menghubungkan aplikasi ke server database PostgreSQL secara langsung.",
+              "Mengubah warna tema IDE secara otomatis.",
+              "Membuat fungsi, interface, atau kelas yang fleksibel dan reusable untuk berbagai tipe data sambil tetap mempertahankan type safety dan informasi tipe asli tanpa menggunakan any.",
               "Mempercepat waktu booting komputer."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Generics bertindak sebagai parameter tipe yang menangkap dan mempertahankan tipe data spesifik saat fungsi/interface dipanggil."
           },
           {
             "id": "q-11-4-2",
             "question": "Perhatikan interface berikut:\ninterface ApiResponse<T> {\n  status: number;\n  data: T;\n}\nBagaimana cara menggunakannya untuk membungkus data array string?",
             "options": [
-              "ApiResponse<string[]>",
+              "ApiResponse<Array>",
               "ApiResponse(string[])",
               "ApiResponse.string[]",
-              "ApiResponse<Array>"
+              "ApiResponse<string[]>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Parameter tipe generik diisi di dalam kurung siku <...>, sehingga ApiResponse<string[]> menetapkan data bertipe string[]."
           },
           {
             "id": "q-11-4-3",
             "question": "Apa arti dari sintaks Generic Constraint: <T extends { id: string }>?",
             "options": [
-              "Tipe T diizinkan bebas berupa tipe apa pun asalkan memiliki minimal properti id bertipe string.",
-              "Tipe T hanya boleh bernilai string murni.",
               "Fungsi tersebut akan menghapus properti id.",
+              "Tipe T hanya boleh bernilai string murni.",
+              "Tipe T diizinkan bebas berupa tipe apa pun asalkan memiliki minimal properti id bertipe string.",
               "Tipe T dilarang memiliki properti lain selain id."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Generic constraint dengan kata kunci extends membatasi tipe T agar wajib memenuhi kontrak struktural yang ditentukan."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Generics: Komponen Tipe Reusable (<T>)",
+          "description": "Implementasikan konsep Generics: Komponen Tipe Reusable (<T>) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Generics: Komponen Tipe Reusable (<T>).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# TypeScript Generics (<T>)\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **TypeScript Generics (<T>)**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenciptakan komponen tipe fleksibel dan reusable dengan Type Parameters <T>, Generic Functions, Generic Interfaces, dan Generic Constraints (T extends ...).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-11-5",
@@ -5224,39 +6002,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-11-5-1",
             "question": "Apa yang dimaksud dengan proses 'Type Narrowing' dalam TypeScript?",
             "options": [
-              "Proses mempersempit tipe data yang luas (seperti string | number) menjadi tipe data yang lebih spesifik di dalam blok logika tertentu menggunakan pemeriksaan runtime (Type Guards).",
-              "Proses mengecilkan ukuran file font CSS.",
               "Menghapus tipe data yang tidak digunakan dari komputer.",
+              "Proses mengecilkan ukuran file font CSS.",
+              "Proses mempersempit tipe data yang luas (seperti string | number) menjadi tipe data yang lebih spesifik di dalam blok logika tertentu menggunakan pemeriksaan runtime (Type Guards).",
               "Mengubah tipe number menjadi string."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Type narrowing memanfaatkan alur kontrol logika (if, switch) untuk memverifikasi tipe spesifik sehingga method uniknya aman dipanggil."
           },
           {
             "id": "q-11-5-2",
             "question": "Apa keunggulan arsitektur 'Discriminated Unions' dalam memodelkan status state di aplikasi web?",
             "options": [
-              "Mencegah 'Impossible States' (status mustahil yang bertentangan) dan memungkinkan TypeScript mengenali properti payload yang sah secara otomatis berdasarkan properti pembeda literal (seperti status / type).",
-              "Mengurangi kecepatan compile TypeScript.",
               "Membuat database SQL otomatis terinstal.",
+              "Mengurangi kecepatan compile TypeScript.",
+              "Mencegah 'Impossible States' (status mustahil yang bertentangan) dan memungkinkan TypeScript mengenali properti payload yang sah secara otomatis berdasarkan properti pembeda literal (seperti status / type).",
               "Menolak penggunaan format JSON."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Discriminated unions mengaitkan payload data secara ketat dengan status literalnya, menghilangkan bug di mana error dan data muncul bersamaan secara janggal."
           },
           {
             "id": "q-11-5-3",
             "question": "Type Guard operator manakah yang digunakan untuk memeriksa apakah sebuah properti spesifik eksis di dalam sebuah objek referensi?",
             "options": [
-              "Operator in (contoh: if ('pesanError' in state))",
+              "Operator hasProperty",
               "Operator typeof",
               "Operator exists",
-              "Operator hasProperty"
+              "Operator in (contoh: if ('pesanError' in state))"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Operator in mengecek keberadaan properti pada objek dan sekaligus berfungsi sebagai Type Guard di mata compiler TypeScript."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Type Narrowing, Type Guards & Discriminated Unions",
+          "description": "Implementasikan konsep Type Narrowing, Type Guards & Discriminated Unions secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Type Narrowing, Type Guards & Discriminated Unions.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Type Narrowing & Discriminated Unions\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Type Narrowing & Discriminated Unions**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMempersempit tipe data dengan typeof, instanceof, operator in, kustom User-Defined Type Guards (is), dan pola arsitektur Discriminated Unions (tagged unions).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-11-6",
@@ -5310,39 +6098,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-11-6-1",
             "question": "Utility type bawaan TypeScript manakah yang paling ideal digunakan untuk fungsi pembaruan profil (PATCH) di mana seluruh properti objek aslinya diubah menjadi bersifat opsional (?)?",
             "options": [
-              "Partial<T>",
-              "Required<T>",
               "Readonly<T>",
+              "Required<T>",
+              "Partial<T>",
               "Omit<T, K>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Partial<T> secara otomatis mengubah seluruh properti tipe T menjadi opsional (dengan penambahan modifier ?)."
           },
           {
             "id": "q-11-6-2",
             "question": "Jika Anda memiliki interface User dengan field { id, name, email, password }, bagaimana cara membuat tipe baru yang menyalin seluruh field tersebut KECUALI field 'password'?",
             "options": [
-              "Omit<User, 'password'>",
               "Pick<User, 'password'>",
+              "Omit<User, 'password'>",
               "Exclude<User, 'password'>",
               "Remove<User, 'password'>"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Omit<T, K> membangun tipe baru dengan mengambil seluruh properti T dan membuang kunci K yang ditentukan."
           },
           {
             "id": "q-11-6-3",
             "question": "Apa fungsi dari utility type Record<K, V> di TypeScript?",
             "options": [
-              "Mendefinisikan tipe objek kamus (dictionary/map) dengan kumpulan tipe kunci K dan tipe nilai V yang terikat secara type-safe.",
+              "Menghapus seluruh file rekaman log.",
               "Merekam suara pengguna saat menggunakan aplikasi web.",
               "Menyimpan histori perubahan kode ke database.",
-              "Menghapus seluruh file rekaman log."
+              "Mendefinisikan tipe objek kamus (dictionary/map) dengan kumpulan tipe kunci K dan tipe nilai V yang terikat secara type-safe."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Record<Keys, Value> adalah utility type standar untuk memetakan objek dictionary dengan kunci dan nilai bertipe spesifik."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Utility Types & Advanced Types (Partial, Pick, Omit, Record)",
+          "description": "Implementasikan konsep Utility Types & Advanced Types (Partial, Pick, Omit, Record) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Utility Types & Advanced Types (Partial, Pick, Omit, Record).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# TypeScript Utility Types\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **TypeScript Utility Types**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMentransformasikan tipe data yang ada dengan Utility Types bawaan: Partial, Required, Readonly, Pick, Omit, Record<K, V>, ReturnType, dan keyof.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -5397,39 +6195,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-1-1",
             "question": "Apa perbedaan paling mendasar antara paradigma pemrograman Imperatif dan Deklaratif dalam pembangunan UI?",
             "options": [
-              "Imperatif mendikte instruksi langkah demi langkah bagaimana memanipulasi DOM, sedangkan Deklaratif mendeskripsikan seperti apa bentuk tampilan UI seharusnya berdasarkan data/state saat ini.",
+              "Imperatif dieksekusi lebih cepat daripada Deklaratif.",
               "Imperatif hanya untuk mobile sedangkan Deklaratif hanya untuk desktop.",
               "Deklaratif tidak mendukung styling CSS.",
-              "Imperatif dieksekusi lebih cepat daripada Deklaratif."
+              "Imperatif mendikte instruksi langkah demi langkah bagaimana memanipulasi DOM, sedangkan Deklaratif mendeskripsikan seperti apa bentuk tampilan UI seharusnya berdasarkan data/state saat ini."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Declarative UI memusatkan logika pada representasi status data, membebaskan developer dari keharusan menulis langkah mutasi DOM manual."
           },
           {
             "id": "q-12-1-2",
             "question": "Bagaimana cara kerja Virtual DOM dan proses Rekonsiliasi (Diffing) di dalam React?",
             "options": [
-              "React membuat representasi Virtual DOM di memori, membandingkan perubahannya dengan versi sebelumnya (diffing), dan hanya menerapkan patch perubahan spesifik tersebut ke DOM browser asli.",
+              "Virtual DOM menggantikan fungsi database backend.",
               "React menghapus seluruh halaman HTML dan memuat ulang website dari nol di setiap klik.",
               "Virtual DOM menyimpan seluruh data website ke harddisk pengguna.",
-              "Virtual DOM menggantikan fungsi database backend."
+              "React membuat representasi Virtual DOM di memori, membandingkan perubahannya dengan versi sebelumnya (diffing), dan hanya menerapkan patch perubahan spesifik tersebut ke DOM browser asli."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Virtual DOM mengoptimalkan render performance dengan menghitung delta perbedaan di memori dan meminimalkan operasi berat pada browser real DOM."
           },
           {
             "id": "q-12-1-3",
             "question": "Apa arti dari rumus filosofis React: UI = f(state)?",
             "options": [
-              "Tampilan antarmuka pengguna (UI) adalah hasil keluaran langsung yang dipetakan secara deterministik dari kondisi data (state) aplikasi saat itu.",
+              "Komponen UI harus ditulis dalam satu baris fungsi.",
               "UI harus dihitung menggunakan kalkulus integral.",
               "State tidak boleh memiliki nilai teks.",
-              "Komponen UI harus ditulis dalam satu baris fungsi."
+              "Tampilan antarmuka pengguna (UI) adalah hasil keluaran langsung yang dipetakan secara deterministik dari kondisi data (state) aplikasi saat itu."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Prinsip ini menegaskan bahwa perubahan tampilan visual murni dipicu oleh perubahan state data yang mengaliri fungsi komponen."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Arsitektur Komponen & Paradigma Declarative UI",
+          "description": "Implementasikan konsep Arsitektur Komponen & Paradigma Declarative UI secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Arsitektur Komponen & Paradigma Declarative UI.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Component Architecture & Declarative UI\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Component Architecture & Declarative UI**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami pergeseran paradigma dari Imperative DOM manipulation ke Declarative UI (UI = f(state)), struktur Virtual DOM, dan Component-Driven Architecture.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-12-2",
@@ -5474,12 +6282,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-2-1",
             "question": "Mengapa atribut penentu kelas CSS pada elemen JSX wajib ditulis sebagai className alih-alih class seperti pada HTML standar?",
             "options": [
-              "Karena kata kunci 'class' adalah reserved keyword resmi di bahasa pemrograman JavaScript untuk deklarasi Object-Oriented Class.",
+              "Agar browser mengenali warna stylesheet secara otomatis.",
               "Karena className memproses animasi lebih cepat.",
               "Karena konsorsium HTML5 melarang kata class.",
-              "Agar browser mengenali warna stylesheet secara otomatis."
+              "Karena kata kunci 'class' adalah reserved keyword resmi di bahasa pemrograman JavaScript untuk deklarasi Object-Oriented Class."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Karena JSX adalah ekstensi JavaScript murni, identifier class telah dicadangkan untuk sintaks class OOP JS sehingga digunakan atribut className."
           },
           {
@@ -5506,7 +6314,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "JSX mewajibkan seluruh tag elemen tunggal (void elements) ditutup secara eksplisit dengan tanda self-closing />."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: JSX / TSX: Sintaks, Aturan & Perbedaan dengan HTML",
+          "description": "Implementasikan konsep JSX / TSX: Sintaks, Aturan & Perbedaan dengan HTML secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi JSX / TSX: Sintaks, Aturan & Perbedaan dengan HTML.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# JSX / TSX Syntax & Rules\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **JSX / TSX Syntax & Rules**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenulis JavaScript XML (JSX/TSX), aturan Single Root Element (<React.Fragment> / <>), penutupan tag mandiri (self-closing), penamaan atribut (className, htmlFor, camelCase), dan interpolasi kurung kurawal {}.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-12-3",
@@ -5564,27 +6382,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-3-2",
             "question": "Apa yang dimaksud dengan prinsip 'Unidirectional Data Flow' dalam arsitektur React?",
             "options": [
-              "Data selalu mengalir satu arah dari atas ke bawah, dari komponen Parent menuju ke komponen Child melalui Props.",
-              "Data mengalir bebas ke segala arah tanpa aturan hierarki.",
               "Data hanya mengalir dari browser ke server backend.",
+              "Data mengalir bebas ke segala arah tanpa aturan hierarki.",
+              "Data selalu mengalir satu arah dari atas ke bawah, dari komponen Parent menuju ke komponen Child melalui Props.",
               "Data hanya bisa dibaca oleh satu baris kode saja."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Aliran data satu arah (top-down) memastikan struktur data hierarkis mudah dilacak sumber kebenarannya (single source of truth)."
           },
           {
             "id": "q-12-3-3",
             "question": "Manakah cara terbaik menerima dan memberikan nilai default pada props komponen di TypeScript modern?",
             "options": [
-              "Menggunakan Object Destructuring langsung pada parameter fungsi (contoh: function Card({ title, variant = 'primary' }: CardProps) { ... })",
-              "Menggunakan querySelector di dalam fungsi.",
               "Menuliskan props di file CSS terpisah.",
+              "Menggunakan querySelector di dalam fungsi.",
+              "Menggunakan Object Destructuring langsung pada parameter fungsi (contoh: function Card({ title, variant = 'primary' }: CardProps) { ... })",
               "Menggunakan perulangan while."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Destructuring parameter dengan nilai default adalah standar ES6/TypeScript terbersih untuk mengekstrak dan memberi fallback pada props."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Komponen Fungsional & Props (Unidirectional Data Flow)",
+          "description": "Implementasikan konsep Komponen Fungsional & Props (Unidirectional Data Flow) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Komponen Fungsional & Props (Unidirectional Data Flow).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Functional Components & Props\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Functional Components & Props**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembuat Functional Components dengan TypeScript, mengirim dan menerima Props, Read-Only Props (Immutability), dan Unidirectional Data Flow (aliran data satu arah parent-to-child).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-12-4",
@@ -5641,27 +6469,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-4-2",
             "question": "Tipe TypeScript manakah yang paling komprehensif dan tepat digunakan untuk mendefinisikan prop children pada komponen React modern?",
             "options": [
-              "React.ReactNode",
+              "HTMLElement",
               "string",
               "number",
-              "HTMLElement"
+              "React.ReactNode"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "React.ReactNode mencakup seluruh hal yang sah dirender oleh React: elemen JSX, string, number, fragment, portal, null, dan undefined."
           },
           {
             "id": "q-12-4-3",
             "question": "Dalam arsitektur perancangan komponen antarmuka pengguna React, apa yang dimaksud dengan prinsip 'Composition over Inheritance'?",
             "options": [
-              "Menyusun komponen kompleks dengan menggabungkan dan membungkus komponen-komponen kecil yang modular via Props/Children, bukan membuat hierarki pewarisan class yang kaku.",
+              "Menghapus semua file JavaScript.",
               "Mewajibkan penggunaan class inheritance berjenjang 5 tingkat.",
               "Melarang penggunaan komponen fungsional.",
-              "Menghapus semua file JavaScript."
+              "Menyusun komponen kompleks dengan menggabungkan dan membungkus komponen-komponen kecil yang modular via Props/Children, bukan membuat hierarki pewarisan class yang kaku."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Komposisi balok-lego (composition) memberikan fleksibilitas jauh lebih tinggi dibanding pewarisan inheritance klasik dalam desain antarmuka web."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Children Prop & Komposisi Komponen",
+          "description": "Implementasikan konsep Children Prop & Komposisi Komponen secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Children Prop & Komposisi Komponen.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Children Prop & Component Composition\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Children Prop & Component Composition**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemanfaatkan prop spesial `children` (React.ReactNode) untuk membuat komponen kontainer (Card, Modal, Layout Shell) dan prinsip Komposisi vs Pewarisan.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-12-5",
@@ -5706,12 +6544,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-5-1",
             "question": "Perhatikan kode berikut:\nconst items = [];\nreturn <div>{items.length && <ProductList />}</div>;\nApa yang akan tampil secara visual di layar browser pengguna saat items adalah array kosong?",
             "options": [
-              "Tercetak angka '0' di layar (karena 0 adalah nilai falsy numerik yang tetap dirender sebagai teks oleh React).",
-              "Tampil halaman kosong bersih tanpa teks.",
               "Tampil pesan error merah.",
+              "Tampil halaman kosong bersih tanpa teks.",
+              "Tercetak angka '0' di layar (karena 0 adalah nilai falsy numerik yang tetap dirender sebagai teks oleh React).",
               "Browser me-reload otomatis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Dalam JSX, nilai 0 adalah number yang sah untuk dirender. Evaluasi 0 && <ProductList /> menghasilkan 0 yang tercetak nyata di layar."
           },
           {
@@ -5730,15 +6568,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-5-3",
             "question": "Kapan pola 'Early Return' paling bersih dan efektif diterapkan di dalam sebuah komponen React?",
             "options": [
-              "Di baris-baris awal komponen untuk langsung me-return tampilan skeleton loading spinner atau pesan error sebelum menjalankan logika render utama.",
-              "Hanya saat komponen tidak memiliki props.",
               "Hanya di dalam tag <head> HTML.",
+              "Hanya saat komponen tidak memiliki props.",
+              "Di baris-baris awal komponen untuk langsung me-return tampilan skeleton loading spinner atau pesan error sebelum menjalankan logika render utama.",
               "Early return dilarang di React."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Early return menjaga struktur komponen tetap datar dan mudah dibaca dengan menangani status loading/error/empty di baris awal."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Conditional Rendering (Ternary, Logical &&, Early Return)",
+          "description": "Implementasikan konsep Conditional Rendering (Ternary, Logical &&, Early Return) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Conditional Rendering (Ternary, Logical &&, Early Return).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Conditional Rendering Patterns\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Conditional Rendering Patterns**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenampilkan UI berdasarkan kondisi data: Ternary Operator (? :), Logical AND (&&) dan jebakan angka 0, serta pola Early Return untuk status Loading/Error.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-12-6",
@@ -5783,12 +6631,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-6-1",
             "question": "Apa fungsi utama dari prop spesial key saat merender daftar elemen menggunakan array.map() di React?",
             "options": [
-              "Memberikan identitas unik yang stabil pada setiap elemen agar algoritma Rekonsiliasi Virtual DOM React dapat melacak item mana yang ditambah, dihapus, atau diubah posisinya secara efisien.",
+              "Menghapus elemen duplikat di database.",
               "Mengunci keyboard pengguna saat membaca daftar.",
               "Mengurutkan array berdasarkan abjad otomatis.",
-              "Menghapus elemen duplikat di database."
+              "Memberikan identitas unik yang stabil pada setiap elemen agar algoritma Rekonsiliasi Virtual DOM React dapat melacak item mana yang ditambah, dihapus, atau diubah posisinya secara efisien."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Prop key membantu React mengidentifikasi entitas elemen secara persisten lintas siklus render untuk mengoptimalkan mutasi DOM."
           },
           {
@@ -5807,15 +6655,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-12-6-3",
             "question": "Di manakah posisi yang benar untuk meletakkan atribut prop key unik saat merender list dengan .map()?",
             "options": [
-              "Tepat pada elemen JSX paling luar yang langsung dikembalikan di dalam callback .map()",
-              "Pada elemen anak terdalam di dalam kartu",
               "Pada tag <body> HTML",
+              "Pada elemen anak terdalam di dalam kartu",
+              "Tepat pada elemen JSX paling luar yang langsung dikembalikan di dalam callback .map()",
               "Di dalam file tsconfig.json"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "React mewajibkan penempatan prop key pada elemen pembungkus terluar di dalam konteks iterasi map."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Rendering Lists & Mengapa Key Unik Sangat Krusial",
+          "description": "Implementasikan konsep Rendering Lists & Mengapa Key Unik Sangat Krusial secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Rendering Lists & Mengapa Key Unik Sangat Krusial.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Rendering Lists & The Key Prop\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Rendering Lists & The Key Prop**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMentransformasikan array menjadi daftar elemen JSX dengan .map(), peran prop `key` dalam algoritma Rekonsiliasi Virtual DOM, dan bahaya menggunakan array index sebagai key.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -5872,39 +6730,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-13-1-1",
             "question": "Apa filosofi utama dari pendekatan 'Utility-First CSS' yang diusung oleh Tailwind CSS?",
             "options": [
-              "Membangun antarmuka secara cepat dengan menggabungkan kelas-kelas utilitas atomik kecil langsung di dalam markup elemen JSX tanpa perlu berpindah ke file CSS terpisah atau memikirkan penamaan class.",
-              "Mengharuskan penulisan seluruh kode CSS secara inline style pada atribut style={{}}.",
               "Menghapus penggunaan warna pada antarmuka web.",
+              "Mengharuskan penulisan seluruh kode CSS secara inline style pada atribut style={{}}.",
+              "Membangun antarmuka secara cepat dengan menggabungkan kelas-kelas utilitas atomik kecil langsung di dalam markup elemen JSX tanpa perlu berpindah ke file CSS terpisah atau memikirkan penamaan class.",
               "Menggantikan fungsi komponen React dengan file HTML murni."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Utility-first mengutamakan komposisi kelas atomik di markup, mengeliminasi kerepotan penamaan class dan menjaga ukuran CSS produksi tetap sangat kecil."
           },
           {
             "id": "q-13-1-2",
             "question": "Bagaimana cara mendefinisikan kustomisasi warna dan design tokens pada arsitektur baru Tailwind CSS v4?",
             "options": [
-              "Menggunakan direktif @theme langsung di dalam file stylesheet CSS utama (@import 'tailwindcss'; @theme { --color-brand: #...; })",
-              "Mengedit file kernel sistem operasi Windows.",
               "Menuliskan konfigurasi di file XML terpisah.",
+              "Mengedit file kernel sistem operasi Windows.",
+              "Menggunakan direktif @theme langsung di dalam file stylesheet CSS utama (@import 'tailwindcss'; @theme { --color-brand: #...; })",
               "Memasang extension browser Chrome."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Tailwind CSS v4 mengadopsi arsitektur CSS-First di mana custom token dideklarasikan via direktif @theme di dalam file CSS utama."
           },
           {
             "id": "q-13-1-3",
             "question": "Mengapa ukuran berkas CSS produksi sebuah website yang dibangun dengan Tailwind CSS biasanya sangat kecil (< 15–20 KB) meskipun proyeknya sangat besar?",
             "options": [
-              "Karena compiler Tailwind secara otomatis melakukan dead-code elimination (hanya meng-generate kelas utilitas yang benar-benar ditulis di dalam kode sumber proyek).",
               "Karena Tailwind mengompresi gambar menjadi hitam putih.",
+              "Karena compiler Tailwind secara otomatis melakukan dead-code elimination (hanya meng-generate kelas utilitas yang benar-benar ditulis di dalam kode sumber proyek).",
               "Karena Tailwind menghapus teks artikel website.",
               "Karena browser menolak mengunduh file CSS."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Compiler Tailwind memindai seluruh file template dan hanya mengekstrak utility classes yang benar-benar terpakai ke dalam file CSS final."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Filosofi Utility-First & Arsitektur Tailwind CSS v4",
+          "description": "Implementasikan konsep Filosofi Utility-First & Arsitektur Tailwind CSS v4 secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Filosofi Utility-First & Arsitektur Tailwind CSS v4.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Utility-First Philosophy & Tailwind CSS v4\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Utility-First Philosophy & Tailwind CSS v4**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami mengapa Utility-First mendominasi industri, arsitektur baru Tailwind CSS v4 berbasis CSS-first (@import 'tailwindcss', @theme directive), dan kecepatan compiler Oxide.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-13-2",
@@ -5949,12 +6817,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-13-2-1",
             "question": "Berdasarkan sistem skala spacing standar Tailwind CSS, berapa ukuran piksel fisik yang dihasilkan oleh kelas utilitas p-4?",
             "options": [
-              "16px (setara dengan 1rem)",
+              "24px",
               "4px",
               "40px",
-              "24px"
+              "16px (setara dengan 1rem)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Sistem skala Tailwind berbasis kelipatan 4px per unit (4 * 4 = 16px = 1rem)."
           },
           {
@@ -5973,15 +6841,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-13-2-3",
             "question": "Kelas utilitas tipografi Tailwind manakah yang digunakan untuk mengatur jarak renggang antar baris teks (line-height) agar paragraf nyaman dibaca?",
             "options": [
-              "leading-relaxed atau leading-normal",
               "tracking-wide",
+              "leading-relaxed atau leading-normal",
               "font-bold",
               "text-justify"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Prefix leading-* mengatur properti line-height (ketinggian baris teks) untuk kenyamanan membaca."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Layout, Spacing & Tipografi dengan Tailwind CSS",
+          "description": "Implementasikan konsep Layout, Spacing & Tipografi dengan Tailwind CSS secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Layout, Spacing & Tipografi dengan Tailwind CSS.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Tailwind Layout, Spacing & Typography\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Tailwind Layout, Spacing & Typography**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenguasai kelas tata letak Flexbox (flex, justify-*, items-*), Grid (grid, grid-cols-*), Spacing scale (p-*, m-*, gap-*), dan Tipografi (text-*, font-*, leading-*).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-13-3",
@@ -6038,27 +6916,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-13-3-2",
             "question": "Bagaimana cara menyetel warna latar belakang elemen agar berwarna putih di mode terang (light mode) dan otomatis berubah menjadi abu-abu gelap di mode gelap (dark mode)?",
             "options": [
-              "bg-white dark:bg-neutral-900",
-              "bg-theme(white, neutral-900)",
               "color: light-white dark-slate",
+              "bg-theme(white, neutral-900)",
+              "bg-white dark:bg-neutral-900",
               "background-auto: true"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Prefix dark:bg-neutral-900 menimpa kelas bg-white secara otomatis saat class dark atau preferensi sistem operasi dark mode aktif."
           },
           {
             "id": "q-13-3-3",
             "question": "Modifier Tailwind manakah yang digunakan untuk memberikan styling feedback saat sebuah tombol sedang ditekan (klik mouse ditahan)?",
             "options": [
-              "active: (contoh: active:scale-95)",
-              "hover:",
               "focus:",
+              "hover:",
+              "active: (contoh: active:scale-95)",
               "visited:"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "active: menargetkan pseudo-class CSS :active yang terpicu saat pengguna menekan tombol mouse atau menyentuh layar sentuh."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Pseudo-Classes, Responsive Modifiers & Dark Mode",
+          "description": "Implementasikan konsep Pseudo-Classes, Responsive Modifiers & Dark Mode secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Pseudo-Classes, Responsive Modifiers & Dark Mode.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Tailwind Modifiers: States, Responsive & Dark Mode\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Tailwind Modifiers: States, Responsive & Dark Mode**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenerapkan interaksi dengan pseudo-classes (hover:*, focus:*, active:*, disabled:*), modifier responsif mobile-first (sm:*, md:*, lg:*), dan dark mode dengan dark:* selector.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-13-4",
@@ -6116,27 +7004,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-13-4-2",
             "question": "Apa fungsi dari library tailwind-merge di dalam ekosistem styling React?",
             "options": [
-              "Menganalisis konflik antar kelas utilitas Tailwind yang bertentangan (seperti p-4 vs p-8) dan menghapus kelas lama secara cerdas sehingga kelas baru menang dengan benar.",
-              "Mengompresi file gambar PNG menjadi WebP.",
               "Mengubah JavaScript menjadi file database SQL.",
+              "Mengompresi file gambar PNG menjadi WebP.",
+              "Menganalisis konflik antar kelas utilitas Tailwind yang bertentangan (seperti p-4 vs p-8) dan menghapus kelas lama secara cerdas sehingga kelas baru menang dengan benar.",
               "Menghapus seluruh file Tailwind dari proyek."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "tailwind-merge memahami domain kelas utilitas Tailwind dan membuang kelas utilitas redundan yang saling bertentangan."
           },
           {
             "id": "q-13-4-3",
             "question": "Di dalam standar industri komponen modern (seperti Shadcn UI), fungsi utilitas cn(...inputs) merupakan gabungan dari library apa?",
             "options": [
-              "clsx dan tailwind-merge (twMerge(clsx(inputs)))",
-              "react dan react-dom",
               "typescript dan prettier",
+              "react dan react-dom",
+              "clsx dan tailwind-merge (twMerge(clsx(inputs)))",
               "lodash dan axios"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "cn helper menggabungkan evaluasi kondisional clsx dengan resolusi konflik spesifisitas tailwind-merge."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Penggabungan Kelas Dinamis: clsx & tailwind-merge (cn helper)",
+          "description": "Implementasikan konsep Penggabungan Kelas Dinamis: clsx & tailwind-merge (cn helper) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Penggabungan Kelas Dinamis: clsx & tailwind-merge (cn helper).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Dynamic Class Merging: clsx & tailwind-merge\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Dynamic Class Merging: clsx & tailwind-merge**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenyelesaikan konflik penimpaan kelas Tailwind dengan tailwind-merge, conditional classes dengan clsx, dan menyusun fungsi utilitas standar industri `cn()`.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-13-5",
@@ -6181,39 +7079,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-13-5-1",
             "question": "Bagaimana cara CSS Modules mencegah tabrakan nama kelas (global class name collision) antar komponen yang berbeda?",
             "options": [
-              "Compiler build secara otomatis mengubah nama kelas menjadi string ber-hash unik lokal (contoh: Button_tombol__a8f3d) yang hanya terikat pada komponen tersebut.",
-              "CSS Modules menghapus seluruh nama kelas dan menggantinya dengan inline style.",
               "CSS Modules menolak file CSS yang memiliki nama sama.",
+              "CSS Modules menghapus seluruh nama kelas dan menggantinya dengan inline style.",
+              "Compiler build secara otomatis mengubah nama kelas menjadi string ber-hash unik lokal (contoh: Button_tombol__a8f3d) yang hanya terikat pada komponen tersebut.",
               "CSS Modules membatasi jumlah baris kode menjadi maksimal 10 baris."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Scoping lokal CSS Modules bekerja dengan men-generate identifier unik berupa hash per file komponen."
           },
           {
             "id": "q-13-5-2",
             "question": "Konvensi penamaan file apakah yang WAJIB digunakan agar bundler mengenali file stylesheet sebagai CSS Module terisolasi?",
             "options": [
-              "NamaKomponen.module.css (atau .module.scss)",
+              "NamaKomponen.local.stylesheet",
               "NamaKomponen.css",
               "NamaKomponen.scoped.style",
-              "NamaKomponen.local.stylesheet"
+              "NamaKomponen.module.css (atau .module.scss)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Ekstensi .module.css adalah konvensi resmi standar yang dikenali otomatis oleh Vite, Next.js, dan Webpack untuk isolasi module styling."
           },
           {
             "id": "q-13-5-3",
             "question": "Bagaimana cara menyematkan kelas dari file CSS Module ke dalam elemen JSX komponen React?",
             "options": [
-              "Mengimpor file sebagai objek (import styles from './Card.module.css') lalu menyematkan className={styles.namaKelas}",
+              "CSS Module otomatis terpasang tanpa perlu diimpor",
               "Menuliskan <link rel='stylesheet'> di dalam JSX",
               "Menuliskan className='Card.module.css.namaKelas'",
-              "CSS Module otomatis terpasang tanpa perlu diimpor"
+              "Mengimpor file sebagai objek (import styles from './Card.module.css') lalu menyematkan className={styles.namaKelas}"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "CSS Modules diimpor sebagai objek JavaScript default yang memetakan nama kelas asli ke nama hash yang dihasilkan compiler."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CSS Modules & Scoped Styling (Alternatif Terisolasi)",
+          "description": "Implementasikan konsep CSS Modules & Scoped Styling (Alternatif Terisolasi) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CSS Modules & Scoped Styling (Alternatif Terisolasi).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CSS Modules & Scoped Styling\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CSS Modules & Scoped Styling**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami isolasi gaya komponen dengan CSS Modules (file.module.css), pembuatan nama class hash unik otomatis, dan kapan memilih CSS Modules vs Tailwind CSS.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -6275,24 +7183,24 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-14-1-1",
             "question": "Mengapa React secara ketat melarang pemanggilan Hooks (seperti useState atau useEffect) di dalam blok percabangan if atau perulangan for loop?",
             "options": [
-              "Karena React mengandalkan urutan pemanggilan hooks yang stabil dan konsisten pada setiap siklus render untuk mencocokkan internal memory state dengan komponen yang tepat.",
+              "Agar ukuran file JavaScript tidak membesar.",
               "Karena compiler TypeScript tidak mendukung kurung kurawal di dalam if.",
               "Karena blok if mematikan memori browser.",
-              "Agar ukuran file JavaScript tidak membesar."
+              "Karena React mengandalkan urutan pemanggilan hooks yang stabil dan konsisten pada setiap siklus render untuk mencocokkan internal memory state dengan komponen yang tepat."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "React menyimpan state hooks dalam array linked-list internal berurutan. Perubahan jumlah/urutan hooks akibat blok conditional merusak pemetaan state."
           },
           {
             "id": "q-14-1-2",
             "question": "Perhatikan fungsi berikut:\nfunction handleMultipleClicks() {\n  setCount(prev => prev + 1);\n  setCount(prev => prev + 1);\n  setCount(prev => prev + 1);\n}\nJika nilai awal count adalah 0, berapa nilai count setelah fungsi tersebut dieksekusi?",
             "options": [
-              "3",
+              "undefined",
               "1",
               "0",
-              "undefined"
+              "3"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Functional state updates mengantrekan fungsi updater secara berantai di mana setiap pemanggilan menerima nilai state paling mutakhir dari antrean (0 -> 1 -> 2 -> 3)."
           },
           {
@@ -6307,7 +7215,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Prinsip immutability mewajibkan pembuatan objek salinan baru via spread operator {...prev} saat memperbarui sebagian properti state objek."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Rules of Hooks & useState Deep Dive (Batching, Functional Updates)",
+          "description": "Implementasikan konsep Rules of Hooks & useState Deep Dive (Batching, Functional Updates) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Rules of Hooks & useState Deep Dive (Batching, Functional Updates).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Rules of Hooks & useState Deep Dive\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Rules of Hooks & useState Deep Dive**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami 2 Aturan Wajib Hooks, alur render React, useState asynchronous updates, Automatic Batching di React 18+, dan Functional State Updates `setCount(prev => prev + 1)`.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-14-2",
@@ -6354,39 +7272,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-14-2-1",
             "question": "Kapan fungsi Cleanup yang di-return oleh sebuah useEffect akan dieksekusi oleh React?",
             "options": [
-              "Tepat sebelum effect tersebut dijalankan ulang pada siklus berikutnya, dan saat komponen akan dicopot (unmounted) dari DOM layar.",
+              "Sebelum komponen pertama kali di-mount.",
               "Hanya saat komputer pengguna dimatikan.",
               "Hanya ketika terjadi error runtime fatal.",
-              "Sebelum komponen pertama kali di-mount."
+              "Tepat sebelum effect tersebut dijalankan ulang pada siklus berikutnya, dan saat komponen akan dicopot (unmounted) dari DOM layar."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Cleanup function bertugas membersihkan resource efek sebelumnya sebelum effect baru berjalan atau saat komponen dibongkar (unmount)."
           },
           {
             "id": "q-14-2-2",
             "question": "Apa akibatnya jika Anda memasang window.addEventListener atau setInterval di dalam useEffect tanpa mengembalikan fungsi cleanup?",
             "options": [
-              "Terjadi kebocoran memori (Memory Leak) karena event listener/timer lama akan terus hidup dan menumpuk di latar belakang setiap kali komponen berganti.",
               "Browser akan langsung menutup aplikasi seketika.",
+              "Terjadi kebocoran memori (Memory Leak) karena event listener/timer lama akan terus hidup dan menumpuk di latar belakang setiap kali komponen berganti.",
               "Komponen otomatis berubah menjadi Class Component.",
               "File CSS akan terhapus."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Tanpa cleanup, timer atau subscription liar akan terus aktif di memori Heap, menyebabkan memory leaks dan multi-fire bug."
           },
           {
             "id": "q-14-2-3",
             "question": "Mengapa pada mode development dengan React.StrictMode aktif, useEffect dengan dependency array kosong [] dieksekusi sebanyak dua kali?",
             "options": [
-              "React sengaja melakukan simulasi unmount dan re-mount seketika untuk memverifikasi bahwa kode Anda memiliki fungsi cleanup yang bekerja dengan sempurna.",
-              "Karena browser Chrome mengalami bug rendering.",
               "Karena kecepatan internet terlalu cepat.",
+              "Karena browser Chrome mengalami bug rendering.",
+              "React sengaja melakukan simulasi unmount dan re-mount seketika untuk memverifikasi bahwa kode Anda memiliki fungsi cleanup yang bekerja dengan sempurna.",
               "Karena React ingin menduplikasi database."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Double-invocation di Strict Mode adalah mekanisme verifikasi ketahanan untuk memastikan effect aman terhadap cleanup dan re-mount."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: useEffect: Sinkronisasi, Dependency Array & Cleanup",
+          "description": "Implementasikan konsep useEffect: Sinkronisasi, Dependency Array & Cleanup secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi useEffect: Sinkronisasi, Dependency Array & Cleanup.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# useEffect: Lifecycle, Dependencies & Cleanup\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **useEffect: Lifecycle, Dependencies & Cleanup**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenghubungkan komponen ke sistem eksternal dengan useEffect, 3 variasi Dependency Array, fungsi Cleanup (mencegah memory leak), dan Strict Mode double-effect.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-14-3",
@@ -6431,39 +7359,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-14-3-1",
             "question": "Apa perbedaan perilaku paling mendasar antara memperbarui nilai useState (melalui setState) dan memperbarui nilai ref.current pada useRef?",
             "options": [
-              "Memperbarui useState memicu komponen me-render ulang tampilan visualnya, sedangkan mengubah ref.current TIDAK memicu re-render komponen sama sekali.",
               "useRef hanya bisa menyimpan angka sedangkan useState hanya string.",
+              "Memperbarui useState memicu komponen me-render ulang tampilan visualnya, sedangkan mengubah ref.current TIDAK memicu re-render komponen sama sekali.",
               "useRef menghapus state dari memori komputer.",
               "Keduanya memicu re-render dengan cara yang persis sama."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "useRef adalah kotak penampung nilai mutable yang persisten tanpa memicu siklus rekonsiliasi atau re-render pada UI."
           },
           {
             "id": "q-14-3-2",
             "question": "Kasus penggunaan manakah di bawah ini yang PALING TEPAT memanfaatkan hook useRef?",
             "options": [
-              "Melakukan fokus otomatis pada input teks (inputRef.current?.focus()) atau mengontrol pemutaran video HTML5.",
+              "Menghitung total harga belanjaan secara visual.",
               "Menampilkan jumlah counter angka yang harus langsung berubah di layar saat diklik.",
               "Menyimpan daftar produk e-commerce yang dirender di halaman.",
-              "Menghitung total harga belanjaan secara visual."
+              "Melakukan fokus otomatis pada input teks (inputRef.current?.focus()) atau mengontrol pemutaran video HTML5."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Interaksi langsung imperatif dengan DOM node seperti .focus(), .scrollIntoView(), atau canvas context adalah tujuan utama useRef."
           },
           {
             "id": "q-14-3-3",
             "question": "Di manakah tempat yang AMAN dan diizinkan untuk membaca atau memodifikasi nilai ref.current di dalam komponen React?",
             "options": [
-              "Di dalam Event Handlers (seperti onClick, onSubmit) atau di dalam callback useEffect.",
               "Langsung di tengah-tengah ekspresi JSX saat proses rendering.",
+              "Di dalam Event Handlers (seperti onClick, onSubmit) atau di dalam callback useEffect.",
               "Di dalam file CSS.",
               "useRef tidak boleh diubah nilainya setelah diinisialisasi."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Aturan kemurnian render React melarang efek samping mutasi ref.current selama fase render JSX; mutasi hanya boleh di event handlers atau effects."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: useRef: Akses Elemen DOM & Nilai Persisten Tanpa Re-render",
+          "description": "Implementasikan konsep useRef: Akses Elemen DOM & Nilai Persisten Tanpa Re-render secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi useRef: Akses Elemen DOM & Nilai Persisten Tanpa Re-render.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# useRef: DOM Access & Mutable References\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **useRef: DOM Access & Mutable References**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami 2 kegunaan utama useRef: referensi langsung ke node DOM HTML (fokus input, scroll position) dan penyimpanan nilai mutable yang persisten tanpa memicu re-render.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-14-4",
@@ -6537,15 +7475,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-14-4-3",
             "question": "Mengapa membungkus setiap fungsi biasa dengan useCallback secara membabi-buta (Premature Optimization) justru dapat merugikan performa aplikasi?",
             "options": [
-              "Karena React harus mengalokasikan memori tambahan untuk menyimpan array dependensi dan membandingkan referensinya di setiap siklus render, yang overhead-nya bisa lebih mahal daripada membuat fungsi biasa.",
-              "Karena useCallback membatasi jumlah klik pengguna.",
               "Karena useCallback dilarang di perangkat mobile.",
+              "Karena useCallback membatasi jumlah klik pengguna.",
+              "Karena React harus mengalokasikan memori tambahan untuk menyimpan array dependensi dan membandingkan referensinya di setiap siklus render, yang overhead-nya bisa lebih mahal daripada membuat fungsi biasa.",
               "Karena fungsi akan otomatis terhapus."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Overhead alokasi array dependensi dan eksekusi komparasi membuat memoization fungsi sederhana justru lebih boros sumber daya."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: useMemo vs useCallback: Optimasi Performa & Memoization",
+          "description": "Implementasikan konsep useMemo vs useCallback: Optimasi Performa & Memoization secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi useMemo vs useCallback: Optimasi Performa & Memoization.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# useMemo vs useCallback Memoization\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **useMemo vs useCallback Memoization**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami Referential Equality, memoization nilai komputasi berat dengan useMemo, stabilitas referensi fungsi dengan useCallback, dan bahaya Premature Optimization.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-14-5",
@@ -6619,15 +7567,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-14-5-3",
             "question": "Apa keuntungan membuat Custom Hook (contoh: function useTheme() { const ctx = useContext(ThemeContext); ... }) daripada memanggil useContext langsung di komponen?",
             "options": [
-              "Memudahkan pengecekan keamanan jika hook dipanggil di luar Provider (melempar error deskriptif yang jelas) dan menyediakan enkapsulasi type-safe yang bersih.",
               "Mengurangi ukuran file HTML menjadi 0 KB.",
+              "Memudahkan pengecekan keamanan jika hook dipanggil di luar Provider (melempar error deskriptif yang jelas) dan menyediakan enkapsulasi type-safe yang bersih.",
               "Menghilangkan kebutuhan file TypeScript.",
               "Membuat tema berubah warna secara acak."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Custom hook membungkus pengecekan null/undefined guard dan memastikan developer mendapatkan error yang jelas jika lupa memasang Provider pembungkus."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: useContext & Context API: Mengatasi Prop Drilling",
+          "description": "Implementasikan konsep useContext & Context API: Mengatasi Prop Drilling secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi useContext & Context API: Mengatasi Prop Drilling.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# useContext & The Context API\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **useContext & The Context API**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemecahkan masalah Prop Drilling (mengirim props berjenjang), createContext, Context.Provider, useContext hook, dan arsitektur Custom Provider pattern.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-14-6",
@@ -6673,39 +7631,61 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-14-6-1",
             "question": "Konvensi penamaan apakah yang WAJIB dipatuhi saat membuat Custom Hook di React agar React linter dapat memvalidasi aturan Rules of Hooks?",
             "options": [
-              "Nama fungsi wajib diawali dengan kata 'use' menggunakan camelCase (contoh: useLocalStorage, useDebounce).",
+              "Nama file harus berekstensi .html.",
               "Nama fungsi wajib diawali dengan kata 'hook'.",
               "Nama fungsi harus ditulis dalam huruf kapital semua.",
-              "Nama file harus berekstensi .html."
+              "Nama fungsi wajib diawali dengan kata 'use' menggunakan camelCase (contoh: useLocalStorage, useDebounce)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Awalan 'use' adalah konvensi resmi React yang mengaktifkan pemeriksaan linter terhadap kepatuhan pemanggilan hooks di dalamnya."
           },
           {
             "id": "q-14-6-2",
             "question": "Jika dua komponen yang berbeda (Komponen A dan Komponen B) sama-sama memanggil custom hook useCounter(), bagaimana status state di antara kedua komponen tersebut?",
             "options": [
-              "Setiap komponen memiliki salinan instance state internal yang terisolasi dan independen secara terpisah; mengubah counter di Komponen A tidak akan mengubah counter di Komponen B.",
+              "React akan melempar error konflik state duplikat.",
               "Kedua komponen otomatis berbagi nilai counter yang sama secara global.",
               "Komponen B akan otomatis dinonaktifkan.",
-              "React akan melempar error konflik state duplikat."
+              "Setiap komponen memiliki salinan instance state internal yang terisolasi dan independen secara terpisah; mengubah counter di Komponen A tidak akan mengubah counter di Komponen B."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Custom hooks mengekstrak logika stateful, bukan membagikan nilai state bersama; setiap pemanggilan menciptakan alokasi memori state baru."
           },
           {
             "id": "q-14-6-3",
             "question": "Apa fungsi utama dari custom hook useDebounce pada kotak input pencarian (search bar)?",
             "options": [
-              "Menunda pembaruan nilai pencarian sampai pengguna berhenti mengetik selama jeda waktu tertentu (misal 500ms), mencegah penembakan request API yang berlebihan di setiap ketikan huruf.",
-              "Mengubah huruf kapital menjadi huruf kecil.",
               "Mengoreksi ejaan kata yang salah secara otomatis.",
+              "Mengubah huruf kapital menjadi huruf kecil.",
+              "Menunda pembaruan nilai pencarian sampai pengguna berhenti mengetik selama jeda waktu tertentu (misal 500ms), mencegah penembakan request API yang berlebihan di setiap ketikan huruf.",
               "Merekam password pengguna di database."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Debouncing mengelompokkan rangkaian event beruntun cepat dan hanya mengeksekusi aksi setelah jeda keheningan, menghemat beban server backend."
+          },
+          {
+            "id": "extra-14-react-state",
+            "question": "Perhatikan pembaruan state React berikut:\n```tsx\nconst [count, setCount] = useState(0);\nconst handleClick = () => {\n  setCount(count + 1);\n  setCount(count + 1);\n  setCount(count + 1);\n};\n```\nJika tombol diklik satu kali dari nilai awal 0, berapakah nilai `count` pada render berikutnya?",
+            "options": [
+              "0",
+              "3",
+              "1 (karena state updates di-batch dan nilai `count` saat eksekusi fungsi masih bernilai 0 untuk ketiga pemanggilan).",
+              "NaN"
+            ],
+            "correctIndex": 2,
+            "explanation": "Pembaruan state berbasis nilai langsung menggunakan closure snapshot saat fungsi dipanggil. Untuk menaikkan nilai 3 kali dalam satu event, gunakan updater function: `setCount(prev => prev + 1)`."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Custom Hooks: Ekstraksi Logika State Reusable",
+          "description": "Implementasikan konsep Custom Hooks: Ekstraksi Logika State Reusable secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Custom Hooks: Ekstraksi Logika State Reusable.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Custom Hooks & Logic Extraction\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Custom Hooks & Logic Extraction**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengekstrak logika stateful yang berulang menjadi Custom Hooks (konvensi `use*`), contoh nyata: useDebounce, useLocalStorage, dan useMediaQuery.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -6761,39 +7741,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-15-1-1",
             "question": "Manakah di bawah ini yang merupakan karakteristik utama dari Server State dibandingkan Client State?",
             "options": [
-              "Server State tersimpan di server database remote, bersifat asinkron, berpotensi menjadi basi (stale data), dan membutuhkan mekanisme caching serta refetching otomatis.",
-              "Server State hanya hidup saat kursor mouse bergerak.",
               "Server State tidak bisa disimpan di database.",
+              "Server State hanya hidup saat kursor mouse bergerak.",
+              "Server State tersimpan di server database remote, bersifat asinkron, berpotensi menjadi basi (stale data), dan membutuhkan mekanisme caching serta refetching otomatis.",
               "Server State selalu sinkron dan tidak pernah mengalami loading."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Server State berada di luar kontrol browser lokal dan memerlukan manajemen cache asinkron khusus untuk sinkronisasi data remote."
           },
           {
             "id": "q-15-1-2",
             "question": "Manakah pasangan alat yang paling ideal dan sesuai dengan standar arsitektur frontend modern untuk mengelola Client State vs Server State?",
             "options": [
-              "Zustand untuk Client State UI, dan TanStack Query (React Query) untuk Server State Data Fetching & Caching.",
+              "Membuat satu file Redux tunggal untuk seluruh fungsi.",
               "Menggunakan file CSS untuk Server State dan HTML untuk Client State.",
               "Menggunakan localStorage untuk semua data database.",
-              "Membuat satu file Redux tunggal untuk seluruh fungsi."
+              "Zustand untuk Client State UI, dan TanStack Query (React Query) untuk Server State Data Fetching & Caching."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Pemisahan peran antara Zustand (global client state) dan TanStack Query (server state cache) adalah arsitektur paling bersih dan efisien di industri."
           },
           {
             "id": "q-15-1-3",
             "question": "Manakah contoh data di bawah ini yang tergolong murni sebagai Client State?",
             "options": [
-              "Status apakah modal dialog sedang terbuka (isOpen: true/false) dan pilihan tema (light/dark).",
+              "Status verifikasi email akun di database.",
               "Daftar 100 riwayat transaksi pengguna dari database server.",
               "Informasi saldo rekening bank pengguna.",
-              "Status verifikasi email akun di database."
+              "Status apakah modal dialog sedang terbuka (isOpen: true/false) dan pilihan tema (light/dark)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Status modal dialog dan tema UI adalah state tampilan lokal sinkron yang sepenuhnya dikontrol oleh client browser."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Client State vs Server State Dikotomi",
+          "description": "Implementasikan konsep Client State vs Server State Dikotomi secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Client State vs Server State Dikotomi.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Client State vs Server State Dichotomy\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Client State vs Server State Dichotomy**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedakan arsitektur dua jenis state: Client State (UI ephemeral: modal terbuka, tema) vs Server State (data asinkron remote: daftar produk, profil dari database).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-15-2",
@@ -6839,39 +7829,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-15-2-1",
             "question": "Apa keunggulan utama Zustand dibandingkan Context API dalam hal optimasi rendering komponen?",
             "options": [
-              "Zustand mendukung Atomic Selectors (useStore(state => state.x)) sehingga komponen HANYA me-render ulang jika nilai spesifik yang di-select tersebut benar-benar berubah.",
+              "Zustand mewajibkan pembungkus 10 lapis Provider.",
               "Zustand otomatis mengubah file JavaScript menjadi C++.",
               "Zustand menghapus seluruh kode CSS dari proyek.",
-              "Zustand mewajibkan pembungkus 10 lapis Provider."
+              "Zustand mendukung Atomic Selectors (useStore(state => state.x)) sehingga komponen HANYA me-render ulang jika nilai spesifik yang di-select tersebut benar-benar berubah."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Atomic selectors pada Zustand mengisolasi subscription komponen secara granular, mencegah re-render massal yang umum terjadi pada Context API."
           },
           {
             "id": "q-15-2-2",
             "question": "Bagaimana cara mengambil HANYA fungsi aksi 'tambahItem' dari Zustand store secara efisien tanpa membuat komponen re-render saat data items bertambah?",
             "options": [
-              "const tambahItem = useCartStore(state => state.tambahItem);",
+              "const tambahItem = useCartStore.actions;",
               "const { tambahItem } = useCartStore();",
               "const tambahItem = useCartStore.getAll();",
-              "const tambahItem = useCartStore.actions;"
+              "const tambahItem = useCartStore(state => state.tambahItem);"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Memilih fungsi aksi secara atomik (state => state.tambahItem) menjamin stabilitas referensi sehingga komponen tidak pernah re-render karena aksi tidak pernah berubah."
           },
           {
             "id": "q-15-2-3",
             "question": "Apakah Zustand mewajibkan komponen React dibungkus di dalam tag <StoreProvider> pada root aplikasi seperti Context API atau Redux?",
             "options": [
-              "TIDAK, Zustand tidak membutuhkan Provider wrapper sama sekali dan store dapat dipanggil langsung dari komponen manapun di seluruh aplikasi.",
+              "Hanya wajib jika menggunakan TypeScript.",
               "YA, wajib membungkus dengan <ZustandProvider> di file index.tsx.",
               "YA, wajib membungkus dengan 2 Provider terpisah.",
-              "Hanya wajib jika menggunakan TypeScript."
+              "TIDAK, Zustand tidak membutuhkan Provider wrapper sama sekali dan store dapat dipanggil langsung dari komponen manapun di seluruh aplikasi."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Zustand menggunakan model store eksternal independen yang dapat diakses langsung via hooks tanpa memerlukan Provider wrapper di pohon JSX."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Zustand: Global Store Ringan & Atomic Selectors",
+          "description": "Implementasikan konsep Zustand: Global Store Ringan & Atomic Selectors secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Zustand: Global Store Ringan & Atomic Selectors.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Zustand Store & Atomic Selectors\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Zustand Store & Atomic Selectors**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembangun global state management dengan Zustand (create store, set, get), arsitektur Actions di dalam store, dan Atomic Selectors untuk mencegah re-render yang tidak perlu.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-15-3",
@@ -6916,39 +7916,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-15-3-1",
             "question": "Apa fungsi utama dari middleware persist pada library Zustand?",
             "options": [
-              "Secara otomatis menyimpan state ke media penyimpanan browser (seperti localStorage) dan memulihkan state tersebut saat halaman dimuat ulang.",
-              "Mengubah warna teks aplikasi secara otomatis.",
               "Menghubungkan aplikasi ke printer lokal.",
+              "Mengubah warna teks aplikasi secara otomatis.",
+              "Secara otomatis menyimpan state ke media penyimpanan browser (seperti localStorage) dan memulihkan state tersebut saat halaman dimuat ulang.",
               "Membatasi jumlah baris kode store."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "persist middleware menyinkronkan perubahan state ke storage target (localStorage/sessionStorage) secara transparan dan otomatis."
           },
           {
             "id": "q-15-3-2",
             "question": "Apa fungsi dari opsi 'partialize' di dalam konfigurasi Zustand persist middleware?",
             "options": [
-              "Menentukan secara selektif properti state mana saja yang ingin disimpan ke localStorage dan mengecualikan properti sementara (seperti isLoading/error).",
               "Membagi file JavaScript menjadi 2 bagian.",
+              "Menentukan secara selektif properti state mana saja yang ingin disimpan ke localStorage dan mengecualikan properti sementara (seperti isLoading/error).",
               "Mengompresi data dengan format ZIP.",
               "Menghapus token pengguna secara berkala."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "partialize: (state) => ({ subset }) memungkinkan developer menyaring data apa saja yang diizinkan masuk ke storage persistensi."
           },
           {
             "id": "q-15-3-3",
             "question": "Mengapa error 'Hydration Mismatch' sering terjadi di Next.js saat membaca data dari localStorage pada render pertama?",
             "options": [
-              "Karena server me-render HTML menggunakan initial state default (karena server tidak memiliki akses ke browser localStorage), sedangkan browser client me-render data hasil baca localStorage.",
+              "Karena file CSS belum selesai diunduh.",
               "Karena Next.js melarang penggunaan Zustand.",
               "Karena browser menolak koneksi internet.",
-              "Karena file CSS belum selesai diunduh."
+              "Karena server me-render HTML menggunakan initial state default (karena server tidak memiliki akses ke browser localStorage), sedangkan browser client me-render data hasil baca localStorage."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Perbedaan antara HTML statis hasil render server dan DOM hasil pembacaan localStorage di browser memicu ketidakcocokan (hydration mismatch)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Zustand Persist Middleware & Custom Storage",
+          "description": "Implementasikan konsep Zustand Persist Middleware & Custom Storage secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Zustand Persist Middleware & Custom Storage.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Zustand Persist Middleware\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Zustand Persist Middleware**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengotomatiskan penyimpanan state ke localStorage dengan `persist` middleware, partialization (hanya simpan data tertentu), dan penanganan hidrasi Next.js (SSR hydration mismatch).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-15-4",
@@ -6998,39 +8008,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-15-4-1",
             "question": "Apa fungsi dari array 'queryKey' (contoh: queryKey: ['courses', courseId]) pada hook useQuery di TanStack Query?",
             "options": [
-              "Sebagai identifier unik untuk mengidentifikasi, meng-cache, dan membagikan data spesifik tersebut di memori antar seluruh komponen aplikasi.",
               "Untuk mengunci database server agar tidak bisa diakses orang lain.",
+              "Sebagai identifier unik untuk mengidentifikasi, meng-cache, dan membagikan data spesifik tersebut di memori antar seluruh komponen aplikasi.",
               "Untuk mengenkripsi password user di browser.",
               "Sebagai nama file gambar di server."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "queryKey bertindak sebagai kunci index cache unik; jika dependensi (seperti courseId) berubah, TanStack Query otomatis mengambil data baru."
           },
           {
             "id": "q-15-4-2",
             "question": "Apa perbedaan antara konfigurasi staleTime dan gcTime di TanStack Query v5?",
             "options": [
-              "staleTime menentukan durasi data dianggap masih segar (fresh) sehingga tidak memicu request ulang ke server, sedangkan gcTime menentukan berapa lama data tidak aktif disimpan di memori cache sebelum dihapus.",
+              "Keduanya adalah sinonim yang persis sama.",
               "staleTime hanya untuk file CSS sedangkan gcTime untuk HTML.",
               "gcTime menentukan kecepatan loading internet.",
-              "Keduanya adalah sinonim yang persis sama."
+              "staleTime menentukan durasi data dianggap masih segar (fresh) sehingga tidak memicu request ulang ke server, sedangkan gcTime menentukan berapa lama data tidak aktif disimpan di memori cache sebelum dihapus."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "staleTime mengontrol kesegaran data untuk refetching, sedangkan gcTime (Garbage Collection) mengontrol retensi data tidak aktif di memori RAM."
           },
           {
             "id": "q-15-4-3",
             "question": "Fitur bawaan otomatis apakah yang disediakan oleh TanStack Query tanpa perlu konfigurasi kode tambahan?",
             "options": [
-              "Automatic background refetching saat pengguna kembali fokus ke tab browser (Window Focus Refetching) dan deduplikasi request simultan.",
-              "Pembuatan server database MySQL otomatis.",
               "Penerjemahan bahasa aplikasi otomatis.",
+              "Pembuatan server database MySQL otomatis.",
+              "Automatic background refetching saat pengguna kembali fokus ke tab browser (Window Focus Refetching) dan deduplikasi request simultan.",
               "Penghapusan file JavaScript yang tidak terpakai."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "TanStack Query secara cerdas melakukan auto-refetch saat window kembali fokus, koneksi online pulih, atau komponen me-mount ulang data basi."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: TanStack Query: Data Fetching, Caching & Auto-Refetch",
+          "description": "Implementasikan konsep TanStack Query: Data Fetching, Caching & Auto-Refetch secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi TanStack Query: Data Fetching, Caching & Auto-Refetch.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# TanStack Query: Fetching & Caching\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **TanStack Query: Fetching & Caching**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenguasai Server State management dengan TanStack Query v5 (useQuery), Query Keys (`['courses', id]`), status (isLoading, isError, data), staleTime vs gcTime, dan background refetching.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-15-5",
@@ -7075,12 +8095,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-15-5-1",
             "question": "Apa fungsi dari perintah queryClient.invalidateQueries({ queryKey: ['todos'] }) di dalam callback onSuccess pada useMutation?",
             "options": [
-              "Menandai cache query ['todos'] sebagai data basi (stale) dan memicu penarikan ulang data segar (refetch) secara otomatis dari server backend.",
+              "Mengubah tipe data menjadi string.",
               "Menghapus seluruh database server.",
               "Mematikan fungsi mutasi secara permanen.",
-              "Mengubah tipe data menjadi string."
+              "Menandai cache query ['todos'] sebagai data basi (stale) dan memicu penarikan ulang data segar (refetch) secara otomatis dari server backend."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Invalidate queries memberi tahu TanStack Query bahwa data cache terkait sudah usang akibat mutasi dan harus segera di-refetch."
           },
           {
@@ -7099,15 +8119,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-15-5-3",
             "question": "Hook TanStack Query manakah yang secara khusus digunakan untuk operasi mutasi pengubahan data di server (seperti POST, PUT, PATCH, DELETE)?",
             "options": [
-              "useMutation",
+              "useServerAction",
               "useQuery",
               "useFetch",
-              "useServerAction"
+              "useMutation"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "useMutation dirancang untuk operasi mutasi yang mengubah data (CUD) dan memiliki side effect pada server backend."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Mutations, Query Invalidation & Optimistic UI",
+          "description": "Implementasikan konsep Mutations, Query Invalidation & Optimistic UI secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Mutations, Query Invalidation & Optimistic UI.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Mutations & Optimistic UI Updates\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Mutations & Optimistic UI Updates**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengirim perubahan data ke server dengan useMutation (POST, PUT, DELETE), memperbarui cache otomatis dengan queryClient.invalidateQueries, dan teknik Optimistic Updates.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -7168,39 +8198,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-16-1-1",
             "question": "Di dalam arsitektur Next.js App Router, nama file apakah yang WAJIB digunakan di dalam suatu folder agar segmen folder tersebut menjadi rute halaman web publik yang dapat diakses di browser?",
             "options": [
-              "page.tsx (atau page.jsx/page.js)",
               "index.html",
+              "page.tsx (atau page.jsx/page.js)",
               "route.tsx",
               "view.tsx"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "page.tsx adalah konvensi file khusus yang mendefinisikan tampilan UI publik unik untuk rute folder terkait di App Router."
           },
           {
             "id": "q-16-1-2",
             "question": "Bagaimana cara mendefinisikan rute dinamis (Dynamic Routes) untuk menangani URL seperti /courses/react-dasar atau /courses/nextjs di Next.js App Router?",
             "options": [
-              "Membuat folder dengan nama di dalam kurung siku: app/courses/[slug]/page.tsx",
-              "Membuat file bernama app/courses/dynamic.tsx",
               "Menuliskan konfigurasi di file next.config.js",
+              "Membuat file bernama app/courses/dynamic.tsx",
+              "Membuat folder dengan nama di dalam kurung siku: app/courses/[slug]/page.tsx",
               "Membuat folder dengan tanda bintang: app/courses/*/page.tsx"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Kurung siku [parameter] adalah konvensi resmi Next.js untuk mendefinisikan segmen rute dinamis berparameter."
           },
           {
             "id": "q-16-1-3",
             "question": "Apa fungsi dari folder Route Group yang menggunakan tanda kurung (contoh: app/(marketing)/about/page.tsx)?",
             "options": [
-              "Mengelompokkan rute dan layout secara terorganisir tanpa menambahkan nama folder tersebut ke dalam segmen URL browser (URL tetap /about).",
+              "Menghapus rute dari mesin pencari Google.",
               "Mengharuskan pengguna login sebelum mengakses halaman.",
               "Mengompresi file rute menjadi arsip ZIP.",
-              "Menghapus rute dari mesin pencari Google."
+              "Mengelompokkan rute dan layout secara terorganisir tanpa menambahkan nama folder tersebut ke dalam segmen URL browser (URL tetap /about)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Route Groups (folderName) memungkinkan organisasi folder dan pemisahan layout tanpa memengaruhi struktur URL publik."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: App Router & File-System Based Routing",
+          "description": "Implementasikan konsep App Router & File-System Based Routing secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi App Router & File-System Based Routing.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# App Router & File-System Based Routing\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **App Router & File-System Based Routing**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami struktur folder Next.js App Router (app/ folder), konvensi file khusus (page.tsx, layout.tsx, loading.tsx, not-found.tsx, error.tsx), Route Groups (folder), dan Dynamic Routes [slug].\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-16-2",
@@ -7246,39 +8286,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-16-2-1",
             "question": "Secara default, apakah jenis komponen dari seluruh file page.tsx dan layout.tsx di dalam Next.js App Router jika tidak diberi direktif khusus?",
             "options": [
-              "React Server Components (RSC) yang dieksekusi secara murni di lingkungan server.",
-              "Client Components yang dieksekusi di browser.",
               "File HTML statis murni tanpa logika.",
+              "Client Components yang dieksekusi di browser.",
+              "React Server Components (RSC) yang dieksekusi secara murni di lingkungan server.",
               "Database schema."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Di Next.js App Router, semua komponen secara bawaan adalah Server Components kecuali jika secara eksplisit ditandai dengan 'use client'."
           },
           {
             "id": "q-16-2-2",
             "question": "Kapan seorang developer WAJIB menambahkan direktif 'use client' pada baris paling atas sebuah file komponen di Next.js?",
             "options": [
-              "Ketika komponen tersebut membutuhkan interaksi browser pengguna (seperti event handler onClick, onChange) atau menggunakan React State/Lifecycle Hooks (useState, useEffect).",
-              "Hanya saat ingin melakukan query database PostgreSQL.",
               "Setiap kali ingin menampilkan gambar foto.",
+              "Hanya saat ingin melakukan query database PostgreSQL.",
+              "Ketika komponen tersebut membutuhkan interaksi browser pengguna (seperti event handler onClick, onChange) atau menggunakan React State/Lifecycle Hooks (useState, useEffect).",
               "Ketika komponen memiliki lebih dari 50 baris kode."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Direktif 'use client' mendefinisikan boundary pemisah untuk kode yang membutuhkan API browser, event listeners, atau React hooks."
           },
           {
             "id": "q-16-2-3",
             "question": "Apa keuntungan performa utama dari React Server Components (RSC) bagi pengguna website di perangkat smartphone dengan koneksi lambat?",
             "options": [
-              "Zero-Bundle Size: kode library server dan komputasi render diproses di server sehingga pengguna tidak perlu mengunduh file JavaScript yang berat ke browser mereka.",
+              "Resolusi layar ponsel otomatis meningkat menjadi 4K.",
               "Baterai ponsel otomatis terisi penuh saat membuka website.",
               "Komponen Server Components tidak memerlukan koneksi internet.",
-              "Resolusi layar ponsel otomatis meningkat menjadi 4K."
+              "Zero-Bundle Size: kode library server dan komputasi render diproses di server sehingga pengguna tidak perlu mengunduh file JavaScript yang berat ke browser mereka."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Server Components tidak menyertakan JavaScript komponen ke bundle client, secara drastis memangkas waktu First Contentful Paint dan TTI."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Server Components vs Client Components ('use client')",
+          "description": "Implementasikan konsep Server Components vs Client Components ('use client') secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Server Components vs Client Components ('use client').",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Server Components vs Client Components\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Server Components vs Client Components**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedah paradigma React Server Components (RSC): komponen default berjalan di server (zero-bundle size, akses langsung database) vs Client Components dengan direktif 'use client' (interaktivitas, onClick, hooks).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-16-3",
@@ -7324,39 +8374,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-16-3-1",
             "question": "Apa fungsi utama dari fitur Server Actions (ditandai dengan direktif 'use server') di Next.js?",
             "options": [
-              "Memungkinkan penulisan fungsi asinkron yang dieksekusi secara aman di server yang dapat dipanggil langsung dari formulir client tanpa perlu membuat file API endpoint route handler terpisah.",
+              "Membatasi jumlah pengunjung website.",
               "Mengubah koneksi internet pengguna menjadi Wi-Fi publik.",
               "Menghapus seluruh file gambar di server hosting.",
-              "Membatasi jumlah pengunjung website."
+              "Memungkinkan penulisan fungsi asinkron yang dieksekusi secara aman di server yang dapat dipanggil langsung dari formulir client tanpa perlu membuat file API endpoint route handler terpisah."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Server Actions menjembatani interaksi form/client dengan eksekusi backend secara seamless dan type-safe di balik layar."
           },
           {
             "id": "q-16-3-2",
             "question": "Mengapa pemanggilan fungsi revalidatePath('/courses') sangat penting dilakukan di akhir sebuah Server Action setelah mutasi database berhasil?",
             "options": [
-              "Untuk membersihkan cache halaman rute terkait dan memerintahkan Next.js memuat ulang data segar dari database agar tampilan UI langsung terbarui.",
-              "Untuk mematikan server database.",
               "Untuk mengenkripsi password user.",
+              "Untuk mematikan server database.",
+              "Untuk membersihkan cache halaman rute terkait dan memerintahkan Next.js memuat ulang data segar dari database agar tampilan UI langsung terbarui.",
               "Untuk mengunduh file log sistem."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "revalidatePath membersihkan cache server untuk path yang ditentukan sehingga permintaan berikutnya mendapatkan representasi data terbaru."
           },
           {
             "id": "q-16-3-3",
             "question": "Hook apakah di React 19 / Next.js 16 yang digunakan untuk membaca status isPending (loading) dan nilai return status dari sebuah Server Action?",
             "options": [
-              "useActionState (atau useFormState)",
-              "useServerEffect",
               "useDatabaseQuery",
+              "useServerEffect",
+              "useActionState (atau useFormState)",
               "useNextMutation"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "useActionState mengelola state pengembalian aksi dan menyediakan boolean isPending untuk umpan balik visual submit form."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Server Actions & Mutasi Data ('use server')",
+          "description": "Implementasikan konsep Server Actions & Mutasi Data ('use server') secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Server Actions & Mutasi Data ('use server').",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Server Actions & Form Mutations\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Server Actions & Form Mutations**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenjalankan fungsi asynchronous di server langsung dari formulir client menggunakan Server Actions ('use server'), revalidatePath, revalidateTag, useActionState, dan useFormStatus.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-16-4",
@@ -7426,15 +8486,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-16-4-3",
             "question": "Opsi caching apakah yang harus disetel pada fungsi fetch jika Anda ingin mengambil data harga saham yang WAJIB selalu segar di setiap request tanpa di-cache?",
             "options": [
-              "{ cache: 'no-store' }",
               "{ cache: 'force-cache' }",
+              "{ cache: 'no-store' }",
               "{ cache: 'default' }",
               "{ cache: 'forever' }"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "cache: 'no-store' menginstruksikan Next.js untuk selalu mengambil data langsung dari origin server pada setiap permintaan (Dynamic Rendering)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Data Fetching, Caching & Revalidasi di Next.js 16",
+          "description": "Implementasikan konsep Data Fetching, Caching & Revalidasi di Next.js 16 secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Data Fetching, Caching & Revalidasi di Next.js 16.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Next.js 16 Data Fetching & Caching\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Next.js 16 Data Fetching & Caching**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami model data fetching Next.js 16: async Server Components, opsi fetch (cache: 'force-cache' vs 'no-store'), Incremental Static Regeneration (ISR) via next.revalidate, dan Parallel Fetching.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-16-5",
@@ -7480,24 +8550,24 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-16-5-1",
             "question": "Fungsi khusus apakah di Next.js App Router yang digunakan untuk menghasilkan tag metadata (title, description, og:image) secara dinamis berdasarkan data database dari rute [slug]?",
             "options": [
-              "export async function generateMetadata({ params }) { ... }",
-              "export function getDynamicSEO() { ... }",
               "export async function setHeadTags() { ... }",
+              "export function getDynamicSEO() { ... }",
+              "export async function generateMetadata({ params }) { ... }",
               "export function metadataHandler() { ... }"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "generateMetadata() adalah fungsi khusus Next.js untuk menghasilkan objek Metadata secara asinkron berbasis parameter rute."
           },
           {
             "id": "q-16-5-2",
             "question": "Aturan format apakah yang WAJIB dipenuhi pada properti gambar Open Graph (openGraph.images) agar banner pratinjau dapat tampil sempurna saat link dibagikan di WhatsApp atau Twitter?",
             "options": [
-              "URL gambar WAJIB berupa URL absolut lengkap dengan protokol (contoh: https://domain.com/og.jpg), bukan path relatif.",
+              "Gambar harus diunggah langsung ke server WhatsApp.",
               "Format gambar harus berekstensi .bmp.",
               "Gambar harus berukuran tepat 10x10 pixel.",
-              "Gambar harus diunggah langsung ke server WhatsApp."
+              "URL gambar WAJIB berupa URL absolut lengkap dengan protokol (contoh: https://domain.com/og.jpg), bukan path relatif."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Crawler platform media sosial membutuhkan Absolute URL lengkap untuk dapat mengunduh dan merender pratinjau gambar Open Graph."
           },
           {
@@ -7512,7 +8582,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "React dan Next.js secara cerdas me-memoize fetch request yang identik dalam satu siklus render, menghindari penembakan ganda ke API/DB."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Metadata API, Dynamic SEO & Social Sharing (OG Tags)",
+          "description": "Implementasikan konsep Metadata API, Dynamic SEO & Social Sharing (OG Tags) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Metadata API, Dynamic SEO & Social Sharing (OG Tags).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Metadata API, SEO & OpenGraph\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Metadata API, SEO & OpenGraph**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengoptimalkan SEO teknis dengan Metadata API Next.js: Static metadata, Dynamic metadata (`generateMetadata`), OpenGraph social share cards, Twitter cards, dan sitemap.xml / robots.txt.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-16-6",
@@ -7562,39 +8642,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-16-6-1",
             "question": "Apa perbedaan paling mendasar antara rute Static ('○') dan rute Dynamic ('ƒ') pada output laporan perintah next build?",
             "options": [
-              "Rute Static di-render menjadi HTML sekali saat proses build dan disajikan super cepat dari CDN global, sedangkan rute Dynamic dihitung ulang di server pada setiap permintaan pengguna masuk.",
-              "Rute Static tidak bisa dibuka di smartphone.",
               "Rute Dynamic tidak mendukung format gambar.",
+              "Rute Static tidak bisa dibuka di smartphone.",
+              "Rute Static di-render menjadi HTML sekali saat proses build dan disajikan super cepat dari CDN global, sedangkan rute Dynamic dihitung ulang di server pada setiap permintaan pengguna masuk.",
               "Rute Static hanya berlaku selama 24 jam."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Static generation menghasilkan respon HTML statis dengan biaya komputasi 0 di runtime, sedangkan Dynamic rendering dieksekusi on-demand per request."
           },
           {
             "id": "q-16-6-2",
             "question": "Fungsi dinamis manakah di Next.js yang jika dipanggil di dalam komponen halaman akan secara otomatis mengubah rute tersebut menjadi Dynamic Rendering ('ƒ')?",
             "options": [
-              "Memanggil cookies(), headers(), atau membaca searchParams dinamis.",
+              "Menambahkan class Tailwind CSS",
               "Memanggil console.log()",
               "Menggunakan tag <img>",
-              "Menambahkan class Tailwind CSS"
+              "Memanggil cookies(), headers(), atau membaca searchParams dinamis."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Dynamic APIs seperti cookies() dan headers() bergantung pada konteks request user spesifik, sehingga memaksa server me-render halaman secara dinamis."
           },
           {
             "id": "q-16-6-3",
             "question": "Apa keunggulan arsitektur bundler Turbopack yang dibangun di atas bahasa Rust pada Next.js 16 dibandingkan Webpack lama?",
             "options": [
-              "Waktu kompilasi dan proses Fast Refresh lokal berkecepatan ultra tinggi (hingga ratusan kali lebih cepat pada basis kode besar).",
-              "Turbopack mengubah bahasa JavaScript menjadi Python.",
               "Turbopack menghapus seluruh bug dari kode secara otomatis.",
+              "Turbopack mengubah bahasa JavaScript menjadi Python.",
+              "Waktu kompilasi dan proses Fast Refresh lokal berkecepatan ultra tinggi (hingga ratusan kali lebih cepat pada basis kode besar).",
               "Turbopack tidak memerlukan koneksi listrik."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Turbopack mengoptimalkan performa bundling developer tooling dengan arsitektur native multi-threaded berbasis Rust."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Turbopack, Build Optimization & Arsitektur Produksi",
+          "description": "Implementasikan konsep Turbopack, Build Optimization & Arsitektur Produksi secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Turbopack, Build Optimization & Arsitektur Produksi.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Turbopack & Production Architecture\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Turbopack & Production Architecture**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami engine bundler Turbopack (berbasis Rust), proses kompilasi build (next build), Static Generation vs Dynamic Rendering, Serverless vs Edge runtime, dan optimasi bundle analyzer.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -7651,12 +8741,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-1-1",
             "question": "Berdasarkan standar industri RESTful API Design, pola penamaan URL endpoint manakah yang paling benar untuk mengambil detail data kursus dengan ID '101'?",
             "options": [
-              "GET /api/v1/courses/101",
-              "GET /api/v1/getCourseDetailsById?id=101",
               "POST /api/v1/fetchCourse/101",
+              "GET /api/v1/getCourseDetailsById?id=101",
+              "GET /api/v1/courses/101",
               "GET /api/v1/courses/show/101"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "REST menggunakan kata benda jamak /courses/:id yang dipadukan dengan kata kerja HTTP GET untuk mengidentifikasi resource secara semantik."
           },
           {
@@ -7675,15 +8765,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-1-3",
             "question": "Apa yang dimaksud dengan konsep 'Idempotency' pada HTTP Method seperti GET, PUT, dan DELETE?",
             "options": [
-              "Menjalankan request tersebut sebanyak 1 kali atau 100 kali akan menghasilkan status akhir database yang sama persis tanpa efek samping bertambah secara tidak sengaja.",
+              "Request membutuhkan password superuser.",
               "Request hanya boleh dijalankan pada hari kerja.",
               "Request otomatis menghapus histori browser.",
-              "Request membutuhkan password superuser."
+              "Menjalankan request tersebut sebanyak 1 kali atau 100 kali akan menghasilkan status akhir database yang sama persis tanpa efek samping bertambah secara tidak sengaja."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Operasi idempotent menjamin keamanan pengulangan request (retry) saat koneksi jaringan terputus tanpa menciptakan duplikasi data."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Prinsip Desain REST API & Semantik HTTP",
+          "description": "Implementasikan konsep Prinsip Desain REST API & Semantik HTTP secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Prinsip Desain REST API & Semantik HTTP.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# REST API Design & HTTP Semantics\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **REST API Design & HTTP Semantics**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMerancang arsitektur RESTful API profesional: Resource Naming (kata benda jamak), HTTP Verbs (GET, POST, PUT, PATCH, DELETE), Status Codes semantik, Idempotency, dan Statelessness.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-17-2",
@@ -7729,39 +8829,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-2-1",
             "question": "Nama file konvensi khusus apakah yang WAJIB digunakan di dalam folder Next.js App Router untuk membuat REST API endpoint?",
             "options": [
-              "route.ts (atau route.js)",
+              "handler.ts",
               "api.ts",
               "server.ts",
-              "handler.ts"
+              "route.ts (atau route.js)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "route.ts adalah konvensi file resmi Next.js App Router untuk mendefinisikan API Route Handlers."
           },
           {
             "id": "q-17-2-2",
             "question": "Bagaimana cara membaca query string parameter (contoh: ?search=react) dari objek NextRequest di dalam fungsi GET handler?",
             "options": [
-              "const query = request.nextUrl.searchParams.get('search');",
-              "const query = request.query.search;",
               "const query = request.params.search;",
+              "const query = request.query.search;",
+              "const query = request.nextUrl.searchParams.get('search');",
               "const query = request.getSearchString();"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "NextRequest memperluas Web Request dengan menyediakan properti nextUrl.searchParams untuk ekstraksi URL query params yang mudah."
           },
           {
             "id": "q-17-2-3",
             "question": "Apa yang terjadi jika Anda meletakkan file page.tsx dan file route.ts di dalam folder yang sama persis di Next.js App Router?",
             "options": [
-              "Next.js akan melempar error konflik build karena satu folder hanya boleh bertindak sebagai Halaman UI (page) ATAU Endpoint API (route), tidak boleh keduanya sekaligus.",
               "Next.js akan menggabungkan keduanya menjadi file video.",
+              "Next.js akan melempar error konflik build karena satu folder hanya boleh bertindak sebagai Halaman UI (page) ATAU Endpoint API (route), tidak boleh keduanya sekaligus.",
               "Halaman akan otomatis dialihkan ke Google.",
               "Database akan ter-reset."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Next.js melarang konflik rute: sebuah segmen path hanya boleh merender tampilan visual (page.tsx) atau merespon HTTP handler (route.ts)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Next.js Route Handlers (GET, POST, PUT, DELETE)",
+          "description": "Implementasikan konsep Next.js Route Handlers (GET, POST, PUT, DELETE) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Next.js Route Handlers (GET, POST, PUT, DELETE).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Next.js Route Handlers (route.ts)\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Next.js Route Handlers (route.ts)**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembangun endpoint API di Next.js App Router dengan file khusus `route.ts`, mengekstrak Request params, JSON body, query searchParams, NextRequest vs NextResponse, dan CORS headers.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-17-3",
@@ -7807,39 +8917,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-3-1",
             "question": "Bagaimana cara mengekstrak tipe data TypeScript secara otomatis dari sebuah skema Zod tanpa perlu menulis interface manual secara terpisah?",
             "options": [
-              "type UserDto = z.infer<typeof UserSchema>;",
-              "type UserDto = UserSchema.getType();",
               "type UserDto = typeof UserSchema;",
+              "type UserDto = UserSchema.getType();",
+              "type UserDto = z.infer<typeof UserSchema>;",
               "type UserDto = z.extract(UserSchema);"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "z.infer<typeof Schema> mengekstrak tipe static TypeScript langsung dari definisi skema runtime Zod, menjamin single source of truth."
           },
           {
             "id": "q-17-3-2",
             "question": "Apa keunggulan menggunakan schema.safeParse(data) dibandingkan schema.parse(data) pada Zod?",
             "options": [
-              "safeParse tidak melempar exception crash runtime, melainkan mengembalikan objek status { success: true, data } atau { success: false, error } yang aman dan mudah dievaluasi.",
               "safeParse mengeksekusi validasi 100 kali lebih lambat.",
+              "safeParse tidak melempar exception crash runtime, melainkan mengembalikan objek status { success: true, data } atau { success: false, error } yang aman dan mudah dievaluasi.",
               "safeParse hanya bisa digunakan untuk angka genap.",
               "safeParse otomatis menyimpan data ke harddisk."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "safeParse mengembalikan discriminated union result yang mengeliminasi kebutuhan penulisan blok try-catch yang berulang."
           },
           {
             "id": "q-17-3-3",
             "question": "Method Zod apakah yang digunakan untuk membuat aturan validasi kustom (seperti memastikan konfirmasi password sama dengan password baru)?",
             "options": [
-              ".refine(callback, options)",
-              ".customCheck(callback)",
               ".validateIf(callback)",
+              ".customCheck(callback)",
+              ".refine(callback, options)",
               ".matchWith(callback)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": ".refine(fn, { message, path }) memungkinkan pembuatan aturan validasi kustom tingkat lanjut lintas properti pada skema Zod."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Skema Validasi Zod & Type Inference (z.infer)",
+          "description": "Implementasikan konsep Skema Validasi Zod & Type Inference (z.infer) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Skema Validasi Zod & Type Inference (z.infer).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Zod Schema Validation & Type Inference\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Zod Schema Validation & Type Inference**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemvalidasi input data backend dan formulir dengan Zod (z.object, z.string, z.email, z.min, z.refine), mengekstrak tipe TypeScript otomatis dengan z.infer<typeof Schema>, dan parse vs safeParse.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-17-4",
@@ -7884,39 +9004,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-4-1",
             "question": "Kode status HTTP manakah yang paling tepat dan semantik digunakan saat pengguna mencoba mendaftar akun baru dengan email yang ternyata sudah terdaftar sebelumnya di database?",
             "options": [
-              "409 Conflict",
-              "200 OK",
               "404 Not Found",
+              "200 OK",
+              "409 Conflict",
               "500 Internal Server Error"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "HTTP 409 Conflict secara spesifik mengindikasikan bahwa permintaan tidak dapat diproses akibat adanya konflik status pada database (seperti duplikasi data unik)."
           },
           {
             "id": "q-17-4-2",
             "question": "Mengapa pesan error mentah dari database (seperti stack trace SQL/Prisma) TIDAK BOLEH dikirimkan langsung ke respon publik pengguna pada status 500?",
             "options": [
-              "Karena membocorkan informasi sensitif arsitektur internal server (nama tabel, query SQL, versi database) yang dapat dieksploitasi oleh peretas untuk melancarkan serangan.",
+              "Karena ukuran pesan error melebihi batas 100 karakter.",
               "Karena browser akan memblokir koneksi internet.",
               "Karena pesan error database menggunakan bahasa Latin kuno.",
-              "Karena ukuran pesan error melebihi batas 100 karakter."
+              "Karena membocorkan informasi sensitif arsitektur internal server (nama tabel, query SQL, versi database) yang dapat dieksploitasi oleh peretas untuk melancarkan serangan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Error sanitization adalah prinsip pertahanan keamanan untuk menyembunyikan detail infrastruktur internal dari pandangan publik."
           },
           {
             "id": "q-17-4-3",
             "question": "Kode status HTTP berapakah yang standar industri gunakan untuk mengindikasikan bahwa data input JSON yang dikirimkan klien gagal melewati aturan validasi skema (Zod Validation Error)?",
             "options": [
-              "422 Unprocessable Entity (atau 400 Bad Request)",
               "201 Created",
+              "422 Unprocessable Entity (atau 400 Bad Request)",
               "304 Not Modified",
               "502 Bad Gateway"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "HTTP 422 Unprocessable Entity menandakan sintaks JSON terbaca namun isi data melanggar aturan validasi semantik."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Penanganan Error Terstruktur & HTTP Status Codes",
+          "description": "Implementasikan konsep Penanganan Error Terstruktur & HTTP Status Codes secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Penanganan Error Terstruktur & HTTP Status Codes.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Structured Error Handling & Status Codes\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Structured Error Handling & Status Codes**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembangun standar penanganan error backend: Custom API Error Classes, pemetaan kode status HTTP (400, 401, 403, 404, 409 Conflict, 422 Unprocessable, 500), dan response sanitization.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-17-5",
@@ -7986,15 +9116,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-5-3",
             "question": "Informasi apakah yang biasanya diekstrak dari header HTTP 'x-forwarded-for' untuk dijadikan identifier unik dalam rate limiting pengguna anonim?",
             "options": [
-              "Alamat IP (IP Address) asli dari perangkat klien.",
+              "Password akun Google pengguna.",
               "Nomor rekening bank pengguna.",
               "Merk kartu grafis yang digunakan klien.",
-              "Password akun Google pengguna."
+              "Alamat IP (IP Address) asli dari perangkat klien."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "x-forwarded-for membawa alamat IP asal klien melewati proxy/CDN untuk identifikasi pembatasan kuota per perangkat."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Rate Limiting & Perlindungan API (Upstash Redis)",
+          "description": "Implementasikan konsep Rate Limiting & Perlindungan API (Upstash Redis) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Rate Limiting & Perlindungan API (Upstash Redis).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Rate Limiting & API Protection\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Rate Limiting & API Protection**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMelindungi endpoint API backend dari serangan brute-force dan DDoS menggunakan Rate Limiting berbasis IP/User token dengan Upstash Redis dan Sliding Window algorithm.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-17-6",
@@ -8052,27 +9192,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-17-6-2",
             "question": "Dalam pengujian otomatis (API Testing), mengapa penting untuk menguji skenario kegagalan input (Unhappy Path) selain skenario sukses (Happy Path)?",
             "options": [
-              "Untuk memastikan backend dapat menangani input berbahaya/rusak dengan benar, menolak dengan status code semantik yang tepat (seperti 400/422), dan tidak mengalami unhandled crash 500.",
+              "Untuk menghapus data pengguna secara otomatis.",
               "Agar waktu testing menjadi lebih lama.",
               "Karena compiler mewajibkan penulisan 100 test case.",
-              "Untuk menghapus data pengguna secara otomatis."
+              "Untuk memastikan backend dapat menangani input berbahaya/rusak dengan benar, menolak dengan status code semantik yang tepat (seperti 400/422), dan tidak mengalami unhandled crash 500."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Pengujian edge-cases dan unhappy paths memverifikasi ketahanan sistem error handling dan integritas validasi keamanan backend."
           },
           {
             "id": "q-17-6-3",
             "question": "Apa yang dimaksud dengan 'Contract Testing' dalam arsitektur kolaborasi tim frontend dan backend?",
             "options": [
-              "Pengujian yang memverifikasi bahwa format data request dan response JSON yang dikirimkan backend selalu sesuai dengan ekspektasi skema tipe yang dibutuhkan oleh frontend.",
               "Menandatangani kontrak kerja developer di atas kertas materai.",
+              "Pengujian yang memverifikasi bahwa format data request dan response JSON yang dikirimkan backend selalu sesuai dengan ekspektasi skema tipe yang dibutuhkan oleh frontend.",
               "Membayar tagihan server cloud setiap bulan.",
               "Menghapus file skema Zod secara berkala."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Contract testing memastikan tidak ada breaking changes pada kontrak skema data antara produsen API (backend) dan konsumen API (frontend)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: API Testing & Dokumentasi Standar OpenAPI / Swagger",
+          "description": "Implementasikan konsep API Testing & Dokumentasi Standar OpenAPI / Swagger secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi API Testing & Dokumentasi Standar OpenAPI / Swagger.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# API Testing & OpenAPI Documentation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **API Testing & OpenAPI Documentation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenguji endpoint API dengan automated integration tests, mock requests, dokumentasi interaktif dengan spesifikasi OpenAPI 3.0 dan Swagger UI, serta contract testing.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -8133,12 +9283,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-1-1",
             "question": "Mengapa menggunakan UUID atau CUID sebagai Primary Key jauh lebih disarankan daripada ID Auto-Increment integer (1, 2, 3) pada tabel pengguna di sistem web modern?",
             "options": [
-              "Mencegah serangan ID Enumeration di mana peretas atau kompetitor dapat dengan mudah menebak ID data lain dan mengetahui total jumlah pengguna di sistem Anda.",
-              "Karena PostgreSQL melarang angka integer.",
               "Karena UUID mempercepat booting komputer server.",
+              "Karena PostgreSQL melarang angka integer.",
+              "Mencegah serangan ID Enumeration di mana peretas atau kompetitor dapat dengan mudah menebak ID data lain dan mengetahui total jumlah pengguna di sistem Anda.",
               "Karena CUID otomatis mengenkripsi seluruh file gambar."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "ID acak yang tidak dapat ditebak (UUID/CUID) melindungi endpoint dari scraping enumerasi berurutan dan aman untuk sistem database terdistribusi."
           },
           {
@@ -8157,15 +9307,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-1-3",
             "question": "Apa efek dari aturan referensial ON DELETE CASCADE pada relasi Foreign Key saat baris data induk di tabel Parent dihapus?",
             "options": [
-              "Database akan secara otomatis menghapus seluruh baris data anak (Child records) di tabel lain yang merujuk ke data induk tersebut.",
-              "Database akan menolak penghapusan data induk.",
               "Database akan mengubah nilai Foreign Key menjadi 0.",
+              "Database akan menolak penghapusan data induk.",
+              "Database akan secara otomatis menghapus seluruh baris data anak (Child records) di tabel lain yang merujuk ke data induk tersebut.",
               "Database akan mengirimkan notifikasi email ke admin."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "ON DELETE CASCADE menghapus data anak yang berelasi secara berantai untuk mencegah keberadaan data yatim (orphaned records)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Relational Database Fundamentals & Arsitektur PostgreSQL",
+          "description": "Implementasikan konsep Relational Database Fundamentals & Arsitektur PostgreSQL secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Relational Database Fundamentals & Arsitektur PostgreSQL.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# PostgreSQL & Relational DB Fundamentals\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **PostgreSQL & Relational DB Fundamentals**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami model basis data relasional: Tabel, Baris (Tuple), Kolom (Attribute), Primary Key (UUID/CUID), Foreign Key, Integritas Referensial (CASCADE), ACID properties, dan keunggulan PostgreSQL.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-18-2",
@@ -8211,39 +9371,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-2-1",
             "question": "File apakah yang menjadi sumber kebenaran tunggal (Single Source of Truth) untuk mendefinisikan model tabel, relasi, dan konfigurasi database pada Prisma ORM?",
             "options": [
-              "prisma/schema.prisma",
-              "prisma.config.json",
               "database.sql",
+              "prisma.config.json",
+              "prisma/schema.prisma",
               "src/models.ts"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "schema.prisma adalah file konfigurasi utama deklaratif tempat seluruh arsitektur database dimodelkan di Prisma."
           },
           {
             "id": "q-18-2-2",
             "question": "Perintah Prisma CLI manakah yang digunakan untuk membuat file migrasi SQL baru, menerapkannya ke database development, dan meng-generate tipe TypeScript Prisma Client otomatis?",
             "options": [
-              "npx prisma migrate dev",
+              "npx prisma make-tables",
               "npx prisma deploy",
               "npx prisma start",
-              "npx prisma make-tables"
+              "npx prisma migrate dev"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "prisma migrate dev adalah alur kerja standar pengembangan untuk melacak riwayat migrasi SQL dan memperbarui client types."
           },
           {
             "id": "q-18-2-3",
             "question": "Apa fungsi dari perintah npx prisma studio?",
             "options": [
-              "Membuka antarmuka grafis visual (GUI) interaktif di browser untuk melihat, menyaring, menambah, dan mengedit isi baris data database secara langsung.",
               "Merekam video tutorial coding otomatis.",
+              "Membuka antarmuka grafis visual (GUI) interaktif di browser untuk melihat, menyaring, menambah, dan mengedit isi baris data database secara langsung.",
               "Membuat desain banner figma otomatis.",
               "Menghapus seluruh file migrasi lama."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Prisma Studio adalah visual data browser bawaan yang sangat nyaman untuk menginspeksi dan memanipulasi data di lingkungan development."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Prisma Schema Modeling & Migrasi Database",
+          "description": "Implementasikan konsep Prisma Schema Modeling & Migrasi Database secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Prisma Schema Modeling & Migrasi Database.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Prisma Schema Modeling & Migrations\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Prisma Schema Modeling & Migrations**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMendefinisikan model database di schema.prisma (generator, datasource, model, @id, @default, @unique), relasi 1-to-1, 1-to-Many, Many-to-Many, dan mengeksekusi prisma migrate dev.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-18-3",
@@ -8293,12 +9463,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-3-1",
             "question": "Mengapa pada Next.js App Router instansiasi Prisma Client WAJIB menggunakan pola Singleton (disimpan di globalThis)?",
             "options": [
-              "Untuk mencegah pembuatan instance koneksi database baru yang berlebihan pada setiap kali proses Hot Module Replacement (HMR) berjalan di mode development, yang dapat menghabiskan kuota connection pool database.",
               "Karena PrismaClient dilarang diimpor lebih dari 1 kali oleh konsorsium Node.js.",
+              "Untuk mencegah pembuatan instance koneksi database baru yang berlebihan pada setiap kali proses Hot Module Replacement (HMR) berjalan di mode development, yang dapat menghabiskan kuota connection pool database.",
               "Untuk mengunci database agar tidak bisa diakses hacker.",
               "Agar ukuran file database menjadi lebih kecil."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Singleton pattern mencegah connection exhaustion pada database PostgreSQL akibat pembuatan instance PrismaClient baru di setiap reload development."
           },
           {
@@ -8325,7 +9495,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "upsert adalah singkatan dari update-or-insert, operasi praktis untuk sinkronisasi state data tanpa perlu memeriksa keberadaan data secara manual terlebih dahulu."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Prisma Client: CRUD Queries & Relational Queries (include, select)",
+          "description": "Implementasikan konsep Prisma Client: CRUD Queries & Relational Queries (include, select) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Prisma Client: CRUD Queries & Relational Queries (include, select).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Prisma Client: CRUD & Relations\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Prisma Client: CRUD & Relations**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengeksekusi operasi database type-safe: findUnique, findMany (filtering, sorting), create, update, delete, upsert, serta relational queries dengan `include` dan `select`.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-18-4",
@@ -8371,39 +9551,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-4-1",
             "question": "Bagaimana cara kerja struktur data B-Tree Index di PostgreSQL dalam mempercepat pencarian data pada tabel berukuran jutaan baris?",
             "options": [
-              "Menyimpan referensi kunci data dalam struktur pohon berimbang terurut sehingga database dapat menemukan lokasi data target secara biner (O(log N)) tanpa perlu memindai seluruh baris tabel satu per satu (Sequential Scan).",
+              "Mengompresi data dengan format MP3.",
               "Menghapus 50% data tabel yang jarang dibaca.",
               "Mengubah database relasional menjadi file teks Notepad.",
-              "Mengompresi data dengan format MP3."
+              "Menyimpan referensi kunci data dalam struktur pohon berimbang terurut sehingga database dapat menemukan lokasi data target secara biner (O(log N)) tanpa perlu memindai seluruh baris tabel satu per satu (Sequential Scan)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "B-Tree Index mengorganisir pointer baris data secara hierarkis terurut, memungkinkan pencarian data instan dalam skala logaritmik."
           },
           {
             "id": "q-18-4-2",
             "question": "Perintah SQL apakah di PostgreSQL yang digunakan untuk menganalisis dan menampilkan rencana eksekusi serta durasi waktu nyata (real execution time) pemrosesan suatu query database?",
             "options": [
-              "EXPLAIN ANALYZE <query_sql>;",
               "SHOW SPEED <query_sql>;",
+              "EXPLAIN ANALYZE <query_sql>;",
               "CHECK PERFORMANCE <query_sql>;",
               "TEST BENCHMARK <query_sql>;"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "EXPLAIN ANALYZE mengeksekusi statement SQL dan memberikan laporan detail rencana eksekusi, penggunaan index, dan cost/durasi waktu operasi."
           },
           {
             "id": "q-18-4-3",
             "question": "Apakah trade-off (konsekuensi biaya) dari menambahkan terlalu banyak Index pada sebuah tabel database?",
             "options": [
-              "Meskipun mempercepat operasi pembacaan (SELECT), index memperlambat operasi penulisan (INSERT, UPDATE, DELETE) karena database harus memperbarui struktur pohon index di setiap perubahan data, serta memakan kapasitas ruang disk tambahan.",
-              "Database akan menolak koneksi pengguna.",
               "Ukuran font teks di website akan mengecil.",
+              "Database akan menolak koneksi pengguna.",
+              "Meskipun mempercepat operasi pembacaan (SELECT), index memperlambat operasi penulisan (INSERT, UPDATE, DELETE) karena database harus memperbarui struktur pohon index di setiap perubahan data, serta memakan kapasitas ruang disk tambahan.",
               "Koneksi internet server akan terputus."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Setiap mutasi data (write) mewajibkan pembaruan struktur index pendukung, sehingga index berlebih membebani performa write dan storage."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Database Indexing & Optimasi Query (B-Tree, EXPLAIN)",
+          "description": "Implementasikan konsep Database Indexing & Optimasi Query (B-Tree, EXPLAIN) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Database Indexing & Optimasi Query (B-Tree, EXPLAIN).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Database Indexing & Query Optimization\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Database Indexing & Query Optimization**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengoptimalkan performa database: cara kerja Indexing B-Tree (@@index, @@unique), Sequential Scan vs Index Scan, menganalisis query dengan EXPLAIN ANALYZE, dan Composite Indexes.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-18-5",
@@ -8449,12 +9639,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-5-1",
             "question": "Kapan Anda sebaiknya memilih strategi Cursor-Based Pagination dibandingkan Offset-Based Pagination?",
             "options": [
-              "Ketika membangun antarmuka Infinite Scroll atau linimasa feed pada dataset berukuran besar di mana performa konstan O(1) dan pencegahan duplikasi data sangat diutamakan.",
-              "Ketika ingin menampilkan tombol navigasi nomor halaman 1, 2, 3, 4, 5 di tabel admin.",
               "Hanya saat database dalam keadaan kosong.",
+              "Ketika ingin menampilkan tombol navigasi nomor halaman 1, 2, 3, 4, 5 di tabel admin.",
+              "Ketika membangun antarmuka Infinite Scroll atau linimasa feed pada dataset berukuran besar di mana performa konstan O(1) dan pencegahan duplikasi data sangat diutamakan.",
               "Hanya pada perangkat jam tangan pintar."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Cursor pagination mengandalkan pointer index unik baris terakhir (O(1) seek), menjadikannya standar ideal untuk infinite scroll feed."
           },
           {
@@ -8473,15 +9663,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-5-3",
             "question": "Kombinasi parameter Prisma apakah yang digunakan untuk menerapkan Offset-Based Pagination?",
             "options": [
-              "skip dan take (contoh: db.course.findMany({ skip: 20, take: 10 }))",
+              "offset dan jump",
               "cursor dan limit",
               "page dan count",
-              "offset dan jump"
+              "skip dan take (contoh: db.course.findMany({ skip: 20, take: 10 }))"
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Prisma menggunakan parameter skip (melewati N baris) dan take (mengambil N baris) untuk offset pagination standar."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Pagination: Offset-Based vs Cursor-Based Pagination",
+          "description": "Implementasikan konsep Pagination: Offset-Based vs Cursor-Based Pagination secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Pagination: Offset-Based vs Cursor-Based Pagination.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Offset vs Cursor Pagination\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Offset vs Cursor Pagination**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenerapkan pagination di Prisma: Offset pagination (skip/take) untuk nomor halaman tradisional vs Cursor-based pagination (cursor/take) untuk Infinite Scroll performa tinggi skala besar.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-18-6",
@@ -8527,12 +9727,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-6-1",
             "question": "Apa yang terjadi pada seluruh mutasi database yang sudah sempat dieksekusi jika terjadi error atau exception dilempar di tengah-tengah blok prisma.$transaction(async (tx) => { ... })?",
             "options": [
-              "Seluruh operasi yang sudah sempat berjalan otomatis dibatalkan (Rollback) seolah-olah transaksi tidak pernah dieksekusi, menjaga data tetap konsisten dan utuh.",
+              "Server akan mematikan komputer developer.",
               "Data yang sempat termutasi akan tetap tersimpan setengah-setengah.",
               "Database akan menghapus seluruh data pengguna.",
-              "Server akan mematikan komputer developer."
+              "Seluruh operasi yang sudah sempat berjalan otomatis dibatalkan (Rollback) seolah-olah transaksi tidak pernah dieksekusi, menjaga data tetap konsisten dan utuh."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Mekanisme rollback otomatis menjamin integritas atomik (All-or-Nothing), membatalkan seluruh perubahan jika terjadi kegagalan di tengah alur transaksi."
           },
           {
@@ -8551,15 +9751,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-18-6-3",
             "question": "Operasi atomik Prisma apakah yang paling aman digunakan untuk mengurangi stok barang (misal mengurangi 1) tanpa terkena bug Race Condition saat ada banyak transaksi bersamaan?",
             "options": [
-              "data: { stock: { decrement: 1 } } dengan filter where: { stock: { gt: 0 } }",
               "data: { stock: currentStock - 1 }",
+              "data: { stock: { decrement: 1 } } dengan filter where: { stock: { gt: 0 } }",
               "data: { stock: 0 }",
               "data: { stock: 'minus-one' }"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Operasi atomik tingkat database { decrement: 1 } dieksekusi langsung di engine PostgreSQL, mencegah race condition akibat pembacaan nilai lama di memori aplikasi."
+          },
+          {
+            "id": "extra-18-prisma",
+            "question": "Dalam schema Prisma berikut:\n```prisma\nmodel User {\n  id    String @id @default(uuid())\n  posts Post[]\n}\nmodel Post {\n  id       String @id @default(uuid())\n  authorId String\n  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)\n}\n```\nApa efek dari `onDelete: Cascade` saat sebuah baris User dihapus dari database?",
+            "options": [
+              "Tabel Post akan di-drop dari schema database.",
+              "Database menolak penghapusan User dan melempar foreign key error.",
+              "Nilai authorId pada Post diubah menjadi NULL.",
+              "Seluruh baris Post yang berelasi dengan User tersebut akan otomatis ikut terhapus dari database untuk menjaga integritas data."
+            ],
+            "correctIndex": 3,
+            "explanation": "`onDelete: Cascade` memastikan bahwa saat parent record (User) dihapus, seluruh child records (Posts) yang bergantung padanya ikut terhapus otomatis guna mencegah orphaned data."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Database Transactions & Concurrency Control ($transaction)",
+          "description": "Implementasikan konsep Database Transactions & Concurrency Control ($transaction) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Database Transactions & Concurrency Control ($transaction).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Database Transactions ($transaction)\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Database Transactions ($transaction)**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenjaga integritas data finansial & transaksi multi-tabel dengan Prisma `$transaction` (Sequential vs Interactive Transactions), Isolation Levels, dan menangani Race Conditions.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -8616,39 +9838,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-1-1",
             "question": "Mengapa menyimpan token otentikasi di dalam HttpOnly Cookie jauh lebih aman dibandingkan menyimpannya di browser localStorage?",
             "options": [
-              "HttpOnly Cookie tidak dapat dibaca atau diakses oleh skrip JavaScript di browser, sehingga kebal dari pencurian token melalui serangan Cross-Site Scripting (XSS).",
-              "HttpOnly Cookie otomatis mempercepat kecepatan internet.",
               "localStorage hanya bisa menampung 5 karakter.",
+              "HttpOnly Cookie otomatis mempercepat kecepatan internet.",
+              "HttpOnly Cookie tidak dapat dibaca atau diakses oleh skrip JavaScript di browser, sehingga kebal dari pencurian token melalui serangan Cross-Site Scripting (XSS).",
               "HttpOnly Cookie tidak memerlukan server backend."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Flag HttpOnly memblokir akses document.cookie dari runtime JavaScript, melindungi token dari serangan injeksi skrip XSS."
           },
           {
             "id": "q-19-1-2",
             "question": "Apa fakta keamanan penting yang wajib dipahami tentang bagian Payload di dalam sebuah JSON Web Token (JWT)?",
             "options": [
-              "Payload JWT hanya di-encode dalam format teks Base64 (BUKAN dienkripsi), sehingga isinya dapat dibaca secara terbuka oleh siapa saja dan DILARANG menyimpan data sensitif seperti password.",
-              "Payload JWT terenkripsi dengan standar militer yang tidak bisa dibaca siapa pun.",
               "Payload JWT otomatis menghapus database server.",
+              "Payload JWT terenkripsi dengan standar militer yang tidak bisa dibaca siapa pun.",
+              "Payload JWT hanya di-encode dalam format teks Base64 (BUKAN dienkripsi), sehingga isinya dapat dibaca secara terbuka oleh siapa saja dan DILARANG menyimpan data sensitif seperti password.",
               "Payload JWT hanya bisa dibaca oleh robot Google."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "JWT hanya menjamin integritas keaslian data melalui Signature, bukan kerahasiaan isi data; payload dapat di-decode secara bebas oleh publik."
           },
           {
             "id": "q-19-1-3",
             "question": "Apa keuntungan utama menerapkan arsitektur pasangan Access Token (umur pendek 15 menit) dan Refresh Token (umur panjang di database)?",
             "options": [
-              "Memberikan kecepatan otentikasi stateless tanpa beban database di setiap request, namun tetap mempertahankan kemampuan mencabut (revoke) sesi akun pengguna jika terindikasi dibajak.",
+              "Mempercepat waktu rendering animasi CSS.",
               "Membuat ukuran file database menjadi 0 KB.",
               "Menghilangkan kebutuhan password login.",
-              "Mempercepat waktu rendering animasi CSS."
+              "Memberikan kecepatan otentikasi stateless tanpa beban database di setiap request, namun tetap mempertahankan kemampuan mencabut (revoke) sesi akun pengguna jika terindikasi dibajak."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Kombinasi ini menyeimbangkan performa stateless (access token) dengan kendali keamanan pencabutan sesi terpusat (refresh token)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Arsitektur Otentikasi: Session-Based vs JWT Token",
+          "description": "Implementasikan konsep Arsitektur Otentikasi: Session-Based vs JWT Token secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Arsitektur Otentikasi: Session-Based vs JWT Token.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Authentication: Sessions vs JWT Tokens\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Authentication: Sessions vs JWT Tokens**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedah dua arsitektur otentikasi: Stateful Sessions (database/Redis session ID di HttpOnly cookie) vs Stateless JWT (JSON Web Token signature, access vs refresh token), dan kapan memilih masing-masing.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-19-2",
@@ -8694,39 +9926,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-2-1",
             "question": "Mengapa algoritma cryptographic hash cepat seperti MD5 atau SHA-256 secara ketat DILARANG digunakan untuk menyimpan password pengguna?",
             "options": [
-              "Karena dirancang sangat cepat untuk integritas file, sehingga peretas dapat menggunakan kartu grafis (GPU) modern untuk mencoba miliaran tebakan per detik (Brute-Force & Rainbow Table) dalam waktu sangat singkat.",
+              "Karena SHA-256 memakan kuota internet pengguna.",
               "Karena SHA-256 tidak didukung oleh browser.",
               "Karena MD5 hanya bisa digunakan pada hari libur.",
-              "Karena SHA-256 memakan kuota internet pengguna."
+              "Karena dirancang sangat cepat untuk integritas file, sehingga peretas dapat menggunakan kartu grafis (GPU) modern untuk mencoba miliaran tebakan per detik (Brute-Force & Rainbow Table) dalam waktu sangat singkat."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Password hashing membutuhkan algoritma komputasi terkalibrasi yang sengaja memakan resource CPU/Memory (seperti Argon2id/bcrypt) untuk mencegah serangan akselerasi GPU."
           },
           {
             "id": "q-19-2-2",
             "question": "Apa fungsi dari 'Salt' (string acak unik) yang digabungkan ke dalam password sebelum proses hashing dilakukan?",
             "options": [
-              "Memastikan bahwa dua pengguna yang memiliki password yang sama persis akan menghasilkan nilai hash yang berbeda total, menggagalkan serangan pencocokan kamus Rainbow Table.",
-              "Mengubah password menjadi file gambar.",
               "Mengirimkan password ke email admin.",
+              "Mengubah password menjadi file gambar.",
+              "Memastikan bahwa dua pengguna yang memiliki password yang sama persis akan menghasilkan nilai hash yang berbeda total, menggagalkan serangan pencocokan kamus Rainbow Table.",
               "Memperkecil ukuran password di database."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Cryptographic Salt menambahkan entropi acak unik per-pengguna sehingga serangan pre-computed dictionary tables menjadi tidak efektif."
           },
           {
             "id": "q-19-2-3",
             "question": "Algoritma password hashing manakah yang merupakan pemenang kompetisi password hashing internasional resmi dan direkomendasikan nomor satu oleh standar keamanan OWASP?",
             "options": [
-              "Argon2id",
               "Base64",
+              "Argon2id",
               "MD5-Crypt",
               "AES-256"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Argon2 (khususnya varian Argon2id) adalah standar algoritma hashing password paling tangguh saat ini yang kebal terhadap ASIC dan GPU attacks."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Password Hashing, Salting & Proteksi Kredensial (Argon2 / bcrypt)",
+          "description": "Implementasikan konsep Password Hashing, Salting & Proteksi Kredensial (Argon2 / bcrypt) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Password Hashing, Salting & Proteksi Kredensial (Argon2 / bcrypt).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Password Hashing & Salting (Argon2/bcrypt)\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Password Hashing & Salting (Argon2/bcrypt)**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemahami mengapa hashing satu arah (One-Way Hash) wajib untuk password, bahaya algoritma MD5/SHA256, peran Cryptographic Salt, dan implementasi modern dengan Argon2id / bcrypt.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-19-3",
@@ -8776,39 +10018,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-3-1",
             "question": "Bagaimana cara paling efektif dan standar untuk mencegah celah keamanan SQL Injection (SQLi) pada aplikasi backend?",
             "options": [
-              "Menggunakan Parameterized Queries / Prepared Statements (atau memanfaatkan ORM modern seperti Prisma) yang memisahkan kode SQL dari input data pengguna secara mutlak.",
               "Menghapus seluruh database SQL dan menggantinya dengan file teks.",
+              "Menggunakan Parameterized Queries / Prepared Statements (atau memanfaatkan ORM modern seperti Prisma) yang memisahkan kode SQL dari input data pengguna secara mutlak.",
               "Mengubah font teks database menjadi Comic Sans.",
               "Memblokir semua pengguna yang menggunakan huruf vokal."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Parameterized queries memperlakukan input pengguna murni sebagai nilai parameter data literal, sehingga karakter injeksi SQL tidak dapat dieksekusi sebagai perintah."
           },
           {
             "id": "q-19-3-2",
             "question": "Ketika Anda terpaksa harus merender konten HTML kaya (Rich Text Markdown/WYSIWYG) ke dalam React menggunakan dangerouslySetInnerHTML, tindakan apakah yang WAJIB dilakukan untuk mencegah serangan Cross-Site Scripting (XSS)?",
             "options": [
-              "Menyaring dan membersihkan string HTML tersebut menggunakan library sanitasi teruji seperti DOMPurify sebelum di-render ke DOM.",
+              "Mematikan JavaScript di komputer pengguna.",
               "Mengubah format teks menjadi huruf kapital.",
               "Menyimpan HTML di localStorage.",
-              "Mematikan JavaScript di komputer pengguna."
+              "Menyaring dan membersihkan string HTML tersebut menggunakan library sanitasi teruji seperti DOMPurify sebelum di-render ke DOM."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "DOMPurify membersihkan markup berbahaya (seperti tag <script>, atribut onload/onerror, atau javascript: URIs) sambil mempertahankan format styling yang aman."
           },
           {
             "id": "q-19-3-3",
             "question": "Atribut Cookie apakah yang menjadi dinding pertahanan utama peramban modern untuk mencegah serangan Cross-Site Request Forgery (CSRF)?",
             "options": [
-              "SameSite=Lax (atau SameSite=Strict)",
-              "CookieType=Safe",
               "NoCSRF=True",
+              "CookieType=Safe",
+              "SameSite=Lax (atau SameSite=Strict)",
               "AntiHack=Enabled"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Atribut SameSite melarang browser melampirkan cookie otentikasi saat permintaan dipicu dari situs domain luar pihak ketiga (cross-site context)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Mitigasi Kerentanan OWASP Top 10 (SQLi, XSS, CSRF, SSRF)",
+          "description": "Implementasikan konsep Mitigasi Kerentanan OWASP Top 10 (SQLi, XSS, CSRF, SSRF) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Mitigasi Kerentanan OWASP Top 10 (SQLi, XSS, CSRF, SSRF).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# OWASP Top 10 Web Vulnerability Mitigation\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **OWASP Top 10 Web Vulnerability Mitigation**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedah 4 kerentanan web paling berbahaya dan cara mitigasinya: SQL Injection (Parameterized Queries), XSS (Sanitasi HTML), CSRF (SameSite cookies & CSRF tokens), dan SSRF (URL whitelisting).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-19-4",
@@ -8854,39 +10106,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-4-1",
             "question": "Header HTTP keamanan apakah yang digunakan untuk mencegah serangan 'Clickjacking' dengan melarang halaman website Anda dimuat di dalam tag <iframe> situs luar?",
             "options": [
-              "X-Frame-Options: DENY (atau CSP frame-ancestors 'none')",
-              "X-Click-Protect: true",
               "X-Allow-Iframe: false",
+              "X-Click-Protect: true",
+              "X-Frame-Options: DENY (atau CSP frame-ancestors 'none')",
               "X-No-Hacking: 1"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "X-Frame-Options: DENY menginstruksikan browser untuk menolak rendering halaman jika disematkan di dalam frame/iframe situs lain."
           },
           {
             "id": "q-19-4-2",
             "question": "Apa fungsi utama dari Content Security Policy (CSP) yang dikirimkan oleh server backend?",
             "options": [
-              "Mendefinisikan daftar whitelist domain dan sumber daya yang diizinkan untuk dimuat dan dieksekusi oleh browser (seperti skrip JS, stylesheet, dan gambar), membatasi injeksi aset liar dari peretas.",
-              "Mengatur harga langganan kursus secara otomatis.",
               "Mengubah bahasa antarmuka menjadi bahasa Inggris.",
+              "Mengatur harga langganan kursus secara otomatis.",
+              "Mendefinisikan daftar whitelist domain dan sumber daya yang diizinkan untuk dimuat dan dieksekusi oleh browser (seperti skrip JS, stylesheet, dan gambar), membatasi injeksi aset liar dari peretas.",
               "Menghapus seluruh file cookie di komputer pengguna."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "CSP bertindak sebagai firewall peramban yang membatasi asal muasal eksekusi skrip dan koneksi jaringan hanya ke domain yang diizinkan."
           },
           {
             "id": "q-19-4-3",
             "question": "Apa instruksi yang diberikan oleh header Strict-Transport-Security (HSTS) kepada browser pengguna?",
             "options": [
-              "Memaksa browser untuk HANYA berkomunikasi dengan server melalui koneksi aman terenkripsi HTTPS dan otomatis menolak koneksi HTTP biasa tanpa enkripsi selama durasi waktu yang ditentukan.",
+              "Menghapus histori pencarian browser.",
               "Mematikan browser jika koneksi internet lambat.",
               "Mewajibkan pengguna memasukkan password dua kali.",
-              "Menghapus histori pencarian browser."
+              "Memaksa browser untuk HANYA berkomunikasi dengan server melalui koneksi aman terenkripsi HTTPS dan otomatis menolak koneksi HTTP biasa tanpa enkripsi selama durasi waktu yang ditentukan."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "HSTS melindungi pengguna dari serangan Man-in-the-Middle (SSL Strip) dengan memaksa navigasi HTTPS secara permanen."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: HTTP Security Headers & Content Security Policy (CSP)",
+          "description": "Implementasikan konsep HTTP Security Headers & Content Security Policy (CSP) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi HTTP Security Headers & Content Security Policy (CSP).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Security Headers & Content Security Policy\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Security Headers & Content Security Policy**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemperkuat pertahanan browser dengan HTTP Security Headers: Content-Security-Policy (CSP nonces), Strict-Transport-Security (HSTS), X-Frame-Options (Anti-Clickjacking), dan X-Content-Type-Options.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-19-5",
@@ -8932,12 +10194,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-5-1",
             "question": "Di manakah letak file middleware.ts yang benar di dalam proyek Next.js agar dapat mencegat request rute secara global?",
             "options": [
-              "Di root direktori proyek (sejajar dengan folder app/ atau di dalam folder src/)",
-              "Di dalam folder public/",
               "Di dalam node_modules/",
+              "Di dalam folder public/",
+              "Di root direktori proyek (sejajar dengan folder app/ atau di dalam folder src/)",
               "Di dalam folder styles/"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "middleware.ts wajib diletakkan di root proyek atau di dalam folder src/ (jika menggunakan src directory)."
           },
           {
@@ -8956,15 +10218,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-5-3",
             "question": "Apa yang dimaksud dengan Role-Based Access Control (RBAC) pada sistem otorisasi aplikasi web?",
             "options": [
-              "Sistem pembatasan hak akses rute dan fungsionalitas sistem berdasarkan peran (Role) yang dimiliki oleh akun pengguna (misal: ADMIN memiliki izin mengedit materi, sedangkan STUDENT hanya memiliki izin membaca).",
+              "Sistem yang menghapus password setiap minggu.",
               "Sistem yang membatasi akses berdasarkan merk laptop.",
               "Sistem yang mewajibkan pengguna mengetik dengan cepat.",
-              "Sistem yang menghapus password setiap minggu."
+              "Sistem pembatasan hak akses rute dan fungsionalitas sistem berdasarkan peran (Role) yang dimiliki oleh akun pengguna (misal: ADMIN memiliki izin mengedit materi, sedangkan STUDENT hanya memiliki izin membaca)."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "RBAC mengatur hak istimewa operasional (privileges) pengguna berdasarkan peran jabatan terstruktur di dalam sistem."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Next.js Middleware: Auth Guard & Role-Based Access Control (RBAC)",
+          "description": "Implementasikan konsep Next.js Middleware: Auth Guard & Role-Based Access Control (RBAC) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Next.js Middleware: Auth Guard & Role-Based Access Control (RBAC).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Next.js Middleware & RBAC\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Next.js Middleware & RBAC**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMengamankan rute halaman secara terpusat dengan Next.js Middleware (middleware.ts), verifikasi session/token di Edge, redirect unauthorized users, dan Role-Based Access Control (Admin vs Student).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-19-6",
@@ -9010,12 +10282,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-19-6-1",
             "question": "Apa tindakan pertama yang WAJIB dan paling krusial dilakukan jika Anda tidak sengaja melakukan commit file .env yang memuat password database ke repository publik GitHub?",
             "options": [
-              "Segera mencabut dan mengubah (rotate) password database tersebut di dashboard hosting karena bot scanner publik memindai kebocoran kredensial dalam hitungan detik.",
+              "Mematikan monitor komputer.",
               "Cukup menghapus file di commit berikutnya tanpa mengubah password.",
               "Menutup akun GitHub.",
-              "Mematikan monitor komputer."
+              "Segera mencabut dan mengubah (rotate) password database tersebut di dashboard hosting karena bot scanner publik memindai kebocoran kredensial dalam hitungan detik."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Menghapus file di commit baru tidak menghapus jejak riwayat git; kredensial yang terekspos harus segera di-rotate/dicabut seketika."
           },
           {
@@ -9042,7 +10314,17 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "correctIndex": 0,
             "explanation": "Prefix NEXT_PUBLIC_ secara eksplisit menginstruksikan compiler Next.js untuk mengekspos variabel tersebut ke bundle browser client."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Security Audit & Dasar Penetration Testing",
+          "description": "Implementasikan konsep Security Audit & Dasar Penetration Testing secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Security Audit & Dasar Penetration Testing.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Security Audit & Pen-Testing Basics\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Security Audit & Pen-Testing Basics**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMelakukan audit keamanan aplikasi: npm audit (analisis dependensi rentan), pemindaian SAST/DAST, ethical hacking checklist, analisis kebocoran kredensial (.env di Git), dan postur pertahanan Defense-in-Depth.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   },
@@ -9099,39 +10381,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-1-1",
             "question": "Metrik Core Web Vitals resmi baru Google apakah yang menggantikan First Input Delay (FID) untuk mengukur seluruh responsivitas interaksi klik dan ketikan pengguna sepanjang sesi kunjungan?",
             "options": [
-              "Interaction to Next Paint (INP)",
-              "Largest Contentful Paint (LCP)",
               "Cumulative Layout Shift (CLS)",
+              "Largest Contentful Paint (LCP)",
+              "Interaction to Next Paint (INP)",
               "Time to First Byte (TTFB)"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "INP (Interaction to Next Paint) adalah metrik resmi Google pengukur latensi interaktivitas holistik sepanjang sesi halaman."
           },
           {
             "id": "q-20-1-2",
             "question": "Bagaimana cara paling efektif untuk mencegah masalah Cumulative Layout Shift (CLS) yang buruk akibat gambar atau banner iklan yang dimuat secara dinamis?",
             "options": [
-              "Selalu menyertakan atribut width dan height eksplisit atau menyetel properti CSS aspect-ratio pada kontainer pembungkus media agar browser memesan ruang kosong sebelum gambar selesai diunduh.",
-              "Menghapus seluruh gambar dari website.",
               "Memaksa pengguna tidak menggeser layar.",
+              "Menghapus seluruh gambar dari website.",
+              "Selalu menyertakan atribut width dan height eksplisit atau menyetel properti CSS aspect-ratio pada kontainer pembungkus media agar browser memesan ruang kosong sebelum gambar selesai diunduh.",
               "Mengubah format gambar menjadi file teks."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Menyediakan dimensi atau aspect-ratio yang pasti memesan slot layout stabil, mencegah elemen teks di bawahnya terdorong anjlok saat gambar tiba."
           },
           {
             "id": "q-20-1-3",
             "question": "Berapa target ambang batas waktu (threshold) yang diklasifikasikan sebagai skor 'Baik (Good)' oleh Google untuk metrik Largest Contentful Paint (LCP)?",
             "options": [
-              "Di bawah 2.5 detik (< 2.5s)",
-              "Di bawah 10 detik",
               "Di bawah 0.01 detik",
+              "Di bawah 10 detik",
+              "Di bawah 2.5 detik (< 2.5s)",
               "Di bawah 1 menit"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Google menetapkan target LCP Good di bawah 2.5 detik untuk menjamin pengalaman pemuatan konten utama yang memuaskan."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Core Web Vitals Deep Dive: LCP, INP & CLS",
+          "description": "Implementasikan konsep Core Web Vitals Deep Dive: LCP, INP & CLS secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Core Web Vitals Deep Dive: LCP, INP & CLS.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Core Web Vitals: LCP, INP & CLS\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Core Web Vitals: LCP, INP & CLS**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembedah metrik resmi Google Core Web Vitals: Largest Contentful Paint (LCP < 2.5s), Interaction to Next Paint (INP < 200ms menggantikan FID), Cumulative Layout Shift (CLS < 0.1), dan dampaknya pada ranking SEO Google.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-20-2",
@@ -9177,12 +10469,12 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-2-1",
             "question": "Apa keuntungan performa utama dari menggunakan next/font/google di Next.js dibandingkan memasang tag link eksternal <link href='https://fonts.googleapis.com'>?",
             "options": [
-              "next/font mengunduh dan melakukan self-hosting file font secara otomatis pada saat build time, menghilangkan seluruh koneksi jaringan eksternal ke server Google pada runtime dan mencegah Layout Shift.",
-              "next/font mengubah seluruh font menjadi huruf kapital.",
               "next/font membuat font hanya bisa dibaca oleh robot AI.",
+              "next/font mengubah seluruh font menjadi huruf kapital.",
+              "next/font mengunduh dan melakukan self-hosting file font secara otomatis pada saat build time, menghilangkan seluruh koneksi jaringan eksternal ke server Google pada runtime dan mencegah Layout Shift.",
               "next/font menghapus seluruh aturan CSS."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "next/font meng-inline font assets di domain lokal secara zero-layout-shift tanpa dependensi jaringan pihak ketiga saat pengguna membuka halaman."
           },
           {
@@ -9201,15 +10493,25 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-2-3",
             "question": "Properti apakah pada komponen next/image yang WAJIB ditambahkan pada gambar banner Hero di bagian atas layar agar browser memprioritaskan pengunduhan demi skor LCP yang optimal?",
             "options": [
-              "priority={true} (atau cukup menuliskan priority)",
-              "loading='lazy'",
               "async={true}",
+              "loading='lazy'",
+              "priority={true} (atau cukup menuliskan priority)",
               "importance='high-priority'"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Properti priority menonaktifkan lazy loading dan menginstruksikan browser untuk memuat gambar target di urutan prioritas tertinggi (preload)."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Optimasi Gambar & Font Tingkat Lanjut (next/image, next/font)",
+          "description": "Implementasikan konsep Optimasi Gambar & Font Tingkat Lanjut (next/image, next/font) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Optimasi Gambar & Font Tingkat Lanjut (next/image, next/font).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Image & Font Optimization (next/image, next/font)\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Image & Font Optimization (next/image, next/font)**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMenguasai optimasi aset visual otomatis di Next.js: next/image (AVIF/WebP conversion, responsive sizes, priority, blur placeholder) dan next/font (zero layout shift Google fonts, self-hosting).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-20-3",
@@ -9267,27 +10569,37 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-3-2",
             "question": "Kapan opsi { ssr: false } pada fungsi next/dynamic WAJIB digunakan?",
             "options": [
-              "Ketika mengimpor library pihak ketiga yang mengakses API browser secara langsung (seperti window atau document pada library Leaflet Maps/Canvas) yang akan memicu error crash jika dieksekusi di lingkungan server.",
-              "Hanya saat website tidak memiliki database.",
               "Ketika komponen tidak memiliki teks.",
+              "Hanya saat website tidak memiliki database.",
+              "Ketika mengimpor library pihak ketiga yang mengakses API browser secara langsung (seperti window atau document pada library Leaflet Maps/Canvas) yang akan memicu error crash jika dieksekusi di lingkungan server.",
               "Hanya saat mode gelap aktif."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Opsi ssr: false mencegah komponen di-prerender di server Node.js, menghindari ReferenceError: window is not defined pada library client-only."
           },
           {
             "id": "q-20-3-3",
             "question": "Komponen manakah di bawah ini yang PALING COCOK untuk diimpor menggunakan next/dynamic?",
             "options": [
-              "Library Rich Text WYSIWYG Editor atau Library Grafik Chart yang berukuran besar (> 500 KB) dan hanya muncul di halaman tertentu atau di dalam modal dialog.",
               "Tombol panah kecil di navbar.",
+              "Library Rich Text WYSIWYG Editor atau Library Grafik Chart yang berukuran besar (> 500 KB) dan hanya muncul di halaman tertentu atau di dalam modal dialog.",
               "Tag paragraf teks biasa.",
               "Komponen layout root html."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Komponen dengan ukuran bundle besar dan frekuensi render kondisional (seperti chart/editor) memberikan penghematan bundle paling maksimal saat di-lazy load."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Code Splitting & Lazy Loading (next/dynamic)",
+          "description": "Implementasikan konsep Code Splitting & Lazy Loading (next/dynamic) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Code Splitting & Lazy Loading (next/dynamic).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Code Splitting & Dynamic Imports\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Code Splitting & Dynamic Imports**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemecah bundle JavaScript menjadi potongan kecil dengan Dynamic Imports (next/dynamic, React.lazy), memuat komponen berat (Charts, Rich Text Editor, Modal) hanya saat dibutuhkan (on demand), dan opsi ssr: false.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-20-4",
@@ -9333,39 +10645,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-4-1",
             "question": "Apa fungsi utama dari Continuous Integration (CI) pipeline menggunakan GitHub Actions dalam pengembangan perangkat lunak tim?",
             "options": [
-              "Secara otomatis menjalankan tahapan pengujian kualitas (linting, type-checking TypeScript, unit tests, dan build) pada setiap Pull Request untuk memblokir penggabungan kode yang memiliki bug ke branch utama.",
-              "Membayar tagihan server cloud otomatis.",
               "Mengubah bahasa pemrograman repository.",
+              "Membayar tagihan server cloud otomatis.",
+              "Secara otomatis menjalankan tahapan pengujian kualitas (linting, type-checking TypeScript, unit tests, dan build) pada setiap Pull Request untuk memblokir penggabungan kode yang memiliki bug ke branch utama.",
               "Menghapus seluruh issue yang dibuat pengguna."
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "CI mengotomatiskan verifikasi integritas kode secara berkelanjutan, mencegah regresi bug masuk ke basis kode utama."
           },
           {
             "id": "q-20-4-2",
             "question": "Mengapa perintah npm ci jauh lebih direkomendasikan daripada npm install di dalam script automasi CI/CD GitHub Actions?",
             "options": [
-              "npm ci dirancang khusus untuk lingkungan automasi yang melakukan instalasi bersih (clean install) berdasarkan package-lock.json secara persis dan lebih cepat tanpa memodifikasi lockfile.",
+              "npm ci membuat file ZIP otomatis.",
               "npm ci tidak memerlukan koneksi internet.",
               "npm install dilarang oleh server Linux.",
-              "npm ci membuat file ZIP otomatis."
+              "npm ci dirancang khusus untuk lingkungan automasi yang melakukan instalasi bersih (clean install) berdasarkan package-lock.json secara persis dan lebih cepat tanpa memodifikasi lockfile."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "npm ci (clean install) menjamin determinisme dependensi yang identik 100% dan memiliki kecepatan instalasi lebih tinggi di runner CI."
           },
           {
             "id": "q-20-4-3",
             "question": "Di manakah tempat yang BENAR dan aman untuk menyimpan kredensial sensitif seperti DATABASE_URL atau API Secret Keys pada alur kerja GitHub Actions?",
             "options": [
-              "Di dalam GitHub Repository Settings -> Secrets and variables -> Actions (GitHub Secrets), lalu dipanggil via ${{ secrets.KEY }}",
-              "Ditulis langsung secara terbuka di file README.md",
               "Disimpan di dalam komentar file ci.yml",
+              "Ditulis langsung secara terbuka di file README.md",
+              "Di dalam GitHub Repository Settings -> Secrets and variables -> Actions (GitHub Secrets), lalu dipanggil via ${{ secrets.KEY }}",
               "Diunggah sebagai file foto"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "GitHub Encrypted Secrets menyimpan kredensial secara terenkripsi dan menyamarkannya dari log terminal runner."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: CI/CD Pipeline Otomatis dengan GitHub Actions",
+          "description": "Implementasikan konsep CI/CD Pipeline Otomatis dengan GitHub Actions secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi CI/CD Pipeline Otomatis dengan GitHub Actions.",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# CI/CD with GitHub Actions\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **CI/CD with GitHub Actions**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembangun alur Continuous Integration & Continuous Deployment (CI/CD) otomatis dengan GitHub Actions (.github/workflows/ci.yml): linting (ESLint), type-checking (tsc), automated testing (Vitest), dan auto-deployment.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-20-5",
@@ -9411,39 +10733,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-5-1",
             "question": "Apa fungsi dari konfigurasi output: 'standalone' di dalam file next.config.ts saat menyiapkan aplikasi untuk Docker containerization?",
             "options": [
-              "Menginstruksikan Next.js untuk secara otomatis melacak dan membundel HANYA file dependensi minimal yang diperlukan untuk menjalankan server produksi, memangkas ukuran image Docker secara drastis tanpa perlu menyalin seluruh folder node_modules raksasa.",
+              "Mengubah Next.js menjadi aplikasi desktop Windows .exe.",
               "Membuat aplikasi berjalan tanpa koneksi internet.",
               "Menghapus seluruh file database.",
-              "Mengubah Next.js menjadi aplikasi desktop Windows .exe."
+              "Menginstruksikan Next.js untuk secara otomatis melacak dan membundel HANYA file dependensi minimal yang diperlukan untuk menjalankan server produksi, memangkas ukuran image Docker secara drastis tanpa perlu menyalin seluruh folder node_modules raksasa."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Output standalone menghasilkan folder mandiri yang hanya memuat file yang benar-benar terpakai di runtime, merampingkan ukuran image Docker."
           },
           {
             "id": "q-20-5-2",
             "question": "Apa keunggulan utama dari menerapkan pola 'Multi-Stage Build' di dalam sebuah file Dockerfile?",
             "options": [
-              "Memisahkan tahapan instalasi dependensi, kompilasi build, dan runtime akhir, sehingga image produksi final hanya berisi berkas eksekusi bersih tanpa menyertakan compiler dan dev-dependencies yang berat.",
+              "Menghilangkan kebutuhan sistem operasi Linux.",
               "Membuat kontainer Docker otomatis memiliki 5 alamat IP.",
               "Mempercepat kecepatan browsing pengguna.",
-              "Menghilangkan kebutuhan sistem operasi Linux."
+              "Memisahkan tahapan instalasi dependensi, kompilasi build, dan runtime akhir, sehingga image produksi final hanya berisi berkas eksekusi bersih tanpa menyertakan compiler dan dev-dependencies yang berat."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Multi-stage builds mengisolasi artefak build di stage sementara dan hanya menyalin hasil akhir ke stage runner, menghasilkan image berukuran sangat kecil dan aman."
           },
           {
             "id": "q-20-5-3",
             "question": "Mengapa di dalam Dockerfile produksi kita WAJIB membuat user sistem non-root (seperti adduser nextjs) dan menjalankannya dengan perintah USER nextjs?",
             "options": [
-              "Sebagai standar keamanan pertahanan: mencegah serangan Container Escape di mana jika aplikasi berhasil dieksploitasi oleh hacker, hacker tidak mendapatkan hak akses administrator (root) penuh ke sistem operasi host server.",
               "Karena user root dilarang oleh konsorsium Docker.",
+              "Sebagai standar keamanan pertahanan: mencegah serangan Container Escape di mana jika aplikasi berhasil dieksploitasi oleh hacker, hacker tidak mendapatkan hak akses administrator (root) penuh ke sistem operasi host server.",
               "Agar kontainer bisa memutar musik.",
               "Untuk menghemat penggunaan kuota internet."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Prinsip Least Privilege mewajibkan proses aplikasi berjalan sebagai non-root user untuk membatasi kerusakan jika terjadi eksploitasi keamanan kontainer."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Docker Containerization & Deployment Produksi (Self-Hosted & Vercel)",
+          "description": "Implementasikan konsep Docker Containerization & Deployment Produksi (Self-Hosted & Vercel) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Docker Containerization & Deployment Produksi (Self-Hosted & Vercel).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Docker Containerization & Production Deployment\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Docker Containerization & Production Deployment**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMembungkus aplikasi Next.js ke dalam kontainer Docker terisolasi: Dockerfile multi-stage build (deps, builder, runner), standalone output, optimasi image alpine, dan deployment (Vercel vs VPS Coolify/Docker).\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       },
       {
         "id": "lesson-20-6",
@@ -9489,39 +10821,49 @@ export const CURRICULUM_STAGES: StageItem[] = [
             "id": "q-20-6-1",
             "question": "Apa fungsi utama dari mengintegrasikan platform Error Tracking otomatis seperti Sentry pada aplikasi web di lingkungan produksi?",
             "options": [
-              "Secara otomatis menangkap dan melaporkan setiap runtime error dan crash yang dialami pengguna nyata secara real-time lengkap dengan stack trace nomor baris kode, tipe perangkat, dan konteks aksi pengguna.",
+              "Mengubah website menjadi bahasa Spanyol.",
               "Membayar gaji developer secara otomatis setiap akhir bulan.",
               "Menghentikan server saat malam hari.",
-              "Mengubah website menjadi bahasa Spanyol."
+              "Secara otomatis menangkap dan melaporkan setiap runtime error dan crash yang dialami pengguna nyata secara real-time lengkap dengan stack trace nomor baris kode, tipe perangkat, dan konteks aksi pengguna."
             ],
-            "correctIndex": 0,
+            "correctIndex": 3,
             "explanation": "Sentry memberikan visibilitas instan terhadap bug yang terjadi di lingkungan produksi tanpa harus menunggu laporan manual dari pengguna."
           },
           {
             "id": "q-20-6-2",
             "question": "Apakah 3 pilar utama yang menyusun konsep 'Observability' dalam sistem rekayasa perangkat lunak modern?",
             "options": [
-              "Logs, Metrics, dan Traces",
               "HTML, CSS, dan JavaScript",
+              "Logs, Metrics, dan Traces",
               "Input, Process, dan Output",
               "CPU, RAM, dan Harddisk"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "Tiga pilar Observability standar industri adalah Logs (catatan event), Metrics (data statistik numerik agregat), dan Traces (alur request terdistribusi)."
           },
           {
             "id": "q-20-6-3",
             "question": "Mengapa penting untuk mengaktifkan fitur Data Masking / PII Sanitization pada konfigurasi tools error monitoring seperti Sentry?",
             "options": [
-              "Untuk mencegah data pribadi sensitif pengguna (seperti password, nomor identitas KTP, atau kartu kredit) ikut terkirim dan tersimpan di log server monitoring, menjaga kepatuhan privasi (GDPR/UU PDP).",
               "Karena Sentry menolak teks yang panjang.",
+              "Untuk mencegah data pribadi sensitif pengguna (seperti password, nomor identitas KTP, atau kartu kredit) ikut terkirim dan tersimpan di log server monitoring, menjaga kepatuhan privasi (GDPR/UU PDP).",
               "Untuk menghemat biaya langganan internet.",
               "Agar error tidak bisa dibaca oleh admin."
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "PII (Personally Identifiable Information) masking adalah kepatuhan hukum wajib untuk menyaring data sensitif sebelum dikirim ke pihak monitoring eksternal."
           }
-        ]
+        ],
+        "miniProject": {
+          "title": "Praktik Mandiri: Monitoring, Observability & Error Tracking (Sentry, OpenTelemetry)",
+          "description": "Implementasikan konsep Monitoring, Observability & Error Tracking (Sentry, OpenTelemetry) secara nyata ke dalam kode Anda sendiri.",
+          "deliverables": [
+            "Menulis kode implementasi yang bersih sesuai standar materi Monitoring, Observability & Error Tracking (Sentry, OpenTelemetry).",
+            "Memvalidasi output di browser/konsol dan memastikan tidak ada error syntax.",
+            "Mengerjakan quiz evaluasi pemahaman dengan skor minimal 80%."
+          ]
+        },
+        "contentMdEn": "# Monitoring, Observability & Sentry Error Tracking\n\n## What You Will Learn\nIn this lesson, you will master the foundational concepts of **Monitoring, Observability & Sentry Error Tracking**, understand why it is essential for modern web engineering, and practice writing real working code.\n\n## Key Concepts & Structure\nMemantau kesehatan aplikasi di lingkungan produksi secara real-time: Error Tracking dengan Sentry, Real User Monitoring (RUM), OpenTelemetry tracing, log aggregation, dan kesiapan arsitektur Fullstack modern.\n\n## Practical Guidelines\n1. Review the conceptual architecture and terminology.\n2. Open the Interactive Sandbox below to modify code and observe the live execution.\n3. Complete the diagnostic evaluation quiz with at least 80% passing score to unlock the next stage."
       }
     ]
   }
