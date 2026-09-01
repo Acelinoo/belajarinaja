@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { OAuthButtons } from "@/components/auth/OAuthButtons";
 import { useModalStore } from "@/store/useModalStore";
 import { useUserAuthStore } from "@/store/useUserAuthStore";
 import { useGuestProgressStore } from "@/store/useGuestProgressStore";
@@ -157,7 +158,7 @@ export function AuthModal() {
           <div className="pt-2 space-y-3">
             <Button
               type="submit"
-              className="w-full text-xs font-bold gap-2 h-9 shadow-[3px_3px_0px_#121212] dark:border dark:border-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000] dark:shadow-none fun:rounded-full fun:bg-[#5CC8FF] fun:text-[#243447] fun:border-0 fun:shadow-[0_4px_12px_rgba(92,200,255,0.4)]"
+              className="w-full text-xs font-bold gap-2 h-9 rounded-md"
               disabled={loading}
             >
               {loading
@@ -168,10 +169,12 @@ export function AuthModal() {
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
 
+            <OAuthButtons onSuccess={closeLoginModal} />
+
             <button
               type="button"
               onClick={() => setIsRegister(!isRegister)}
-              className="w-full text-center text-xs font-bold text-black underline hover:text-primary dark:text-[#888888] dark:no-underline dark:hover:text-[#FFFFFF] fun:text-[#FF6B6B] transition-colors"
+              className="w-full text-center text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors pt-2 block"
             >
               {isRegister ? t.auth.hasAccountToggle : t.auth.noAccountToggle}
             </button>

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Lock, Mail, User, ArrowRight, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { OAuthButtons } from "@/components/auth/OAuthButtons";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
@@ -126,6 +127,8 @@ export default function AuthLoginPage() {
             >
               {loading ? t.auth.processing : isRegister ? t.auth.btnRegister : t.auth.btnLogin}
             </Button>
+
+            <OAuthButtons redirectTo="/dashboard" />
           </form>
 
           {/* Toggle Register / Login */}

@@ -17,7 +17,6 @@ import {
   Trophy,
   Compass,
   ArrowRight,
-  Sparkles,
   Award,
 } from "lucide-react";
 import type { Lesson, Stage } from "@/types/curriculum";

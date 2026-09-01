@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   Lock,
   ArrowRight,
-  Sparkles,
   BookOpen,
   Trophy,
   Award,

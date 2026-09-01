@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   Play,
   Layers,
-  Sparkles,
   Map,
   Award,
   Terminal,

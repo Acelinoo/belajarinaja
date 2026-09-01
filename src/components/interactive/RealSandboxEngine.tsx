@@ -11,7 +11,6 @@ import {
   Terminal,
   HelpCircle,
   Code2,
-  Sparkles,
   Layout,
   Maximize2,
   Copy,
@@ -495,7 +494,7 @@ export function RealSandboxEngine({
         {showHint && hints && hints.length > 0 && (
           <div className="p-5 rounded-[24px] border-2 border-[#5CC8FF] bg-[#F0F9FF] text-xs space-y-1.5">
             <div className="flex items-center gap-1.5 font-black text-[#0284C7]">
-              <Sparkles className="h-4 w-4 text-[#5CC8FF]" />
+              <Lightbulb className="h-4 w-4 text-[#5CC8FF]" />
               <span>Petunjuk Rahasia dari NOVA:</span>
             </div>
             <p className="text-[#0369A1] font-medium leading-relaxed">{hints[hintIndex]}</p>
@@ -506,7 +505,7 @@ export function RealSandboxEngine({
         {showSolution && (
           <div className="p-5 rounded-[24px] border-2 border-[#FED7AA] bg-[#FFF8E7] space-y-2">
             <span className="text-xs font-black text-[#D97706] block">
-              📖 Kunci Jawaban Eksperimen:
+              Kunci Jawaban Eksperimen:
             </span>
             <pre className="p-3 rounded-2xl bg-white border border-[#FED7AA] font-mono text-xs text-[#243447] overflow-x-auto">
               <code>{exercise.solutionCode}</code>

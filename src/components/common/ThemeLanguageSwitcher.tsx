@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun, Sparkles, Globe } from "lucide-react";
+import { Moon, Sun, Palette, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useThemeLanguageStore, ThemeMode } from "@/store/useThemeLanguageStore";
 
@@ -67,7 +67,7 @@ export function ThemeLanguageSwitcher() {
           title="Mode 3: Fun (Playful Learning World)"
           aria-label="Select Fun Mode"
         >
-          <Sparkles className="h-3.5 w-3.5" />
+          <Palette className="h-3.5 w-3.5" />
         </button>
       </div>
     </div>

@@ -12,7 +12,6 @@ import {
   Search,
   LogIn,
   User,
-  Sparkles,
   Menu,
   X,
 } from "lucide-react";

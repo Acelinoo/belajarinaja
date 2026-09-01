@@ -22,7 +22,6 @@ import {
   CircleHelp,
   Code2,
   BookOpen,
-  Sparkles,
   Star,
   Zap,
 } from "lucide-react";

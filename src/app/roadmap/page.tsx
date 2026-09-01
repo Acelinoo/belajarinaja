@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Lock,
   ArrowRight,
-  Sparkles,
   BookOpen,
   Search,
   Check,
