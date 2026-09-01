@@ -3,14 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Lock, Mail, User, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, Lock, Mail, User, ArrowRight, ShieldCheck, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { useUserAuthStore } from "@/store/useUserAuthStore";
-import { useGuestProgressStore } from "@/store/useGuestProgressStore";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
+import { BotCompanionCharacter } from "@/components/fun/characters/BotCompanionCharacter";
 import { RocketAdventureIllustration } from "@/components/fun/illustrations/RocketAdventureIllustration";
 
 export default function AuthLoginPage() {
@@ -21,8 +20,8 @@ export default function AuthLoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { setUser } = useUserAuthStore();
-  const { completedLessons } = useGuestProgressStore();
+  const { setUser } = useAuthStore();
+  const { completedLessons } = useCurriculumProgressStore();
   const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
 
@@ -41,142 +40,264 @@ export default function AuthLoginPage() {
       });
       setLoading(false);
       router.push("/dashboard");
-    }, 800);
+    }, 600);
   };
 
+  // 1. FUN MODE: Rocket Launchpad Registration
+  if (theme === "fun") {
+    return (
+      <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 bg-[#FFF8E7] text-[#243447]">
+        <div className="w-full max-w-md space-y-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-black text-[#D97706] hover:underline"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>{t.auth.backHome}</span>
+          </Link>
+
+          <div className="p-8 rounded-[40px] border-4 border-[#FED7AA] bg-white shadow-[0_20px_50px_rgba(255,155,84,0.15)] text-center space-y-6">
+            <div className="flex justify-center">
+              <RocketAdventureIllustration className="w-24 h-24" />
+            </div>
+
+            <div className="space-y-1">
+              <h2 className="text-2xl font-black text-[#243447]">
+                {isRegister ? t.auth.registerTitle : t.auth.loginTitle}
+              </h2>
+              <p className="text-xs text-[#64748B] font-medium">
+                {isRegister ? t.auth.registerSubtitle : t.auth.loginSubtitle}
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4 text-left">
+              {isRegister && (
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-[#243447]">{t.auth.fullName}</label>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Nama Penjelajah"
+                    className="w-full px-4 py-2.5 text-xs font-bold rounded-full border-2 border-[#FED7AA] bg-white text-[#243447] focus:outline-none focus:border-[#5CC8FF]"
+                    required
+                  />
+                </div>
+              )}
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-[#243447]">{t.auth.email}</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="explorer@belajarinaja.com"
+                  className="w-full px-4 py-2.5 text-xs font-bold rounded-full border-2 border-[#FED7AA] bg-white text-[#243447] focus:outline-none focus:border-[#5CC8FF]"
+                  required
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-[#243447]">{t.auth.password}</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-2.5 text-xs font-bold rounded-full border-2 border-[#FED7AA] bg-white text-[#243447] focus:outline-none focus:border-[#5CC8FF]"
+                  required
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] font-black text-xs h-11 shadow-[0_4px_16px_rgba(255,216,77,0.45)] mt-2"
+              >
+                {loading ? t.auth.processing : isRegister ? t.auth.btnRegister : t.auth.btnLogin} &rarr;
+              </Button>
+            </form>
+
+            <div className="pt-2 border-t border-[#FED7AA]/50 text-xs text-[#64748B]">
+              <button
+                type="button"
+                onClick={() => setIsRegister(!isRegister)}
+                className="font-black text-[#D97706] hover:underline"
+              >
+                {isRegister ? t.auth.hasAccount : t.auth.noAccount}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 2. DARK MODE: Monochrome Terminal Access Console (100% Monochrome)
+  if (theme === "dark") {
+    return (
+      <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 bg-[#050505] text-[#FFFFFF] font-mono">
+        <div className="w-full max-w-md space-y-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#FFFFFF]"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span>RETURN_TO_ROOT</span>
+          </Link>
+
+          <div className="p-8 rounded border border-[#222222] bg-[#0A0A0A] space-y-6">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-xs text-[#888888]">
+                <Terminal className="h-3.5 w-3.5 text-[#FFFFFF]" />
+                <span>AUTH_PROTOCOL // ACCESS_NODE</span>
+              </div>
+              <h2 className="text-lg font-black text-[#FFFFFF]">
+                {isRegister ? "REGISTER_CREDENTIALS" : "AUTHENTICATE_SESSION"}
+              </h2>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {isRegister && (
+                <div className="space-y-1">
+                  <label className="text-xs text-[#888888]">USER_HANDLE</label>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-3 py-2 text-xs bg-[#050505] border border-[#222222] text-[#FFFFFF] rounded focus:outline-none focus:border-[#FFFFFF]"
+                    required
+                  />
+                </div>
+              )}
+
+              <div className="space-y-1">
+                <label className="text-xs text-[#888888]">COMM_EMAIL</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3 py-2 text-xs bg-[#050505] border border-[#222222] text-[#FFFFFF] rounded focus:outline-none focus:border-[#FFFFFF]"
+                  required
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs text-[#888888]">PASSKEY_HASH</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-3 py-2 text-xs bg-[#050505] border border-[#222222] text-[#FFFFFF] rounded focus:outline-none focus:border-[#FFFFFF]"
+                  required
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full font-mono text-xs bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black h-9 rounded mt-2"
+              >
+                {loading ? "AUTHENTICATING..." : isRegister ? "SUBMIT_REGISTRATION" : "AUTHORIZE_ACCESS"}
+              </Button>
+            </form>
+
+            <div className="pt-2 border-t border-[#1A1A1A] text-xs text-center">
+              <button
+                type="button"
+                onClick={() => setIsRegister(!isRegister)}
+                className="text-[#888888] hover:text-[#FFFFFF]"
+              >
+                {isRegister ? "[SWITCH_TO_LOGIN]" : "[CREATE_NEW_ACCOUNT]"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 3. LIGHT MODE: Modern Neo-Brutalism Login Card
   return (
-    <div className={`min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 ${theme === "fun" ? "bg-[#FFF8E7] text-[#243447]" : "bg-background text-foreground"}`}>
+    <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 bg-[#F7F4EA] text-[#121212]">
       <div className="w-full max-w-md space-y-6">
-        {/* Back Link */}
         <Link
           href="/"
-          className={`inline-flex items-center gap-1.5 text-xs font-bold transition-colors ${theme === "fun" ? "text-[#D97706] hover:underline" : "text-black dark:text-[#94A3B8] hover:underline decoration-[#FFD84D] decoration-2 dark:no-underline dark:hover:text-cyan-300"}`}
+          className="inline-flex items-center gap-1.5 text-xs font-black text-[#121212] hover:underline decoration-[#FFD84D] decoration-2"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>{t.auth.backHome}</span>
         </Link>
 
-        {/* Guest Progress Notice */}
-        {guestCount > 0 && (
-          <div className={`p-3.5 text-xs flex items-center justify-between ${theme === "fun" ? "rounded-3xl border-2 border-[#FED7AA] bg-white shadow-[0_4px_15px_rgba(255,155,84,0.1)] text-[#243447]" : "rounded-xl border-2 border-black bg-[#FFD84D]/30 text-[#121212] shadow-[4px_4px_0px_#121212] dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-[#F1F5F9] dark:shadow-none"}`}>
-            <div>
-              <span className="font-black dark:text-cyan-300 fun:text-[#D97706]">
-                {guestCount} {t.auth.guestFound}
-              </span>
-              <p className="mt-0.5 font-medium dark:font-normal text-neutral-800 dark:text-[#8292A6] fun:text-[#64748B]">
-                {t.auth.guestSyncDesc}
-              </p>
-            </div>
-          </div>
-        )}
-
-        <Card className={`${theme === "fun" ? "border-2 border-[#FED7AA] bg-white rounded-3xl shadow-[0_20px_50px_rgba(255,155,84,0.12)] p-2" : "border-2 border-black bg-white shadow-[8px_8px_0px_#121212] dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)]"}`}>
-          <CardHeader className="space-y-1 text-center sm:text-left">
-            {theme === "fun" ? (
-              <div className="flex justify-center mb-2">
-                <RocketAdventureIllustration className="w-20 h-20" />
+        <div className="p-8 rounded-2xl border-2 border-black bg-white shadow-[8px_8px_0px_#121212] space-y-6">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="flex h-7 w-7 items-center justify-center rounded border-2 border-black bg-[#FFD84D] font-mono font-black text-xs shadow-[1.5px_1.5px_0px_#121212]">
+                BA
               </div>
-            ) : (
-              <div className="flex items-center gap-2 mb-1">
-                <div className="flex h-7 w-7 items-center justify-center rounded border-2 border-black bg-[#FFD84D] text-[#121212] font-mono font-black text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none">
-                  BA
-                </div>
-                <span className="font-black tracking-tight text-sm text-foreground">
-                  Belajarin<span className="text-[#121212] dark:text-cyan-400 bg-[#FFD84D] dark:bg-transparent px-1 rounded-sm border border-black dark:border-0 ml-0.5">Aja</span>
-                </span>
+              <span className="font-black text-sm text-[#121212]">BelajarinAja</span>
+            </div>
+            <h2 className="text-xl font-black text-[#121212]">
+              {isRegister ? t.auth.registerTitle : t.auth.loginTitle}
+            </h2>
+            <p className="text-xs text-[#555555]">
+              {isRegister ? t.auth.registerSubtitle : t.auth.loginSubtitle}
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {isRegister && (
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-[#121212]">{t.auth.fullName}</label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-3 py-2 text-xs font-bold rounded-lg border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] focus:outline-none"
+                  required
+                />
               </div>
             )}
 
-            <CardTitle className="text-xl font-black tracking-tight text-foreground fun:text-[#243447]">
-              {isRegister ? t.auth.registerTitle : t.auth.loginTitle}
-            </CardTitle>
-            <CardDescription className="text-xs font-medium text-[#555555] dark:font-normal dark:text-[#8292A6] fun:text-[#64748B]">
-              {isRegister ? t.auth.registerSubtitle : t.auth.loginSubtitle}
-            </CardDescription>
-          </CardHeader>
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#121212]">{t.auth.email}</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 text-xs font-bold rounded-lg border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] focus:outline-none"
+                required
+              />
+            </div>
 
-          <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-4">
-              {isRegister && (
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-foreground fun:text-[#243447]">
-                    {t.auth.fullNameLabel}
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400 fun:text-[#5CC8FF]" />
-                    <Input
-                      type="text"
-                      placeholder={t.auth.fullNameLabel}
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className={`pl-9 text-xs bg-white ${theme === "fun" ? "rounded-full border-[#E2E8F0] text-[#243447]" : "dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9]"}`}
-                      required
-                    />
-                  </div>
-                </div>
-              )}
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#121212]">{t.auth.password}</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 text-xs font-bold rounded-lg border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] focus:outline-none"
+                required
+              />
+            </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-foreground fun:text-[#243447]">
-                  {t.auth.emailLabel}
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400 fun:text-[#5CC8FF]" />
-                  <Input
-                    type="email"
-                    placeholder="nama@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`pl-9 text-xs bg-white ${theme === "fun" ? "rounded-full border-[#E2E8F0] text-[#243447]" : "dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9]"}`}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-foreground fun:text-[#243447]">
-                  {t.auth.passwordLabel}
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-cyan-400 fun:text-[#5CC8FF]" />
-                  <Input
-                    type="password"
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`pl-9 text-xs bg-white ${theme === "fun" ? "rounded-full border-[#E2E8F0] text-[#243447]" : "dark:bg-[#05070A] dark:border-[#1C242D] dark:text-[#F1F5F9]"}`}
-                    required
-                  />
-                </div>
-              </div>
-            </CardContent>
-
-            <CardFooter className="flex flex-col space-y-3 pt-2">
-              <Button
-                type="submit"
-                className={`w-full text-xs font-black gap-2 h-9 ${theme === "fun" ? "rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] shadow-[0_4px_12px_rgba(255,216,77,0.4)]" : "shadow-[3px_3px_0px_#121212] dark:border dark:border-cyan-500/40 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-400 dark:hover:text-[#05070A] dark:shadow-none"}`}
-                disabled={loading}
-              >
-                {loading
-                  ? t.auth.processing
-                  : isRegister
-                  ? t.auth.submitRegister
-                  : t.auth.submitLogin}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-
-              <button
-                type="button"
-                onClick={() => setIsRegister(!isRegister)}
-                className={`text-xs font-bold text-center transition-colors ${theme === "fun" ? "text-[#FF6B6B] hover:underline" : "text-black underline hover:text-primary dark:text-[#8292A6] dark:no-underline dark:hover:text-cyan-300"}`}
-              >
-                {isRegister ? t.auth.hasAccountToggle : t.auth.noAccountToggle}
-              </button>
-            </CardFooter>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full rounded-lg border-2 border-black bg-[#FFD84D] hover:bg-[#F5CB32] text-[#121212] font-black text-xs h-10 shadow-[3px_3px_0px_#121212] mt-2"
+            >
+              {loading ? t.auth.processing : isRegister ? t.auth.btnRegister : t.auth.btnLogin}
+            </Button>
           </form>
-        </Card>
+
+          <div className="pt-2 border-t-2 border-black text-xs text-center font-bold">
+            <button
+              type="button"
+              onClick={() => setIsRegister(!isRegister)}
+              className="text-[#121212] hover:underline decoration-[#FFD84D] decoration-2"
+            >
+              {isRegister ? t.auth.hasAccount : t.auth.noAccount}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-

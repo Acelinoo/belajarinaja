@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { CURRICULUM_STAGES } from "@/data/curriculum";
 
 export interface GuestLessonProgress {
   lessonId: string;
@@ -36,6 +37,7 @@ interface GuestProgressState {
   setCurrentLesson: (slug: string) => void;
   clearGuestProgress: () => void;
   isLessonPassed: (lessonId: string) => boolean;
+  isLessonUnlocked: (lessonId: string) => boolean;
 }
 
 export const useGuestProgressStore = create<GuestProgressState>()(
@@ -120,9 +122,30 @@ export const useGuestProgressStore = create<GuestProgressState>()(
         const item = get().completedLessons[lessonId];
         return !!(item && item.completed && item.passed !== false);
       },
+
+      isLessonUnlocked: (lessonId) => {
+        // Flatten lessons
+        const allLessons = CURRICULUM_STAGES.flatMap((s) => s.lessons);
+        const index = allLessons.findIndex((l) => l.id === lessonId);
+        if (index <= 0) return true; // Stage 1 / Lesson 1 is always unlocked
+
+        const lesson = allLessons[index];
+        if (!lesson || !lesson.prerequisites || lesson.prerequisites.length === 0) {
+          // If no specific prereqs, check previous lesson
+          const prevLesson = allLessons[index - 1];
+          return !prevLesson || !!get().completedLessons[prevLesson.id]?.completed;
+        }
+
+        return lesson.prerequisites.every((prereqSlug) => {
+          const prereqLesson = allLessons.find((l) => l.slug === prereqSlug);
+          return !prereqLesson || !!get().completedLessons[prereqLesson.id]?.completed;
+        });
+      },
     }),
     {
       name: "belajarinaja_guest_progress",
     }
   )
 );
+
+export const useCurriculumProgressStore = useGuestProgressStore;

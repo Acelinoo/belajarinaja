@@ -12,6 +12,8 @@ interface ModalState {
 
   openLoginModal: () => void;
   closeLoginModal: () => void;
+  openAuthModal: () => void;
+  closeAuthModal: () => void;
 
   openCertificateModal: (certId: string) => void;
   closeCertificateModal: () => void;
@@ -29,6 +31,8 @@ export const useModalStore = create<ModalState>((set) => ({
 
   openLoginModal: () => set({ isLoginModalOpen: true }),
   closeLoginModal: () => set({ isLoginModalOpen: false }),
+  openAuthModal: () => set({ isLoginModalOpen: true }),
+  closeAuthModal: () => set({ isLoginModalOpen: false }),
 
   openCertificateModal: (certId) =>
     set({ isCertificateModalOpen: true, activeCertificateId: certId }),

@@ -59,24 +59,21 @@ const config: Config = {
           muted: "#EAE4D5",
           border: "#121212",
         },
-        // Obsidian Command Center Dark Mode Tokens (No Purple)
+        // Obsidian Command Center Dark Mode Tokens (Strictly Monochrome Grayscale)
         obsidian: {
-          base: "#05070A",
-          surface: "#090D12",
-          elevated: "#0F141A",
-          highlight: "#151B22",
-          sidebar: "#090D12",
-          sunken: "#05070A",
-          border: "#1C242D",
-          borderStrong: "#26313C",
-          cyan: "#22D3EE",
-          "cyan-light": "#67E8F9",
-          blue: "#38BDF8",
-          emerald: "#10B981",
-          amber: "#F59E0B",
-          red: "#EF4444",
+          base: "#050505",
+          surface: "#0A0A0A",
+          elevated: "#111111",
+          highlight: "#171717",
+          sidebar: "#0A0A0A",
+          sunken: "#050505",
+          border: "#222222",
+          borderStrong: "#2A2A2A",
+          text: "#FAFAFA",
+          textMuted: "#A1A1AA",
+          textDim: "#71717A",
         },
-        // Playful Learning World Fun Mode Tokens (No Purple)
+        // Playful Learning World Fun Mode Tokens (Warm Sunny - No Purple)
         fun: {
           bg: "#FFF8E7",
           surface: "#FFFFFF",

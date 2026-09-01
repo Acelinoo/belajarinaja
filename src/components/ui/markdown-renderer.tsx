@@ -1,34 +1,18 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { CodeBlock } from "@/components/ui/code-block";
-import { AlertTriangle, Info, CheckCircle2, ShieldAlert, Lightbulb } from "lucide-react";
-
-interface MarkdownRendererProps {
-  content: string;
-  className?: string;
-}
+import { AlertTriangle, Info, ShieldAlert, Lightbulb } from "lucide-react";
 
 interface InlineProps {
   text: string;
   className?: string;
 }
 
-/**
- * Parses inline markdown:
- * - `code` -> inline code badge
- * - **bold** or *bold* -> strong element
- * - [label](url) -> link element
- * - __underline/bold__ -> strong element
- */
 export function InlineFormattedText({ text, className = "" }: InlineProps) {
   if (!text) return null;
 
-  // Regex to match inline code (`...`), bold (**...** or *...*), markdown links ([...](...))
-  // Group 1: code `...`
-  // Group 2: bold double **...**
-  // Group 3: bold single *...*
-  // Group 4: link [...](...)
+  // Inline token parser
   const tokenRegex = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*\n]+\*|\[[^\]]+\]\([^)]+\))/g;
   const parts = text.split(tokenRegex);
 
@@ -41,7 +25,7 @@ export function InlineFormattedText({ text, className = "" }: InlineProps) {
       return (
         <code
           key={index}
-          className="px-1.5 py-0.5 mx-0.5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] font-mono text-[12.5px] font-bold shadow-[2px_2px_0px_#121212] select-all dark:border dark:border-[#1C242D] dark:bg-[#0F141A] dark:text-cyan-300 dark:shadow-none dark:font-mono"
+          className="px-1.5 py-0.5 mx-0.5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] font-mono text-[12.5px] font-bold shadow-[2px_2px_0px_#121212] select-all dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono"
         >
           {codeContent}
         </code>
@@ -78,7 +62,7 @@ export function InlineFormattedText({ text, className = "" }: InlineProps) {
             href={linkMatch[2]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium dark:text-cyan-400 dark:hover:text-cyan-300"
+            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium dark:text-[#FFFFFF] dark:hover:text-[#CCCCCC]"
           >
             {linkMatch[1]}
           </a>
@@ -98,257 +82,234 @@ type BlockItem =
   | { type: "h1"; text: string }
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
-  | { type: "h4"; text: string }
-  | { type: "hr" }
-  | { type: "callout"; variant: "info" | "warning" | "security" | "tip"; title?: string; text: string }
-  | { type: "quote"; text: string }
+  | {
+      type: "callout";
+      variant: "info" | "warning" | "security" | "tip";
+      title?: string;
+      text: string;
+    }
   | { type: "ul"; items: string[] }
   | { type: "ol"; items: { num: string; text: string }[] }
+  | { type: "quote"; text: string }
   | { type: "p"; text: string };
 
-function parseMarkdownBlocks(content: string): BlockItem[] {
-  if (!content) return [];
+function parseMarkdownBlocks(rawMarkdown: string): BlockItem[] {
+  if (!rawMarkdown) return [];
 
-  // Split by code blocks first
-  const rawParts = content.split("```");
-  const blocks: BlockItem[] = [];
+  const normalized = rawMarkdown.replace(/\r\n/g, "\n");
+  const rawBlocks = normalized.split("\n\n");
+  const parsed: BlockItem[] = [];
 
-  for (let i = 0; i < rawParts.length; i++) {
-    const part = rawParts[i];
+  let inFencedCode = false;
+  let codeLang = "typescript";
+  let codeBuffer: string[] = [];
 
-    if (i % 2 === 1) {
-      // Inside code block
-      const firstLineEnd = part.indexOf("\n");
-      const language =
-        firstLineEnd !== -1 ? part.slice(0, firstLineEnd).trim() : "javascript";
-      const codeText =
-        firstLineEnd !== -1 ? part.slice(firstLineEnd + 1) : part;
+  const lines = normalized.split("\n");
+  let i = 0;
 
-      blocks.push({
-        type: "code",
-        language: language || "javascript",
-        code: codeText.replace(/\n+$/, ""),
-      });
-    } else {
-      // Normal Markdown text
-      const lines = part.split("\n");
-      let currentList: { type: "ul"; items: string[] } | { type: "ol"; items: { num: string; text: string }[] } | null = null;
-      let currentQuote: string[] = [];
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
 
-      const flushList = () => {
-        if (currentList) {
-          blocks.push(currentList);
-          currentList = null;
-        }
-      };
-
-      const flushQuote = () => {
-        if (currentQuote.length > 0) {
-          blocks.push({
-            type: "quote",
-            text: currentQuote.join(" "),
-          });
-          currentQuote = [];
-        }
-      };
-
-      for (let j = 0; j < lines.length; j++) {
-        const line = lines[j];
-        const trimmed = line.trim();
-
-        if (!trimmed) {
-          flushList();
-          flushQuote();
-          continue;
-        }
-
-        // Horizontal Rule
-        if (trimmed === "---" || trimmed === "***" || trimmed === "___") {
-          flushList();
-          flushQuote();
-          blocks.push({ type: "hr" });
-          continue;
-        }
-
-        // Headings (H1 - H4)
-        if (/^#\s+/.test(trimmed)) {
-          flushList();
-          flushQuote();
-          blocks.push({ type: "h1", text: trimmed.replace(/^#\s+/, "") });
-          continue;
-        }
-        if (/^##\s+/.test(trimmed)) {
-          flushList();
-          flushQuote();
-          blocks.push({ type: "h2", text: trimmed.replace(/^##\s+/, "") });
-          continue;
-        }
-        if (/^###\s+/.test(trimmed)) {
-          flushList();
-          flushQuote();
-          blocks.push({ type: "h3", text: trimmed.replace(/^###\s+/, "") });
-          continue;
-        }
-        if (/^####\s+/.test(trimmed)) {
-          flushList();
-          flushQuote();
-          blocks.push({ type: "h4", text: trimmed.replace(/^####\s+/, "") });
-          continue;
-        }
-
-        // Blockquotes (> Quote)
-        if (trimmed.startsWith(">")) {
-          flushList();
-          currentQuote.push(trimmed.replace(/^>\s*/, ""));
-          continue;
-        } else {
-          flushQuote();
-        }
-
-        // Ordered List Item (1. Item, 2. Item)
-        const olMatch = trimmed.match(/^(\d+)\.\s+(.*)$/);
-        if (olMatch) {
-          if (!currentList || currentList.type !== "ol") {
-            flushList();
-            currentList = { type: "ol", items: [] };
-          }
-          (currentList as { type: "ol"; items: { num: string; text: string }[] }).items.push({
-            num: olMatch[1],
-            text: olMatch[2],
-          });
-          continue;
-        }
-
-        // Unordered List Item (- Item, * Item, • Item)
-        const ulMatch = trimmed.match(/^[-*•]\s+(.*)$/);
-        if (ulMatch) {
-          if (!currentList || currentList.type !== "ul") {
-            flushList();
-            currentList = { type: "ul", items: [] };
-          }
-          (currentList as { type: "ul"; items: string[] }).items.push(ulMatch[1]);
-          continue;
-        }
-
-        // Security / Warning Alert Callouts (e.g. **Catatan Keamanan:** or **PERINGATAN:**)
-        if (/^\*\*(Catatan Keamanan|Keamanan|Security)[^:]*:\*\*/i.test(trimmed)) {
-          flushList();
-          blocks.push({
-            type: "callout",
-            variant: "security",
-            title: "Catatan Keamanan",
-            text: trimmed.replace(/^\*\*(Catatan Keamanan|Keamanan|Security)[^:]*:\*\*\s*/i, ""),
-          });
-          continue;
-        }
-
-        if (/^\*\*(PERINGATAN|Warning|Caution)[^:]*:\*\*/i.test(trimmed)) {
-          flushList();
-          blocks.push({
-            type: "callout",
-            variant: "warning",
-            title: "Peringatan",
-            text: trimmed.replace(/^\*\*(PERINGATAN|Warning|Caution)[^:]*:\*\*\s*/i, ""),
-          });
-          continue;
-        }
-
-        if (/^\*\*(Catatan|Note|Info|Tips|Tip)[^:]*:\*\*/i.test(trimmed)) {
-          flushList();
-          blocks.push({
-            type: "callout",
-            variant: "info",
-            title: "Catatan Pembelajaran",
-            text: trimmed.replace(/^\*\*(Catatan|Note|Info|Tips|Tip)[^:]*:\*\*\s*/i, ""),
-          });
-          continue;
-        }
-
-        // Regular paragraph
-        flushList();
-        blocks.push({ type: "p", text: trimmed });
+    // Code block start/end
+    if (trimmed.startsWith("```")) {
+      if (!inFencedCode) {
+        inFencedCode = true;
+        codeLang = trimmed.slice(3).trim() || "typescript";
+        codeBuffer = [];
+        i++;
+        continue;
+      } else {
+        inFencedCode = false;
+        parsed.push({
+          type: "code",
+          language: codeLang,
+          code: codeBuffer.join("\n"),
+        });
+        codeBuffer = [];
+        i++;
+        continue;
       }
+    }
 
-      flushList();
-      flushQuote();
+    if (inFencedCode) {
+      codeBuffer.push(line);
+      i++;
+      continue;
+    }
+
+    // Empty line skip
+    if (!trimmed) {
+      i++;
+      continue;
+    }
+
+    // Headings
+    if (trimmed.startsWith("# ")) {
+      parsed.push({ type: "h1", text: trimmed.slice(2) });
+      i++;
+      continue;
+    }
+    if (trimmed.startsWith("## ")) {
+      parsed.push({ type: "h2", text: trimmed.slice(3) });
+      i++;
+      continue;
+    }
+    if (trimmed.startsWith("### ")) {
+      parsed.push({ type: "h3", text: trimmed.slice(4) });
+      i++;
+      continue;
+    }
+
+    // Callouts: > [!NOTE], > [!WARNING], > [!SECURITY], > [!TIP]
+    if (trimmed.startsWith("> [!")) {
+      const calloutTypeMatch = trimmed.match(/^>\s*\[!(NOTE|WARNING|SECURITY|TIP|IMPORTANT|CAUTION)\]\s*(.*)$/i);
+      if (calloutTypeMatch) {
+        const rawType = calloutTypeMatch[1].toUpperCase();
+        let variant: "info" | "warning" | "security" | "tip" = "info";
+        if (rawType === "WARNING" || rawType === "CAUTION") variant = "warning";
+        else if (rawType === "SECURITY") variant = "security";
+        else if (rawType === "TIP") variant = "tip";
+
+        const title = calloutTypeMatch[2].trim() || rawType;
+        const calloutLines: string[] = [];
+        i++;
+        while (i < lines.length && lines[i].trim().startsWith(">")) {
+          calloutLines.push(lines[i].trim().replace(/^>\s?/, ""));
+          i++;
+        }
+        parsed.push({
+          type: "callout",
+          variant,
+          title,
+          text: calloutLines.join(" "),
+        });
+        continue;
+      }
+    }
+
+    // Standard blockquote: > ...
+    if (trimmed.startsWith(">")) {
+      const quoteLines: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) {
+        quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
+        i++;
+      }
+      parsed.push({ type: "quote", text: quoteLines.join(" ") });
+      continue;
+    }
+
+    // Unordered list: - item or * item
+    if (/^[-*]\s+/.test(trimmed)) {
+      const listItems: string[] = [];
+      while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
+        listItems.push(lines[i].trim().replace(/^[-*]\s+/, ""));
+        i++;
+      }
+      parsed.push({ type: "ul", items: listItems });
+      continue;
+    }
+
+    // Ordered list: 1. item
+    if (/^\d+\.\s+/.test(trimmed)) {
+      const listItems: { num: string; text: string }[] = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+        const match = lines[i].trim().match(/^(\d+)\.\s+(.*)$/);
+        if (match) {
+          listItems.push({ num: match[1], text: match[2] });
+        }
+        i++;
+      }
+      parsed.push({ type: "ol", items: listItems });
+      continue;
+    }
+
+    // Paragraph
+    const paragraphLines: string[] = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() &&
+      !lines[i].trim().startsWith("#") &&
+      !lines[i].trim().startsWith("```") &&
+      !lines[i].trim().startsWith(">") &&
+      !/^[-*]\s+/.test(lines[i].trim()) &&
+      !/^\d+\.\s+/.test(lines[i].trim())
+    ) {
+      paragraphLines.push(lines[i].trim());
+      i++;
+    }
+    if (paragraphLines.length > 0) {
+      parsed.push({ type: "p", text: paragraphLines.join(" ") });
     }
   }
 
-  return blocks;
+  return parsed;
+}
+
+interface MarkdownRendererProps {
+  content: string;
+  className?: string;
 }
 
 export function MarkdownRenderer({ content, className = "" }: MarkdownRendererProps) {
   const blocks = parseMarkdownBlocks(content);
 
   return (
-    <div className={`space-y-4 text-foreground/90 ${className}`}>
+    <div className={`space-y-4 text-xs sm:text-sm leading-relaxed ${className}`}>
       {blocks.map((block, index) => {
         switch (block.type) {
           case "code":
             return (
-              <div key={index} className="my-4">
-                <CodeBlock
-                  code={block.code}
-                  language={block.language}
-                  filename={`snippet.${block.language === "javascript" ? "js" : block.language === "typescript" ? "ts" : block.language}`}
-                />
-              </div>
+              <CodeBlock
+                key={index}
+                code={block.code}
+                language={block.language}
+                filename={`${block.language}_example`}
+              />
             );
 
           case "h1":
             return (
-              <h2
+              <h1
                 key={index}
-                className="text-xl sm:text-2xl font-black tracking-tight text-foreground mt-8 mb-4 pb-2 border-b-2 border-black dark:border-b dark:border-[#1C242D] first:mt-0"
+                className="text-xl sm:text-2xl font-black tracking-tight text-foreground mt-6 mb-3 pb-2 border-b-2 border-black dark:border-b dark:border-[#222222]"
               >
                 <InlineFormattedText text={block.text} />
-              </h2>
+              </h1>
             );
 
           case "h2":
             return (
-              <div key={index} className="pt-4 pb-1 mt-6 first:mt-0">
-                <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground flex items-center gap-2.5">
-                  <span className="w-2.5 h-5 rounded-none border-2 border-black bg-[#FFD84D] dark:border-0 dark:rounded-none dark:w-1.5 dark:h-4 dark:bg-cyan-400 inline-block shrink-0" />
-                  <InlineFormattedText text={block.text} />
-                </h3>
-              </div>
+              <h2
+                key={index}
+                className="text-base sm:text-lg font-black tracking-tight text-foreground mt-5 mb-2 flex items-center gap-2"
+              >
+                <span className="inline-block w-2.5 h-2.5 bg-[#FFD84D] border border-black dark:bg-[#FFFFFF] dark:border-0 rounded-none shadow-[1px_1px_0px_#121212] dark:shadow-none" />
+                <InlineFormattedText text={block.text} />
+              </h2>
             );
 
           case "h3":
             return (
-              <h4
+              <h3
                 key={index}
-                className="text-base sm:text-lg font-bold tracking-tight text-foreground mt-5 mb-2 flex items-center gap-2"
+                className="text-sm sm:text-base font-bold text-foreground mt-4 mb-1.5"
               >
                 <InlineFormattedText text={block.text} />
-              </h4>
+              </h3>
             );
-
-          case "h4":
-            return (
-              <h5
-                key={index}
-                className="text-sm sm:text-base font-bold text-foreground mt-4 mb-1"
-              >
-                <InlineFormattedText text={block.text} />
-              </h5>
-            );
-
-          case "hr":
-            return <hr key={index} className="my-6 border-2 border-black dark:border-[#1C242D]" />;
 
           case "callout": {
             const isSec = block.variant === "security";
             const isWarn = block.variant === "warning";
             const isTip = block.variant === "tip";
             const bgBorder = isSec
-              ? "bg-[#FF6B6B]/15 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-red-500/10 dark:border dark:border-red-500/30 dark:text-red-200 dark:shadow-none"
+              ? "bg-[#FF6B6B]/15 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC] dark:shadow-none"
               : isWarn
-              ? "bg-[#FF9B54]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-amber-500/10 dark:border dark:border-amber-500/30 dark:text-amber-200 dark:shadow-none"
+              ? "bg-[#FF9B54]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC] dark:shadow-none"
               : isTip
-              ? "bg-[#FFD84D]/25 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-emerald-500/10 dark:border dark:border-emerald-500/30 dark:text-emerald-200 dark:shadow-none"
-              : "bg-[#70B7FF]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-cyan-500/10 dark:border dark:border-cyan-500/30 dark:text-cyan-200 dark:shadow-none";
+              ? "bg-[#FFD84D]/25 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC] dark:shadow-none"
+              : "bg-[#70B7FF]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#0A0A0A] dark:border dark:border-[#222222] dark:text-[#CCCCCC] dark:shadow-none";
             const IconComp = isSec
               ? ShieldAlert
               : isWarn
@@ -357,12 +318,12 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
               ? Lightbulb
               : Info;
             const iconColor = isSec
-              ? "text-rose-700 dark:text-red-400"
+              ? "text-rose-700 dark:text-[#FFFFFF]"
               : isWarn
-              ? "text-amber-800 dark:text-amber-400"
+              ? "text-amber-800 dark:text-[#FFFFFF]"
               : isTip
-              ? "text-amber-900 dark:text-emerald-400"
-              : "text-blue-800 dark:text-cyan-400";
+              ? "text-amber-900 dark:text-[#FFFFFF]"
+              : "text-blue-800 dark:text-[#FFFFFF]";
 
             return (
               <div
@@ -388,9 +349,9 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             return (
               <blockquote
                 key={index}
-                className="p-4 my-4 rounded-lg border-2 border-black bg-[#EAE4D5] shadow-[4px_4px_0px_#121212] text-[#121212] flex gap-3 italic text-xs sm:text-sm leading-relaxed dark:border dark:border-[#1C242D] dark:bg-[#090D12] dark:text-[#CBD5E1] dark:shadow-none"
+                className="p-4 my-4 rounded-lg border-2 border-black bg-[#EAE4D5] shadow-[4px_4px_0px_#121212] text-[#121212] flex gap-3 italic text-xs sm:text-sm leading-relaxed dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:text-[#CCCCCC] dark:shadow-none"
               >
-                <Info className="h-5 w-5 text-black dark:text-cyan-400 shrink-0 mt-0.5 not-italic" />
+                <Info className="h-5 w-5 text-black dark:text-[#FFFFFF] shrink-0 mt-0.5 not-italic" />
                 <div className="not-italic font-medium">
                   <InlineFormattedText text={block.text} />
                 </div>
@@ -405,7 +366,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
                     key={itemIdx}
                     className="flex items-start gap-2.5 text-xs sm:text-sm leading-relaxed text-foreground/90 font-medium dark:font-normal"
                   >
-                    <span className="h-2 w-2 rounded-none bg-[#FFD84D] border border-black shrink-0 mt-1.5 dark:rounded-none dark:border-0 dark:h-1.5 dark:w-1.5 dark:bg-cyan-400" />
+                    <span className="h-2 w-2 rounded-none bg-[#FFD84D] border border-black shrink-0 mt-1.5 dark:rounded-none dark:border-0 dark:h-1.5 dark:w-1.5 dark:bg-[#FFFFFF]" />
                     <div className="flex-1">
                       <InlineFormattedText text={item} />
                     </div>
@@ -422,7 +383,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
                     key={itemIdx}
                     className="flex items-start gap-3 text-xs sm:text-sm leading-relaxed text-foreground/90 font-medium dark:font-normal"
                   >
-                    <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] text-[11px] font-black font-mono shadow-[1.5px_1.5px_0px_#121212] mt-0.5 dark:border dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-300 dark:shadow-none dark:font-mono">
+                    <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] text-[11px] font-black font-mono shadow-[1.5px_1.5px_0px_#121212] mt-0.5 dark:border dark:border-[#222222] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono">
                       {item.num}
                     </span>
                     <div className="flex-1 pt-0.5">

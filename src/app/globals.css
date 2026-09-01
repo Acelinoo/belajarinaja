@@ -3,56 +3,56 @@
 @tailwind utilities;
 
 @layer base {
-  /* Dark mode is Obsidian Command Center (Default Baseline) */
+  /* Dark mode is Monochrome Obsidian Command Center (Grayscale Only) */
   :root,
   .dark,
   [data-theme="dark"] {
-    --background: 216 33% 3%; /* #05070A - Deep Technical Canvas */
-    --foreground: 210 40% 96%; /* #F1F5F9 - Crisp Telemetry Text */
+    --background: 0 0% 2%; /* #050505 - Deep Terminal Obsidian */
+    --foreground: 0 0% 98%; /* #FAFAFA - Crisp White Monospace Telemetry */
 
-    --card: 214 32% 5%; /* #090D12 - Primary Surface */
-    --card-foreground: 210 40% 96%;
+    --card: 0 0% 4%; /* #0A0A0A - Primary Matte Surface */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 213 27% 8%; /* #0F141A - Elevated Overlay */
-    --popover-foreground: 210 40% 96%;
+    --popover: 0 0% 7%; /* #111111 - Elevated Overlay */
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 187 92% 53%; /* #22D3EE - Electric Cyan */
-    --primary-foreground: 216 33% 3%; /* #05070A */
+    --primary: 0 0% 100%; /* #FFFFFF - Pure High-Contrast White */
+    --primary-foreground: 0 0% 2%; /* #050505 */
 
-    --secondary: 213 24% 11%; /* #151B22 - Control Background */
-    --secondary-foreground: 214 32% 85%; /* #CBD5E1 */
+    --secondary: 0 0% 9%; /* #171717 - Control Surface */
+    --secondary-foreground: 0 0% 80%; /* #CCCCCC */
 
-    --muted: 213 27% 8%; /* #0F141A */
-    --muted-foreground: 215 16% 55%; /* #8292A6 */
+    --muted: 0 0% 9%; /* #171717 */
+    --muted-foreground: 0 0% 55%; /* #888888 */
 
-    --accent: 213 24% 11%; /* #151B22 */
-    --accent-foreground: 187 92% 53%; /* #22D3EE */
+    --accent: 0 0% 13%; /* #222222 */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive: 0 0% 30%; /* #4D4D4D - Monochrome Alert */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 23% 14%; /* #1C242D - Thin 1px Technical Border */
-    --input: 214 23% 14%; /* #1C242D */
-    --ring: 187 92% 53%; /* #22D3EE - Cyan Focus Ring */
+    --border: 0 0% 13%; /* #222222 - Thin 1px Technical Border */
+    --input: 0 0% 13%; /* #222222 */
+    --ring: 0 0% 90%; /* #E5E5E5 - Crisp Monochrome Focus */
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    /* Semantic Obsidian Command Center Tokens */
-    --color-bg-base: #05070a;
-    --color-bg-surface: #090d12;
-    --color-bg-elevated: #0f141a;
-    --color-bg-sidebar: #090d12;
-    --color-bg-sunken: #05070a;
-    --color-border-subtle: #1c242d;
-    --color-border-strong: #26313c;
-    --color-accent-primary: #22d3ee;
-    --color-accent-secondary: #38bdf8;
-    --color-accent-emerald: #10b981;
-    --color-accent-amber: #f59e0b;
-    --color-accent-red: #ef4444;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #94a3b8;
-    --color-text-tertiary: #64748b;
+    /* Semantic Monochrome Obsidian Command Center Tokens */
+    --color-bg-base: #050505;
+    --color-bg-surface: #0a0a0a;
+    --color-bg-elevated: #111111;
+    --color-bg-sidebar: #0a0a0a;
+    --color-bg-sunken: #050505;
+    --color-border-subtle: #1c1c1c;
+    --color-border-strong: #2a2a2a;
+    --color-accent-primary: #ffffff;
+    --color-accent-secondary: #cccccc;
+    --color-accent-emerald: #ffffff;
+    --color-accent-amber: #cccccc;
+    --color-accent-red: #888888;
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #a1a1aa;
+    --color-text-tertiary: #71717a;
   }
 
   /* Neo-Brutalism Light Mode System */
@@ -170,6 +170,13 @@
     color: #121212;
   }
 
+  /* Monochrome selection in dark mode */
+  .dark ::selection,
+  [data-theme="dark"] ::selection {
+    background-color: #333333;
+    color: #ffffff;
+  }
+
   /* Fun mode selection */
   .fun ::selection,
   [data-theme="fun"] ::selection {
@@ -187,27 +194,36 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1C242D;
-  border-radius: 9999px;
+  background: #222222;
+  border-radius: 2px;
 }
 .light ::-webkit-scrollbar-thumb,
 [data-theme="light"] ::-webkit-scrollbar-thumb {
   background: #121212;
   border-radius: 0px;
 }
+.dark ::-webkit-scrollbar-thumb,
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 2px;
+}
 .fun ::-webkit-scrollbar-thumb,
 [data-theme="fun"] ::-webkit-scrollbar-thumb {
-  background: #5CC8FF;
+  background: #5cc8ff;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #26313C;
+  background: #333333;
 }
 .light ::-webkit-scrollbar-thumb:hover,
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: #262626;
 }
+.dark ::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
 .fun ::-webkit-scrollbar-thumb:hover,
 [data-theme="fun"] ::-webkit-scrollbar-thumb:hover {
-  background: #4D96FF;
+  background: #4d96ff;
 }
