@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { NovaCharacter } from "./characters/NovaCharacter";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
-import { Sparkles, ArrowRight, CheckCircle2, BookOpen, Clock, Target, Star } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Target } from "lucide-react";
 import type { StageItem } from "@/data/curriculum";
 
 interface ChapterIntroductionModalProps {
@@ -27,7 +27,7 @@ export function ChapterIntroductionModal({
   isOpen,
   onClose,
 }: ChapterIntroductionModalProps) {
-  const { language } = useThemeLanguageStore();
+  const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
 
   const stageTitle = language === "en" && stage.titleEn ? stage.titleEn : stage.titleId;
@@ -36,68 +36,72 @@ export function ChapterIntroductionModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg p-0 overflow-hidden rounded-[36px] border-3 border-[#FED7AA] bg-white shadow-[0_25px_60px_rgba(255,155,84,0.2)]">
-        {/* Story Banner Header */}
-        <div className="relative p-6 sm:p-8 bg-gradient-to-b from-[#FFF8E7] to-white border-b-2 border-[#FED7AA]/60 text-center space-y-3">
-          <NovaCharacter state="excited" className="w-24 h-24 mx-auto" />
+      <DialogContent className="max-w-lg p-0 overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+        {/* Header */}
+        <div className="p-6 sm:p-8 bg-secondary/50 border-b border-border text-center space-y-3">
+          {theme === "fun" ? (
+            <NovaCharacter state="excited" className="w-16 h-16 mx-auto" />
+          ) : (
+            <div className="h-10 w-10 rounded-xl bg-card border border-border text-primary flex items-center justify-center font-bold mx-auto">
+              <BookOpen className="h-5 w-5" />
+            </div>
+          )}
 
           <div className="space-y-1">
-            <span className="text-[10px] font-black text-[#D97706] bg-white px-3 py-1 rounded-full border border-[#FED7AA] inline-block shadow-sm">
-              🌟 MISI TAHAP {stage.orderIndex}
+            <span className="text-[10px] font-bold text-primary uppercase tracking-wider block">
+              IKHTISAR TAHAP {stage.orderIndex}
             </span>
-            <DialogTitle className="text-xl sm:text-2xl font-black text-[#243447] tracking-tight">
+            <DialogTitle className="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight">
               {stageTitle}
             </DialogTitle>
           </div>
 
-          <p className="text-xs text-[#64748B] leading-relaxed max-w-md mx-auto font-medium">
+          <p className="text-xs text-muted-foreground leading-relaxed max-w-md mx-auto">
             {stageDesc}
           </p>
         </div>
 
-        {/* Quest Discovery Objectives */}
+        {/* Lessons List in Stage */}
         <div className="p-6 sm:p-8 space-y-6">
           <div className="space-y-3">
-            <span className="text-[11px] font-black text-[#243447] flex items-center gap-1.5 uppercase tracking-wider">
-              <Target className="h-4 w-4 text-[#FF9F43]" />
-              <span>Target Petualangan yang Akan Dikuasai:</span>
+            <span className="text-[11px] font-bold text-foreground uppercase tracking-wider block">
+              Materi yang Akan Dipelajari:
             </span>
 
             <div className="space-y-2">
               {stage.lessons.map((lesson, idx) => (
                 <div
                   key={lesson.id}
-                  className="flex items-center justify-between p-3 rounded-2xl bg-[#FFF8E7] border border-[#FED7AA] text-xs font-bold text-[#243447]"
+                  className="flex items-center justify-between p-3 rounded-lg bg-secondary/40 border border-border text-xs text-foreground"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="h-6 w-6 rounded-full bg-[#FFD84D] flex items-center justify-center text-[10px] font-black shrink-0">
+                    <span className="h-5 w-5 rounded bg-secondary text-primary font-mono text-[10px] font-bold flex items-center justify-center shrink-0">
                       {idx + 1}
                     </span>
-                    <span>{language === "en" && lesson.titleEn ? lesson.titleEn : lesson.title}</span>
+                    <span className="font-semibold">{language === "en" && lesson.titleEn ? lesson.titleEn : lesson.title}</span>
                   </div>
-                  <span className="text-[10px] text-[#D97706] font-black">
-                    +{lesson.estimatedMinutes} Menit
+                  <span className="text-[10px] text-muted-foreground font-medium">
+                    {lesson.estimatedMinutes} Menit
                   </span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Reward & Action */}
+          {/* Action */}
           <div className="pt-2 flex items-center gap-3">
             <Button
               variant="outline"
               onClick={onClose}
-              className="rounded-full border-[#FED7AA] text-[#64748B] hover:text-[#243447] font-black text-xs h-11 px-5"
+              className="text-xs font-semibold rounded-md h-10 px-4"
             >
-              Nanti Saja
+              Tutup
             </Button>
 
             {firstLesson && (
               <Link href={`/lessons/${firstLesson.slug}`} className="flex-1" onClick={onClose}>
-                <Button className="w-full rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] font-black text-xs h-11 shadow-[0_4px_16px_rgba(255,216,77,0.4)] gap-2">
-                  <Sparkles className="h-4 w-4 text-[#D97706]" />
-                  <span>Mulai Petualangan Sekarang!</span>
+                <Button className="w-full text-xs font-bold rounded-md h-10 gap-1.5">
+                  <span>Mulai Belajar</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>

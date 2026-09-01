@@ -3,227 +3,177 @@
 @tailwind utilities;
 
 @layer base {
-  /* Dark mode is Monochrome Obsidian Command Center (Grayscale Only) */
+  /* =========================================================================
+     ATMOSPHERE 1: LIGHT (Calm, Clean, Editorial Modern Learning)
+     ========================================================================= */
   :root,
-  .dark,
-  [data-theme="dark"] {
-    --background: 0 0% 2%; /* #050505 - Deep Terminal Obsidian */
-    --foreground: 0 0% 98%; /* #FAFAFA - Crisp White Monospace Telemetry */
-
-    --card: 0 0% 4%; /* #0A0A0A - Primary Matte Surface */
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 7%; /* #111111 - Elevated Overlay */
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 100%; /* #FFFFFF - Pure High-Contrast White */
-    --primary-foreground: 0 0% 2%; /* #050505 */
-
-    --secondary: 0 0% 9%; /* #171717 - Control Surface */
-    --secondary-foreground: 0 0% 80%; /* #CCCCCC */
-
-    --muted: 0 0% 9%; /* #171717 */
-    --muted-foreground: 0 0% 55%; /* #888888 */
-
-    --accent: 0 0% 13%; /* #222222 */
-    --accent-foreground: 0 0% 100%; /* #FFFFFF */
-
-    --destructive: 0 0% 30%; /* #4D4D4D - Monochrome Alert */
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 13%; /* #222222 - Thin 1px Technical Border */
-    --input: 0 0% 13%; /* #222222 */
-    --ring: 0 0% 90%; /* #E5E5E5 - Crisp Monochrome Focus */
-
-    --radius: 0.25rem;
-
-    /* Semantic Monochrome Obsidian Command Center Tokens */
-    --color-bg-base: #050505;
-    --color-bg-surface: #0a0a0a;
-    --color-bg-elevated: #111111;
-    --color-bg-sidebar: #0a0a0a;
-    --color-bg-sunken: #050505;
-    --color-border-subtle: #1c1c1c;
-    --color-border-strong: #2a2a2a;
-    --color-accent-primary: #ffffff;
-    --color-accent-secondary: #cccccc;
-    --color-accent-emerald: #ffffff;
-    --color-accent-amber: #cccccc;
-    --color-accent-red: #888888;
-    --color-text-primary: #fafafa;
-    --color-text-secondary: #a1a1aa;
-    --color-text-tertiary: #71717a;
-  }
-
-  /* Neo-Brutalism Light Mode System */
   .light,
   [data-theme="light"] {
-    --background: 48 38% 95%; /* #F7F4EA - Warm Editorial Paper Canvas */
-    --foreground: 0 0% 7%; /* #121212 - Deep Sharp Ink */
+    --background: 210 40% 98%; /* #F8FAFC - Soft crisp canvas */
+    --foreground: 222 47% 11%; /* #0F172A - Deep slate readable ink */
 
-    --card: 0 0% 100%; /* #FFFFFF - Pure Paper Surface */
-    --card-foreground: 0 0% 7%; /* #121212 */
-
-    --popover: 0 0% 100%; /* #FFFFFF */
-    --popover-foreground: 0 0% 7%;
-
-    --primary: 47 100% 65%; /* #FFD84D - Neo-Brutalist Sunshine Yellow */
-    --primary-foreground: 0 0% 7%; /* #121212 - High Contrast Black Text */
-
-    --secondary: 211 100% 72%; /* #70B7FF - Sky Blue */
-    --secondary-foreground: 0 0% 7%;
-
-    --muted: 44 24% 88%; /* #EAE4D5 - Warm Muted Paper */
-    --muted-foreground: 0 0% 33%; /* #555555 */
-
-    --accent: 334 100% 72%; /* #FF6FAE - Bubblegum Pink */
-    --accent-foreground: 0 0% 7%;
-
-    --destructive: 0 100% 71%; /* #FF6B6B - Coral Red */
-    --destructive-foreground: 0 0% 7%;
-
-    --border: 0 0% 7%; /* #121212 - Solid 2px-3px Dark Ink Border */
-    --input: 0 0% 7%; /* #121212 */
-    --ring: 47 100% 65%; /* #FFD84D */
-
-    /* Light Theme Neo-Brutalist Custom Properties */
-    --color-bg-base: #f7f4ea;
-    --color-bg-surface: #ffffff;
-    --color-bg-elevated: #ffffff;
-    --color-bg-sidebar: #efe9db;
-    --color-bg-sunken: #efe9db;
-    --color-border-subtle: #121212;
-    --color-border-strong: #121212;
-    --color-accent-primary: #ffd84d;
-    --color-text-primary: #121212;
-    --color-text-secondary: #404040;
-    --color-text-tertiary: #737373;
-  }
-
-  /* Playful Learning World Fun Mode System */
-  .fun,
-  [data-theme="fun"] {
-    --background: 42 100% 95%; /* #FFF8E7 - Warm Playful Cream Canvas */
-    --foreground: 215 33% 21%; /* #243447 - Cheerful Deep Ink */
-
-    --card: 0 0% 100%; /* #FFFFFF - Bouncy Clean Surface */
-    --card-foreground: 215 33% 21%;
+    --card: 0 0% 100%; /* #FFFFFF - Pure white surface */
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 33% 21%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 47 100% 65%; /* #FFD84D - Sunshine Yellow */
-    --primary-foreground: 215 33% 21%;
+    --primary: 221 83% 53%; /* #2563EB - Professional Blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 100% 68%; /* #5CC8FF - Sky Blue */
-    --secondary-foreground: 215 33% 21%;
+    --secondary: 210 40% 96%; /* #F1F5F9 - Slate-100 */
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 42 60% 90%; /* #FEF3C7 */
+    --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%; /* #64748B */
 
-    --accent: 168 73% 57%; /* #45E0C0 - Mint Aqua */
-    --accent-foreground: 215 33% 21%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 100% 67%; /* #FF6B6B - Playful Coral Red */
+    --destructive: 0 84% 60%; /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%; /* #E2E8F0 - Soft Friendly Border */
+    --border: 214 32% 91%; /* #E2E8F0 */
     --input: 214 32% 91%;
-    --ring: 200 100% 68%; /* #5CC8FF - Sky Blue Ring */
+    --ring: 221 83% 53%;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
-    /* Semantic Fun Mode Custom Properties */
-    --color-bg-base: #fff8e7;
+    /* Semantic Tokens */
+    --color-bg-base: #f8fafc;
     --color-bg-surface: #ffffff;
     --color-bg-elevated: #ffffff;
-    --color-bg-sidebar: #fff1d6;
-    --color-bg-sunken: #fff1d6;
-    --color-border-subtle: #f1e2c3;
-    --color-border-strong: #fed7aa;
-    --color-accent-primary: #ffd84d;
-    --color-accent-secondary: #5cc8ff;
-    --color-accent-aqua: #45e0c0;
-    --color-accent-mint: #5edc81;
-    --color-accent-orange: #ff9f43;
-    --color-accent-coral: #ff6b6b;
-    --color-text-primary: #243447;
+    --color-bg-subtle: #f1f5f9;
+    --color-border-subtle: #e2e8f0;
+    --color-border-strong: #cbd5e1;
+    --color-text-primary: #0f172a;
     --color-text-secondary: #475569;
     --color-text-tertiary: #94a3b8;
+    --color-brand-primary: #2563eb;
+    --color-brand-accent: #0284c7;
+  }
+
+  /* =========================================================================
+     ATMOSPHERE 2: DARK (Calm, Premium, Focused Slate Midnight)
+     ========================================================================= */
+  .dark,
+  [data-theme="dark"] {
+    --background: 222 47% 7%; /* #0B0F17 - Deep focused midnight canvas */
+    --foreground: 210 40% 98%; /* #F8FAFC - Crisp readable white */
+
+    --card: 217 33% 12%; /* #131B2A - Deep slate card surface */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 33% 15%; /* #1A2438 */
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%; /* #0EA5E9 - Muted focused cyan-sky */
+    --primary-foreground: 222 47% 7%;
+
+    --secondary: 217 33% 17%; /* #1E293B */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 20% 65%; /* #94A3B8 */
+
+    --accent: 217 33% 20%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%; /* #1E293B - Crisp slate border */
+    --input: 217 33% 20%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.5rem;
+
+    /* Semantic Tokens */
+    --color-bg-base: #0b0f17;
+    --color-bg-surface: #131b2a;
+    --color-bg-elevated: #1a2438;
+    --color-bg-subtle: #1e293b;
+    --color-border-subtle: #1e293b;
+    --color-border-strong: #334155;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-tertiary: #64748b;
+    --color-brand-primary: #38bdf8;
+    --color-brand-accent: #10b981;
+  }
+
+  /* =========================================================================
+     ATMOSPHERE 3: FUN (Warm, Playful, Encouraging, Curious Learning World)
+     ========================================================================= */
+  .fun,
+  [data-theme="fun"] {
+    --background: 48 100% 98%; /* #FFFDF7 - Warm vanilla canvas */
+    --foreground: 215 28% 17%; /* #1E293B - Friendly charcoal */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 215 28% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+
+    --primary: 38 92% 50%; /* #F59E0B - Warm energetic amber */
+    --primary-foreground: 215 28% 17%;
+
+    --secondary: 48 100% 94%; /* #FFF8E7 - Warm buttery container */
+    --secondary-foreground: 215 28% 17%;
+
+    --muted: 48 100% 94%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 199 89% 48%; /* #0EA5E9 */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 32 98% 83%; /* #FED7AA - Warm peach-amber outline */
+    --input: 32 98% 83%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
+
+    /* Semantic Tokens */
+    --color-bg-base: #fffdf7;
+    --color-bg-surface: #ffffff;
+    --color-bg-elevated: #fff8e7;
+    --color-bg-subtle: #fff3d6;
+    --color-border-subtle: #fed7aa;
+    --color-border-strong: #f59e0b;
+    --color-text-primary: #1e293b;
+    --color-text-secondary: #475569;
+    --color-text-tertiary: #94a3b8;
+    --color-brand-primary: #f59e0b;
+    --color-brand-accent: #0ea5e9;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    min-height: 100dvh;
-  }
-
-  /* Neo-Brutalism selection in light mode */
-  .light ::selection,
-  [data-theme="light"] ::selection {
-    background-color: #ffd84d;
-    color: #121212;
-  }
-
-  /* Monochrome selection in dark mode */
-  .dark ::selection,
-  [data-theme="dark"] ::selection {
-    background-color: #333333;
-    color: #ffffff;
-  }
-
-  /* Fun mode selection */
-  .fun ::selection,
-  [data-theme="fun"] ::selection {
-    background-color: #5cc8ff;
-    color: #243447;
-  }
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Scrollbar for Code & Lesson Reader */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #222222;
-  border-radius: 2px;
-}
-.light ::-webkit-scrollbar-thumb,
-[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: #121212;
-  border-radius: 0px;
-}
-.dark ::-webkit-scrollbar-thumb,
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 2px;
-}
-.fun ::-webkit-scrollbar-thumb,
-[data-theme="fun"] ::-webkit-scrollbar-thumb {
-  background: #5cc8ff;
+  background: var(--color-border-strong);
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
-}
-.light ::-webkit-scrollbar-thumb:hover,
-[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-  background: #262626;
-}
-.dark ::-webkit-scrollbar-thumb:hover,
-[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background: #444444;
-}
-.fun ::-webkit-scrollbar-thumb:hover,
-[data-theme="fun"] ::-webkit-scrollbar-thumb:hover {
-  background: #4d96ff;
+  background: var(--color-text-tertiary);
 }

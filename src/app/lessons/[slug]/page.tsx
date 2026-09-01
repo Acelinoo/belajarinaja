@@ -6,9 +6,7 @@ import { notFound } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SearchCommandModal } from "@/components/common/SearchCommandModal";
-import { FunLessonRoom } from "@/components/fun/FunLessonRoom";
-import { DarkTerminalLessonWorkspace } from "@/components/dark/DarkTerminalLessonWorkspace";
-import { LightNeoLessonWorkspace } from "@/components/light/LightNeoLessonWorkspace";
+import { UnifiedLessonWorkspace } from "@/components/lesson/UnifiedLessonWorkspace";
 import { CURRICULUM_STAGES } from "@/data/curriculum";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
@@ -25,9 +23,9 @@ interface LessonPageProps {
 
 export default function LessonDetailPage({ params }: LessonPageProps) {
   const { slug } = use(params);
-  const { theme, language } = useThemeLanguageStore();
+  const { language } = useThemeLanguageStore();
   const t = getTranslations(language);
-  const { completedLessons, isLessonUnlocked } = useCurriculumProgressStore();
+  const { isLessonUnlocked } = useCurriculumProgressStore();
 
   // Flatten all lessons with stage context
   const allLessonsWithStage: Array<{
@@ -71,74 +69,41 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
       : "";
 
     return (
-      <div className={`min-h-screen flex flex-col ${
-        theme === "fun"
-          ? "bg-[#FFF8E7] text-[#243447]"
-          : theme === "dark"
-          ? "bg-[#050505] text-[#FFFFFF] font-mono"
-          : "bg-[#F7F4EA] text-[#121212]"
-      }`}>
+      <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors">
         <Navbar />
         <SearchCommandModal />
 
         <main className="flex-1 py-16 flex items-center justify-center">
           <div className="mx-auto max-w-lg px-4 text-center space-y-6">
-            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl mx-auto border-2 ${
-              theme === "fun"
-                ? "border-[#FED7AA] bg-white text-[#D97706]"
-                : theme === "dark"
-                ? "border-[#333333] bg-[#111111] text-[#FFFFFF]"
-                : "border-black bg-[#FFD84D] text-[#121212]"
-            }`}>
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl mx-auto border border-border bg-secondary text-primary">
               <Lock className="h-8 w-8" />
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-xl sm:text-2xl font-black">
+              <h1 className="text-xl sm:text-2xl font-extrabold text-foreground">
                 {t.roadmap.prereqRequired}
               </h1>
-              <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
-                {t.roadmap.prereqDesc}
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? `You must complete the prerequisite lesson "${unmetTitle}" with an 80% passing grade to unlock this stage.`
+                  : `Anda harus menyelesaikan materi prasyarat "${unmetTitle}" dengan nilai kelulusan 80% terlebih dahulu untuk membuka materi ini.`}
               </p>
             </div>
 
-            {unmetPrereq && (
-              <div className={`p-4 rounded-xl text-left space-y-1.5 border-2 ${
-                theme === "fun"
-                  ? "bg-white border-[#FED7AA]"
-                  : theme === "dark"
-                  ? "bg-[#0A0A0A] border-[#222222]"
-                  : "bg-white border-black"
-              }`}>
-                <span className="text-[11px] font-bold uppercase opacity-70">
-                  {t.roadmap.prereqRequired}:
-                </span>
-                <div className="text-sm font-black">
-                  {unmetTitle}
-                </div>
-              </div>
-            )}
-
-            <div className="flex items-center justify-center gap-3 pt-2">
-              {unmetPrereq ? (
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              {unmetPrereq && (
                 <Link href={`/lessons/${unmetPrereq.slug}`}>
-                  <Button size="sm" className="gap-2 text-xs font-bold">
-                    <span>{t.lesson.startQuizAction}</span>
+                  <Button className="h-10 text-xs font-bold rounded-md px-5 gap-1.5">
+                    <span>Selesaikan "{unmetTitle}"</span>
                     <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                </Link>
-              ) : (
-                <Link href="/roadmap">
-                  <Button size="sm" className="gap-2 text-xs font-bold">
-                    <Compass className="h-3.5 w-3.5" />
-                    <span>{t.nav.roadmap}</span>
                   </Button>
                 </Link>
               )}
 
               <Link href="/roadmap">
-                <Button size="sm" variant="outline" className="text-xs">
-                  {t.common.back}
+                <Button variant="outline" className="h-10 text-xs font-semibold rounded-md px-5">
+                  <Compass className="h-3.5 w-3.5 mr-1" />
+                  <span>{t.nav.roadmap}</span>
                 </Button>
               </Link>
             </div>
@@ -151,40 +116,18 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col ${
-      theme === "fun"
-        ? "bg-[#FFF8E7] text-[#243447]"
-        : theme === "dark"
-        ? "bg-[#050505] text-[#FFFFFF]"
-        : "bg-[#F7F4EA] text-[#121212]"
-    }`}>
+    <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors">
       <Navbar />
       <SearchCommandModal />
 
-      <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          {theme === "fun" ? (
-            <FunLessonRoom
-              activeLesson={activeLesson}
-              activeStage={activeStage}
-              prevLessonItem={prevLessonItem}
-              nextLessonItem={nextLessonItem}
-            />
-          ) : theme === "dark" ? (
-            <DarkTerminalLessonWorkspace
-              activeLesson={activeLesson}
-              activeStage={activeStage}
-              prevLessonItem={prevLessonItem}
-              nextLessonItem={nextLessonItem}
-            />
-          ) : (
-            <LightNeoLessonWorkspace
-              activeLesson={activeLesson}
-              activeStage={activeStage}
-              prevLessonItem={prevLessonItem}
-              nextLessonItem={nextLessonItem}
-            />
-          )}
+          <UnifiedLessonWorkspace
+            activeLesson={activeLesson}
+            activeStage={activeStage}
+            prevLessonItem={prevLessonItem}
+            nextLessonItem={nextLessonItem}
+          />
         </div>
       </main>
 
