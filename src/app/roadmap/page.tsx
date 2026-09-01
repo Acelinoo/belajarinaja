@@ -41,21 +41,9 @@ export default function RoadmapPage() {
       <main className="flex-1 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           {theme === "fun" ? (
-            <FunRoadmapMap
-              search={search}
-              setSearch={setSearch}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              categories={CATEGORIES}
-            />
+            <FunRoadmapMap />
           ) : theme === "dark" ? (
-            <DarkCommandRoadmap
-              search={search}
-              setSearch={setSearch}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              categories={CATEGORIES}
-            />
+            <DarkCommandRoadmap />
           ) : (
             <LightNeoRoadmap
               search={search}

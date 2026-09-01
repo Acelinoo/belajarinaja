@@ -20,6 +20,10 @@ import {
   Award,
   Activity,
   Layers,
+  Zap,
+  Clock,
+  ChevronRight,
+  Flame,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,36 +32,28 @@ import { Footer } from "@/components/layout/Footer";
 import { SearchCommandModal } from "@/components/common/SearchCommandModal";
 import { CURRICULUM_STAGES } from "@/data/curriculum";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { getTranslations } from "@/lib/translations";
-import { BotCompanionCharacter } from "@/components/fun/characters/BotCompanionCharacter";
-import { CodingCharacter } from "@/components/fun/characters/CodingCharacter";
-import { VictoryAchievementCharacter } from "@/components/fun/characters/VictoryAchievementCharacter";
-import { RoadmapExplorerCharacter } from "@/components/fun/characters/RoadmapExplorerCharacter";
-import { RocketAdventureIllustration } from "@/components/fun/illustrations/RocketAdventureIllustration";
+import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
 
 export default function HomePage() {
-  const [activeSnippetIndex, setActiveSnippetIndex] = useState(0);
-  const [copied, setCopied] = useState(false);
   const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
+  const { completedLessons } = useCurriculumProgressStore();
 
-  const snippets = [
-    {
-      tab: "1. HTML5 Semantic",
-      code: `<article class="lesson-card">\n  <h2>${language === "en" ? "Learn Web From Zero" : "Belajar Web Dari Nol"}</h2>\n  <p>${language === "en" ? "Start without login, master fullstack." : "Mulai tanpa login, bertahap hingga mahir."}</p>\n  <button class="btn-start">${language === "en" ? "Start Quest" : "Mulai Belajar"}</button>\n</article>`,
-      output: language === "en" ? "Web Architecture Ready\nDOM Tree: Semantic Element Mounted\n[ Button: Start Quest ]" : "Belajar Web Dari Nol\nMulai tanpa login, bertahap hingga mahir.\n[ Tombol: Mulai Belajar ]",
-    },
-    {
-      tab: "2. CSS Flexbox",
-      code: `.roadmap-grid {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  background: #121318;\n  border-radius: 8px;\n}`,
-      output: "/* CSS Box Model Ready */\nLayout: Flexbox Column\nGap: 16px | Surface: #121318",
-    },
-    {
-      tab: "3. React Component",
-      code: `export function LessonTracker() {\n  const [done, setDone] = useState(false);\n  return (\n    <button onClick={() => setDone(true)}>\n      {done ? "Completed ✅" : "Mark as Done"}\n    </button>\n  );\n}`,
-      output: "Component Rendered: <LessonTracker />\nState: { done: false }\nEvent Handler: Attached",
-    },
-  ];
+  const [copied, setCopied] = useState(false);
+
+  // Determine user's active resume lesson
+  const allLessons = CURRICULUM_STAGES.flatMap((s) =>
+    s.lessons.map((l) => ({ ...l, stageOrder: s.orderIndex, stageTitle: s.titleId }))
+  );
+
+  const completedCount = Object.values(completedLessons).filter((k) => k?.completed).length;
+  const totalLessons = allLessons.length;
+  const progressPercentage = Math.round((completedCount / (totalLessons || 1)) * 100);
+
+  const activeResumeLesson =
+    allLessons.find((l) => !completedLessons[l.id]?.completed) || allLessons[0];
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -65,13 +61,8 @@ export default function HomePage() {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const totalLessonsCount = CURRICULUM_STAGES.reduce(
-    (acc, stage) => acc + stage.lessons.length,
-    0
-  );
-
   // =========================================================================
-  // 1. FUN MODE: Playful Adventure Hub Layout
+  // 1. FUN MODE: THE STORY-DRIVEN JOURNEY HOME (with NOVA)
   // =========================================================================
   if (theme === "fun") {
     return (
@@ -79,155 +70,161 @@ export default function HomePage() {
         <Navbar />
         <SearchCommandModal />
 
-        <main className="flex-1">
-          {/* Fun Hero Section */}
-          <section className="relative overflow-hidden py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-6xl">
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-                {/* Left Text Box */}
-                <div className="flex-1 text-center lg:text-left space-y-6">
-                  <div className="inline-flex items-center gap-2 rounded-full border-2 border-[#FED7AA] bg-[#FFF3D6] px-4 py-1.5 text-xs font-black text-[#D97706] shadow-[0_2px_8px_rgba(255,216,77,0.3)]">
+        <main className="flex-1 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl space-y-12">
+            {/* Story Welcome Hero */}
+            <section className="relative p-8 sm:p-12 rounded-[40px] border-4 border-[#FED7AA] bg-gradient-to-b from-[#FFF8E7] via-white to-white shadow-[0_20px_50px_rgba(255,155,84,0.12)] overflow-hidden">
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="space-y-4 text-center md:text-left max-w-xl">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFF8E7] border-2 border-[#FED7AA] shadow-[0_2px_8px_rgba(255,216,77,0.3)]">
                     <Sparkles className="h-4 w-4 text-[#FF9F43]" />
-                    <span>{t.hero.funBadge}</span>
+                    <span className="text-xs font-black text-[#D97706] uppercase tracking-wider">
+                      SELAMAT DATANG DI DUNIA KODING
+                    </span>
                   </div>
 
-                  <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#243447] leading-tight">
-                    {t.hero.funGreeting}
+                  <h1 className="text-3xl sm:text-5xl font-black text-[#243447] tracking-tight leading-tight">
+                    {language === "en" ? "Good day, Web Explorer." : "Selamat Berpetualang, Calon Web Developer!"}
                   </h1>
 
-                  <p className="text-base sm:text-lg font-medium text-[#475569] leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    {t.hero.funDescription}
+                  <p className="text-sm sm:text-base font-medium text-[#64748B] leading-relaxed">
+                    {language === "en"
+                      ? "Your quest to become a skilled Fullstack Developer continues. Master modules, test spells in the interactive lab, and build real websites."
+                      : "Misi petualanganmu menjadi Fullstack Web Developer dimulai di sini. Taklukkan 20 pulau koding, coba mantra di laboratorium interaktif, dan kumpulkan bintang kelulusan!"}
                   </p>
 
-                  <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                    <Link href="/roadmap">
-                      <Button
-                        size="lg"
-                        className="rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] font-black text-sm px-8 py-6 shadow-[0_6px_20px_rgba(255,216,77,0.45)] gap-2 hover:scale-105 transition-all"
-                      >
-                        <Compass className="h-5 w-5 text-[#243447]" />
-                        <span>{t.hero.ctaFunStart}</span>
+                  {/* Active Exploration Callout */}
+                  <div className="p-5 rounded-3xl border-2 border-[#5CC8FF] bg-[#F0F9FF] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="text-left space-y-1">
+                      <span className="text-[10px] font-black text-[#0284C7] uppercase tracking-widest block">
+                        MISI AKTIF HARI INI:
+                      </span>
+                      <div className="text-sm font-black text-[#0369A1]">
+                        {language === "en" && activeResumeLesson?.titleEn
+                          ? activeResumeLesson.titleEn
+                          : activeResumeLesson?.title}
+                      </div>
+                      <div className="text-xs text-[#0284C7] font-medium">
+                        Tahap {activeResumeLesson?.stageOrder}: {activeResumeLesson?.stageTitle}
+                      </div>
+                    </div>
+
+                    <Link href={`/lessons/${activeResumeLesson?.slug || "pengenalan-web-dan-sejarah-singkat"}`}>
+                      <Button className="rounded-full bg-[#FFD84D] hover:bg-[#FFC933] text-[#243447] font-black text-xs h-11 px-6 shadow-[0_4px_16px_rgba(255,216,77,0.4)] gap-2">
+                        <span>Lanjutkan Petualangan</span>
                         <ArrowRight className="h-4 w-4" />
                       </Button>
                     </Link>
-
-                    <Link href="/glossary">
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="rounded-full border-2 border-[#FED7AA] bg-white text-[#243447] font-black text-sm px-6 py-6 hover:bg-[#FFF8E7]"
-                      >
-                        <BookOpen className="h-4 w-4 mr-2 text-[#5CC8FF]" />
-                        <span>{t.hero.ctaFunGlossary}</span>
-                      </Button>
-                    </Link>
                   </div>
                 </div>
 
-                {/* Right Interactive Vector Illustration */}
-                <div className="flex-1 flex justify-center items-center relative">
-                  <div className="relative p-6 rounded-[36px] bg-white border-4 border-[#FED7AA] shadow-[0_20px_50px_rgba(255,155,84,0.15)] flex flex-col items-center">
-                    <RocketAdventureIllustration className="w-56 h-56 sm:w-64 sm:h-64" />
-                    <BotCompanionCharacter
-                      className="w-20 h-20 -mt-6"
-                      expression="excited"
-                      speechBubbleText={language === "en" ? "Let's code together!" : "Ayo koding bersama!"}
-                    />
-                  </div>
+                {/* NOVA Guide Animation */}
+                <div className="flex flex-col items-center p-6 rounded-[36px] border-3 border-[#FED7AA] bg-[#FFF8E7] text-center max-w-xs shadow-[0_10px_30px_rgba(255,155,84,0.12)]">
+                  <NovaCharacter
+                    state="excited"
+                    className="w-28 h-28 mb-3"
+                    speechText="Aku siap menemanimu menulis kode hari ini!"
+                  />
+                  <h3 className="text-sm font-black text-[#243447]">Pemandu Pribadimu: NOVA</h3>
+                  <p className="text-[11px] text-[#64748B] font-medium mt-1">
+                    Memberikan petunjuk cerdas saat kamu buntu di laboratorium koding.
+                  </p>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          {/* 5 Adventure World Continents Section */}
-          <section className="py-14 px-4 sm:px-6 lg:px-8 border-t-2 border-[#FED7AA]/60 bg-white/60">
-            <div className="mx-auto max-w-6xl space-y-8">
-              <div className="text-center space-y-2">
-                <Badge className="bg-[#FFF8E7] text-[#D97706] border border-[#FED7AA] font-black text-xs rounded-full px-3 py-1">
-                  5 ADVENTURE CONTINENTS
-                </Badge>
-                <h2 className="text-2xl sm:text-3xl font-black text-[#243447]">
-                  {language === "en" ? "Explore the Web Odyssey Realms" : "Jelajahi 5 Benua Petualangan Web"}
-                </h2>
+            {/* Your Journey Continents Section */}
+            <section className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-xs font-black text-[#D97706] uppercase tracking-wider block">
+                    🗺️ ALUR PETUALANGAN
+                  </span>
+                  <h2 className="text-2xl font-black text-[#243447]">
+                    5 Benua yang Akan Kamu Taklukkan
+                  </h2>
+                </div>
+
+                <Link href="/roadmap">
+                  <Button variant="outline" className="rounded-full border-[#FED7AA] bg-white text-[#D97706] font-black text-xs h-9 px-4">
+                    <span>Buka Peta Lengkap</span>
+                    <ArrowRight className="h-3.5 w-3.5 ml-1" />
+                  </Button>
+                </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {[
                   {
-                    title: "Web Foundation Island",
-                    titleId: "Pulau Dasar Web",
-                    desc: "HTTP, DNS, Browser engines, semantic HTML structure.",
-                    descId: "HTTP, DNS, Engine browser, dan struktur semantik HTML.",
-                    icon: "🏝️",
-                    badge: "Stages 1-4",
-                    color: "border-[#FED7AA] bg-[#FFF8E7]",
+                    title: "Kepulauan Fondasi Web",
+                    titleEn: "Web Foundation Island",
+                    desc: "HTTP, DNS, browser engine, dan tiga pilar web.",
+                    descEn: "HTTP, DNS, browser engines, and web pillars.",
+                    badge: "Tahap 1-2",
+                    icon: "⛵",
                   },
                   {
-                    title: "Frontend Styling Valley",
-                    titleId: "Lembah Gaya Frontend",
-                    desc: "Modern CSS, Flexbox, Grid, Responsive Design & UI systems.",
-                    descId: "CSS modern, Flexbox, Grid, Desain responsif, & sistem UI.",
+                    title: "Lembah Semantik HTML",
+                    titleEn: "HTML Valley & Blueprints",
+                    desc: "Tag semantik, form input, dan hierarki dokumen ramah SEO.",
+                    descEn: "Semantic tags, accessible forms, and SEO layout.",
+                    badge: "Tahap 3-4",
+                    icon: "🏛️",
+                  },
+                  {
+                    title: "Kota Estetika CSS",
+                    titleEn: "CSS City of Styles",
+                    desc: "Flexbox, Grid, box-model, animasi, dan layout responsif.",
+                    descEn: "Flexbox, Grid, box-model, and fluid responsive UI.",
+                    badge: "Tahap 5-8",
                     icon: "🎨",
-                    badge: "Stages 5-8",
-                    color: "border-[#5CC8FF]/40 bg-[#EBF8FF]",
                   },
                   {
-                    title: "JavaScript Sorcery Forest",
-                    titleId: "Hutan Mantra JavaScript",
-                    desc: "DOM manipulation, async JS, TypeScript typing & APIs.",
-                    descId: "Manipulasi DOM, async JS, pengetikan TypeScript, & API.",
+                    title: "Hutan Logika JavaScript",
+                    titleEn: "JavaScript Forest of Logic",
+                    desc: "DOM manipulation, event handling, async/await, & API fetch.",
+                    descEn: "DOM manipulation, event handling, and async logic.",
+                    badge: "Tahap 9-14",
                     icon: "⚡",
-                    badge: "Stages 9-12",
-                    color: "border-[#86EFAC] bg-[#F0FDF4]",
                   },
                   {
-                    title: "Fullstack React Fortress",
-                    titleId: "Benteng Fullstack React",
-                    desc: "React hooks, Next.js App Router, SSR, Server Actions.",
-                    descId: "React hooks, Next.js App Router, SSR, Server Actions.",
+                    title: "Benteng Fullstack & React",
+                    titleEn: "Fullstack Citadel & Beyond",
+                    desc: "React Hooks, Next.js 15, PostgreSQL, Prisma, & Capstone.",
+                    descEn: "React, Next.js 15, PostgreSQL, Prisma, & Capstone.",
+                    badge: "Tahap 15-20",
                     icon: "🏰",
-                    badge: "Stages 13-16",
-                    color: "border-[#FED7AA] bg-[#FFF8E7]",
-                  },
-                  {
-                    title: "Backend & Database Kingdom",
-                    titleId: "Kerajaan Backend & Database",
-                    desc: "PostgreSQL, Prisma ORM, Auth, Web Security & Production Capstone.",
-                    descId: "PostgreSQL, Prisma ORM, Auth, Keamanan Web & Capstone.",
-                    icon: "👑",
-                    badge: "Stages 17-20",
-                    color: "border-[#5CC8FF]/40 bg-[#EBF8FF]",
                   },
                 ].map((realm, idx) => (
                   <div
                     key={idx}
-                    className={`p-6 rounded-[28px] border-2 ${realm.color} shadow-[0_8px_25px_rgba(0,0,0,0.03)] space-y-3 flex flex-col justify-between hover:-translate-y-1 transition-transform`}
+                    className="p-6 rounded-[32px] border-2 border-[#FED7AA] bg-white shadow-[0_8px_25px_rgba(255,155,84,0.06)] flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-transform"
                   >
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-3xl">{realm.icon}</span>
-                        <Badge className="bg-white text-[#243447] border border-[#FED7AA] text-[10px] font-black rounded-full">
+                        <span className="text-2xl">{realm.icon}</span>
+                        <span className="text-[10px] font-black text-[#D97706] bg-[#FFF8E7] px-2.5 py-0.5 rounded-full border border-[#FED7AA]">
                           {realm.badge}
-                        </Badge>
+                        </span>
                       </div>
-                      <h3 className="text-lg font-black text-[#243447]">
-                        {language === "en" ? realm.title : realm.titleId}
+                      <h3 className="text-base font-black text-[#243447]">
+                        {language === "en" ? realm.titleEn : realm.title}
                       </h3>
                       <p className="text-xs text-[#64748B] font-medium leading-relaxed">
-                        {language === "en" ? realm.desc : realm.descId}
+                        {language === "en" ? realm.descEn : realm.desc}
                       </p>
                     </div>
 
                     <Link href="/roadmap">
-                      <Button size="sm" className="w-full rounded-full bg-white hover:bg-[#FFF8E7] text-[#243447] font-black text-xs border border-[#FED7AA] mt-2">
-                        {language === "en" ? "Enter Realm" : "Masuki Benua"} &rarr;
+                      <Button size="sm" className="w-full rounded-full bg-[#FFF8E7] hover:bg-[#FFE8B8] text-[#243447] font-black text-xs border border-[#FED7AA]">
+                        <span>Jelajahi Benua</span> &rarr;
                       </Button>
                     </Link>
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </main>
 
         <Footer />
@@ -236,7 +233,7 @@ export default function HomePage() {
   }
 
   // =========================================================================
-  // 2. DARK MODE: Monochrome Obsidian Command Center Dashboard
+  // 2. DARK MODE: THE DEVELOPER TERMINAL WORKSPACE HOME (100% Monochrome)
   // =========================================================================
   if (theme === "dark") {
     return (
@@ -245,56 +242,111 @@ export default function HomePage() {
         <SearchCommandModal />
 
         <main className="flex-1 py-10 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl space-y-8">
-            {/* Terminal Command Console Header */}
+          <div className="mx-auto max-w-6xl space-y-8">
+            {/* Developer Workspace Header */}
             <div className="p-6 sm:p-8 rounded border border-[#222222] bg-[#0A0A0A] space-y-6">
-              <div className="flex items-center gap-2 text-xs text-[#888888]">
-                <Terminal className="h-4 w-4 text-[#FFFFFF]" />
-                <span className="text-[#FFFFFF] font-bold">SYSTEM_INIT // ARCHITECTURE_NODE</span>
-                <span>•</span>
-                <span>CURRICULUM_STAGES: 20</span>
+              <div className="flex items-center justify-between text-xs text-[#888888]">
+                <div className="flex items-center gap-2">
+                  <Terminal className="h-4 w-4 text-[#FFFFFF]" />
+                  <span className="text-[#FFFFFF] font-bold">WORKSPACE // ACTIVE_SESSION</span>
+                </div>
+                <span>NODE_ENV: PRODUCTION</span>
               </div>
 
-              <div className="space-y-2">
-                <h1 className="text-2xl sm:text-4xl font-black text-[#FFFFFF] tracking-tight">
-                  WEB_DEVELOPMENT // STRUCTURED_CURRICULUM
-                </h1>
-                <p className="text-xs sm:text-sm text-[#888888] max-w-2xl leading-relaxed">
-                  20-stage rigorous engineering path from browser primitives and DOM mechanics to distributed PostgreSQL architecture and production security.
-                </p>
+              {/* Prominent CONTINUE LEARNING Buffer */}
+              <div className="p-6 rounded border border-[#333333] bg-[#050505] space-y-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[#888888] uppercase tracking-widest font-bold">
+                    &gt; CONTINUE LEARNING
+                  </span>
+                  <span className="text-[#FFFFFF]">STAGE_{String(activeResumeLesson?.stageOrder || 1).padStart(2, "0")}</span>
+                </div>
+
+                <div className="space-y-1">
+                  <h1 className="text-xl sm:text-2xl font-black text-[#FFFFFF]">
+                    {language === "en" && activeResumeLesson?.titleEn
+                      ? activeResumeLesson.titleEn
+                      : activeResumeLesson?.title}
+                  </h1>
+                  <p className="text-xs text-[#888888] leading-relaxed max-w-xl">
+                    {language === "en" && activeResumeLesson?.descriptionEn
+                      ? activeResumeLesson.descriptionEn
+                      : activeResumeLesson?.description}
+                  </p>
+                </div>
+
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <Link href={`/lessons/${activeResumeLesson?.slug || "pengenalan-web-dan-sejarah-singkat"}`}>
+                    <Button className="h-9 text-xs font-mono bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black rounded px-6 gap-2">
+                      <Terminal className="h-3.5 w-3.5" />
+                      <span>OPEN_IN_CODE_LAB</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Button>
+                  </Link>
+
+                  <Link href="/roadmap">
+                    <Button variant="outline" className="h-9 text-xs font-mono border-[#222222] bg-[#050505] text-[#CCCCCC] hover:text-[#FFFFFF] rounded px-5">
+                      <span>INSPECT_DEPENDENCY_TREE</span>
+                    </Button>
+                  </Link>
+                </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link href="/roadmap">
-                  <Button className="h-9 text-xs font-mono bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black px-6 gap-2 rounded">
-                    <Terminal className="h-3.5 w-3.5" />
-                    <span>LAUNCH_ROADMAP</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                </Link>
+              {/* CURRENT PATH Progress Pipeline Visualizer */}
+              <div className="p-4 rounded border border-[#222222] bg-[#050505] space-y-3">
+                <span className="text-[10px] text-[#666666] tracking-widest uppercase font-bold block">
+                  SYSTEM_EXECUTION_PIPELINE:
+                </span>
 
-                <Link href="/glossary">
-                  <Button variant="outline" className="h-9 text-xs font-mono border-[#222222] bg-[#050505] text-[#CCCCCC] hover:text-[#FFFFFF] px-6 rounded">
-                    <span>CLI_GLOSSARY</span>
-                  </Button>
-                </Link>
+                <div className="flex flex-wrap items-center gap-2 text-xs">
+                  <span className="px-3 py-1 rounded border border-[#333333] bg-[#111111] text-[#FFFFFF] font-bold">
+                    1. WEB_PROTOCOLS
+                  </span>
+                  <span className="text-[#555555]">&rarr;</span>
+                  <span className="px-3 py-1 rounded border border-[#333333] bg-[#111111] text-[#FFFFFF] font-bold">
+                    2. HTML5_SEMANTICS
+                  </span>
+                  <span className="text-[#555555]">&rarr;</span>
+                  <span className="px-3 py-1 rounded border border-[#333333] bg-[#111111] text-[#FFFFFF] font-bold">
+                    3. CSS_GRID_FLEX
+                  </span>
+                  <span className="text-[#555555]">&rarr;</span>
+                  <span className="px-3 py-1 rounded border border-[#FFFFFF] bg-[#FFFFFF] text-[#000000] font-black">
+                    4. JAVASCRIPT_RUNTIME [YOU]
+                  </span>
+                  <span className="text-[#555555]">&rarr;</span>
+                  <span className="px-3 py-1 rounded border border-[#222222] bg-[#050505] text-[#666666]">
+                    5. REACT_FULLSTACK
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* 4 Technical Telemetry Data Nodes */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { label: "MODULES_TOTAL", val: "20 STAGES", sub: "100% comprehensive" },
-                { label: "VERIFICATION_ENGINE", val: "PASS GRADE 80%", sub: "Automated quiz gate" },
-                { label: "STORAGE_SUBSYSTEM", val: "GUEST / SYNC", sub: "Local first persistence" },
-                { label: "CERTIFICATE_AUTHORITY", val: "VERIFIED HASH", sub: "Cryptographic seal" },
-              ].map((item, i) => (
-                <div key={i} className="p-4 rounded border border-[#222222] bg-[#0A0A0A] space-y-1">
-                  <span className="text-[10px] text-[#666666] block">{item.label}</span>
-                  <div className="text-lg font-bold text-[#FFFFFF]">{item.val}</div>
-                  <div className="text-[10px] text-[#888888]">{item.sub}</div>
-                </div>
-              ))}
+            {/* Technical Specifications Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-5 rounded border border-[#222222] bg-[#0A0A0A] space-y-2">
+                <span className="text-[10px] text-[#666666] block">01 // EXECUTION_ENGINE</span>
+                <h3 className="text-sm font-bold text-[#FFFFFF]">Real In-Browser Sandbox</h3>
+                <p className="text-xs text-[#888888]">
+                  Zero mockups. Code executes natively in browser-safe runtime with live DOM rendering and stdout capture.
+                </p>
+              </div>
+
+              <div className="p-5 rounded border border-[#222222] bg-[#0A0A0A] space-y-2">
+                <span className="text-[10px] text-[#666666] block">02 // EVALUATION_GATE</span>
+                <h3 className="text-sm font-bold text-[#FFFFFF]">Automated Debug Quizzes</h3>
+                <p className="text-xs text-[#888888]">
+                  Passing grade of 80% enforced across all 20 modules to unlock downstream architectural nodes.
+                </p>
+              </div>
+
+              <div className="p-5 rounded border border-[#222222] bg-[#0A0A0A] space-y-2">
+                <span className="text-[10px] text-[#666666] block">03 // CERTIFICATE_SEAL</span>
+                <h3 className="text-sm font-bold text-[#FFFFFF]">Cryptographic Verification</h3>
+                <p className="text-xs text-[#888888]">
+                  Graduation diploma with verifiable hash issued upon 100% completion of the curriculum.
+                </p>
+              </div>
             </div>
           </div>
         </main>
@@ -305,111 +357,97 @@ export default function HomePage() {
   }
 
   // =========================================================================
-  // 3. LIGHT MODE: Modern Neo-Brutalist Editorial Paper Landing Page
+  // 3. LIGHT MODE: MODERN NEO-BRUTALIST EDITORIAL LEARNING PLATFORM
   // =========================================================================
   return (
     <div className="flex min-h-screen flex-col bg-[#F7F4EA] text-[#121212]">
       <Navbar />
       <SearchCommandModal />
 
-      <main className="flex-1">
-        {/* Editorial Hero Section */}
-        <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Column: Hero Copy */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm border-2 border-black bg-[#FFD84D] text-xs font-black font-mono shadow-[2px_2px_0px_#121212] uppercase">
-                  <span>★</span>
-                  <span>{t.hero.badge}</span>
-                </div>
+      <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Editorial Hero Banner */}
+          <section className="p-8 sm:p-12 rounded-3xl border-2 border-black bg-white shadow-[8px_8px_0px_#121212] space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-md border-2 border-black bg-[#FFD84D] text-xs font-black shadow-[2px_2px_0px_#121212]">
+              <BookOpen className="h-4 w-4" />
+              <span>KURIKULUM WEB DEVELOPMENT TERSTRUKTUR 2026</span>
+            </div>
 
-                <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-[#121212]">
-                  {t.hero.titlePrefix}{" "}
-                  <span className="bg-[#FFD84D] px-2 py-0.5 rounded-sm border-2 border-black shadow-[3px_3px_0px_#121212] inline-block mt-1">
-                    {t.hero.titleHighlight}
-                  </span>
-                </h1>
+            <div className="space-y-3 max-w-3xl">
+              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#121212] leading-tight">
+                Kuasai Web Development Modern dari Nol hingga Mahir.
+              </h1>
+              <p className="text-sm sm:text-base text-[#555555] leading-relaxed">
+                Platform pembelajaran rekayasa perangkat lunak web komprehensif 20 tahap: dari fundamental HTML5/CSS3, JavaScript, TypeScript, React, Next.js 15, PostgreSQL & Prisma, hingga Capstone Project produksi.
+              </p>
+            </div>
 
-                <p className="text-sm sm:text-base font-medium text-[#404040] leading-relaxed max-w-xl">
-                  {t.hero.description}
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
-                  <Link href="/roadmap" className="w-full sm:w-auto">
-                    <Button
-                      size="lg"
-                      className="w-full sm:w-auto rounded-lg border-2 border-black bg-[#FFD84D] hover:bg-[#F5CB32] text-[#121212] font-black text-xs sm:text-sm px-6 h-12 shadow-[4px_4px_0px_#121212] gap-2 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#121212] transition-all"
-                    >
-                      <Compass className="h-4 w-4" />
-                      <span>{t.hero.ctaRoadmap}</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-
-                  <Link href="/glossary" className="w-full sm:w-auto">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="w-full sm:w-auto rounded-lg border-2 border-black bg-white text-[#121212] font-bold text-xs sm:text-sm px-6 h-12 shadow-[3px_3px_0px_#121212]"
-                    >
-                      <BookOpen className="h-4 w-4 mr-2" />
-                      <span>{t.hero.ctaGlossary}</span>
-                    </Button>
-                  </Link>
-                </div>
+            {/* Callout Resume Card */}
+            <div className="p-6 rounded-2xl border-2 border-black bg-[#F7F4EA] shadow-[4px_4px_0px_#121212] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="space-y-1">
+                <span className="text-xs font-mono font-black uppercase text-[#555555]">
+                  Materi Terakhir Anda:
+                </span>
+                <h3 className="text-base font-black text-[#121212]">
+                  {language === "en" && activeResumeLesson?.titleEn
+                    ? activeResumeLesson.titleEn
+                    : activeResumeLesson?.title}
+                </h3>
+                <span className="text-xs text-[#555555]">
+                  Tahap {activeResumeLesson?.stageOrder}: {activeResumeLesson?.stageTitle}
+                </span>
               </div>
 
-              {/* Right Column: Interactive Code Sandbox Card */}
-              <div className="lg:col-span-5">
-                <div className="rounded-2xl border-4 border-black bg-white shadow-[8px_8px_0px_#121212] overflow-hidden">
-                  {/* Card Title Bar */}
-                  <div className="bg-[#FFD84D] border-b-2 border-black px-4 py-2.5 flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <div className="h-3 w-3 rounded-full border border-black bg-[#FF6B6B]" />
-                      <div className="h-3 w-3 rounded-full border border-black bg-white" />
-                      <div className="h-3 w-3 rounded-full border border-black bg-[#7BE495]" />
-                    </div>
-                    <span className="font-mono text-xs font-black uppercase text-[#121212]">
-                      interactive_sandbox.ts
-                    </span>
-                  </div>
-
-                  {/* Snippet Tabs */}
-                  <div className="flex border-b-2 border-black bg-[#F7F4EA] text-xs font-black">
-                    {snippets.map((snip, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setActiveSnippetIndex(idx)}
-                        className={`flex-1 py-2 px-3 border-r-2 border-black last:border-r-0 transition-colors ${
-                          activeSnippetIndex === idx
-                            ? "bg-white text-[#121212]"
-                            : "bg-[#EAE4D5] text-[#555555] hover:bg-[#F7F4EA]"
-                        }`}
-                      >
-                        {snip.tab}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Code Editor Body */}
-                  <div className="p-4 bg-[#121212] text-white font-mono text-xs overflow-x-auto">
-                    <pre className="text-[#A1A1AA]">
-                      <code>{snippets[activeSnippetIndex].code}</code>
-                    </pre>
-                  </div>
-
-                  {/* Output Terminal */}
-                  <div className="p-3 bg-[#1E1E1E] border-t-2 border-black text-[#7BE495] font-mono text-[11px]">
-                    <div className="text-[10px] text-[#888888] mb-1">TERMINAL OUTPUT:</div>
-                    <pre className="whitespace-pre-wrap">{snippets[activeSnippetIndex].output}</pre>
-                  </div>
-                </div>
+              <div className="flex items-center gap-3">
+                <Link href={`/lessons/${activeResumeLesson?.slug || "pengenalan-web-dan-sejarah-singkat"}`}>
+                  <Button className="rounded-lg border-2 border-black bg-[#FFD84D] hover:bg-[#F5CB32] text-[#121212] font-black text-xs h-10 px-6 shadow-[3px_3px_0px_#121212] gap-1.5">
+                    <span>Lanjutkan Belajar</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/roadmap">
+                  <Button variant="outline" className="rounded-lg border-2 border-black bg-white text-[#121212] font-black text-xs h-10 px-5 shadow-[3px_3px_0px_#121212]">
+                    <span>Buka Roadmap</span>
+                  </Button>
+                </Link>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+
+          {/* Curriculum Tracks Breakdown */}
+          <section className="space-y-6">
+            <div className="space-y-1">
+              <h2 className="text-2xl font-black text-[#121212]">20 Tahapan Alur Pembelajaran</h2>
+              <p className="text-xs text-[#555555]">Disusun sistematis untuk membimbing Anda dari nol hingga siap kerja di industri.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_#121212] space-y-2">
+                <span className="text-xs font-mono font-black text-[#555555] block">BAGIAN 01</span>
+                <h3 className="text-base font-black text-[#121212]">Fondasi & Frontend Dasar</h3>
+                <p className="text-xs text-[#555555] leading-relaxed">
+                  Arsitektur internet, HTML5 semantik, CSS box model, Flexbox, Grid layout, dan responsivitas modern.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_#121212] space-y-2">
+                <span className="text-xs font-mono font-black text-[#555555] block">BAGIAN 02</span>
+                <h3 className="text-base font-black text-[#121212]">JavaScript, DOM & Async</h3>
+                <p className="text-xs text-[#555555] leading-relaxed">
+                  Struktur data, manipulasi DOM, event handling, Promise, async/await, API integration, dan TypeScript.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_#121212] space-y-2">
+                <span className="text-xs font-mono font-black text-[#555555] block">BAGIAN 03</span>
+                <h3 className="text-base font-black text-[#121212]">React, Next.js & Fullstack</h3>
+                <p className="text-xs text-[#555555] leading-relaxed">
+                  Komponen React, Next.js 15 App Router, PostgreSQL, Prisma ORM, Keamanan Web, dan Capstone Project.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
 
       <Footer />

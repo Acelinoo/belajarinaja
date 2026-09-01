@@ -5,7 +5,8 @@ import Link from "next/link";
 import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 import { InlineFormattedText } from "@/components/ui/inline-formatted-text";
 import { QuizWidget } from "@/components/interactive/QuizWidget";
-import { CodeExerciseSandbox } from "@/components/interactive/CodeExerciseSandbox";
+import { RealSandboxEngine } from "@/components/interactive/RealSandboxEngine";
+import { getExerciseForLesson } from "@/data/lessonExercises";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { getTranslations } from "@/lib/translations";
@@ -284,25 +285,14 @@ export function LightNeoLessonWorkspace({
 
           {/* Exercise Tab */}
           <TabsContent value="exercise" className="pt-4">
-            {activeLesson.exercise ? (
-              <CodeExerciseSandbox
-                lessonId={activeLesson.id}
-                exercise={activeLesson.exercise}
-              />
-            ) : (
-              <div className="p-8 text-center rounded-2xl border-2 border-black bg-white shadow-[5px_5px_0px_#121212] space-y-2">
-                <BookOpen className="h-6 w-6 text-[#121212] mx-auto" />
-                <h4 className="text-sm font-black text-[#121212]">{t.lesson.theoryOnlyTitle}</h4>
-                <p className="text-xs font-medium text-[#555555] max-w-md mx-auto">{t.lesson.theoryOnlyDesc}</p>
-                <Button
-                  size="sm"
-                  onClick={() => setActiveTab("quiz")}
-                  className="rounded-lg border-2 border-black bg-[#FFD84D] text-[#121212] font-black text-xs shadow-[2px_2px_0px_#121212] mt-2"
-                >
-                  {t.lesson.openQuizTab}
-                </Button>
-              </div>
-            )}
+            <RealSandboxEngine
+              lessonId={activeLesson.id}
+              exercise={getExerciseForLesson(
+                activeLesson.id,
+                activeLesson.slug,
+                language === "en" && activeLesson.titleEn ? activeLesson.titleEn : activeLesson.title
+              )}
+            />
           </TabsContent>
         </Tabs>
 

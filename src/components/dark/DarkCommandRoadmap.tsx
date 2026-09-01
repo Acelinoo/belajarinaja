@@ -2,256 +2,313 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
-import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
-import { getTranslations } from "@/lib/translations";
-import { CURRICULUM_STAGES } from "@/data/curriculum";
-import { Button } from "@/components/ui/button";
 import {
   Terminal,
-  Map,
+  Layers,
   CheckCircle2,
   Lock,
   ArrowRight,
-  Search,
+  Code2,
+  BookOpen,
+  Eye,
+  FileCode,
+  CornerDownRight,
+  ShieldAlert,
   Activity,
-  Layers,
-  Clock,
-  Shield,
+  Folder,
+  FolderOpen,
 } from "lucide-react";
-import type { Stage, Lesson } from "@/types/curriculum";
+import { Button } from "@/components/ui/button";
+import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
+import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+import { getTranslations } from "@/lib/translations";
+import { CURRICULUM_STAGES } from "@/data/curriculum";
+import type { StageItem, LessonItem } from "@/data/curriculum";
 
-interface DarkCommandRoadmapProps {
-  search: string;
-  setSearch: (s: string) => void;
-  selectedCategory: string;
-  setSelectedCategory: (c: string) => void;
-  categories: string[];
-}
+// Knowledge Tree Domains
+const KNOWLEDGE_DOMAINS = [
+  {
+    domainKey: "CORE_FOUNDATION",
+    label: "01 // WEB_PROTOCOLS & INTERNET",
+    stageRange: [1, 2],
+  },
+  {
+    domainKey: "MARKUP_ARCHITECTURE",
+    label: "02 // HTML5_SEMANTIC & ACCESSIBILITY",
+    stageRange: [3, 4],
+  },
+  {
+    domainKey: "VISUAL_ENGINEERING",
+    label: "03 // MODERN_CSS, FLEXBOX & GRID",
+    stageRange: [5, 8],
+  },
+  {
+    domainKey: "DYNAMIC_COMPUTATION",
+    label: "04 // JAVASCRIPT_RUNTIME, DOM & ASYNC",
+    stageRange: [9, 14],
+  },
+  {
+    domainKey: "FULLSTACK_SYSTEMS",
+    label: "05 // REACT_NEXTJS_PRISMA & DEVOPS",
+    stageRange: [15, 20],
+  },
+];
 
-export function DarkCommandRoadmap({
-  search,
-  setSearch,
-  selectedCategory,
-  setSelectedCategory,
-  categories,
-}: DarkCommandRoadmapProps) {
+export function DarkCommandRoadmap() {
   const { language } = useThemeLanguageStore();
   const t = getTranslations(language);
   const { completedLessons, isLessonUnlocked } = useCurriculumProgressStore();
 
-  const [selectedStageId, setSelectedStageId] = useState<string>(CURRICULUM_STAGES[0]?.id || "stage-01");
-
-  const completedCount = Object.values(completedLessons).filter(
-    (item) => item.completed
-  ).length;
-  const percentage = Math.round((completedCount / 20) * 100);
-
-  const filteredStages = CURRICULUM_STAGES.filter((stage) => {
-    const stageTitle = (language === "en" && stage.titleEn ? stage.titleEn : stage.titleId) || "";
-    const stageDesc = (language === "en" && stage.descriptionEn ? stage.descriptionEn : stage.description) || "";
-    const matchesCategory =
-      selectedCategory === "ALL" || stage.category === selectedCategory;
-    const matchesSearch =
-      stageTitle.toLowerCase().includes(search.toLowerCase()) ||
-      stageDesc.toLowerCase().includes(search.toLowerCase()) ||
-      stage.lessons.some((l) => {
-        const lessonTitle = (language === "en" && l.titleEn ? l.titleEn : l.title) || "";
-        return lessonTitle.toLowerCase().includes(search.toLowerCase());
-      });
-    return matchesCategory && matchesSearch;
+  const [expandedDomains, setExpandedDomains] = useState<Record<string, boolean>>({
+    CORE_FOUNDATION: true,
+    MARKUP_ARCHITECTURE: true,
+    VISUAL_ENGINEERING: true,
+    DYNAMIC_COMPUTATION: true,
+    FULLSTACK_SYSTEMS: true,
   });
 
-  const activeStage = CURRICULUM_STAGES.find((s) => s.id === selectedStageId) || CURRICULUM_STAGES[0];
-  const activeStageTitle = language === "en" && activeStage?.titleEn ? activeStage.titleEn : activeStage?.titleId;
-  const activeStageDesc = language === "en" && activeStage?.descriptionEn ? activeStage.descriptionEn : activeStage?.description;
+  const [selectedLesson, setSelectedLesson] = useState<LessonItem | null>(null);
+
+  const completedCount = Object.values(completedLessons).filter(
+    (item) => item?.completed
+  ).length;
+  const totalLessons = 20;
+  const progressPercent = Math.round((completedCount / totalLessons) * 100);
+
+  const toggleDomain = (key: string) => {
+    setExpandedDomains((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
-    <div className="space-y-6 font-mono">
-      {/* Top Telemetry Header Bar */}
+    <div className="space-y-6 font-mono text-xs text-[#FFFFFF]">
+      {/* Dependency Matrix Header */}
       <div className="p-6 rounded border border-[#222222] bg-[#0A0A0A] space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#1A1A1A]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs text-[#888888]">
-              <Terminal className="h-3.5 w-3.5 text-[#FFFFFF]" />
-              <span className="font-bold text-[#FFFFFF]">CURRICULUM_MATRIX // STAGES_01_TO_20</span>
-              <span>•</span>
-              <span>{percentage}% COMPLETE</span>
+            <div className="flex items-center gap-2 text-[#888888]">
+              <Layers className="h-3.5 w-3.5 text-[#FFFFFF]" />
+              <span className="text-[10px] tracking-widest uppercase">
+                SYSTEM_KNOWLEDGE_GRAPH // DEPENDENCY_TREE
+              </span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-black text-[#FFFFFF] tracking-tight">
-              {t.roadmap.title}
+            <h1 className="text-xl sm:text-2xl font-black text-[#FFFFFF]">
+              CURRICULUM_DEPENDENCY_MATRIX
             </h1>
+            <p className="text-[#888888] leading-relaxed max-w-2xl">
+              Knowledge progression architecture. Each node requires verified execution and passing quiz telemetry from upstream prerequisites before execution authorization.
+            </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-[#888888]">
-            <span className="p-2 rounded bg-[#111111] border border-[#222222]">
-              TOTAL_MODULES: <strong className="text-[#FFFFFF]">20</strong>
-            </span>
-            <span className="p-2 rounded bg-[#111111] border border-[#222222]">
-              PASSED: <strong className="text-[#FFFFFF]">{completedCount}</strong>
-            </span>
-          </div>
-        </div>
-
-        {/* Filter & Search Matrix */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded text-xs uppercase tracking-wider border transition-all ${
-                  selectedCategory === cat
-                    ? "border-[#FFFFFF] bg-[#FFFFFF] text-[#000000] font-black"
-                    : "border-[#222222] bg-[#0A0A0A] text-[#888888] hover:text-[#FFFFFF] hover:border-[#333333]"
-                }`}
-              >
-                {cat === "ALL" ? "ALL_TRACKS" : cat}
-              </button>
-            ))}
-          </div>
-
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#666666]" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="SEARCH_MODULE..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#050505] border border-[#222222] text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FFFFFF] rounded"
-            />
+          <div className="p-4 rounded border border-[#222222] bg-[#050505] space-y-1.5 min-w-[200px]">
+            <div className="flex items-center justify-between text-[11px]">
+              <span className="text-[#888888]">GLOBAL_COMPLETION</span>
+              <span className="font-bold text-[#FFFFFF]">{progressPercent}%</span>
+            </div>
+            <div className="h-2 w-full bg-[#111111] rounded overflow-hidden border border-[#222222]">
+              <div
+                className="h-full bg-[#FFFFFF] transition-all duration-300"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+            <div className="flex items-center justify-between text-[10px] text-[#666666]">
+              <span>NODES_PASSED: {completedCount}</span>
+              <span>TOTAL_GRAPH: {totalLessons}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Split-Panel Command Architecture */}
+      {/* Split-Screen Knowledge Dependency Explorer */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Panel: High Density Stage Index List (5 cols) */}
-        <div className="lg:col-span-5 rounded border border-[#222222] bg-[#0A0A0A] p-2 space-y-1 max-h-[720px] overflow-y-auto">
-          <div className="p-2 text-[10px] text-[#666666] uppercase tracking-wider font-bold border-b border-[#1A1A1A] flex items-center justify-between">
-            <span>INDEX // STAGE_ID</span>
-            <span>STATUS</span>
-          </div>
-
-          {filteredStages.map((stage) => {
-            const sTitle = language === "en" && stage.titleEn ? stage.titleEn : stage.titleId;
-            const stageLessonsDone = stage.lessons.filter((l) => completedLessons[l.id]?.completed).length;
-            const isStageDone = stageLessonsDone === stage.lessons.length && stage.lessons.length > 0;
-            const isFirstUnlocked = stage.lessons.length > 0 && isLessonUnlocked(stage.lessons[0].id);
-            const isSelected = stage.id === selectedStageId;
+        {/* Left Tree Column (7 cols) */}
+        <div className="lg:col-span-7 space-y-4">
+          {KNOWLEDGE_DOMAINS.map((domain) => {
+            const domainStages = CURRICULUM_STAGES.filter(
+              (s) => s.orderIndex >= domain.stageRange[0] && s.orderIndex <= domain.stageRange[1]
+            );
+            const isExpanded = expandedDomains[domain.domainKey] ?? true;
 
             return (
-              <button
-                key={stage.id}
-                type="button"
-                onClick={() => setSelectedStageId(stage.id)}
-                className={`w-full p-2.5 rounded border text-left text-xs transition-all flex items-center justify-between gap-2 ${
-                  isSelected
-                    ? "border-[#FFFFFF] bg-[#171717] text-[#FFFFFF]"
-                    : "border-transparent text-[#888888] hover:bg-[#111111] hover:text-[#CCCCCC]"
-                }`}
+              <div
+                key={domain.domainKey}
+                className="rounded border border-[#222222] bg-[#0A0A0A] overflow-hidden"
               >
-                <div className="flex items-center gap-2 truncate">
-                  <span className="text-[10px] font-bold text-[#666666] shrink-0">
-                    [{String(stage.orderIndex).padStart(2, "0")}]
+                {/* Domain Branch Header */}
+                <button
+                  type="button"
+                  onClick={() => toggleDomain(domain.domainKey)}
+                  className="w-full px-4 py-3 bg-[#0D0D0D] border-b border-[#1A1A1A] flex items-center justify-between text-left hover:bg-[#141414] transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    {isExpanded ? (
+                      <FolderOpen className="h-4 w-4 text-[#FFFFFF]" />
+                    ) : (
+                      <Folder className="h-4 w-4 text-[#888888]" />
+                    )}
+                    <span className="font-bold text-[#FFFFFF]">{domain.label}</span>
+                  </div>
+                  <span className="text-[10px] text-[#666666]">
+                    [{domainStages.length} STAGES]
                   </span>
-                  <span className="truncate font-bold">{sTitle}</span>
-                </div>
+                </button>
 
-                <div className="shrink-0 text-[10px] font-mono">
-                  {isStageDone ? (
-                    <span className="text-[#FFFFFF]">[SYNCED]</span>
-                  ) : isFirstUnlocked ? (
-                    <span className="text-[#CCCCCC]">[ACTIVE]</span>
-                  ) : (
-                    <span className="text-[#555555]">[LOCKED]</span>
-                  )}
-                </div>
-              </button>
+                {/* Sub-Tree Nodes */}
+                {isExpanded && (
+                  <div className="p-4 space-y-3">
+                    {domainStages.map((stage) => {
+                      const stageTitle = language === "en" && stage.titleEn ? stage.titleEn : stage.titleId;
+
+                      return (
+                        <div key={stage.id} className="space-y-1 pl-2 border-l border-[#222222]">
+                          <div className="flex items-center gap-2 text-[#888888] text-[11px] py-1">
+                            <span className="text-[#555555]">├──</span>
+                            <span className="text-[#CCCCCC] font-bold">
+                              STAGE_{String(stage.orderIndex).padStart(2, "0")}: {stageTitle}
+                            </span>
+                          </div>
+
+                          {/* Lessons inside stage */}
+                          <div className="space-y-1 pl-6">
+                            {stage.lessons.map((lesson) => {
+                              const isCompleted = !!completedLessons[lesson.id]?.completed;
+                              const isUnlocked = isLessonUnlocked(lesson.id);
+                              const isSelected = selectedLesson?.id === lesson.id;
+
+                              return (
+                                <div
+                                  key={lesson.id}
+                                  className={`p-2.5 rounded border transition-all flex items-center justify-between gap-3 ${
+                                    isSelected
+                                      ? "border-[#FFFFFF] bg-[#171717]"
+                                      : isCompleted
+                                      ? "border-[#2E2E2E] bg-[#080808] hover:border-[#444444]"
+                                      : isUnlocked
+                                      ? "border-[#222222] bg-[#050505] hover:border-[#444444]"
+                                      : "border-[#1A1A1A] bg-[#050505] opacity-50 cursor-not-allowed"
+                                  }`}
+                                >
+                                  <button
+                                    type="button"
+                                    onClick={() => setSelectedLesson(lesson)}
+                                    className="flex items-center gap-2 text-left flex-1"
+                                  >
+                                    <span className="text-[#555555]">│   └──</span>
+                                    {isCompleted ? (
+                                      <CheckCircle2 className="h-3.5 w-3.5 text-[#FFFFFF]" />
+                                    ) : isUnlocked ? (
+                                      <span className="inline-block w-3.5 h-3.5 rounded border border-[#FFFFFF] bg-transparent text-center text-[9px] font-bold">
+                                        &gt;
+                                      </span>
+                                    ) : (
+                                      <Lock className="h-3.5 w-3.5 text-[#666666]" />
+                                    )}
+                                    <span className="text-[#FAFAFA] font-bold text-xs truncate max-w-[280px]">
+                                      {language === "en" && lesson.titleEn ? lesson.titleEn : lesson.title}
+                                    </span>
+                                  </button>
+
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-[10px] text-[#666666]">
+                                      {lesson.estimatedMinutes}m
+                                    </span>
+                                    {isUnlocked && (
+                                      <Link href={`/lessons/${lesson.slug}`}>
+                                        <Button
+                                          size="sm"
+                                          className="h-6 px-2.5 text-[10px] font-mono bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black rounded"
+                                        >
+                                          {isCompleted ? "REVIEW" : "EXECUTE"} &rarr;
+                                        </Button>
+                                      </Link>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
 
-        {/* Right Panel: Selected Module Inspector & Execution Telemetry (7 cols) */}
-        {activeStage && (
-          <div className="lg:col-span-7 rounded border border-[#222222] bg-[#0A0A0A] p-6 space-y-6">
-            <div className="space-y-2 pb-4 border-b border-[#1A1A1A]">
-              <div className="flex items-center justify-between text-xs text-[#888888]">
-                <span>MODULE_INSPECTOR // STAGE_{String(activeStage.orderIndex).padStart(2, "0")}</span>
-                <span className="text-[#FFFFFF] uppercase">{activeStage.category}</span>
-              </div>
-
-              <h2 className="text-xl font-black text-[#FFFFFF]">
-                {activeStageTitle}
-              </h2>
-
-              <p className="text-xs text-[#888888] leading-relaxed">
-                {activeStageDesc}
-              </p>
-            </div>
-
-            {/* Stage Modules Sequence */}
-            <div className="space-y-3">
-              <span className="text-xs text-[#888888] font-bold uppercase tracking-wider block">
-                EXECUTION_SEQUENCE ({activeStage.lessons.length} MODULES)
+        {/* Right Inspector Node Column (5 cols) */}
+        <div className="lg:col-span-5 space-y-4 lg:sticky lg:top-16">
+          <div className="p-6 rounded border border-[#222222] bg-[#0A0A0A] space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#1A1A1A]">
+              <span className="text-[10px] text-[#888888] uppercase tracking-wider font-bold">
+                [NODE_TELEMETRY_INSPECTOR]
               </span>
-
-              <div className="space-y-2">
-                {activeStage.lessons.map((lesson, idx) => {
-                  const lTitle = language === "en" && lesson.titleEn ? lesson.titleEn : lesson.title;
-                  const isDone = !!completedLessons[lesson.id]?.completed;
-                  const isUnlocked = isLessonUnlocked(lesson.id);
-
-                  return (
-                    <div
-                      key={lesson.id}
-                      className={`p-3.5 rounded border flex items-center justify-between gap-3 text-xs transition-colors ${
-                        isDone
-                          ? "border-[#333333] bg-[#111111] text-[#FFFFFF]"
-                          : isUnlocked
-                          ? "border-[#222222] bg-[#050505] text-[#CCCCCC]"
-                          : "border-[#1A1A1A] bg-[#050505] text-[#555555]"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 truncate">
-                        <span className="text-[10px] text-[#666666]">
-                          {String(idx + 1).padStart(2, "0")}.
-                        </span>
-                        <div className="truncate">
-                          <div className="font-bold text-[#FFFFFF] truncate">{lTitle}</div>
-                          <div className="text-[10px] text-[#666666]">{lesson.estimatedMinutes} MIN • {lesson.level}</div>
-                        </div>
-                      </div>
-
-                      <div className="shrink-0">
-                        {isDone ? (
-                          <Link href={`/lessons/${lesson.slug}`}>
-                            <Button size="sm" className="h-7 text-xs bg-[#171717] hover:bg-[#222222] text-[#FFFFFF] border border-[#333333] font-mono">
-                              RE_INSPECT
-                            </Button>
-                          </Link>
-                        ) : isUnlocked ? (
-                          <Link href={`/lessons/${lesson.slug}`}>
-                            <Button size="sm" className="h-7 text-xs bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black font-mono gap-1">
-                              <span>EXECUTE</span>
-                              <ArrowRight className="h-3 w-3" />
-                            </Button>
-                          </Link>
-                        ) : (
-                          <div className="flex items-center gap-1 text-[#555555] text-[10px]">
-                            <Lock className="h-3 w-3" />
-                            <span>LOCKED</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              <span className="text-[10px] text-[#FFFFFF]">
+                {selectedLesson ? selectedLesson.level.toUpperCase() : "AWAITING_SELECTION"}
+              </span>
             </div>
+
+            {selectedLesson ? (
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <h3 className="text-sm font-black text-[#FFFFFF]">
+                    {language === "en" && selectedLesson.titleEn ? selectedLesson.titleEn : selectedLesson.title}
+                  </h3>
+                  <p className="text-xs text-[#888888] leading-relaxed">
+                    {language === "en" && selectedLesson.descriptionEn
+                      ? selectedLesson.descriptionEn
+                      : selectedLesson.description}
+                  </p>
+                </div>
+
+                {/* Prerequisites Trace */}
+                <div className="p-3 rounded border border-[#222222] bg-[#050505] space-y-1 text-[11px]">
+                  <span className="text-[#666666] block font-bold">UPSTREAM_DEPENDENCIES:</span>
+                  {selectedLesson.prerequisites && selectedLesson.prerequisites.length > 0 ? (
+                    <ul className="space-y-0.5 text-[#CCCCCC]">
+                      {selectedLesson.prerequisites.map((p, i) => (
+                        <li key={i}>&gt; {p}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span className="text-[#888888]">None (Root Entry Node)</span>
+                  )}
+                </div>
+
+                {/* Key Objectives */}
+                {selectedLesson.learningObjectives && selectedLesson.learningObjectives.length > 0 && (
+                  <div className="space-y-1.5 text-[11px]">
+                    <span className="text-[#666666] font-bold block">VERIFIED_CRITERIA:</span>
+                    <ul className="space-y-1 text-[#CCCCCC]">
+                      {selectedLesson.learningObjectives.map((obj, i) => (
+                        <li key={i} className="flex items-start gap-1.5">
+                          <span className="text-[#FFFFFF]">&bull;</span>
+                          <span>{obj}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Execute Trigger */}
+                <div className="pt-2">
+                  <Link href={`/lessons/${selectedLesson.slug}`}>
+                    <Button className="w-full h-9 font-mono text-xs bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black rounded gap-1.5">
+                      <Terminal className="h-3.5 w-3.5" />
+                      <span>OPEN_IN_CODE_LAB</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className="py-8 text-center space-y-2 text-[#888888]">
+                <Terminal className="h-8 w-8 mx-auto text-[#444444]" />
+                <p>Select any node on the left dependency tree to inspect its prerequisites and competencies.</p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

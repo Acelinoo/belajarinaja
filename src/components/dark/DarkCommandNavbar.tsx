@@ -3,26 +3,27 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeLanguageSwitcher } from "@/components/common/ThemeLanguageSwitcher";
-import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
-import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
-import { useAuthStore } from "@/store/useAuthStore";
-import { useModalStore } from "@/store/useModalStore";
-import { getTranslations } from "@/lib/translations";
-import { Button } from "@/components/ui/button";
 import {
   Terminal,
-  Map,
+  Layers,
+  Award,
   BookOpen,
-  LayoutDashboard,
   Settings,
   Search,
   LogIn,
   User,
   Activity,
+  Code2,
   Menu,
   X,
 } from "lucide-react";
+import { ThemeLanguageSwitcher } from "@/components/common/ThemeLanguageSwitcher";
+import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useModalStore } from "@/store/useModalStore";
+import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+import { getTranslations } from "@/lib/translations";
+import { Button } from "@/components/ui/button";
 
 export function DarkCommandNavbar() {
   const pathname = usePathname();
@@ -30,106 +31,107 @@ export function DarkCommandNavbar() {
   const t = getTranslations(language);
   const { completedLessons } = useCurriculumProgressStore();
   const { user, isAuthenticated } = useAuthStore();
-  const { openSearch, openAuthModal } = useModalStore();
+  const { openSearch, openLoginModal } = useModalStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const completedCount = Object.values(completedLessons).filter(
-    (item) => item.completed
+    (item) => item?.completed
   ).length;
-  const percentage = Math.round((completedCount / 20) * 100);
 
-  const navLinks = [
-    { href: "/roadmap", label: "ROADMAP", icon: Map },
-    { href: "/glossary", label: "GLOSSARY", icon: BookOpen },
-    { href: "/dashboard", label: "TELEMETRY", icon: LayoutDashboard },
-    { href: "/settings", label: "CONFIG", icon: Settings },
+  const totalLessons = 20;
+  const progressPercent = Math.round((completedCount / totalLessons) * 100);
+
+  const navItems = [
+    { href: "/roadmap", label: "DEPENDENCY_TREE", labelEn: "DEPENDENCY_TREE", icon: Layers },
+    { href: "/glossary", label: "CLI_DICTIONARY", labelEn: "CLI_DICTIONARY", icon: BookOpen },
+    { href: "/certificates", label: "CRYPTO_SEAL", labelEn: "CRYPTO_SEAL", icon: Award },
+    { href: "/dashboard", label: "TELEMETRY", labelEn: "TELEMETRY", icon: Activity },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#222222] bg-[#050505]/95 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4 font-mono">
-        {/* Brand Terminal Node */}
+    <header className="sticky top-0 z-40 w-full border-b border-[#222222] bg-[#050505]/95 backdrop-blur-md font-mono text-xs text-[#FFFFFF]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between gap-4">
+        {/* Terminal Header Left: Root Node */}
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-7 w-7 items-center justify-center rounded border border-[#333333] bg-[#111111] text-[#FFFFFF] text-xs font-black group-hover:border-[#FFFFFF] transition-colors">
-              <Terminal className="h-3.5 w-3.5" />
+            <div className="h-6 w-6 rounded bg-[#FFFFFF] text-[#000000] flex items-center justify-center font-bold text-xs">
+              &gt;_
             </div>
-            <span className="font-black text-sm tracking-tight text-[#FFFFFF]">
-              BELAJARINAJA<span className="text-[#888888] text-xs ml-1 font-normal">[v1.0]</span>
-            </span>
+            <div className="flex items-center gap-1.5 font-black text-sm tracking-tight text-[#FFFFFF]">
+              <span>BELAJARINAJA</span>
+              <span className="text-[10px] text-[#888888] font-normal hidden sm:inline">
+                // v1.0.4-LTS
+              </span>
+            </div>
           </Link>
 
-          {/* Telemetry Status Indicator */}
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-[#222222] bg-[#0A0A0A] text-[10px] text-[#888888]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FFFFFF] animate-pulse" />
-            <span>SYS_ONLINE • {percentage}% SYNCED</span>
+          {/* Module telemetry status indicator */}
+          <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-[#222222] text-[#888888] text-[11px]">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#FFFFFF] animate-pulse" />
+            <span>EXEC_SYNC: {progressPercent}% ({completedCount}/20)</span>
           </div>
         </div>
 
-        {/* Monospace Navigation Items */}
+        {/* Navigation Items */}
         <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            const isActive = pathname === link.href;
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
             return (
-              <Link key={link.href} href={link.href}>
-                <span
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs uppercase tracking-wider rounded border transition-all ${
-                    isActive
-                      ? "border-[#FFFFFF] bg-[#171717] text-[#FFFFFF] font-black"
-                      : "border-transparent text-[#888888] hover:text-[#FFFFFF] hover:bg-[#111111]"
-                  }`}
-                >
-                  <Icon className="h-3 w-3" />
-                  <span>{link.label}</span>
-                </span>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3 py-1.5 rounded transition-colors flex items-center gap-1.5 ${
+                  isActive
+                    ? "bg-[#171717] text-[#FFFFFF] border border-[#333333] font-bold"
+                    : "text-[#888888] hover:text-[#FFFFFF] hover:bg-[#0D0D0D]"
+                }`}
+              >
+                <Icon className="h-3 w-3" />
+                <span>{item.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Bar */}
+        {/* Right Tools & Switchers */}
         <div className="flex items-center gap-2">
-          {/* Quick Search */}
           <button
             type="button"
             onClick={openSearch}
-            className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 rounded border border-[#222222] bg-[#0A0A0A] text-xs text-[#888888] hover:text-[#FFFFFF] hover:border-[#333333] transition-colors"
+            className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#0A0A0A] border border-[#222222] text-[11px] text-[#888888] hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
           >
-            <Search className="h-3.5 w-3.5" />
-            <span className="text-[11px] uppercase tracking-wider">COMMAND_SEARCH</span>
-            <kbd className="text-[10px] bg-[#171717] px-1 py-0.2 rounded border border-[#333333] text-[#CCCCCC]">
+            <Search className="h-3 w-3" />
+            <span className="hidden sm:inline">QUERY_TREE</span>
+            <kbd className="text-[9px] bg-[#171717] px-1.5 py-0.5 rounded border border-[#333333] text-[#CCCCCC]">
               ⌘K
             </kbd>
           </button>
 
-          {/* Theme & Language Switcher */}
           <ThemeLanguageSwitcher />
 
-          {/* Authentication Terminal Button */}
-          {isAuthenticated && user ? (
+          {isAuthenticated ? (
             <Link href="/dashboard">
-              <div className="flex h-7 w-7 items-center justify-center rounded border border-[#333333] bg-[#111111] text-[#FFFFFF] font-bold text-xs">
-                {user.name.charAt(0).toUpperCase()}
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0A0A0A] border border-[#222222] text-[11px] text-[#FFFFFF]">
+                <User className="h-3 w-3" />
+                <span className="truncate max-w-[70px]">{user?.name}</span>
               </div>
             </Link>
           ) : (
-            <Link href="/auth/login">
-              <Button
-                size="sm"
-                className="rounded border border-[#333333] bg-[#111111] hover:bg-[#222222] text-[#FFFFFF] text-xs font-mono h-7 px-3 gap-1.5 shadow-none"
-              >
-                <LogIn className="h-3 w-3" />
-                <span className="hidden sm:inline">AUTH_LOGIN</span>
-              </Button>
-            </Link>
+            <Button
+              size="sm"
+              onClick={openLoginModal}
+              className="h-7 text-xs font-mono bg-[#FFFFFF] hover:bg-[#E5E5E5] text-[#000000] font-black rounded px-3"
+            >
+              AUTH_SESSION
+            </Button>
           )}
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex h-7 w-7 items-center justify-center rounded border border-[#222222] bg-[#0A0A0A] text-[#FFFFFF]"
+            className="md:hidden p-1 text-[#888888] hover:text-[#FFFFFF]"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
@@ -138,31 +140,24 @@ export function DarkCommandNavbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden p-4 border-t border-[#222222] bg-[#0A0A0A] space-y-2 font-mono">
-          <div className="grid grid-cols-2 gap-2">
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span
-                    className={`flex items-center gap-2 p-2 text-xs rounded border ${
-                      isActive
-                        ? "border-[#FFFFFF] bg-[#171717] text-[#FFFFFF]"
-                        : "border-[#222222] text-[#888888]"
-                    }`}
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                    <span>{link.label}</span>
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+        <div className="md:hidden p-4 bg-[#0A0A0A] border-b border-[#222222] space-y-1">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center gap-2 px-3 py-2 rounded text-xs ${
+                  isActive ? "bg-[#171717] text-[#FFFFFF]" : "text-[#888888] hover:text-[#FFFFFF]"
+                }`}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
       )}
     </header>
