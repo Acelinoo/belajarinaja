@@ -12,14 +12,32 @@ export async function POST(request: Request) {
       );
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Format alamat email tidak valid" },
+        { status: 400 }
+      );
+    }
+
+    if (password.length < 8) {
+      return NextResponse.json(
+        { error: "Kata sandi minimal 8 karakter" },
+        { status: 400 }
+      );
+    }
+
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanUsername = cleanEmail.split("@")[0].toLowerCase().replace(/[^a-z0-9_]/g, "");
+
     // In production, verify with database / bcrypt
     const mockUser = {
-      id: `usr_${Buffer.from(email).toString("base64").substring(0, 10)}`,
-      name: email.split("@")[0].replace(/[._]/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase()),
-      username: email.split("@")[0],
-      email: email,
+      id: `usr_${Buffer.from(cleanEmail).toString("base64").substring(0, 10)}`,
+      name: cleanUsername.replace(/[._]/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase()),
+      username: cleanUsername,
+      email: cleanEmail,
       role: "STUDENT" as const,
-      avatarUrl: `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
+      avatarUrl: `https://api.dicebear.com/7.x/bottts/svg?seed=${cleanEmail}`,
       bio: "Pelajar Web Development di BelajarinAja",
       dailyGoalMinutes: 30,
       createdAt: new Date().toISOString(),

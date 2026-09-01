@@ -12,13 +12,17 @@ export async function POST(request: Request) {
       );
     }
 
+    const cleanEmail = email ? email.trim().toLowerCase() : `${provider}.user@belajarinaja.com`;
+    const cleanName = name ? (name || "").replace(/[<>]/g, "").trim() : (provider === "google" ? "Google Developer" : "GitHub Contributor");
+    const cleanUsername = cleanEmail.split("@")[0].toLowerCase().replace(/[^a-z0-9_]/g, "");
+
     const oauthUser = {
-      id: `usr_${provider}_${Date.now().toString(36)}`,
-      name: name || (provider === "google" ? "Google Developer" : "GitHub Contributor"),
-      username: email ? email.split("@")[0] : `dev_${provider}`,
-      email: email || `${provider}.user@belajarinaja.com`,
+      id: `usr_${provider}_${Buffer.from(cleanEmail).toString("base64").substring(0, 10)}`,
+      name: cleanName,
+      username: cleanUsername,
+      email: cleanEmail,
       role: "STUDENT" as const,
-      avatarUrl: avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${provider}_${email || "dev"}`,
+      avatarUrl: avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${provider}_${cleanEmail}`,
       bio: `Pelajar Web Development via ${provider === "google" ? "Google Account" : "GitHub"}`,
       dailyGoalMinutes: 30,
       createdAt: new Date().toISOString(),

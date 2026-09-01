@@ -12,13 +12,33 @@ export async function POST(request: Request) {
       );
     }
 
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Format alamat email tidak valid" },
+        { status: 400 }
+      );
+    }
+
+    if (password.length < 8) {
+      return NextResponse.json(
+        { error: "Kata sandi minimal 8 karakter" },
+        { status: 400 }
+      );
+    }
+
+    const cleanName = (name || "").replace(/[<>]/g, "").trim();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanUsername = cleanEmail.split("@")[0].toLowerCase().replace(/[^a-z0-9_]/g, "");
+
     const newUser = {
       id: `usr_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
-      name: name.trim(),
-      username: email.split("@")[0],
-      email: email.trim().toLowerCase(),
+      name: cleanName,
+      username: cleanUsername,
+      email: cleanEmail,
       role: "STUDENT" as const,
-      avatarUrl: `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
+      avatarUrl: `https://api.dicebear.com/7.x/bottts/svg?seed=${cleanEmail}`,
       bio: "Pelajar Web Development di BelajarinAja",
       dailyGoalMinutes: 30,
       createdAt: new Date().toISOString(),

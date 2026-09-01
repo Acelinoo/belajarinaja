@@ -3,25 +3,33 @@ import { NextResponse } from "next/server";
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { name, username, bio, dailyGoalMinutes, avatarUrl } = body;
+    let { name, username, bio, dailyGoalMinutes, avatarUrl } = body;
 
-    // Validate inputs
-    if (!name || name.trim().length < 2) {
+    // Validate and sanitize inputs
+    if (!name || typeof name !== "string" || name.trim().length < 2) {
       return NextResponse.json(
         { error: "Nama lengkap minimal 2 karakter" },
         { status: 400 }
       );
     }
 
+    // Sanitize string fields to prevent XSS / HTML injection
+    const sanitize = (str?: string) =>
+      (str || "").replace(/[<>]/g, "").trim();
+
+    const cleanName = sanitize(name);
+    const cleanUsername = sanitize(username).toLowerCase().replace(/[^a-z0-9_]/g, "");
+    const cleanBio = sanitize(bio).substring(0, 300); // cap at 300 chars
+
     return NextResponse.json({
       success: true,
       message: "Profil berhasil diperbarui",
       updatedData: {
-        name: name.trim(),
-        username: username?.trim(),
-        bio: bio?.trim(),
-        dailyGoalMinutes: Number(dailyGoalMinutes) || 30,
-        avatarUrl,
+        name: cleanName,
+        username: cleanUsername,
+        bio: cleanBio,
+        dailyGoalMinutes: Math.min(120, Math.max(10, Number(dailyGoalMinutes) || 30)),
+        avatarUrl: typeof avatarUrl === "string" ? avatarUrl : undefined,
         updatedAt: new Date().toISOString(),
       },
     });
