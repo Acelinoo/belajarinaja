@@ -119,8 +119,9 @@ export const useUserAuthStore = create<UserAuthState>()(
           isLoading: false,
         });
         if (typeof window !== "undefined") {
-          // Clear auth cookies / storage if any
           localStorage.removeItem("belajarinaja_auth_session");
+          localStorage.removeItem("belajarinaja_guest_progress");
+          localStorage.removeItem("belajarinaja_curriculum_progress");
         }
       },
 

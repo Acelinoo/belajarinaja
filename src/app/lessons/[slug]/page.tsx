@@ -9,10 +9,12 @@ import { SearchCommandModal } from "@/components/common/SearchCommandModal";
 import { UnifiedLessonWorkspace } from "@/components/lesson/UnifiedLessonWorkspace";
 import { CURRICULUM_STAGES } from "@/data/curriculum";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useModalStore } from "@/store/useModalStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
 import { Button } from "@/components/ui/button";
-import { Lock, ArrowRight, Compass } from "lucide-react";
+import { Lock, ArrowRight, Compass, LogIn } from "lucide-react";
 import type { Lesson, Stage } from "@/types/curriculum";
 
 interface LessonPageProps {
@@ -26,6 +28,8 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
   const { language } = useThemeLanguageStore();
   const t = getTranslations(language);
   const { isLessonUnlocked } = useCurriculumProgressStore();
+  const { isAuthenticated } = useAuthStore();
+  const { openLoginModal } = useModalStore();
 
   // Flatten all lessons with stage context
   const allLessonsWithStage: Array<{
@@ -60,6 +64,51 @@ export default function LessonDetailPage({ params }: LessonPageProps) {
   const isUnlocked = isLessonUnlocked(activeLesson.id);
 
   if (!isUnlocked) {
+    if (!isAuthenticated) {
+      return (
+        <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors">
+          <Navbar />
+          <SearchCommandModal />
+
+          <main className="flex-1 py-16 flex items-center justify-center">
+            <div className="mx-auto max-w-lg px-4 text-center space-y-6">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl mx-auto border border-border bg-secondary text-primary">
+                <Lock className="h-8 w-8" />
+              </div>
+
+              <div className="space-y-2">
+                <h1 className="text-xl sm:text-2xl font-extrabold text-foreground">
+                  Materi Ini Memerlukan Akun
+                </h1>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  Silakan masuk dengan akun Google atau GitHub Anda untuk membuka kurikulum pembelajaran ini dan menyimpan seluruh progres kemajuan Anda.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <Button
+                  onClick={openLoginModal}
+                  className="h-10 text-xs font-bold rounded-md px-6 gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <LogIn className="h-3.5 w-3.5" />
+                  <span>Masuk dengan Google / GitHub</span>
+                </Button>
+
+                <Link href="/roadmap">
+                  <Button variant="outline" className="h-10 text-xs font-semibold rounded-md px-5">
+                    <Compass className="h-3.5 w-3.5 mr-1" />
+                    <span>{t.nav.roadmap}</span>
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </main>
+
+          <Footer />
+        </div>
+      );
+    }
+
     const firstPrereqSlug = activeLesson.prerequisites[0];
     const unmetPrereq = firstPrereqSlug
       ? allLessonsWithStage.find((item) => item.lesson.slug === firstPrereqSlug)?.lesson

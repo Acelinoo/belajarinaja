@@ -22,7 +22,7 @@ function ThemeSync() {
 
 function SessionSync() {
   const { data: session, status } = useSession();
-  const { setUser, user } = useUserAuthStore();
+  const { setUser, user, logout } = useUserAuthStore();
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
@@ -54,6 +54,11 @@ function SessionSync() {
         },
         accountStatus: "VERIFIED_STUDENT",
       });
+    } else if (status === "unauthenticated") {
+      // If NextAuth session is officially unauthenticated, ensure local store is also logged out
+      if (user) {
+        logout();
+      }
     }
   }, [session, status]);
 

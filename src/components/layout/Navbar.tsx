@@ -18,6 +18,7 @@ import {
   ChevronDown,
   Code2,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { ThemeLanguageSwitcher } from "@/components/common/ThemeLanguageSwitcher";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -32,7 +33,7 @@ export function Navbar() {
   const router = useRouter();
   const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
-  const { completedLessons } = useCurriculumProgressStore();
+  const { completedLessons, clearGuestProgress } = useCurriculumProgressStore();
   const { user, isAuthenticated, logout } = useAuthStore();
   const { openSearch, openLoginModal } = useModalStore();
 
@@ -69,11 +70,12 @@ export function Navbar() {
     { href: "/certificates", label: t.nav.certificates || "Sertifikat", icon: Award },
   ];
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setProfileDropdownOpen(false);
     setMobileMenuOpen(false);
+    clearGuestProgress();
     logout();
-    router.push("/auth/login");
+    await signOut({ callbackUrl: "/" });
   };
 
   return (

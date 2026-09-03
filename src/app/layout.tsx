@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthModal } from "@/components/auth/AuthModal";
-import { GuestSyncPromptBanner } from "@/components/common/GuestSyncPromptBanner";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 
@@ -72,7 +71,6 @@ export default function RootLayout({
           <SmoothScrollProvider>
             {children}
             <AuthModal />
-            <GuestSyncPromptBanner />
           </SmoothScrollProvider>
         </AuthProvider>
       </body>

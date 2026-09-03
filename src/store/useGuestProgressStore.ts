@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { CURRICULUM_STAGES } from "@/data/curriculum";
+import { useUserAuthStore } from "./useUserAuthStore";
+import { useModalStore } from "./useModalStore";
 
 export interface GuestLessonProgress {
   lessonId: string;
@@ -54,7 +56,14 @@ export const useGuestProgressStore = create<GuestProgressState>()(
         correctAnswers,
         totalQuestions,
         passed,
-      }) =>
+      }) => {
+        // Tamu tanpa akun tidak bisa menyimpan progres materi
+        const { isAuthenticated } = useUserAuthStore.getState();
+        if (!isAuthenticated) {
+          useModalStore.getState().openLoginModal();
+          return;
+        }
+
         set((state) => {
           const prev = state.completedLessons[lessonId];
           const prevAttempts = prev?.attempts ?? 0;
@@ -82,7 +91,8 @@ export const useGuestProgressStore = create<GuestProgressState>()(
               },
             },
           };
-        }),
+        });
+      },
 
       saveCodeAttempt: (lessonId, code) =>
         set((state) => ({
@@ -102,12 +112,18 @@ export const useGuestProgressStore = create<GuestProgressState>()(
           },
         })),
 
-      toggleBookmark: (lessonId) =>
+      toggleBookmark: (lessonId) => {
+        const { isAuthenticated } = useUserAuthStore.getState();
+        if (!isAuthenticated) {
+          useModalStore.getState().openLoginModal();
+          return;
+        }
         set((state) => ({
           bookmarkedLessons: state.bookmarkedLessons.includes(lessonId)
             ? state.bookmarkedLessons.filter((id) => id !== lessonId)
             : [...state.bookmarkedLessons, lessonId],
-        })),
+        }));
+      },
 
       setCurrentLesson: (slug) => set({ currentLessonSlug: slug }),
 
@@ -119,6 +135,8 @@ export const useGuestProgressStore = create<GuestProgressState>()(
         }),
 
       isLessonPassed: (lessonId) => {
+        const { isAuthenticated } = useUserAuthStore.getState();
+        if (!isAuthenticated) return false;
         const item = get().completedLessons[lessonId];
         return !!(item && item.completed && item.passed !== false);
       },
@@ -128,6 +146,12 @@ export const useGuestProgressStore = create<GuestProgressState>()(
         const allLessons = CURRICULUM_STAGES.flatMap((s) => s.lessons);
         const index = allLessons.findIndex((l) => l.id === lessonId);
         if (index <= 0) return true; // Stage 1 / Lesson 1 is always unlocked
+
+        // Jika tidak login, tidak bisa lanjut materi (semua materi lanjutan terkunci)
+        const { isAuthenticated } = useUserAuthStore.getState();
+        if (!isAuthenticated) {
+          return false;
+        }
 
         const lesson = allLessons[index];
         if (!lesson || !lesson.prerequisites || lesson.prerequisites.length === 0) {
