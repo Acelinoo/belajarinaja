@@ -88,11 +88,13 @@ export default function SettingsPage() {
   const [deleteConfirmText, setDeleteConfirmText] = useState("");
   const [isResetProgressModalOpen, setIsResetProgressModalOpen] = useState(false);
   const [resetSuccessNotice, setResetSuccessNotice] = useState(false);
+  const [profileError, setProfileError] = useState<string | null>(null);
 
   // Profile Form Submit
   const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
+    setProfileError(null);
 
     const updatedData = {
       name: name.trim(),
@@ -102,12 +104,9 @@ export default function SettingsPage() {
       dailyGoalMinutes: dailyMinutes,
     };
 
-    // 1. Update local client store
-    updateProfile(updatedData);
-
-    // 2. Persist to server API & Prisma DB
+    // 2. Persist to server API & Prisma DB with uniqueness verification
     try {
-      await fetch("/api/v1/auth/profile", {
+      const res = await fetch("/api/v1/auth/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -115,12 +114,25 @@ export default function SettingsPage() {
           ...updatedData,
         }),
       });
-    } catch (err) {
-      console.warn("[Settings] Profile sync warning:", err);
-    } finally {
-      setIsSaving(false);
+      const data = await res.json();
+
+      if (!res.ok) {
+        setProfileError(data.error || "Gagal memperbarui profil pengguna");
+        setIsSaving(false);
+        return;
+      }
+
+      // 1. Update local client store only if server validation succeeded!
+      updateProfile(updatedData);
       setSavedNotice(true);
       setTimeout(() => setSavedNotice(false), 3000);
+    } catch (err) {
+      console.warn("[Settings] Profile sync error:", err);
+      updateProfile(updatedData);
+      setSavedNotice(true);
+      setTimeout(() => setSavedNotice(false), 3000);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -385,6 +397,14 @@ export default function SettingsPage() {
                       />
                     </div>
                   </div>
+
+                  {/* Error Alert */}
+                  {profileError && (
+                    <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold flex items-center gap-2">
+                      <AlertTriangle className="h-4 w-4 shrink-0" />
+                      <span>{profileError}</span>
+                    </div>
+                  )}
 
                   {/* Action Buttons */}
                   <div className="pt-3 border-t border-border flex items-center gap-3">

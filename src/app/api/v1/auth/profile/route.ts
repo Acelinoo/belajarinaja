@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { claimUsername, cleanAndValidateUsername } from "@/lib/userRegistry";
 
 export async function PUT(request: Request) {
   try {
@@ -14,11 +15,35 @@ export async function PUT(request: Request) {
       );
     }
 
+    if (!email) {
+      return NextResponse.json(
+        { error: "Alamat email diperlukan untuk memperbarui profil" },
+        { status: 400 }
+      );
+    }
+
     // Sanitize string fields to prevent HTML/XSS injection
     const sanitize = (str?: string) => (str || "").replace(/[<>]/g, "").trim();
 
     const cleanName = sanitize(name);
-    const cleanUsername = sanitize(username).toLowerCase().replace(/[^a-z0-9_]/g, "");
+    const { isValid, username: cleanUsername, error: usernameError } = cleanAndValidateUsername(username);
+
+    if (!isValid) {
+      return NextResponse.json(
+        { error: usernameError || "Format username tidak valid" },
+        { status: 400 }
+      );
+    }
+
+    // Enforce username uniqueness across all users
+    const claimResult = await claimUsername(cleanUsername, email, cleanName);
+    if (!claimResult.success) {
+      return NextResponse.json(
+        { error: claimResult.error || "Username sudah digunakan oleh akun lain" },
+        { status: 409 }
+      );
+    }
+
     const cleanBio = sanitize(bio).substring(0, 300);
     const cleanMinutes = Math.min(120, Math.max(10, Number(dailyGoalMinutes) || 30));
 
@@ -29,6 +54,7 @@ export async function PUT(request: Request) {
           where: { email },
           data: {
             name: cleanName,
+            username: cleanUsername,
             image: typeof avatarUrl === "string" ? avatarUrl : undefined,
           },
         });
