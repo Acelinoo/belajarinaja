@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthModal } from "@/components/auth/AuthModal";
 import { GuestSyncPromptBanner } from "@/components/common/GuestSyncPromptBanner";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -37,9 +38,11 @@ export default function RootLayout({
       <body
         className={`${sansFont.variable} ${monoFont.variable} font-sans antialiased min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-white`}
       >
-        {children}
-        <AuthModal />
-        <GuestSyncPromptBanner />
+        <AuthProvider>
+          {children}
+          <AuthModal />
+          <GuestSyncPromptBanner />
+        </AuthProvider>
       </body>
     </html>
   );
