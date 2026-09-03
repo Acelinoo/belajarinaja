@@ -85,7 +85,7 @@ export default function HomePage() {
 }`,
       previewHtml: `<div style="font-family: monospace; background: #090a0c; color: #38bdf8; padding: 16px; border-radius: 10px; font-size: 12px; max-width: 340px; line-height: 1.6; border: 1px solid #222634;">
   <div style="color: #64748b; font-size: 10px; margin-bottom: 6px;">// Console Output</div>
-  <div style="color: #4ade80;">✔ Progress synced to PostgreSQL</div>
+  <div style="color: #4ade80;">[OK] Progress synced to PostgreSQL</div>
   <div style="color: #94a3b8; font-size: 11px; margin-top: 4px;">&gt; { stage: "01", status: "COMPLETED" }</div>
 </div>`,
     },

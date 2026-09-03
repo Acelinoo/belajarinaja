@@ -30,6 +30,10 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
 import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLightbulb, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { ActivityHeatmap } from "@/components/dashboard/ActivityHeatmap";
+import { AchievementBadges } from "@/components/dashboard/AchievementBadges";
 
 export default function DashboardPage() {
   const { theme, language } = useThemeLanguageStore();
@@ -240,11 +244,11 @@ export default function DashboardPage() {
                   </span>
                 </div>
               </div>
-
               <div className="p-3 bg-secondary/50 rounded-lg border border-border/80 text-xs text-muted-foreground space-y-1">
-                <p className="font-semibold text-foreground">
-                  {language === "en" ? "💡 Learning Tip:" : "💡 Tips Pembelajaran:"}
-                </p>
+                <div className="flex items-center gap-1.5 font-bold text-foreground">
+                  <FontAwesomeIcon icon={faLightbulb} className="h-3.5 w-3.5 text-amber-500" />
+                  <span>{language === "en" ? "Learning Tip:" : "Tips Pembelajaran:"}</span>
+                </div>
                 <p className="leading-relaxed">
                   {language === "en"
                     ? "Complete at least 1 lesson per day and run code in the interactive sandbox to build long-term coding muscle memory."
@@ -263,32 +267,54 @@ export default function DashboardPage() {
                     {language === "en" && currentStage.titleEn ? currentStage.titleEn : currentStage.titleId}
                   </span>
                 </h3>
-                <span className="text-xs font-mono font-bold text-muted-foreground">
-                  {currentStageCompletedCount}/{currentStageLessons.length}
-                </span>
+                <Badge variant="outline" className="text-[11px] font-mono">
+                  {currentStageCompletedCount} / {currentStage.lessons.length}
+                </Badge>
               </div>
 
-              <div className="space-y-1.5">
-                {currentStageLessons.map((l) => {
-                  const isDone = !!completedLessons[l.id]?.completed;
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{language === "en" ? "Stage Completion" : "Kelulusan Tahap Ini"}</span>
+                  <span className="font-mono font-bold text-foreground">
+                    {Math.round((currentStageCompletedCount / currentStage.lessons.length) * 100)}%
+                  </span>
+                </div>
+                <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-primary rounded-full transition-all duration-500"
+                    style={{
+                      width: `${(currentStageCompletedCount / currentStage.lessons.length) * 100}%`,
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Lesson checklist preview */}
+              <div className="space-y-1.5 pt-1">
+                {currentStage.lessons.map((lesson) => {
+                  const done = !!completedLessons[lesson.id]?.completed;
                   return (
                     <Link
-                      key={l.id}
-                      href={`/lessons/${l.slug}`}
-                      className="flex items-center justify-between p-2 rounded-md hover:bg-secondary border border-transparent hover:border-border text-xs transition-colors"
+                      key={lesson.id}
+                      href={`/lessons/${lesson.slug}`}
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-secondary/60 text-xs transition-colors group"
                     >
                       <div className="flex items-center gap-2 min-w-0">
-                        {isDone ? (
-                          <Check className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        {done ? (
+                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
                         ) : (
-                          <span className="h-2 w-2 rounded-full bg-muted-foreground/40 shrink-0" />
+                          <div className="h-4 w-4 rounded-full border border-border shrink-0" />
                         )}
-                        <span className={`truncate ${isDone ? "line-through text-muted-foreground" : "font-semibold text-foreground"}`}>
-                          {language === "en" && l.titleEn ? l.titleEn : l.title}
+                        <span
+                          className={`truncate ${
+                            done ? "text-muted-foreground line-through" : "text-foreground font-medium"
+                          }`}
+                        >
+                          {language === "en" && lesson.titleEn ? lesson.titleEn : lesson.title}
                         </span>
                       </div>
-                      <span className="text-[10px] text-muted-foreground shrink-0 font-mono">
-                        {isDone
+                      <span className="text-[10px] text-muted-foreground group-hover:text-primary transition-colors shrink-0 ml-2">
+                        {done
                           ? (language === "en" ? "Done" : "Selesai")
                           : (language === "en" ? "Start →" : "Mulai →")}
                       </span>
@@ -298,6 +324,12 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
+
+          {/* ACTIVITY HEATMAP (GITHUB-STYLE) */}
+          <ActivityHeatmap completedLessons={completedLessons} />
+
+          {/* ACHIEVEMENTS & BADGES */}
+          <AchievementBadges completedLessons={completedLessons} />
 
           {/* TWO COLUMN GRID: BOOKMARKS & RECENT ACTIVITY */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -365,8 +397,9 @@ export default function DashboardPage() {
                     >
                       <div className="space-y-0.5 min-w-0">
                         <p className="font-bold text-foreground truncate">{act.title}</p>
-                        <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
-                          ✓ {language === "en" ? `Completed (${act.completedAt})` : `Selesai dipelajari (${act.completedAt})`}
+                        <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                          <FontAwesomeIcon icon={faCheck} className="h-3 w-3" />
+                          <span>{language === "en" ? `Completed (${act.completedAt})` : `Selesai dipelajari (${act.completedAt})`}</span>
                         </p>
                       </div>
                       {act.slug && (

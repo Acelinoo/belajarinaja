@@ -41,8 +41,12 @@ export default function CertificatePage() {
   });
 
   const handleCopyLink = () => {
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://belajarinaja.vercel.app";
     navigator.clipboard.writeText(
-      `https://belajarinaja.com/certificates/${certificateCode}`
+      `${origin}/certificates/${certificateCode}`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
@@ -83,27 +87,42 @@ export default function CertificatePage() {
               </div>
             </div>
 
-            {isEligible && (
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <Link href={`/certificates/${certificateCode}`}>
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={handleCopyLink}
-                  className="text-xs font-semibold rounded-md"
+                  className="text-xs font-semibold rounded-md gap-1"
                 >
-                  {copied ? <Check className="h-3.5 w-3.5 mr-1 text-emerald-600" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
-                  {copied ? t.common.copied : t.certificates.copyLink}
+                  <ShieldCheck className="h-3.5 w-3.5 text-primary" />
+                  <span>
+                    {language === "en" ? "Public Credential" : "Verifikasi Publik"}
+                  </span>
                 </Button>
-                <Button
-                  size="sm"
-                  onClick={handlePrint}
-                  className="text-xs font-bold rounded-md"
-                >
-                  <Download className="h-3.5 w-3.5 mr-1" />
-                  {t.certificates.downloadPdf}
-                </Button>
-              </div>
-            )}
+              </Link>
+
+              {isEligible && (
+                <>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCopyLink}
+                    className="text-xs font-semibold rounded-md"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 mr-1 text-emerald-600" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
+                    {copied ? t.common.copied : t.certificates.copyLink}
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={handlePrint}
+                    className="text-xs font-bold rounded-md"
+                  >
+                    <Download className="h-3.5 w-3.5 mr-1" />
+                    {t.certificates.downloadPdf}
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Not Eligible Progress State */}
