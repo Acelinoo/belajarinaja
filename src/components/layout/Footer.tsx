@@ -49,7 +49,7 @@ export function Footer() {
           {/* Quick Links */}
           <div className="space-y-2.5">
             <span className="text-xs font-bold text-foreground uppercase tracking-wider block">
-              Ekosistem
+              {language === "en" ? "Ecosystem" : "Ekosistem"}
             </span>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               <li><Link href="/glossary" className="hover:text-foreground transition-colors">{t.nav.glossary}</Link></li>
@@ -60,14 +60,30 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright */}
+        {/* Bottom copyright & author attribution */}
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <div>
-            &copy; 2026 BelajarinAja. {t.footer.allRights}
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span>&copy; 2026 BelajarinAja.</span>
+            <span>•</span>
+            <span>
+              {language === "en" ? "Crafted by" : "Website ini dibuat oleh"}{" "}
+              <a
+                href="https://www.acelino.my.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-foreground hover:text-primary underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors cursor-pointer"
+              >
+                Acelino
+              </a>
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-            <span>Platform Pembelajaran Web Terstruktur</span>
+            <span>
+              {language === "en"
+                ? "Structured Modern Web Learning Platform"
+                : "Platform Pembelajaran Web Terstruktur"}
+            </span>
           </div>
         </div>
       </div>

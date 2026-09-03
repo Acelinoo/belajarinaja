@@ -147,7 +147,6 @@ export default function SettingsPage() {
 
   // Logout Flow (NextAuth + LocalStore)
   const handleLogout = async () => {
-    clearGuestProgress();
     logout();
     await signOut({ callbackUrl: "/" });
   };

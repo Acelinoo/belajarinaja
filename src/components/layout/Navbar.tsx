@@ -77,7 +77,6 @@ export function Navbar() {
   const handleLogout = async () => {
     setProfileDropdownOpen(false);
     setMobileMenuOpen(false);
-    clearGuestProgress();
     logout();
     await signOut({ callbackUrl: "/" });
   };

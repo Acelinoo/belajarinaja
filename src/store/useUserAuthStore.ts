@@ -40,22 +40,35 @@ export const useUserAuthStore = create<UserAuthState>()(
       isAuthenticated: false,
       isLoading: false,
 
-      setUser: (user) =>
+      setUser: (user) => {
+        const fullUser = user
+          ? {
+              ...user,
+              username: user.username || user.email.split("@")[0] || "developer",
+              bio: user.bio || "Web Development Enthusiast di BelajarinAja",
+              dailyGoalMinutes: user.dailyGoalMinutes || 30,
+              createdAt: user.createdAt || new Date().toISOString(),
+              connectedAccounts: user.connectedAccounts || { google: false, github: false },
+              accountStatus: user.accountStatus || "VERIFIED_STUDENT",
+            }
+          : null;
+
         set({
-          user: user
-            ? {
-                ...user,
-                username: user.username || user.email.split("@")[0] || "developer",
-                bio: user.bio || "Web Development Enthusiast di BelajarinAja",
-                dailyGoalMinutes: user.dailyGoalMinutes || 30,
-                createdAt: user.createdAt || new Date().toISOString(),
-                connectedAccounts: user.connectedAccounts || { google: false, github: false },
-                accountStatus: user.accountStatus || "VERIFIED_STUDENT",
-              }
-            : null,
-          isAuthenticated: !!user,
+          user: fullUser,
+          isAuthenticated: !!fullUser,
           isLoading: false,
-        }),
+        });
+
+        if (fullUser && typeof window !== "undefined") {
+          const userKey = fullUser.email || fullUser.id;
+          try {
+            const { useGuestProgressStore } = require("./useGuestProgressStore");
+            useGuestProgressStore.getState().loadUserProgress(userKey);
+          } catch (e) {
+            console.error("Error invoking loadUserProgress in setUser:", e);
+          }
+        }
+      },
 
       updateProfile: (data) =>
         set((state) => {
@@ -113,15 +126,36 @@ export const useUserAuthStore = create<UserAuthState>()(
         })),
 
       logout: () => {
+        const currentUser = get().user;
+        if (currentUser && typeof window !== "undefined") {
+          const userKey = currentUser.email || currentUser.id;
+          try {
+            const { useGuestProgressStore } = require("./useGuestProgressStore");
+            const currentProgress = useGuestProgressStore.getState();
+            if (userKey && Object.keys(currentProgress.completedLessons).length > 0) {
+              localStorage.setItem(
+                `belajarinaja_user_progress_${userKey}`,
+                JSON.stringify({
+                  completedLessons: currentProgress.completedLessons,
+                  bookmarkedLessons: currentProgress.bookmarkedLessons,
+                  currentLessonSlug: currentProgress.currentLessonSlug,
+                })
+              );
+            }
+            // Reset active in-memory progress to 0 for guest!
+            currentProgress.clearGuestProgress();
+          } catch (e) {}
+        }
+
         set({
           user: null,
           isAuthenticated: false,
           isLoading: false,
         });
+
         if (typeof window !== "undefined") {
           localStorage.removeItem("belajarinaja_auth_session");
           localStorage.removeItem("belajarinaja_guest_progress");
-          localStorage.removeItem("belajarinaja_curriculum_progress");
         }
       },
 

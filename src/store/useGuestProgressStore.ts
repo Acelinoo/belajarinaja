@@ -38,6 +38,7 @@ interface GuestProgressState {
   toggleBookmark: (lessonId: string) => void;
   setCurrentLesson: (slug: string) => void;
   clearGuestProgress: () => void;
+  loadUserProgress: (userKey: string) => void;
   isLessonPassed: (lessonId: string) => boolean;
   isLessonUnlocked: (lessonId: string) => boolean;
 }
@@ -49,6 +50,27 @@ export const useGuestProgressStore = create<GuestProgressState>()(
       currentLessonSlug: null,
       bookmarkedLessons: [],
 
+      loadUserProgress: (userKey: string) => {
+        if (typeof window === "undefined" || !userKey) return;
+        try {
+          const raw = localStorage.getItem(`belajarinaja_user_progress_${userKey}`);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            set((state) => ({
+              completedLessons: {
+                ...(parsed.completedLessons || {}),
+              },
+              bookmarkedLessons: Array.isArray(parsed.bookmarkedLessons)
+                ? parsed.bookmarkedLessons
+                : state.bookmarkedLessons,
+              currentLessonSlug: parsed.currentLessonSlug ?? state.currentLessonSlug,
+            }));
+          }
+        } catch (e) {
+          console.error("Error loading user progress:", e);
+        }
+      },
+
       saveQuizResult: ({
         lessonId,
         lessonSlug,
@@ -58,7 +80,7 @@ export const useGuestProgressStore = create<GuestProgressState>()(
         passed,
       }) => {
         // Tamu tanpa akun tidak bisa menyimpan progres materi
-        const { isAuthenticated } = useUserAuthStore.getState();
+        const { isAuthenticated, user } = useUserAuthStore.getState();
         if (!isAuthenticated) {
           useModalStore.getState().openLoginModal();
           return;
@@ -69,34 +91,51 @@ export const useGuestProgressStore = create<GuestProgressState>()(
           const prevAttempts = prev?.attempts ?? 0;
           const isNowPassed = passed || prev?.passed === true;
 
-          return {
-            completedLessons: {
-              ...state.completedLessons,
-              [lessonId]: {
-                ...prev,
-                lessonId,
-                lessonSlug: lessonSlug ?? prev?.lessonSlug,
-                quizStarted: true,
-                quizCompleted: true,
-                score: Math.max(score, prev?.score ?? 0),
-                quizScore: Math.max(score, prev?.quizScore ?? 0),
-                correctAnswers,
-                totalQuestions,
-                passed: isNowPassed,
-                completed: isNowPassed,
-                attempts: prevAttempts + 1,
-                completedAt: isNowPassed
-                  ? prev?.completedAt || new Date().toISOString()
-                  : prev?.completedAt,
-              },
+          const updatedLessons = {
+            ...state.completedLessons,
+            [lessonId]: {
+              ...prev,
+              lessonId,
+              lessonSlug: lessonSlug ?? prev?.lessonSlug,
+              quizStarted: true,
+              quizCompleted: true,
+              score: Math.max(score, prev?.score ?? 0),
+              quizScore: Math.max(score, prev?.quizScore ?? 0),
+              correctAnswers,
+              totalQuestions,
+              passed: isNowPassed,
+              completed: isNowPassed,
+              attempts: prevAttempts + 1,
+              completedAt: isNowPassed
+                ? prev?.completedAt || new Date().toISOString()
+                : prev?.completedAt,
             },
+          };
+
+          // Simpan permanen ke storage profil user yang sedang login
+          if (user) {
+            const userKey = user.email || user.id;
+            if (typeof window !== "undefined" && userKey) {
+              localStorage.setItem(
+                `belajarinaja_user_progress_${userKey}`,
+                JSON.stringify({
+                  completedLessons: updatedLessons,
+                  bookmarkedLessons: state.bookmarkedLessons,
+                  currentLessonSlug: state.currentLessonSlug,
+                })
+              );
+            }
+          }
+
+          return {
+            completedLessons: updatedLessons,
           };
         });
       },
 
       saveCodeAttempt: (lessonId, code) =>
-        set((state) => ({
-          completedLessons: {
+        set((state) => {
+          const updatedLessons = {
             ...state.completedLessons,
             [lessonId]: {
               ...(state.completedLessons[lessonId] || {
@@ -109,23 +148,73 @@ export const useGuestProgressStore = create<GuestProgressState>()(
               }),
               lastCodeAttempt: code,
             },
-          },
-        })),
+          };
+
+          const { user } = useUserAuthStore.getState();
+          if (user) {
+            const userKey = user.email || user.id;
+            if (typeof window !== "undefined" && userKey) {
+              localStorage.setItem(
+                `belajarinaja_user_progress_${userKey}`,
+                JSON.stringify({
+                  completedLessons: updatedLessons,
+                  bookmarkedLessons: state.bookmarkedLessons,
+                  currentLessonSlug: state.currentLessonSlug,
+                })
+              );
+            }
+          }
+
+          return { completedLessons: updatedLessons };
+        }),
 
       toggleBookmark: (lessonId) => {
-        const { isAuthenticated } = useUserAuthStore.getState();
+        const { isAuthenticated, user } = useUserAuthStore.getState();
         if (!isAuthenticated) {
           useModalStore.getState().openLoginModal();
           return;
         }
-        set((state) => ({
-          bookmarkedLessons: state.bookmarkedLessons.includes(lessonId)
+        set((state) => {
+          const updatedBookmarks = state.bookmarkedLessons.includes(lessonId)
             ? state.bookmarkedLessons.filter((id) => id !== lessonId)
-            : [...state.bookmarkedLessons, lessonId],
-        }));
+            : [...state.bookmarkedLessons, lessonId];
+
+          if (user) {
+            const userKey = user.email || user.id;
+            if (typeof window !== "undefined" && userKey) {
+              localStorage.setItem(
+                `belajarinaja_user_progress_${userKey}`,
+                JSON.stringify({
+                  completedLessons: state.completedLessons,
+                  bookmarkedLessons: updatedBookmarks,
+                  currentLessonSlug: state.currentLessonSlug,
+                })
+              );
+            }
+          }
+
+          return { bookmarkedLessons: updatedBookmarks };
+        });
       },
 
-      setCurrentLesson: (slug) => set({ currentLessonSlug: slug }),
+      setCurrentLesson: (slug) =>
+        set((state) => {
+          const { user } = useUserAuthStore.getState();
+          if (user) {
+            const userKey = user.email || user.id;
+            if (typeof window !== "undefined" && userKey) {
+              localStorage.setItem(
+                `belajarinaja_user_progress_${userKey}`,
+                JSON.stringify({
+                  completedLessons: state.completedLessons,
+                  bookmarkedLessons: state.bookmarkedLessons,
+                  currentLessonSlug: slug,
+                })
+              );
+            }
+          }
+          return { currentLessonSlug: slug };
+        }),
 
       clearGuestProgress: () =>
         set({
@@ -168,6 +257,20 @@ export const useGuestProgressStore = create<GuestProgressState>()(
     }),
     {
       name: "belajarinaja_guest_progress",
+      onRehydrateStorage: () => (state) => {
+        if (typeof window !== "undefined" && state) {
+          try {
+            const rawAuth = localStorage.getItem("belajarinaja_auth_session");
+            if (rawAuth) {
+              const auth = JSON.parse(rawAuth);
+              const userKey = auth.state?.user?.email || auth.state?.user?.id;
+              if (userKey) {
+                state.loadUserProgress(userKey);
+              }
+            }
+          } catch (e) {}
+        }
+      },
     }
   )
 );

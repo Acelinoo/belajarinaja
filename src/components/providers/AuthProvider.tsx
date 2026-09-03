@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useUserAuthStore } from "@/store/useUserAuthStore";
+import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 
 function ThemeSync() {
@@ -23,6 +24,7 @@ function ThemeSync() {
 function SessionSync() {
   const { data: session, status } = useSession();
   const { setUser, user, logout } = useUserAuthStore();
+  const { loadUserProgress } = useCurriculumProgressStore();
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
@@ -54,6 +56,9 @@ function SessionSync() {
         },
         accountStatus: "VERIFIED_STUDENT",
       });
+
+      // Load user progress
+      loadUserProgress(email);
     } else if (status === "unauthenticated") {
       // If NextAuth session is officially unauthenticated, ensure local store is also logged out
       if (user) {

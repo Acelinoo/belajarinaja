@@ -262,7 +262,15 @@ export function UnifiedLessonWorkspace({
             </span>
             <button
               type="button"
-              onClick={() => handleCopy(activeLesson.contentMd)}
+              onClick={() =>
+                handleCopy(
+                  language === "en" &&
+                  activeLesson.contentMdEn &&
+                  !activeLesson.contentMdEn.includes("executeCoreWorkflow")
+                    ? activeLesson.contentMdEn
+                    : activeLesson.contentMd
+                )
+              }
               className="hover:text-foreground flex items-center gap-1 transition-colors text-[11px]"
             >
               {copied ? <Check className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3" />}
@@ -277,7 +285,9 @@ export function UnifiedLessonWorkspace({
           <div className="max-w-[75ch] text-xs sm:text-sm leading-relaxed text-foreground/90">
             <MarkdownRenderer
               content={
-                language === "en" && activeLesson.contentMdEn
+                language === "en" &&
+                activeLesson.contentMdEn &&
+                !activeLesson.contentMdEn.includes("executeCoreWorkflow")
                   ? activeLesson.contentMdEn
                   : activeLesson.contentMd
               }
