@@ -39,7 +39,7 @@ export function RealSandboxEngine({
   const { saveCodeAttempt } = useCurriculumProgressStore();
 
   const [code, setCode] = useState(exercise.starterCode);
-  const [activeTab, setActiveTab] = useState<"preview" | "console">("console");
+  const [activeTab, setActiveTab] = useState<"preview" | "console">("preview");
   const [executionResult, setExecutionResult] = useState<SandboxExecutionResult | null>(null);
   const [showHint, setShowHint] = useState(false);
   const [hintIndex, setHintIndex] = useState(0);
@@ -47,7 +47,58 @@ export function RealSandboxEngine({
   const [copied, setCopied] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  // Smart HTML Doc Builder
+  const generateHtmlDoc = (rawCode: string) => {
+    const hasHtmlTags = /<[a-z][\s\S]*>/i.test(rawCode);
+
+    if (hasHtmlTags) {
+      return `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        padding: 16px;
+        margin: 0;
+        color: #0f172a;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    ${rawCode}
+  </body>
+</html>`;
+    }
+
+    return `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        padding: 16px;
+        margin: 0;
+        color: #0f172a;
+        background: #ffffff;
+      }
+      ${rawCode}
+    </style>
+  </head>
+  <body>
+    ${exercise.initialHtml || "<div class='container'><div class='item'>Item 1</div><div class='item'>Item 2</div></div>"}
+  </body>
+</html>`;
+  };
+
+  const [sandboxDoc, setSandboxDoc] = useState(() => {
+    if (exercise.type === "javascript") return "";
+    return generateHtmlDoc(exercise.starterCode);
+  });
 
   // Set default view based on exercise type
   useEffect(() => {
@@ -63,12 +114,17 @@ export function RealSandboxEngine({
     saveCodeAttempt(lessonId, code);
 
     setTimeout(() => {
-      if (exercise.type === "javascript") {
-        executeJavaScript();
-      } else {
-        executeHtmlCss();
+      try {
+        if (exercise.type === "javascript") {
+          executeJavaScript();
+        } else {
+          executeHtmlCss();
+        }
+      } catch (err) {
+        console.error("[Sandbox Execution Error]", err);
+      } finally {
+        setIsRunning(false);
       }
-      setIsRunning(false);
     }, 150);
   };
 
@@ -163,49 +219,8 @@ export function RealSandboxEngine({
   };
 
   const executeHtmlCss = () => {
-    if (!iframeRef.current) return;
-
-    const iframeDoc =
-      iframeRef.current.contentDocument || iframeRef.current.contentWindow?.document;
-    if (!iframeDoc) return;
-
-    let fullDoc = "";
-    if (exercise.type === "flexbox" || exercise.type === "grid" || exercise.type === "box-model") {
-      fullDoc = `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8" />
-            <style>
-              body { font-family: system-ui, -apple-system, sans-serif; padding: 16px; margin: 0; color: #0f172a; background: #ffffff; }
-              ${code}
-            </style>
-          </head>
-          <body>
-            ${exercise.initialHtml || "<div class='container'><div class='item'>Item 1</div><div class='item'>Item 2</div></div>"}
-          </body>
-        </html>
-      `;
-    } else {
-      fullDoc = `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8" />
-            <style>
-              body { font-family: system-ui, -apple-system, sans-serif; padding: 16px; margin: 0; color: #0f172a; background: #ffffff; }
-            </style>
-          </head>
-          <body>
-            ${code}
-          </body>
-        </html>
-      `;
-    }
-
-    iframeDoc.open();
-    iframeDoc.write(fullDoc);
-    iframeDoc.close();
+    const fullDoc = generateHtmlDoc(code);
+    setSandboxDoc(fullDoc);
 
     // Validate DOM / CSS
     let isSuccess = false;
@@ -223,7 +238,14 @@ export function RealSandboxEngine({
       const expectedClean = exercise.expectedOutput.replace(/\s+/g, " ").toLowerCase();
       isSuccess = cleanCode.includes(expectedClean);
     } else {
-      isSuccess = code.trim().length > 10;
+      if (exercise.type === "box-model") {
+        isSuccess =
+          cleanCode.includes("padding") &&
+          cleanCode.includes("border") &&
+          cleanCode.includes("margin");
+      } else {
+        isSuccess = code.trim().length > 10;
+      }
     }
 
     feedback = isSuccess
@@ -247,6 +269,7 @@ export function RealSandboxEngine({
 
   const handleReset = () => {
     setCode(exercise.starterCode);
+    setSandboxDoc(generateHtmlDoc(exercise.starterCode));
     setExecutionResult(null);
     setShowHint(false);
     setShowSolution(false);
@@ -424,10 +447,10 @@ export function RealSandboxEngine({
             </div>
             <div className="rounded-lg border border-border overflow-hidden bg-white">
               <iframe
-                ref={iframeRef}
+                srcDoc={sandboxDoc}
                 title="Live Sandbox Preview"
                 sandbox="allow-scripts"
-                className="w-full h-44 bg-white"
+                className="w-full h-48 bg-white border-0"
               />
             </div>
           </div>
