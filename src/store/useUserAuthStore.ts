@@ -58,9 +58,24 @@ export const useUserAuthStore = create<UserAuthState>()(
         }),
 
       updateProfile: (data) =>
-        set((state) => ({
-          user: state.user ? { ...state.user, ...data } : null,
-        })),
+        set((state) => {
+          const baseUser: UserProfile = state.user || {
+            id: `usr_${Date.now()}`,
+            name: data.name || "Pelajar Web",
+            username: data.username || "developer",
+            email: "student@belajarinaja.com",
+            role: "STUDENT",
+            bio: data.bio || "Web Development Enthusiast di BelajarinAja",
+            avatarUrl: data.avatarUrl || "https://api.dicebear.com/7.x/bottts/svg?seed=developer",
+            dailyGoalMinutes: data.dailyGoalMinutes || 30,
+            accountStatus: "VERIFIED_STUDENT",
+            connectedAccounts: { google: false, github: false },
+          };
+          return {
+            user: { ...baseUser, ...data },
+            isAuthenticated: true,
+          };
+        }),
 
       connectAccount: (provider) =>
         set((state) => {

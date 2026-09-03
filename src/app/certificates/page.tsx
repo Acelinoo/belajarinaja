@@ -172,6 +172,11 @@ export default function CertificatePage() {
                 <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
                   {user?.name || "Lulusan BelajarinAja"}
                 </h2>
+                {user?.username && (
+                  <span className="text-xs font-mono text-muted-foreground block -mt-2">
+                    ID Pelajar: @{user.username}
+                  </span>
+                )}
 
                 <p className="text-xs sm:text-sm text-muted-foreground max-w-lg mx-auto leading-relaxed">
                   Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development Modern (HTML5, Modern CSS, Flexbox/Grid, JavaScript Runtime, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Capstone Project) dengan passing grade terverifikasi.

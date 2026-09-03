@@ -103,29 +103,51 @@ export default function DashboardPage() {
 
       <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl space-y-8">
-          {/* Header Greeting */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-primary" />
-                <span className="text-xs font-mono font-semibold text-muted-foreground uppercase">
-                  DASHBOARD PEMBELAJARAN
-                </span>
+          {/* Header Greeting & Student Profile Badge */}
+          <div className="p-6 sm:p-7 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <img
+                src={user?.avatarUrl || "https://api.dicebear.com/7.x/bottts/svg?seed=developer"}
+                alt="Avatar"
+                className="w-16 h-16 rounded-2xl border-2 border-primary/30 bg-secondary object-cover shrink-0 shadow-sm"
+              />
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <h1 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+                    {user?.name || "Pelajar Web"}
+                  </h1>
+                  <span className="text-[11px] font-mono text-muted-foreground">
+                    @{user?.username || "developer"}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground max-w-lg line-clamp-2">
+                  {user?.bio || "Web Development Enthusiast di BelajarinAja"}
+                </p>
+                <div className="flex items-center gap-3 pt-1 text-[11px] font-mono text-muted-foreground">
+                  <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    <span>TERVERIFIKASI</span>
+                  </span>
+                  <span>•</span>
+                  <span>TARGET: {user?.dailyGoalMinutes || 30} MENIT/HARI</span>
+                </div>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                Halo, {isAuthenticated && user?.name ? user.name : "Web Developer"}!
-              </h1>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Pantau kemajuan kurikulum dan lanjutkan materi koding kamu dari posisi terakhir.
-              </p>
             </div>
 
-            <Link href="/roadmap">
-              <Button variant="outline" size="sm" className="text-xs font-semibold h-9 gap-1.5 self-start sm:self-center">
-                <Map className="h-3.5 w-3.5 text-primary" />
-                <span>Buka Seluruh Roadmap</span>
-              </Button>
-            </Link>
+            <div className="flex items-center gap-2.5 self-start md:self-center shrink-0">
+              <Link href="/settings">
+                <Button variant="outline" size="sm" className="text-xs font-semibold h-9 rounded-xl gap-1.5 cursor-pointer">
+                  <Settings className="h-3.5 w-3.5 text-muted-foreground" />
+                  <span>Edit Profil</span>
+                </Button>
+              </Link>
+              <Link href="/roadmap">
+                <Button size="sm" className="text-xs font-bold h-9 rounded-xl gap-1.5 cursor-pointer">
+                  <Map className="h-3.5 w-3.5" />
+                  <span>Peta Roadmap</span>
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* PRIMARY CONTENT: CONTINUE LEARNING HERO */}

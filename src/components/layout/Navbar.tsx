@@ -143,23 +143,32 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-secondary hover:bg-secondary/80 text-xs font-semibold text-foreground border border-border transition-colors cursor-pointer"
+                className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-secondary hover:bg-secondary/80 text-xs font-semibold text-foreground border border-border transition-colors cursor-pointer"
               >
                 {user?.avatarUrl ? (
-                  <img src={user.avatarUrl} alt="Avatar" className="h-4 w-4 rounded-full" />
+                  <img src={user.avatarUrl} alt="Avatar" className="h-5 w-5 rounded-full object-cover border border-border" />
                 ) : (
-                  <User className="h-3.5 w-3.5 text-primary" />
+                  <User className="h-4 w-4 text-primary" />
                 )}
-                <span className="hidden sm:inline truncate max-w-[90px]">{user?.name || "Pelajar"}</span>
+                <span className="hidden sm:inline truncate max-w-[100px] font-bold">{user?.name || "Pelajar"}</span>
                 <ChevronDown className="h-3 w-3 text-muted-foreground" />
               </button>
 
               {/* Profile Dropdown Menu */}
               {profileDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md bg-card border border-border shadow-lg p-1.5 z-50 text-xs space-y-1 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2 py-1.5 border-b border-border mb-1">
-                    <p className="font-bold text-foreground truncate">{user?.name || "Pengguna"}</p>
-                    <p className="text-[11px] text-muted-foreground truncate">{user?.email || "Akun Terdaftar"}</p>
+                <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-card border border-border shadow-xl p-2 z-50 text-xs space-y-1 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="px-2.5 py-2 border-b border-border mb-1 flex items-center gap-2.5">
+                    {user?.avatarUrl ? (
+                      <img src={user.avatarUrl} alt="Avatar" className="h-9 w-9 rounded-xl object-cover border border-border shrink-0" />
+                    ) : (
+                      <div className="h-9 w-9 rounded-xl bg-secondary text-primary flex items-center justify-center font-bold shrink-0">
+                        <User className="h-5 w-5" />
+                      </div>
+                    )}
+                    <div className="overflow-hidden">
+                      <p className="font-bold text-foreground truncate">{user?.name || "Pelajar Web"}</p>
+                      <p className="text-[11px] text-muted-foreground font-mono truncate">@{user?.username || "developer"}</p>
+                    </div>
                   </div>
 
                   <Link
