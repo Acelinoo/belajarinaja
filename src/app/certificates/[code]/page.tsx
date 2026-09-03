@@ -20,6 +20,7 @@ import {
   faArrowLeft,
   faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
+import { OfficialCertificateDocument } from "@/components/certificates/OfficialCertificateDocument";
 
 interface PublicCertificatePageProps {
   params: Promise<{ code: string }>;
@@ -172,94 +173,16 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
             </div>
           </div>
 
-          {/* Certificate Canvas Document */}
-          <div className="p-8 sm:p-14 rounded-3xl border-2 border-border bg-card shadow-lg space-y-10 print:border-none print:shadow-none print:p-0">
-            {/* Certificate Header */}
-            <div className="flex items-center justify-between pb-6 border-b border-border">
-              <div className="flex items-center gap-3">
-                <img
-                  src="/logo.png"
-                  alt="Logo BelajarinAja"
-                  className="h-10 w-10 rounded-xl object-contain dark:invert print:filter-none"
-                />
-                <div>
-                  <span className="font-extrabold text-base tracking-tight text-foreground block">
-                    Belajarin<span className="text-primary font-black">Aja</span>
-                  </span>
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-mono">
-                    Academic Accreditation System
-                  </span>
-                </div>
-              </div>
-
-              <Badge
-                variant="outline"
-                className="font-mono text-xs px-3 py-1 bg-secondary/50 border-border"
-              >
-                {certificateCode}
-              </Badge>
-            </div>
-
-            {/* Certificate Body */}
-            <div className="text-center space-y-5 py-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-bold tracking-widest uppercase">
-                <FontAwesomeIcon icon={faCertificate} className="h-3 w-3" />
-                <span>
-                  {language === "en"
-                    ? "CERTIFICATE OF COMPLETION"
-                    : "SERTIFIKAT KELULUSAN AKADEMIK"}
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                  {language === "en"
-                    ? "This is proudly presented to:"
-                    : "Dengan bangga dianugerahkan kepada:"}
-                </p>
-                <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight py-1">
-                  {studentName}
-                </h1>
-                <span className="text-xs font-mono text-muted-foreground block">
-                  Student ID: @{studentUsername}
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed pt-2">
-                {language === "en"
-                  ? "Has successfully mastered and completed all 20 stages of the Modern Web Development Curriculum (Semantic HTML5, CSS3, Flexbox/Grid, JavaScript Runtime, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Production Capstones) with verified passing grade in interactive coding sandboxes and diagnostic evaluations."
-                  : "Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development Modern (HTML5 Semantik, Modern CSS, Flexbox/Grid, JavaScript Runtime, Manipulasi DOM, Logika Asinkronus, React, Next.js 15, PostgreSQL & Capstone Project) dengan passing grade terverifikasi pada interactive coding sandbox dan kuis evaluasi diagnostik."}
-              </p>
-            </div>
-
-            {/* Certificate Footer Meta */}
-            <div className="pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-muted-foreground">
-              <div className="space-y-1">
-                <span className="block font-semibold text-foreground">
-                  {language === "en" ? "Issue Date:" : "Tanggal Penerbitan:"}
-                </span>
-                <span>{issueDate}</span>
-              </div>
-
-              <div className="text-left sm:text-center space-y-1">
-                <span className="block font-semibold text-foreground">
-                  {language === "en" ? "Evaluation Status:" : "Status Evaluasi:"}
-                </span>
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center justify-start sm:justify-center gap-1.5">
-                  <FontAwesomeIcon icon={faCircleCheck} className="h-3.5 w-3.5" />
-                  <span>≥ 80% Passing Grade</span>
-                </span>
-              </div>
-
-              <div className="text-left sm:text-right space-y-1">
-                <span className="block font-semibold text-foreground">
-                  {language === "en"
-                    ? "Issuing Authority:"
-                    : "Otoritas Sertifikasi:"}
-                </span>
-                <span>BelajarinAja Academic Board</span>
-              </div>
-            </div>
+          {/* Certificate Canvas Document (Matching Reference Specification) */}
+          <div className="print:m-0">
+            <OfficialCertificateDocument
+              studentName={studentName}
+              studentUsername={studentUsername}
+              certificateCode={certificateCode}
+              issueDate={issueDate}
+              language={language}
+              verificationUrl={currentUrl}
+            />
           </div>
         </div>
       </main>

@@ -14,9 +14,11 @@ import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
 import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
+import { OfficialCertificateDocument } from "@/components/certificates/OfficialCertificateDocument";
 
 export default function CertificatePage() {
   const [copied, setCopied] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const { user, isAuthenticated } = useAuthStore();
   const { completedLessons } = useCurriculumProgressStore();
   const { theme, language } = useThemeLanguageStore();
@@ -159,68 +161,66 @@ export default function CertificatePage() {
                 </div>
               </div>
 
-              <Link href="/roadmap">
-                <Button className="text-xs font-bold rounded-md px-6 gap-1.5">
-                  <span>{language === "en" ? "Continue Curriculum Roadmap" : "Lanjutkan Peta Kurikulum"}</span>
-                  <ArrowRight className="h-4 w-4" />
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <Link href="/roadmap">
+                  <Button className="text-xs font-bold rounded-md px-6 gap-1.5">
+                    <span>{language === "en" ? "Continue Curriculum Roadmap" : "Lanjutkan Peta Kurikulum"}</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowPreview(!showPreview)}
+                  className="text-xs font-semibold rounded-md gap-1.5"
+                >
+                  <ShieldCheck className="h-3.5 w-3.5 text-primary" />
+                  <span>
+                    {showPreview
+                      ? (language === "en" ? "Hide Certificate Preview" : "Tutup Pratinjau")
+                      : (language === "en" ? "Preview Official Certificate" : "Pratinjau Sertifikat Resmi")}
+                  </span>
                 </Button>
-              </Link>
+              </div>
+
+              {showPreview && (
+                <div className="pt-6 space-y-3">
+                  <div className="p-3 bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 rounded-lg text-xs font-medium text-center">
+                    {language === "en"
+                      ? "Preview Mode: This is how your accredited certificate will look upon completing all curriculum stages."
+                      : "Mode Pratinjau: Seperti inilah sertifikat kelulusan akreditasi resmi kamu setelah menyelesaikan seluruh tahap kurikulum."}
+                  </div>
+                  <OfficialCertificateDocument
+                    studentName={user?.name || "Marchelino Kurniawan"}
+                    studentUsername={user?.username || "developer"}
+                    certificateCode={certificateCode}
+                    issueDate={issueDate}
+                    language={language}
+                    verificationUrl={
+                      typeof window !== "undefined"
+                        ? `${window.location.origin}/certificates/${certificateCode}`
+                        : `https://belajarinaja.vercel.app/certificates/${certificateCode}`
+                    }
+                  />
+                </div>
+              )}
             </div>
           ) : (
             /* Eligible Issued Certificate Presentation */
-            <div className="p-8 sm:p-12 rounded-2xl border-2 border-border bg-card shadow-sm space-y-8 print:border-none print:shadow-none">
-              <div className="flex items-center justify-between pb-6 border-b border-border">
-                <div className="flex items-center gap-2.5">
-                  <img
-                    src="/logo.png"
-                    alt="Logo BelajarinAja"
-                    className="h-8 w-8 rounded-lg object-contain dark:invert"
-                  />
-                  <span className="font-bold text-sm text-foreground">
-                    Belajarin<span className="text-primary font-black">Aja</span>
-                  </span>
-                </div>
-                <Badge variant="outline" className="font-mono text-[10px]">
-                  {certificateCode}
-                </Badge>
-              </div>
-
-              <div className="text-center space-y-4 py-4">
-                <span className="text-xs font-bold text-primary uppercase tracking-widest block">
-                  {language === "en" ? "CERTIFICATE OF COMPLETION" : "SERTIFIKAT KELULUSAN"}
-                </span>
-
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                  {user?.name || (language === "en" ? "BelajarinAja Graduate" : "Lulusan BelajarinAja")}
-                </h2>
-                {user?.username && (
-                  <span className="text-xs font-mono text-muted-foreground block -mt-2">
-                    {language === "en" ? "Student ID:" : "ID Pelajar:"} @{user.username}
-                  </span>
-                )}
-
-                <p className="text-xs sm:text-sm text-muted-foreground max-w-lg mx-auto leading-relaxed">
-                  {language === "en"
-                    ? "Has successfully completed all 20 stages of the Modern Web Development Curriculum (Semantic HTML5, Modern CSS, Flexbox/Grid, JavaScript Engine, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Capstone Projects) with a verified passing grade."
-                    : "Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development Modern (HTML5, Modern CSS, Flexbox/Grid, JavaScript Runtime, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Capstone Project) dengan passing grade terverifikasi."}
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-                <div>
-                  <span className="block font-semibold text-foreground">
-                    {language === "en" ? "Issue Date:" : "Tanggal Penerbitan:"}
-                  </span>
-                  <span>{issueDate}</span>
-                </div>
-
-                <div className="text-center sm:text-right">
-                  <span className="block font-semibold text-foreground">
-                    {language === "en" ? "Certification Authority:" : "Otoritas Sertifikasi:"}
-                  </span>
-                  <span>BelajarinAja Academic System</span>
-                </div>
-              </div>
+            <div className="space-y-4">
+              <OfficialCertificateDocument
+                studentName={user?.name || "Marchelino Kurniawan"}
+                studentUsername={user?.username || "developer"}
+                certificateCode={certificateCode}
+                issueDate={issueDate}
+                language={language}
+                verificationUrl={
+                  typeof window !== "undefined"
+                    ? `${window.location.origin}/certificates/${certificateCode}`
+                    : `https://belajarinaja.vercel.app/certificates/${certificateCode}`
+                }
+              />
             </div>
           )}
         </div>
