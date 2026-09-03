@@ -66,7 +66,13 @@ export default function SettingsPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [savedNotice, setSavedNotice] = useState(false);
 
-  // Sync state if user changes in store
+  // Handle Instant Avatar Selection
+  const handleSelectAvatar = (url: string) => {
+    setAvatarUrl(url);
+    updateProfile({ avatarUrl: url });
+  };
+
+  // Sync state initially or when user id changes
   useEffect(() => {
     if (user) {
       if (user.name) setName(user.name);
@@ -75,7 +81,7 @@ export default function SettingsPage() {
       if (user.avatarUrl) setAvatarUrl(user.avatarUrl);
       if (user.dailyGoalMinutes) setDailyMinutes(user.dailyGoalMinutes);
     }
-  }, [user]);
+  }, [user?.id]);
 
   // Modals State
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -307,48 +313,76 @@ export default function SettingsPage() {
                   </div>
 
                   {/* Avatar Selector */}
-                  <div className="space-y-2.5">
-                    <label className="text-xs font-semibold text-foreground block">
-                      Pilih Gaya Avatar
-                    </label>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-foreground">
+                        Pilih Gaya Avatar
+                      </label>
+                      <span className="text-[10px] font-mono text-muted-foreground">
+                        Klik untuk langsung terapkan
+                      </span>
+                    </div>
 
                     <div className="flex flex-wrap gap-2.5">
                       {/* Option for OAuth photo if available */}
                       {user?.avatarUrl && !user.avatarUrl.includes("dicebear") && (
                         <button
                           type="button"
-                          onClick={() => setAvatarUrl(user.avatarUrl!)}
-                          className={`p-1 rounded-xl border-2 transition-all cursor-pointer ${
+                          onClick={() => handleSelectAvatar(user.avatarUrl!)}
+                          className={`relative p-1.5 rounded-xl border-2 transition-all cursor-pointer ${
                             avatarUrl === user.avatarUrl
-                              ? "border-primary bg-primary/10 scale-105"
-                              : "border-border bg-card hover:bg-secondary"
+                              ? "border-primary bg-primary/10 ring-2 ring-primary scale-105 shadow-xs"
+                              : "border-border bg-card hover:bg-secondary/70 hover:scale-105"
                           }`}
                           title="Gunakan Foto Akun OAuth"
                         >
                           <img
                             src={user.avatarUrl}
                             alt="OAuth Avatar"
-                            className="w-9 h-9 rounded-lg object-cover"
+                            className="w-10 h-10 rounded-lg object-cover"
                           />
+                          {avatarUrl === user.avatarUrl && (
+                            <div className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground rounded-full p-0.5 shadow-xs">
+                              <Check className="h-2.5 w-2.5" />
+                            </div>
+                          )}
                         </button>
                       )}
 
                       {/* Bottts Avatar Options */}
-                      {botttsAvatars.map((bot) => (
-                        <button
-                          key={bot.id}
-                          type="button"
-                          onClick={() => setAvatarUrl(bot.url)}
-                          className={`p-1 rounded-xl border-2 transition-all cursor-pointer ${
-                            avatarUrl === bot.url
-                              ? "border-primary bg-primary/10 scale-105"
-                              : "border-border bg-card hover:bg-secondary"
-                          }`}
-                          title={bot.label}
-                        >
-                          <img src={bot.url} alt={bot.label} className="w-9 h-9 rounded-lg" />
-                        </button>
-                      ))}
+                      {botttsAvatars.map((bot) => {
+                        const isSelected = avatarUrl === bot.url;
+                        return (
+                          <button
+                            key={bot.id}
+                            type="button"
+                            onClick={() => handleSelectAvatar(bot.url)}
+                            className={`relative p-1.5 rounded-xl border-2 transition-all cursor-pointer ${
+                              isSelected
+                                ? "border-primary bg-primary/10 ring-2 ring-primary scale-105 shadow-xs"
+                                : "border-border bg-card hover:bg-secondary/70 hover:scale-105"
+                            }`}
+                            title={bot.label}
+                          >
+                            <img src={bot.url} alt={bot.label} className="w-10 h-10 rounded-lg" />
+                            {isSelected && (
+                              <div className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground rounded-full p-0.5 shadow-xs">
+                                <Check className="h-2.5 w-2.5" />
+                              </div>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Custom Avatar URL Field */}
+                    <div className="pt-1">
+                      <Input
+                        value={avatarUrl}
+                        onChange={(e) => handleSelectAvatar(e.target.value)}
+                        placeholder="Atau tempel link URL avatar kustom (https://...)"
+                        className="h-9 text-xs rounded-xl bg-card border-border font-mono text-muted-foreground focus:text-foreground"
+                      />
                     </div>
                   </div>
 

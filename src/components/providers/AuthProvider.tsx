@@ -11,16 +11,27 @@ function SessionSync() {
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
       const email = session.user.email || "developer@belajarinaja.com";
-      const name = session.user.name || email.split("@")[0];
-      const provider = (session.user as any).provider || (session.user.image?.includes("github") ? "github" : "google");
+      const provider =
+        (session.user as any).provider ||
+        (session.user.image?.includes("github") ? "github" : "google");
 
       setUser({
-        id: (session.user as any).id || `usr_${Buffer.from(email).toString("base64").substring(0, 10)}`,
-        name,
+        id:
+          (session.user as any).id ||
+          user?.id ||
+          `usr_${Buffer.from(email).toString("base64").substring(0, 10)}`,
+        name: user?.name || session.user.name || email.split("@")[0],
         email,
-        username: email.split("@")[0].toLowerCase().replace(/[^a-z0-9_]/g, ""),
-        avatarUrl: session.user.image || `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
-        role: (session.user as any).role || "STUDENT",
+        username:
+          user?.username ||
+          email.split("@")[0].toLowerCase().replace(/[^a-z0-9_]/g, ""),
+        bio: user?.bio || "Web Development Enthusiast di BelajarinAja",
+        avatarUrl:
+          user?.avatarUrl ||
+          session.user.image ||
+          `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
+        dailyGoalMinutes: user?.dailyGoalMinutes || 30,
+        role: (session.user as any).role || user?.role || "STUDENT",
         connectedAccounts: {
           google: provider === "google" || !!user?.connectedAccounts?.google,
           github: provider === "github" || !!user?.connectedAccounts?.github,
@@ -28,7 +39,7 @@ function SessionSync() {
         accountStatus: "VERIFIED_STUDENT",
       });
     }
-  }, [session, status, setUser]);
+  }, [session, status]);
 
   return null;
 }
