@@ -1,6 +1,38 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { claimUsername, cleanAndValidateUsername } from "@/lib/userRegistry";
+import { claimUsername, cleanAndValidateUsername, getUserProfileByEmail } from "@/lib/userRegistry";
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const email = searchParams.get("email");
+
+    if (!email) {
+      return NextResponse.json(
+        { error: "Parameter email diperlukan" },
+        { status: 400 }
+      );
+    }
+
+    const profile = await getUserProfileByEmail(email);
+    if (!profile) {
+      return NextResponse.json(
+        { success: false, message: "Profil belum terdaftar" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      profile,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Gagal mengambil data profil" },
+      { status: 500 }
+    );
+  }
+}
 
 export async function PUT(request: Request) {
   try {

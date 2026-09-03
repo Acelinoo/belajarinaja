@@ -28,34 +28,62 @@ function SessionSync() {
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
-      const email = session.user.email || "developer@belajarinaja.com";
+      const email = (session.user.email || "developer@belajarinaja.com").toLowerCase().trim();
       const provider =
         (session.user as any).provider ||
         (session.user.image?.includes("github") ? "github" : "google");
 
-      setUser({
+      // 1. Coba baca profil yang tersimpan di localStorage
+      let localSaved: any = null;
+      if (typeof window !== "undefined") {
+        try {
+          const raw = localStorage.getItem(`belajarinaja_saved_profile_${email}`);
+          if (raw) localSaved = JSON.parse(raw);
+        } catch (e) {}
+      }
+
+      const activeUser = {
         id:
           (session.user as any).id ||
           user?.id ||
+          localSaved?.id ||
           `usr_${Buffer.from(email).toString("base64").substring(0, 10)}`,
-        name: user?.name || session.user.name || email.split("@")[0],
+        name: localSaved?.name || user?.name || session.user.name || email.split("@")[0],
         email,
         username:
+          localSaved?.username ||
           user?.username ||
           email.split("@")[0].toLowerCase().replace(/[^a-z0-9_]/g, ""),
-        bio: user?.bio || "Web Development Enthusiast di BelajarinAja",
+        bio: localSaved?.bio || user?.bio || "Web Development Enthusiast di BelajarinAja",
         avatarUrl:
+          localSaved?.avatarUrl ||
           user?.avatarUrl ||
           session.user.image ||
           `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
-        dailyGoalMinutes: user?.dailyGoalMinutes || 30,
+        dailyGoalMinutes: localSaved?.dailyGoalMinutes || user?.dailyGoalMinutes || 30,
         role: (session.user as any).role || user?.role || "STUDENT",
         connectedAccounts: {
           google: provider === "google" || !!user?.connectedAccounts?.google,
           github: provider === "github" || !!user?.connectedAccounts?.github,
         },
-        accountStatus: "VERIFIED_STUDENT",
-      });
+        accountStatus: "VERIFIED_STUDENT" as const,
+      };
+
+      setUser(activeUser);
+
+      // 2. Sinkronkan dengan data profil server jika ada
+      fetch(`/api/v1/auth/profile?email=${encodeURIComponent(email)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success && data.profile) {
+            setUser({
+              ...activeUser,
+              username: data.profile.username || activeUser.username,
+              name: data.profile.name || activeUser.name,
+            });
+          }
+        })
+        .catch((err) => console.warn("[AuthProvider] Profile sync warning:", err));
 
       // Load user progress
       loadUserProgress(email);

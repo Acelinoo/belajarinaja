@@ -211,3 +211,36 @@ export async function generateUniqueUsername(
 
   return `${cleanBase}_${Date.now().toString().slice(-4)}`;
 }
+
+/**
+ * Ambil data profil terdaftar berdasarkan email
+ */
+export async function getUserProfileByEmail(email: string): Promise<RegistryUser | null> {
+  if (!email) return null;
+  const cleanEmail = email.toLowerCase().trim();
+
+  // 1. Coba dari Prisma jika aktif
+  try {
+    const db = await getPrisma();
+    if (db) {
+      const user = await db.user.findUnique({
+        where: { email: cleanEmail },
+      });
+      if (user && user.username) {
+        return {
+          email: user.email,
+          username: user.username,
+          name: user.name || cleanEmail.split("@")[0],
+          registeredAt: user.createdAt?.toISOString() || new Date().toISOString(),
+        };
+      }
+    }
+  } catch (err) {
+    console.warn("[UserRegistry] Prisma getUserProfile fallback:", err);
+  }
+
+  // 2. Ambil dari file registry persisten
+  const registry = loadRegistry();
+  return registry[cleanEmail] || null;
+}
+

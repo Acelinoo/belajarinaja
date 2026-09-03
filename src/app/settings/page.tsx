@@ -72,7 +72,7 @@ export default function SettingsPage() {
     updateProfile({ avatarUrl: url });
   };
 
-  // Sync state initially or when user id changes
+  // Sync state initially or when user profile fields change
   useEffect(() => {
     if (user) {
       if (user.name) setName(user.name);
@@ -80,8 +80,21 @@ export default function SettingsPage() {
       if (user.bio) setBio(user.bio);
       if (user.avatarUrl) setAvatarUrl(user.avatarUrl);
       if (user.dailyGoalMinutes) setDailyMinutes(user.dailyGoalMinutes);
+
+      // Check saved local profile backup
+      if (user.email && typeof window !== "undefined") {
+        try {
+          const raw = localStorage.getItem(`belajarinaja_saved_profile_${user.email.toLowerCase().trim()}`);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed.username && !user.username) {
+              setUsername(parsed.username);
+            }
+          }
+        } catch (e) {}
+      }
     }
-  }, [user?.id]);
+  }, [user?.id, user?.username, user?.name, user?.bio, user?.avatarUrl, user?.dailyGoalMinutes]);
 
   // Modals State
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -124,11 +137,40 @@ export default function SettingsPage() {
 
       // 1. Update local client store only if server validation succeeded!
       updateProfile(updatedData);
+
+      // 2. Save explicitly to permanent local profile backup
+      if (user?.email && typeof window !== "undefined") {
+        try {
+          const userKey = user.email.toLowerCase().trim();
+          localStorage.setItem(
+            `belajarinaja_saved_profile_${userKey}`,
+            JSON.stringify({
+              ...user,
+              ...updatedData,
+            })
+          );
+        } catch (e) {}
+      }
+
       setSavedNotice(true);
       setTimeout(() => setSavedNotice(false), 3000);
     } catch (err) {
       console.warn("[Settings] Profile sync error:", err);
       updateProfile(updatedData);
+
+      if (user?.email && typeof window !== "undefined") {
+        try {
+          const userKey = user.email.toLowerCase().trim();
+          localStorage.setItem(
+            `belajarinaja_saved_profile_${userKey}`,
+            JSON.stringify({
+              ...user,
+              ...updatedData,
+            })
+          );
+        } catch (e) {}
+      }
+
       setSavedNotice(true);
       setTimeout(() => setSavedNotice(false), 3000);
     } finally {
