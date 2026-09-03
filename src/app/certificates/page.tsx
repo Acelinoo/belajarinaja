@@ -149,11 +149,15 @@ export default function CertificatePage() {
             /* Eligible Issued Certificate Presentation */
             <div className="p-8 sm:p-12 rounded-2xl border-2 border-border bg-card shadow-sm space-y-8 print:border-none print:shadow-none">
               <div className="flex items-center justify-between pb-6 border-b border-border">
-                <div className="flex items-center gap-2">
-                  <div className="h-7 w-7 rounded-md bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs">
-                    BA
-                  </div>
-                  <span className="font-bold text-sm text-foreground">BelajarinAja</span>
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="/logo.png"
+                    alt="Logo BelajarinAja"
+                    className="h-8 w-8 rounded-lg object-cover shadow-xs ring-1 ring-border"
+                  />
+                  <span className="font-bold text-sm text-foreground">
+                    Belajarin<span className="text-primary font-black">Aja</span>
+                  </span>
                 </div>
                 <Badge variant="outline" className="font-mono text-[10px]">
                   {certificateCode}

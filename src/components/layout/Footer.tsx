@@ -16,16 +16,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-border">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-2">
-              {theme === "fun" ? (
-                <NovaCharacter state="encouraging" className="w-8 h-8 shrink-0" />
-              ) : (
-                <div className="h-6 w-6 rounded-md bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs">
-                  BA
-                </div>
-              )}
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/logo.png"
+                alt="Logo BelajarinAja"
+                className="h-7 w-7 rounded-lg object-cover shadow-xs ring-1 ring-border"
+              />
               <span className="font-bold text-sm text-foreground tracking-tight">
-                BelajarinAja
+                Belajarin<span className="text-primary font-black">Aja</span>
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-md">

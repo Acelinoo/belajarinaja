@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { OAuthButtons } from "@/components/auth/OAuthButtons";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
@@ -28,15 +28,12 @@ export default function AuthLoginPage() {
         <div className="p-8 sm:p-10 rounded-2xl border border-border bg-card shadow-xl space-y-6">
           {/* Logo & Header */}
           <div className="flex flex-col items-center text-center space-y-3">
-            <div className="relative group">
+            <div className="group">
               <img
                 src="/logo.png"
                 alt="Logo BelajarinAja"
                 className="w-20 h-20 rounded-2xl object-cover shadow-lg ring-1 ring-border transition-transform group-hover:scale-105"
               />
-              <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground p-1 rounded-full shadow-xs">
-                <Sparkles className="w-3 h-3" />
-              </div>
             </div>
 
             <div className="space-y-1">

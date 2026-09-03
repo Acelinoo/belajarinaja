@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, Sparkles } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -26,15 +26,12 @@ export function AuthModal() {
     <Dialog open={isLoginModalOpen} onOpenChange={closeLoginModal}>
       <DialogContent className="max-w-md bg-card border border-border p-6 sm:p-8 rounded-2xl shadow-xl">
         <DialogHeader className="space-y-3 text-center items-center">
-          <div className="relative group">
+          <div className="group">
             <img
               src="/logo.png"
               alt="Logo BelajarinAja"
               className="w-16 h-16 rounded-2xl object-cover shadow-md ring-1 ring-border transition-transform group-hover:scale-105"
             />
-            <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground p-1 rounded-full shadow-xs">
-              <Sparkles className="w-2.5 h-2.5" />
-            </div>
           </div>
 
           <div className="space-y-1">
