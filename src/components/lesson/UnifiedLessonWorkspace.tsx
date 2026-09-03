@@ -317,45 +317,6 @@ export function UnifiedLessonWorkspace({
           </div>
         )}
 
-        {/* Mini Challenge / Project Practice Guidance */}
-        {activeLesson.miniProject && (
-          <section className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-border">
-              <div className="space-y-0.5">
-                <div className="flex items-center gap-2">
-                  <Award className="h-4 w-4 text-primary" />
-                  <h2 className="text-base font-bold text-foreground">
-                    {activeLesson.miniProject.title}
-                  </h2>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {activeLesson.miniProject.description}
-                </p>
-              </div>
-
-              <Badge variant="outline" className="text-[10px] font-semibold">
-                Tantangan Mandiri
-              </Badge>
-            </div>
-
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold text-foreground uppercase tracking-wider block">
-                Kriteria & Checklist Pengerjaan:
-              </span>
-              <div className="space-y-2">
-                {activeLesson.miniProject.deliverables.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 rounded-lg border border-border bg-secondary/40 flex items-start gap-2.5 text-xs text-foreground"
-                  >
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* Knowledge Evaluation Quiz Widget */}
         <section className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-4">

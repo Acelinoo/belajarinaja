@@ -201,6 +201,73 @@ export const LESSON_EXERCISES: Record<string, SandboxExercise> = {
     starterCode: `<style>\n  .card {\n    background: #FFD84D;\n    /* Tambahkan padding, border, dan margin */\n  }\n</style>\n\n<div class="card">\n  <strong>Box Model Card</strong>\n</div>`,
     solutionCode: `<style>\n  .card {\n    background: #FFD84D;\n    padding: 20px;\n    border: 2px solid black;\n    margin: 16px;\n  }\n</style>\n\n<div class="card">\n  <strong>Box Model Card</strong>\n</div>`,
   },
+  "lesson-3-3": {
+    id: "ex-3-3",
+    lessonId: "lesson-3-3",
+    lessonSlug: "tipografi-warna-dan-satuan-ukuran",
+    title: "Latihan Praktik: Tipografi, Warna & Satuan Ukuran",
+    titleEn: "Typography, Colors & CSS Units Practice",
+    type: "html-css",
+    instructions: "Atur properti `.teks-artikel` dengan `font-size: 1.25rem;`, `color: #1e293b;`, dan `line-height: 1.6;`.",
+    instructionsEn: "Set `.teks-artikel` with `font-size: 1.25rem;`, `color: #1e293b;`, and `line-height: 1.6;`.",
+    taskGoal: "Mengatur kenyamanan tipografi dan keterbacaan artikel modern.",
+    taskGoalEn: "Adjust typography readability for modern article layouts.",
+    hints: [
+      "Tambahkan `font-size: 1.25rem; color: #1e293b; line-height: 1.6;` pada selector `.teks-artikel`."
+    ],
+    hintsEn: [
+      "Add `font-size: 1.25rem; color: #1e293b; line-height: 1.6;` inside `.teks-artikel` selector."
+    ],
+    starterCode: `<style>\n  .teks-artikel {\n    /* Tulis aturan tipografi di sini */\n  }\n</style>\n\n<p class="teks-artikel">\n  BelajarinAja adalah platform belajar web development modern dengan kurikulum terstruktur dan praktik nyata.\n</p>`,
+    solutionCode: `<style>\n  .teks-artikel {\n    font-size: 1.25rem;\n    color: #1e293b;\n    line-height: 1.6;\n  }\n</style>\n\n<p class="teks-artikel">\n  BelajarinAja adalah platform belajar web development modern dengan kurikulum terstruktur dan praktik nyata.\n</p>`,
+    initialHtml: `<p class="teks-artikel">BelajarinAja adalah platform belajar web development modern dengan kurikulum terstruktur dan praktik nyata.</p>`,
+  },
+  "lesson-3-4": {
+    id: "ex-3-4",
+    lessonId: "lesson-3-4",
+    lessonSlug: "css-display-block-inline-none",
+    title: "Latihan Praktik: CSS Variables (Custom Properties)",
+    titleEn: "CSS Variables (Custom Properties) Practice",
+    type: "html-css",
+    instructions: "Definisikan variabel `--theme-bg: #2563eb;` di dalam `:root` dan terapkan pada `.tombol` menggunakan `background: var(--theme-bg);`.",
+    instructionsEn: "Define `--theme-bg: #2563eb;` in `:root` and apply it to `.tombol` with `background: var(--theme-bg);`.",
+    taskGoal: "Membangun sistem token desain menggunakan variabel CSS.",
+    taskGoalEn: "Build a design token system using CSS Variables.",
+    hints: [
+      "Deklarasikan `:root { --theme-bg: #2563eb; }`.",
+      "Gunakan `background: var(--theme-bg);` di dalam `.tombol`."
+    ],
+    hintsEn: [
+      "Declare `:root { --theme-bg: #2563eb; }`.",
+      "Use `background: var(--theme-bg);` inside `.tombol`."
+    ],
+    starterCode: `<style>\n  :root {\n    /* Buat variabel CSS di sini */\n  }\n  .tombol {\n    color: white;\n    padding: 10px 20px;\n    border-radius: 8px;\n    border: none;\n    font-weight: bold;\n    cursor: pointer;\n    /* Terapkan variabel dengan var(--theme-bg) */\n  }\n</style>\n\n<button class="tombol">Tombol Bertema</button>`,
+    solutionCode: `<style>\n  :root {\n    --theme-bg: #2563eb;\n  }\n  .tombol {\n    background: var(--theme-bg);\n    color: white;\n    padding: 10px 20px;\n    border-radius: 8px;\n    border: none;\n    font-weight: bold;\n    cursor: pointer;\n  }\n</style>\n\n<button class="tombol">Tombol Bertema</button>`,
+    initialHtml: `<button class="tombol">Tombol Bertema</button>`,
+  },
+  "lesson-3-5": {
+    id: "ex-3-5",
+    lessonId: "lesson-3-5",
+    lessonSlug: "css-positioning-relative-absolute-fixed-sticky",
+    title: "Latihan Praktik: CSS Positioning (Relative & Absolute)",
+    titleEn: "CSS Positioning Practice (Relative & Absolute)",
+    type: "html-css",
+    instructions: "Atur `.avatar-container` dengan `position: relative;` dan `.badge-notifikasi` dengan `position: absolute; top: -6px; right: -6px;` agar badge notifikasi merah menempel di sudut kanan atas foto profil.",
+    instructionsEn: "Set `.avatar-container` with `position: relative;` and `.badge-notifikasi` with `position: absolute; top: -6px; right: -6px;` to position the notification badge.",
+    taskGoal: "Menerapkan koordinat spasial CSS Positioning untuk antarmuka web modern.",
+    taskGoalEn: "Apply spatial CSS positioning coordinates for modern UI.",
+    hints: [
+      "Jadikan parent sebagai anchor: tambahkan `position: relative;` di dalam `.avatar-container`.",
+      "Jadikan child melayang presisi: tambahkan `position: absolute; top: -6px; right: -6px;` di dalam `.badge-notifikasi`."
+    ],
+    hintsEn: [
+      "Make parent the anchor: add `position: relative;` inside `.avatar-container`.",
+      "Make child float precisely: add `position: absolute; top: -6px; right: -6px;` inside `.badge-notifikasi`."
+    ],
+    starterCode: `<style>\n  .avatar-container {\n    width: 64px;\n    height: 64px;\n    /* 1. Atur parent sebagai titik acuan koordinat */\n    display: inline-block;\n  }\n  .avatar-img {\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    object-fit: cover;\n    border: 2px solid #0284c7;\n  }\n  .badge-notifikasi {\n    /* 2. Berikan posisi absolute di pojok kanan atas */\n    background: #ef4444;\n    color: white;\n    font-size: 11px;\n    font-weight: bold;\n    padding: 2px 7px;\n    border-radius: 9999px;\n    border: 2px solid white;\n  }\n</style>\n\n<div class="avatar-container">\n  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop" class="avatar-img" alt="Foto Profil" />\n  <span class="badge-notifikasi">3</span>\n</div>`,
+    solutionCode: `<style>\n  .avatar-container {\n    width: 64px;\n    height: 64px;\n    position: relative;\n    display: inline-block;\n  }\n  .avatar-img {\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    object-fit: cover;\n    border: 2px solid #0284c7;\n  }\n  .badge-notifikasi {\n    position: absolute;\n    top: -6px;\n    right: -6px;\n    background: #ef4444;\n    color: white;\n    font-size: 11px;\n    font-weight: bold;\n    padding: 2px 7px;\n    border-radius: 9999px;\n    border: 2px solid white;\n  }\n</style>\n\n<div class="avatar-container">\n  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop" class="avatar-img" alt="Foto Profil" />\n  <span class="badge-notifikasi">3</span>\n</div>`,
+    initialHtml: `<div class="avatar-container"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop" class="avatar-img" alt="Foto Profil" /><span class="badge-notifikasi">3</span></div>`,
+  },
 
   // ==========================================
   // STAGE 4: ADVANCED LAYOUT (FLEXBOX & GRID)
@@ -370,33 +437,115 @@ export const LESSON_EXERCISES: Record<string, SandboxExercise> = {
   },
 };
 
-export function getExerciseForLesson(lessonId: string, lessonSlug: string, lessonTitle: string): SandboxExercise {
+export function getExerciseForLesson(
+  lessonId: string,
+  lessonSlug: string,
+  lessonTitle: string
+): SandboxExercise {
   if (LESSON_EXERCISES[lessonId]) {
     return LESSON_EXERCISES[lessonId];
   }
 
-  // Fallback dynamic generator based on lesson domain
+  const slugLower = (lessonSlug || "").toLowerCase();
+  const titleLower = (lessonTitle || "").toLowerCase();
+
+  // 1. Detect CSS / Layout / Styling lessons
+  const isCss =
+    slugLower.includes("css") ||
+    slugLower.includes("style") ||
+    slugLower.includes("position") ||
+    slugLower.includes("flex") ||
+    slugLower.includes("grid") ||
+    slugLower.includes("box-model") ||
+    slugLower.includes("typography") ||
+    slugLower.includes("color") ||
+    slugLower.includes("animation") ||
+    slugLower.includes("responsive") ||
+    titleLower.includes("css") ||
+    titleLower.includes("tata letak") ||
+    titleLower.includes("posisi");
+
+  if (isCss) {
+    return {
+      id: `ex-gen-${lessonId}`,
+      lessonId,
+      lessonSlug,
+      title: `Latihan Praktik CSS: ${lessonTitle}`,
+      titleEn: `CSS Coding Challenge: ${lessonTitle}`,
+      type: "html-css",
+      instructions: `Eksplorasi dan modifikasi aturan CSS pada tag <style> untuk mengimplementasikan konsep ${lessonTitle}. Amati perubahan visual secara langsung pada jendela Live Preview Output.`,
+      instructionsEn: `Explore and update CSS rules in the <style> tag to practice ${lessonTitle}. Observe visual output instantly in the Live Preview.`,
+      taskGoal: `Mempraktikkan konsep styling dan tata letak visual pada materi ${lessonTitle}.`,
+      taskGoalEn: `Practice visual styling and layout concepts taught in ${lessonTitle}.`,
+      hints: [
+        "Tambahkan atau sesuaikan properti CSS di dalam tag <style>.",
+        "Klik tombol 'Jalankan Kode (Run)' untuk merender hasil tampilan di browser simulator."
+      ],
+      hintsEn: [
+        "Add or adjust CSS properties inside the <style> tag.",
+        "Click 'Jalankan Kode (Run)' to render preview output."
+      ],
+      starterCode: `<style>\n  .box-latihan {\n    padding: 20px;\n    background: #0284c7;\n    color: white;\n    font-weight: bold;\n    border-radius: 8px;\n    text-align: center;\n  }\n</style>\n\n<div class="box-latihan">\n  Contoh Modul: ${lessonTitle}\n</div>`,
+      solutionCode: `<style>\n  .box-latihan {\n    padding: 20px;\n    background: #0284c7;\n    color: white;\n    font-weight: bold;\n    border-radius: 8px;\n    text-align: center;\n  }\n</style>\n\n<div class="box-latihan">\n  Contoh Modul: ${lessonTitle}\n</div>`,
+      initialHtml: `<div class="box-latihan">Contoh Modul: ${lessonTitle}</div>`,
+    };
+  }
+
+  // 2. Detect HTML / Markup lessons
+  const isHtml =
+    slugLower.includes("html") ||
+    slugLower.includes("semantic") ||
+    slugLower.includes("form") ||
+    slugLower.includes("table") ||
+    slugLower.includes("tag") ||
+    titleLower.includes("html");
+
+  if (isHtml) {
+    return {
+      id: `ex-gen-${lessonId}`,
+      lessonId,
+      lessonSlug,
+      title: `Latihan Praktik HTML: ${lessonTitle}`,
+      titleEn: `HTML Coding Challenge: ${lessonTitle}`,
+      type: "html-css",
+      instructions: `Tulis struktur elemen HTML untuk mengimplementasikan materi ${lessonTitle}. Pastikan susunan tag semantik dan valid.`,
+      instructionsEn: `Write HTML markup structure to implement ${lessonTitle}. Ensure semantic and valid markup.`,
+      taskGoal: `Menyusun dokumen HTML yang terstruktur dan mudah diakses.`,
+      taskGoalEn: `Compose accessible and structured HTML documents.`,
+      hints: [
+        "Gunakan tag pembuka dan penutup yang sesuai.",
+        "Periksa atribut elemen seperti class, id, atau type."
+      ],
+      hintsEn: [
+        "Use matching opening and closing tags.",
+        "Verify element attributes such as class, id, or type."
+      ],
+      starterCode: `<!-- Tulis struktur HTML untuk: ${lessonTitle} -->\n<div class="kontainer-belajar">\n  <h2>${lessonTitle}</h2>\n  <p>Lengkapi kode HTML di sini...</p>\n</div>`,
+      solutionCode: `<div class="kontainer-belajar">\n  <h2>${lessonTitle}</h2>\n  <p>Lengkapi kode HTML di sini...</p>\n</div>`,
+      initialHtml: `<div class="kontainer-belajar"><h2>${lessonTitle}</h2><p>Lengkapi kode HTML di sini...</p></div>`,
+    };
+  }
+
+  // 3. Default: JavaScript Logic & Programming
   return {
     id: `ex-gen-${lessonId}`,
     lessonId,
     lessonSlug,
-    title: `Latihan Kode: ${lessonTitle}`,
-    titleEn: `Coding Challenge: ${lessonTitle}`,
+    title: `Latihan Kode JavaScript: ${lessonTitle}`,
+    titleEn: `JavaScript Challenge: ${lessonTitle}`,
     type: "javascript",
-    instructions: `Tulis kode JavaScript untuk menguji dan memvalidasi pemahaman materi ${lessonTitle}. Cetak 'Verified: ${lessonTitle}' ke konsol.`,
-    instructionsEn: `Write JavaScript code to test and validate your comprehension of ${lessonTitle}. Log 'Verified: ${lessonTitle}' to the console.`,
-    taskGoal: `Mempraktikkan konsep pemrograman yang dipelajari pada modul ${lessonTitle}.`,
-    taskGoalEn: `Practice programming concepts taught in the ${lessonTitle} module.`,
+    instructions: `Tulis kode logika JavaScript untuk menyelesaikan tantangan modul ${lessonTitle}. Gunakan console.log() untuk menampilkan hasil eksekusi ke terminal.`,
+    instructionsEn: `Write JavaScript logic to solve the challenge for ${lessonTitle}. Use console.log() to print outputs.`,
+    taskGoal: `Mengasah kemampuan logika pemrograman dan algoritma pada materi ${lessonTitle}.`,
+    taskGoalEn: `Sharpen algorithmic and programming logic skills in ${lessonTitle}.`,
     hints: [
-      `Gunakan console.log("Verified: ${lessonTitle}")`,
-      "Pastikan sintaks JavaScript valid dan tidak ada error sintaks."
+      `Gunakan console.log("Hasil:", ...)`
     ],
     hintsEn: [
-      `Use console.log("Verified: ${lessonTitle}")`,
-      "Ensure valid JavaScript syntax without syntax errors."
+      `Use console.log("Result:", ...)`
     ],
-    starterCode: `// Latihan Praktik: ${lessonTitle}\nconsole.log("Verified: ${lessonTitle}");`,
-    solutionCode: `console.log("Verified: ${lessonTitle}");`,
-    expectedOutput: `Verified: ${lessonTitle}`,
+    starterCode: `// Latihan JavaScript: ${lessonTitle}\nfunction main() {\n  const status = "Berhasil Mempelajari ${lessonTitle}";\n  console.log(status);\n}\n\nmain();`,
+    solutionCode: `function main() {\n  const status = "Berhasil Mempelajari ${lessonTitle}";\n  console.log(status);\n}\n\nmain();`,
+    expectedOutput: `Berhasil Mempelajari ${lessonTitle}`,
   };
 }
