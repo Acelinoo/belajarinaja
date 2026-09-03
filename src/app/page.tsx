@@ -3,27 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  Code2,
-  Compass,
-  BookOpen,
   ArrowRight,
-  CheckCircle2,
-  Play,
+  ArrowUpRight,
+  Compass,
   Layers,
-  Map,
-  Award,
+  Code2,
+  Cpu,
+  Globe,
+  Layout,
   Terminal,
   ShieldCheck,
   Check,
-  Zap,
-  Layout,
-  Cpu,
-  Globe,
-  Sparkles,
+  Play,
   RotateCcw,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SearchCommandModal } from "@/components/common/SearchCommandModal";
@@ -31,7 +26,6 @@ import { CURRICULUM_STAGES } from "@/data/curriculum";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { getTranslations } from "@/lib/translations";
-import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
 
 export default function HomePage() {
   const { theme, language } = useThemeLanguageStore();
@@ -40,7 +34,6 @@ export default function HomePage() {
 
   const [activeCodeTab, setActiveCodeTab] = useState<"html" | "css" | "js">("html");
 
-  // Determine user's active resume lesson
   const allLessons = CURRICULUM_STAGES.flatMap((s) =>
     s.lessons.map((l) => ({ ...l, stageOrder: s.orderIndex, stageTitle: s.titleId }))
   );
@@ -54,188 +47,335 @@ export default function HomePage() {
 
   const codeSnippets = {
     html: {
-      code: `<article class="card">
-  <h2>Halo, Web Developer!</h2>
-  <p>Belajar HTML5 semantik dan struktur web modern.</p>
-  <button class="btn-primary">Mulai Belajar</button>
+      code: `<article class="hero-card">
+  <h1>BelajarinAja</h1>
+  <p>Kurikulum Web Development 20 Tahap dari Nol.</p>
+  <a href="/roadmap" class="cta-link">Mulai Belajar</a>
 </article>`,
-      previewHtml: `<div style="font-family: system-ui, -apple-system, sans-serif; padding: 20px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 320px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-  <h3 style="margin: 0 0 6px; color: #0f172a; font-size: 15px; font-weight: 700;">Halo, Web Developer!</h3>
-  <p style="margin: 0 0 14px; color: #475569; font-size: 12px; line-height: 1.4;">Belajar HTML5 semantik dan struktur web modern.</p>
-  <button style="background: #2563eb; color: #ffffff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Mulai Belajar</button>
+      previewHtml: `<div style="font-family: system-ui, -apple-system, sans-serif; padding: 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 320px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #0284c7; display: block; margin-bottom: 6px;">Tahap 01</span>
+  <h3 style="margin: 0 0 8px; color: #0f172a; font-size: 17px; font-weight: 800; letter-spacing: -0.02em;">BelajarinAja</h3>
+  <p style="margin: 0 0 16px; color: #64748b; font-size: 12px; line-height: 1.5;">Kurikulum Web Development 20 Tahap dari Nol.</p>
+  <button style="background: #0284c7; color: #ffffff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">Mulai Belajar</button>
 </div>`,
     },
     css: {
-      code: `.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 16px;
+      code: `.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  padding: 2.5rem;
 }`,
-      previewHtml: `<div style="font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #ffffff; padding: 14px; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 340px;">
-  <div style="font-size: 13px; font-weight: 600; color: #0f172a;">Flexbox Item 1</div>
-  <div style="font-size: 11px; background: #e0f2fe; color: #0284c7; padding: 4px 8px; border-radius: 4px; font-weight: 600;">Aktif</div>
+      previewHtml: `<div style="font-family: system-ui, sans-serif; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #ffffff; padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 340px;">
+  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: center; font-size: 11px; font-weight: 700; color: #0f172a;">HTML5</div>
+  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: center; font-size: 11px; font-weight: 700; color: #0f172a;">CSS Grid</div>
+  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: center; font-size: 11px; font-weight: 700; color: #0f172a;">JavaScript</div>
 </div>`,
     },
     js: {
-      code: `function calculateProgress(completed, total) {
-  const percentage = (completed / total) * 100;
-  return \`Progress: \${Math.round(percentage)}%\`;
-}
-
-console.log(calculateProgress(12, 20));
-// Output: "Progress: 60%"`,
-      previewHtml: `<div style="font-family: monospace; background: #0f172a; color: #38bdf8; padding: 14px; border-radius: 8px; font-size: 12px; max-width: 340px; line-height: 1.5;">
-  <div style="color: #94a3b8; font-size: 10px; margin-bottom: 4px;">// Console Output</div>
-  <div>&gt; "Progress: 60%"</div>
+      code: `async function syncProgress(userId, stageId) {
+  const res = await fetch("/api/v1/progress/sync", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId, stageId, completed: true })
+  });
+  return await res.json();
+}`,
+      previewHtml: `<div style="font-family: monospace; background: #090a0c; color: #38bdf8; padding: 16px; border-radius: 10px; font-size: 12px; max-width: 340px; line-height: 1.6; border: 1px solid #222634;">
+  <div style="color: #64748b; font-size: 10px; margin-bottom: 6px;">// Console Output</div>
+  <div style="color: #4ade80;">✔ Progress synced to PostgreSQL</div>
+  <div style="color: #94a3b8; font-size: 11px; margin-top: 4px;">&gt; { stage: "01", status: "COMPLETED" }</div>
 </div>`,
     },
   };
 
-  const learningPillars = [
+  const curriculumPhases = [
     {
-      step: "01",
-      title: "Web Foundations & Protokol",
-      desc: "Memahami bagaimana internet, browser, DNS, request-response HTTP, dan DOM bekerja di balik layar.",
+      num: "01",
+      title: "Web Foundations & Protocol",
+      desc: "Anatomi internet, cara kerja browser engine, request HTTP/HTTPS, DNS lookup, serta struktur semantik HTML5 yang standar industri.",
+      topics: ["HTTP/HTTPS & DNS", "HTML5 Semantik", "Aksesibilitas (a11y)", "Heading Hierarchy"],
       icon: Globe,
-      color: "text-blue-500",
     },
     {
-      step: "02",
-      title: "HTML5 Semantik & Modern CSS",
-      desc: "Menyusun struktur web yang aksesibel dan membangun layout responsif dengan Flexbox, CSS Grid, dan Variabel.",
+      num: "02",
+      title: "Modern Styling & CSS Architecture",
+      desc: "Menyusun tata letak responsif pixel-perfect dengan Flexbox, CSS Grid, Box Model, Design Tokens, dan utility styling Tailwind CSS.",
+      topics: ["Flexbox & Grid", "Fluid Responsive", "Design Tokens", "Tailwind CSS v4"],
       icon: Layout,
-      color: "text-emerald-500",
     },
     {
-      step: "03",
-      title: "JavaScript & DOM Interaktivitas",
-      desc: "Menguasai logika pemrograman, fungsi, array, objek, manipulasi DOM real-time, event listener, dan async/fetch API.",
+      num: "03",
+      title: "JavaScript Engine & DOM Interactivity",
+      desc: "Memahami eksekusi runtime JS, event loop, manipulasi DOM real-time, closures, penanganan Promise asinkron, dan Fetch API modern.",
+      topics: ["Event Loop & Scopes", "DOM Manipulation", "Promises & Async/Await", "Fetch REST API"],
       icon: Cpu,
-      color: "text-amber-500",
     },
     {
-      step: "04",
-      title: "React, Next.js & Fullstack MVP",
-      desc: "Membangun antarmuka berbasis komponen modern, manajemen state, App Router, integrasi backend API, dan database PostgreSQL.",
+      num: "04",
+      title: "React, Next.js & Fullstack Database",
+      desc: "Membangun arsitektur komponen React, state management, Server Components, App Router Next.js 15, dan integrasi database PostgreSQL.",
+      topics: ["Component Architecture", "Zustand & Context", "Next.js 15 App Router", "Prisma & PostgreSQL"],
       icon: Layers,
-      color: "text-purple-500",
-    },
-  ];
-
-  const learningSteps = [
-    {
-      num: "1",
-      title: "Teori Ringkas & Terfokus",
-      desc: "Setiap materi disusun to-the-point tanpa penjelasan bertele-tele, dilengkapi analogi jelas dan contoh kode.",
-    },
-    {
-      num: "2",
-      title: "Interactive Coding Sandbox",
-      desc: "Langsung praktik menulis kode di browser. Eksekusi nyata dengan live preview dan JavaScript console.",
-    },
-    {
-      num: "3",
-      title: "Validasi & Umpan Balik Edukatif",
-      desc: "Sistem memvalidasi solusi secara otomatis dan memberikan petunjuk mendidik jika ada kesalahan logika.",
-    },
-    {
-      num: "4",
-      title: "Klaim Sertifikat Pencapaian",
-      desc: "Kumpulkan bukti kompetensi setiap menyelesaikan milestone tahapan kurikulum sebagai modal portofolio.",
     },
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors">
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 transition-colors">
       <Navbar />
       <SearchCommandModal />
 
-      <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl space-y-20">
-          {/* =========================================================================
-              1. HERO SECTION
-             ========================================================================= */}
-          <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-secondary text-foreground text-xs font-semibold border border-border">
-                <span className="h-2 w-2 rounded-full bg-primary" />
-                <span>Kurikulum Web Development 20 Tahap</span>
+      <main className="flex-1">
+        {/* =========================================================================
+            1. DRAMATIC EDITORIAL HERO SECTION (Inspired by Gambar 2)
+           ========================================================================= */}
+        <section className="relative pt-8 pb-16 sm:pt-12 sm:pb-24 border-b border-border/70 overflow-hidden">
+          {/* Subtle Ambient Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[400px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Top Editorial Index Meta */}
+            <div className="flex items-center justify-between border-b border-border/80 pb-3 mb-8 sm:mb-12 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-primary" />
+                <span>KURIKULUM 20 TAHAP WEB DEVELOPMENT</span>
+              </span>
+              <span className="hidden sm:inline">VERSI 2.0 • AKSES GRATIS</span>
+              <span>INDONESIA / EN</span>
+            </div>
+
+            {/* Central Dramatic Composition: "BELAJARIN" [Hero Developer Image] "AJA" */}
+            <div className="relative flex flex-col items-center justify-center my-4 sm:my-8">
+              <div className="w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-6 sm:gap-8">
+                {/* Left Typography Column: BELAJARIN */}
+                <div className="lg:col-span-4 text-center lg:text-right">
+                  <h1 className="text-5xl sm:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-light tracking-tighter text-foreground uppercase select-none leading-none">
+                    Belajarin
+                  </h1>
+                  <span className="block text-xs font-mono tracking-widest uppercase text-muted-foreground mt-2">
+                    [ PONDASI HINGGA FULLSTACK ]
+                  </span>
+                </div>
+
+                {/* Center Visual Art Canvas: Developer Image (Gambar 1) */}
+                <div className="lg:col-span-4 flex justify-center relative my-4 lg:my-0">
+                  {/* Portrait Frame */}
+                  <div className="relative w-64 sm:w-80 aspect-square rounded-2xl overflow-hidden border border-border bg-card shadow-2xl group transition-all duration-300 hover:scale-[1.02]">
+                    <img
+                      src="/hero-developer.png"
+                      alt="Developer BelajarinAja coding with modern IDE"
+                      className="w-full h-full object-cover object-center"
+                    />
+
+                    {/* Subtle Overlay Gradient for Dark/Light Harmony */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+
+                  {/* Overlapping Floating Editorial Leaflet (Inspired by Gambar 2 open book) */}
+                  <div className="absolute -bottom-5 -left-2 sm:-left-6 p-3 sm:p-4 rounded-xl border border-border bg-card/95 backdrop-blur-md shadow-xl max-w-[190px] sm:max-w-[210px] hidden sm:block">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold block mb-1">
+                      KODING MANDIRI
+                    </span>
+                    <p className="text-[11px] text-foreground font-medium leading-snug">
+                      Praktik langsung dengan sandbox interaktif di setiap akhir materi.
+                    </p>
+                    <div className="mt-2 pt-2 border-t border-border flex items-center justify-between text-[9px] font-mono text-muted-foreground">
+                      <span>20 TAHAP</span>
+                      <span>100% REAL</span>
+                    </div>
+                  </div>
+
+                  {/* Overlapping Quick Stats Badge on Right */}
+                  <div className="absolute -top-3 -right-2 sm:-right-6 p-2.5 sm:p-3 rounded-xl border border-border bg-card/95 backdrop-blur-md shadow-xl text-left hidden sm:block">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground block">
+                      STATUS PROGRESS
+                    </span>
+                    <span className="text-sm font-black text-foreground font-mono block mt-0.5">
+                      {completedCount > 0 ? `${progressPercentage}% LULUS` : "SIAP DIMULAI"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right Typography Column: AJA */}
+                <div className="lg:col-span-4 text-center lg:text-left">
+                  <h2 className="text-5xl sm:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-black tracking-tighter text-foreground uppercase select-none leading-none">
+                    Aja<span className="text-primary font-serif font-black">.</span>
+                  </h2>
+                  <span className="block text-xs font-mono tracking-widest uppercase text-muted-foreground mt-2">
+                    [ TANPA RIBET • PRAKTIK NYATA ]
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Editorial Thesis Statement & Action Bar */}
+            <div className="mt-12 sm:mt-16 pt-8 border-t border-border/80 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+              {/* Mission Statement */}
+              <div className="lg:col-span-7 space-y-3 text-left">
+                <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
+                  MANIFIESTO PEMBELAJARAN
+                </span>
+                <p className="text-base sm:text-lg text-foreground font-normal leading-relaxed max-w-2xl">
+                  Platform kurikulum terstruktur untuk pemula yang ingin menguasai Web Development secara tuntas. Dimulai dari fundamental protokol internet, semantik HTML5, CSS responsif, JavaScript fungsional, hingga ekosistem React, Next.js 15, dan arsitektur database.
+                </p>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight leading-[1.15]">
-                Belajar Web Development Modern Secara{" "}
-                <span className="text-primary">Terstruktur & Praktik Nyata.</span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
-                Kuasai konsep fundamental web, HTML5 semantik, CSS responsif, JavaScript logika, hingga ekosistem React & Next.js dengan latihan koding interaktif di setiap materi.
-              </p>
-
-              {/* Resume / Start CTA */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-                <Link href={activeResumeLesson ? `/lessons/${activeResumeLesson.slug}` : "/roadmap"}>
-                  <Button size="lg" className="h-11 text-xs sm:text-sm font-bold rounded-md px-6 gap-2 w-full sm:w-auto shadow-sm">
-                    <span>{completedCount > 0 ? "Lanjutkan Belajar" : "Mulai Belajar Gratis (Tahap 01)"}</span>
+              {/* Action Buttons & Counter (Editorial, No Pill Badges) */}
+              <div className="lg:col-span-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-start lg:justify-end gap-3.5">
+                <Link
+                  href={activeResumeLesson ? `/lessons/${activeResumeLesson.slug}` : "/roadmap"}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Button
+                    size="lg"
+                    className="h-12 px-7 text-xs sm:text-sm font-bold rounded-xl gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform cursor-pointer"
+                  >
+                    <span>{completedCount > 0 ? "Lanjutkan Tahap Aktif" : "Mulai Tahap 01 (Gratis)"}</span>
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
 
-                <Link href="/roadmap">
-                  <Button variant="outline" size="lg" className="h-11 text-xs sm:text-sm font-semibold rounded-md px-6 gap-2 w-full sm:w-auto">
-                    <Map className="h-4 w-4 text-muted-foreground" />
-                    <span>Lihat Peta Roadmap</span>
+                <Link href="/roadmap" className="flex-1 sm:flex-none">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="h-12 px-6 text-xs sm:text-sm font-semibold rounded-xl gap-2 w-full border-border bg-card hover:bg-secondary transition-colors cursor-pointer"
+                  >
+                    <span>Peta 20 Tahap</span>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
                   </Button>
                 </Link>
               </div>
-
-              {/* Quick Info Badges */}
-              <div className="pt-3 flex flex-wrap items-center gap-4 text-xs text-muted-foreground font-medium border-t border-border">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
-                  20 Tahapan Kurikulum
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1.5">
-                  <Code2 className="h-3.5 w-3.5 text-primary" />
-                  Sandbox Koding Nyata
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1.5">
-                  <Award className="h-3.5 w-3.5 text-primary" />
-                  Sertifikat Kompetensi
-                </span>
-              </div>
             </div>
 
-            {/* Right Hero Code Sandbox Visual Preview */}
-            <div className="lg:col-span-5">
-              <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden space-y-0">
-                {/* Editor Top Bar */}
-                <div className="flex items-center justify-between px-4 py-2.5 bg-secondary/80 border-b border-border text-xs">
-                  <div className="flex items-center gap-1.5">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                    <span className="ml-2 font-mono text-[11px] text-muted-foreground font-bold">
-                      sandbox.preview.{activeCodeTab}
-                    </span>
-                  </div>
+            {/* Minimalist Line Scroll Indicator (Inspired by Gambar 2) */}
+            <div className="flex flex-col items-center justify-center pt-14 text-muted-foreground">
+              <span className="text-[10px] font-mono tracking-widest uppercase mb-2">
+                GULIR KE BAWAH
+              </span>
+              <div className="w-5 h-9 rounded-full border border-border flex items-start justify-center p-1">
+                <span className="w-1 h-2 bg-primary rounded-full animate-bounce" />
+              </div>
+            </div>
+          </div>
+        </section>
 
-                  {/* Tabs */}
-                  <div className="flex items-center gap-1">
+        {/* =========================================================================
+            2. CURRICULUM GALLERY: 4 MAJOR TRACKS (Editorial Exhibition)
+           ========================================================================= */}
+        <section className="py-16 sm:py-24 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+            {/* Section Header */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border pb-6">
+              <div className="space-y-1 text-left">
+                <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
+                  PETA JALUR BELAJAR
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+                  Empat Pilar Kurikulum Industri
+                </h2>
+              </div>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-md text-left md:text-right">
+                Setiap tahapan dirancang berurutan tanpa lompatan konsep agar pemula memahami logika di balik kode.
+              </p>
+            </div>
+
+            {/* 4 Track Cards (No Pill Badges, Pure Editorial Architecture) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {curriculumPhases.map((phase) => {
+                const IconComponent = phase.icon;
+                return (
+                  <div
+                    key={phase.num}
+                    className="p-6 sm:p-7 rounded-2xl border border-border bg-card shadow-xs flex flex-col justify-between space-y-6 hover:border-primary/50 transition-all group"
+                  >
+                    <div className="space-y-4">
+                      {/* Top Index & Icon */}
+                      <div className="flex items-center justify-between pb-3 border-b border-border/70">
+                        <span className="font-mono text-2xl font-black text-foreground tracking-tight">
+                          {phase.num}
+                        </span>
+                        <div className="h-9 w-9 rounded-xl bg-secondary text-foreground flex items-center justify-center border border-border group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          <IconComponent className="h-4 w-4" />
+                        </div>
+                      </div>
+
+                      <h3 className="text-base font-bold text-foreground tracking-tight leading-snug">
+                        {phase.title}
+                      </h3>
+
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {phase.desc}
+                      </p>
+                    </div>
+
+                    {/* Topic Checklist */}
+                    <div className="space-y-2 pt-4 border-t border-border/70">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground block">
+                        FOKUS MATERI:
+                      </span>
+                      <ul className="space-y-1.5 text-xs text-foreground font-medium">
+                        {phase.topics.map((t, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            <span className="w-1 h-1 bg-primary shrink-0" />
+                            <span>{t}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* View Full Roadmap Link */}
+            <div className="text-center pt-4">
+              <Link
+                href="/roadmap"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-primary hover:underline group"
+              >
+                <span>Lihat Seluruh 20 Tahap & Silabus Pembelajaran</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            3. INTERACTIVE PLAYGROUND / SANDBOX EXPERIENCE
+           ========================================================================= */}
+        <section className="py-16 sm:py-24 border-b border-border bg-card/30">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+            {/* Section Header */}
+            <div className="max-w-2xl space-y-2 text-left">
+              <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
+                METODE PRAKTIK LANGSUNG
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+                Koding, Jalankan, dan Uji di Tempat
+              </h2>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                Setiap materi kurikulum dilengkapi editor kode browser yang mengeksekusi HTML, CSS, dan JavaScript secara real-time tanpa perlu konfigurasi lokal yang rumit.
+              </p>
+            </div>
+
+            {/* Interactive Code Editor Preview */}
+            <div className="rounded-2xl border border-border bg-card shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+              {/* Left: Code Editor Window */}
+              <div className="lg:col-span-7 flex flex-col border-b lg:border-b-0 lg:border-r border-border bg-background/70">
+                {/* Editor Tab Header */}
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-secondary/40">
+                  <div className="flex items-center gap-1.5 font-mono text-xs">
                     {(["html", "css", "js"] as const).map((tab) => (
                       <button
                         key={tab}
                         type="button"
                         onClick={() => setActiveCodeTab(tab)}
-                        className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase font-bold transition-colors ${
+                        className={`px-3 py-1 rounded-md transition-colors uppercase font-bold cursor-pointer ${
                           activeCodeTab === tab
-                            ? "bg-primary text-primary-foreground font-extrabold"
+                            ? "bg-card text-foreground shadow-xs border border-border"
                             : "text-muted-foreground hover:text-foreground"
                         }`}
                       >
@@ -243,209 +383,136 @@ console.log(calculateProgress(12, 20));
                       </button>
                     ))}
                   </div>
+
+                  <span className="text-[11px] font-mono text-muted-foreground hidden sm:inline">
+                    Interactive Workspace
+                  </span>
                 </div>
 
-                {/* Code Window */}
-                <div className="p-4 bg-[#0B0F17] text-[#F8FAFC] font-mono text-xs overflow-x-auto leading-relaxed border-b border-border">
-                  <pre>{codeSnippets[activeCodeTab].code}</pre>
+                {/* Editor Content Area */}
+                <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-foreground flex-1">
+                  <pre className="whitespace-pre-wrap selection:bg-primary/20">
+                    <code>{codeSnippets[activeCodeTab].code}</code>
+                  </pre>
                 </div>
 
-                {/* Live Output Section */}
-                <div className="p-4 bg-secondary/40 space-y-2">
-                  <div className="flex items-center justify-between text-[11px] font-mono font-bold text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Play className="h-3 w-3 text-primary" />
-                      LIVE RESULT OUTPUT
+                {/* Editor Footer */}
+                <div className="px-4 py-2.5 border-t border-border bg-secondary/30 flex items-center justify-between text-[11px] font-mono text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <Terminal className="h-3.5 w-3.5 text-primary" />
+                    <span>Auto-evaluation engine ready</span>
+                  </span>
+                  <span>UTF-8</span>
+                </div>
+              </div>
+
+              {/* Right: Live Preview Panel */}
+              <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-card">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-border">
+                    <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground font-bold">
+                      HASIL LIVE RENDER
                     </span>
-                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-sans font-semibold">
-                      ✓ Real-time Execution
-                    </span>
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                   </div>
 
                   <div
-                    className="p-2 rounded bg-card border border-border flex items-center justify-center min-h-[90px]"
+                    className="p-4 rounded-xl border border-border bg-secondary/30 flex items-center justify-center min-h-[220px]"
                     dangerouslySetInnerHTML={{ __html: codeSnippets[activeCodeTab].previewHtml }}
                   />
                 </div>
+
+                <div className="pt-6 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+                  <span>Passing score evaluasi: 80%</span>
+                  <Link href="/roadmap" className="font-bold text-primary hover:underline">
+                    Coba Latihan &rarr;
+                  </Link>
+                </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================================
-              2. LEARNING PATHS (4 PILLARS)
-             ========================================================================= */}
-          <section className="space-y-6">
-            <div className="space-y-1 text-center sm:text-left">
-              <span className="text-xs font-bold font-mono text-primary uppercase tracking-wider block">
-                JALUR PEMBELAJARAN
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                4 Pilar Penguasaan Web Developer
-              </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Dirancang dari fundamental awal agar kamu memiliki pemahaman arsitektur yang kokoh.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {learningPillars.map((pillar) => {
-                const Icon = pillar.icon;
-                return (
-                  <div
-                    key={pillar.step}
-                    className="p-5 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors space-y-3 flex flex-col justify-between"
-                  >
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-extrabold text-muted-foreground">
-                          {pillar.step}
-                        </span>
-                        <Icon className={`h-5 w-5 ${pillar.color}`} />
-                      </div>
-                      <h3 className="text-sm font-bold text-foreground">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {pillar.desc}
-                      </p>
-                    </div>
-
-                    <Link href="/roadmap" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 pt-2">
-                      <span>Jelajahi Tahap</span>
-                      <ArrowRight className="h-3 w-3" />
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* =========================================================================
-              3. HOW LEARNING WORKS (4-STEP WORKFLOW)
-             ========================================================================= */}
-          <section className="p-6 sm:p-10 rounded-2xl border border-border bg-card space-y-8">
-            <div className="space-y-1 text-center max-w-xl mx-auto">
-              <span className="text-xs font-bold font-mono text-primary uppercase tracking-wider block">
-                METODOLOGI BELAJAR
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                Bagaimana Cara Belajar di BelajarinAja?
-              </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Bukan sekadar menonton video pasif. BelajarinAja mengutamakan *learning-by-doing* aktif.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {learningSteps.map((step) => (
-                <div key={step.num} className="space-y-2 p-4 rounded-xl bg-secondary/50 border border-border/80">
-                  <div className="h-8 w-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs font-mono">
-                    {step.num}
-                  </div>
-                  <h3 className="text-sm font-bold text-foreground pt-1">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {step.desc}
-                  </p>
+        {/* =========================================================================
+            4. MANIFESTO & SYSTEM ARCHITECTURE
+           ========================================================================= */}
+        <section className="py-16 sm:py-24 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Feature 1 */}
+              <div className="p-7 rounded-2xl border border-border bg-card space-y-4 text-left">
+                <div className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
+                  [ 01 / KEUNGGULAN ]
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* =========================================================================
-              4. CURRICULUM HIGHLIGHTS (20 STAGES OVERVIEW)
-             ========================================================================= */}
-          <section className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-              <div className="space-y-1">
-                <span className="text-xs font-bold font-mono text-primary uppercase tracking-wider block">
-                  KURIKULUM LENGKAP
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                  20 Tahapan Materi Web Developer
-                </h2>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  Struktur teratur yang memandu kamu dari baris kode pertama hingga rilis aplikasi web.
+                <h3 className="text-lg font-bold text-foreground">
+                  Bebas Distraksi & Fokus Materi
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Tidak ada video panjang berjam-jam yang membuat mengantuk. Seluruh materi disajikan dalam format teks editorial interaktif yang ringkas dan padat wawasan.
                 </p>
               </div>
 
-              <Link href="/roadmap">
-                <Button variant="outline" size="sm" className="text-xs font-semibold rounded-md gap-1.5 h-9">
-                  <span>Lihat Seluruh 20 Tahap</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Button>
-              </Link>
+              {/* Feature 2 */}
+              <div className="p-7 rounded-2xl border border-border bg-card space-y-4 text-left">
+                <div className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
+                  [ 02 / SINKRONISASI ]
+                </div>
+                <h3 className="text-lg font-bold text-foreground">
+                  Progres Tersimpan Otomatis
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Dapat mulai belajar langsung tanpa login sebagai tamu. Cukup hubungkan akun Google atau GitHub kapan saja untuk menyinkronkan seluruh pencapaian ke cloud.
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="p-7 rounded-2xl border border-border bg-card space-y-4 text-left">
+                <div className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
+                  [ 03 / KREDENSIAL ]
+                </div>
+                <h3 className="text-lg font-bold text-foreground">
+                  Sertifikat Kelulusan Resmi
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Selesaikan ke-20 tahapan dan lulus ujian evaluasi untuk menerbitkan sertifikat digital terverifikasi dengan kode unik yang dapat dicantumkan di CV atau LinkedIn.
+                </p>
+              </div>
             </div>
+          </div>
+        </section>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-              {CURRICULUM_STAGES.slice(0, 6).map((stage) => {
-                const firstLesson = stage.lessons[0];
-                return (
-                  <div
-                    key={stage.id}
-                    className="p-4 rounded-xl border border-border bg-card hover:border-primary/40 transition-colors space-y-3 flex flex-col justify-between"
-                  >
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <Badge variant="outline" className="text-[10px] font-mono font-bold">
-                          Tahap {String(stage.orderIndex).padStart(2, "0")}
-                        </Badge>
-                        <span className="text-[11px] text-muted-foreground font-mono">
-                          {stage.lessons.length} Materi
-                        </span>
-                      </div>
-                      <h3 className="text-sm font-bold text-foreground">
-                        {language === "en" && stage.titleEn ? stage.titleEn : stage.titleId}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
-                        {language === "en" && stage.descriptionEn ? stage.descriptionEn : stage.description}
-                      </p>
-                    </div>
-
-                    {firstLesson && (
-                      <Link href={`/lessons/${firstLesson.slug}`} className="pt-2">
-                        <Button size="sm" variant="secondary" className="w-full text-xs font-semibold h-8 justify-between">
-                          <span>Mulai Materi</span>
-                          <ArrowRight className="h-3 w-3 text-muted-foreground" />
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* =========================================================================
-              5. CALL TO ACTION (START NOW)
-             ========================================================================= */}
-          <section className="p-8 sm:p-12 rounded-2xl border border-border bg-card text-center space-y-6 shadow-sm">
-            <div className="space-y-2 max-w-xl mx-auto">
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                Siap Memulai Langkah Menjadi Web Developer?
+        {/* =========================================================================
+            5. FINAL EDITORIAL INVITATION (CALL TO ACTION)
+           ========================================================================= */}
+        <section className="py-20 sm:py-32 text-center relative overflow-hidden">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
+            <div className="space-y-3">
+              <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
+                LANGKAH PERTAMA
+              </span>
+              <h2 className="text-4xl sm:text-6xl font-serif font-black tracking-tight text-foreground uppercase leading-tight">
+                Mulai Koding Hari Ini.
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Akses seluruh 20 tahapan kurikulum, editor kode interaktif, dan sertifikat kompetensi tanpa dipungut biaya.
+              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+                Bergabunglah bersama komunitas pembelajar web development. 20 tahap terstruktur menanti Anda dari browser dasar hingga fullstack engineer.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link href={activeResumeLesson ? `/lessons/${activeResumeLesson.slug}` : "/roadmap"}>
-                <Button size="lg" className="h-11 text-xs sm:text-sm font-bold rounded-md px-8 gap-2 shadow-sm">
-                  <span>Mulai Tahap 01 Sekarang</span>
+                <Button size="lg" className="h-12 px-8 text-xs sm:text-sm font-bold rounded-xl gap-2 shadow-md">
+                  <span>Mulai Belajar Sekarang</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-
-              <Link href="/roadmap">
-                <Button variant="outline" size="lg" className="h-11 text-xs sm:text-sm font-semibold rounded-md px-6">
-                  <span>Pelajari Roadmap</span>
+              <Link href="/glossary">
+                <Button variant="outline" size="lg" className="h-12 px-7 text-xs sm:text-sm font-semibold rounded-xl border-border bg-card hover:bg-secondary">
+                  <span>Buka Glosarium Web</span>
                 </Button>
               </Link>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
