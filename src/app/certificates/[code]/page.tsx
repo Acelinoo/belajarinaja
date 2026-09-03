@@ -114,10 +114,10 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
         <SearchCommandModal />
       </div>
 
-      <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl space-y-8">
-          {/* Top Navigation */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 print:hidden">
+      <main className="flex-1 py-6 sm:py-12 px-3 sm:px-6 lg:px-8 print:p-0">
+        <div className="mx-auto max-w-4xl space-y-6 sm:space-y-8">
+          {/* Top Return and Status Navigation */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 print:hidden">
             <Link
               href="/certificates"
               className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
@@ -155,7 +155,7 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
 
           {/* LOADING STATE */}
           {loading && (
-            <div className="p-16 rounded-3xl border border-border bg-card text-center space-y-4 shadow-sm">
+            <div className="p-12 sm:p-16 rounded-3xl border border-border bg-card text-center space-y-4 shadow-sm">
               <div className="h-10 w-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
               <p className="text-xs font-semibold text-muted-foreground font-mono">
                 {language === "en"
@@ -167,16 +167,16 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
 
           {/* INVALID / NOT FOUND CREDENTIAL */}
           {!loading && !certificate && (
-            <div className="p-8 sm:p-14 rounded-3xl border border-border bg-card text-center space-y-6 shadow-sm">
-              <div className="h-16 w-16 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center mx-auto border border-rose-500/20">
-                <FontAwesomeIcon icon={faCircleExclamation} className="h-8 w-8" />
+            <div className="p-5 sm:p-14 rounded-3xl border border-border bg-card text-center space-y-6 shadow-sm">
+              <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center mx-auto border border-rose-500/20">
+                <FontAwesomeIcon icon={faCircleExclamation} className="h-7 w-7 sm:h-8 sm:w-8" />
               </div>
 
               <div className="space-y-2 max-w-lg mx-auto">
                 <Badge variant="outline" className="font-mono text-xs px-3 py-1 text-rose-600 border-rose-300">
                   {certificateCode}
                 </Badge>
-                <h1 className="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight">
+                <h1 className="text-lg sm:text-2xl font-extrabold text-foreground tracking-tight">
                   {language === "en"
                     ? "Certificate Not Found or Unregistered"
                     : "Sertifikat Tidak Ditemukan atau Belum Terdaftar"}
@@ -204,7 +204,7 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
                 </div>
               </form>
 
-              <div className="pt-4 border-t border-border/70 flex flex-wrap justify-center gap-3">
+              <div className="pt-4 border-t border-border/70 flex flex-wrap justify-center gap-2.5 sm:gap-3">
                 <Link href="/roadmap">
                   <Button variant="outline" size="sm" className="text-xs font-semibold">
                     {language === "en" ? "Explore Web Curriculum" : "Jelajahi Kurikulum Web"}
@@ -223,18 +223,18 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
           {!loading && certificate && (
             <>
               {/* Action Buttons Toolbar */}
-              <div className="p-4 sm:p-5 rounded-2xl border border-border bg-card shadow-xs flex flex-wrap items-center justify-between gap-4 print:hidden">
+              <div className="p-3.5 sm:p-5 rounded-2xl border border-border bg-card shadow-xs flex flex-wrap items-center justify-between gap-3 sm:gap-4 print:hidden">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <FontAwesomeIcon icon={faShieldHalved} className="h-4 w-4 text-primary" />
                   <span className="font-mono font-bold text-foreground">
                     {certificate.certificateCode}
                   </span>
-                  <span className="text-[10px] text-emerald-600 font-semibold ml-2">
+                  <span className="text-[10px] text-emerald-600 font-semibold ml-1 sm:ml-2">
                     (Resmi Terdaftar)
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-start sm:justify-end">
                   {/* Copy URL */}
                   <Button
                     variant="outline"
@@ -290,7 +290,7 @@ export default function PublicCertificatePage({ params }: PublicCertificatePageP
               </div>
 
               {/* Formal Academic Certificate Document */}
-              <div className="print:m-0">
+              <div className="print:m-0 w-full overflow-x-auto pb-4 no-scrollbar touch-pan-x">
                 <OfficialCertificateDocument
                   studentName={certificate.studentName}
                   studentUsername={certificate.studentUsername}

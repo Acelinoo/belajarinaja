@@ -119,12 +119,12 @@ export function Navbar() {
         </nav>
 
         {/* Right Tools & Profile */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Quick Search */}
           <button
             type="button"
             onClick={openSearch}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-secondary hover:bg-secondary/80 border border-border text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            className="flex items-center justify-center sm:gap-2 h-8 w-8 sm:w-auto sm:px-3 rounded-md bg-secondary hover:bg-secondary/80 border border-border text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             title={language === "en" ? "Search Lessons (⌘K)" : "Cari Materi (⌘K)"}
           >
             <Search className="h-3.5 w-3.5" />
@@ -143,17 +143,17 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-secondary hover:bg-secondary/80 text-xs font-semibold text-foreground border border-border transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 rounded-xl bg-secondary hover:bg-secondary/80 text-xs font-semibold text-foreground border border-border transition-colors cursor-pointer"
               >
                 {user?.avatarUrl ? (
-                  <img src={user.avatarUrl} alt="Avatar" className="h-5 w-5 rounded-full object-cover border border-border" />
+                  <img src={user.avatarUrl} alt="Avatar" className="h-5 w-5 rounded-full object-cover border border-border shrink-0" />
                 ) : (
-                  <User className="h-4 w-4 text-primary" />
+                  <User className="h-4 w-4 text-primary shrink-0" />
                 )}
-                <span className="hidden sm:inline truncate max-w-[100px] font-bold">
+                <span className="hidden sm:inline truncate max-w-[90px] font-bold">
                   {user?.name || (language === "en" ? "Student" : "Pelajar")}
                 </span>
-                <ChevronDown className="h-3 w-3 text-muted-foreground" />
+                <ChevronDown className="h-3 w-3 text-muted-foreground shrink-0" />
               </button>
 
               {/* Profile Dropdown Menu */}
@@ -206,7 +206,7 @@ export function Navbar() {
             </div>
           ) : (
             <Link href="/auth/login">
-              <Button size="sm" className="h-8 text-xs font-bold rounded-md px-3 gap-1.5">
+              <Button size="sm" className="h-8 text-xs font-bold rounded-md px-2.5 sm:px-3 gap-1.5">
                 <LogIn className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">{t.nav.login}</span>
               </Button>
@@ -217,7 +217,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden h-8 w-8 rounded-md bg-secondary border border-border flex items-center justify-center text-foreground cursor-pointer"
+            className="md:hidden h-8 w-8 rounded-md bg-secondary border border-border flex items-center justify-center text-foreground cursor-pointer shrink-0"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -227,7 +227,40 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-card px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-150">
+        <div className="md:hidden border-t border-border bg-card px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-150 shadow-lg">
+          {/* Mobile User Profile Header */}
+          {isAuthenticated && user && (
+            <div className="p-3 rounded-xl bg-secondary/60 border border-border flex items-center gap-3">
+              {user.avatarUrl ? (
+                <img src={user.avatarUrl} alt="Avatar" className="h-10 w-10 rounded-xl object-cover border border-border shrink-0" />
+              ) : (
+                <div className="h-10 w-10 rounded-xl bg-card text-primary flex items-center justify-center font-bold shrink-0 border border-border">
+                  <User className="h-5 w-5" />
+                </div>
+              )}
+              <div className="overflow-hidden min-w-0">
+                <p className="font-bold text-xs text-foreground truncate">{user.name}</p>
+                <p className="text-[11px] font-mono text-muted-foreground truncate">@{user.username || "developer"}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Quick Search Button in Drawer */}
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              openSearch();
+            }}
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-secondary/80 border border-border text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+          >
+            <span className="flex items-center gap-2">
+              <Search className="h-3.5 w-3.5 text-primary" />
+              <span>{language === "en" ? "Search Lessons..." : "Cari Materi Pelajaran..."}</span>
+            </span>
+            <kbd className="text-[9px] bg-background px-1.5 py-0.5 rounded border border-border font-mono">⌘K</kbd>
+          </button>
+
           <nav className="space-y-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -237,7 +270,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-semibold ${
+                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors ${
                     isActive
                       ? "bg-secondary text-foreground font-bold border border-border"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
@@ -252,21 +285,34 @@ export function Navbar() {
             <Link
               href="/settings"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+              className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors ${
+                pathname === "/settings"
+                  ? "bg-secondary text-foreground font-bold border border-border"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+              }`}
             >
               <Settings className="h-4 w-4 text-primary" />
               <span>{t.nav.settings}</span>
             </Link>
 
-            {isAuthenticated && (
+            {isAuthenticated ? (
               <button
                 type="button"
                 onClick={handleLogout}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-semibold text-destructive hover:bg-destructive/10 cursor-pointer"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-destructive hover:bg-destructive/10 cursor-pointer transition-colors"
               >
                 <LogOut className="h-4 w-4" />
                 <span>{t.nav.logout}</span>
               </button>
+            ) : (
+              <Link
+                href="/auth/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold bg-primary text-primary-foreground shadow-xs mt-2"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>{t.nav.login}</span>
+              </Link>
             )}
           </nav>
         </div>

@@ -167,37 +167,150 @@ export function UnifiedLessonWorkspace({
         </div>
       </aside>
 
+      {/* Mobile Slide-over Drawer for Curriculum Tree */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+            onClick={() => setSidebarOpen(false)}
+          />
+          {/* Drawer Content */}
+          <div className="relative ml-auto w-full max-w-xs bg-card border-l border-border h-full p-4 flex flex-col space-y-4 shadow-2xl z-10 animate-in slide-in-from-right duration-200">
+            <div className="flex items-center justify-between pb-3 border-b border-border">
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-bold text-primary uppercase tracking-wider block">
+                  {language === "en" ? "CURRICULUM TREE" : "DAFTAR KURIKULUM"}
+                </span>
+                <span className="text-xs font-bold text-foreground">
+                  {language === "en"
+                    ? `Stage ${activeStage.orderIndex} of 20`
+                    : `Tahap ${activeStage.orderIndex} dari 20`}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSidebarOpen(false)}
+                className="h-8 w-8 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground cursor-pointer"
+                aria-label="Tutup Menu Kurikulum"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Stages Tree in Mobile Drawer */}
+            <div className="flex-1 overflow-y-auto space-y-3 text-xs pr-1">
+              {CURRICULUM_STAGES.map((stage) => {
+                const isCurrentStage = stage.id === activeStage.id;
+                const stageLessons = stage.lessons;
+                const completedCount = stageLessons.filter(
+                  (l) => completedLessons[l.id]?.completed
+                ).length;
+                const isStageComplete = completedCount === stageLessons.length && stageLessons.length > 0;
+
+                return (
+                  <div key={stage.id} className="space-y-1">
+                    <div
+                      className={`p-2 rounded-md font-bold flex items-center justify-between transition-colors ${
+                        isCurrentStage
+                          ? "bg-secondary text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <span className="truncate max-w-[200px]">
+                        {stage.orderIndex}. {language === "en" && stage.titleEn ? stage.titleEn : stage.titleId}
+                      </span>
+                      {isStageComplete && (
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                      )}
+                    </div>
+
+                    {isCurrentStage && (
+                      <div className="pl-3 space-y-0.5 border-l border-border ml-2 my-1">
+                        {stageLessons.map((l) => {
+                          const isCurrentLesson = l.id === activeLesson.id;
+                          const isDone = !!completedLessons[l.id]?.completed;
+                          const isUnlocked = isLessonUnlocked(l.id);
+
+                          return (
+                            <Link
+                              key={l.id}
+                              href={isUnlocked ? `/lessons/${l.slug}` : "#"}
+                              onClick={() => setSidebarOpen(false)}
+                              className={`p-2 rounded-md flex items-center justify-between text-[11px] transition-colors ${
+                                isCurrentLesson
+                                  ? "bg-primary text-primary-foreground font-bold shadow-xs"
+                                  : isDone
+                                  ? "text-foreground hover:bg-secondary"
+                                  : isUnlocked
+                                  ? "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
+                                  : "text-muted-foreground/40 cursor-not-allowed"
+                              }`}
+                            >
+                              <span className="truncate max-w-[180px]">
+                                {language === "en" && l.titleEn ? l.titleEn : l.title}
+                              </span>
+
+                              {isDone ? (
+                                <Check className={`h-3 w-3 shrink-0 ${isCurrentLesson ? "text-primary-foreground" : "text-emerald-600 dark:text-emerald-400"}`} />
+                              ) : !isUnlocked ? (
+                                <Lock className="h-3 w-3 shrink-0 opacity-60" />
+                              ) : null}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* =========================================================================
           2. MAIN LESSON ARTICLE & WORKSPACE (9 cols)
          ========================================================================= */}
-      <main className="lg:col-span-9 space-y-8">
+      <main className="lg:col-span-9 space-y-6 sm:space-y-8">
         {/* Top Breadcrumb & Utilities */}
-        <div className="p-4 rounded-xl border border-border bg-card flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-muted-foreground flex-wrap">
+        <div className="p-3 sm:p-4 rounded-xl border border-border bg-card flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-xs">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground flex-wrap">
             <Link href="/roadmap" className="hover:text-foreground hover:underline">
-              {language === "en" ? "Curriculum Roadmap" : "Peta Kurikulum"}
+              {language === "en" ? "Roadmap" : "Kurikulum"}
             </Link>
             <span>/</span>
             <span>
-              {language === "en" ? "Stage" : "Tahap"} {activeStage.orderIndex}: {stageTitle}
+              {language === "en" ? "Stage" : "Tahap"} {activeStage.orderIndex}
             </span>
             <span>/</span>
-            <span className="font-bold text-foreground truncate max-w-[220px]">
+            <span className="font-bold text-foreground truncate max-w-[150px] sm:max-w-[220px]">
               {lessonTitle}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Mobile Curriculum Trigger */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden h-8 text-xs font-semibold rounded-md gap-1 px-2 sm:px-2.5"
+            >
+              <Menu className="h-3.5 w-3.5 text-primary" />
+              <span>{language === "en" ? "Tree" : "Materi"}</span>
+            </Button>
+
             <Button
               variant="outline"
               size="sm"
               onClick={() => toggleBookmark(activeLesson.id)}
-              className={`h-8 text-xs font-semibold rounded-md gap-1.5 ${
+              className={`h-8 text-xs font-semibold rounded-md gap-1.5 px-2.5 sm:px-3 ${
                 isBookmarked ? "bg-secondary text-primary border-primary/40" : ""
               }`}
             >
               <Bookmark className={`h-3.5 w-3.5 ${isBookmarked ? "fill-primary text-primary" : ""}`} />
-              <span>
+              <span className="hidden sm:inline">
                 {isBookmarked
                   ? (language === "en" ? "Saved" : "Tersimpan")
                   : (language === "en" ? "Save" : "Simpan")}
@@ -205,16 +318,16 @@ export function UnifiedLessonWorkspace({
             </Button>
 
             {isCompleted && (
-              <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-[11px] font-bold">
+              <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-[10px] sm:text-[11px] font-bold px-2 py-0.5">
                 <CheckCircle2 className="h-3 w-3 mr-1" />
-                {language === "en" ? "Passed" : "Lulus"}
+                <span>{language === "en" ? "Passed" : "Lulus"}</span>
               </Badge>
             )}
           </div>
         </div>
 
         {/* Lesson Header */}
-        <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-4">
+        <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card space-y-3 sm:space-y-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="text-[10px] font-mono font-bold">
               {language === "en" ? "MODULE" : "MODUL"} {String(activeStage.orderIndex).padStart(2, "0")}
@@ -368,12 +481,15 @@ export function UnifiedLessonWorkspace({
         </section>
 
         {/* Previous / Next Lesson Navigation Footer */}
-        <div className="p-4 rounded-xl border border-border bg-card flex items-center justify-between gap-4">
+        <div className="p-3 sm:p-4 rounded-xl border border-border bg-card flex items-center justify-between gap-2 sm:gap-4">
           {prevLessonItem ? (
             <Link href={`/lessons/${prevLessonItem.lesson.slug}`}>
-              <Button variant="outline" size="sm" className="text-xs font-semibold rounded-md gap-1.5">
+              <Button variant="outline" size="sm" className="text-xs font-semibold rounded-md gap-1 sm:gap-1.5 px-2.5 sm:px-4">
                 <ArrowLeft className="h-3.5 w-3.5" />
-                <span>{language === "en" ? "Previous Lesson" : "Materi Sebelumnya"}</span>
+                <span>
+                  <span className="hidden sm:inline">{language === "en" ? "Previous Lesson" : "Materi Sebelumnya"}</span>
+                  <span className="sm:hidden">{language === "en" ? "Prev" : "Sebelumnya"}</span>
+                </span>
               </Button>
             </Link>
           ) : (
@@ -383,8 +499,11 @@ export function UnifiedLessonWorkspace({
           {nextLessonItem && (
             isCompleted ? (
               <Link href={`/lessons/${nextLessonItem.lesson.slug}`}>
-                <Button size="sm" className="text-xs font-bold rounded-md gap-1.5 px-5">
-                  <span>{language === "en" ? "Next Lesson" : "Materi Berikutnya"}</span>
+                <Button size="sm" className="text-xs font-bold rounded-md gap-1 sm:gap-1.5 px-3 sm:px-5">
+                  <span>
+                    <span className="hidden sm:inline">{language === "en" ? "Next Lesson" : "Materi Berikutnya"}</span>
+                    <span className="sm:hidden">{language === "en" ? "Next" : "Berikutnya"}</span>
+                  </span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
               </Link>
@@ -393,10 +512,13 @@ export function UnifiedLessonWorkspace({
                 variant="outline"
                 size="sm"
                 disabled
-                className="text-xs font-semibold rounded-md gap-1.5 opacity-60"
+                className="text-xs font-semibold rounded-md gap-1 sm:gap-1.5 opacity-60 px-2.5 sm:px-4"
               >
                 <Lock className="h-3.5 w-3.5" />
-                <span>{language === "en" ? "Pass Quiz to Continue" : "Selesaikan Quiz untuk Lanjut"}</span>
+                <span>
+                  <span className="hidden sm:inline">{language === "en" ? "Pass Quiz to Continue" : "Selesaikan Quiz untuk Lanjut"}</span>
+                  <span className="sm:hidden">{language === "en" ? "Locked" : "Terkunci"}</span>
+                </span>
               </Button>
             )
           )}

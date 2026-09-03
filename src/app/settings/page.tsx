@@ -248,23 +248,23 @@ export default function SettingsPage() {
       <Navbar />
       <SearchCommandModal />
 
-      <main className="flex-1 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl space-y-8">
+      <main className="flex-1 py-6 sm:py-10 px-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl space-y-6 sm:space-y-8">
           {/* Header Banner */}
-          <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-secondary text-primary flex items-center justify-center font-bold border border-border shrink-0">
-                <Settings className="h-6 w-6" />
+          <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-secondary text-primary flex items-center justify-center font-bold border border-border shrink-0">
+                <Settings className="h-5 w-5 sm:h-6 sm:w-6" />
               </div>
 
-              <div className="space-y-1">
+              <div className="space-y-0.5 sm:space-y-1 min-w-0">
                 <span className="text-[10px] font-mono font-bold text-primary uppercase tracking-widest block">
                   PENGATURAN SISTEM & AKUN
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-foreground tracking-tight truncate">
                   {t.settings.title}
                 </h1>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground line-clamp-1 sm:line-clamp-none">
                   Kelola preferensi pembelajaran, profil sertifikat, dan keamanan akun Anda.
                 </p>
               </div>
@@ -274,7 +274,7 @@ export default function SettingsPage() {
               variant="outline"
               size="sm"
               onClick={handleLogout}
-              className="text-xs font-semibold text-destructive hover:bg-destructive/10 border-destructive/30 gap-1.5 shrink-0 cursor-pointer"
+              className="w-full sm:w-auto text-xs font-semibold text-destructive hover:bg-destructive/10 border-destructive/30 gap-1.5 shrink-0 cursor-pointer h-9"
             >
               <LogOut className="h-3.5 w-3.5" />
               <span>Keluar (Log Out)</span>
@@ -282,7 +282,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex border-b border-border gap-2 overflow-x-auto pb-1 scrollbar-none">
+          <div className="flex border-b border-border gap-1 sm:gap-2 overflow-x-auto pb-1 no-scrollbar touch-pan-x flex-nowrap">
             {[
               { id: "profile", label: "Profil Pengguna", icon: User },
               { id: "account", label: "Akun & OAuth", icon: ShieldCheck },
@@ -296,13 +296,13 @@ export default function SettingsPage() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id as SettingsTab)}
-                  className={`px-4 py-2.5 rounded-t-xl text-xs font-bold transition-all flex items-center gap-2 border-b-2 whitespace-nowrap cursor-pointer ${
+                  className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-t-xl text-xs font-bold transition-all flex items-center gap-1.5 sm:gap-2 border-b-2 whitespace-nowrap cursor-pointer shrink-0 ${
                     isActive
                       ? "border-primary text-primary bg-secondary/50"
                       : "border-transparent text-muted-foreground hover:text-foreground hover:bg-secondary/30"
                   }`}
                 >
-                  <Icon className="h-3.5 w-3.5" />
+                  <Icon className="h-3.5 w-3.5 shrink-0" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -313,10 +313,10 @@ export default function SettingsPage() {
               TAB 1: PROFIL PENGGUNA (Form + Real-Time Live Preview)
              ========================================================================= */}
           {activeTab === "profile" && (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
               {/* Profile Form */}
-              <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-6">
-                <form onSubmit={handleSaveProfile} className="space-y-5">
+              <div className="lg:col-span-7 p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5 sm:space-y-6">
+                <form onSubmit={handleSaveProfile} className="space-y-4 sm:space-y-5">
                   <div className="space-y-1 pb-2 border-b border-border/70">
                     <h2 className="text-base font-bold text-foreground">Edit Informasi Profil</h2>
                     <p className="text-xs text-muted-foreground">
@@ -449,12 +449,12 @@ export default function SettingsPage() {
                   )}
 
                   {/* Action Buttons */}
-                  <div className="pt-3 border-t border-border flex items-center gap-3">
+                  <div className="pt-3 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                     <Button
                       type="submit"
                       disabled={isSaving}
                       size="sm"
-                      className="text-xs font-bold rounded-xl px-6 gap-2 cursor-pointer h-10"
+                      className="w-full sm:w-auto text-xs font-bold rounded-xl px-6 gap-2 cursor-pointer h-10"
                     >
                       <Save className="h-3.5 w-3.5" />
                       <span>{isSaving ? "Menyimpan..." : t.settings.saveChanges}</span>
@@ -462,7 +462,7 @@ export default function SettingsPage() {
 
                     {savedNotice && (
                       <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 animate-in fade-in">
-                        <Check className="h-4 w-4" />
+                        <Check className="h-4 w-4 shrink-0" />
                         <span>Profil berhasil diperbarui dan disinkronkan!</span>
                       </span>
                     )}
@@ -471,12 +471,12 @@ export default function SettingsPage() {
               </div>
 
               {/* Profile Live Preview Card (Right Column) */}
-              <div className="lg:col-span-5 p-6 rounded-2xl border border-border bg-secondary/30 space-y-4">
+              <div className="lg:col-span-5 p-4 sm:p-6 rounded-2xl border border-border bg-secondary/30 space-y-4">
                 <span className="text-[10px] font-mono font-bold text-muted-foreground uppercase tracking-widest block">
                   PRATINJAU KARTU PROFIL
                 </span>
 
-                <div className="p-6 rounded-2xl border border-border bg-card text-center space-y-4 shadow-sm">
+                <div className="p-4 sm:p-6 rounded-2xl border border-border bg-card text-center space-y-4 shadow-sm">
                   <div className="relative inline-block">
                     <img
                       src={avatarUrl}
@@ -518,7 +518,7 @@ export default function SettingsPage() {
           {activeTab === "account" && (
             <div className="space-y-6">
               {/* Account Info Card */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">Informasi Akun Utama</h2>
                   <p className="text-xs text-muted-foreground">
@@ -549,7 +549,7 @@ export default function SettingsPage() {
               </div>
 
               {/* Connected OAuth Accounts Card */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">
                     Akun Terhubung (OAuth Providers)
@@ -609,7 +609,7 @@ export default function SettingsPage() {
                           ? handleDisconnectProvider("google")
                           : handleConnectProvider("google")
                       }
-                      className="text-xs font-semibold rounded-xl h-9 px-4 cursor-pointer shrink-0"
+                      className="w-full sm:w-auto text-xs font-semibold rounded-xl h-9 px-4 cursor-pointer shrink-0"
                     >
                       {user?.connectedAccounts?.google ? "Putuskan Tautan" : "Hubungkan Google"}
                     </Button>
@@ -620,7 +620,11 @@ export default function SettingsPage() {
                     <div className="flex items-center gap-3.5">
                       <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center shrink-0">
                         <svg className="h-5 w-5 fill-current text-foreground" viewBox="0 0 24 24">
-                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                          />
                         </svg>
                       </div>
 
@@ -635,7 +639,7 @@ export default function SettingsPage() {
                         </div>
                         <p className="text-xs text-muted-foreground mt-0.5">
                           {user?.connectedAccounts?.github
-                            ? "Akun GitHub terhubung untuk akses masuk instan."
+                            ? "Akun GitHub terhubung untuk akses koding."
                             : "Belum terhubung. Tautkan akun GitHub Anda."}
                         </p>
                       </div>
@@ -649,7 +653,7 @@ export default function SettingsPage() {
                           ? handleDisconnectProvider("github")
                           : handleConnectProvider("github")
                       }
-                      className="text-xs font-semibold rounded-xl h-9 px-4 cursor-pointer shrink-0"
+                      className="w-full sm:w-auto text-xs font-semibold rounded-xl h-9 px-4 cursor-pointer shrink-0"
                     >
                       {user?.connectedAccounts?.github ? "Putuskan Tautan" : "Hubungkan GitHub"}
                     </Button>
@@ -665,7 +669,7 @@ export default function SettingsPage() {
           {activeTab === "security" && (
             <div className="space-y-6">
               {/* OAuth Security Architecture Notice */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="h-5 w-5 text-primary" />
@@ -712,7 +716,7 @@ export default function SettingsPage() {
               </div>
 
               {/* Active Sessions Card */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-4">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-4">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">Sesi Login Aktif</h2>
                   <p className="text-xs text-muted-foreground">
@@ -740,7 +744,7 @@ export default function SettingsPage() {
               </div>
 
               {/* Danger Zone */}
-              <div className="p-6 sm:p-8 rounded-2xl border-2 border-destructive/40 bg-destructive/5 space-y-4">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border-2 border-destructive/40 bg-destructive/5 space-y-4">
                 <div className="flex items-center gap-2 text-destructive font-bold text-sm">
                   <AlertTriangle className="h-4 w-4" />
                   <span>Zona Berbahaya (Danger Zone)</span>
@@ -754,7 +758,7 @@ export default function SettingsPage() {
                   variant="destructive"
                   size="sm"
                   onClick={() => setIsDeleteModalOpen(true)}
-                  className="text-xs font-bold rounded-xl h-10 px-5 cursor-pointer"
+                  className="w-full sm:w-auto text-xs font-bold rounded-xl h-10 px-5 cursor-pointer"
                 >
                   Hapus Akun Permanen
                 </Button>
@@ -768,7 +772,7 @@ export default function SettingsPage() {
           {activeTab === "preferences" && (
             <div className="space-y-6">
               {/* Atmosphere Theme Selector */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">
                     Suasana Tampilan (Atmosphere Theme)
@@ -808,7 +812,7 @@ export default function SettingsPage() {
               </div>
 
               {/* Language Selector */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">
                     Bahasa Pengantar Materi (Language)
@@ -845,7 +849,7 @@ export default function SettingsPage() {
               </div>
 
               {/* Daily Learning Goal */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">Target Waktu Belajar Harian</h2>
                   <p className="text-xs text-muted-foreground">
@@ -882,7 +886,7 @@ export default function SettingsPage() {
               </div>
 
               {/* Reset Local Progress */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-4">
+              <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-4">
                 <div className="space-y-1 pb-2 border-b border-border/70">
                   <h2 className="text-base font-bold text-foreground">Reset Data Progress Belajar</h2>
                   <p className="text-xs text-muted-foreground">
@@ -890,12 +894,12 @@ export default function SettingsPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => setIsResetProgressModalOpen(true)}
-                    className="text-xs font-semibold rounded-xl border-border gap-1.5 cursor-pointer h-10 px-4"
+                    className="w-full sm:w-auto text-xs font-semibold rounded-xl border-border gap-1.5 cursor-pointer h-10 px-4"
                   >
                     <Trash2 className="h-3.5 w-3.5 text-muted-foreground" />
                     <span>Reset Progress Pembelajaran</span>

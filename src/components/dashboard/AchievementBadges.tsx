@@ -112,10 +112,10 @@ export function AchievementBadges({ completedLessons }: AchievementBadgesProps) 
   const unlockedCount = achievements.filter((a) => a.unlocked).length;
 
   return (
-    <div className="p-5 sm:p-6 rounded-2xl border border-border bg-card shadow-xs space-y-4">
+    <div className="p-4 sm:p-6 rounded-2xl border border-border bg-card shadow-xs space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-border/70">
         <div className="flex items-center gap-2.5">
-          <div className="h-9 w-9 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center border border-purple-500/20">
+          <div className="h-9 w-9 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center border border-purple-500/20 shrink-0">
             <FontAwesomeIcon icon={faAward} className="h-4 w-4" />
           </div>
           <div>
@@ -135,11 +135,11 @@ export function AchievementBadges({ completedLessons }: AchievementBadgesProps) 
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 pt-1">
         {achievements.map((item) => (
           <div
             key={item.id}
-            className={`p-3.5 rounded-xl border flex items-start gap-3 transition-colors ${
+            className={`p-3 sm:p-3.5 rounded-xl border flex items-start gap-3 transition-colors ${
               item.unlocked
                 ? "bg-secondary/40 border-border/80"
                 : "bg-secondary/15 border-dashed border-border/40 opacity-60"

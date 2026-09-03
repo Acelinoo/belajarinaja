@@ -11,13 +11,19 @@ export function ThemeLanguageSwitcher() {
     setLanguage(language === "id" ? "en" : "id");
   };
 
+  const cycleTheme = () => {
+    if (theme === "light") setTheme("dark");
+    else if (theme === "dark") setTheme("fun");
+    else setTheme("light");
+  };
+
   return (
     <div className="flex items-center gap-1.5 font-sans">
       {/* Language Switcher Button */}
       <button
         type="button"
         onClick={toggleLanguage}
-        className="h-8 px-2.5 rounded-md text-xs font-bold flex items-center gap-1 bg-secondary text-foreground hover:bg-secondary/80 border border-border transition-colors cursor-pointer"
+        className="h-8 px-2 sm:px-2.5 rounded-md text-xs font-bold flex items-center gap-1 bg-secondary text-foreground hover:bg-secondary/80 border border-border transition-colors cursor-pointer"
         title={language === "id" ? "Ganti ke English (EN)" : "Switch to Bahasa Indonesia (ID)"}
         aria-label="Switch Language"
       >
@@ -25,8 +31,21 @@ export function ThemeLanguageSwitcher() {
         <span className="font-mono text-[11px]">{language.toUpperCase()}</span>
       </button>
 
-      {/* 3-Atmosphere Mode Selector */}
-      <div className="flex items-center p-0.5 rounded-md bg-secondary border border-border">
+      {/* Mobile Single Theme Cycle Button (< 640px) */}
+      <button
+        type="button"
+        onClick={cycleTheme}
+        className="sm:hidden h-8 w-8 rounded-md flex items-center justify-center bg-secondary text-foreground hover:bg-secondary/80 border border-border transition-colors cursor-pointer"
+        title="Ganti Tema (Terang / Gelap / Ceria)"
+        aria-label="Ganti Tema Suasana"
+      >
+        {theme === "light" && <Sun className="h-3.5 w-3.5 text-amber-500" />}
+        {theme === "dark" && <Moon className="h-3.5 w-3.5 text-sky-400" />}
+        {theme === "fun" && <Palette className="h-3.5 w-3.5 text-purple-400" />}
+      </button>
+
+      {/* Desktop 3-Atmosphere Segmented Selector (>= 640px) */}
+      <div className="hidden sm:flex items-center p-0.5 rounded-md bg-secondary border border-border">
         <button
           type="button"
           onClick={() => setTheme("light")}

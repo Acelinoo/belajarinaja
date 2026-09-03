@@ -111,29 +111,29 @@ export default function DashboardPage() {
       <Navbar />
       <SearchCommandModal />
 
-      <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl space-y-8">
+      <main className="flex-1 py-6 sm:py-12 px-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl space-y-6 sm:space-y-8">
           {/* Header Greeting & Student Profile Badge */}
-          <div className="p-6 sm:p-7 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
+          <div className="p-4 sm:p-6 md:p-7 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
+            <div className="flex items-center gap-3 sm:gap-4">
               <img
                 src={user?.avatarUrl || "https://api.dicebear.com/7.x/bottts/svg?seed=developer"}
                 alt="Avatar"
-                className="w-16 h-16 rounded-2xl border-2 border-primary/30 bg-secondary object-cover shrink-0 shadow-sm"
+                className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border-2 border-primary/30 bg-secondary object-cover shrink-0 shadow-sm"
               />
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+              <div className="space-y-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                  <h1 className="text-lg sm:text-2xl font-black text-foreground tracking-tight truncate">
                     {user?.name || (language === "en" ? "Web Student" : "Pelajar Web")}
                   </h1>
-                  <span className="text-[11px] font-mono text-muted-foreground">
+                  <span className="text-[11px] font-mono text-muted-foreground truncate">
                     @{user?.username || "developer"}
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground max-w-lg line-clamp-2">
                   {user?.bio || (language === "en" ? "Web Development Learner at BelajarinAja" : "Web Development Enthusiast di BelajarinAja")}
                 </p>
-                <div className="flex items-center gap-3 pt-1 text-[11px] font-mono text-muted-foreground">
+                <div className="flex items-center gap-2 sm:gap-3 pt-0.5 text-[10px] sm:text-[11px] font-mono text-muted-foreground flex-wrap">
                   <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
                     <ShieldCheck className="h-3.5 w-3.5" />
                     <span>{language === "en" ? "VERIFIED" : "TERVERIFIKASI"}</span>
@@ -148,15 +148,15 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 self-start md:self-center shrink-0">
-              <Link href="/settings">
-                <Button variant="outline" size="sm" className="text-xs font-semibold h-9 rounded-xl gap-1.5 cursor-pointer">
+            <div className="flex items-center gap-2 w-full md:w-auto self-stretch md:self-center shrink-0">
+              <Link href="/settings" className="flex-1 md:flex-none">
+                <Button variant="outline" size="sm" className="w-full md:w-auto text-xs font-semibold h-9 rounded-xl gap-1.5 cursor-pointer">
                   <Settings className="h-3.5 w-3.5 text-muted-foreground" />
                   <span>{language === "en" ? "Edit Profile" : "Edit Profil"}</span>
                 </Button>
               </Link>
-              <Link href="/roadmap">
-                <Button size="sm" className="text-xs font-bold h-9 rounded-xl gap-1.5 cursor-pointer">
+              <Link href="/roadmap" className="flex-1 md:flex-none">
+                <Button size="sm" className="w-full md:w-auto text-xs font-bold h-9 rounded-xl gap-1.5 cursor-pointer">
                   <Map className="h-3.5 w-3.5" />
                   <span>{language === "en" ? "Roadmap" : "Peta Roadmap"}</span>
                 </Button>
@@ -166,9 +166,9 @@ export default function DashboardPage() {
 
           {/* PRIMARY CONTENT: CONTINUE LEARNING HERO */}
           {activeResumeLesson && (
-            <div className="p-6 sm:p-8 rounded-2xl border-2 border-primary/40 bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="space-y-3 max-w-xl">
-                <div className="flex items-center gap-2">
+            <div className="p-4 sm:p-6 md:p-8 rounded-2xl border-2 border-primary/40 bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
+              <div className="space-y-2.5 sm:space-y-3 max-w-xl">
+                <div className="flex flex-wrap items-center gap-2">
                   <Badge variant="default" className="text-[10px] font-bold uppercase tracking-wider bg-primary text-primary-foreground">
                     {language === "en" ? "Continue Learning" : "Lanjutkan Belajar"}
                   </Badge>
@@ -178,7 +178,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
 
-                <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+                <h2 className="text-lg sm:text-2xl font-bold text-foreground">
                   {language === "en" && activeResumeLesson.titleEn ? activeResumeLesson.titleEn : activeResumeLesson.title}
                 </h2>
 
@@ -186,7 +186,7 @@ export default function DashboardPage() {
                   {language === "en" && activeResumeLesson.descriptionEn ? activeResumeLesson.descriptionEn : activeResumeLesson.description}
                 </p>
 
-                <div className="flex items-center gap-4 text-xs text-muted-foreground font-medium pt-1">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-muted-foreground font-medium pt-1">
                   <span className="flex items-center gap-1">
                     <Clock className="h-3.5 w-3.5 text-primary" />
                     {language === "en" ? "~15 mins study" : "~15 menit belajar"}
@@ -201,7 +201,7 @@ export default function DashboardPage() {
 
               <div className="shrink-0 w-full md:w-auto">
                 <Link href={`/lessons/${activeResumeLesson.slug}`}>
-                  <Button size="lg" className="h-11 px-6 text-xs sm:text-sm font-bold rounded-md gap-2 w-full md:w-auto shadow-sm">
+                  <Button size="lg" className="h-10 sm:h-11 px-6 text-xs sm:text-sm font-bold rounded-xl gap-2 w-full md:w-auto shadow-sm">
                     <Play className="h-4 w-4" />
                     <span>{language === "en" ? "Continue Lesson" : "Lanjutkan Materi"}</span>
                   </Button>
@@ -213,7 +213,7 @@ export default function DashboardPage() {
           {/* TWO COLUMN GRID: PROGRESS & STAGE SUMMARY */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left: Overall Progress */}
-            <div className="p-6 rounded-xl border border-border bg-card space-y-4">
+            <div className="p-4 sm:p-6 rounded-xl border border-border bg-card space-y-4">
               <div className="flex items-center justify-between border-b border-border pb-3">
                 <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-primary" />

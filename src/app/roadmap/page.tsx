@@ -90,10 +90,10 @@ export default function RoadmapPage() {
       <Navbar />
       <SearchCommandModal />
 
-      <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl space-y-8">
+      <main className="flex-1 py-6 sm:py-12 px-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl space-y-6 sm:space-y-8">
           {/* Header Banner */}
-          <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="p-4 sm:p-6 md:p-8 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
             <div className="space-y-2 max-w-xl">
               <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-secondary text-xs font-semibold text-foreground border border-border">
                 <Map className="h-3.5 w-3.5 text-primary" />
@@ -101,7 +101,7 @@ export default function RoadmapPage() {
                   {language === "en" ? "20-STAGE CURRICULUM ROADMAP" : "PETA KURIKULUM 20 TAHAP"}
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+              <h1 className="text-xl sm:text-3xl font-extrabold text-foreground tracking-tight">
                 {language === "en" ? "Web Developer Learning Roadmap" : "Peta Perjalanan Web Developer"}
               </h1>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -112,7 +112,7 @@ export default function RoadmapPage() {
             </div>
 
             {/* Overall Progress Meter */}
-            <div className="p-4 rounded-xl border border-border bg-secondary/50 min-w-[220px] w-full md:w-auto space-y-2">
+            <div className="p-4 rounded-xl border border-border bg-secondary/50 min-w-[200px] w-full md:w-auto space-y-2">
               <div className="flex items-center justify-between text-xs font-bold text-foreground">
                 <span>{language === "en" ? "Curriculum Progress" : "Progres Kurikulum"}</span>
                 <span className="font-mono">{progressPercent}%</span>
@@ -133,7 +133,7 @@ export default function RoadmapPage() {
 
           {/* Search & Track Filter Controls */}
           <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
               <div className="relative flex-1 w-full">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -145,7 +145,7 @@ export default function RoadmapPage() {
                   }
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-9 h-10 text-xs rounded-md bg-card border-border"
+                  className="pl-9 h-10 text-xs rounded-xl bg-card border-border"
                 />
               </div>
 
@@ -154,7 +154,7 @@ export default function RoadmapPage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setSearchQuery("")}
-                  className="text-xs text-muted-foreground h-10"
+                  className="text-xs text-muted-foreground h-10 w-full sm:w-auto"
                 >
                   {language === "en" ? "Reset" : "Reset"}
                 </Button>
@@ -162,13 +162,13 @@ export default function RoadmapPage() {
             </div>
 
             {/* Track filter pills */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar touch-pan-x flex-nowrap">
               {TRACKS.map((track) => (
                 <button
                   key={track.id}
                   type="button"
                   onClick={() => setSelectedTrack(track.id)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors border cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors border cursor-pointer shrink-0 ${
                     selectedTrack === track.id
                       ? "bg-primary text-primary-foreground border-primary font-bold shadow-xs"
                       : "bg-card text-muted-foreground border-border hover:text-foreground hover:bg-secondary"

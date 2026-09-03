@@ -119,11 +119,11 @@ export function ActivityHeatmap({ completedLessons }: ActivityHeatmapProps) {
   };
 
   return (
-    <div className="p-5 sm:p-6 rounded-2xl border border-border bg-card shadow-xs space-y-5">
+    <div className="p-4 sm:p-6 rounded-2xl border border-border bg-card shadow-xs space-y-4 sm:space-y-5">
       {/* Header Stat Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/70">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-border/70">
         <div className="flex items-center gap-2.5">
-          <div className="h-9 w-9 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center border border-orange-500/20">
+          <div className="h-9 w-9 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center border border-orange-500/20 shrink-0">
             <FontAwesomeIcon icon={faFire} className="h-4 w-4" />
           </div>
           <div>
@@ -139,35 +139,35 @@ export function ActivityHeatmap({ completedLessons }: ActivityHeatmapProps) {
         </div>
 
         {/* Stats Pills */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary/80 border border-border text-xs font-semibold">
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-3 w-full sm:w-auto sm:flex sm:items-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-0.5 sm:gap-1.5 p-2 sm:px-3 sm:py-1.5 rounded-xl bg-secondary/80 border border-border text-xs font-semibold text-center sm:text-left">
             <FontAwesomeIcon icon={faFire} className="h-3.5 w-3.5 text-orange-500" />
             <span className="text-foreground">{currentStreak}</span>
-            <span className="text-muted-foreground font-normal text-[11px]">
-              {language === "en" ? "day streak" : "hari beruntun"}
+            <span className="text-muted-foreground font-normal text-[10px] sm:text-[11px] line-clamp-1">
+              {language === "en" ? "streak" : "hari beruntun"}
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary/80 border border-border text-xs font-semibold">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-0.5 sm:gap-1.5 p-2 sm:px-3 sm:py-1.5 rounded-xl bg-secondary/80 border border-border text-xs font-semibold text-center sm:text-left">
             <FontAwesomeIcon icon={faArrowTrendUp} className="h-3.5 w-3.5 text-primary" />
             <span className="text-foreground">{longestStreak}</span>
-            <span className="text-muted-foreground font-normal text-[11px]">
-              {language === "en" ? "best streak" : "terpanjang"}
+            <span className="text-muted-foreground font-normal text-[10px] sm:text-[11px] line-clamp-1">
+              {language === "en" ? "best" : "terpanjang"}
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary/80 border border-border text-xs font-semibold">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-0.5 sm:gap-1.5 p-2 sm:px-3 sm:py-1.5 rounded-xl bg-secondary/80 border border-border text-xs font-semibold text-center sm:text-left">
             <FontAwesomeIcon icon={faCalendarDays} className="h-3.5 w-3.5 text-emerald-500" />
             <span className="text-foreground">{totalActiveDays}</span>
-            <span className="text-muted-foreground font-normal text-[11px]">
-              {language === "en" ? "active days" : "hari aktif"}
+            <span className="text-muted-foreground font-normal text-[10px] sm:text-[11px] line-clamp-1">
+              {language === "en" ? "active" : "hari aktif"}
             </span>
           </div>
         </div>
       </div>
 
       {/* Heatmap Grid */}
-      <div className="overflow-x-auto pb-2">
+      <div className="overflow-x-auto pb-2 no-scrollbar touch-pan-x">
         <div className="min-w-[620px]">
           <div className="grid grid-flow-col grid-rows-7 gap-1.5">
             {daysGrid.map((day) => (
@@ -186,14 +186,14 @@ export function ActivityHeatmap({ completedLessons }: ActivityHeatmapProps) {
       </div>
 
       {/* Footer Legend */}
-      <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-2">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[10px] sm:text-[11px] text-muted-foreground pt-1 sm:pt-2">
         <span>
           {language === "en"
             ? "Completed quizzes record verified daily activity"
             : "Kuis yang lulus tercatat sebagai aktivitas harian terverifikasi"}
         </span>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 self-end sm:self-auto">
           <span>{language === "en" ? "Less" : "Jarang"}</span>
           <span className="h-2.5 w-2.5 rounded-xs border border-border bg-secondary/70" />
           <span className="h-2.5 w-2.5 rounded-xs border border-emerald-400/50 bg-emerald-300 dark:bg-emerald-900/60" />

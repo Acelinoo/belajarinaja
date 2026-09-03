@@ -369,19 +369,24 @@ export function RealSandboxEngine({
       </div>
 
       {/* 3. Action Controls Toolbar */}
-      <div className="p-3 bg-secondary/60 border-t border-b border-border flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
+      <div className="p-2.5 sm:p-3 bg-secondary/60 border-t border-b border-border flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <Button
             size="sm"
             onClick={handleRun}
             disabled={isRunning}
-            className="h-8 text-xs font-bold rounded-md px-3.5 gap-1.5 shadow-xs"
+            className="h-8 text-xs font-bold rounded-md px-2.5 sm:px-3.5 gap-1.5 shadow-xs"
           >
             <Play className="h-3.5 w-3.5 fill-current" />
             <span>
-              {isRunning
-                ? (language === "en" ? "Executing..." : "Mengeksekusi...")
-                : (language === "en" ? "Run Code" : "Jalankan Kode (Run)")}
+              {isRunning ? (
+                language === "en" ? "Running..." : "Eksekusi..."
+              ) : (
+                <>
+                  <span className="hidden sm:inline">{language === "en" ? "Run Code" : "Jalankan Kode"}</span>
+                  <span className="sm:hidden">{language === "en" ? "Run" : "Jalankan"}</span>
+                </>
+              )}
             </span>
           </Button>
 
@@ -389,7 +394,7 @@ export function RealSandboxEngine({
             size="sm"
             variant="outline"
             onClick={handleReset}
-            className="h-8 text-xs font-semibold rounded-md px-2.5 gap-1"
+            className="h-8 text-xs font-semibold rounded-md px-2 sm:px-2.5 gap-1"
           >
             <RotateCcw className="h-3.5 w-3.5 text-muted-foreground" />
             <span>Reset</span>
@@ -402,13 +407,13 @@ export function RealSandboxEngine({
               size="sm"
               variant="outline"
               onClick={() => setShowHint(!showHint)}
-              className="h-8 text-xs font-semibold rounded-md px-2.5 gap-1"
+              className="h-8 text-xs font-semibold rounded-md px-2 sm:px-2.5 gap-1"
             >
               <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
               <span>
                 {showHint
-                  ? (language === "en" ? "Close Hint" : "Tutup Petunjuk")
-                  : (language === "en" ? "Hint" : "Petunjuk (Hint)")}
+                  ? (language === "en" ? "Close" : "Tutup")
+                  : (language === "en" ? "Hint" : "Petunjuk")}
               </span>
             </Button>
           )}
@@ -417,13 +422,13 @@ export function RealSandboxEngine({
             size="sm"
             variant="outline"
             onClick={() => setShowSolution(!showSolution)}
-            className="h-8 text-xs font-semibold rounded-md px-2.5 gap-1"
+            className="h-8 text-xs font-semibold rounded-md px-2 sm:px-2.5 gap-1"
           >
             <Eye className="h-3.5 w-3.5 text-muted-foreground" />
             <span>
               {showSolution
-                ? (language === "en" ? "Close Solution" : "Tutup Solusi")
-                : (language === "en" ? "View Solution" : "Lihat Solusi")}
+                ? (language === "en" ? "Close" : "Tutup")
+                : (language === "en" ? "Solution" : "Solusi")}
             </span>
           </Button>
         </div>

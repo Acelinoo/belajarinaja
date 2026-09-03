@@ -164,10 +164,10 @@ export default function HomePage() {
 
             {/* Central Dramatic Composition: "BELAJARIN" [Hero Developer Image] "AJA" */}
             <div className="relative flex flex-col items-center justify-center my-4 sm:my-8">
-              <div className="w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-6 sm:gap-8">
+              <div className="w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-4 sm:gap-8">
                 {/* Left Typography Column: BELAJARIN */}
                 <div className="lg:col-span-4 text-center lg:text-right">
-                  <h1 className="text-5xl sm:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-light tracking-tighter text-foreground uppercase select-none leading-none">
+                  <h1 className="text-4xl sm:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-light tracking-tighter text-foreground uppercase select-none leading-none">
                     Belajarin
                   </h1>
                   <span className="block text-xs font-mono tracking-widest uppercase text-muted-foreground mt-2">
@@ -178,7 +178,7 @@ export default function HomePage() {
                 {/* Center Visual Art Canvas: Developer Image (Gambar 1) */}
                 <div className="lg:col-span-4 flex justify-center relative my-4 lg:my-0">
                   {/* Portrait Frame */}
-                  <div className="relative w-64 sm:w-80 aspect-square rounded-2xl overflow-hidden border border-border bg-card shadow-2xl group transition-all duration-300 hover:scale-[1.02]">
+                  <div className="relative w-56 sm:w-80 max-w-full aspect-square rounded-2xl overflow-hidden border border-border bg-card shadow-2xl group transition-all duration-300 hover:scale-[1.02]">
                     <img
                       src="/hero-developer.png"
                       alt="Developer BelajarinAja coding with modern IDE"
@@ -222,7 +222,7 @@ export default function HomePage() {
 
                 {/* Right Typography Column: AJA */}
                 <div className="lg:col-span-4 text-center lg:text-left">
-                  <h2 className="text-5xl sm:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-black tracking-tighter text-foreground uppercase select-none leading-none">
+                  <h2 className="text-4xl sm:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-black tracking-tighter text-foreground uppercase select-none leading-none">
                     Aja<span className="text-primary font-serif font-black">.</span>
                   </h2>
                   <span className="block text-xs font-mono tracking-widest uppercase text-muted-foreground mt-2">
