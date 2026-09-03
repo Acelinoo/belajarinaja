@@ -174,12 +174,12 @@ export function OfficialCertificateDocument({
             </p>
           </div>
 
-          {/* 5. SIGNATURES & EMBOSSED GOLD MEDALLION */}
-          <div className="relative pt-6 border-t border-slate-200/80 grid grid-cols-3 items-end gap-4 my-2">
-            {/* Left Signature: Founder */}
+          {/* 5. FORMAL DIGITAL SIGNATURES (CLEAN 2-COLUMN LAYOUT) */}
+          <div className="relative pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-8 max-w-2xl mx-auto w-full px-4 sm:px-12 my-2">
+            {/* Left Digital Signature: Founder */}
             <div className="text-center flex flex-col items-center">
               <svg
-                className="h-10 w-28 text-[#0f172a]"
+                className="h-11 w-32 text-[#0f172a]"
                 viewBox="0 0 120 40"
                 fill="none"
                 stroke="currentColor"
@@ -189,46 +189,22 @@ export function OfficialCertificateDocument({
               >
                 <path d="M 10 28 C 25 10, 30 35, 45 15 C 55 5, 60 30, 75 18 C 85 10, 95 25, 110 12" />
               </svg>
-              <div className="w-32 border-b border-[#0f172a] mt-1 mb-1" />
-              <span className="font-serif font-bold text-xs text-[#0f172a] block">
+              <div className="w-36 border-b border-[#0f172a] mt-1 mb-1.5" />
+              <span className="font-serif font-bold text-xs sm:text-sm text-[#0f172a] block">
                 Marchelino Kurniawan
               </span>
-              <span className="text-[9.5px] font-sans text-[#64748b] block">
+              <span className="text-[10px] font-sans text-[#64748b] block">
                 Founder & Fullstack Specialist
+              </span>
+              <span className="text-[8.5px] font-mono text-emerald-600 font-semibold mt-0.5 tracking-wider uppercase block">
+                ✓ Digitally Signed & Authenticated
               </span>
             </div>
 
-            {/* Center: Embossed Gold Medallion Seal */}
-            <div className="flex flex-col items-center justify-center">
-              <div className="relative flex flex-col items-center">
-                {/* Gold Seal Medallion */}
-                <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-gradient-to-br from-[#d4af37] via-[#f3e5ab] to-[#aa7c11] p-0.5 shadow-md flex items-center justify-center">
-                  <div className="h-full w-full rounded-full border-2 border-dashed border-[#85580a] bg-gradient-to-br from-[#aa7c11] to-[#6d4605] flex flex-col items-center justify-center text-center text-[#fef9c3] p-1">
-                    <FontAwesomeIcon
-                      icon={faCertificate}
-                      className="h-5 w-5 sm:h-6 sm:w-6 text-[#fef08a] mb-0.5 drop-shadow-xs"
-                    />
-                    <span className="text-[6.5px] sm:text-[7.5px] font-black uppercase tracking-wider leading-none text-[#fef08a]">
-                      OFFICIAL
-                    </span>
-                    <span className="text-[5.5px] sm:text-[6.5px] font-mono tracking-tighter text-[#fef9c3] leading-tight">
-                      CREDENTIAL
-                    </span>
-                  </div>
-                </div>
-
-                {/* Draped Ribbons below seal */}
-                <div className="flex justify-center gap-1 -mt-2">
-                  <div className="w-3 h-5 bg-[#1e293b] [clip-path:polygon(0_0,100%_0,100%_100%,50%_75%,0_100%)] shadow-xs" />
-                  <div className="w-3 h-5 bg-[#aa7c11] [clip-path:polygon(0_0,100%_0,100%_100%,50%_75%,0_100%)] shadow-xs" />
-                </div>
-              </div>
-            </div>
-
-            {/* Right Signature: Academic Council */}
+            {/* Right Digital Signature: Academic Council */}
             <div className="text-center flex flex-col items-center">
               <svg
-                className="h-10 w-28 text-[#0f172a]"
+                className="h-11 w-32 text-[#0f172a]"
                 viewBox="0 0 120 40"
                 fill="none"
                 stroke="currentColor"
@@ -238,12 +214,15 @@ export function OfficialCertificateDocument({
               >
                 <path d="M 15 20 C 30 5, 35 32, 50 18 C 65 8, 70 30, 85 15 C 95 28, 105 10, 115 16" />
               </svg>
-              <div className="w-32 border-b border-[#0f172a] mt-1 mb-1" />
-              <span className="font-serif font-bold text-xs text-[#0f172a] block">
+              <div className="w-36 border-b border-[#0f172a] mt-1 mb-1.5" />
+              <span className="font-serif font-bold text-xs sm:text-sm text-[#0f172a] block">
                 Dewan Kurikulum Akademik
               </span>
-              <span className="text-[9.5px] font-sans text-[#64748b] block">
+              <span className="text-[10px] font-sans text-[#64748b] block">
                 Head of Academic Evaluation
+              </span>
+              <span className="text-[8.5px] font-mono text-emerald-600 font-semibold mt-0.5 tracking-wider uppercase block">
+                ✓ Digitally Signed & Authenticated
               </span>
             </div>
           </div>
