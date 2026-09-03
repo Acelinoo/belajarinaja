@@ -81,13 +81,11 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-          {theme === "fun" ? (
-            <NovaCharacter state="idle" className="w-7 h-7 shrink-0 transition-transform group-hover:scale-110" />
-          ) : (
-            <div className="h-7 w-7 rounded-md bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs shadow-xs">
-              <Code2 className="h-4 w-4" />
-            </div>
-          )}
+          <img
+            src="/logo.png"
+            alt="Logo BelajarinAja"
+            className="h-8 w-8 rounded-lg object-cover shadow-xs ring-1 ring-border transition-transform group-hover:scale-105"
+          />
           <div className="flex flex-col">
             <span className="font-bold text-sm tracking-tight text-foreground flex items-center gap-0.5">
               Belajarin<span className="text-primary font-black">Aja</span>

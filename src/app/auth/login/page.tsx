@@ -1,52 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ArrowLeft, Lock, Mail, User, ArrowRight, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
 import { OAuthButtons } from "@/components/auth/OAuthButtons";
-import { useAuthStore } from "@/store/useAuthStore";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
-import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
 
 export default function AuthLoginPage() {
-  const router = useRouter();
-  const [isRegister, setIsRegister] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const { setUser } = useAuthStore();
   const { completedLessons } = useCurriculumProgressStore();
-  const { theme, language } = useThemeLanguageStore();
+  const { language } = useThemeLanguageStore();
   const t = getTranslations(language);
 
   const guestCount = Object.keys(completedLessons).length;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    setTimeout(() => {
-      setUser({
-        id: "usr_mock_01",
-        name: name || (isRegister ? "Web Developer" : "Student BelajarinAja"),
-        email: email || "student@belajarinaja.com",
-        role: "STUDENT",
-      });
-      setLoading(false);
-      router.push("/dashboard");
-    }, 600);
-  };
-
   return (
     <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 bg-background text-foreground transition-colors">
-      <div className="w-full max-w-md space-y-6">
+      <div className="w-full max-w-md space-y-5">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
@@ -55,107 +25,54 @@ export default function AuthLoginPage() {
           <span>{t.auth.backHome}</span>
         </Link>
 
-        <div className="p-8 rounded-2xl border border-border bg-card shadow-sm space-y-6">
-          <div className="flex flex-col items-center text-center space-y-2">
-            {theme === "fun" ? (
-              <NovaCharacter state="curious" className="w-14 h-14" />
-            ) : (
-              <div className="h-10 w-10 rounded-xl bg-secondary text-primary flex items-center justify-center font-bold text-sm">
-                BA
+        <div className="p-8 sm:p-10 rounded-2xl border border-border bg-card shadow-xl space-y-6">
+          {/* Logo & Header */}
+          <div className="flex flex-col items-center text-center space-y-3">
+            <div className="relative group">
+              <img
+                src="/logo.png"
+                alt="Logo BelajarinAja"
+                className="w-20 h-20 rounded-2xl object-cover shadow-lg ring-1 ring-border transition-transform group-hover:scale-105"
+              />
+              <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground p-1 rounded-full shadow-xs">
+                <Sparkles className="w-3 h-3" />
               </div>
-            )}
+            </div>
 
-            <h1 className="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight">
-              {isRegister ? t.auth.registerTitle : t.auth.loginTitle}
-            </h1>
-            <p className="text-xs text-muted-foreground">
-              {isRegister ? t.auth.registerSubtitle : t.auth.loginSubtitle}
-            </p>
+            <div className="space-y-1">
+              <h1 className="text-2xl font-black text-foreground tracking-tight">
+                Masuk ke Belajarin<span className="text-primary font-black">Aja</span>
+              </h1>
+              <p className="text-xs text-muted-foreground max-w-xs mx-auto">
+                Mulai belajar Web Development terstruktur dari nol dan simpan seluruh progres belajarmu di cloud.
+              </p>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {isRegister && (
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">{t.auth.fullName}</label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Nama Lengkap"
-                    className="pl-9 h-10 text-xs rounded-md bg-card border-border"
-                    required
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-foreground">{t.auth.email}</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@domain.com"
-                  className="pl-9 h-10 text-xs rounded-md bg-card border-border"
-                  required
-                />
+          {/* Guest Sync Notice */}
+          {guestCount > 0 && (
+            <div className="rounded-xl border border-border bg-secondary/60 p-3.5 text-xs flex items-center gap-3 shadow-xs">
+              <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
+              <div>
+                <span className="font-bold text-foreground block">
+                  {guestCount} materi telah kamu selesaikan!
+                </span>
+                <p className="text-muted-foreground text-[11px] mt-0.5">
+                  Masuk sekarang untuk menyinkronkan progres belajarmu secara otomatis.
+                </p>
               </div>
             </div>
+          )}
 
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-foreground">{t.auth.password}</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="pl-9 h-10 text-xs rounded-md bg-card border-border"
-                  required
-                />
-              </div>
+          {/* OAuth Login Buttons (Google & GitHub) */}
+          <div className="space-y-4 pt-2">
+            <OAuthButtons redirectTo="/dashboard" showDivider={false} />
+
+            <div className="pt-3 border-t border-border/70 text-center">
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                Platform belajar 100% gratis tanpa biaya tersembunyi. Data profil kamu aman dan hanya digunakan untuk identitas sertifikat kelulusan.
+              </p>
             </div>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full h-10 text-xs font-bold rounded-md"
-            >
-              {loading ? t.auth.processing : isRegister ? t.auth.btnRegister : t.auth.btnLogin}
-            </Button>
-
-            <OAuthButtons redirectTo="/dashboard" />
-          </form>
-
-          {/* Toggle Register / Login */}
-          <div className="pt-2 text-center text-xs text-muted-foreground">
-            {isRegister ? (
-              <span>
-                {t.auth.hasAccount}{" "}
-                <button
-                  type="button"
-                  onClick={() => setIsRegister(false)}
-                  className="text-primary font-semibold hover:underline"
-                >
-                  {t.auth.btnLogin}
-                </button>
-              </span>
-            ) : (
-              <span>
-                {t.auth.noAccount}{" "}
-                <button
-                  type="button"
-                  onClick={() => setIsRegister(true)}
-                  className="text-primary font-semibold hover:underline"
-                >
-                  {t.auth.btnRegister}
-                </button>
-              </span>
-            )}
           </div>
         </div>
       </div>

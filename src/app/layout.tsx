@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "kursus html css javascript",
     "react nextjs indonesia",
   ],
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
