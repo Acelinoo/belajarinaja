@@ -20,18 +20,18 @@ BelajarinAja dirancang untuk memberikan pengalaman belajar pemrograman web yang 
 
 ## 2. Color System & Design Tokens
 
-### 2.1 Dark Mode Surface Hierarchy (ColorHunt: #DBD8E3, #5C5470, #352F44, #2A2438)
+### 2.1 Dark Mode Surface Hierarchy (Obsidian Charcoal & Crisp White)
 
 | Token Name | HEX | HSL | Semantic Role / Usage |
 | :--- | :--- | :--- | :--- |
-| `--color-bg-base` | `#2A2438` | `260° 21% 18%` | Canvas & viewport background utama (Dominant Dark) |
-| `--color-bg-surface` | `#352F44` | `257° 18% 23%` | Card background, container roadmap, table body |
-| `--color-bg-elevated` | `#423B55` | `257° 18% 29%` | Modal dialog, slide-over panel, popover, dropdown |
-| `--color-bg-sidebar` | `#2A2438` | `260° 21% 18%` | Persistent left sidebar |
-| `--color-bg-sunken` | `#1F1A2A` | `260° 23% 13%` | Code block containers, terminal outputs, exercise sandbox |
-| `--color-border-subtle` | `#5C5470` | `257° 14% 38%` | Micro-borders pada cards, separators, inputs |
-| `--color-border-strong` | `#7B7194` | `257° 14% 51%` | Active states, hover border on interactive cards |
-| `--color-border-focus` | `#DBD8E3` | `256° 16% 87%` | Focus ring outline, active keyboard navigation |
+| `--color-bg-base` | `#0A0A0A` | `0° 0% 4%` | Canvas & viewport background utama (Obsidian Black) |
+| `--color-bg-surface` | `#161616` | `0° 0% 8.5%` | Card background, container roadmap, table body |
+| `--color-bg-elevated` | `#1C1C1C` | `0° 0% 11%` | Modal dialog, slide-over panel, popover, dropdown |
+| `--color-bg-sidebar` | `#0A0A0A` | `0° 0% 4%` | Persistent left sidebar |
+| `--color-bg-sunken` | `#121212` | `0° 0% 7%` | Code block containers, terminal outputs, exercise sandbox |
+| `--color-border-subtle` | `#2E2E2E` | `0° 0% 18%` | Micro-borders pada cards, separators, inputs |
+| `--color-border-strong` | `#444444` | `0° 0% 27%` | Active states, hover border on interactive cards |
+| `--color-border-focus` | `#FAFAFA` | `0° 0% 98%` | Focus ring outline, active keyboard navigation |
 
 ### 2.2 Light Mode Surface Hierarchy (ColorHunt: #FAFAFA, #E8F1F5, #005691, #004A7C)
 

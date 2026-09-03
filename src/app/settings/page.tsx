@@ -531,7 +531,7 @@ export default function SettingsPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     { id: "light", label: "Light Mode", desc: "Oceanic Editorial" },
-                    { id: "dark", label: "Dark Mode", desc: "Velvet Night (Dominant Dark)" },
+                    { id: "dark", label: "Dark Mode", desc: "Obsidian Charcoal (Maksimal Fokus)" },
                     { id: "fun", label: "Fun Mode", desc: "Tropical Sun & Azure" },
                   ].map((item) => (
                     <button
