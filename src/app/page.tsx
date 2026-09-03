@@ -94,29 +94,39 @@ export default function HomePage() {
   const curriculumPhases = [
     {
       num: "01",
-      title: "Web Foundations & Protocol",
-      desc: "Anatomi internet, cara kerja browser engine, request HTTP/HTTPS, DNS lookup, serta struktur semantik HTML5 yang standar industri.",
-      topics: ["HTTP/HTTPS & DNS", "HTML5 Semantik", "Aksesibilitas (a11y)", "Heading Hierarchy"],
+      title: language === "en" ? "Web Foundations & Protocol" : "Pondasi Web & Protokol",
+      desc: language === "en"
+        ? "Internet anatomy, browser rendering engines, HTTP/HTTPS lifecycle, DNS resolution, and industrial semantic HTML5 standards."
+        : "Anatomi internet, cara kerja browser engine, request HTTP/HTTPS, DNS lookup, serta struktur semantik HTML5 yang standar industri.",
+      topics: language === "en"
+        ? ["HTTP/HTTPS & DNS", "Semantic HTML5", "Accessibility (a11y)", "Heading Hierarchy"]
+        : ["HTTP/HTTPS & DNS", "HTML5 Semantik", "Aksesibilitas (a11y)", "Heading Hierarchy"],
       icon: Globe,
     },
     {
       num: "02",
-      title: "Modern Styling & CSS Architecture",
-      desc: "Menyusun tata letak responsif pixel-perfect dengan Flexbox, CSS Grid, Box Model, Design Tokens, dan utility styling Tailwind CSS.",
+      title: language === "en" ? "Modern Styling & CSS Architecture" : "Styling Modern & Arsitektur CSS",
+      desc: language === "en"
+        ? "Build pixel-perfect responsive layouts with Flexbox, CSS Grid, Box Model, Design Tokens, and Tailwind CSS."
+        : "Menyusun tata letak responsif pixel-perfect dengan Flexbox, CSS Grid, Box Model, Design Tokens, dan utility styling Tailwind CSS.",
       topics: ["Flexbox & Grid", "Fluid Responsive", "Design Tokens", "Tailwind CSS v4"],
       icon: Layout,
     },
     {
       num: "03",
-      title: "JavaScript Engine & DOM Interactivity",
-      desc: "Memahami eksekusi runtime JS, event loop, manipulasi DOM real-time, closures, penanganan Promise asinkron, dan Fetch API modern.",
+      title: language === "en" ? "JavaScript Engine & DOM Interactivity" : "JavaScript Engine & Interaktivitas DOM",
+      desc: language === "en"
+        ? "Master JS runtime execution, event loops, real-time DOM manipulation, closures, asynchronous Promises, and modern Fetch APIs."
+        : "Memahami eksekusi runtime JS, event loop, manipulasi DOM real-time, closures, penanganan Promise asinkron, dan Fetch API modern.",
       topics: ["Event Loop & Scopes", "DOM Manipulation", "Promises & Async/Await", "Fetch REST API"],
       icon: Cpu,
     },
     {
       num: "04",
-      title: "React, Next.js & Fullstack Database",
-      desc: "Membangun arsitektur komponen React, state management, Server Components, App Router Next.js 15, dan integrasi database PostgreSQL.",
+      title: language === "en" ? "React, Next.js & Fullstack Database" : "React, Next.js & Fullstack Database",
+      desc: language === "en"
+        ? "Engineer React component architecture, client/server state, Next.js 15 App Router Server Components, and PostgreSQL database integration."
+        : "Membangun arsitektur komponen React, state management, Server Components, App Router Next.js 15, dan integrasi database PostgreSQL.",
       topics: ["Component Architecture", "Zustand & Context", "Next.js 15 App Router", "Prisma & PostgreSQL"],
       icon: Layers,
     },
@@ -140,9 +150,15 @@ export default function HomePage() {
             <div className="flex items-center justify-between border-b border-border/80 pb-3 mb-8 sm:mb-12 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-primary" />
-                <span>KURIKULUM 20 TAHAP WEB DEVELOPMENT</span>
+                <span>
+                  {language === "en"
+                    ? "20-STAGE WEB DEVELOPMENT CURRICULUM"
+                    : "KURIKULUM 20 TAHAP WEB DEVELOPMENT"}
+                </span>
               </span>
-              <span className="hidden sm:inline">VERSI 2.0 • AKSES GRATIS</span>
+              <span className="hidden sm:inline">
+                {language === "en" ? "VERSION 2.0 • FREE ACCESS" : "VERSI 2.0 • AKSES GRATIS"}
+              </span>
               <span>INDONESIA / EN</span>
             </div>
 
@@ -155,7 +171,7 @@ export default function HomePage() {
                     Belajarin
                   </h1>
                   <span className="block text-xs font-mono tracking-widest uppercase text-muted-foreground mt-2">
-                    [ PONDASI HINGGA FULLSTACK ]
+                    {language === "en" ? "[ FOUNDATIONS TO FULLSTACK ]" : "[ PONDASI HINGGA FULLSTACK ]"}
                   </span>
                 </div>
 
@@ -173,16 +189,18 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  {/* Overlapping Floating Editorial Leaflet (Inspired by Gambar 2 open book) */}
+                  {/* Overlapping Floating Editorial Leaflet */}
                   <div className="absolute -bottom-5 -left-2 sm:-left-6 p-3 sm:p-4 rounded-xl border border-border bg-card/95 backdrop-blur-md shadow-xl max-w-[190px] sm:max-w-[210px] hidden sm:block">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold block mb-1">
-                      KODING MANDIRI
+                      {language === "en" ? "HANDS-ON CODING" : "KODING MANDIRI"}
                     </span>
                     <p className="text-[11px] text-foreground font-medium leading-snug">
-                      Praktik langsung dengan sandbox interaktif di setiap akhir materi.
+                      {language === "en"
+                        ? "Interactive browser sandboxes embedded directly in every lesson."
+                        : "Praktik langsung dengan sandbox interaktif di setiap akhir materi."}
                     </p>
                     <div className="mt-2 pt-2 border-t border-border flex items-center justify-between text-[9px] font-mono text-muted-foreground">
-                      <span>20 TAHAP</span>
+                      <span>{language === "en" ? "20 STAGES" : "20 TAHAP"}</span>
                       <span>100% REAL</span>
                     </div>
                   </div>
@@ -190,10 +208,14 @@ export default function HomePage() {
                   {/* Overlapping Quick Stats Badge on Right */}
                   <div className="absolute -top-3 -right-2 sm:-right-6 p-2.5 sm:p-3 rounded-xl border border-border bg-card/95 backdrop-blur-md shadow-xl text-left hidden sm:block">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground block">
-                      STATUS PROGRESS
+                      {language === "en" ? "STUDY PROGRESS" : "STATUS PROGRESS"}
                     </span>
                     <span className="text-sm font-black text-foreground font-mono block mt-0.5">
-                      {completedCount > 0 ? `${progressPercentage}% LULUS` : "SIAP DIMULAI"}
+                      {completedCount > 0
+                        ? `${progressPercentage}% ${language === "en" ? "PASSED" : "LULUS"}`
+                        : language === "en"
+                        ? "READY TO START"
+                        : "SIAP DIMULAI"}
                     </span>
                   </div>
                 </div>
@@ -204,7 +226,7 @@ export default function HomePage() {
                     Aja<span className="text-primary font-serif font-black">.</span>
                   </h2>
                   <span className="block text-xs font-mono tracking-widest uppercase text-muted-foreground mt-2">
-                    [ TANPA RIBET • PRAKTIK NYATA ]
+                    {language === "en" ? "[ PRAGMATIC • REAL WORLD PRACTICE ]" : "[ TANPA RIBET • PRAKTIK NYATA ]"}
                   </span>
                 </div>
               </div>
@@ -215,14 +237,16 @@ export default function HomePage() {
               {/* Mission Statement */}
               <div className="lg:col-span-7 space-y-3 text-left">
                 <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
-                  MANIFIESTO PEMBELAJARAN
+                  {language === "en" ? "LEARNING MANIFESTO" : "MANIFIESTO PEMBELAJARAN"}
                 </span>
                 <p className="text-base sm:text-lg text-foreground font-normal leading-relaxed max-w-2xl">
-                  Platform kurikulum terstruktur untuk pemula yang ingin menguasai Web Development secara tuntas. Dimulai dari fundamental protokol internet, semantik HTML5, CSS responsif, JavaScript fungsional, hingga ekosistem React, Next.js 15, dan arsitektur database.
+                  {language === "en"
+                    ? "A comprehensive 20-stage structured curriculum for aspiring engineers to master Web Development end-to-end. Starting from internet protocol fundamentals, semantic HTML5, responsive CSS, functional JavaScript, up to React, Next.js 15, and database architecture."
+                    : "Platform kurikulum terstruktur untuk pemula yang ingin menguasai Web Development secara tuntas. Dimulai dari fundamental protokol internet, semantik HTML5, CSS responsif, JavaScript fungsional, hingga ekosistem React, Next.js 15, dan arsitektur database."}
                 </p>
               </div>
 
-              {/* Action Buttons & Counter (Editorial, No Pill Badges) */}
+              {/* Action Buttons & Counter */}
               <div className="lg:col-span-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-start lg:justify-end gap-3.5">
                 <Link
                   href={activeResumeLesson ? `/lessons/${activeResumeLesson.slug}` : "/roadmap"}
@@ -232,7 +256,15 @@ export default function HomePage() {
                     size="lg"
                     className="h-12 px-7 text-xs sm:text-sm font-bold rounded-xl gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform cursor-pointer"
                   >
-                    <span>{completedCount > 0 ? "Lanjutkan Tahap Aktif" : "Mulai Tahap 01 (Gratis)"}</span>
+                    <span>
+                      {completedCount > 0
+                        ? language === "en"
+                          ? "Continue Active Stage"
+                          : "Lanjutkan Tahap Aktif"
+                        : language === "en"
+                        ? "Start Stage 01 (Free)"
+                        : "Mulai Tahap 01 (Gratis)"}
+                    </span>
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
@@ -243,17 +275,17 @@ export default function HomePage() {
                     size="lg"
                     className="h-12 px-6 text-xs sm:text-sm font-semibold rounded-xl gap-2 w-full border-border bg-card hover:bg-secondary transition-colors cursor-pointer"
                   >
-                    <span>Peta 20 Tahap</span>
+                    <span>{language === "en" ? "20-Stage Roadmap" : "Peta 20 Tahap"}</span>
                     <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
                   </Button>
                 </Link>
               </div>
             </div>
 
-            {/* Minimalist Line Scroll Indicator (Inspired by Gambar 2) */}
+            {/* Minimalist Line Scroll Indicator */}
             <div className="flex flex-col items-center justify-center pt-14 text-muted-foreground">
               <span className="text-[10px] font-mono tracking-widest uppercase mb-2">
-                GULIR KE BAWAH
+                {language === "en" ? "SCROLL DOWN" : "GULIR KE BAWAH"}
               </span>
               <div className="w-5 h-9 rounded-full border border-border flex items-start justify-center p-1">
                 <span className="w-1 h-2 bg-primary rounded-full animate-bounce" />
@@ -271,14 +303,16 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border pb-6">
               <div className="space-y-1 text-left">
                 <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
-                  PETA JALUR BELAJAR
+                  {language === "en" ? "LEARNING PATHWAYS" : "PETA JALUR BELAJAR"}
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                  Empat Pilar Kurikulum Industri
+                  {language === "en" ? "Four Pillars of Modern Web Curriculum" : "Empat Pilar Kurikulum Industri"}
                 </h2>
               </div>
               <p className="text-xs sm:text-sm text-muted-foreground max-w-md text-left md:text-right">
-                Setiap tahapan dirancang berurutan tanpa lompatan konsep agar pemula memahami logika di balik kode.
+                {language === "en"
+                  ? "Each stage is structured sequentially without cognitive jumps so beginners genuinely grasp the logic behind code."
+                  : "Setiap tahapan dirancang berurutan tanpa lompatan konsep agar pemula memahami logika di balik kode."}
               </p>
             </div>
 
@@ -314,7 +348,7 @@ export default function HomePage() {
                     {/* Topic Checklist */}
                     <div className="space-y-2 pt-4 border-t border-border/70">
                       <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground block">
-                        FOKUS MATERI:
+                        {language === "en" ? "KEY TOPICS:" : "FOKUS MATERI:"}
                       </span>
                       <ul className="space-y-1.5 text-xs text-foreground font-medium">
                         {phase.topics.map((t, i) => (
@@ -336,7 +370,11 @@ export default function HomePage() {
                 href="/roadmap"
                 className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-primary hover:underline group"
               >
-                <span>Lihat Seluruh 20 Tahap & Silabus Pembelajaran</span>
+                <span>
+                  {language === "en"
+                    ? "Explore Full 20 Stages & Curriculum Syllabus"
+                    : "Lihat Seluruh 20 Tahap & Silabus Pembelajaran"}
+                </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -351,13 +389,15 @@ export default function HomePage() {
             {/* Section Header */}
             <div className="max-w-2xl space-y-2 text-left">
               <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
-                METODE PRAKTIK LANGSUNG
+                {language === "en" ? "HANDS-ON LEARNING METHOD" : "METODE PRAKTIK LANGSUNG"}
               </span>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                Koding, Jalankan, dan Uji di Tempat
+                {language === "en" ? "Code, Run, and Test in Browser" : "Koding, Jalankan, dan Uji di Tempat"}
               </h2>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Setiap materi kurikulum dilengkapi editor kode browser yang mengeksekusi HTML, CSS, dan JavaScript secara real-time tanpa perlu konfigurasi lokal yang rumit.
+                {language === "en"
+                  ? "Every curriculum lesson is equipped with an in-browser sandbox engine executing HTML, CSS, and JavaScript real-time without complex local tooling."
+                  : "Setiap materi kurikulum dilengkapi editor kode browser yang mengeksekusi HTML, CSS, dan JavaScript secara real-time tanpa perlu konfigurasi lokal yang rumit."}
               </p>
             </div>
 
@@ -411,7 +451,7 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-border">
                     <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground font-bold">
-                      HASIL LIVE RENDER
+                      {language === "en" ? "LIVE RENDER OUTPUT" : "HASIL LIVE RENDER"}
                     </span>
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                   </div>
@@ -423,9 +463,9 @@ export default function HomePage() {
                 </div>
 
                 <div className="pt-6 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
-                  <span>Passing score evaluasi: 80%</span>
+                  <span>{language === "en" ? "Evaluation passing score: 80%" : "Passing score evaluasi: 80%"}</span>
                   <Link href="/roadmap" className="font-bold text-primary hover:underline">
-                    Coba Latihan &rarr;
+                    {language === "en" ? "Try Exercises →" : "Coba Latihan →"}
                   </Link>
                 </div>
               </div>
@@ -442,39 +482,45 @@ export default function HomePage() {
               {/* Feature 1 */}
               <div className="p-7 rounded-2xl border border-border bg-card space-y-4 text-left">
                 <div className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
-                  [ 01 / KEUNGGULAN ]
+                  {language === "en" ? "[ 01 / ADVANTAGE ]" : "[ 01 / KEUNGGULAN ]"}
                 </div>
                 <h3 className="text-lg font-bold text-foreground">
-                  Bebas Distraksi & Fokus Materi
+                  {language === "en" ? "Distraction-Free & Pure Focus" : "Bebas Distraksi & Fokus Materi"}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Tidak ada video panjang berjam-jam yang membuat mengantuk. Seluruh materi disajikan dalam format teks editorial interaktif yang ringkas dan padat wawasan.
+                  {language === "en"
+                    ? "No tedious, hours-long videos that cause fatigue. All lessons are delivered in an interactive editorial text format that is concise, clear, and insight-dense."
+                    : "Tidak ada video panjang berjam-jam yang membuat mengantuk. Seluruh materi disajikan dalam format teks editorial interaktif yang ringkas dan padat wawasan."}
                 </p>
               </div>
 
               {/* Feature 2 */}
               <div className="p-7 rounded-2xl border border-border bg-card space-y-4 text-left">
                 <div className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
-                  [ 02 / SINKRONISASI ]
+                  {language === "en" ? "[ 02 / SYNCHRONIZATION ]" : "[ 02 / SINKRONISASI ]"}
                 </div>
                 <h3 className="text-lg font-bold text-foreground">
-                  Progres Tersimpan Otomatis
+                  {language === "en" ? "Automatic Cloud Sync" : "Progres Tersimpan Otomatis"}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Dapat mulai belajar langsung tanpa login sebagai tamu. Cukup hubungkan akun Google atau GitHub kapan saja untuk menyinkronkan seluruh pencapaian ke cloud.
+                  {language === "en"
+                    ? "Sign in seamlessly using your Google or GitHub account to sync all your milestones and progress across multiple devices."
+                    : "Dapat mulai belajar langsung tanpa login sebagai tamu. Cukup hubungkan akun Google atau GitHub kapan saja untuk menyinkronkan seluruh pencapaian ke cloud."}
                 </p>
               </div>
 
               {/* Feature 3 */}
               <div className="p-7 rounded-2xl border border-border bg-card space-y-4 text-left">
                 <div className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
-                  [ 03 / KREDENSIAL ]
+                  {language === "en" ? "[ 03 / CREDENTIALS ]" : "[ 03 / KREDENSIAL ]"}
                 </div>
                 <h3 className="text-lg font-bold text-foreground">
-                  Sertifikat Kelulusan Resmi
+                  {language === "en" ? "Verified Official Certificate" : "Sertifikat Kelulusan Resmi"}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Selesaikan ke-20 tahapan dan lulus ujian evaluasi untuk menerbitkan sertifikat digital terverifikasi dengan kode unik yang dapat dicantumkan di CV atau LinkedIn.
+                  {language === "en"
+                    ? "Complete all 20 stages and pass evaluation quizzes to receive a verified digital certificate with a unique credential code for your CV and LinkedIn."
+                    : "Selesaikan ke-20 tahapan dan lulus ujian evaluasi untuk menerbitkan sertifikat digital terverifikasi dengan kode unik yang dapat dicantumkan di CV atau LinkedIn."}
                 </p>
               </div>
             </div>
@@ -488,26 +534,28 @@ export default function HomePage() {
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold block">
-                LANGKAH PERTAMA
+                {language === "en" ? "FIRST STEP" : "LANGKAH PERTAMA"}
               </span>
               <h2 className="text-4xl sm:text-6xl font-serif font-black tracking-tight text-foreground uppercase leading-tight">
-                Mulai Koding Hari Ini.
+                {language === "en" ? "Start Coding Today." : "Mulai Koding Hari Ini."}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                Bergabunglah bersama komunitas pembelajar web development. 20 tahap terstruktur menanti Anda dari browser dasar hingga fullstack engineer.
+                {language === "en"
+                  ? "Join our community of modern web development learners. 20 structured stages await you, from browser foundations to fullstack engineering."
+                  : "Bergabunglah bersama komunitas pembelajar web development. 20 tahap terstruktur menanti Anda dari browser dasar hingga fullstack engineer."}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link href={activeResumeLesson ? `/lessons/${activeResumeLesson.slug}` : "/roadmap"}>
                 <Button size="lg" className="h-12 px-8 text-xs sm:text-sm font-bold rounded-xl gap-2 shadow-md">
-                  <span>Mulai Belajar Sekarang</span>
+                  <span>{language === "en" ? "Start Learning Now" : "Mulai Belajar Sekarang"}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/glossary">
                 <Button variant="outline" size="lg" className="h-12 px-7 text-xs sm:text-sm font-semibold rounded-xl border-border bg-card hover:bg-secondary">
-                  <span>Buka Glosarium Web</span>
+                  <span>{language === "en" ? "Explore Web Glossary" : "Buka Glosarium Web"}</span>
                 </Button>
               </Link>
             </div>

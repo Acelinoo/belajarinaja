@@ -27,6 +27,7 @@ import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { getTranslations } from "@/lib/translations";
 import { Button } from "@/components/ui/button";
 import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
+import { CURRICULUM_STAGES } from "@/data/curriculum";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -57,11 +58,14 @@ export function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const completedCount = Object.values(completedLessons).filter(
-    (item) => item?.completed
-  ).length;
-  const totalLessons = 20;
-  const progressPercent = Math.min(100, Math.round((completedCount / totalLessons) * 100));
+  const totalLessons = CURRICULUM_STAGES.reduce(
+    (acc, stage) => acc + stage.lessons.length,
+    0
+  );
+  const completedCount = isAuthenticated
+    ? Object.values(completedLessons).filter((item) => item?.completed).length
+    : 0;
+  const progressPercent = Math.min(100, Math.round((completedCount / (totalLessons || 1)) * 100));
 
   const navLinks = [
     { href: "/roadmap", label: t.nav.roadmap || "Roadmap", icon: Map },
@@ -122,10 +126,10 @@ export function Navbar() {
             type="button"
             onClick={openSearch}
             className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-secondary hover:bg-secondary/80 border border-border text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            title="Cari Materi (⌘K)"
+            title={language === "en" ? "Search Lessons (⌘K)" : "Cari Materi (⌘K)"}
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Cari...</span>
+            <span className="hidden sm:inline">{language === "en" ? "Search..." : "Cari..."}</span>
             <kbd className="hidden sm:inline text-[9px] bg-background px-1.5 py-0.5 rounded border border-border text-muted-foreground font-mono">
               ⌘K
             </kbd>
@@ -147,7 +151,9 @@ export function Navbar() {
                 ) : (
                   <User className="h-4 w-4 text-primary" />
                 )}
-                <span className="hidden sm:inline truncate max-w-[100px] font-bold">{user?.name || "Pelajar"}</span>
+                <span className="hidden sm:inline truncate max-w-[100px] font-bold">
+                  {user?.name || (language === "en" ? "Student" : "Pelajar")}
+                </span>
                 <ChevronDown className="h-3 w-3 text-muted-foreground" />
               </button>
 
@@ -163,7 +169,9 @@ export function Navbar() {
                       </div>
                     )}
                     <div className="overflow-hidden">
-                      <p className="font-bold text-foreground truncate">{user?.name || "Pelajar Web"}</p>
+                      <p className="font-bold text-foreground truncate">
+                        {user?.name || (language === "en" ? "Web Student" : "Pelajar Web")}
+                      </p>
                       <p className="text-[11px] text-muted-foreground font-mono truncate">@{user?.username || "developer"}</p>
                     </div>
                   </div>
@@ -174,7 +182,7 @@ export function Navbar() {
                     className="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-secondary text-foreground transition-colors font-medium"
                   >
                     <Compass className="h-3.5 w-3.5 text-muted-foreground" />
-                    <span>Dashboard Belajar</span>
+                    <span>{t.nav.dashboard}</span>
                   </Link>
 
                   <Link
@@ -183,7 +191,7 @@ export function Navbar() {
                     className="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-secondary text-foreground transition-colors font-medium"
                   >
                     <Settings className="h-3.5 w-3.5 text-muted-foreground" />
-                    <span>Pengaturan Akun</span>
+                    <span>{t.nav.settings}</span>
                   </Link>
 
                   <button
@@ -192,7 +200,7 @@ export function Navbar() {
                     className="w-full flex items-center gap-2 px-2 py-1.5 rounded hover:bg-destructive/10 text-destructive transition-colors font-medium cursor-pointer"
                   >
                     <LogOut className="h-3.5 w-3.5" />
-                    <span>Keluar Akun</span>
+                    <span>{t.nav.logout}</span>
                   </button>
                 </div>
               )}
@@ -201,7 +209,7 @@ export function Navbar() {
             <Link href="/auth/login">
               <Button size="sm" className="h-8 text-xs font-bold rounded-md px-3 gap-1.5">
                 <LogIn className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Masuk</span>
+                <span className="hidden sm:inline">{t.nav.login}</span>
               </Button>
             </Link>
           )}
@@ -248,8 +256,19 @@ export function Navbar() {
               className="flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-secondary/50"
             >
               <Settings className="h-4 w-4 text-primary" />
-              <span>Pengaturan</span>
+              <span>{t.nav.settings}</span>
             </Link>
+
+            {isAuthenticated && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-semibold text-destructive hover:bg-destructive/10 cursor-pointer"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>{t.nav.logout}</span>
+              </button>
+            )}
           </nav>
         </div>
       )}

@@ -17,7 +17,7 @@ import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
 
 export default function CertificatePage() {
   const [copied, setCopied] = useState(false);
-  const { user } = useAuthStore();
+  const { user, isAuthenticated } = useAuthStore();
   const { completedLessons } = useCurriculumProgressStore();
   const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
@@ -26,9 +26,9 @@ export default function CertificatePage() {
     (acc, stage) => acc + stage.lessons.length,
     0
   );
-  const completedCount = Object.values(completedLessons).filter(
-    (k) => k?.completed && k?.passed !== false
-  ).length;
+  const completedCount = isAuthenticated
+    ? Object.values(completedLessons).filter((k) => k?.completed && k?.passed !== false).length
+    : 0;
 
   const isEligible = totalLessons > 0 && completedCount >= totalLessons;
   const progressPercentage = Math.round((completedCount / (totalLessons || 1)) * 100);
@@ -72,7 +72,7 @@ export default function CertificatePage() {
 
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-primary uppercase tracking-wider block">
-                  SERTIFIKASI KELULUSAN
+                  {language === "en" ? "GRADUATION CERTIFICATION" : "SERTIFIKASI KELULUSAN"}
                 </span>
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
                   {t.certificates.title}
@@ -124,7 +124,7 @@ export default function CertificatePage() {
 
               <div className="max-w-md mx-auto space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold text-foreground">
-                  <span>Progres Kelulusan</span>
+                  <span>{language === "en" ? "Graduation Progress" : "Progres Kelulusan"}</span>
                   <span>{progressPercentage}%</span>
                 </div>
                 <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
@@ -134,13 +134,15 @@ export default function CertificatePage() {
                   />
                 </div>
                 <div className="text-[11px] text-muted-foreground">
-                  {completedCount} dari {totalLessons} materi terselesaikan
+                  {language === "en"
+                    ? `${completedCount} of ${totalLessons} lessons completed`
+                    : `${completedCount} dari ${totalLessons} materi terselesaikan`}
                 </div>
               </div>
 
               <Link href="/roadmap">
                 <Button className="text-xs font-bold rounded-md px-6 gap-1.5">
-                  <span>Lanjutkan Peta Kurikulum</span>
+                  <span>{language === "en" ? "Continue Curriculum Roadmap" : "Lanjutkan Peta Kurikulum"}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -166,31 +168,37 @@ export default function CertificatePage() {
 
               <div className="text-center space-y-4 py-4">
                 <span className="text-xs font-bold text-primary uppercase tracking-widest block">
-                  SERTIFIKAT KELULUSAN
+                  {language === "en" ? "CERTIFICATE OF COMPLETION" : "SERTIFIKAT KELULUSAN"}
                 </span>
 
                 <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                  {user?.name || "Lulusan BelajarinAja"}
+                  {user?.name || (language === "en" ? "BelajarinAja Graduate" : "Lulusan BelajarinAja")}
                 </h2>
                 {user?.username && (
                   <span className="text-xs font-mono text-muted-foreground block -mt-2">
-                    ID Pelajar: @{user.username}
+                    {language === "en" ? "Student ID:" : "ID Pelajar:"} @{user.username}
                   </span>
                 )}
 
                 <p className="text-xs sm:text-sm text-muted-foreground max-w-lg mx-auto leading-relaxed">
-                  Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development Modern (HTML5, Modern CSS, Flexbox/Grid, JavaScript Runtime, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Capstone Project) dengan passing grade terverifikasi.
+                  {language === "en"
+                    ? "Has successfully completed all 20 stages of the Modern Web Development Curriculum (Semantic HTML5, Modern CSS, Flexbox/Grid, JavaScript Engine, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Capstone Projects) with a verified passing grade."
+                    : "Telah berhasil menyelesaikan seluruh 20 tahapan kurikulum Web Development Modern (HTML5, Modern CSS, Flexbox/Grid, JavaScript Runtime, DOM Manipulation, Asynchronous Logic, React, Next.js 15, PostgreSQL & Capstone Project) dengan passing grade terverifikasi."}
                 </p>
               </div>
 
               <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
                 <div>
-                  <span className="block font-semibold text-foreground">Tanggal Penerbitan:</span>
+                  <span className="block font-semibold text-foreground">
+                    {language === "en" ? "Issue Date:" : "Tanggal Penerbitan:"}
+                  </span>
                   <span>{issueDate}</span>
                 </div>
 
                 <div className="text-center sm:text-right">
-                  <span className="block font-semibold text-foreground">Otoritas Sertifikasi:</span>
+                  <span className="block font-semibold text-foreground">
+                    {language === "en" ? "Certification Authority:" : "Otoritas Sertifikasi:"}
+                  </span>
                   <span>BelajarinAja Academic System</span>
                 </div>
               </div>

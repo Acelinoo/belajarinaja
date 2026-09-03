@@ -135,7 +135,7 @@ export function QuizWidget({
 
           <div className="space-y-0.5">
             <span className="font-bold text-foreground">
-              {t.quiz.title} ({quizzes.length} Soal)
+              {t.quiz.title} ({quizzes.length} {language === "en" ? "Questions" : "Soal"})
             </span>
             <p className="text-muted-foreground text-[11px]">
               {t.quiz.minPassRequirement}
@@ -148,7 +148,10 @@ export function QuizWidget({
             variant={isPassed ? "default" : "destructive"}
             className="text-xs font-bold px-3 py-1"
           >
-            {isPassed ? "LULUS" : "BELUM LULUS"}: {score}% ({correctCount}/{quizzes.length})
+            {isPassed
+              ? (language === "en" ? "PASSED" : "LULUS")
+              : (language === "en" ? "NOT PASSED" : "BELUM LULUS")}
+            : {score}% ({correctCount}/{quizzes.length})
           </Badge>
         )}
       </div>
@@ -159,8 +162,16 @@ export function QuizWidget({
           <div className="flex items-center gap-2.5">
             <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
             <div>
-              <span className="font-bold block">Selamat, Anda Lulus Evaluasi Materi Ini!</span>
-              <span className="text-[11px] opacity-90">Materi berikutnya kini telah terbuka di peta kurikulum.</span>
+              <span className="font-bold block">
+                {language === "en"
+                  ? "Congratulations, you passed this lesson evaluation!"
+                  : "Selamat, Anda Lulus Evaluasi Materi Ini!"}
+              </span>
+              <span className="text-[11px] opacity-90">
+                {language === "en"
+                  ? "The next lesson is now unlocked on the curriculum roadmap."
+                  : "Materi berikutnya kini telah terbuka di peta kurikulum."}
+              </span>
             </div>
           </div>
         </div>
@@ -172,8 +183,16 @@ export function QuizWidget({
           <div className="flex items-center gap-2.5">
             <AlertTriangle className="h-5 w-5 text-rose-600 dark:text-rose-400 shrink-0" />
             <div>
-              <span className="font-bold block">Skor Anda: {score}% (Kurang dari 80%)</span>
-              <span className="text-[11px] opacity-90">Pelajari kembali konsep di atas dan periksa pembahasan setiap soal di bawah ini.</span>
+              <span className="font-bold block">
+                {language === "en"
+                  ? `Your Score: ${score}% (Below 80%)`
+                  : `Skor Anda: ${score}% (Kurang dari 80%)`}
+              </span>
+              <span className="text-[11px] opacity-90">
+                {language === "en"
+                  ? "Review the concepts above and examine the explanation for each question below."
+                  : "Pelajari kembali konsep di atas dan periksa pembahasan setiap soal di bawah ini."}
+              </span>
             </div>
           </div>
 
@@ -184,7 +203,7 @@ export function QuizWidget({
             className="h-8 text-xs font-bold rounded-md gap-1.5 shrink-0 border-rose-300 dark:border-rose-800"
           >
             <RotateCcw className="h-3.5 w-3.5" />
-            <span>Ulangi Quiz</span>
+            <span>{language === "en" ? "Retry Quiz" : "Ulangi Quiz"}</span>
           </Button>
         </div>
       )}
@@ -202,19 +221,21 @@ export function QuizWidget({
             >
               <div className="flex items-center justify-between text-xs text-muted-foreground pb-2 border-b border-border">
                 <span className="font-mono font-semibold">
-                  SOAL {qIdx + 1} DARI {quizzes.length}
+                  {language === "en"
+                    ? `QUESTION ${qIdx + 1} OF ${quizzes.length}`
+                    : `SOAL ${qIdx + 1} DARI ${quizzes.length}`}
                 </span>
 
                 {submitted && (
                   isCorrect ? (
                     <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
                       <CheckCircle2 className="h-3.5 w-3.5" />
-                      <span>Benar</span>
+                      <span>{language === "en" ? "Correct" : "Benar"}</span>
                     </span>
                   ) : (
                     <span className="text-rose-600 dark:text-rose-400 font-bold flex items-center gap-1">
                       <XCircle className="h-3.5 w-3.5" />
-                      <span>Salah</span>
+                      <span>{language === "en" ? "Incorrect" : "Salah"}</span>
                     </span>
                   )
                 )}
@@ -277,7 +298,7 @@ export function QuizWidget({
               {submitted && (
                 <div className="p-3.5 rounded-lg border border-border bg-secondary/40 text-xs space-y-1">
                   <span className="font-bold text-foreground block">
-                    Penjelasan Kunci Jawaban:
+                    {language === "en" ? "Answer Key Explanation:" : "Penjelasan Kunci Jawaban:"}
                   </span>
                   <p className="text-muted-foreground leading-relaxed">
                     <InlineFormattedText text={quiz.explanation} />
@@ -297,7 +318,11 @@ export function QuizWidget({
           onClick={handleSubmit}
           className="w-full h-11 text-xs font-bold rounded-md gap-2"
         >
-          <span>Kirim & Evaluasi Jawaban ({Object.keys(answers).length}/{quizzes.length} Terjawab)</span>
+          <span>
+            {language === "en"
+              ? `Submit & Evaluate Answers (${Object.keys(answers).length}/${quizzes.length} Answered)`
+              : `Kirim & Evaluasi Jawaban (${Object.keys(answers).length}/${quizzes.length} Terjawab)`}
+          </span>
           <ArrowRight className="h-4 w-4" />
         </Button>
       )}

@@ -85,14 +85,16 @@ export function UnifiedLessonWorkspace({
         <div className="flex items-center justify-between pb-3 border-b border-border">
           <div className="space-y-0.5">
             <span className="text-[10px] font-bold text-primary uppercase tracking-wider block">
-              DAFTAR KURIKULUM
+              {language === "en" ? "CURRICULUM TREE" : "DAFTAR KURIKULUM"}
             </span>
             <span className="text-xs font-bold text-foreground">
-              Tahap {activeStage.orderIndex} dari 20
+              {language === "en"
+                ? `Stage ${activeStage.orderIndex} of 20`
+                : `Tahap ${activeStage.orderIndex} dari 20`}
             </span>
           </div>
           <Link href="/roadmap" className="text-[11px] text-primary hover:underline font-semibold">
-            Semua &rarr;
+            {language === "en" ? "All →" : "Semua →"}
           </Link>
         </div>
 
@@ -173,10 +175,12 @@ export function UnifiedLessonWorkspace({
         <div className="p-4 rounded-xl border border-border bg-card flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 text-muted-foreground flex-wrap">
             <Link href="/roadmap" className="hover:text-foreground hover:underline">
-              Peta Kurikulum
+              {language === "en" ? "Curriculum Roadmap" : "Peta Kurikulum"}
             </Link>
             <span>/</span>
-            <span>Tahap {activeStage.orderIndex}: {stageTitle}</span>
+            <span>
+              {language === "en" ? "Stage" : "Tahap"} {activeStage.orderIndex}: {stageTitle}
+            </span>
             <span>/</span>
             <span className="font-bold text-foreground truncate max-w-[220px]">
               {lessonTitle}
@@ -193,13 +197,17 @@ export function UnifiedLessonWorkspace({
               }`}
             >
               <Bookmark className={`h-3.5 w-3.5 ${isBookmarked ? "fill-primary text-primary" : ""}`} />
-              <span>{isBookmarked ? "Tersimpan" : "Simpan"}</span>
+              <span>
+                {isBookmarked
+                  ? (language === "en" ? "Saved" : "Tersimpan")
+                  : (language === "en" ? "Save" : "Simpan")}
+              </span>
             </Button>
 
             {isCompleted && (
               <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-[11px] font-bold">
                 <CheckCircle2 className="h-3 w-3 mr-1" />
-                Lulus
+                {language === "en" ? "Passed" : "Lulus"}
               </Badge>
             )}
           </div>
@@ -209,11 +217,11 @@ export function UnifiedLessonWorkspace({
         <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="text-[10px] font-mono font-bold">
-              MODUL {String(activeStage.orderIndex).padStart(2, "0")}
+              {language === "en" ? "MODULE" : "MODUL"} {String(activeStage.orderIndex).padStart(2, "0")}
             </Badge>
             <Badge variant="secondary" className="text-[10px] font-semibold">
               <Clock className="h-3 w-3 mr-1" />
-              {activeLesson.estimatedMinutes} Menit
+              {activeLesson.estimatedMinutes} {language === "en" ? "Mins" : "Menit"}
             </Badge>
             <Badge variant="secondary" className="text-[10px] font-semibold uppercase">
               {activeLesson.level}
@@ -232,7 +240,7 @@ export function UnifiedLessonWorkspace({
           {activeLesson.learningObjectives && activeLesson.learningObjectives.length > 0 && (
             <div className="pt-4 border-t border-border space-y-2">
               <span className="text-[11px] font-bold text-foreground uppercase tracking-wider block">
-                Target Capaian Pembelajaran:
+                {language === "en" ? "Learning Objectives:" : "Target Capaian Pembelajaran:"}
               </span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
                 {activeLesson.learningObjectives.map((obj, idx) => (
@@ -249,14 +257,20 @@ export function UnifiedLessonWorkspace({
         {/* Rich Lesson Content Markdown */}
         <article className="p-6 sm:p-10 rounded-2xl border border-border bg-card space-y-6">
           <div className="flex items-center justify-between pb-3 border-b border-border text-xs text-muted-foreground">
-            <span className="font-semibold text-foreground">Materi Pelajaran</span>
+            <span className="font-semibold text-foreground">
+              {language === "en" ? "Lesson Content" : "Materi Pelajaran"}
+            </span>
             <button
               type="button"
               onClick={() => handleCopy(activeLesson.contentMd)}
               className="hover:text-foreground flex items-center gap-1 transition-colors text-[11px]"
             >
               {copied ? <Check className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3" />}
-              <span>{copied ? "Tersalin" : "Salin Catatan"}</span>
+              <span>
+                {copied
+                  ? (language === "en" ? "Copied" : "Tersalin")
+                  : (language === "en" ? "Copy Notes" : "Salin Catatan")}
+              </span>
             </button>
           </div>
 
@@ -324,11 +338,15 @@ export function UnifiedLessonWorkspace({
             <div className="flex items-center gap-2">
               <CircleHelp className="h-4 w-4 text-primary" />
               <h2 className="text-base font-bold text-foreground">
-                Uji Pemahaman ({activeLesson.quizzes.length} Soal)
+                {language === "en"
+                  ? `Knowledge Check (${activeLesson.quizzes.length} Questions)`
+                  : `Uji Pemahaman (${activeLesson.quizzes.length} Soal)`}
               </h2>
             </div>
             <p className="text-xs text-muted-foreground">
-              Selesaikan evaluasi pemahaman dengan skor minimal 80% untuk menandai materi ini telah lulus dan membuka materi berikutnya.
+              {language === "en"
+                ? "Pass this evaluation with at least 80% score to mark this lesson completed and unlock the next lesson."
+                : "Selesaikan evaluasi pemahaman dengan skor minimal 80% untuk menandai materi ini telah lulus dan membuka materi berikutnya."}
             </p>
           </div>
 
@@ -345,7 +363,7 @@ export function UnifiedLessonWorkspace({
             <Link href={`/lessons/${prevLessonItem.lesson.slug}`}>
               <Button variant="outline" size="sm" className="text-xs font-semibold rounded-md gap-1.5">
                 <ArrowLeft className="h-3.5 w-3.5" />
-                <span>Materi Sebelumnya</span>
+                <span>{language === "en" ? "Previous Lesson" : "Materi Sebelumnya"}</span>
               </Button>
             </Link>
           ) : (
@@ -356,7 +374,7 @@ export function UnifiedLessonWorkspace({
             isCompleted ? (
               <Link href={`/lessons/${nextLessonItem.lesson.slug}`}>
                 <Button size="sm" className="text-xs font-bold rounded-md gap-1.5 px-5">
-                  <span>Materi Berikutnya</span>
+                  <span>{language === "en" ? "Next Lesson" : "Materi Berikutnya"}</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
               </Link>
@@ -368,7 +386,7 @@ export function UnifiedLessonWorkspace({
                 className="text-xs font-semibold rounded-md gap-1.5 opacity-60"
               >
                 <Lock className="h-3.5 w-3.5" />
-                <span>Selesaikan Quiz untuk Lanjut</span>
+                <span>{language === "en" ? "Pass Quiz to Continue" : "Selesaikan Quiz untuk Lanjut"}</span>
               </Button>
             )
           )}

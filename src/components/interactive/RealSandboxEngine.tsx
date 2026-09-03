@@ -321,10 +321,10 @@ export function RealSandboxEngine({
             />
             <span className="text-[11px] font-bold text-foreground">
               {executionResult?.success
-                ? "Hebat, kamu berhasil!"
+                ? (language === "en" ? "Great, you succeeded!" : "Hebat, kamu berhasil!")
                 : executionResult?.success === false
-                ? "Coba periksa lagi kodenya!"
-                : "Tulis kode & jalankan!"}
+                ? (language === "en" ? "Check your code again!" : "Coba periksa lagi kodenya!")
+                : (language === "en" ? "Write code & run!" : "Tulis kode & jalankan!")}
             </span>
           </div>
         )}
@@ -350,7 +350,11 @@ export function RealSandboxEngine({
             className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
           >
             {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
-            <span>{copied ? "Tersalin" : "Salin Kode"}</span>
+            <span>
+              {copied
+                ? (language === "en" ? "Copied" : "Tersalin")
+                : (language === "en" ? "Copy Code" : "Salin Kode")}
+            </span>
           </button>
         </div>
 
@@ -360,7 +364,7 @@ export function RealSandboxEngine({
           rows={8}
           spellCheck={false}
           className="w-full bg-transparent text-sky-300 font-mono text-xs leading-relaxed focus:outline-none resize-y selection:bg-sky-900"
-          placeholder="Tulis kode kamu di sini..."
+          placeholder={language === "en" ? "Write your code here..." : "Tulis kode kamu di sini..."}
         />
       </div>
 
@@ -374,7 +378,11 @@ export function RealSandboxEngine({
             className="h-8 text-xs font-bold rounded-md px-3.5 gap-1.5 shadow-xs"
           >
             <Play className="h-3.5 w-3.5 fill-current" />
-            <span>{isRunning ? "Mengeksekusi..." : "Jalankan Kode (Run)"}</span>
+            <span>
+              {isRunning
+                ? (language === "en" ? "Executing..." : "Mengeksekusi...")
+                : (language === "en" ? "Run Code" : "Jalankan Kode (Run)")}
+            </span>
           </Button>
 
           <Button
@@ -397,7 +405,11 @@ export function RealSandboxEngine({
               className="h-8 text-xs font-semibold rounded-md px-2.5 gap-1"
             >
               <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
-              <span>{showHint ? "Tutup Petunjuk" : "Petunjuk (Hint)"}</span>
+              <span>
+                {showHint
+                  ? (language === "en" ? "Close Hint" : "Tutup Petunjuk")
+                  : (language === "en" ? "Hint" : "Petunjuk (Hint)")}
+              </span>
             </Button>
           )}
 
@@ -408,7 +420,11 @@ export function RealSandboxEngine({
             className="h-8 text-xs font-semibold rounded-md px-2.5 gap-1"
           >
             <Eye className="h-3.5 w-3.5 text-muted-foreground" />
-            <span>{showSolution ? "Tutup Solusi" : "Lihat Solusi"}</span>
+            <span>
+              {showSolution
+                ? (language === "en" ? "Close Solution" : "Tutup Solusi")
+                : (language === "en" ? "View Solution" : "Lihat Solusi")}
+            </span>
           </Button>
         </div>
       </div>
@@ -418,7 +434,7 @@ export function RealSandboxEngine({
         <div className="p-4 bg-amber-500/10 border-b border-amber-500/20 text-xs space-y-1">
           <span className="font-bold text-amber-700 dark:text-amber-400 block flex items-center gap-1">
             <Lightbulb className="h-3.5 w-3.5" />
-            Petunjuk Penyelesaian:
+            {language === "en" ? "Hint:" : "Petunjuk Penyelesaian:"}
           </span>
           <p className="text-foreground leading-relaxed">{hints[hintIndex]}</p>
         </div>
@@ -427,7 +443,9 @@ export function RealSandboxEngine({
       {/* 5. Solution Drawer */}
       {showSolution && (
         <div className="p-4 bg-secondary/80 border-b border-border text-xs space-y-2">
-          <span className="font-bold text-foreground block">Contoh Kode Solusi:</span>
+          <span className="font-bold text-foreground block">
+            {language === "en" ? "Solution Code Example:" : "Contoh Kode Solusi:"}
+          </span>
           <pre className="p-3 rounded-md bg-[#0B0F17] text-[#F8FAFC] font-mono text-xs overflow-x-auto border border-border">
             <code>{exercise.solutionCode}</code>
           </pre>
@@ -470,12 +488,20 @@ export function RealSandboxEngine({
                 {executionResult.success ? (
                   <>
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                    <span>Latihan Berhasil Diselesaikan!</span>
+                    <span>
+                      {language === "en"
+                        ? "Exercise Passed Successfully!"
+                        : "Latihan Berhasil Diselesaikan!"}
+                    </span>
                   </>
                 ) : (
                   <>
                     <XCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
-                    <span>Belum Sesuai Target Latihan</span>
+                    <span>
+                      {language === "en"
+                        ? "Target Not Yet Satisfied"
+                        : "Belum Sesuai Target Latihan"}
+                    </span>
                   </>
                 )}
               </span>

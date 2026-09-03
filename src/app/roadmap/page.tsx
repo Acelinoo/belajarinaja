@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { CURRICULUM_STAGES } from "@/data/curriculum";
 import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
 import { useCurriculumProgressStore } from "@/store/useCurriculumProgressStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { getTranslations } from "@/lib/translations";
 import { NovaCharacter } from "@/components/fun/characters/NovaCharacter";
 import { ChapterIntroductionModal } from "@/components/fun/ChapterIntroductionModal";
@@ -42,16 +43,20 @@ export default function RoadmapPage() {
   const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
   const { completedLessons, isLessonUnlocked } = useCurriculumProgressStore();
+  const { isAuthenticated } = useAuthStore();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTrack, setSelectedTrack] = useState("ALL");
   const [selectedStageForBriefing, setSelectedStageForBriefing] = useState<StageItem | null>(null);
 
-  const completedCount = Object.values(completedLessons).filter(
-    (item) => item?.completed
-  ).length;
-  const totalLessons = 20;
-  const progressPercent = Math.min(100, Math.round((completedCount / totalLessons) * 100));
+  const totalLessons = CURRICULUM_STAGES.reduce(
+    (acc, stage) => acc + stage.lessons.length,
+    0
+  );
+  const completedCount = isAuthenticated
+    ? Object.values(completedLessons).filter((item) => item?.completed).length
+    : 0;
+  const progressPercent = Math.min(100, Math.round((completedCount / (totalLessons || 1)) * 100));
 
   // Filter stages based on track and search
   const filteredStages = CURRICULUM_STAGES.filter((stage) => {
@@ -92,20 +97,24 @@ export default function RoadmapPage() {
             <div className="space-y-2 max-w-xl">
               <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-secondary text-xs font-semibold text-foreground border border-border">
                 <Map className="h-3.5 w-3.5 text-primary" />
-                <span>PETA KURIKULUM 20 TAHAP</span>
+                <span>
+                  {language === "en" ? "20-STAGE CURRICULUM ROADMAP" : "PETA KURIKULUM 20 TAHAP"}
+                </span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                Peta Perjalanan Web Developer
+                {language === "en" ? "Web Developer Learning Roadmap" : "Peta Perjalanan Web Developer"}
               </h1>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Panduan terstruktur dari nol hingga mahir. Selesaikan setiap tahapan secara bertahap untuk membuka materi berikutnya.
+                {language === "en"
+                  ? "Structured step-by-step roadmap from zero to industry-ready mastery. Complete each stage to unlock subsequent lessons."
+                  : "Panduan terstruktur dari nol hingga mahir. Selesaikan setiap tahapan secara bertahap untuk membuka materi berikutnya."}
               </p>
             </div>
 
             {/* Overall Progress Meter */}
             <div className="p-4 rounded-xl border border-border bg-secondary/50 min-w-[220px] w-full md:w-auto space-y-2">
               <div className="flex items-center justify-between text-xs font-bold text-foreground">
-                <span>Progres Kurikulum</span>
+                <span>{language === "en" ? "Curriculum Progress" : "Progres Kurikulum"}</span>
                 <span className="font-mono">{progressPercent}%</span>
               </div>
               <div className="h-2 w-full bg-background rounded-full border border-border overflow-hidden">
@@ -115,7 +124,9 @@ export default function RoadmapPage() {
                 />
               </div>
               <div className="text-[11px] text-muted-foreground font-medium">
-                {completedCount} dari {totalLessons} materi terselesaikan
+                {language === "en"
+                  ? `${completedCount} of ${totalLessons} lessons completed`
+                  : `${completedCount} dari ${totalLessons} materi terselesaikan`}
               </div>
             </div>
           </div>
@@ -127,7 +138,11 @@ export default function RoadmapPage() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Cari materi koding (HTML, CSS, Flexbox, DOM, React)..."
+                  placeholder={
+                    language === "en"
+                      ? "Search coding lessons (HTML, CSS, Flexbox, DOM, React)..."
+                      : "Cari materi koding (HTML, CSS, Flexbox, DOM, React)..."
+                  }
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-9 h-10 text-xs rounded-md bg-card border-border"
@@ -141,7 +156,7 @@ export default function RoadmapPage() {
                   onClick={() => setSearchQuery("")}
                   className="text-xs text-muted-foreground h-10"
                 >
-                  Reset
+                  {language === "en" ? "Reset" : "Reset"}
                 </Button>
               )}
             </div>
@@ -194,22 +209,28 @@ export default function RoadmapPage() {
                     <div className="space-y-2 max-w-2xl">
                       <div className="flex items-center gap-2">
                         <Badge variant="outline" className="text-[10px] font-mono font-bold">
-                          Tahap {String(stage.orderIndex).padStart(2, "0")}
+                          {language === "en" ? "Stage" : "Tahap"} {String(stage.orderIndex).padStart(2, "0")}
                         </Badge>
 
                         {isStageComplete ? (
                           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                             <CheckCircle2 className="h-3.5 w-3.5" />
-                            <span>Selesai ({completedInStage}/{stageLessons.length})</span>
+                            <span>
+                              {language === "en"
+                                ? `Done (${completedInStage}/${stageLessons.length})`
+                                : `Selesai (${completedInStage}/${stageLessons.length})`}
+                            </span>
                           </span>
                         ) : isStageAccessible ? (
                           <span className="text-[11px] font-semibold text-primary">
-                            {completedInStage}/{stageLessons.length} Materi Selesai
+                            {language === "en"
+                              ? `${completedInStage}/${stageLessons.length} Lessons Done`
+                              : `${completedInStage}/${stageLessons.length} Materi Selesai`}
                           </span>
                         ) : (
                           <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground font-medium">
                             <Lock className="h-3 w-3" />
-                            <span>Terkunci</span>
+                            <span>{language === "en" ? "Locked" : "Terkunci"}</span>
                           </span>
                         )}
                       </div>
@@ -261,13 +282,17 @@ export default function RoadmapPage() {
                             className="text-xs font-semibold h-8 px-3 rounded-md"
                           >
                             <BookOpen className="h-3.5 w-3.5 mr-1 text-muted-foreground" />
-                            <span>Ikhtisar</span>
+                            <span>{language === "en" ? "Overview" : "Ikhtisar"}</span>
                           </Button>
 
                           {firstLesson && (
                             <Link href={`/lessons/${firstLesson.slug}`}>
                               <Button size="sm" className="text-xs font-bold h-8 px-3 rounded-md gap-1">
-                                <span>{isStageComplete ? "Pelajari Ulang" : "Mulai Tahap"}</span>
+                                <span>
+                                  {isStageComplete
+                                    ? (language === "en" ? "Review Stage" : "Pelajari Ulang")
+                                    : (language === "en" ? "Start Stage" : "Mulai Tahap")}
+                                </span>
                                 <ArrowRight className="h-3 w-3" />
                               </Button>
                             </Link>
@@ -276,7 +301,7 @@ export default function RoadmapPage() {
                       ) : (
                         <div className="text-[11px] text-muted-foreground font-medium px-3 py-1.5 rounded bg-secondary/60 border border-border flex items-center gap-1.5">
                           <Lock className="h-3 w-3" />
-                          <span>Selesaikan tahap sebelumnya</span>
+                          <span>{language === "en" ? "Complete previous stage" : "Selesaikan tahap sebelumnya"}</span>
                         </div>
                       )}
                     </div>
