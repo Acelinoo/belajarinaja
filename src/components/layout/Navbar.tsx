@@ -86,14 +86,9 @@ export function Navbar() {
             alt="Logo BelajarinAja"
             className="h-8 w-8 rounded-lg object-contain dark:invert transition-transform group-hover:scale-105"
           />
-          <div className="flex flex-col">
-            <span className="font-bold text-sm tracking-tight text-foreground flex items-center gap-0.5">
-              Belajarin<span className="text-primary font-black">Aja</span>
-            </span>
-            <span className="text-[10px] text-muted-foreground font-medium hidden sm:inline">
-              {progressPercent > 0 ? `${progressPercent}% Selesai` : "Platform Web Dev"}
-            </span>
-          </div>
+          <span className="font-bold text-sm sm:text-base tracking-tight text-foreground flex items-center gap-0.5">
+            Belajarin<span className="text-primary font-black">Aja</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}
