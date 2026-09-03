@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthModal } from "@/components/auth/AuthModal";
 import { GuestSyncPromptBanner } from "@/components/common/GuestSyncPromptBanner";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -44,9 +45,11 @@ export default function RootLayout({
         className={`${sansFont.variable} ${monoFont.variable} font-sans antialiased min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-white`}
       >
         <AuthProvider>
-          {children}
-          <AuthModal />
-          <GuestSyncPromptBanner />
+          <SmoothScrollProvider>
+            {children}
+            <AuthModal />
+            <GuestSyncPromptBanner />
+          </SmoothScrollProvider>
         </AuthProvider>
       </body>
     </html>
