@@ -33,33 +33,33 @@ BelajarinAja dirancang untuk memberikan pengalaman belajar pemrograman web yang 
 | `--color-border-strong` | `#32384E` | `227° 21% 25%` | Active states, hover border on interactive cards |
 | `--color-border-focus` | `#6366F1` | `239° 84% 67%` | Focus ring outline, active keyboard navigation |
 
-### 2.2 Light Mode Surface Hierarchy
+### 2.2 Light Mode Surface Hierarchy (ColorHunt Palette: #C6E7FF, #D4F6FF, #FBFBFB, #FFDDAE)
 
 | Token Name | HEX | HSL | Semantic Role / Usage |
 | :--- | :--- | :--- | :--- |
-| `--color-bg-base` | `#FBFBFA` | `60° 8% 98%` | Canvas & viewport background utama |
+| `--color-bg-base` | `#FBFBFB` | `0° 0% 98.4%` | Canvas & viewport background utama (Pure Chalk Canvas) |
 | `--color-bg-surface` | `#FFFFFF` | `0° 0% 100%` | Card background, lesson reader canvas, tables |
-| `--color-bg-elevated` | `#F4F4F5` | `240° 5% 96%` | Modal dialog, dropdowns, popovers |
-| `--color-bg-sidebar` | `#F5F5F4` | `60° 5% 96%` | Left navigation sidebar |
-| `--color-bg-sunken` | `#EFEFEF` | `0° 0% 94%` | Code blocks, read-only exercise inputs |
-| `--color-border-subtle` | `#E4E4E7` | `240° 6% 90%` | Card boundaries, dividers |
-| `--color-border-strong` | `#D4D4D8` | `240° 5% 84%` | Hover borders, active inputs |
-| `--color-border-focus` | `#4F46E5` | `244° 75% 59%` | Focus ring outline |
+| `--color-bg-elevated` | `#D4F6FF` | `192° 100% 92%` | Modal dialog, elevated panels, quick chips (Ice Blue) |
+| `--color-bg-sidebar` | `#FBFBFB` | `0° 0% 98.4%` | Left navigation sidebar |
+| `--color-bg-sunken` | `#D4F6FF` | `192° 100% 92%` | Code blocks, subtle exercise containers |
+| `--color-border-subtle` | `#C6E7FF` | `205° 50% 88%` | Card boundaries, dividers (Soft Sky Blue) |
+| `--color-border-strong` | `#93C5FD` | `213° 94% 78%` | Hover borders, active inputs |
+| `--color-border-focus` | `#C6E7FF` | `205° 100% 80%` | Focus ring outline |
 
 ### 2.3 Brand Accents & Semantic Colors
 
 | Token Name | Dark HEX | Light HEX | Role & Description |
 | :--- | :--- | :--- | :--- |
-| `--color-accent-primary` | `#6366F1` | `#4F46E5` | Indigo accent untuk primary CTA, active navigation bar |
-| `--color-accent-hover` | `#4F46E5` | `#4338CA` | Hover state pada primary buttons |
-| `--color-accent-muted-bg`| `rgba(99, 102, 241, 0.12)` | `rgba(79, 70, 229, 0.08)` | Active tab/sidebar indicator background |
+| `--color-brand-primary` | `#38BDF8` | `#C6E7FF` | Primary CTA, active navigation bar, interactive tabs |
+| `--color-brand-secondary`| `#1E293B` | `#D4F6FF` | Secondary container, badge background, subtle pill |
+| `--color-brand-accent` | `#F59E0B` | `#FFDDAE` | Warm Peach accent untuk streak badge, warning, capstone highlight |
 | `--color-success` | `#10B981` | `#059669` | Quiz passed, module completed, verification badge |
 | `--color-success-bg` | `rgba(16, 185, 129, 0.12)` | `rgba(5, 150, 105, 0.10)` | Success pill tag background |
 | `--color-warning` | `#F59E0B` | `#D97706` | In-progress tasks, prerequisite warning alerts |
-| `--color-warning-bg` | `rgba(245, 158, 11, 0.12)` | `rgba(217, 119, 6, 0.10)` | Warning notification banner |
+| `--color-warning-bg` | `rgba(245, 158, 11, 0.12)` | `#FFDDAE` | Warning notification banner / Peach highlight |
 | `--color-danger` | `#EF4444` | `#DC2626` | Quiz failed, destructive action, error states |
 | `--color-danger-bg` | `rgba(239, 68, 68, 0.12)` | `rgba(220, 38, 38, 0.10)` | Error validation box |
-| `--color-info` | `#06B6D4` | `#0891B2` | Cyan accent for lesson tips & guest prompt notices |
+| `--color-info` | `#06B6D4` | `#0284C7` | Sky/Cyan accent for lesson tips & guest prompt notices |
 
 ### 2.4 Typography Color Tokens
 

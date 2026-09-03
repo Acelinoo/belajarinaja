@@ -26,17 +26,17 @@ export function GuestSyncPromptBanner() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 max-w-md p-4 rounded-xl border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[6px_6px_0px_#121212] animate-in slide-in-from-bottom-5 dark:border dark:border-[#333333] dark:bg-[#0A0A0A] dark:shadow-none dark:text-[#FFFFFF] dark:font-mono fun:border-2 fun:border-[#FED7AA] fun:bg-[#FFF8E7] fun:rounded-3xl fun:shadow-[0_10px_30px_rgba(255,155,84,0.2)]">
+    <div className="fixed bottom-4 right-4 z-40 max-w-md p-4 rounded-2xl border border-[#FFDDAE] bg-[#FFDDAE]/90 backdrop-blur-md text-amber-950 shadow-lg animate-in slide-in-from-bottom-5 dark:border dark:border-[#333333] dark:bg-[#0A0A0A] dark:shadow-none dark:text-[#FFFFFF] dark:font-mono fun:border-2 fun:border-[#FED7AA] fun:bg-[#FFF8E7] fun:rounded-3xl fun:shadow-[0_10px_30px_rgba(255,155,84,0.2)]">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md border-2 border-black bg-white text-[#121212] shadow-[1.5px_1.5px_0px_#121212] shrink-0 mt-0.5 dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none fun:rounded-full fun:border-[#FED7AA] fun:bg-[#FFD84D]">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#FFDDAE] bg-white text-amber-900 shadow-xs shrink-0 mt-0.5 dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none fun:rounded-full fun:border-[#FED7AA] fun:bg-[#FFD84D]">
             <ShieldCheck className="h-4 w-4" />
           </div>
           <div>
-            <h4 className="text-xs font-black text-[#121212] dark:text-[#FFFFFF] fun:text-[#243447]">
+            <h4 className="text-xs font-bold text-amber-950 dark:text-[#FFFFFF] fun:text-[#243447]">
               {t.auth.guestFound} ({completedCount} {t.roadmap.lessonsCount})
             </h4>
-            <p className="text-[11px] text-neutral-800 dark:text-[#888888] fun:text-[#64748B] mt-0.5 leading-relaxed font-medium">
+            <p className="text-[11px] text-amber-900/80 dark:text-[#888888] fun:text-[#64748B] mt-0.5 leading-relaxed font-medium">
               {completedCount} {t.auth.guestSyncDesc}
             </p>
           </div>
@@ -45,7 +45,7 @@ export function GuestSyncPromptBanner() {
         <button
           type="button"
           onClick={() => setDismissed(true)}
-          className="text-[#121212] hover:text-black p-1 dark:text-[#888888] dark:hover:text-[#FFFFFF]"
+          className="text-amber-900/60 hover:text-amber-950 p-1 dark:text-[#888888] dark:hover:text-[#FFFFFF]"
           aria-label={t.common.close}
         >
           <X className="h-3.5 w-3.5" />
@@ -57,14 +57,14 @@ export function GuestSyncPromptBanner() {
           size="sm"
           variant="outline"
           onClick={() => setDismissed(true)}
-          className="h-7 text-[11px] px-2.5 font-bold border-2 border-black bg-white text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#EAE4D5] dark:border dark:border-[#222222] dark:bg-[#050505] dark:text-[#888888] dark:hover:text-[#FFFFFF] dark:shadow-none fun:rounded-full fun:border-[#FED7AA] fun:bg-white"
+          className="h-7 text-[11px] px-2.5 font-semibold border-amber-900/20 bg-white/80 text-amber-950 hover:bg-white dark:border dark:border-[#222222] dark:bg-[#050505] dark:text-[#888888] dark:hover:text-[#FFFFFF] dark:shadow-none fun:rounded-full fun:border-[#FED7AA] fun:bg-white"
         >
           {t.common.cancel}
         </Button>
         <Button
           size="sm"
           onClick={openLoginModal}
-          className="h-7 text-[11px] gap-1.5 px-3 font-black border-2 border-black bg-[#121212] text-white shadow-[2px_2px_0px_#000000] hover:bg-neutral-800 dark:border dark:border-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000] dark:shadow-none fun:rounded-full fun:border-0 fun:bg-[#5CC8FF] fun:text-[#243447] fun:shadow-none"
+          className="h-7 text-[11px] gap-1.5 px-3 font-bold border-0 bg-primary text-primary-foreground hover:bg-primary/85 dark:border dark:border-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000] dark:shadow-none fun:rounded-full fun:border-0 fun:bg-[#5CC8FF] fun:text-[#243447] fun:shadow-none"
         >
           {t.auth.submitRegister}
           <ArrowRight className="h-3 w-3" />

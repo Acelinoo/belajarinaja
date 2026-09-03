@@ -11,6 +11,9 @@ import {
   BookOpen,
   Search,
   Check,
+  Sparkles,
+  Layers,
+  ChevronRight,
 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -28,11 +31,11 @@ import type { StageItem } from "@/data/curriculum";
 
 const TRACKS = [
   { id: "ALL", label: "Semua Tahap", labelEn: "All Stages" },
-  { id: "foundations", label: "Web Foundations", labelEn: "Web Foundations", range: [1, 2] },
-  { id: "html", label: "HTML5 Semantik", labelEn: "Semantic HTML5", range: [3, 4] },
-  { id: "css", label: "Modern CSS", labelEn: "Modern CSS", range: [5, 8] },
-  { id: "js", label: "JavaScript & DOM", labelEn: "JavaScript & DOM", range: [9, 14] },
-  { id: "fullstack", label: "React & Fullstack", labelEn: "React & Fullstack", range: [15, 20] },
+  { id: "foundations", label: "01. Foundations", labelEn: "01. Foundations", range: [1, 2] },
+  { id: "html", label: "02. HTML5 Semantik", labelEn: "02. Semantic HTML5", range: [3, 4] },
+  { id: "css", label: "03. Modern CSS", labelEn: "03. Modern CSS", range: [5, 8] },
+  { id: "js", label: "04. JavaScript & DOM", labelEn: "04. JavaScript & DOM", range: [9, 14] },
+  { id: "fullstack", label: "05. React & Fullstack", labelEn: "05. React & Fullstack", range: [15, 20] },
 ];
 
 export default function RoadmapPage() {
@@ -48,7 +51,7 @@ export default function RoadmapPage() {
     (item) => item?.completed
   ).length;
   const totalLessons = 20;
-  const progressPercent = Math.round((completedCount / totalLessons) * 100);
+  const progressPercent = Math.min(100, Math.round((completedCount / totalLessons) * 100));
 
   // Filter stages based on track and search
   const filteredStages = CURRICULUM_STAGES.filter((stage) => {
@@ -83,27 +86,27 @@ export default function RoadmapPage() {
       <SearchCommandModal />
 
       <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl space-y-10">
+        <div className="mx-auto max-w-5xl space-y-8">
           {/* Header Banner */}
-          <div className="p-6 sm:p-10 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-2 text-center md:text-left max-w-xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-secondary text-xs font-semibold text-foreground border border-border">
+          <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-xl">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-secondary text-xs font-semibold text-foreground border border-border">
                 <Map className="h-3.5 w-3.5 text-primary" />
-                <span>KURIKULUM BERTAHAP</span>
+                <span>PETA KURIKULUM 20 TAHAP</span>
               </div>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                Peta Pembelajaran Web Developer
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+                Peta Perjalanan Web Developer
               </h1>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                20 tahapan terstruktur dari konsep dasar web hingga pembuatan aplikasi fullstack modern dengan React, Next.js 15, dan PostgreSQL.
+                Panduan terstruktur dari nol hingga mahir. Selesaikan setiap tahapan secara bertahap untuk membuka materi berikutnya.
               </p>
             </div>
 
             {/* Overall Progress Meter */}
-            <div className="p-5 rounded-xl border border-border bg-secondary/50 min-w-[240px] space-y-2 text-center md:text-left">
+            <div className="p-4 rounded-xl border border-border bg-secondary/50 min-w-[220px] w-full md:w-auto space-y-2">
               <div className="flex items-center justify-between text-xs font-bold text-foreground">
-                <span>Kemajuan Kurikulum</span>
-                <span>{progressPercent}%</span>
+                <span>Progres Kurikulum</span>
+                <span className="font-mono">{progressPercent}%</span>
               </div>
               <div className="h-2 w-full bg-background rounded-full border border-border overflow-hidden">
                 <div
@@ -111,14 +114,14 @@ export default function RoadmapPage() {
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
-              <div className="text-[11px] text-muted-foreground">
+              <div className="text-[11px] text-muted-foreground font-medium">
                 {completedCount} dari {totalLessons} materi terselesaikan
               </div>
             </div>
           </div>
 
           {/* Search & Track Filter Controls */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <div className="relative flex-1 w-full">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -150,7 +153,7 @@ export default function RoadmapPage() {
                   key={track.id}
                   type="button"
                   onClick={() => setSelectedTrack(track.id)}
-                  className={`px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors border ${
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors border cursor-pointer ${
                     selectedTrack === track.id
                       ? "bg-primary text-primary-foreground border-primary font-bold shadow-xs"
                       : "bg-card text-muted-foreground border-border hover:text-foreground hover:bg-secondary"
@@ -162,7 +165,7 @@ export default function RoadmapPage() {
             </div>
           </div>
 
-          {/* Stages List */}
+          {/* Stages List (Learning Journey Timeline) */}
           <div className="space-y-4">
             {filteredStages.map((stage) => {
               const stageLessons = stage.lessons;
@@ -179,15 +182,15 @@ export default function RoadmapPage() {
               return (
                 <div
                   key={stage.id}
-                  className={`p-6 rounded-xl border transition-colors ${
+                  className={`p-5 sm:p-6 rounded-xl border transition-colors ${
                     isStageComplete
                       ? "border-emerald-500/30 bg-card"
                       : isStageAccessible
-                      ? "border-border bg-card hover:border-primary/40"
-                      : "border-border/60 bg-secondary/30 opacity-70"
+                      ? "border-border bg-card hover:border-primary/40 shadow-xs"
+                      : "border-border/60 bg-secondary/30 opacity-75"
                   }`}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                     <div className="space-y-2 max-w-2xl">
                       <div className="flex items-center gap-2">
                         <Badge variant="outline" className="text-[10px] font-mono font-bold">
@@ -204,7 +207,7 @@ export default function RoadmapPage() {
                             {completedInStage}/{stageLessons.length} Materi Selesai
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+                          <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground font-medium">
                             <Lock className="h-3 w-3" />
                             <span>Terkunci</span>
                           </span>
@@ -232,7 +235,7 @@ export default function RoadmapPage() {
                                   ? "bg-secondary text-foreground border-border font-medium"
                                   : isStageAccessible
                                   ? "bg-card text-muted-foreground border-border hover:text-foreground hover:border-primary/50"
-                                  : "bg-secondary/40 text-muted-foreground/60 border-transparent cursor-not-allowed"
+                                  : "bg-secondary/40 text-muted-foreground/60 border-transparent cursor-not-allowed pointer-events-none"
                               }`}
                             >
                               {isDone ? (
@@ -248,31 +251,32 @@ export default function RoadmapPage() {
                     </div>
 
                     {/* Action buttons */}
-                    <div className="flex items-center gap-2 self-start md:self-center shrink-0">
+                    <div className="flex items-center gap-2 self-start md:self-center shrink-0 pt-2 md:pt-0">
                       {isStageAccessible ? (
                         <>
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => setSelectedStageForBriefing(stage)}
-                            className="text-xs font-semibold h-9 px-4 rounded-md"
+                            className="text-xs font-semibold h-8 px-3 rounded-md"
                           >
-                            <BookOpen className="h-3.5 w-3.5 mr-1" />
+                            <BookOpen className="h-3.5 w-3.5 mr-1 text-muted-foreground" />
                             <span>Ikhtisar</span>
                           </Button>
 
                           {firstLesson && (
                             <Link href={`/lessons/${firstLesson.slug}`}>
-                              <Button size="sm" className="text-xs font-bold h-9 px-4 rounded-md gap-1">
+                              <Button size="sm" className="text-xs font-bold h-8 px-3 rounded-md gap-1">
                                 <span>{isStageComplete ? "Pelajari Ulang" : "Mulai Tahap"}</span>
-                                <ArrowRight className="h-3.5 w-3.5" />
+                                <ArrowRight className="h-3 w-3" />
                               </Button>
                             </Link>
                           )}
                         </>
                       ) : (
-                        <div className="text-xs text-muted-foreground font-medium px-3 py-1.5 rounded bg-secondary/60 border border-border">
-                          Selesaikan tahap sebelumnya
+                        <div className="text-[11px] text-muted-foreground font-medium px-3 py-1.5 rounded bg-secondary/60 border border-border flex items-center gap-1.5">
+                          <Lock className="h-3 w-3" />
+                          <span>Selesaikan tahap sebelumnya</span>
                         </div>
                       )}
                     </div>

@@ -9,15 +9,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border-2 border-black bg-primary text-primary-foreground font-bold shadow-[3px_3px_0px_#121212] hover:shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#121212] dark:border dark:border-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000] dark:shadow-none dark:hover:bg-[#E5E5E5] dark:hover:text-[#000000] dark:hover:border-[#FFFFFF] dark:hover:translate-x-0 dark:hover:translate-y-0 dark:active:translate-x-0 dark:active:translate-y-0 dark:font-bold",
+          "border border-border bg-primary text-primary-foreground font-bold shadow-xs hover:bg-primary/80 active:scale-[0.98] transition-all dark:border dark:border-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000] dark:shadow-none dark:hover:bg-[#E5E5E5] dark:hover:text-[#000000] dark:hover:border-[#FFFFFF] dark:hover:translate-x-0 dark:hover:translate-y-0 dark:active:translate-x-0 dark:active:translate-y-0 dark:font-bold",
         destructive:
-          "border-2 border-black bg-destructive text-destructive-foreground font-bold shadow-[3px_3px_0px_#121212] hover:shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#121212] dark:border dark:border-[#444444] dark:bg-[#222222] dark:text-[#FFFFFF] dark:shadow-none dark:hover:bg-[#333333] dark:hover:text-[#FFFFFF]",
+          "border border-destructive/20 bg-destructive text-destructive-foreground font-bold shadow-xs hover:bg-destructive/90 active:scale-[0.98] transition-all dark:border dark:border-[#444444] dark:bg-[#222222] dark:text-[#FFFFFF] dark:shadow-none dark:hover:bg-[#333333] dark:hover:text-[#FFFFFF]",
         outline:
-          "border-2 border-black bg-white text-foreground font-bold shadow-[3px_3px_0px_#121212] hover:bg-[#EAE4D5] hover:shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#121212] dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:text-[#CCCCCC] dark:shadow-none dark:hover:bg-[#171717] dark:hover:text-[#FFFFFF] dark:hover:border-[#444444]",
+          "border border-border bg-card text-foreground font-semibold shadow-xs hover:bg-secondary active:scale-[0.98] transition-all dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:text-[#CCCCCC] dark:shadow-none dark:hover:bg-[#171717] dark:hover:text-[#FFFFFF] dark:hover:border-[#444444]",
         secondary:
-          "border-2 border-black bg-secondary text-secondary-foreground font-bold shadow-[3px_3px_0px_#121212] hover:shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#121212] dark:border dark:border-[#222222] dark:bg-[#171717] dark:text-[#FAFAFA] dark:shadow-none dark:hover:bg-[#222222] dark:hover:text-[#FFFFFF] dark:hover:border-[#333333]",
+          "border border-border bg-secondary text-secondary-foreground font-semibold shadow-xs hover:bg-secondary/80 active:scale-[0.98] transition-all dark:border dark:border-[#222222] dark:bg-[#171717] dark:text-[#FAFAFA] dark:shadow-none dark:hover:bg-[#222222] dark:hover:text-[#FFFFFF] dark:hover:border-[#333333]",
         ghost:
-          "hover:bg-[#EAE4D5] hover:text-foreground dark:hover:bg-[#171717] dark:hover:text-[#FFFFFF]",
+          "hover:bg-secondary hover:text-foreground transition-colors dark:hover:bg-[#171717] dark:hover:text-[#FFFFFF]",
         link: "text-primary underline-offset-4 hover:underline font-bold dark:text-[#FFFFFF] dark:hover:text-[#CCCCCC] dark:font-medium",
       },
       size: {

@@ -25,7 +25,7 @@ export function InlineFormattedText({ text, className = "" }: InlineProps) {
       return (
         <code
           key={index}
-          className="px-1.5 py-0.5 mx-0.5 rounded-md border-2 border-black bg-[#FFD84D] text-[#121212] font-mono text-[12.5px] font-bold shadow-[2px_2px_0px_#121212] select-all dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono"
+          className="px-1.5 py-0.5 mx-0.5 rounded-md border border-[#C6E7FF] bg-[#D4F6FF] text-[#0F172A] font-mono text-[12.5px] font-semibold select-all dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono"
         >
           {codeContent}
         </code>
@@ -272,7 +272,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             return (
               <h1
                 key={index}
-                className="text-xl sm:text-2xl font-black tracking-tight text-foreground mt-6 mb-3 pb-2 border-b-2 border-black dark:border-b dark:border-[#222222]"
+                className="text-xl sm:text-2xl font-black tracking-tight text-foreground mt-6 mb-3 pb-2 border-b border-border dark:border-[#222222]"
               >
                 <InlineFormattedText text={block.text} />
               </h1>
@@ -284,7 +284,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
                 key={index}
                 className="text-base sm:text-lg font-black tracking-tight text-foreground mt-5 mb-2 flex items-center gap-2"
               >
-                <span className="inline-block w-2.5 h-2.5 bg-[#FFD84D] border border-black dark:bg-[#FFFFFF] dark:border-0 rounded-none shadow-[1px_1px_0px_#121212] dark:shadow-none" />
+                <span className="inline-block w-2.5 h-2.5 bg-[#C6E7FF] border border-[#93C5FD] dark:bg-[#FFFFFF] dark:border-0 rounded-sm shadow-xs dark:shadow-none" />
                 <InlineFormattedText text={block.text} />
               </h2>
             );
@@ -304,12 +304,12 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
             const isWarn = block.variant === "warning";
             const isTip = block.variant === "tip";
             const bgBorder = isSec
-              ? "bg-[#FF6B6B]/15 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC] dark:shadow-none"
+              ? "bg-rose-500/10 border border-rose-300 text-rose-950 dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC]"
               : isWarn
-              ? "bg-[#FF9B54]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC] dark:shadow-none"
+              ? "bg-[#FFDDAE]/30 border border-[#FFDDAE] text-amber-950 dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC]"
               : isTip
-              ? "bg-[#FFD84D]/25 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC] dark:shadow-none"
-              : "bg-[#70B7FF]/20 border-2 border-black shadow-[4px_4px_0px_#121212] text-[#121212] dark:bg-[#0A0A0A] dark:border dark:border-[#222222] dark:text-[#CCCCCC] dark:shadow-none";
+              ? "bg-[#FFDDAE]/30 border border-[#FFDDAE] text-amber-950 dark:bg-[#111111] dark:border dark:border-[#333333] dark:text-[#CCCCCC]"
+              : "bg-[#D4F6FF]/60 border border-[#C6E7FF] text-sky-950 dark:bg-[#0A0A0A] dark:border dark:border-[#222222] dark:text-[#CCCCCC]";
             const IconComp = isSec
               ? ShieldAlert
               : isWarn
@@ -322,18 +322,18 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
               : isWarn
               ? "text-amber-800 dark:text-[#FFFFFF]"
               : isTip
-              ? "text-amber-900 dark:text-[#FFFFFF]"
-              : "text-blue-800 dark:text-[#FFFFFF]";
+              ? "text-amber-800 dark:text-[#FFFFFF]"
+              : "text-sky-700 dark:text-[#FFFFFF]";
 
             return (
               <div
                 key={index}
-                className={`p-4 rounded-lg flex items-start gap-3 my-4 ${bgBorder}`}
+                className={`p-4 rounded-xl flex items-start gap-3 my-4 shadow-xs ${bgBorder}`}
               >
                 <IconComp className={`h-5 w-5 shrink-0 mt-0.5 ${iconColor}`} />
                 <div className="space-y-1 text-xs sm:text-sm leading-relaxed">
                   {block.title && (
-                    <div className={`font-black uppercase tracking-wide text-xs font-mono ${iconColor}`}>
+                    <div className={`font-bold uppercase tracking-wide text-xs font-mono ${iconColor}`}>
                       {block.title}
                     </div>
                   )}

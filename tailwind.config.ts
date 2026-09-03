@@ -44,20 +44,14 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        // Neo-Brutalism Light Mode Tokens
-        neo: {
-          bg: "#F7F4EA",
-          surface: "#FFFFFF",
-          ink: "#121212",
-          yellow: "#FFD84D",
-          "yellow-hover": "#F5CB32",
-          blue: "#70B7FF",
-          pink: "#FF6FAE",
-          green: "#7BE495",
-          orange: "#FF9B54",
-          red: "#FF6B6B",
-          muted: "#EAE4D5",
-          border: "#121212",
+        // ColorHunt Light Mode Palette Tokens (#C6E7FF, #D4F6FF, #FBFBFB, #FFDDAE)
+        palette: {
+          sky: "#C6E7FF",
+          ice: "#D4F6FF",
+          canvas: "#FBFBFB",
+          peach: "#FFDDAE",
+          ink: "#0F172A",
+          border: "#D0E7FA",
         },
         // Obsidian Command Center Dark Mode Tokens (Strictly Monochrome Grayscale)
         obsidian: {

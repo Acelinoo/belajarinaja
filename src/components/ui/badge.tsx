@@ -8,17 +8,17 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-2 border-black bg-primary text-primary-foreground font-bold shadow-[2px_2px_0px_#121212] dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-border bg-primary text-primary-foreground font-bold dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
         secondary:
-          "border-2 border-black bg-secondary text-secondary-foreground font-bold shadow-[2px_2px_0px_#121212] dark:border dark:border-[#222222] dark:bg-[#171717] dark:text-[#CCCCCC] dark:shadow-none dark:font-mono",
+          "border border-border bg-secondary text-secondary-foreground font-semibold dark:border dark:border-[#222222] dark:bg-[#171717] dark:text-[#CCCCCC] dark:shadow-none dark:font-mono",
         destructive:
-          "border-2 border-black bg-destructive text-destructive-foreground font-bold shadow-[2px_2px_0px_#121212] dark:border dark:border-[#444444] dark:bg-[#222222] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-destructive/20 bg-destructive/10 text-destructive font-semibold dark:border dark:border-[#444444] dark:bg-[#222222] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
         outline:
-          "border-2 border-black bg-white text-foreground font-bold shadow-[2px_2px_0px_#121212] dark:border dark:border-[#222222] dark:bg-[#050505] dark:text-[#888888] dark:shadow-none dark:font-mono",
+          "border border-border bg-card text-foreground font-semibold dark:border dark:border-[#222222] dark:bg-[#050505] dark:text-[#888888] dark:shadow-none dark:font-mono",
         success:
-          "border-2 border-black bg-[#7BE495] text-[#121212] font-bold shadow-[2px_2px_0px_#121212] dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-emerald-500/30 bg-emerald-50 text-emerald-800 font-bold dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
         warning:
-          "border-2 border-black bg-[#FF9B54] text-[#121212] font-bold shadow-[2px_2px_0px_#121212] dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-[#FFDDAE] bg-[#FFDDAE]/40 text-amber-900 font-bold dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
       },
     },
     defaultVariants: {

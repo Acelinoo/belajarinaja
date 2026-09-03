@@ -147,10 +147,10 @@ export function SearchCommandModal() {
                 key={lvl}
                 type="button"
                 onClick={() => setSelectedLevel(lvl)}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold transition-all ${
+                className={`px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition-all ${
                   selectedLevel === lvl
-                    ? "bg-[#FFD84D] text-[#121212] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-[#FFFFFF] dark:text-[#000000] dark:border dark:border-[#FFFFFF] fun:bg-[#5CC8FF] fun:text-[#243447] fun:border-0 fun:rounded-full"
-                    : "bg-white border-2 border-black text-[#121212] shadow-[1px_1px_0px_#121212] hover:bg-[#EAE4D5] dark:bg-[#050505] dark:border dark:border-[#222222] dark:text-[#888888] dark:shadow-none dark:hover:text-[#FFFFFF] fun:border-[#FED7AA] fun:rounded-full fun:shadow-none"
+                    ? "bg-[#C6E7FF] text-[#0F172A] border border-[#93C5FD] shadow-xs dark:bg-[#FFFFFF] dark:text-[#000000] dark:border dark:border-[#FFFFFF] fun:bg-[#5CC8FF] fun:text-[#243447] fun:border-0 fun:rounded-full"
+                    : "bg-card border border-border text-foreground hover:bg-secondary dark:bg-[#050505] dark:border dark:border-[#222222] dark:text-[#888888] dark:shadow-none dark:hover:text-[#FFFFFF] fun:border-[#FED7AA] fun:rounded-full fun:shadow-none"
                 }`}
               >
                 {lvl}
@@ -170,10 +170,10 @@ export function SearchCommandModal() {
                 onClick={() =>
                   setSelectedTech(selectedTech === tech ? null : tech)
                 }
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold transition-all ${
+                className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold transition-all ${
                   selectedTech === tech
-                    ? "bg-[#70B7FF] text-[#121212] border-2 border-black shadow-[2px_2px_0px_#121212] dark:bg-[#FFFFFF] dark:text-[#000000] dark:border dark:border-[#FFFFFF] fun:bg-[#FFD84D] fun:text-[#243447] fun:border-0 fun:rounded-full"
-                    : "bg-white border-2 border-black text-[#121212] shadow-[1px_1px_0px_#121212] hover:bg-[#EAE4D5] dark:bg-[#050505] dark:border dark:border-[#222222] dark:text-[#888888] dark:shadow-none dark:hover:text-[#FFFFFF] fun:border-[#FED7AA] fun:rounded-full fun:shadow-none"
+                    ? "bg-[#D4F6FF] text-[#0F172A] border border-[#93C5FD] shadow-xs dark:bg-[#FFFFFF] dark:text-[#000000] dark:border dark:border-[#FFFFFF] fun:bg-[#FFD84D] fun:text-[#243447] fun:border-0 fun:rounded-full"
+                    : "bg-card border border-border text-muted-foreground hover:bg-secondary hover:text-foreground dark:bg-[#050505] dark:border dark:border-[#222222] dark:text-[#888888] dark:shadow-none dark:hover:text-[#FFFFFF] fun:border-[#FED7AA] fun:rounded-full fun:shadow-none"
                 }`}
               >
                 {tech}
@@ -183,7 +183,7 @@ export function SearchCommandModal() {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="text-[10px] font-bold text-black underline hover:text-primary ml-auto dark:text-[#FFFFFF] dark:no-underline dark:hover:underline fun:text-[#FF6B6B]"
+                className="text-[10px] font-bold text-foreground underline hover:text-primary ml-auto dark:text-[#FFFFFF] dark:no-underline dark:hover:underline fun:text-[#FF6B6B]"
               >
                 Reset Filter
               </button>
@@ -192,22 +192,22 @@ export function SearchCommandModal() {
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2 space-y-1.5 bg-white dark:bg-[#0A0A0A]">
+        <div className="max-h-80 overflow-y-auto p-2 space-y-1.5 bg-card dark:bg-[#0A0A0A]">
           {filtered.length > 0 ? (
             filtered.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => handleSelect(item.slug)}
-                className="w-full flex items-center justify-between p-3 rounded-lg border-2 border-transparent hover:border-black hover:bg-[#FFD84D]/25 hover:shadow-[3px_3px_0px_#121212] text-left transition-all group dark:border dark:border-transparent dark:hover:border-[#333333] dark:hover:bg-[#111111] dark:hover:shadow-none fun:rounded-2xl fun:hover:bg-[#FFF8E7] fun:hover:border-[#FED7AA]"
+                className="w-full flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-border hover:bg-secondary text-left transition-all group dark:border dark:border-transparent dark:hover:border-[#333333] dark:hover:bg-[#111111] dark:hover:shadow-none fun:rounded-2xl fun:hover:bg-[#FFF8E7] fun:hover:border-[#FED7AA]"
               >
                 <div className="flex items-center gap-3">
-                  <BookOpen className="h-4 w-4 text-[#121212] dark:text-[#FFFFFF] fun:text-[#5CC8FF] shrink-0" />
+                  <BookOpen className="h-4 w-4 text-primary dark:text-[#FFFFFF] fun:text-[#5CC8FF] shrink-0" />
                   <div>
-                    <div className="text-xs font-bold text-foreground group-hover:text-black dark:group-hover:text-[#FFFFFF] transition-colors">
+                    <div className="text-xs font-bold text-foreground group-hover:text-foreground dark:group-hover:text-[#FFFFFF] transition-colors">
                       {item.displayTitle}
                     </div>
-                    <div className="text-[11px] text-[#555555] dark:text-[#888888] flex items-center gap-2 mt-0.5 font-medium">
+                    <div className="text-[11px] text-muted-foreground dark:text-[#888888] flex items-center gap-2 mt-0.5 font-medium">
                       <span>{t.common.stage} {item.stageOrder}: {item.stageTitle}</span>
                       <span>•</span>
                       <span>{item.estimatedMinutes} {t.common.minutes}</span>
@@ -219,7 +219,7 @@ export function SearchCommandModal() {
                   </div>
                 </div>
 
-                <ArrowRight className="h-3.5 w-3.5 text-[#121212] dark:text-[#FFFFFF] fun:text-[#5CC8FF] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowRight className="h-3.5 w-3.5 text-foreground dark:text-[#FFFFFF] fun:text-[#5CC8FF] opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>
             ))
           ) : (
@@ -233,7 +233,7 @@ export function SearchCommandModal() {
         </div>
 
         {/* Footer Shortcut Guide */}
-        <div className="p-3 bg-[#F7F4EA] border-t-2 border-black dark:bg-[#050505] dark:border-t dark:border-[#1A1A1A] fun:bg-[#FFF8E7] fun:border-t-2 fun:border-[#FED7AA] flex items-center justify-between text-[11px] font-bold text-[#555555] dark:text-[#666666] font-mono">
+        <div className="p-3 bg-secondary/60 border-t border-border dark:bg-[#050505] dark:border-t dark:border-[#1A1A1A] fun:bg-[#FFF8E7] fun:border-t-2 fun:border-[#FED7AA] flex items-center justify-between text-[11px] font-bold text-muted-foreground dark:text-[#666666] font-mono">
           <span>⌘K / Ctrl+K</span>
           <span>ESC</span>
         </div>

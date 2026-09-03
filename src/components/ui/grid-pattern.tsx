@@ -59,7 +59,7 @@ export function GridPattern({
               height={height - 1}
               x={sqX * width + 1}
               y={sqY * height + 1}
-              className="fill-[#FFD84D]/40 dark:fill-cyan-500/[0.08]"
+              className="fill-[#C6E7FF]/50 dark:fill-cyan-500/[0.08]"
             />
           ))}
         </svg>

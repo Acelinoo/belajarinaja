@@ -4,53 +4,55 @@
 
 @layer base {
   /* =========================================================================
-     ATMOSPHERE 1: LIGHT (Calm, Clean, Editorial Modern Learning)
+     ATMOSPHERE 1: LIGHT (Pastel Sky & Ice Editorial Learning)
+     ColorHunt: #C6E7FF (Sky), #D4F6FF (Ice), #FBFBFB (Canvas), #FFDDAE (Peach)
      ========================================================================= */
   :root,
   .light,
   [data-theme="light"] {
-    --background: 210 40% 98%; /* #F8FAFC - Soft crisp canvas */
+    --background: 0 0% 98.4%; /* #FBFBFB - Clean soft canvas from ColorHunt */
     --foreground: 222 47% 11%; /* #0F172A - Deep slate readable ink */
 
-    --card: 0 0% 100%; /* #FFFFFF - Pure white surface */
+    --card: 0 0% 100%; /* #FFFFFF - Pure white card surface */
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 221 83% 53%; /* #2563EB - Professional Blue */
-    --primary-foreground: 0 0% 100%;
+    --primary: 205 100% 89%; /* #C6E7FF - Pastel Sky Blue */
+    --primary-foreground: 222 47% 11%; /* #0F172A - High contrast deep slate ink */
 
-    --secondary: 210 40% 96%; /* #F1F5F9 - Slate-100 */
+    --secondary: 192 100% 92%; /* #D4F6FF - Ice Blue secondary surface */
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96%;
+    --muted: 192 80% 95%; /* #EAF8FD - Soft muted Ice Blue */
     --muted-foreground: 215 16% 47%; /* #64748B */
 
-    --accent: 210 40% 96%;
+    --accent: 35 100% 84%; /* #FFDDAE - Pastel Warm Peach */
     --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%; /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%; /* #E2E8F0 */
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --border: 205 50% 88%; /* #D0E7FA - Soft Sky Blue border */
+    --input: 205 50% 88%;
+    --ring: 205 100% 80%;
 
     --radius: 0.5rem;
 
     /* Semantic Tokens */
-    --color-bg-base: #f8fafc;
+    --color-bg-base: #fbfbfb;
     --color-bg-surface: #ffffff;
-    --color-bg-elevated: #ffffff;
-    --color-bg-subtle: #f1f5f9;
-    --color-border-subtle: #e2e8f0;
-    --color-border-strong: #cbd5e1;
+    --color-bg-elevated: #d4f6ff;
+    --color-bg-subtle: #d4f6ff;
+    --color-border-subtle: #c6e7ff;
+    --color-border-strong: #93c5fd;
     --color-text-primary: #0f172a;
     --color-text-secondary: #475569;
     --color-text-tertiary: #94a3b8;
-    --color-brand-primary: #2563eb;
-    --color-brand-accent: #0284c7;
+    --color-brand-primary: #c6e7ff;
+    --color-brand-secondary: #d4f6ff;
+    --color-brand-accent: #ffddae;
   }
 
   /* =========================================================================
@@ -153,8 +155,8 @@
 }
 
 body {
-  background-color: var(--color-bg-base);
-  color: var(--color-text-primary);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
 }
@@ -170,10 +172,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border-strong);
+  background: hsl(var(--border));
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-tertiary);
+  background: hsl(var(--muted-foreground));
 }

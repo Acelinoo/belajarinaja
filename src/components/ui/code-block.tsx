@@ -38,10 +38,10 @@ export function CodeBlock({
       )}
     >
       {/* Top Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-[#1c1c1f] border-b-2 border-black dark:bg-[#0A0A0A] dark:border-b dark:border-[#1A1A1A] text-xs text-neutral-200 dark:text-[#888888] font-mono">
+      <div className="flex items-center justify-between px-4 py-2 bg-[#1c1c1f] border-b border-neutral-800 dark:bg-[#0A0A0A] dark:border-b dark:border-[#1A1A1A] text-xs text-neutral-200 dark:text-[#888888] font-mono">
         <div className="flex items-center gap-2.5">
           <div className="flex items-center gap-1.5">
-            <Terminal className="h-3.5 w-3.5 text-[#FFD84D] dark:text-[#FFFFFF]" />
+            <Terminal className="h-3.5 w-3.5 text-[#C6E7FF] dark:text-[#FFFFFF]" />
             <span className="font-bold text-white dark:text-[#FFFFFF] text-xs">{filename || `${language}`}</span>
           </div>
         </div>
@@ -50,16 +50,16 @@ export function CodeBlock({
           size="sm"
           variant="ghost"
           onClick={handleCopy}
-          className="h-7 px-2.5 text-[11px] font-bold border-2 border-black bg-[#FFD84D] text-[#121212] shadow-[2px_2px_0px_#000000] hover:bg-[#F5CB32] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none dark:border dark:border-[#222222] dark:bg-[#050505] dark:shadow-none dark:text-[#888888] dark:hover:text-[#FFFFFF] dark:hover:border-[#444444]"
+          className="h-7 px-2.5 text-[11px] font-bold border border-neutral-700 bg-neutral-800 text-neutral-200 hover:bg-neutral-700 active:scale-95 dark:border dark:border-[#222222] dark:bg-[#050505] dark:shadow-none dark:text-[#888888] dark:hover:text-[#FFFFFF] dark:hover:border-[#444444]"
         >
           {copied ? (
             <>
-              <Check className="h-3.5 w-3.5 text-emerald-700 dark:text-[#FFFFFF]" />
-              <span className="text-emerald-900 dark:text-[#FFFFFF]">COPIED</span>
+              <Check className="h-3.5 w-3.5 text-emerald-400 dark:text-[#FFFFFF]" />
+              <span className="text-emerald-400 dark:text-[#FFFFFF]">COPIED</span>
             </>
           ) : (
             <>
-              <Copy className="h-3.5 w-3.5 text-[#121212] dark:text-[#888888]" />
+              <Copy className="h-3.5 w-3.5 text-neutral-300 dark:text-[#888888]" />
               <span>COPY</span>
             </>
           )}

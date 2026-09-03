@@ -55,14 +55,14 @@ export function AuthModal() {
 
   return (
     <Dialog open={isLoginModalOpen} onOpenChange={closeLoginModal}>
-      <DialogContent className="max-w-md bg-white border-2 border-black p-6 rounded-xl shadow-[8px_8px_0px_#121212] dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:shadow-none dark:font-mono fun:border-2 fun:border-[#FED7AA] fun:rounded-3xl fun:shadow-[0_20px_60px_rgba(255,155,84,0.15)]">
+      <DialogContent className="max-w-md bg-card border border-border p-6 rounded-2xl shadow-xl dark:border dark:border-[#222222] dark:bg-[#0A0A0A] dark:shadow-none dark:font-mono fun:border-2 fun:border-[#FED7AA] fun:rounded-3xl fun:shadow-[0_20px_60px_rgba(255,155,84,0.15)]">
         <DialogHeader className="space-y-1 text-left">
           <div className="flex items-center gap-2 mb-1">
-            <div className="flex h-7 w-7 items-center justify-center rounded border-2 border-black bg-[#FFD84D] text-[#121212] font-mono font-black text-xs shadow-[1.5px_1.5px_0px_#121212] dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none fun:rounded-full fun:border-[#FED7AA]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-[#C6E7FF] text-[#0F172A] font-mono font-black text-xs shadow-xs dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none fun:rounded-full fun:border-[#FED7AA]">
               BA
             </div>
-            <span className="font-black tracking-tight text-sm text-foreground dark:text-[#FFFFFF]">
-              Belajarin<span className="text-[#121212] dark:text-[#FFFFFF] fun:text-[#FF6B6B] bg-[#FFD84D] dark:bg-transparent fun:bg-[#FFF8E7] px-1 rounded-sm border border-black dark:border-0 fun:border-[#FED7AA] ml-0.5">Aja</span>
+            <span className="font-bold tracking-tight text-sm text-foreground dark:text-[#FFFFFF]">
+              Belajarin<span className="text-[#0F172A] dark:text-[#FFFFFF] fun:text-[#FF6B6B] bg-[#C6E7FF] dark:bg-transparent fun:bg-[#FFF8E7] px-1 rounded border border-[#93C5FD] dark:border-0 fun:border-[#FED7AA] ml-0.5">Aja</span>
             </span>
           </div>
 
@@ -70,20 +70,20 @@ export function AuthModal() {
             {isRegister ? t.auth.registerTitle : t.auth.loginTitle}
           </DialogTitle>
 
-          <DialogDescription className="text-xs font-medium text-[#555555] dark:text-[#888888]">
+          <DialogDescription className="text-xs font-medium text-muted-foreground dark:text-[#888888]">
             {isRegister ? t.auth.registerSubtitle : t.auth.loginSubtitle}
           </DialogDescription>
         </DialogHeader>
 
         {/* Guest Progress Notice */}
         {guestCount > 0 && (
-          <div className="rounded-lg border-2 border-black bg-[#FFD84D]/30 p-3 text-xs text-[#121212] shadow-[3px_3px_0px_#121212] flex items-center gap-2.5 dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#CCCCCC] dark:shadow-none fun:rounded-2xl fun:border-[#FED7AA] fun:bg-[#FFF8E7]">
-            <ShieldCheck className="h-4 w-4 text-black dark:text-[#FFFFFF] fun:text-[#FF9F43] shrink-0" />
+          <div className="rounded-xl border border-[#FFDDAE] bg-[#FFDDAE]/30 p-3 text-xs text-amber-950 shadow-xs flex items-center gap-2.5 dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#CCCCCC] dark:shadow-none fun:rounded-2xl fun:border-[#FED7AA] fun:bg-[#FFF8E7]">
+            <ShieldCheck className="h-4 w-4 text-amber-800 dark:text-[#FFFFFF] fun:text-[#FF9F43] shrink-0" />
             <div>
-              <span className="font-black text-black dark:text-[#FFFFFF] fun:text-[#243447]">
+              <span className="font-bold text-foreground dark:text-[#FFFFFF] fun:text-[#243447]">
                 {guestCount} {t.auth.guestFound}
               </span>
-              <p className="text-neutral-800 dark:text-[#888888] fun:text-[#64748B] text-[11px] mt-0.5 font-medium">
+              <p className="text-muted-foreground dark:text-[#888888] fun:text-[#64748B] text-[11px] mt-0.5 font-medium">
                 {guestCount} {t.auth.guestSyncDesc}
               </p>
             </div>
@@ -97,13 +97,13 @@ export function AuthModal() {
                 {t.auth.fullNameLabel}
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-[#888888] fun:text-[#5CC8FF]" />
+                <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground dark:text-[#888888] fun:text-[#5CC8FF]" />
                 <Input
                   type="text"
                   placeholder={t.auth.fullNameLabel}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-9 text-xs bg-white dark:bg-[#050505] dark:border-[#222222] dark:text-[#FFFFFF] fun:rounded-xl fun:border-[#E2E8F0]"
+                  className="pl-9 text-xs"
                   required
                 />
               </div>
@@ -115,13 +115,13 @@ export function AuthModal() {
               {t.auth.emailLabel}
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-[#888888] fun:text-[#5CC8FF]" />
+              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground dark:text-[#888888] fun:text-[#5CC8FF]" />
               <Input
                 type="email"
                 placeholder="nama@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-9 text-xs bg-white dark:bg-[#050505] dark:border-[#222222] dark:text-[#FFFFFF] fun:rounded-xl fun:border-[#E2E8F0]"
+                className="pl-9 text-xs"
                 required
               />
             </div>
@@ -132,19 +132,19 @@ export function AuthModal() {
               {t.auth.passwordLabel}
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-2.5 h-4 w-4 text-[#121212] dark:text-[#888888] fun:text-[#5CC8FF]" />
+              <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground dark:text-[#888888] fun:text-[#5CC8FF]" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-9 pr-9 text-xs bg-white dark:bg-[#050505] dark:border-[#222222] dark:text-[#FFFFFF] fun:rounded-xl fun:border-[#E2E8F0]"
+                className="pl-9 pr-9 text-xs"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2.5 text-[#121212] hover:text-black dark:text-[#888888] dark:hover:text-[#FFFFFF]"
+                className="absolute right-3 top-2.5 text-muted-foreground hover:text-foreground dark:text-[#888888] dark:hover:text-[#FFFFFF]"
               >
                 {showPassword ? (
                   <EyeOff className="h-4 w-4" />
