@@ -40,7 +40,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="dark">
+    <html lang="id" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var raw = localStorage.getItem('belajarinaja_preferences');
+                  var theme = 'dark';
+                  if (raw) {
+                    var parsed = JSON.parse(raw);
+                    if (parsed && parsed.state && parsed.state.theme) {
+                      theme = parsed.state.theme;
+                    }
+                  }
+                  var root = document.documentElement;
+                  root.classList.remove('light', 'dark', 'fun');
+                  root.classList.add(theme);
+                  root.setAttribute('data-theme', theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${sansFont.variable} ${monoFont.variable} font-sans antialiased min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-white`}
       >

@@ -11,20 +11,47 @@ interface ThemeLanguageState {
   setLanguage: (language: Language) => void;
 }
 
+const getStoredTheme = (): ThemeMode => {
+  if (typeof window === "undefined") return "dark";
+  try {
+    const raw = localStorage.getItem("belajarinaja_preferences");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed?.state?.theme) return parsed.state.theme;
+    }
+  } catch {}
+  return "dark";
+};
+
+const getStoredLanguage = (): Language => {
+  if (typeof window === "undefined") return "id";
+  try {
+    const raw = localStorage.getItem("belajarinaja_preferences");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed?.state?.language) return parsed.state.language;
+    }
+  } catch {}
+  return "id";
+};
+
+const applyThemeToDocument = (theme: ThemeMode) => {
+  if (typeof document === "undefined") return;
+  const root = document.documentElement;
+  root.classList.remove("light", "dark", "fun");
+  root.classList.add(theme);
+  root.setAttribute("data-theme", theme);
+};
+
 export const useThemeLanguageStore = create<ThemeLanguageState>()(
   persist(
     (set) => ({
-      theme: "dark",
-      language: "id",
+      theme: getStoredTheme(),
+      language: getStoredLanguage(),
 
       setTheme: (theme) => {
         set({ theme });
-        if (typeof document !== "undefined") {
-          const root = document.documentElement;
-          root.classList.remove("light", "dark", "fun");
-          root.classList.add(theme);
-          root.setAttribute("data-theme", theme);
-        }
+        applyThemeToDocument(theme);
       },
 
       setLanguage: (language) => set({ language }),
@@ -32,11 +59,8 @@ export const useThemeLanguageStore = create<ThemeLanguageState>()(
     {
       name: "belajarinaja_preferences",
       onRehydrateStorage: () => (state) => {
-        if (state && typeof document !== "undefined") {
-          const root = document.documentElement;
-          root.classList.remove("light", "dark", "fun");
-          root.classList.add(state.theme);
-          root.setAttribute("data-theme", state.theme);
+        if (state?.theme) {
+          applyThemeToDocument(state.theme);
         }
       },
     }

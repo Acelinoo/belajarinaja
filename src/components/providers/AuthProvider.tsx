@@ -3,6 +3,22 @@
 import React, { useEffect } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useUserAuthStore } from "@/store/useUserAuthStore";
+import { useThemeLanguageStore } from "@/store/useThemeLanguageStore";
+
+function ThemeSync() {
+  const { theme } = useThemeLanguageStore();
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const root = document.documentElement;
+      root.classList.remove("light", "dark", "fun");
+      root.classList.add(theme);
+      root.setAttribute("data-theme", theme);
+    }
+  }, [theme]);
+
+  return null;
+}
 
 function SessionSync() {
   const { data: session, status } = useSession();
@@ -48,6 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <SessionSync />
+      <ThemeSync />
       {children}
     </SessionProvider>
   );
