@@ -20,7 +20,7 @@ export function Footer() {
               <img
                 src="/logo.png"
                 alt="Logo BelajarinAja"
-                className="h-7 w-7 rounded-lg object-cover shadow-xs ring-1 ring-border"
+                className="h-8 w-8 rounded-lg object-contain dark:invert"
               />
               <span className="font-bold text-sm text-foreground tracking-tight">
                 Belajarin<span className="text-primary font-black">Aja</span>

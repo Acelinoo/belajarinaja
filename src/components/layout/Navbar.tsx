@@ -84,7 +84,7 @@ export function Navbar() {
           <img
             src="/logo.png"
             alt="Logo BelajarinAja"
-            className="h-8 w-8 rounded-lg object-cover shadow-xs ring-1 ring-border transition-transform group-hover:scale-105"
+            className="h-8 w-8 rounded-lg object-contain dark:invert transition-transform group-hover:scale-105"
           />
           <div className="flex flex-col">
             <span className="font-bold text-sm tracking-tight text-foreground flex items-center gap-0.5">

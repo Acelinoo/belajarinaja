@@ -153,7 +153,7 @@ export default function CertificatePage() {
                   <img
                     src="/logo.png"
                     alt="Logo BelajarinAja"
-                    className="h-8 w-8 rounded-lg object-cover shadow-xs ring-1 ring-border"
+                    className="h-8 w-8 rounded-lg object-contain dark:invert"
                   />
                   <span className="font-bold text-sm text-foreground">
                     Belajarin<span className="text-primary font-black">Aja</span>

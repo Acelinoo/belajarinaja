@@ -32,7 +32,7 @@ export default function AuthLoginPage() {
               <img
                 src="/logo.png"
                 alt="Logo BelajarinAja"
-                className="w-20 h-20 rounded-2xl object-cover shadow-lg ring-1 ring-border transition-transform group-hover:scale-105"
+                className="w-24 h-24 rounded-2xl object-contain dark:invert transition-transform group-hover:scale-105"
               />
             </div>
 
