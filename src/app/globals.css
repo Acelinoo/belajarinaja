@@ -4,153 +4,157 @@
 
 @layer base {
   /* =========================================================================
-     ATMOSPHERE 1: LIGHT (Pastel Sky & Ice Editorial Learning)
-     ColorHunt: #C6E7FF (Sky), #D4F6FF (Ice), #FBFBFB (Canvas), #FFDDAE (Peach)
+     ATMOSPHERE 1: LIGHT (Oceanic Editorial Learning)
+     ColorHunt: #FAFAFA (Canvas), #E8F1F5 (Ice), #005691 (Ocean), #004A7C (Navy)
      ========================================================================= */
   :root,
   .light,
   [data-theme="light"] {
-    --background: 0 0% 98.4%; /* #FBFBFB - Clean soft canvas from ColorHunt */
-    --foreground: 222 47% 11%; /* #0F172A - Deep slate readable ink */
+    --background: 0 0% 98%; /* #FAFAFA - Clean crisp canvas */
+    --foreground: 204 100% 12%; /* #00253E - Deep oceanic ink */
 
-    --card: 0 0% 100%; /* #FFFFFF - Pure white card surface */
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%; /* #FFFFFF - Pure white surface */
+    --card-foreground: 204 100% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 204 100% 12%;
 
-    --primary: 205 100% 89%; /* #C6E7FF - Pastel Sky Blue */
-    --primary-foreground: 222 47% 11%; /* #0F172A - High contrast deep slate ink */
+    --primary: 204 100% 28%; /* #005691 - Deep Oceanic Blue */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF - High contrast */
 
-    --secondary: 192 100% 92%; /* #D4F6FF - Ice Blue secondary surface */
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 198 35% 94%; /* #E8F1F5 - Soft Ice Blue */
+    --secondary-foreground: 204 100% 24%; /* #004A7C */
 
-    --muted: 192 80% 95%; /* #EAF8FD - Soft muted Ice Blue */
-    --muted-foreground: 215 16% 47%; /* #64748B */
+    --muted: 198 35% 94%; /* #E8F1F5 */
+    --muted-foreground: 204 25% 45%; /* #55758B */
 
-    --accent: 35 100% 84%; /* #FFDDAE - Pastel Warm Peach */
-    --accent-foreground: 222 47% 11%;
+    --accent: 204 100% 24%; /* #004A7C - Midnight Deep Blue */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%; /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 205 50% 88%; /* #D0E7FA - Soft Sky Blue border */
-    --input: 205 50% 88%;
-    --ring: 205 100% 80%;
+    --border: 198 30% 86%; /* #D1E1EB */
+    --input: 198 30% 86%;
+    --ring: 204 100% 28%;
 
     --radius: 0.5rem;
 
     /* Semantic Tokens */
-    --color-bg-base: #fbfbfb;
+    --color-bg-base: #fafafa;
     --color-bg-surface: #ffffff;
-    --color-bg-elevated: #d4f6ff;
-    --color-bg-subtle: #d4f6ff;
-    --color-border-subtle: #c6e7ff;
-    --color-border-strong: #93c5fd;
-    --color-text-primary: #0f172a;
-    --color-text-secondary: #475569;
-    --color-text-tertiary: #94a3b8;
-    --color-brand-primary: #c6e7ff;
-    --color-brand-secondary: #d4f6ff;
-    --color-brand-accent: #ffddae;
+    --color-bg-elevated: #e8f1f5;
+    --color-bg-subtle: #e8f1f5;
+    --color-border-subtle: #d1e1eb;
+    --color-border-strong: #005691;
+    --color-text-primary: #00253e;
+    --color-text-secondary: #4a677d;
+    --color-text-tertiary: #7d96a9;
+    --color-brand-primary: #005691;
+    --color-brand-secondary: #e8f1f5;
+    --color-brand-accent: #004a7c;
   }
 
   /* =========================================================================
-     ATMOSPHERE 2: DARK (Calm, Premium, Focused Slate Midnight)
+     ATMOSPHERE 2: DARK (Velvet Night - Focused & Dominant Dark)
+     ColorHunt: #2A2438 (Canvas), #352F44 (Surface), #5C5470 (Border), #DBD8E3 (Lavender Text)
      ========================================================================= */
   .dark,
   [data-theme="dark"] {
-    --background: 222 47% 7%; /* #0B0F17 - Deep focused midnight canvas */
-    --foreground: 210 40% 98%; /* #F8FAFC - Crisp readable white */
+    --background: 260 21% 18%; /* #2A2438 - Dominant Dark Canvas */
+    --foreground: 256 16% 87%; /* #DBD8E3 - Soft Silvery Lavender */
 
-    --card: 217 33% 12%; /* #131B2A - Deep slate card surface */
-    --card-foreground: 210 40% 98%;
+    --card: 257 18% 23%; /* #352F44 - Dark Charcoal Violet card surface */
+    --card-foreground: 256 16% 87%; /* #DBD8E3 */
 
-    --popover: 217 33% 15%; /* #1A2438 */
-    --popover-foreground: 210 40% 98%;
+    --popover: 257 18% 26%; /* #3E374F */
+    --popover-foreground: 256 16% 87%;
 
-    --primary: 199 89% 48%; /* #0EA5E9 - Muted focused cyan-sky */
-    --primary-foreground: 222 47% 7%;
+    --primary: 256 16% 87%; /* #DBD8E3 - Silvery Lavender Accent */
+    --primary-foreground: 260 21% 15%; /* #241E30 */
 
-    --secondary: 217 33% 17%; /* #1E293B */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 257 14% 30%; /* #463E56 */
+    --secondary-foreground: 256 16% 87%;
 
-    --muted: 217 33% 15%;
-    --muted-foreground: 215 20% 65%; /* #94A3B8 */
+    --muted: 257 14% 28%; /* #413A50 */
+    --muted-foreground: 257 14% 65%; /* #A69FB8 */
 
-    --accent: 217 33% 20%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 257 14% 38%; /* #5C5470 - Muted Slate Violet */
+    --accent-foreground: 256 16% 87%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 38%;
+    --destructive-foreground: 256 16% 87%;
 
-    --border: 217 33% 20%; /* #1E293B - Crisp slate border */
-    --input: 217 33% 20%;
-    --ring: 199 89% 48%;
+    --border: 257 14% 35%; /* #554D67 - Subtle Violet Border */
+    --input: 257 14% 35%;
+    --ring: 256 16% 87%;
 
     --radius: 0.5rem;
 
     /* Semantic Tokens */
-    --color-bg-base: #0b0f17;
-    --color-bg-surface: #131b2a;
-    --color-bg-elevated: #1a2438;
-    --color-bg-subtle: #1e293b;
-    --color-border-subtle: #1e293b;
-    --color-border-strong: #334155;
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #94a3b8;
-    --color-text-tertiary: #64748b;
-    --color-brand-primary: #38bdf8;
-    --color-brand-accent: #10b981;
+    --color-bg-base: #2a2438;
+    --color-bg-surface: #352f44;
+    --color-bg-elevated: #423b55;
+    --color-bg-subtle: #3d364e;
+    --color-border-subtle: #5c5470;
+    --color-border-strong: #7b7194;
+    --color-text-primary: #dbd8e3;
+    --color-text-secondary: #a69fb8;
+    --color-text-tertiary: #756d88;
+    --color-brand-primary: #dbd8e3;
+    --color-brand-secondary: #5c5470;
+    --color-brand-accent: #8e84a8;
   }
 
   /* =========================================================================
-     ATMOSPHERE 3: FUN (Warm, Playful, Encouraging, Curious Learning World)
+     ATMOSPHERE 3: FUN (Tropical Sun & Azure Playful World)
+     ColorHunt: #218DAE (Teal), #2BBBD7 (Cyan), #FCE59A (Vanilla), #FFD758 (Sun Yellow)
      ========================================================================= */
   .fun,
   [data-theme="fun"] {
-    --background: 48 100% 98%; /* #FFFDF7 - Warm vanilla canvas */
-    --foreground: 215 28% 17%; /* #1E293B - Friendly charcoal */
+    --background: 46 100% 97%; /* #FFFDF5 - Soft warm vanilla canvas */
+    --foreground: 194 68% 18%; /* #103544 - Friendly deep oceanic charcoal */
 
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 215 28% 17%;
+    --card-foreground: 194 68% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
+    --popover-foreground: 194 68% 18%;
 
-    --primary: 38 92% 50%; /* #F59E0B - Warm energetic amber */
-    --primary-foreground: 215 28% 17%;
+    --primary: 194 68% 41%; /* #218DAE - Teal / Deep Sky Blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 48 100% 94%; /* #FFF8E7 - Warm buttery container */
-    --secondary-foreground: 215 28% 17%;
+    --secondary: 46 94% 80%; /* #FCE59A - Warm Butter Container */
+    --secondary-foreground: 194 68% 18%;
 
-    --muted: 48 100% 94%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 46 94% 90%; /* #FEF6D9 */
+    --muted-foreground: 194 30% 45%; /* #507788 */
 
-    --accent: 199 89% 48%; /* #0EA5E9 */
-    --accent-foreground: 0 0% 100%;
+    --accent: 46 100% 67%; /* #FFD758 - Golden Sunny Yellow */
+    --accent-foreground: 194 68% 18%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 32 98% 83%; /* #FED7AA - Warm peach-amber outline */
-    --input: 32 98% 83%;
-    --ring: 38 92% 50%;
+    --border: 46 80% 75%; /* #FBE085 - Warm sunny border */
+    --input: 46 80% 75%;
+    --ring: 194 68% 41%;
 
     --radius: 0.75rem;
 
     /* Semantic Tokens */
-    --color-bg-base: #fffdf7;
+    --color-bg-base: #fffdf5;
     --color-bg-surface: #ffffff;
-    --color-bg-elevated: #fff8e7;
-    --color-bg-subtle: #fff3d6;
-    --color-border-subtle: #fed7aa;
-    --color-border-strong: #f59e0b;
-    --color-text-primary: #1e293b;
-    --color-text-secondary: #475569;
-    --color-text-tertiary: #94a3b8;
-    --color-brand-primary: #f59e0b;
-    --color-brand-accent: #0ea5e9;
+    --color-bg-elevated: #fce59a;
+    --color-bg-subtle: #fef6d9;
+    --color-border-subtle: #fce59a;
+    --color-border-strong: #ffd758;
+    --color-text-primary: #103544;
+    --color-text-secondary: #395f70;
+    --color-text-tertiary: #6b8a99;
+    --color-brand-primary: #218dae;
+    --color-brand-secondary: #2bbbd7;
+    --color-brand-accent: #ffd758;
   }
 }
 

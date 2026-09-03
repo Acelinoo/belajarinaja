@@ -20,46 +20,39 @@ BelajarinAja dirancang untuk memberikan pengalaman belajar pemrograman web yang 
 
 ## 2. Color System & Design Tokens
 
-### 2.1 Dark Mode Surface Hierarchy (Default)
+### 2.1 Dark Mode Surface Hierarchy (ColorHunt: #DBD8E3, #5C5470, #352F44, #2A2438)
 
 | Token Name | HEX | HSL | Semantic Role / Usage |
 | :--- | :--- | :--- | :--- |
-| `--color-bg-base` | `#090A0C` | `220° 14% 4%` | Canvas & viewport background utama (Obsidian Dark) |
-| `--color-bg-surface` | `#121318` | `228° 14% 8%` | Card background, container roadmap, table body |
-| `--color-bg-elevated` | `#181A22` | `227° 17% 11%` | Modal dialog, slide-over panel, popover, dropdown |
-| `--color-bg-sidebar` | `#0E0F12` | `225° 13% 6%` | Persistent left sidebar (1 shade darker than base) |
-| `--color-bg-sunken` | `#060708` | `210° 14% 3%` | Code block containers, terminal outputs, exercise sandbox |
-| `--color-border-subtle` | `#222634` | `226° 21% 17%` | Micro-borders pada cards, separators, inputs |
-| `--color-border-strong` | `#32384E` | `227° 21% 25%` | Active states, hover border on interactive cards |
-| `--color-border-focus` | `#6366F1` | `239° 84% 67%` | Focus ring outline, active keyboard navigation |
+| `--color-bg-base` | `#2A2438` | `260° 21% 18%` | Canvas & viewport background utama (Dominant Dark) |
+| `--color-bg-surface` | `#352F44` | `257° 18% 23%` | Card background, container roadmap, table body |
+| `--color-bg-elevated` | `#423B55` | `257° 18% 29%` | Modal dialog, slide-over panel, popover, dropdown |
+| `--color-bg-sidebar` | `#2A2438` | `260° 21% 18%` | Persistent left sidebar |
+| `--color-bg-sunken` | `#1F1A2A` | `260° 23% 13%` | Code block containers, terminal outputs, exercise sandbox |
+| `--color-border-subtle` | `#5C5470` | `257° 14% 38%` | Micro-borders pada cards, separators, inputs |
+| `--color-border-strong` | `#7B7194` | `257° 14% 51%` | Active states, hover border on interactive cards |
+| `--color-border-focus` | `#DBD8E3` | `256° 16% 87%` | Focus ring outline, active keyboard navigation |
 
-### 2.2 Light Mode Surface Hierarchy (ColorHunt Palette: #C6E7FF, #D4F6FF, #FBFBFB, #FFDDAE)
+### 2.2 Light Mode Surface Hierarchy (ColorHunt: #FAFAFA, #E8F1F5, #005691, #004A7C)
 
 | Token Name | HEX | HSL | Semantic Role / Usage |
 | :--- | :--- | :--- | :--- |
-| `--color-bg-base` | `#FBFBFB` | `0° 0% 98.4%` | Canvas & viewport background utama (Pure Chalk Canvas) |
+| `--color-bg-base` | `#FAFAFA` | `0° 0% 98%` | Canvas & viewport background utama (Pure Canvas) |
 | `--color-bg-surface` | `#FFFFFF` | `0° 0% 100%` | Card background, lesson reader canvas, tables |
-| `--color-bg-elevated` | `#D4F6FF` | `192° 100% 92%` | Modal dialog, elevated panels, quick chips (Ice Blue) |
-| `--color-bg-sidebar` | `#FBFBFB` | `0° 0% 98.4%` | Left navigation sidebar |
-| `--color-bg-sunken` | `#D4F6FF` | `192° 100% 92%` | Code blocks, subtle exercise containers |
-| `--color-border-subtle` | `#C6E7FF` | `205° 50% 88%` | Card boundaries, dividers (Soft Sky Blue) |
-| `--color-border-strong` | `#93C5FD` | `213° 94% 78%` | Hover borders, active inputs |
-| `--color-border-focus` | `#C6E7FF` | `205° 100% 80%` | Focus ring outline |
+| `--color-bg-elevated` | `#E8F1F5` | `198° 35% 94%` | Modal dialog, elevated panels, quick chips (Ice Blue) |
+| `--color-bg-sidebar` | `#FAFAFA` | `0° 0% 98%` | Left navigation sidebar |
+| `--color-bg-sunken` | `#E8F1F5` | `198° 35% 94%` | Code blocks, subtle exercise containers |
+| `--color-border-subtle` | `#D1E1EB` | `198° 30% 86%` | Card boundaries, dividers (Ice Mist border) |
+| `--color-border-strong` | `#005691` | `204° 100% 28%` | Hover borders, active inputs (Deep Ocean Blue) |
+| `--color-border-focus` | `#005691` | `204° 100% 28%` | Focus ring outline |
 
 ### 2.3 Brand Accents & Semantic Colors
 
-| Token Name | Dark HEX | Light HEX | Role & Description |
-| :--- | :--- | :--- | :--- |
-| `--color-brand-primary` | `#38BDF8` | `#C6E7FF` | Primary CTA, active navigation bar, interactive tabs |
-| `--color-brand-secondary`| `#1E293B` | `#D4F6FF` | Secondary container, badge background, subtle pill |
-| `--color-brand-accent` | `#F59E0B` | `#FFDDAE` | Warm Peach accent untuk streak badge, warning, capstone highlight |
-| `--color-success` | `#10B981` | `#059669` | Quiz passed, module completed, verification badge |
-| `--color-success-bg` | `rgba(16, 185, 129, 0.12)` | `rgba(5, 150, 105, 0.10)` | Success pill tag background |
-| `--color-warning` | `#F59E0B` | `#D97706` | In-progress tasks, prerequisite warning alerts |
-| `--color-warning-bg` | `rgba(245, 158, 11, 0.12)` | `#FFDDAE` | Warning notification banner / Peach highlight |
-| `--color-danger` | `#EF4444` | `#DC2626` | Quiz failed, destructive action, error states |
-| `--color-danger-bg` | `rgba(239, 68, 68, 0.12)` | `rgba(220, 38, 38, 0.10)` | Error validation box |
-| `--color-info` | `#06B6D4` | `#0284C7` | Sky/Cyan accent for lesson tips & guest prompt notices |
+| Token Name | Dark HEX | Light HEX | Fun HEX | Role & Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `--color-brand-primary` | `#DBD8E3` | `#005691` | `#218DAE` | Primary CTA, active navigation bar, interactive tabs |
+| `--color-brand-secondary`| `#5C5470` | `#E8F1F5` | `#2BBBD7` | Secondary container, badge background, subtle pill |
+| `--color-brand-accent` | `#8E84A8` | `#004A7C` | `#FFD758` | Warm/Vibrant accent untuk streak badge, capstone highlight |
 
 ### 2.4 Typography Color Tokens
 

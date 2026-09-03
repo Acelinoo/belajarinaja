@@ -44,42 +44,29 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        // ColorHunt Light Mode Palette Tokens (#C6E7FF, #D4F6FF, #FBFBFB, #FFDDAE)
+        // 3 ColorHunt Palette Themes
         palette: {
-          sky: "#C6E7FF",
-          ice: "#D4F6FF",
-          canvas: "#FBFBFB",
-          peach: "#FFDDAE",
-          ink: "#0F172A",
-          border: "#D0E7FA",
-        },
-        // Obsidian Command Center Dark Mode Tokens (Strictly Monochrome Grayscale)
-        obsidian: {
-          base: "#050505",
-          surface: "#0A0A0A",
-          elevated: "#111111",
-          highlight: "#171717",
-          sidebar: "#0A0A0A",
-          sunken: "#050505",
-          border: "#222222",
-          borderStrong: "#2A2A2A",
-          text: "#FAFAFA",
-          textMuted: "#A1A1AA",
-          textDim: "#71717A",
-        },
-        // Playful Learning World Fun Mode Tokens (Warm Sunny - No Purple)
-        fun: {
-          bg: "#FFF8E7",
-          surface: "#FFFFFF",
-          ink: "#243447",
-          sky: "#5CC8FF",
-          mint: "#45E0C0",
-          sun: "#FFD84D",
-          orange: "#FF9F43",
-          coral: "#FF6B6B",
-          green: "#5EDC81",
-          border: "#E2E8F0",
-          borderWarm: "#FED7AA",
+          // Light Mode (#FAFAFA, #E8F1F5, #005691, #004A7C)
+          light: {
+            canvas: "#FAFAFA",
+            ice: "#E8F1F5",
+            ocean: "#005691",
+            navy: "#004A7C",
+          },
+          // Dark Mode (#DBD8E3, #5C5470, #352F44, #2A2438)
+          dark: {
+            base: "#2A2438",
+            surface: "#352F44",
+            border: "#5C5470",
+            lavender: "#DBD8E3",
+          },
+          // Fun Mode (#218DAE, #2BBBD7, #FCE59A, #FFD758)
+          fun: {
+            teal: "#218DAE",
+            cyan: "#2BBBD7",
+            vanilla: "#FCE59A",
+            sun: "#FFD758",
+          },
         },
       },
       boxShadow: {

@@ -8,17 +8,17 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-border bg-primary text-primary-foreground font-bold dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-border bg-primary text-primary-foreground font-semibold shadow-xs",
         secondary:
-          "border border-border bg-secondary text-secondary-foreground font-semibold dark:border dark:border-[#222222] dark:bg-[#171717] dark:text-[#CCCCCC] dark:shadow-none dark:font-mono",
+          "border border-border bg-secondary text-secondary-foreground font-semibold shadow-xs",
         destructive:
-          "border border-destructive/20 bg-destructive/10 text-destructive font-semibold dark:border dark:border-[#444444] dark:bg-[#222222] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-destructive/30 bg-destructive/15 text-destructive font-semibold shadow-xs",
         outline:
-          "border border-border bg-card text-foreground font-semibold dark:border dark:border-[#222222] dark:bg-[#050505] dark:text-[#888888] dark:shadow-none dark:font-mono",
+          "border border-border bg-card text-foreground font-semibold shadow-xs",
         success:
-          "border border-emerald-500/30 bg-emerald-50 text-emerald-800 font-bold dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-emerald-500/30 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-semibold shadow-xs",
         warning:
-          "border border-[#FFDDAE] bg-[#FFDDAE]/40 text-amber-900 font-bold dark:border dark:border-[#333333] dark:bg-[#111111] dark:text-[#FFFFFF] dark:shadow-none dark:font-mono",
+          "border border-amber-500/30 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-semibold shadow-xs",
       },
     },
     defaultVariants: {
