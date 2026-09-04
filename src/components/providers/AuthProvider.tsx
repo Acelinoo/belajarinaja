@@ -21,6 +21,26 @@ function ThemeSync() {
   return null;
 }
 
+function PageViewTracker() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const lastVisitTime = sessionStorage.getItem("belajarinaja_last_visit_time");
+      const now = Date.now();
+      // Catat kunjungan jika sesi baru atau interval lebih dari 30 detik
+      if (!lastVisitTime || now - Number(lastVisitTime) > 30000) {
+        sessionStorage.setItem("belajarinaja_last_visit_time", String(now));
+        fetch("/api/v1/stats/views", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }).catch((err) => console.warn("[PageViewTracker] error:", err));
+      }
+    } catch (e) {}
+  }, []);
+
+  return null;
+}
+
 function SessionSync() {
   const { data: session, status } = useSession();
   const { setUser, user, logout } = useUserAuthStore();
@@ -118,6 +138,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     <SessionProvider>
       <SessionSync />
       <ThemeSync />
+      <PageViewTracker />
       {children}
     </SessionProvider>
   );

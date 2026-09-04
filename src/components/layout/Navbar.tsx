@@ -17,6 +17,7 @@ import {
   X,
   ChevronDown,
   Code2,
+  Eye,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { ThemeLanguageSwitcher } from "@/components/common/ThemeLanguageSwitcher";
@@ -41,6 +42,35 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Akses khusus Owner untuk melihat total kunjungan website
+  const isOwner = user?.email?.toLowerCase().trim() === "marchelinokurniawan321@gmail.com";
+  const [viewsCount, setViewsCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!isOwner) return;
+
+    const fetchViews = () => {
+      fetch(`/api/v1/stats/views?_t=${Date.now()}`, { cache: "no-store" })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success && typeof data.views === "number") {
+            setViewsCount(data.views);
+          }
+        })
+        .catch((err) => console.warn("[Navbar] Fetch views warning:", err));
+    };
+
+    fetchViews();
+    // Auto-refresh setiap 30 detik atau saat jendela browser difokuskan
+    const interval = setInterval(fetchViews, 30000);
+    window.addEventListener("focus", fetchViews);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("focus", fetchViews);
+    };
+  }, [isOwner]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -137,6 +167,22 @@ export function Navbar() {
           {/* Atmosphere & Language Switcher */}
           <ThemeLanguageSwitcher />
 
+          {/* Owner Views Badge (Hanya tampil untuk akun Owner: marchelinokurniawan321@gmail.com) */}
+          {isOwner && (
+            <div
+              className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-xl bg-primary/10 hover:bg-primary/15 border border-primary/25 text-primary text-xs font-semibold shadow-xs transition-colors select-none cursor-default"
+              title="Total Kunjungan Website (Eksklusif hanya terlihat oleh Owner)"
+            >
+              <Eye className="h-3.5 w-3.5 text-primary shrink-0 animate-pulse" />
+              <span className="font-mono font-bold tracking-tight text-[11px] sm:text-xs">
+                {viewsCount !== null ? viewsCount.toLocaleString("id-ID") : "..."}
+              </span>
+              <span className="hidden xl:inline text-[9px] text-primary/80 font-bold uppercase tracking-wider">
+                views
+              </span>
+            </div>
+          )}
+
           {/* User Auth Profile Trigger / Dropdown */}
           {isAuthenticated ? (
             <div className="relative" ref={dropdownRef}>
@@ -174,6 +220,19 @@ export function Navbar() {
                       <p className="text-[11px] text-muted-foreground font-mono truncate">@{user?.username || "developer"}</p>
                     </div>
                   </div>
+
+                  {/* Owner View Stat Inside Dropdown */}
+                  {isOwner && (
+                    <div className="mx-1 my-1 px-2.5 py-1.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-[11px] font-semibold flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <Eye className="h-3.5 w-3.5 animate-pulse" />
+                        <span>Total Kunjungan</span>
+                      </span>
+                      <span className="font-mono font-bold">
+                        {viewsCount !== null ? viewsCount.toLocaleString("id-ID") : "..."}
+                      </span>
+                    </div>
+                  )}
 
                   <Link
                     href="/dashboard"
@@ -242,6 +301,19 @@ export function Navbar() {
                 <p className="font-bold text-xs text-foreground truncate">{user.name}</p>
                 <p className="text-[11px] font-mono text-muted-foreground truncate">@{user.username || "developer"}</p>
               </div>
+            </div>
+          )}
+
+          {/* Owner Views Badge in Mobile Menu */}
+          {isOwner && (
+            <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/25 text-primary text-xs font-semibold flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <Eye className="h-4 w-4 text-primary animate-pulse" />
+                <span className="font-medium">Total Kunjungan Web:</span>
+              </span>
+              <span className="font-mono font-bold text-xs bg-primary/15 px-2.5 py-0.5 rounded-lg border border-primary/30">
+                {viewsCount !== null ? viewsCount.toLocaleString("id-ID") : "..."} views
+              </span>
             </div>
           )}
 

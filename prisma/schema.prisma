@@ -134,3 +134,11 @@ model Certificate {
 
   @@map("certificates")
 }
+
+model SiteStat {
+  key       String   @id
+  value     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@map("site_stats")
+}
