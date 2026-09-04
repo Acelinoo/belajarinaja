@@ -39,7 +39,22 @@ export default function DashboardPage() {
   const { theme, language } = useThemeLanguageStore();
   const t = getTranslations(language);
   const { user, isAuthenticated } = useAuthStore();
-  const { completedLessons, bookmarkedLessons } = useCurriculumProgressStore();
+  const { completedLessons, bookmarkedLessons, loadUserProgress } = useCurriculumProgressStore();
+
+  React.useEffect(() => {
+    if (user?.email) {
+      loadUserProgress(user.email);
+    }
+
+    const handleFocus = () => {
+      if (user?.email) {
+        loadUserProgress(user.email);
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+    return () => window.removeEventListener("focus", handleFocus);
+  }, [user?.email, loadUserProgress]);
 
   // Flatten all lessons with stage metadata
   const allLessons = CURRICULUM_STAGES.flatMap((s) =>

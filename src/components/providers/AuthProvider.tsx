@@ -72,7 +72,10 @@ function SessionSync() {
       setUser(activeUser);
 
       // 2. Sinkronkan dengan data profil server jika ada
-      fetch(`/api/v1/auth/profile?email=${encodeURIComponent(email)}`)
+      fetch(`/api/v1/auth/profile?email=${encodeURIComponent(email)}&_t=${Date.now()}`, {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache" },
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.success && data.profile) {

@@ -3,6 +3,9 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -65,11 +68,18 @@ export async function GET(request: NextRequest) {
 
     const bookmarkedLessons = user.bookmarks.map((b) => b.lessonId);
 
-    return NextResponse.json({
-      success: true,
-      completedLessons,
-      bookmarkedLessons,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        completedLessons,
+        bookmarkedLessons,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        },
+      }
+    );
   } catch (error: any) {
     console.error("[Progress API] GET error:", error);
     return NextResponse.json(

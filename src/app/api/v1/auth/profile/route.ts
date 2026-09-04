@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { claimUsername, cleanAndValidateUsername } from "@/lib/userRegistry";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -23,20 +26,27 @@ export async function GET(request: Request) {
       });
 
       if (user) {
-        return NextResponse.json({
-          success: true,
-          profile: {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            username: user.username || email.split("@")[0].replace(/[^a-z0-9_]/g, ""),
-            avatarUrl: user.avatarUrl || user.image || `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
-            bio: (user as any).bio || "Web Development Enthusiast di BelajarinAja",
-            dailyGoalMinutes: (user as any).dailyGoalMinutes || 30,
-            role: user.role,
-            createdAt: user.createdAt.toISOString(),
+        return NextResponse.json(
+          {
+            success: true,
+            profile: {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              username: user.username || email.split("@")[0].replace(/[^a-z0-9_]/g, ""),
+              avatarUrl: user.avatarUrl || user.image || `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
+              bio: (user as any).bio || "Web Development Enthusiast di BelajarinAja",
+              dailyGoalMinutes: (user as any).dailyGoalMinutes || 30,
+              role: user.role,
+              createdAt: user.createdAt.toISOString(),
+            },
           },
-        });
+          {
+            headers: {
+              "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+            },
+          }
+        );
       }
     } catch (dbErr) {
       console.warn("[Profile API] Prisma query warning:", dbErr);

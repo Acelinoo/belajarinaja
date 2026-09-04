@@ -74,7 +74,10 @@ export const useGuestProgressStore = create<GuestProgressState>()(
 
         // 2. Sinkronkan dengan Cloud Database jika ada email pengguna
         if (userKey.includes("@")) {
-          fetch(`/api/v1/progress?email=${encodeURIComponent(userKey)}`)
+          fetch(`/api/v1/progress?email=${encodeURIComponent(userKey)}&_t=${Date.now()}`, {
+            cache: "no-store",
+            headers: { "Cache-Control": "no-cache" },
+          })
             .then((res) => res.json())
             .then((data) => {
               if (data.success && data.completedLessons) {
