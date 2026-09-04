@@ -29,16 +29,18 @@ model User {
   passwordHash String?
   name         String
   username     String?        @unique
-  avatarUrl    String?
-  image        String?
-  role         Role           @default(STUDENT)
-  provider     String?
-  providerId   String?
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  progress     UserProgress[]
-  bookmarks    Bookmark[]
-  certificates Certificate[]
+  avatarUrl        String?
+  image            String?
+  bio              String?
+  dailyGoalMinutes Int            @default(30)
+  role             Role           @default(STUDENT)
+  provider         String?
+  providerId       String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  progress         UserProgress[]
+  bookmarks        Bookmark[]
+  certificates     Certificate[]
 
   @@map("users")
 }

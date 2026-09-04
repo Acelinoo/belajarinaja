@@ -76,11 +76,23 @@ function SessionSync() {
         .then((res) => res.json())
         .then((data) => {
           if (data.success && data.profile) {
-            setUser({
+            const mergedUser = {
               ...activeUser,
               username: data.profile.username || activeUser.username,
               name: data.profile.name || activeUser.name,
-            });
+              bio: data.profile.bio || activeUser.bio,
+              avatarUrl: data.profile.avatarUrl || activeUser.avatarUrl,
+              dailyGoalMinutes: data.profile.dailyGoalMinutes || activeUser.dailyGoalMinutes,
+            };
+            setUser(mergedUser);
+            if (typeof window !== "undefined") {
+              try {
+                localStorage.setItem(
+                  `belajarinaja_saved_profile_${email}`,
+                  JSON.stringify(mergedUser)
+                );
+              } catch (e) {}
+            }
           }
         })
         .catch((err) => console.warn("[AuthProvider] Profile sync warning:", err));

@@ -52,22 +52,93 @@ export const useGuestProgressStore = create<GuestProgressState>()(
 
       loadUserProgress: (userKey: string) => {
         if (typeof window === "undefined" || !userKey) return;
+        
+        // 1. Baca cache lokal terlebih dahulu untuk render instan
+        let localCompleted: Record<string, GuestLessonProgress> = {};
+        let localBookmarks: string[] = [];
         try {
           const raw = localStorage.getItem(`belajarinaja_user_progress_${userKey}`);
           if (raw) {
             const parsed = JSON.parse(raw);
+            localCompleted = parsed.completedLessons || {};
+            localBookmarks = Array.isArray(parsed.bookmarkedLessons) ? parsed.bookmarkedLessons : [];
             set((state) => ({
-              completedLessons: {
-                ...(parsed.completedLessons || {}),
-              },
-              bookmarkedLessons: Array.isArray(parsed.bookmarkedLessons)
-                ? parsed.bookmarkedLessons
-                : state.bookmarkedLessons,
+              completedLessons: { ...localCompleted },
+              bookmarkedLessons: localBookmarks.length > 0 ? localBookmarks : state.bookmarkedLessons,
               currentLessonSlug: parsed.currentLessonSlug ?? state.currentLessonSlug,
             }));
           }
         } catch (e) {
-          console.error("Error loading user progress:", e);
+          console.error("Error loading user progress from localStorage:", e);
+        }
+
+        // 2. Sinkronkan dengan Cloud Database jika ada email pengguna
+        if (userKey.includes("@")) {
+          fetch(`/api/v1/progress?email=${encodeURIComponent(userKey)}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success && data.completedLessons) {
+                set((state) => {
+                  // Merge: gabungkan materi lokal dan cloud
+                  const mergedLessons: Record<string, GuestLessonProgress> = {
+                    ...state.completedLessons,
+                  };
+
+                  // Tambahkan data dari cloud
+                  for (const [id, cloudItem] of Object.entries(data.completedLessons as Record<string, GuestLessonProgress>)) {
+                    const localItem = mergedLessons[id];
+                    mergedLessons[id] = {
+                      ...localItem,
+                      ...cloudItem,
+                      completed: cloudItem.completed || localItem?.completed || false,
+                      passed: cloudItem.passed || localItem?.passed || false,
+                      score: Math.max(cloudItem.score ?? 0, localItem?.score ?? 0),
+                      quizScore: Math.max(cloudItem.quizScore ?? 0, localItem?.quizScore ?? 0),
+                    };
+                  }
+
+                  const mergedBookmarks = Array.from(
+                    new Set([...state.bookmarkedLessons, ...(data.bookmarkedLessons || [])])
+                  );
+
+                  // Update localStorage dengan data terbaru yang sudah digabung
+                  try {
+                    localStorage.setItem(
+                      `belajarinaja_user_progress_${userKey}`,
+                      JSON.stringify({
+                        completedLessons: mergedLessons,
+                        bookmarkedLessons: mergedBookmarks,
+                        currentLessonSlug: state.currentLessonSlug,
+                      })
+                    );
+                  } catch (e) {}
+
+                  // Periksa apakah ada materi lokal yang belum tersimpan di cloud (misal dikerjakan offline atau sebelum db aktif)
+                  const cloudLessonIds = Object.keys(data.completedLessons);
+                  const unuploadedLocalLessons = Object.values(mergedLessons).filter(
+                    (item) => item.completed && !cloudLessonIds.includes(item.lessonId)
+                  );
+
+                  if (unuploadedLocalLessons.length > 0) {
+                    fetch("/api/v1/progress/sync", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        email: userKey,
+                        guestProgress: unuploadedLocalLessons,
+                        bookmarkedLessons: mergedBookmarks,
+                      }),
+                    }).catch((syncErr) => console.warn("[ProgressSync] Auto-upload error:", syncErr));
+                  }
+
+                  return {
+                    completedLessons: mergedLessons,
+                    bookmarkedLessons: mergedBookmarks,
+                  };
+                });
+              }
+            })
+            .catch((err) => console.warn("[ProgressStore] Cloud sync fetch warning:", err));
         }
       },
 
@@ -123,6 +194,27 @@ export const useGuestProgressStore = create<GuestProgressState>()(
                   bookmarkedLessons: state.bookmarkedLessons,
                   currentLessonSlug: state.currentLessonSlug,
                 })
+              );
+            }
+
+            // Simpan langsung ke Cloud Database PostgreSQL
+            if (user.email && isNowPassed) {
+              fetch("/api/v1/progress", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  email: user.email,
+                  lessonId,
+                  lessonSlug,
+                  score,
+                  quizScore: score,
+                  correctAnswers,
+                  totalQuestions,
+                  passed: isNowPassed,
+                  completedAt: new Date().toISOString(),
+                }),
+              }).catch((err) =>
+                console.warn("[ProgressStore] Cloud DB persist error:", err)
               );
             }
           }

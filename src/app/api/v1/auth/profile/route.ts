@@ -1,34 +1,54 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { claimUsername, cleanAndValidateUsername, getUserProfileByEmail } from "@/lib/userRegistry";
+import { claimUsername, cleanAndValidateUsername } from "@/lib/userRegistry";
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const email = searchParams.get("email");
+    const emailParam = searchParams.get("email");
 
-    if (!email) {
+    if (!emailParam) {
       return NextResponse.json(
         { error: "Parameter email diperlukan" },
         { status: 400 }
       );
     }
 
-    const profile = await getUserProfileByEmail(email);
-    if (!profile) {
-      return NextResponse.json(
-        { success: false, message: "Profil belum terdaftar" },
-        { status: 404 }
-      );
+    const email = emailParam.toLowerCase().trim();
+
+    // 1. Cek langsung dari Cloud Database Prisma
+    try {
+      const user = await prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (user) {
+        return NextResponse.json({
+          success: true,
+          profile: {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            username: user.username || email.split("@")[0].replace(/[^a-z0-9_]/g, ""),
+            avatarUrl: user.avatarUrl || user.image || `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
+            bio: user.bio || "Web Development Enthusiast di BelajarinAja",
+            dailyGoalMinutes: user.dailyGoalMinutes || 30,
+            role: user.role,
+            createdAt: user.createdAt.toISOString(),
+          },
+        });
+      }
+    } catch (dbErr) {
+      console.warn("[Profile API] Prisma query warning:", dbErr);
     }
 
-    return NextResponse.json({
-      success: true,
-      profile,
-    });
-  } catch (error) {
     return NextResponse.json(
-      { error: "Gagal mengambil data profil" },
+      { success: false, message: "Profil belum terdaftar" },
+      { status: 404 }
+    );
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error?.message || "Gagal mengambil data profil" },
       { status: 500 }
     );
   }
@@ -37,19 +57,21 @@ export async function GET(request: Request) {
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { email, name, username, bio, dailyGoalMinutes, avatarUrl } = body;
+    const { email: rawEmail, name, username, bio, dailyGoalMinutes, avatarUrl } = body;
+
+    if (!rawEmail) {
+      return NextResponse.json(
+        { error: "Alamat email diperlukan untuk memperbarui profil" },
+        { status: 400 }
+      );
+    }
+
+    const email = rawEmail.toLowerCase().trim();
 
     // Validate name
     if (!name || typeof name !== "string" || name.trim().length < 2) {
       return NextResponse.json(
         { error: "Nama lengkap minimal 2 karakter" },
-        { status: 400 }
-      );
-    }
-
-    if (!email) {
-      return NextResponse.json(
-        { error: "Alamat email diperlukan untuk memperbarui profil" },
         { status: 400 }
       );
     }
@@ -79,37 +101,60 @@ export async function PUT(request: Request) {
     const cleanBio = sanitize(bio).substring(0, 300);
     const cleanMinutes = Math.min(120, Math.max(10, Number(dailyGoalMinutes) || 30));
 
-    // If Prisma database connection is available and user email is provided, sync to DB
-    if (email && process.env.DATABASE_URL) {
-      try {
-        await prisma.user.updateMany({
-          where: { email },
-          data: {
-            name: cleanName,
-            username: cleanUsername,
-            image: typeof avatarUrl === "string" ? avatarUrl : undefined,
-          },
-        });
-      } catch (dbErr) {
-        console.warn("[Profile API] Prisma update fallback warning:", dbErr);
-      }
+    // Sinkronkan ke Prisma database
+    let updatedUser: any = null;
+    try {
+      updatedUser = await prisma.user.upsert({
+        where: { email },
+        update: {
+          name: cleanName,
+          username: cleanUsername,
+          bio: cleanBio,
+          dailyGoalMinutes: cleanMinutes,
+          avatarUrl: typeof avatarUrl === "string" ? avatarUrl : undefined,
+          image: typeof avatarUrl === "string" ? avatarUrl : undefined,
+        },
+        create: {
+          email,
+          name: cleanName,
+          username: cleanUsername,
+          bio: cleanBio,
+          dailyGoalMinutes: cleanMinutes,
+          avatarUrl: typeof avatarUrl === "string" ? avatarUrl : undefined,
+          image: typeof avatarUrl === "string" ? avatarUrl : undefined,
+          role: "STUDENT",
+        },
+      });
+    } catch (dbErr) {
+      console.warn("[Profile API] Prisma upsert error:", dbErr);
     }
 
     return NextResponse.json({
       success: true,
-      message: "Profil berhasil diperbarui dan disinkronkan",
-      updatedData: {
-        name: cleanName,
-        username: cleanUsername,
-        bio: cleanBio,
-        dailyGoalMinutes: cleanMinutes,
-        avatarUrl: typeof avatarUrl === "string" ? avatarUrl : undefined,
-        updatedAt: new Date().toISOString(),
-      },
+      message: "Profil berhasil diperbarui dan disinkronkan ke Cloud Database",
+      profile: updatedUser
+        ? {
+            id: updatedUser.id,
+            name: updatedUser.name,
+            username: updatedUser.username,
+            bio: updatedUser.bio,
+            dailyGoalMinutes: updatedUser.dailyGoalMinutes,
+            avatarUrl: updatedUser.avatarUrl || updatedUser.image,
+            email: updatedUser.email,
+          }
+        : {
+            name: cleanName,
+            username: cleanUsername,
+            bio: cleanBio,
+            dailyGoalMinutes: cleanMinutes,
+            avatarUrl: typeof avatarUrl === "string" ? avatarUrl : undefined,
+            email,
+          },
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.error("[Profile API] PUT error:", error);
     return NextResponse.json(
-      { error: "Gagal memperbarui profil pengguna" },
+      { error: error?.message || "Gagal memperbarui profil pengguna" },
       { status: 500 }
     );
   }
@@ -118,7 +163,7 @@ export async function PUT(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const body = await request.json();
-    const { confirmation, email } = body;
+    const { confirmation, email: rawEmail } = body;
 
     if (confirmation !== "HAPUS AKUN SAYA") {
       return NextResponse.json(
@@ -127,24 +172,30 @@ export async function DELETE(request: Request) {
       );
     }
 
-    // If database is available, delete user record
-    if (email && process.env.DATABASE_URL) {
-      try {
-        await prisma.user.deleteMany({
-          where: { email },
-        });
-      } catch (dbErr) {
-        console.warn("[Profile API] Prisma delete warning:", dbErr);
-      }
+    if (!rawEmail) {
+      return NextResponse.json(
+        { error: "Email diperlukan" },
+        { status: 400 }
+      );
+    }
+
+    const email = rawEmail.toLowerCase().trim();
+
+    try {
+      await prisma.user.deleteMany({
+        where: { email },
+      });
+    } catch (dbErr) {
+      console.warn("[Profile API] Prisma delete warning:", dbErr);
     }
 
     return NextResponse.json({
       success: true,
       message: "Akun dan seluruh data pembelajaran berhasil dihapus secara permanen.",
     });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
-      { error: "Gagal menghapus akun" },
+      { error: error?.message || "Gagal menghapus akun" },
       { status: 500 }
     );
   }
