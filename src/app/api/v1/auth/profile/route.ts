@@ -31,8 +31,8 @@ export async function GET(request: Request) {
             name: user.name,
             username: user.username || email.split("@")[0].replace(/[^a-z0-9_]/g, ""),
             avatarUrl: user.avatarUrl || user.image || `https://api.dicebear.com/7.x/bottts/svg?seed=${email}`,
-            bio: user.bio || "Web Development Enthusiast di BelajarinAja",
-            dailyGoalMinutes: user.dailyGoalMinutes || 30,
+            bio: (user as any).bio || "Web Development Enthusiast di BelajarinAja",
+            dailyGoalMinutes: (user as any).dailyGoalMinutes || 30,
             role: user.role,
             createdAt: user.createdAt.toISOString(),
           },
@@ -104,7 +104,7 @@ export async function PUT(request: Request) {
     // Sinkronkan ke Prisma database
     let updatedUser: any = null;
     try {
-      updatedUser = await prisma.user.upsert({
+      updatedUser = await (prisma.user as any).upsert({
         where: { email },
         update: {
           name: cleanName,
@@ -137,8 +137,8 @@ export async function PUT(request: Request) {
             id: updatedUser.id,
             name: updatedUser.name,
             username: updatedUser.username,
-            bio: updatedUser.bio,
-            dailyGoalMinutes: updatedUser.dailyGoalMinutes,
+            bio: (updatedUser as any).bio,
+            dailyGoalMinutes: (updatedUser as any).dailyGoalMinutes,
             avatarUrl: updatedUser.avatarUrl || updatedUser.image,
             email: updatedUser.email,
           }
